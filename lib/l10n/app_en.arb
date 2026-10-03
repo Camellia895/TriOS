@@ -1,0 +1,49 @@
+{
+  "@@locale": "en",
+  "aboutTagline": "{appName} is a mod manager, launcher, and toolkit.\nIt's written in Dart/Flutter.",
+  "@aboutTagline": {
+    "placeholders": {
+      "appName": {}
+    }
+  },
+  "aboutForumThread": "Forum Thread",
+  "aboutSourceCode": "Source Code",
+  "aboutPrivacyPolicy": "Privacy Policy",
+  "aboutPrivacySentry": "• If you choose to allow it, device information (e.g. OS and screen resolution), mod list, and {appName} errors will be collected and uploaded to servers managed by Sentry.io. The information is associated with a randomly generated id and is used to fix bugs. Example of collected data: https://i.imgur.com/k9E6zxO.png.",
+  "@aboutPrivacySentry": {
+    "placeholders": {
+      "appName": {}
+    }
+  },
+  "aboutPrivacyNoAllow": "• If you do not choose to allow this, {appName} only uses the internet for obvious things like version checker updates, mod updates, downloading the Mod Catalog files, etc.",
+  "@aboutPrivacyNoAllow": {
+    "placeholders": {
+      "appName": {}
+    }
+  },
+  "aboutPrivacyNoPersonal": "• No personal information is collected at any time. I don't know who you are, where you are, what your username is, etc.",
+  "aboutAiDisclosure": "AI Disclosure",
+  "aboutAiCatalog": "• AI is used to help generate the Mod Catalog (which is a text file downloaded and displayed by {appName}) by sending the HTML content of forum pages. This is used for processing that would be very difficult without AI, such as:",
+  "@aboutAiCatalog": {
+    "placeholders": {
+      "appName": {}
+    }
+  },
+  "aboutAiDetectMods": "Detecting and extracting multiple mods on a single forum page.",
+  "aboutAiChangelogs": "Changelogs on the forum page.",
+  "aboutAiDetectLinks": "Detecting and categorizing a wider range of download links. Links that don't exist on the forum page are ignored (hallucination prevention).",
+  "aboutAiSummaries": "Generating summaries of mods.",
+  "aboutAiWritesApp": "• AI is used to help write {appName}.",
+  "@aboutAiWritesApp": {
+    "placeholders": {
+      "appName": {}
+    }
+  },
+  "aboutAiModContent": "• AI is not sent mod content except that which is sent automatically while using it for coding.",
+  "aboutAiNoService": "• {appName} itself does not use or contact any AI service.",
+  "@aboutAiNoService": {
+    "placeholders": {
+      "appName": {}
+    }
+  }
+}
