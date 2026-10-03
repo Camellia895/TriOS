@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -60,7 +61,9 @@ class EnabledModsIntent extends ChatIntent with ModAwareIntent {
 
     final enabled = mods.where((m) => m.isEnabledInGame).toList()..sort();
     if (enabled.isEmpty) {
-      return const ChatResponse(text: 'No mods are currently enabled.');
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModsCurrentlyEnabled,
+      );
     }
 
     final buf = StringBuffer('Enabled Mods (${enabled.length})\n');

@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vram_estimator/graphics_lib_config_provider.dart';
@@ -191,6 +192,7 @@ class _ModBytesLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final refBytes = mod.bytesNotIncludingGraphicsLib();
     final hasUnref = mod.unreferencedImages != null;
     final unrefBytes = mod.unreferencedBytesNotIncludingGraphicsLib();
@@ -204,12 +206,9 @@ class _ModBytesLabel extends StatelessWidget {
         Text(refBytes.bytesAsReadableMB(), style: theme.textTheme.labelMedium),
         if (hasUnref)
           MovingTooltipWidget.text(
-            message:
-                'Advisory: images on disk that no parsed reference points to. '
-                'May be dev leftovers, or loaded via dynamic paths the parsers '
-                "can't detect.",
+            message: loc.vramUnreferencedAdvisory,
             child: Text(
-              '+${unrefBytes.bytesAsReadableMB()} unreferenced',
+              loc.vramUnreferencedSuffix(unrefBytes.bytesAsReadableMB()),
               style: theme.textTheme.labelSmall?.copyWith(
                 color: mutedColor,
                 fontStyle: FontStyle.italic,
@@ -268,11 +267,12 @@ class _RowRescanButtonState extends State<_RowRescanButton>
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final tooltip = widget.isScanningThisMod
-        ? 'Rescanning this mod…'
+        ? loc.vramRescanningThisMod
         : widget.canRescan
-        ? 'Rescan this mod'
-        : 'Scan in progress, rescan unavailable';
+        ? loc.vramRescanThisMod
+        : loc.vramScanInProgressNoRescan;
     return MovingTooltipWidget.text(
       message: tooltip,
       child: IconButton(

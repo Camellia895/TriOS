@@ -9,6 +9,8 @@ import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:plist_parser/plist_parser.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/launch_settings.dart';
 import 'package:trios/models/mod_variant.dart';
@@ -64,6 +66,7 @@ class LauncherButton extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final isGameRunning = ref.watch(AppState.isGameRunning).value == true;
     final launchButtonOverride = ref.watch(
       appSettings.select((s) => s.themeModifiers.launchButtonOverride),
@@ -111,13 +114,15 @@ class LauncherButton extends HookConsumerWidget {
       tooltipWidget: DefaultTextStyle.merge(
         style: theme.textTheme.labelLarge,
         child: isGameRunning
-            ? const Text("Game is running")
+            ? Text(loc.launcherGameIsRunning)
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Launch ${ref.watch(AppState.starsectorVersion).value}',
+                    loc.launcherLaunch(
+                      ref.watch(AppState.starsectorVersion).value ?? '',
+                    ),
                     style: theme.textTheme.labelLarge?.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -126,40 +131,29 @@ class LauncherButton extends HookConsumerWidget {
                   Text.rich(
                     TextSpan(
                       children: [
-                        if (useCustomGameExe) TextSpan(text: "Executable: "),
+                        if (useCustomGameExe)
+                          TextSpan(text: loc.launcherExecutable),
                         if (useCustomGameExe)
                           TextSpan(
                             text:
                                 "${ref.watch(AppState.gameExecutable).value?.nameWithExtension}\n",
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        const TextSpan(text: "RAM: "),
+                        TextSpan(text: loc.launcherRam),
                         TextSpan(
                           text:
-                              "${ref.watch(currentRamAmountInMb) ?? "(unknown RAM)"} MB",
+                              "${ref.watch(currentRamAmountInMb) ?? loc.launcherUnknownRam} MB",
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "\nTip: ${context.appName} is never required to ",
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          color: theme.colorScheme.onSurface.withAlpha(180),
-                        ),
-                      ),
-                      Text(
-                        "launch the game.",
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          color: theme.colorScheme.onSurface.withAlpha(180),
-                        ),
-                      ),
-                    ],
+                  Text(
+                    loc.launcherTipNeverRequired(context.appName),
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      color: theme.colorScheme.onSurface.withAlpha(180),
+                    ),
                   ),
                   if (ref.watch(
                     appSettings.select((s) => s.enableDirectLaunch),
@@ -167,9 +161,7 @@ class LauncherButton extends HookConsumerWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(
-                        "Direct Launch is on."
-                        "\nInvisible ships, zoomed-in combat,"
-                        "\nand more may result.",
+                        loc.launcherDirectLaunchWarning,
                         style: TextStyle(
                           color: TriOSThemeConstants.vanillaWarningColor
                               .withAlpha(200),
@@ -213,7 +205,7 @@ class LauncherButton extends HookConsumerWidget {
                     ),
                   ),
                   child: Text(
-                    isGameRunning ? "RUNNING..." : "LAUNCH",
+                    isGameRunning ? loc.launcherRunning : loc.launcherLaunchButton,
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontFamily: "Orbitron",
@@ -274,8 +266,9 @@ class LauncherButton extends HookConsumerWidget {
       showDialog(
         context: context,
         builder: (context) {
+          final loc = AppLocalizations.of(context);
           return AlertDialog(
-            title: const Text('Launch Precheck Failed'),
+            title: Text(loc.launcherLaunchPrecheckFailed),
             content: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -308,7 +301,7 @@ class LauncherButton extends HookConsumerWidget {
                   ElevatedButton.icon(
                     onPressed: () => _launchGameWithoutPrecheck(ref),
                     icon: const SvgImageIcon("assets/images/icon-skip.svg"),
-                    label: const Text('Launch anyway'),
+                    label: Text(loc.launcherLaunchAnyway),
                   ),
                 ],
               ),
@@ -333,6 +326,7 @@ class LauncherButton extends HookConsumerWidget {
   }
 
   static List<LaunchPrecheckError> performLaunchPrecheck(WidgetRef ref) {
+    final loc = AppLocalizationsSync.instance;
     final launchPrecheckFailures = <LaunchPrecheckError?>[];
     final mods = ref.read(AppState.mods);
     final modsFolder = ref.read(AppState.modsFolder).value;
@@ -360,10 +354,13 @@ class LauncherButton extends HookConsumerWidget {
       if (compatibilityCheck?.isGameCompatible == false) {
         launchPrecheckFailures.add(
           LaunchPrecheckError(
-            message:
-                'Mod ${variant.modInfo.name} requires game version ${variant.modInfo.gameVersion} and is not compatible with $currentGameVersion.',
+            message: loc.launcherPrecheckModIncompatible(
+              variant.modInfo.name ?? '',
+              variant.modInfo.gameVersion ?? '',
+              currentGameVersion ?? '',
+            ),
             requiringModVariant: variant,
-            fixActionName: "Force compatibility (not recommended)",
+            fixActionName: loc.launcherPrecheckForceCompatibility,
             doFix: () async {
               await ref
                   .read(modManager.notifier)
@@ -377,20 +374,22 @@ class LauncherButton extends HookConsumerWidget {
 
       for (final dependency in dependencies) {
         final satisfaction = dependency.satisfiedAmount;
+        final dependencyName =
+            dependency.dependency.name ??
+            dependency.dependency.id ??
+            'unknown';
 
         launchPrecheckFailures.add(switch (satisfaction) {
           Missing _ => LaunchPrecheckError(
-            message:
-                'Dependency ${dependency.dependency.name ?? dependency.dependency.id} is missing',
+            message: loc.launcherPrecheckDependencyMissing(dependencyName),
             requiringModVariant: variant,
             fixActionName: null,
             doFix: null,
           ),
           Disabled disabled => LaunchPrecheckError(
-            message:
-                'Dependency ${dependency.dependency.name ?? dependency.dependency.id} is disabled',
+            message: loc.launcherPrecheckDependencyDisabled(dependencyName),
             requiringModVariant: variant,
-            fixActionName: "Enable",
+            fixActionName: loc.triosEnable,
             doFix: () async {
               final mod = mods.firstWhereOrNull(
                 (mod) => mod.id == dependency.dependency.id,
@@ -404,8 +403,7 @@ class LauncherButton extends HookConsumerWidget {
             },
           ),
           VersionInvalid _ => LaunchPrecheckError(
-            message:
-                'Dependency ${dependency.dependency.name ?? dependency.dependency.id} has wrong version',
+            message: loc.launcherPrecheckDependencyWrongVersion(dependencyName),
             requiringModVariant: variant,
             fixActionName: null,
             doFix: null,

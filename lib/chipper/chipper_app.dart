@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/utils/logging.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -37,6 +38,7 @@ class _ChipperAppState extends ConsumerState<ChipperApp>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final loc = AppLocalizations.of(context);
     return CallbackShortcuts(
       bindings: {
         const SingleActivator(LogicalKeyboardKey.keyV, control: true): () =>
@@ -44,7 +46,7 @@ class _ChipperAppState extends ConsumerState<ChipperApp>
       },
       child: MyHomePage(
         title: chipperTitleAndVersion,
-        subTitle: chipperSubtitle,
+        subTitle: loc.chipperSubtitle,
         pagePadding: widget.pagePadding,
       ),
     );
@@ -95,6 +97,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     chips = ref.watch(ChipperState.logRawContents).value;
     return Padding(
       padding: EdgeInsets.only(
@@ -127,7 +130,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                                 theme.colorScheme.onSurface,
                               ),
                             ),
-                            label: const Text("Load my log"),
+                            label: Text(loc.chipperLoadMyLog),
                           ),
                           if (chips != null)
                             TextButton.icon(
@@ -147,7 +150,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                                   theme.colorScheme.onSurface,
                                 ),
                               ),
-                              label: const Text("Copy all"),
+                              label: Text(loc.chipperCopyAll),
                             ),
                           if (chips != null)
                             TextButton.icon(
@@ -163,7 +166,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                                   theme.colorScheme.onSurface,
                                 ),
                               ),
-                              label: const Text("Open Log File"),
+                              label: Text(loc.chipperOpenLogFile),
                             ),
                         ],
                       ),
@@ -248,7 +251,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                     );
                   }
                 },
-                tooltip: 'Upload log file',
+                tooltip: loc.chipperUploadLogFile,
                 child: const Icon(Icons.upload_file),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/widgets/conditional_wrap.dart';
 import 'package:trios/widgets/disable.dart';
@@ -23,8 +24,9 @@ class _DisableIfCannotWriteGameFolderState
     return ConditionalWrap(
       condition: !canWrite,
       wrapper: (child) => Tooltip(
-        message:
-            "Cannot modify game folder and/or vmparams.\nTry running ${Constants.appName} as administrator.",
+        message: AppLocalizations.of(
+          context,
+        ).disableCannotWriteGameFolder(Constants.appName),
         child: Disable(isEnabled: false, child: child),
       ),
       child: widget.child,

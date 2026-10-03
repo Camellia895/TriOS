@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_frozen_overlay.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
@@ -803,7 +804,9 @@ class _WispGridState<T extends WispGridItem>
               return item; // Already built widget
             } catch (e) {
               Fimber.v(() => 'Error in WispGrid: $e');
-              return const Text("Incoherent screaming");
+              return Text(
+                AppLocalizations.of(context).wispGridIncoherentScreaming,
+              );
             }
           }, childCount: displayedMods.length);
 

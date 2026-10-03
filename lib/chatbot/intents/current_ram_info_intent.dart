@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -68,9 +69,8 @@ class CurrentRamInfoIntent extends ChatIntent with SettingsAwareIntent {
     final ram = currentRam;
 
     if (ram == null) {
-      return const ChatResponse(
-        text: 'Could not determine current RAM allocation. '
-            'Make sure your game folder is configured in Settings.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotCouldNotDetermineCurrentRam,
       );
     }
 
@@ -79,10 +79,10 @@ class CurrentRamInfoIntent extends ChatIntent with SettingsAwareIntent {
         ramMb != null ? ' (${(ramMb / 1024).toStringAsFixed(1)} GB)' : '';
 
     return ChatResponse(
-      text: 'Current RAM allocation: $ram MB$ramGb\n'
-          '\n'
-          'To change this, go to the Dashboard page and adjust the\n'
-          'RAM slider, or ask "more ram" for recommendations.',
+      text: AppLocalizationsSync.instance.chatbotCurrentRamAllocation(
+        ram,
+        ramGb,
+      ),
     );
   }
 }

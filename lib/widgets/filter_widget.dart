@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants_theme.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/widgets/checkbox_with_label.dart';
@@ -307,13 +308,12 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
   /// The "any" / "all" button. "any" is the old behaviour: one of the
   /// included values is enough. "all" demands every one of them.
   Widget _buildLogicButton(ThemeData theme) {
+    final loc = AppLocalizations.of(context);
     final isAll = widget.filter.logicMode == ChipLogicMode.all;
     return MovingTooltipWidget.text(
       message: isAll
-          ? 'All: only shows items that have every value you include.\n'
-                'Click for "any".'
-          : 'Any: shows items with at least one of the values you include.\n'
-                'Click for "all".',
+          ? loc.filterLogicAllTooltip
+          : loc.filterLogicAnyTooltip,
       child: TextButton(
         onPressed: _toggleLogicMode,
         style: TextButton.styleFrom(
@@ -325,7 +325,7 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
               : theme.colorScheme.onSurface,
         ),
         child: Text(
-          isAll ? 'all' : 'any',
+          isAll ? loc.filterLogicAll : loc.filterLogicAny,
           style: theme.textTheme.labelMedium?.copyWith(
             fontWeight: isAll ? FontWeight.bold : null,
           ),
@@ -336,14 +336,17 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
 
   /// Tooltip for the include-all / exclude-all / clear-all buttons, with a
   /// note about the search box when one is in use.
-  String _allButtonsTooltip(String label) => _searchTerm.isEmpty
-      ? label
-      : '$label\nOnly the values the search is showing.\n'
-            'Hold shift to do the whole group.';
+  String _allButtonsTooltip(String label) {
+    final loc = AppLocalizations.of(context);
+    return _searchTerm.isEmpty
+        ? label
+        : '$label\n${loc.filterGroupSearchScopedTooltip}';
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final hasFilters = widget.filterStates.isNotEmpty;
     final options = FilterPanelOptions.of(context);
     _searchTerm = options.searchTerm;
@@ -405,7 +408,7 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
                   // group shows its counts instead.
                   if (_isExpanded) ...[
                     MovingTooltipWidget.text(
-                      message: _allButtonsTooltip('Include all'),
+                      message: _allButtonsTooltip(loc.filterIncludeAll),
                       child: IconButton(
                         onPressed: () => _setAll(true),
                         icon: const Icon(Icons.check_box, size: 16),
@@ -413,7 +416,7 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
                       ),
                     ),
                     MovingTooltipWidget.text(
-                      message: _allButtonsTooltip('Exclude all'),
+                      message: _allButtonsTooltip(loc.filterExcludeAll),
                       child: IconButton(
                         onPressed: () => _setAll(false),
                         icon: const Icon(
@@ -424,7 +427,7 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
                       ),
                     ),
                     MovingTooltipWidget.text(
-                      message: _allButtonsTooltip('Clear all filters'),
+                      message: _allButtonsTooltip(loc.filterClearAllFilters),
                       child: IconButton(
                         onPressed: _clearAll,
                         icon: const Icon(
@@ -659,6 +662,7 @@ class _FiltersPanelState extends State<FiltersPanel> {
 
   /// Search box plus the "Advanced" checkbox, shown above the filter groups.
   Widget _buildSearchRow(ThemeData theme) {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const .only(bottom: 8),
       child: Row(
@@ -674,7 +678,7 @@ class _FiltersPanelState extends State<FiltersPanel> {
                   style: theme.textTheme.labelLarge,
                   decoration: InputDecoration(
                     isDense: true,
-                    hintText: 'Filter filters',
+                    hintText: loc.filterSearchHint,
                     contentPadding: const .symmetric(horizontal: 8),
                     prefixIcon: const Icon(Icons.search, size: 16),
                     prefixIconConstraints: const BoxConstraints(
@@ -684,7 +688,7 @@ class _FiltersPanelState extends State<FiltersPanel> {
                     suffixIcon: _searchController.text.isEmpty
                         ? null
                         : MovingTooltipWidget.text(
-                            message: 'Clear search',
+                            message: loc.filterClearSearch,
                             child: IconButton(
                               onPressed: _clearSearch,
                               icon: const Icon(Icons.close, size: 16),
@@ -706,11 +710,9 @@ class _FiltersPanelState extends State<FiltersPanel> {
             ),
           if (widget.onAdvancedChanged != null)
             MovingTooltipWidget.text(
-              message:
-                  'Advanced filters: adds an "any" / "all" choice to each '
-                  'group.',
+              message: loc.filterAdvancedTooltip,
               child: CheckboxWithLabel(
-                label: 'Advanced',
+                label: loc.filterAdvanced,
                 labelStyle: theme.textTheme.labelLarge,
                 value: widget.isAdvanced,
                 onChanged: (value) => widget.onAdvancedChanged!(value ?? false),
@@ -724,6 +726,7 @@ class _FiltersPanelState extends State<FiltersPanel> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       child: Scrollbar(
@@ -739,7 +742,7 @@ class _FiltersPanelState extends State<FiltersPanel> {
                 Row(
                   children: [
                     MovingTooltipWidget.text(
-                      message: "Hide filters",
+                      message: loc.filterHideFilters,
                       child: InkWell(
                         onTap: widget.onHide,
                         borderRadius: BorderRadius.circular(
@@ -752,7 +755,7 @@ class _FiltersPanelState extends State<FiltersPanel> {
                             children: [
                               const Icon(Icons.filter_list, size: 16),
                               Text(
-                                'Filters',
+                                loc.filterTitle,
                                 style: theme.textTheme.titleMedium?.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -780,15 +783,13 @@ class _FiltersPanelState extends State<FiltersPanel> {
                     //   ),
                     if (widget.showClearAll)
                       MovingTooltipWidget.text(
-                        message:
-                            "Resets filters back to default."
-                            "\nSome filters are applied by default, such as spoiler warnings.",
+                        message: loc.filterClearAllTooltip,
                         child: TriOSToolbarItem(
                           elevation: 0,
                           child: TextButton.icon(
                             onPressed: widget.onClearAll,
                             icon: const Icon(Icons.clear_all, size: 16),
-                            label: const Text('Clear All'),
+                            label: Text(loc.filterClearAll),
                             style: TextButton.styleFrom(
                               foregroundColor: theme.colorScheme.onSurface,
                             ),

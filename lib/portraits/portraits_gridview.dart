@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/portraits/portrait_metadata.dart';
 import 'package:trios/portraits/portrait_metadata_manager.dart';
@@ -65,13 +66,14 @@ class PortraitsGridView extends ConsumerWidget {
     BuildContext context,
     PortraitMetadata metadata,
   ) {
+    final loc = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         // Portrait ID row (from settings.json)
         if (metadata.portraitId != null) ...[
-          Text('ID: ${metadata.portraitId}'),
+          Text(loc.portraitIdLabel(metadata.portraitId!)),
           const SizedBox(height: 4),
         ],
         // Gender row
@@ -101,6 +103,7 @@ class PortraitsGridView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     final portraitMetadata = ref.watch(AppState.portraitMetadata).value ?? {};
     const gridSpacing = 8.0;
 
@@ -179,10 +182,10 @@ class PortraitsGridView extends ConsumerWidget {
                               'Replacement Mod: ${replacementDetails!.replacementMod!.modInfo.nameOrId}',
                             )
                           else
-                            Text('Vanilla'),
-                          Text('Path: ${replacement.relativePath}'),
+                            Text(loc.vanillaShareBarVanilla),
+                          Text(loc.portraitPathLabel(replacement.relativePath)),
                           if (replacementBytesAsReadableKB != null)
-                            Text('Size: $replacementBytesAsReadableKB'),
+                            Text(loc.portraitSizeLabel(replacementBytesAsReadableKB)),
                           if (replacementDetails?.replacementPortrait != null)
                             Text(
                               'Dimensions: ${replacementDetails!.replacementPortrait!.width} x ${replacementDetails.replacementPortrait!.height}',
@@ -210,8 +213,8 @@ class PortraitsGridView extends ConsumerWidget {
                               ? "Vanilla"
                               : 'Mod: ${mod.modInfo.nameOrId}',
                         ),
-                        Text('Path: ${portrait.relativePath}'),
-                        Text('Size: $bytesAsReadableKB'),
+                        Text(loc.portraitPathLabel(portrait.relativePath)),
+                        Text(loc.portraitSizeLabel(bytesAsReadableKB)),
                         Text(
                           'Dimensions: ${portrait.width} x ${portrait.height}',
                         ),
@@ -240,7 +243,7 @@ class PortraitsGridView extends ConsumerWidget {
                     //   },
                     // ),
                     MenuItem(
-                      label: 'Pick Replacement',
+                      label: loc.portraitPickReplacement,
                       icon: Icons.swap_horiz,
                       onSelected: () {
                         onSelectedPortraitToReplace(portrait);
@@ -248,7 +251,7 @@ class PortraitsGridView extends ConsumerWidget {
                     ),
                     if (hasReplacement)
                       MenuItem(
-                        label: 'Revert to Original',
+                        label: loc.portraitRevertToOriginal,
                         icon: Icons.undo,
                         onSelected: () {
                           ref
@@ -262,14 +265,14 @@ class PortraitsGridView extends ConsumerWidget {
                     if (hasReplacement) ...[
                       MenuDivider(),
                       MenuItem(
-                        label: 'Open Replacement',
+                        label: loc.portraitOpenReplacement,
                         icon: Icons.open_in_new,
                         onSelected: () {
                           launchUrlString(replacement.imageFile.path);
                         },
                       ),
                       MenuItem(
-                        label: "Open Folder of Replacement",
+                        label: loc.portraitOpenReplacementFolder,
                         icon: Icons.folder_open,
                         onSelected: () {
                           launchUrlString(replacement.imageFile.parent.path);
@@ -278,14 +281,14 @@ class PortraitsGridView extends ConsumerWidget {
                       MenuDivider(),
                     ],
                     MenuItem(
-                      label: 'Open Original',
+                      label: loc.portraitOpenOriginal,
                       icon: Icons.open_in_new,
                       onSelected: () {
                         launchUrlString(portrait.imageFile.path);
                       },
                     ),
                     MenuItem(
-                      label: "Open Folder Of Original",
+                      label: loc.portraitOpenOriginalFolder,
                       icon: Icons.folder_open,
                       onSelected: () {
                         launchUrlString(portrait.imageFile.parent.path);
@@ -294,7 +297,7 @@ class PortraitsGridView extends ConsumerWidget {
                     if (mod != null)
                       buildOpenSingleFolderMenuItem(
                         mod.modFolder.absolute,
-                        label: 'Open Mod Folder',
+                        label: loc.factionViewerOpenModFolder,
                       ),
                     if (mod != null) buildMenuItemOpenForumPage(mod, context),
                   ],
@@ -411,6 +414,7 @@ class _PortraitImageWidgetState extends ConsumerState<PortraitImageWidget> {
 
   Widget _buildSingleCard(Portrait portrait) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
@@ -444,7 +448,7 @@ class _PortraitImageWidgetState extends ConsumerState<PortraitImageWidget> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 0, right: 2),
                   child: MovingTooltipWidget.text(
-                    message: 'Pick Replacement',
+                    message: loc.portraitPickReplacement,
                     child: IconButton(
                       icon: Container(
                         width: 32,
@@ -511,6 +515,7 @@ class _PortraitImageWidgetState extends ConsumerState<PortraitImageWidget> {
   }
 
   Widget _buildStackedCards(ThemeData theme, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     final backCardInset = widget.size * 0.125;
     final frontCardInset = widget.size * 0.094;
     final actionInset = widget.size * 0.0625;
@@ -616,7 +621,7 @@ class _PortraitImageWidgetState extends ConsumerState<PortraitImageWidget> {
                   right: actionInset,
                 ),
                 child: MovingTooltipWidget.text(
-                  message: 'Revert to Original',
+                  message: loc.portraitRevertToOriginal,
                   child: IconButton(
                     icon: Container(
                       width: 32,

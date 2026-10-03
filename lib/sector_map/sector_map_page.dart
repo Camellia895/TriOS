@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_profiles/save_reader.dart';
 import 'package:trios/sector_map/finder/widgets/finder_panel.dart';
 import 'package:trios/sector_map/finder/widgets/hint_ladder.dart';
@@ -67,6 +68,7 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
     SectorMapController controller,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final sectorAsync = state.source == null
         ? null
         : ref.watch(sectorMapProvider(state.source!));
@@ -81,6 +83,9 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
     }
 
     final isAtlas = state.mode == SectorMapMode.atlas;
+    final inhabitedCount = sector?.systems
+        .where((s) => s.isInhabited)
+        .length;
 
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -91,14 +96,17 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
           // save picker
           DropdownButton<SaveFile>(
             value: selectedSave,
-            hint: const Text('Select a save'),
+            hint: Text(loc.sectorMapSelectASave),
             underline: const SizedBox.shrink(),
             items: [
               for (final s in saves)
                 DropdownMenuItem(
                   value: s,
                   child: Text(
-                    '${s.characterName} (lvl ${s.characterLevel})',
+                    loc.sectorMapSavePickerLabel(
+                      s.characterName,
+                      s.characterLevel,
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -113,11 +121,11 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
               width: 240,
               child: TextField(
                 controller: _searchController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   isDense: true,
-                  prefixIcon: Icon(Icons.search, size: 18),
-                  hintText: 'Find system…',
-                  border: OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.search, size: 18),
+                  hintText: loc.sectorMapFindSystem,
+                  border: const OutlineInputBorder(),
                 ),
                 onChanged: controller.setSearch,
                 onSubmitted: (q) => _jumpToSystem(sector, q, controller),
@@ -126,36 +134,38 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
             if (sector != null)
               _buildFactionFilter(context, sector, controller),
           ] else
-            Text('System Finder', style: theme.textTheme.titleMedium),
+            Text(loc.sectorMapSystemFinder, style: theme.textTheme.titleMedium),
           const Spacer(),
           if (sector != null && isAtlas)
             Text(
-              '${sector.systems.length} systems  •  '
-              '${sector.systems.where((s) => s.isInhabited).length} inhabited',
+              loc.sectorMapSystemsSummary(
+                sector.systems.length,
+                inhabitedCount ?? 0,
+              ),
               style: theme.textTheme.bodySmall,
             ),
           if (isAtlas)
             MovingTooltipWidget.text(
-              message: 'Back to the System Finder',
+              message: loc.sectorMapBackToTheSystem,
               child: TextButton.icon(
                 onPressed: () => controller.setMode(SectorMapMode.finder),
                 icon: const Icon(Icons.travel_explore, size: 18),
-                label: const Text('Finder'),
+                label: Text(loc.sectorMapFinder),
               ),
             )
           else
             MovingTooltipWidget.text(
-              message: 'Reveal the whole sector now',
+              message: loc.sectorMapRevealTheWholeSector,
               child: PopupMenuButton<String>(
                 icon: const Icon(Icons.more_vert),
                 itemBuilder: (context) => [
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: 'atlas',
                     child: ListTile(
                       dense: true,
                       contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.public),
-                      title: Text('Show everything (spoiler)'),
+                      leading: const Icon(Icons.public),
+                      title: Text(loc.sectorMapShowEverythingSpoiler),
                     ),
                   ),
                 ],
@@ -176,6 +186,7 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
   ) {
     final colors = ref.watch(factionColorsProvider);
     final names = ref.watch(factionNamesProvider);
+    final loc = AppLocalizations.of(context);
     final factionIds =
         (sector.systems
               .expand((s) => s.markets.map((m) => m.factionId))
@@ -185,7 +196,7 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
     final state = ref.watch(sectorMapControllerProvider);
 
     return MovingTooltipWidget.text(
-      message: 'Filter systems by faction',
+      message: loc.sectorMapFilterSystemsByFaction,
       child: PopupMenuButton<String>(
         icon: Badge(
           isLabelVisible: state.hiddenFactionIds.isNotEmpty,
@@ -197,7 +208,7 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
             enabled: false,
             child: TextButton.icon(
               icon: const Icon(Icons.clear, size: 16),
-              label: const Text('Show all'),
+              label: Text(loc.sectorMapShowAll),
               onPressed: () {
                 controller.clearFactionFilter();
                 Navigator.pop(context);
@@ -235,8 +246,9 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
     SectorMapState state,
     SectorMapController controller,
   ) {
+    final loc = AppLocalizations.of(context);
     if (state.source == null) {
-      return const Center(child: Text('Select a save to view its sector.'));
+      return Center(child: Text(loc.sectorMapSelectASaveTo));
     }
 
     final sectorAsync = ref.watch(sectorMapProvider(state.source!));
@@ -251,7 +263,7 @@ class _SectorMapPageState extends ConsumerState<SectorMapPage>
           child: Padding(
             padding: const EdgeInsets.all(24),
             child: Text(
-              'Could not read this sector.\n\n$e',
+              loc.sectorMapCouldNotReadSector(e.toString()),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium,
             ),

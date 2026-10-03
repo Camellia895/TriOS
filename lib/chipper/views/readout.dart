@@ -3,6 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/utils/dialogs.dart';
 
 import '../chipper_state.dart';
@@ -42,10 +43,11 @@ class _ReadoutState extends State<Readout> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final chips = widget.chips;
-    final gameVersion = chips.gameVersion ?? "Not found in log.";
-    final os = chips.os ?? "Not found in log.";
-    final javaVersion = chips.javaVersion ?? "Not found in log.";
+    final gameVersion = chips.gameVersion ?? loc.chipperNotFoundInLog;
+    final os = chips.os ?? loc.chipperNotFoundInLog;
+    final javaVersion = chips.javaVersion ?? loc.chipperNotFoundInLog;
     final mods = chips.modList.modList;
     final isPerfectList = chips.modList.isPerfectList;
 
@@ -89,11 +91,11 @@ class _ReadoutState extends State<Readout> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "System",
+                                  loc.chipperSystem,
                                   style: theme.textTheme.titleLarge,
                                 ),
                                 IconButton(
-                                  tooltip: "Copy",
+                                  tooltip: loc.chipperCopy,
                                   onPressed: () {
                                     Clipboard.setData(
                                       ClipboardData(
@@ -120,7 +122,7 @@ class _ReadoutState extends State<Readout> {
                                 ),
                                 children: [
                                   TextSpan(
-                                    text: "Starsector: ",
+                                    text: loc.chipperStarsectorLabel,
                                     style: TextStyle(
                                       color: theme.colorScheme.onSurface
                                           .withAlpha(190),
@@ -134,7 +136,7 @@ class _ReadoutState extends State<Readout> {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: "\nJRE: ",
+                                    text: loc.chipperJreLabel,
                                     style: TextStyle(
                                       color: theme.colorScheme.onSurface
                                           .withAlpha(190),
@@ -148,7 +150,7 @@ class _ReadoutState extends State<Readout> {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: "\nOS: ",
+                                    text: loc.chipperOsLabel,
                                     style: TextStyle(
                                       color: theme.colorScheme.onSurface
                                           .withAlpha(190),
@@ -179,8 +181,7 @@ class _ReadoutState extends State<Readout> {
                           children: [
                             if (!isPerfectList && mods.isNotEmpty)
                               Tooltip(
-                                message:
-                                    "This list may be incomplete.\n\"Running with the following mods\" block not found in log.",
+                                message: loc.chipperListMayBeIncomplete,
                                 child: Padding(
                                   padding: const EdgeInsets.only(right: 8.0),
                                   child: Icon(
@@ -198,12 +199,12 @@ class _ReadoutState extends State<Readout> {
                               ),
                             SelectionArea(
                               child: Text(
-                                "Mods (${mods.length})",
+                                loc.chipperModsCount(mods.length),
                                 style: theme.textTheme.titleLarge,
                               ),
                             ),
                             IconButton(
-                              tooltip: "Copy",
+                              tooltip: loc.chipperCopy,
                               onPressed: () {
                                 Clipboard.setData(
                                   ClipboardData(
@@ -223,7 +224,7 @@ class _ReadoutState extends State<Readout> {
                               iconSize: 20,
                             ),
                             IconButton(
-                              tooltip: "Copy (less info)",
+                              tooltip: loc.chipperCopyLessInfo,
                               onPressed: () {
                                 Clipboard.setData(
                                   ClipboardData(
@@ -253,7 +254,7 @@ class _ReadoutState extends State<Readout> {
                             //   iconSize: 14,
                             // ),
                             IconButton(
-                              tooltip: "Popup",
+                              tooltip: loc.chipperPopup,
                               onPressed: () {
                                 showMyDialog(
                                   context,
@@ -290,8 +291,11 @@ class _ReadoutState extends State<Readout> {
                                             ),
                                           ),
                                     TextSpan(
-                                      text:
-                                          " chipped in ${NumberFormat.decimalPattern().format(chips.timeTaken)}ms",
+                                      text: loc.chipperChippedIn(
+                                        NumberFormat.decimalPattern().format(
+                                          chips.timeTaken,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -332,12 +336,15 @@ class _ReadoutState extends State<Readout> {
                     children: [
                       Text(
                         _searchQuery.isEmpty
-                            ? "Errors (${allErrors.length})"
-                            : "Errors (${filteredErrors.length}/${allErrors.length})",
+                            ? loc.chipperErrorsCount(allErrors.length)
+                            : loc.chipperErrorsFilteredCount(
+                                filteredErrors.length,
+                                allErrors.length,
+                              ),
                         style: theme.textTheme.titleLarge,
                       ),
                       IconButton(
-                        tooltip: "Copy",
+                        tooltip: loc.chipperCopy,
                         onPressed: () {
                           Clipboard.setData(
                             ClipboardData(text: createErrorsCopyString(chips)),
@@ -356,7 +363,7 @@ class _ReadoutState extends State<Readout> {
                     child: TextField(
                       controller: _searchController,
                       decoration: InputDecoration(
-                        hintText: "Filter...",
+                        hintText: loc.chipperFilter,
                         prefixIcon: const Icon(Icons.search, size: 18),
                         suffixIcon: _searchQuery.isEmpty
                             ? null
@@ -424,6 +431,7 @@ class ViewPreviousEntryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     // Take a list of all lines before this one, then find the last one in the list that is specifically a "previous line" entry..
     var thisError = _errors[index] is GeneralErrorLogLine
         ? (_errors[index] as GeneralErrorLogLine)
@@ -451,7 +459,12 @@ class ViewPreviousEntryButton extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Previous line on ${thisError?.thread?.replaceFirst('[', '').replaceFirst(']', '') ?? "thread"}",
+                      loc.chipperPreviousLineOn(
+                        thisError?.thread
+                            ?.replaceFirst('[', '')
+                            .replaceFirst(']', '') ??
+                            loc.chipperGenericThread,
+                      ),
                       style: theme.textTheme.titleMedium,
                     ),
                     Row(
@@ -516,7 +529,7 @@ class ModsList extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
-        "Mods (${mods?.length})",
+        AppLocalizations.of(context).chipperModsCount(mods?.length ?? 0),
         style: Theme.of(context).textTheme.titleLarge,
       ),
       ...mods!.map((e) => e.createWidget(context)),

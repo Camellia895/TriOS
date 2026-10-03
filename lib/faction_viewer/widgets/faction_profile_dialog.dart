@@ -11,6 +11,7 @@ import 'package:trios/faction_viewer/spawn_weights/vanilla_share_bar.dart';
 import 'package:trios/hullmod_viewer/hullmods_manager.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
 import 'package:trios/hullmod_viewer/widgets/hullmod_codex_card.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/ship_systems_manager/ship_systems_manager.dart';
 import 'package:trios/ship_viewer/models/ship.dart';
@@ -75,6 +76,7 @@ class FactionProfileDialog extends ConsumerWidget {
     WidgetRef ref,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     return Column(
       mainAxisSize: MainAxisSize.max,
@@ -87,12 +89,12 @@ class FactionProfileDialog extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (faction.doctrine != null) ...[
-                  _sectionTitle('Doctrine', theme),
+                  _sectionTitle(loc.factionProfileDialogDoctrine, theme),
                   const SizedBox(height: 8),
-                  _buildDoctrineSection(theme, factionColor),
+                  _buildDoctrineSection(theme, factionColor, loc),
                   const SizedBox(height: 16),
                 ],
-                _sectionTitle('Fleet', theme),
+                _sectionTitle(loc.factionProfileDialogFleet, theme),
                 const SizedBox(height: 8),
                 Theme(
                   data: theme,
@@ -103,26 +105,29 @@ class FactionProfileDialog extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                _sectionTitle('Spawn weights', theme),
+                _sectionTitle(loc.factionViewerSpawnWeights, theme),
                 const SizedBox(height: 8),
                 _buildSpawnWeightsSection(context, theme, ref),
                 const SizedBox(height: 16),
                 if (faction.malePortraits.isNotEmpty ||
                     faction.femalePortraits.isNotEmpty) ...[
-                  _sectionTitle('Portraits', theme),
+                  _sectionTitle(loc.factionProfileDialogPortraits, theme),
                   const SizedBox(height: 8),
-                  _buildPortraitsSection(theme, ref),
+                  _buildPortraitsSection(theme, ref, loc),
                   const SizedBox(height: 16),
                 ],
                 if (faction.customFlags.isNotEmpty) ...[
-                  _sectionTitle('Behavior', theme),
+                  _sectionTitle(loc.factionProfileDialogBehavior, theme),
                   const SizedBox(height: 8),
-                  Theme(data: theme, child: _buildBehaviorSection(theme)),
+                  Theme(data: theme, child: _buildBehaviorSection(theme, loc)),
                   const SizedBox(height: 16),
                 ],
-                _sectionTitle('Mods that add/modify this faction', theme),
+                _sectionTitle(
+                  loc.factionProfileDialogModsAddingFaction,
+                  theme,
+                ),
                 const SizedBox(height: 8),
-                _buildSourceSection(theme),
+                _buildSourceSection(theme, loc),
               ],
             ),
           ),
@@ -136,6 +141,7 @@ class FactionProfileDialog extends ConsumerWidget {
     ThemeData theme,
     Color factionColor,
   ) {
+    final loc = AppLocalizations.of(context);
     return Container(
       color: factionColor.withValues(alpha: 0.15),
       padding: .fromLTRB(16, 12, 8, 12),
@@ -153,14 +159,14 @@ class FactionProfileDialog extends ConsumerWidget {
                 ),
                 if (faction.shipNamePrefix != null)
                   Text(
-                    'Ship prefix: ${faction.shipNamePrefix}',
+                    loc.factionProfileDialogShipPrefix(faction.shipNamePrefix!),
                     style: theme.textTheme.bodySmall,
                   ),
               ],
             ),
           ),
           MovingTooltipWidget.text(
-            message: 'Faction color',
+            message: loc.factionProfileDialogFactionColor,
             child: Container(
               width: 24,
               height: 24,
@@ -182,6 +188,7 @@ class FactionProfileDialog extends ConsumerWidget {
   }
 
   Widget _buildOverflowMenu(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final files = faction.factionFiles(gameCoreDir);
     if (files.isEmpty) return const SizedBox.shrink();
 
@@ -189,7 +196,7 @@ class FactionProfileDialog extends ConsumerWidget {
 
     return PopupMenuButton<void>(
       icon: const Icon(Icons.more_vert),
-      tooltip: 'More options',
+      tooltip: loc.modsGridMoreOptions,
       itemBuilder: (context) {
         final items = <PopupMenuEntry<void>>[];
         for (var i = 0; i < files.length; i++) {
@@ -200,7 +207,7 @@ class FactionProfileDialog extends ConsumerWidget {
               onTap: () => launchUrlString(file.path),
               child: ListTile(
                 leading: const Icon(Icons.open_in_new),
-                title: Text('Open .faction file$suffix'),
+                title: Text(loc.factionProfileDialogOpenFactionFile(suffix)),
                 dense: true,
               ),
             ),
@@ -210,7 +217,7 @@ class FactionProfileDialog extends ConsumerWidget {
               onTap: () => launchUrlString(file.parent.path),
               child: ListTile(
                 leading: const Icon(Icons.folder_open),
-                title: Text('Open faction folder$suffix'),
+                title: Text(loc.factionProfileDialogOpenFactionFolder(suffix)),
                 dense: true,
               ),
             ),
@@ -256,26 +263,80 @@ class FactionProfileDialog extends ConsumerWidget {
     );
   }
 
-  Widget _buildDoctrineSection(ThemeData theme, Color factionColor) {
+  Widget _buildDoctrineSection(
+    ThemeData theme,
+    Color factionColor,
+    AppLocalizations loc,
+  ) {
     final d = faction.doctrine!;
     return Wrap(
       spacing: 16,
       runSpacing: 8,
       children: [
-        _doctrineBar('Warships', d.warships, 5, factionColor, theme),
         _doctrineBar(
-          'Officer Quality',
+          loc.factionDoctrineWarships,
+          d.warships,
+          5,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineBar(
+          loc.factionDoctrineOfficerQuality,
           d.officerQuality,
           5,
           factionColor,
           theme,
+          loc,
         ),
-        _doctrineBar('Ship Size', d.shipSize, 5, factionColor, theme),
-        _doctrineBar('Carriers', d.carriers, 5, factionColor, theme),
-        _doctrineBar('Ship Quality', d.shipQuality, 5, factionColor, theme),
-        _doctrineBar('Aggression', d.aggression, 5, factionColor, theme),
-        _doctrineBar('Phase', d.phaseShips, 5, factionColor, theme),
-        _doctrineBar('Fleet Size', d.numShips, 5, factionColor, theme),
+        _doctrineBar(
+          loc.factionDoctrineShipSize,
+          d.shipSize,
+          5,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineBar(
+          loc.factionDoctrineCarriers,
+          d.carriers,
+          5,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineBar(
+          loc.factionDoctrineShipQuality,
+          d.shipQuality,
+          5,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineBar(
+          loc.factionDoctrineAggression,
+          d.aggression,
+          5,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineBar(
+          loc.factionDoctrinePhase,
+          d.phaseShips,
+          5,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineBar(
+          loc.factionDoctrineFleetSize,
+          d.numShips,
+          5,
+          factionColor,
+          theme,
+          loc,
+        ),
       ],
     );
   }
@@ -286,9 +347,10 @@ class FactionProfileDialog extends ConsumerWidget {
     int max,
     Color color,
     ThemeData theme,
+    AppLocalizations loc,
   ) {
     return MovingTooltipWidget.text(
-      message: '$label: $value/$max\nNote: May be changed by mods.',
+      message: loc.factionProfileDialogDoctrineTooltip(label, value, max),
       child: SizedBox(
         width: 200,
         child: Row(
@@ -328,7 +390,11 @@ class FactionProfileDialog extends ConsumerWidget {
     );
   }
 
-  Widget _buildPortraitsSection(ThemeData theme, WidgetRef ref) {
+  Widget _buildPortraitsSection(
+    ThemeData theme,
+    WidgetRef ref,
+    AppLocalizations loc,
+  ) {
     final allPortraits = [...faction.malePortraits, ...faction.femalePortraits];
     final count = allPortraits.length;
 
@@ -354,8 +420,10 @@ class FactionProfileDialog extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '${faction.malePortraits.length} male, '
-          '${faction.femalePortraits.length} female',
+          loc.factionProfileDialogPortraitsCount(
+            faction.malePortraits.length,
+            faction.femalePortraits.length,
+          ),
           style: theme.textTheme.bodySmall,
         ),
         if (searchDirs.isNotEmpty) ...[
@@ -391,7 +459,7 @@ class FactionProfileDialog extends ConsumerWidget {
             Padding(
               padding: .only(top: 4),
               child: Text(
-                '+${count - 20} more',
+                loc.factionProfileDialogMoreCount(count - 20),
                 style: theme.textTheme.labelSmall,
               ),
             ),
@@ -400,7 +468,7 @@ class FactionProfileDialog extends ConsumerWidget {
     );
   }
 
-  Widget _buildBehaviorSection(ThemeData theme) {
+  Widget _buildBehaviorSection(ThemeData theme, AppLocalizations loc) {
     final interestingFlags = <String, dynamic>{};
     for (final entry in faction.customFlags.entries) {
       if (entry.value is bool || entry.value is num) {
@@ -445,7 +513,9 @@ class FactionProfileDialog extends ConsumerWidget {
           Padding(
             padding: .only(top: 4),
             child: Text(
-              'Illegal commodities: ${faction.illegalCommodities.join(', ')}',
+              loc.factionProfileDialogIllegalCommodities(
+                faction.illegalCommodities.join(', '),
+              ),
               style: theme.textTheme.bodySmall,
             ),
           ),
@@ -453,7 +523,7 @@ class FactionProfileDialog extends ConsumerWidget {
     );
   }
 
-  Widget _buildSourceSection(ThemeData theme) {
+  Widget _buildSourceSection(ThemeData theme, AppLocalizations loc) {
     if (faction.sources.isEmpty) return const SizedBox.shrink();
     final adder = faction.addedBy;
     final modifiers = faction.modifiedBy.map((s) => s.name).join(', ');
@@ -463,12 +533,15 @@ class FactionProfileDialog extends ConsumerWidget {
       children: [
         Text(
           adder != null
-              ? 'Added by: ${adder.name}'
-              : 'Not added by any enabled mod. It may belong to a disabled mod.',
+              ? loc.factionProfileDialogAddedBy(adder.name)
+              : loc.factionProfileDialogNotAddedByEnabledMod,
           style: theme.textTheme.bodySmall,
         ),
         if (modifiers.isNotEmpty)
-          Text('Modified by: $modifiers', style: theme.textTheme.bodySmall),
+          Text(
+            loc.factionProfileDialogModifiedBy(modifiers),
+            style: theme.textTheme.bodySmall,
+          ),
       ],
     );
   }
@@ -479,9 +552,10 @@ class FactionProfileDialog extends ConsumerWidget {
     ThemeData theme,
     WidgetRef ref,
   ) {
+    final loc = AppLocalizations.of(context);
     if (!ref.watch(spawnWeightsReadyProvider(onlyEnabledMods))) {
       return Text(
-        'Calculating spawn weights…',
+        loc.spawnWeightsCalculatingSpawnWeights,
         style: theme.textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
       );
     }
@@ -494,7 +568,7 @@ class FactionProfileDialog extends ConsumerWidget {
 
     if (summary.totalWeight <= 0) {
       return Text(
-        'This faction has no warships to spawn.',
+        loc.factionViewerNoWarshipsToSpawn,
         style: theme.textTheme.bodySmall,
       );
     }
@@ -539,7 +613,9 @@ class FactionProfileDialog extends ConsumerWidget {
           Padding(
             padding: .only(left: 4),
             child: Text(
-              '+${contributors.length - shown.length} more',
+              loc.factionProfileDialogMoreCount(
+                contributors.length - shown.length,
+              ),
               style: theme.textTheme.labelSmall,
             ),
           ),
@@ -547,7 +623,7 @@ class FactionProfileDialog extends ConsumerWidget {
           alignment: Alignment.centerLeft,
           child: TextButton.icon(
             icon: const Icon(Icons.list_alt, size: 18),
-            label: const Text('See all ships'),
+            label: Text(loc.factionProfileDialogSeeAllShips),
             onPressed: () {
               Navigator.of(context).pop();
               ref
@@ -601,13 +677,14 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 4,
       children: [
-        _buildSpoilerControls(theme),
+        _buildSpoilerControls(theme, loc),
         _BlueprintSection<Ship>(
-          label: 'Known Ships',
+          label: loc.factionProfileDialogKnownShips,
           ids: faction.knownShipIds,
           tags: faction.knownShipTags,
           getItemTags: (s) => s.tags ?? const [],
@@ -626,7 +703,7 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
           spoilerFilter: (s) => shipMatchesSpoilerLevel(s, _shipSpoilerLevel),
         ),
         _BlueprintSection<Weapon>(
-          label: 'Known Weapons',
+          label: loc.factionProfileDialogKnownWeapons,
           ids: faction.knownWeaponIds,
           tags: faction.knownWeaponTags,
           getItemTags: (w) => w.tagsAsSet,
@@ -650,7 +727,7 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
               weaponMatchesSpoilerLevel(w, _weaponSpoilerLevel),
         ),
         _BlueprintSection<Ship>(
-          label: 'Known Fighters',
+          label: loc.factionProfileDialogKnownFighters,
           ids: faction.knownFighterIds,
           tags: faction.knownFighterTags,
           getItemTags: (s) => s.tags ?? const [],
@@ -669,7 +746,7 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
           spoilerFilter: (s) => shipMatchesSpoilerLevel(s, _shipSpoilerLevel),
         ),
         _BlueprintSection<Hullmod>(
-          label: 'Known Hullmods',
+          label: loc.factionProfileDialogKnownHullmods,
           ids: faction.knownHullModIds,
           tags: faction.knownHullModTags,
           getItemTags: (h) => h.tagsAsSet,
@@ -693,7 +770,7 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
     );
   }
 
-  Widget _buildSpoilerControls(ThemeData theme) {
+  Widget _buildSpoilerControls(ThemeData theme, AppLocalizations loc) {
     return Wrap(
       spacing: 16,
       runSpacing: 8,
@@ -701,13 +778,14 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
       children: [
         _spoilerDropdown<SpoilerLevel>(
           theme: theme,
-          label: 'Ship spoilers',
+          label: loc.factionProfileDialogShipSpoilers,
           value: _shipSpoilerLevel,
           options: SpoilerLevel.values,
           optionLabel: (e) => switch (e) {
-            SpoilerLevel.showNone => 'No spoilers',
-            SpoilerLevel.showSlightSpoilers => 'Slight spoilers',
-            SpoilerLevel.showAllSpoilers => 'All spoilers',
+            SpoilerLevel.showNone => loc.factionProfileDialogNoSpoilers,
+            SpoilerLevel.showSlightSpoilers =>
+              loc.factionProfileDialogSlightSpoilers,
+            SpoilerLevel.showAllSpoilers => loc.factionProfileDialogAllSpoilers,
           },
           optionIcon: (e) => switch (e) {
             SpoilerLevel.showNone => Icons.visibility_off,
@@ -718,12 +796,13 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
         ),
         _spoilerDropdown<WeaponSpoilerLevel>(
           theme: theme,
-          label: 'Weapon spoilers',
+          label: loc.factionProfileDialogWeaponSpoilers,
           value: _weaponSpoilerLevel,
           options: WeaponSpoilerLevel.values,
           optionLabel: (e) => switch (e) {
-            WeaponSpoilerLevel.noSpoilers => 'No spoilers',
-            WeaponSpoilerLevel.showAllSpoilers => 'All spoilers',
+            WeaponSpoilerLevel.noSpoilers => loc.factionProfileDialogNoSpoilers,
+            WeaponSpoilerLevel.showAllSpoilers =>
+              loc.factionProfileDialogAllSpoilers,
           },
           optionIcon: (e) => switch (e) {
             WeaponSpoilerLevel.noSpoilers => Icons.visibility_off,
@@ -796,7 +875,7 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () => Navigator.of(ctx).pop(),
-                      child: const Text('Close'),
+                      child: Text(AppLocalizations.of(ctx).catalogClose),
                     ),
                   ),
                 ],
@@ -830,7 +909,7 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () => Navigator.of(ctx).pop(),
-                      child: const Text('Close'),
+                      child: Text(AppLocalizations.of(ctx).catalogClose),
                     ),
                   ),
                 ],
@@ -861,7 +940,7 @@ class _FleetSectionState extends ConsumerState<_FleetSection> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () => Navigator.of(ctx).pop(),
-                      child: const Text('Close'),
+                      child: Text(AppLocalizations.of(ctx).catalogClose),
                     ),
                   ),
                 ],
@@ -968,13 +1047,16 @@ class _BlueprintSection<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final effectiveIds = _effectiveIds();
     final visibleIds = _applySpoiler(effectiveIds);
     final total = effectiveIds.length;
     final shown = visibleIds.length;
 
     if (visibleIds.isEmpty) {
-      final text = total == 0 ? '$label: 0' : '$label: $total (0 shown)';
+      final text = total == 0
+          ? loc.factionProfileDialogSectionCountZero(label)
+          : loc.factionProfileDialogSectionCountNoneShown(label, total);
       return Padding(
         padding: .symmetric(vertical: 4),
         child: Text(text, style: theme.textTheme.bodySmall),
@@ -988,7 +1070,9 @@ class _BlueprintSection<T> extends StatelessWidget {
       childrenPadding: .only(left: 16, bottom: 8),
       dense: true,
       title: Text(
-        shown == total ? '$label: $total' : '$label: $total ($shown shown)',
+        shown == total
+            ? loc.factionProfileDialogSectionCount(label, total)
+            : loc.factionProfileDialogSectionCountShown(label, total, shown),
         style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w500),
       ),
       children: [

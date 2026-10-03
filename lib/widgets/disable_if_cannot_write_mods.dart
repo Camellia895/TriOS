@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/widgets/conditional_wrap.dart';
 import 'package:trios/widgets/disable.dart';
@@ -24,8 +25,9 @@ class _DisableIfCannotWriteModsState
     return ConditionalWrap(
       condition: !canWriteMods,
       wrapper: (child) => Tooltip(
-        message:
-            "Cannot modify mods folder.\nTry running ${Constants.appName} as administrator and make sure that mods/enabled_mods.json exists and can be modified.",
+        message: AppLocalizations.of(
+          context,
+        ).disableCannotWriteMods(Constants.appName),
         child: Disable(isEnabled: false, child: child),
       ),
       child: widget.child,

@@ -1,4 +1,6 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/thirdparty/flutter_context_menu/flutter_context_menu.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/utils/mod_data_files.dart';
@@ -53,7 +55,10 @@ ContextMenuEntry buildOpenModDataFileMenuItem(
   }
 
   return MenuItem.submenu(
-    label: '$label (${files.length})',
+    label: AppLocalizationsSync.instance.modDataFileSubmenuLabel(
+      label,
+      files.length,
+    ),
     icon: icon,
     onSelected: () => _open(files.first),
     items: [
@@ -89,7 +94,9 @@ Widget buildOpenModDataFileButton(
   }
 
   return MovingTooltipWidget.text(
-    message: '$label (stats affected by ${files.length} files)',
+    message: AppLocalizations.of(
+      context,
+    ).modDataFileStatsAffected(label, files.length),
     child: PopupMenuButton<ModDataFile>(
       icon: Icon(icon),
       onSelected: _open,

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/utils/http_client.dart';
 import 'package:trios/utils/logging.dart';
@@ -134,7 +135,7 @@ class _TriOSChangelogViewerState extends ConsumerState<TriOSChangelogViewer> {
               ),
               const SizedBox(width: 8),
               Text(
-                "Changelog",
+                AppLocalizations.of(context).changelogTitle,
                 style: Theme.of(
                   context,
                 ).textTheme.bodyLarge?.copyWith(fontSize: 24),
@@ -142,7 +143,7 @@ class _TriOSChangelogViewerState extends ConsumerState<TriOSChangelogViewer> {
               const Spacer(),
               IconButton(
                 icon: const Icon(Icons.refresh),
-                tooltip: "Refresh changelog",
+                tooltip: AppLocalizations.of(context).changelogRefreshTooltip,
                 onPressed: () {
                   ref.read(changelogProvider.notifier).refresh();
                 },
@@ -205,7 +206,13 @@ class _TriOSChangelogViewerState extends ConsumerState<TriOSChangelogViewer> {
         Expanded(
           child: changelogAsync.when(
             loading: () => Center(child: ThemedCircularProgressIndicator()),
-            error: (error, _) => Center(child: Text('Error: $error')),
+            error: (error, _) => Center(
+              child: Text(
+                AppLocalizations.of(context).commonErrorWithDetails(
+                  error.toString(),
+                ),
+              ),
+            ),
             data: (content) {
               var text = widget.lastestVersionToShow == null
                   ? content
@@ -248,7 +255,7 @@ void showTriOSChangelogDialog(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text("Close"),
+            child: Text(AppLocalizations.of(context).commonClose),
           ),
         ],
       );

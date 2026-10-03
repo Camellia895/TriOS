@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/weapon_viewer/models/weapon.dart';
 import 'package:trios/weapon_viewer/widgets/weapon_codex_card.dart';
@@ -55,6 +56,7 @@ Widget buildWeaponDetailsDialogBody(
   Widget pagerControls = const SizedBox.shrink(),
 }) {
   final theme = Theme.of(context);
+  final loc = AppLocalizations.of(context);
 
   return SelectionArea(
     child: ConstrainedBox(
@@ -75,17 +77,17 @@ Widget buildWeaponDetailsDialogBody(
                       buildOpenModDataFileButton(
                         context,
                         w.wpnFiles,
-                        label: 'Open .wpn file',
+                        label: loc.weaponsOpenWpnFile,
                       ),
                       buildOpenModDataFileButton(
                         context,
                         w.csvFiles,
-                        label: 'Open weapon_data.csv',
+                        label: loc.weaponsOpenWeaponDataCsv,
                         notes: ModDataFileNotes.oneWins,
                       ),
                       if (w.allSpriteFiles.isNotEmpty)
                         MovingTooltipWidget.text(
-                          message: 'Open weapon data folder(s)',
+                          message: loc.weaponsOpenWeaponDataFolder,
                           child: IconButton(
                             icon: const Icon(Icons.folder),
                             onPressed: () {
@@ -103,7 +105,7 @@ Widget buildWeaponDetailsDialogBody(
                   const Spacer(),
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
+                    child: Text(loc.catalogClose),
                   ),
                 ],
               ),
@@ -156,7 +158,7 @@ Column _buildInfoPane(
           ),
           pagerControls,
           IconButton(
-            tooltip: 'Close',
+            tooltip: AppLocalizations.of(context).catalogClose,
             icon: const Icon(Icons.close),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -213,7 +215,7 @@ Column _buildInfoPane(
         child: mergeModSourcesView(
           w.modSources,
           theme,
-          fileLabel: 'Weapon file',
+          fileLabel: AppLocalizations.of(context).weaponsWeaponFile,
           fallbackName: w.modVariant?.modInfo.nameOrId ?? 'Vanilla',
         ),
       ),

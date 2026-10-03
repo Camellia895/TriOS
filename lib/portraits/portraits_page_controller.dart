@@ -9,6 +9,8 @@ import 'package:dart_mappable/dart_mappable.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/notify_on_new_state.dart';
 import 'package:path/path.dart' as p;
 import 'package:trios/models/mod.dart';
@@ -248,7 +250,7 @@ class PortraitsPageController extends Notifier<PortraitsPageState>
         fields: [
           BoolField<PortraitFilterItem>(
             id: 'showOnlyWithMetadata',
-            label: 'Confirmed Portraits',
+            label: AppLocalizationsSync.instance.portraitConfirmedPortraits,
             defaultValue: true,
             tooltip:
                 "Only show images that are confirmed portraits."
@@ -258,14 +260,14 @@ class PortraitsPageController extends Notifier<PortraitsPageState>
           ),
           BoolField<PortraitFilterItem>(
             id: 'showOnlyReplaced',
-            label: 'Only Your Changes',
+            label: AppLocalizationsSync.instance.portraitOnlyYourChanges,
             tooltip: 'Only show images that have replacements.',
             // predicate cannot see state.replacements here; applied page-locally.
             predicate: (_) => true,
           ),
           BoolField<PortraitFilterItem>(
             id: 'showOnlyEnabledMods',
-            label: 'Only Enabled Mods',
+            label: AppLocalizationsSync.instance.factionViewerOnlyEnabledMods,
             tooltip: 'Only show images from enabled mods.',
             predicate: (item) {
               final mods = ref.read(AppState.mods);
@@ -623,7 +625,9 @@ class PortraitsPageController extends Notifier<PortraitsPageState>
         showSnackBar(
           context: context,
           type: SnackBarType.error,
-          content: Text('Error importing portraits: $e'),
+          content: Text(
+            AppLocalizationsSync.instance.portraitErrorImporting(e.toString()),
+          ),
         );
       }
     }
@@ -974,8 +978,10 @@ Future<void> _showImportResultsDialog(
 
   await showDialog(
     context: context,
-    builder: (context) => AlertDialog(
-      title: const Text('Import Results'),
+    builder: (context) {
+      final loc = AppLocalizations.of(context);
+      return AlertDialog(
+        title: Text(loc.portraitImportResults),
       content: SizedBox(
         width: 600,
         height: 400,
@@ -1002,10 +1008,11 @@ Future<void> _showImportResultsDialog(
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Close'),
+          child: Text(loc.commonClose),
         ),
       ],
-    ),
+      );
+    },
   );
 }
 
@@ -1111,11 +1118,12 @@ class _GenderSelectionDialogState extends State<_GenderSelectionDialog> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final validCount = _imports.length;
     final failedCount = widget.failedValidations.length;
 
     return AlertDialog(
-      title: const Text('Import Portrait(s)'),
+      title: Text(loc.portraitImportPortraits),
       content: SizedBox(
         width: 600,
         height: 500,
@@ -1192,12 +1200,12 @@ class _GenderSelectionDialogState extends State<_GenderSelectionDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(null),
-          child: const Text('Cancel'),
+          child: Text(loc.commonCancel),
         ),
         FilledButton(
           onPressed:
               _allGendersSelected ? () => Navigator.of(context).pop(_imports) : null,
-          child: const Text('Import'),
+          child: Text(loc.profileImport),
         ),
       ],
     );
@@ -1217,6 +1225,7 @@ class _GenderSelectionListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     const size = 128.0;
 
     return Card(
@@ -1258,16 +1267,16 @@ class _GenderSelectionListItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 SegmentedButton<_PortraitGender>(
-                  segments: const [
+                  segments: [
                     ButtonSegment(
                       value: _PortraitGender.male,
-                      label: Text('Male'),
-                      icon: Icon(Icons.male),
+                      label: Text(loc.portraitMale),
+                      icon: const Icon(Icons.male),
                     ),
                     ButtonSegment(
                       value: _PortraitGender.female,
-                      label: Text('Female'),
-                      icon: Icon(Icons.female),
+                      label: Text(loc.portraitFemale),
+                      icon: const Icon(Icons.female),
                     ),
                   ],
                   selected: import.gender != null ? {import.gender!} : {},

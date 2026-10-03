@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 
 class FilterPill extends StatelessWidget {
   final String label;
@@ -39,7 +40,9 @@ class FilterPill extends StatelessWidget {
               ),
             ),
             Tooltip(
-              message: deleteTooltip ?? 'Remove "$label"',
+              message:
+                  deleteTooltip ??
+                  AppLocalizations.of(context).filterPillRemove(label),
               child: InkWell(
                 onTap: onDeleted,
                 child: Padding(

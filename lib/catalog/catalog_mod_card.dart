@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/catalog/catalog_download_resolver.dart';
 import 'package:trios/catalog/download_candidate_actions.dart';
 import 'package:trios/catalog/forum_data_manager.dart';
@@ -90,7 +91,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
   /// The bell that marks a card whose updates are muted, or null when they
   /// aren't. Right-clicking it offers the same two things the Mods page's
   /// version-check cell does, so unmuting works the same way in both places.
-  Widget? _buildMutedUpdatesBell(ThemeData theme) {
+  Widget? _buildMutedUpdatesBell(ThemeData theme, AppLocalizations loc) {
     final installedMod = _catalogMod.installedMod;
     if (installedMod == null) return null;
 
@@ -117,7 +118,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
           // recheck until it's unmuted.
           if (!areUpdatesMuted)
             MenuItem(
-              label: 'Recheck',
+              label: loc.catalogRecheck,
               icon: Icons.refresh,
               onSelected: () {
                 ref
@@ -161,8 +162,9 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
     );
 
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final isUpdateMuted = _isUpdateMuted;
-    final mutedUpdatesBell = _buildMutedUpdatesBell(theme);
+    final mutedUpdatesBell = _buildMutedUpdatesBell(theme, loc);
     return Builder(
       builder: (context) {
         final websiteUrl = mod.getBestWebsiteUrl();
@@ -196,7 +198,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
             entries: [
               if (false)
                 MenuItem(
-                  label: 'View Mod Details...',
+                  label: loc.catalogViewModDetails,
                   icon: Icons.info_outline,
                   onSelected: () =>
                       showModInfoDialog(
@@ -207,7 +209,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
                       ),
                 ),
               if (downloadCandidates.isNotEmpty) ...[
-                const MenuHeader(text: 'Downloads'),
+                MenuHeader(text: loc.catalogDownloads),
                 for (final candidate in downloadCandidates)
                   MenuItem(
                     label: candidate.sourceHost?.isNotEmpty == true
@@ -228,9 +230,9 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
                         ),
                   ),
                 MenuItem(
-                  label: 'Copy download link',
+                  label: loc.catalogCopyDownloadLink,
                   leading: MovingTooltipWidget.text(
-                    message: 'Copy the best download link to the clipboard',
+                    message: loc.catalogCopyBestDownloadHint,
                     child: const Icon(Icons.copy, size: 16),
                   ),
                   onSelected: () {
@@ -242,38 +244,38 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
                     showSnackBar(
                       context: context,
                       type: SnackBarType.info,
-                      content: const Text('Download link copied to clipboard'),
+                      content: Text(loc.catalogDownloadLinkCopied),
                     );
                   },
                 ),
                 const MenuDivider(),
               ],
               if (websiteUrl != null && websiteUrl.isNotEmpty) ...[
-                const MenuHeader(text: 'Open'),
+                MenuHeader(text: loc.catalogOpen),
                 MenuItem(
-                  label: 'Open in your web browser',
+                  label: loc.catalogOpenInWebBrowser,
                   leading: const Icon(Icons.public, size: 16),
                   onSelected: () => websiteUrl.openAsUriInBrowser(),
                 ),
                 if (widget.canUseEmbeddedBrowser)
                   MenuItem(
-                    label: 'Open in the built-in browser',
+                    label: loc.catalogOpenInBuiltInBrowser,
                     leading: const Icon(Icons.web, size: 16),
                     onSelected: () => widget.linkLoader(websiteUrl),
                   ),
                 const MenuDivider(),
               ],
               if (_catalogMod.installedMod != null) ...[
-                const MenuHeader(text: 'Installed Mod'),
+                MenuHeader(text: loc.catalogInstalledMod),
                 if (_catalogMod.installedMod!.isEnabledInGame)
                   MenuItem(
-                    label: 'Disable',
+                    label: loc.catalogDisable,
                     leading: const Icon(Icons.visibility_off, size: 16),
                     onSelected: () => _setModEnabled(false),
                   )
                 else
                   MenuItem(
-                    label: 'Enable',
+                    label: loc.catalogEnable,
                     leading: const Icon(Icons.visibility, size: 16),
                     onSelected: () => _setModEnabled(true),
                   ),
@@ -281,12 +283,12 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
                 const MenuDivider(),
               ],
               if (_linkEntries(context).isNotEmpty) ...[
-                const MenuHeader(text: 'Links'),
+                MenuHeader(text: loc.catalogLinks),
                 ..._linkEntries(context),
                 const MenuDivider(),
               ],
               MenuItem(
-                label: 'Debug Info',
+                label: loc.catalogDebugInfo,
                 leading: const Icon(Icons.bug_report, size: 16),
                 onSelected: () => _showDebugDialog(context, mod),
               ),
@@ -659,6 +661,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
   /// Context-menu link entries (Forum / Discord / NexusMods) for this mod.
   /// Empty when the mod has no such links.
   List<MenuItem> _linkEntries(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final urls = _entry.urls;
     final forumUrl = urls?[ModUrlType.Forum];
     final discordUrl = urls?[ModUrlType.Discord];
@@ -666,7 +669,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
     return [
       if (forumUrl != null && forumUrl.isNotEmpty)
         MenuItem(
-          label: 'Open forum page',
+          label: loc.catalogOpenForumPage,
           leading: const Icon(Icons.public, size: 16),
           onSelected: () {
             forumUrl.openAsUriInBrowser();
@@ -674,7 +677,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
         ),
       if (discordUrl != null && discordUrl.isNotEmpty) ...[
         MenuItem(
-          label: 'Open in Discord',
+          label: loc.catalogOpenInDiscord,
           leading: const Icon(Icons.discord, size: 16),
           onSelected: () {
             discordUrl
@@ -684,21 +687,21 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
           },
         ),
         MenuItem(
-          label: 'Copy Discord link',
+          label: loc.catalogCopyDiscordLink,
           leading: const Icon(Icons.copy, size: 16),
           onSelected: () {
             Clipboard.setData(ClipboardData(text: discordUrl));
             showSnackBar(
               context: context,
               type: SnackBarType.info,
-              content: const Text('Discord link copied to clipboard'),
+              content: Text(loc.catalogDiscordLinkCopied),
             );
           },
         ),
       ],
       if (nexusUrl != null && nexusUrl.isNotEmpty)
         MenuItem(
-          label: 'Open NexusMods page',
+          label: loc.catalogOpenNexusModsPage,
           leading: const Icon(Icons.extension, size: 16),
           onSelected: () {
             nexusUrl.openAsUriInBrowser();
@@ -708,6 +711,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
   }
 
   void _showDebugDialog(BuildContext context, ModRepoEntry mod) {
+    final loc = AppLocalizations.of(context);
     final downloadCandidates = resolveDownloadCandidates(
       mod,
       _catalogMod.llmMod,
@@ -746,7 +750,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Close'),
+              child: Text(loc.catalogClose),
             ),
           ],
         );
@@ -757,6 +761,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
   void _showDescriptionDialog(BuildContext context,
       String modName,
       String description,) {
+    final loc = AppLocalizations.of(context);
     showDialog(
       context: context,
       builder: (context) {
@@ -775,7 +780,7 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Ok'),
+              child: Text(loc.catalogOk),
             ),
           ],
         );

@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 
 enum GraphType { pie, bar }
 
@@ -17,6 +18,7 @@ class GraphTypeSelectorState extends State<GraphTypeSelector> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final loc = AppLocalizations.of(context);
     return SegmentedButton<GraphType>(
       showSelectedIcon: false,
       style: ButtonStyle(
@@ -39,12 +41,12 @@ class GraphTypeSelectorState extends State<GraphTypeSelector> {
         ButtonSegment<GraphType>(
           value: GraphType.bar,
           icon: const Icon(Icons.bar_chart, size: 20),
-          tooltip: 'Bar Chart',
+          tooltip: loc.graphBarChart,
         ),
         ButtonSegment<GraphType>(
           value: GraphType.pie,
           icon: const Icon(Icons.pie_chart, size: 20),
-          tooltip: 'Pie Chart',
+          tooltip: loc.graphPieChart,
         ),
       ],
       selected: {_selectedType},

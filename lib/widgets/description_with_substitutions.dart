@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/utils/extensions.dart';
 
@@ -48,8 +49,9 @@ class DescriptionWithSubstitutions extends StatelessWidget {
         if (showPlaceholderHintText && hasRawPlaceholders)
           Padding(
             padding: const EdgeInsets.only(top: 8),
-            child:
-                'Values shown as ${Constants.substitutionPlaceholder} are placeholders filled in by game code. Additional text may be entirely added by game code.'
+            child: AppLocalizations.of(
+                  context,
+                ).descriptionPlaceholderHint(Constants.substitutionPlaceholder)
                     .replaceSubstitutionsRich(
                       Constants.substitutionPlaceholder,
                       highlightColor: effectiveHighlightColor,

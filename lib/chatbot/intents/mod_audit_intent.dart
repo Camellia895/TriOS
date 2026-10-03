@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 
 import '../chatbot_engine.dart';
@@ -57,8 +58,8 @@ class ModAuditIntent extends ChatIntent with ModAwareIntent {
         ref.read(AppState.modAudit).value;
 
     if (entries == null || entries.isEmpty) {
-      return const ChatResponse(
-        text: 'No mod change history recorded yet.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModChangeHistory,
       );
     }
 

@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/widgets/category_icon_picker_dialog.dart';
 import 'package:trios/mod_tag_manager/category.dart';
 import 'package:trios/mod_tag_manager/category_auto_color.dart';
@@ -59,8 +60,9 @@ class _CreateCategoryDialogState extends State<_CreateCategoryDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return AlertDialog(
-      title: const Text('Add Category'),
+      title: Text(loc.createCategoryDialogAddCategory),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -74,7 +76,7 @@ class _CreateCategoryDialogState extends State<_CreateCategoryDialog> {
           Row(
             spacing: 8,
             children: [
-              const Text('Color:'),
+              Text(loc.createCategoryDialogColor),
               GestureDetector(
                 onTap: _showColorPicker,
                 child: Container(
@@ -92,7 +94,7 @@ class _CreateCategoryDialogState extends State<_CreateCategoryDialog> {
               if (_selectedColor != null)
                 TextButton(
                   onPressed: () => setState(() => _selectedColor = null),
-                  child: const Text('Clear'),
+                  child: Text(loc.modManagerClear),
                 ),
             ],
           ),
@@ -100,7 +102,7 @@ class _CreateCategoryDialogState extends State<_CreateCategoryDialog> {
           Row(
             spacing: 8,
             children: [
-              const Text('Icon:'),
+              Text(loc.createCategoryDialogIcon),
               GestureDetector(
                 onTap: _showIconPicker,
                 child: Container(
@@ -129,7 +131,7 @@ class _CreateCategoryDialogState extends State<_CreateCategoryDialog> {
               if (_selectedIcon != null)
                 TextButton(
                   onPressed: () => setState(() => _selectedIcon = null),
-                  child: const Text('Clear'),
+                  child: Text(loc.modManagerClear),
                 ),
             ],
           ),
@@ -138,9 +140,9 @@ class _CreateCategoryDialogState extends State<_CreateCategoryDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(loc.commonCancel),
         ),
-        TextButton(onPressed: _create, child: const Text('Create')),
+        TextButton(onPressed: _create, child: Text(loc.createCategoryDialogCreate)),
       ],
     );
   }
@@ -172,7 +174,9 @@ class _CreateCategoryDialogState extends State<_CreateCategoryDialog> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Pick a color'),
+        title: Text(
+          AppLocalizations.of(context).createCategoryDialogPickAColor,
+        ),
         content: Wrap(
           spacing: 8,
           runSpacing: 8,

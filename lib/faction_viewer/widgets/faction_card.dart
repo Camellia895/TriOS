@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/faction_viewer/models/faction.dart';
 import 'package:trios/faction_viewer/spawn_weights/spawn_weight_calculator.dart';
 import 'package:trios/faction_viewer/spawn_weights/vanilla_share_bar.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 import 'package:trios/widgets/text_trios.dart';
 
@@ -26,6 +27,7 @@ class FactionCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     final factionColor = faction.factionColor;
     final theme = Theme.of(context);
     final spawnReady = ref.watch(spawnWeightsReadyProvider(onlyEnabledMods));
@@ -81,11 +83,11 @@ class FactionCard extends ConsumerWidget {
                   ),
                   if (faction.doctrine != null) ...[
                     const SizedBox(height: 4),
-                    _buildDoctrineRow(theme),
+                    _buildDoctrineRow(theme, loc),
                     const SizedBox(height: 4),
                   ],
                   const Spacer(),
-                  _buildStatsRow(theme),
+                  _buildStatsRow(theme, loc),
                   Padding(
                     padding: .only(top: 4),
                     child: Row(
@@ -93,10 +95,9 @@ class FactionCard extends ConsumerWidget {
                       spacing: 4,
                       children: [
                         MovingTooltipWidget.text(
-                          message:
-                              "How much of the fleet weight is contributed by vanilla/mods",
+                          message: loc.factionCardFleetWeightsTooltip,
                           child: Text(
-                            "Fleet Wgts:",
+                            loc.factionCardFleetWeights,
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: theme.colorScheme.onSurface,
                             ),
@@ -113,7 +114,7 @@ class FactionCard extends ConsumerWidget {
                                   ),
                                 )
                               : Text(
-                                  'Calculating fleet weights…',
+                                  loc.factionCardCalculatingFleetWeights,
                                   style: theme.textTheme.labelSmall?.copyWith(
                                     color: theme.colorScheme.onSurfaceVariant,
                                     fontStyle: FontStyle.italic,
@@ -128,7 +129,7 @@ class FactionCard extends ConsumerWidget {
                     child: MovingTooltipWidget.text(
                       message: faction.attributionTooltip,
                       child: TextTriOS(
-                        _sourceLine(),
+                        _sourceLine(loc),
                         style: theme.textTheme.labelSmall?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),
@@ -149,14 +150,17 @@ class FactionCard extends ConsumerWidget {
 
   /// One-line source summary: who added the faction, plus how many other
   /// mods change it. Full breakdown lives in the tooltip.
-  String _sourceLine() {
+  String _sourceLine(AppLocalizations loc) {
     final adder = faction.addedBy;
     if (adder == null) {
-      return faction.sources.isEmpty ? '' : 'Patch only';
+      return faction.sources.isEmpty ? '' : loc.factionViewerPatchOnly;
     }
     final modCount = faction.modifiedBy.length;
     if (modCount == 0) return adder.name;
-    return '${adder.name} +$modCount ${modCount == 1 ? 'mod' : 'mods'}';
+    final name = adder.name;
+    return modCount == 1
+        ? loc.factionCardModsAddedOne(name, modCount)
+        : loc.factionCardModsAddedMany(name, modCount);
   }
 
   Widget _buildLogo(Directory? gameCoreDir) {
@@ -183,33 +187,77 @@ class FactionCard extends ConsumerWidget {
     );
   }
 
-  Widget _buildDoctrineRow(ThemeData theme) {
+  Widget _buildDoctrineRow(ThemeData theme, AppLocalizations loc) {
     final d = faction.doctrine!;
     final factionColor = faction.factionColor;
     return Wrap(
       spacing: 6,
       runSpacing: 4,
       children: [
-        _doctrineStat('War', 'Warships', d.warships, factionColor, theme),
-        _doctrineStat('Carr', 'Carriers', d.carriers, factionColor, theme),
-        _doctrineStat('Phse', 'Phase Ships', d.phaseShips, factionColor, theme),
         _doctrineStat(
-          'OffQ',
-          'Officer Quality',
+          loc.factionCardWar,
+          loc.factionDoctrineWarships,
+          d.warships,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineStat(
+          loc.factionCardCarr,
+          loc.factionDoctrineCarriers,
+          d.carriers,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineStat(
+          loc.factionCardPhse,
+          loc.factionDoctrinePhaseShips,
+          d.phaseShips,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineStat(
+          loc.factionCardOffQ,
+          loc.factionDoctrineOfficerQuality,
           d.officerQuality,
           factionColor,
           theme,
+          loc,
         ),
         _doctrineStat(
-          'ShpQ',
-          'Ship Quality',
+          loc.factionCardShpQ,
+          loc.factionDoctrineShipQuality,
           d.shipQuality,
           factionColor,
           theme,
+          loc,
         ),
-        _doctrineStat('Fleet', 'Fleet Size', d.numShips, factionColor, theme),
-        _doctrineStat('Shp#', 'Ship Size', d.shipSize, factionColor, theme),
-        _doctrineStat('Aggr', 'Aggression', d.aggression, factionColor, theme),
+        _doctrineStat(
+          loc.factionCardFleet,
+          loc.factionDoctrineFleetSize,
+          d.numShips,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineStat(
+          loc.factionCardShpNum,
+          loc.factionDoctrineShipSize,
+          d.shipSize,
+          factionColor,
+          theme,
+          loc,
+        ),
+        _doctrineStat(
+          loc.factionCardAggr,
+          loc.factionDoctrineAggression,
+          d.aggression,
+          factionColor,
+          theme,
+          loc,
+        ),
       ],
     );
   }
@@ -220,9 +268,10 @@ class FactionCard extends ConsumerWidget {
     int value,
     Color factionColor,
     ThemeData theme,
+    AppLocalizations loc,
   ) {
     return MovingTooltipWidget.text(
-      message: '$tooltip: $value/5\nNote: May be changed by mods.',
+      message: loc.factionCardDoctrineTooltip(tooltip, value),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: .start,
@@ -262,14 +311,14 @@ class FactionCard extends ConsumerWidget {
     );
   }
 
-  Widget _buildStatsRow(ThemeData theme) {
+  Widget _buildStatsRow(ThemeData theme, AppLocalizations loc) {
     return Wrap(
       spacing: 12,
       alignment: WrapAlignment.start,
       children: [
-        _stat('Ships', faction.knownShipIds.length, theme),
-        _stat('Wpns', faction.knownWeaponIds.length, theme),
-        _stat('Mods', faction.knownHullModIds.length, theme),
+        _stat(loc.factionCardStatShips, faction.knownShipIds.length, theme),
+        _stat(loc.factionCardStatWpns, faction.knownWeaponIds.length, theme),
+        _stat(loc.factionCardStatMods, faction.knownHullModIds.length, theme),
       ],
     );
   }

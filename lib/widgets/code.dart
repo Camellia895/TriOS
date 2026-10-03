@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/snackbar.dart';
 
 /// A widget that styles its child like code, with monospaced font and background.
@@ -13,6 +14,7 @@ class Code extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return Container(
       color: Theme.of(context).colorScheme.surfaceContainer,
       padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
@@ -28,7 +30,7 @@ class Code extends StatelessWidget {
               icon: const Icon(Icons.copy, size: 16),
               padding: const EdgeInsets.all(0),
               constraints: const BoxConstraints(minWidth: 24, minHeight: 24),
-              tooltip: 'Copy to clipboard',
+              tooltip: loc.commonCopyToClipboard,
               onPressed: () {
                 _copyTextToClipboard(context);
               },
@@ -69,13 +71,15 @@ class Code extends StatelessWidget {
 
     if (textToCopy.isNotEmpty) {
       Clipboard.setData(ClipboardData(text: textToCopy));
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Copied to clipboard')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).commonCopiedToClipboard)),
+      );
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Nothing to copy')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context).commonNothingToCopy),
+        ),
+      );
     }
   }
 }

@@ -8,6 +8,7 @@ import 'package:trios/codex/codex_links.dart';
 import 'package:trios/codex/codex_page_controller.dart';
 import 'package:trios/codex/models/codex_entry.dart';
 import 'package:trios/faction_viewer/models/faction.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/faction_viewer/widgets/faction_card.dart';
 import 'package:trios/faction_viewer/widgets/faction_profile_dialog.dart';
 import 'package:trios/fighter_viewer/widgets/wing_codex_card.dart';
@@ -37,15 +38,16 @@ class CodexDetailPanel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     if (selected == null) {
-      return _placeholder(theme, 'Select an entry to see its details.');
+      return _placeholder(theme, loc.codexSelectAnEntryToSeeDetails);
     }
 
     final visible = ref.watch(codexVisibleIndexProvider);
     final entry = visible.where((e) => e.key == selected).firstOrNull;
     if (entry == null) {
-      return _placeholder(theme, 'This entry is not available.');
+      return _placeholder(theme, loc.codexEntryNotAvailable);
     }
 
     final controller = ref.read(codexPageControllerProvider.notifier);
@@ -144,11 +146,11 @@ class CodexDetailPanel extends ConsumerWidget {
                 const Spacer(),
                 if (openDialog != null)
                   MovingTooltipWidget.text(
-                    message: 'Open the full details window for this entry.',
+                    message: loc.codexOpenTheFullDetails,
                     child: OutlinedButton.icon(
                       onPressed: openDialog,
                       icon: const Icon(Icons.open_in_full, size: 16),
-                      label: const Text('Open details'),
+                      label: Text(loc.codexOpenDetails),
                     ),
                   ),
               ],
@@ -288,6 +290,7 @@ class CodexDetailPanel extends ConsumerWidget {
     final modList = names.join(', ');
 
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final gray = theme.textTheme.bodySmall?.color?.withValues(alpha: 0.7);
     final highlight = theme.colorScheme.secondary;
 
@@ -298,20 +301,12 @@ class CodexDetailPanel extends ConsumerWidget {
           TextSpan(
             style: theme.textTheme.bodySmall?.copyWith(color: gray),
             children: [
-              const TextSpan(text: 'Third party data provided by '),
+              TextSpan(text: loc.codexThirdPartyDataProvidedBy),
               TextSpan(
                 text: modList,
                 style: TextStyle(color: highlight, fontWeight: FontWeight.bold),
               ),
-              const TextSpan(
-                text:
-                    '. The Tri-Tachyon corporation is not responsible for the '
-                    'accuracy or reliability of information supplied by external '
-                    'sources. By accessing this Codex adjunct, you acknowledge '
-                    'and agree to relieve Tri-Tachyon of any liability and '
-                    'responsibility for any damages resulting from use or '
-                    'cognition of third party data.',
-              ),
+              TextSpan(text: loc.codexTriTachyonDisclaimer),
             ],
           ),
         ),
@@ -421,14 +416,13 @@ class _ShipUsedByFactions extends ConsumerWidget {
     Directory? gameCoreDir,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final crestFile = faction.resolveImageFile(faction.crest, gameCoreDir);
     final nameColor =
         _uiColor(faction.baseUIColor) ?? theme.colorScheme.onSurface;
 
     return MovingTooltipWidget.text(
-      message:
-          'This ship is used by this faction, and may sometimes be found for '
-          'sale at their colonies.',
+      message: loc.codexShipUsedByFactionTooltip,
       child: InkWell(
         borderRadius: BorderRadius.circular(4),
         onTap: () => onFactionTap(faction.id),

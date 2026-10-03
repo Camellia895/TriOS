@@ -1,3 +1,5 @@
+import 'package:trios/l10n/trios_localizations.dart';
+
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
@@ -70,7 +72,9 @@ class NavigateToPageIntent extends ChatIntent {
     for (final entry in _pages.entries) {
       if (input.contains(entry.key)) {
         return ChatResponse(
-          text: 'You can find it in the sidebar:\n  ${entry.value}',
+          text: AppLocalizationsSync.instance.chatbotFindItInSidebar(
+            entry.value,
+          ),
         );
       }
     }

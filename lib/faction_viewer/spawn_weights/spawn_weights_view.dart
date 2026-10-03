@@ -11,6 +11,7 @@ import 'package:trios/faction_viewer/spawn_weights/spawn_weight_calculator.dart'
 import 'package:trios/faction_viewer/spawn_weights/vanilla_share_bar.dart';
 import 'package:trios/hullmod_viewer/hullmods_manager.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/ship_systems_manager/ship_system.dart';
 import 'package:trios/ship_systems_manager/ship_systems_manager.dart';
@@ -43,23 +44,24 @@ class SpawnWeightsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final state = ref.watch(factionViewerControllerProvider);
     final controller = ref.read(factionViewerControllerProvider.notifier);
 
     if (factions.isEmpty) {
-      return const Center(child: Text('No factions found.'));
+      return Center(child: Text(loc.factionViewerNoFactionsFound));
     }
 
     final onlyEnabledMods = state.onlyEnabledMods;
 
     if (!ref.watch(spawnWeightsReadyProvider(onlyEnabledMods))) {
-      return const Center(
+      return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           spacing: 12,
           children: [
             ThemedCircularProgressIndicator(),
-            Text('Calculating spawn weights…'),
+            Text(loc.spawnWeightsCalculatingSpawnWeights),
           ],
         ),
       );
@@ -98,7 +100,7 @@ class SpawnWeightsView extends ConsumerWidget {
           ),
           Expanded(
             child: entries.isEmpty
-                ? _buildEmptyRole(theme, role, weights.fallbackByRole[role])
+                ? _buildEmptyRole(theme, loc, role, weights.fallbackByRole[role])
                 : _SpawnWeightTable(
                     faction: faction,
                     entries: entries,
@@ -106,7 +108,7 @@ class SpawnWeightsView extends ConsumerWidget {
                     onlyEnabledMods: onlyEnabledMods,
                   ),
           ),
-          _buildFooterNote(theme, weights.summary),
+          _buildFooterNote(theme, loc, weights.summary),
         ],
       ),
     );
@@ -121,12 +123,13 @@ class SpawnWeightsView extends ConsumerWidget {
     String selectedRole,
     FactionViewerController controller,
   ) {
+    final loc = AppLocalizations.of(context);
     final roles = _sortRoles(weights.byRole.keys.toList());
 
     return Row(
       spacing: 16,
       children: [
-        Text('Faction', style: theme.textTheme.bodySmall),
+        Text(loc.spawnWeightsFaction, style: theme.textTheme.bodySmall),
         SizedBox(
           width: 220,
           child: TriOSDropdownMenu<String>(
@@ -140,7 +143,7 @@ class SpawnWeightsView extends ConsumerWidget {
             ],
           ),
         ),
-        Text('Role', style: theme.textTheme.bodySmall),
+        Text(loc.spawnWeightsRole, style: theme.textTheme.bodySmall),
         SizedBox(
           width: 220,
           child: TriOSDropdownMenu<String>(
@@ -162,9 +165,10 @@ class SpawnWeightsView extends ConsumerWidget {
                 child: role == selectedRole
                     ? const SizedBox()
                     : TextTriOS(
-                        'Nothing spawns in '
-                        '"${_prettyRoleName(selectedRole)}" here, so the game '
-                        'uses "${_prettyRoleName(role)}" instead.',
+                        loc.spawnWeightsFallbackRole(
+                          _prettyRoleName(selectedRole),
+                          _prettyRoleName(role),
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.labelSmall?.copyWith(
@@ -207,17 +211,22 @@ class SpawnWeightsView extends ConsumerWidget {
     return selected;
   }
 
-  Widget _buildEmptyRole(ThemeData theme, String role, String? fallback) {
+  Widget _buildEmptyRole(
+    ThemeData theme,
+    AppLocalizations loc,
+    String role,
+    String? fallback,
+  ) {
     return Center(
       child: Padding(
         padding: .all(24),
         child: Text(
           fallback == null
-              ? 'Nothing to spawn in "${_prettyRoleName(role)}" for this '
-                    'faction.'
-              : 'Nothing to spawn in "${_prettyRoleName(role)}" for this '
-                    'faction, so the game picks from '
-                    '"${_prettyRoleName(fallback)}" instead.',
+              ? loc.spawnWeightsNothingToSpawn(_prettyRoleName(role))
+              : loc.spawnWeightsNothingToSpawnFallback(
+                  _prettyRoleName(role),
+                  _prettyRoleName(fallback),
+                ),
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
@@ -227,25 +236,23 @@ class SpawnWeightsView extends ConsumerWidget {
     );
   }
 
-  Widget _buildFooterNote(ThemeData theme, FactionSpawnSummary summary) {
+  Widget _buildFooterNote(
+    ThemeData theme,
+    AppLocalizations loc,
+    FactionSpawnSummary summary,
+  ) {
     final skipped = summary.skippedEntries;
     final color = theme.colorScheme.onSurfaceVariant;
     return MovingTooltipWidget.text(
-      message:
-          'These numbers miss a few things:\n'
-          '• ships that mods add in code\n'
-          '• the game trimming ships that cost too many fleet points\n'
-          '• combat freighters being mixed in\n'
-          '• mods that fully replace a file instead of adding to it',
+      message: loc.spawnWeightsFooterTooltip,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         spacing: 4,
         children: [
           Icon(Icons.info_outline, size: 14, color: color),
           Text(
-            'These numbers are close but not exact. Hover for details.'
-            '${skipped > 0 ? ' $skipped entries were left out because their '
-                      'ship is not installed.' : ''}',
+            loc.spawnWeightsFooterNote +
+                (skipped > 0 ? loc.spawnWeightsSkippedEntries(skipped) : ''),
             style: theme.textTheme.labelSmall?.copyWith(
               color: color,
               fontStyle: .italic,
@@ -304,6 +311,7 @@ class _SpawnWeightTable extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final total = entries.fold<double>(0, (sum, e) => sum + e.weight);
     final tooltipData = _tooltipData(ref);
 
@@ -325,7 +333,7 @@ class _SpawnWeightTable extends ConsumerWidget {
     if (groups.isEmpty) {
       return Center(
         child: Text(
-          'No ships match your search.',
+          loc.spawnWeightsNoShipsMatchSearch,
           style: theme.textTheme.bodyMedium,
         ),
       );
@@ -339,8 +347,8 @@ class _SpawnWeightTable extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (hasPriority) _buildPriorityLegend(theme),
-        _buildHeaderRow(theme),
+        if (hasPriority) _buildPriorityLegend(theme, loc),
+        _buildHeaderRow(theme, loc),
         Expanded(
           child: ListView.builder(
             itemCount: groups.length,
@@ -348,6 +356,7 @@ class _SpawnWeightTable extends ConsumerWidget {
               context,
               ref,
               theme,
+              loc,
               groups[index],
               total,
               maxGroupWeight,
@@ -359,7 +368,7 @@ class _SpawnWeightTable extends ConsumerWidget {
     );
   }
 
-  Widget _buildPriorityLegend(ThemeData theme) {
+  Widget _buildPriorityLegend(ThemeData theme, AppLocalizations loc) {
     return Padding(
       padding: .only(left: 40, bottom: 4),
       child: Row(
@@ -368,8 +377,7 @@ class _SpawnWeightTable extends ConsumerWidget {
         children: [
           Icon(Icons.star, size: 14, color: theme.colorScheme.tertiary),
           Text(
-            'Priority ship. The faction favors these, so they spawn more '
-            'than their weight alone suggests.',
+            loc.spawnWeightsPriorityLegend,
             style: theme.textTheme.labelSmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -382,7 +390,7 @@ class _SpawnWeightTable extends ConsumerWidget {
   double _sum(List<SpawnWeightEntry> group) =>
       group.fold<double>(0, (sum, e) => sum + e.weight);
 
-  Widget _buildHeaderRow(ThemeData theme) {
+  Widget _buildHeaderRow(ThemeData theme, AppLocalizations loc) {
     final style = theme.textTheme.labelSmall?.copyWith(
       color: theme.colorScheme.onSurfaceVariant,
       fontWeight: FontWeight.bold,
@@ -405,25 +413,22 @@ class _SpawnWeightTable extends ConsumerWidget {
       padding: .fromLTRB(40, 4, 48, 4),
       child: Row(
         children: [
-          header(4, 'Ship'),
-          header(2, 'Size'),
+          header(4, loc.spawnWeightsHeaderShip),
+          header(2, loc.spawnWeightsHeaderSize),
           header(
             2,
-            'Weight',
-            tooltip:
-                'The number the game files give this ship.\n'
-                'Higher means it gets picked more often.',
+            loc.spawnWeightsHeaderWeight,
+            tooltip: loc.spawnWeightsHeaderWeightTooltip,
           ),
           header(
             2,
-            'Share',
-            tooltip: "This ship's slice of the total weight for this role.",
+            loc.spawnWeightsHeaderShare,
+            tooltip: loc.spawnWeightsHeaderShareTooltip,
           ),
           header(
             3,
-            'Set by',
-            tooltip:
-                'The mod (or the base game) whose file set this weight.',
+            loc.spawnWeightsHeaderSetBy,
+            tooltip: loc.spawnWeightsHeaderSetByTooltip,
           ),
         ],
       ),
@@ -434,6 +439,7 @@ class _SpawnWeightTable extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     ThemeData theme,
+    AppLocalizations loc,
     List<SpawnWeightEntry> group,
     double total,
     double maxGroupWeight,
@@ -449,6 +455,7 @@ class _SpawnWeightTable extends ConsumerWidget {
       childrenPadding: .only(left: 40, bottom: 4),
       title: _row(
         theme: theme,
+        loc: loc,
         name: first.shipName,
         size: _prettySize(first.hullSize),
         weight: groupWeight,
@@ -469,6 +476,7 @@ class _SpawnWeightTable extends ConsumerWidget {
                 Expanded(
                   child: _row(
                     theme: theme,
+                    loc: loc,
                     name: entry.loadoutId,
                     size: '',
                     weight: entry.weight,
@@ -487,6 +495,7 @@ class _SpawnWeightTable extends ConsumerWidget {
 
   Widget _row({
     required ThemeData theme,
+    required AppLocalizations loc,
     required String name,
     required String size,
     required double weight,
@@ -538,28 +547,26 @@ class _SpawnWeightTable extends ConsumerWidget {
 
     return Row(
       children: [
-        Expanded(
-          flex: 4,
-          child: Row(
-            children: [
-              if (isPriority)
-                MovingTooltipWidget.text(
-                  message:
-                      'Priority ship: this faction favors it, so it '
-                      'spawns more often than its weight alone suggests.',
-                  child: Padding(
-                    padding: .only(right: 4),
-                    child: Icon(
-                      Icons.star,
-                      size: 14,
-                      color: theme.colorScheme.tertiary,
+          Expanded(
+            flex: 4,
+            child: Row(
+              children: [
+                if (isPriority)
+                  MovingTooltipWidget.text(
+                    message: loc.spawnWeightsPriorityTooltip,
+                    child: Padding(
+                      padding: .only(right: 4),
+                      child: Icon(
+                        Icons.star,
+                        size: 14,
+                        color: theme.colorScheme.tertiary,
+                      ),
                     ),
                   ),
-                ),
-              Flexible(child: nameCell),
-            ],
+                Flexible(child: nameCell),
+              ],
+            ),
           ),
-        ),
         Expanded(flex: 2, child: Text(size, style: style)),
         Expanded(flex: 2, child: Text(_trimZeros(weight), style: style)),
         Expanded(
@@ -618,7 +625,9 @@ class _SpawnWeightTable extends ConsumerWidget {
     if (file == null) return const SizedBox(width: 32);
 
     return MovingTooltipWidget.text(
-      message: 'Open the file that set this weight\n${file.path}',
+      message: AppLocalizations.of(
+        context,
+      ).spawnWeightsOpenWeightFile(file.path),
       child: IconButton(
         icon: const Icon(Icons.open_in_new, size: 16),
         visualDensity: VisualDensity.compact,

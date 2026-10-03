@@ -22,6 +22,7 @@ import 'package:trios/utils/logging.dart';
 import 'package:trios/descriptions/descriptions_manager.dart';
 import 'package:trios/hullmod_viewer/hullmods_manager.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/weapon_viewer/models/weapon.dart';
 import 'package:trios/weapon_viewer/weapons_manager.dart';
 import 'package:trios/widgets/filter_engine/filter_engine.dart';
@@ -332,6 +333,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
   }
 
   FilterScopeController<Ship> _buildFilters() {
+    final loc = AppLocalizationsSync.instance;
     final groups = <FilterGroup<Ship>>[
       CompositeFilterGroup<Ship>(
         id: 'general',
@@ -339,10 +341,8 @@ class ShipsPageController extends Notifier<ShipsPageState>
         fields: [
           BoolField<Ship>(
             id: 'showEnabled',
-            label: 'Only Enabled Mods',
-            tooltip:
-                'Only show ships from enabled mods.'
-                '\nShared with the weapons, factions and codex pages.',
+            label: loc.factionViewerOnlyEnabledMods,
+            tooltip: loc.shipsFilterOnlyEnabledModsTooltip,
             predicate: (ship) {
               final mods = ref.read(AppState.mods);
               return ship.modVariant == null ||
@@ -351,7 +351,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
           ),
           EnumField<Ship, SpoilerLevel>(
             id: 'spoiler',
-            label: 'Spoilers',
+            label: loc.hullmodsSpoilers,
             defaultValue: SpoilerLevel.showNone,
             options: SpoilerLevel.values,
             predicate: _spoilerMatches,
@@ -366,22 +366,22 @@ class ShipsPageController extends Notifier<ShipsPageState>
           ),
           BoolField<Ship>(
             id: 'hasModules',
-            label: 'Has Modules',
-            tooltip: 'Only show ships that have modules.',
+            label: loc.shipsHasModules,
+            tooltip: loc.shipsFilterHasModulesTooltip,
             predicate: (ship) =>
                 stateOrNull?.shipsWithModuleIds.contains(ship.id) ?? false,
           ),
           BoolField<Ship>(
             id: 'hasBuiltInWeapons',
-            label: 'Has Built-in Weapons',
-            tooltip: 'Only show ships that have built-in weapons.',
+            label: loc.shipsHasBuiltInWeapons,
+            tooltip: loc.shipsFilterHasBuiltInWeaponsTooltip,
             predicate: (ship) =>
                 ship.builtInWeapons != null && ship.builtInWeapons!.isNotEmpty,
           ),
           BoolField<Ship>(
             id: 'showModuleShips',
-            label: 'Show Ships That Are Modules',
-            tooltip: 'Show ships that are used as modules on other ships.',
+            label: loc.shipsShowShipsThatAreModules,
+            tooltip: loc.shipsFilterShowModuleShipsTooltip,
             // Starts off, and being off is what hides ships. The engine only
             // runs a predicate when a field is on, so the real work is in
             // [_applyShowModuleShips] — same trick as "Show Hidden Weapons".
@@ -587,16 +587,20 @@ class ShipsPageController extends Notifier<ShipsPageState>
       shipMatchesSpoilerLevel(ship, level);
 
   String _spoilerLabel(SpoilerLevel e) => switch (e) {
-    SpoilerLevel.showNone => 'No Spoilers',
-    SpoilerLevel.showSlightSpoilers => 'Show slight spoilers',
-    SpoilerLevel.showAllSpoilers => 'Show all spoilers',
+    SpoilerLevel.showNone => AppLocalizationsSync.instance.shipsSpoilerNone,
+    SpoilerLevel.showSlightSpoilers =>
+      AppLocalizationsSync.instance.shipsSpoilerSlight,
+    SpoilerLevel.showAllSpoilers =>
+      AppLocalizationsSync.instance.shipsSpoilerAll,
   };
 
   String _spoilerTooltip(SpoilerLevel e) => switch (e) {
-    SpoilerLevel.showNone => 'No spoilers shown at all.',
-    SpoilerLevel.showSlightSpoilers => 'Shows CODEX_UNLOCKABLE ships.',
+    SpoilerLevel.showNone =>
+      AppLocalizationsSync.instance.shipsSpoilerNoneTooltip,
+    SpoilerLevel.showSlightSpoilers =>
+      AppLocalizationsSync.instance.shipsSpoilerSlightTooltip,
     SpoilerLevel.showAllSpoilers =>
-      'Show all spoilers, including HIDE_IN_CODEX and certain ultra-redacted vanilla tagged ships',
+      AppLocalizationsSync.instance.shipsSpoilerAllTooltip,
   };
 
   void _persistState(ShipsPageState newState) {

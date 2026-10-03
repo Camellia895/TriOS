@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/download_manager/download_manager.dart';
 
 Future<bool> confirmAndDownloadMod(
@@ -14,19 +15,20 @@ Future<bool> confirmAndDownloadMod(
     return true;
   }
 
+  final loc = AppLocalizations.of(context);
   final confirmed = await showDialog<bool>(
     context: context,
     builder: (context) => AlertDialog(
       title: Text(modName),
-      content: Text("Do you want to download '$modName'?"),
+      content: Text(loc.catalogDownloadConfirmPrompt(modName)),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: const Text('Cancel'),
+          child: Text(loc.catalogCancel),
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(true),
-          child: const Text('Download'),
+          child: Text(loc.catalogDownload),
         ),
       ],
     ),

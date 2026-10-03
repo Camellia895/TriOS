@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/chipper/utils.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/trios/constants_theme.dart';
@@ -31,6 +32,7 @@ class ModSummaryWidget extends ConsumerStatefulWidget {
 class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final modVariants = ref.watch(AppState.modVariants).value;
     final mods = ref.watch(AppState.mods);
     final gameVersion = ref.watch(AppState.starsectorVersion).value;
@@ -243,7 +245,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    "Required Mods:",
+                    loc.mod_dependenciesRequiredMods,
                     style: theme.textTheme.labelMedium,
                   ),
                 ),

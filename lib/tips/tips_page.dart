@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/thirdparty/dartx/string.dart';
 import 'package:trios/thirdparty/flutter_context_menu/flutter_context_menu.dart';
 import 'package:trios/tips/tip.dart';
@@ -38,6 +39,7 @@ class _TipsPageState extends ConsumerState<TipsPage>
     final state = ref.watch(tipsPageControllerProvider);
     final controller = ref.read(tipsPageControllerProvider.notifier);
     final textColor = Theme.of(context).colorScheme.onSurface;
+    final loc = AppLocalizations.of(context);
 
     return Column(
       children: [
@@ -50,7 +52,7 @@ class _TipsPageState extends ConsumerState<TipsPage>
           searchBox: buildSearchBox(controller),
           leadingActions: [
             MovingTooltipWidget.text(
-              message: 'About Tips Hider',
+              message: loc.tipsAboutTipsHider,
               child: IconButton(
                 icon: const Icon(Icons.info),
                 onPressed: () => _showAboutDialog(context),
@@ -61,14 +63,14 @@ class _TipsPageState extends ConsumerState<TipsPage>
             TriOSToolbarItem(
               child: PopupMenuButton<TipsGrouping>(
                 onSelected: controller.setGrouping,
-                itemBuilder: (context) => const [
+                itemBuilder: (context) => [
                   PopupMenuItem(
                     value: TipsGrouping.none,
-                    child: Text('No Grouping'),
+                    child: Text(loc.tipsNoGrouping),
                   ),
                   PopupMenuItem(
                     value: TipsGrouping.mod,
-                    child: Text('Group By Mod'),
+                    child: Text(loc.tipsGroupByMod),
                   ),
                 ],
                 child: Padding(
@@ -79,8 +81,8 @@ class _TipsPageState extends ConsumerState<TipsPage>
                       const SizedBox(width: 4),
                       Text(
                         state.grouping == TipsGrouping.none
-                            ? 'No Grouping'
-                            : 'Group By Mod',
+                            ? loc.tipsNoGrouping
+                            : loc.tipsGroupByMod,
                       ),
                     ],
                   ),
@@ -92,7 +94,10 @@ class _TipsPageState extends ConsumerState<TipsPage>
               child: TextButton.icon(
                 onPressed: () => controller.toggleSelectAll(state.visibleTips),
                 icon: Icon(Icons.select_all, color: textColor),
-                label: Text('Select All', style: TextStyle(color: textColor)),
+                label: Text(
+                  loc.tipsSelectAll,
+                  style: TextStyle(color: textColor),
+                ),
               ),
             ),
             const SizedBox(width: 8),
@@ -101,7 +106,7 @@ class _TipsPageState extends ConsumerState<TipsPage>
             TriOSToolbarCheckboxButton(
               onChanged: (_) => controller.toggleOnlyEnabledMods(),
               value: state.onlyEnabledMods,
-              text: 'Enabled Mods Only',
+              text: loc.tipsEnabledModsOnly,
             ),
             const SizedBox(width: 8),
             MovingTooltipWidget.text(
@@ -111,7 +116,7 @@ class _TipsPageState extends ConsumerState<TipsPage>
               child: TriOSToolbarCheckboxButton(
                 onChanged: (_) => controller.toggleShowHidden(),
                 value: state.showHidden,
-                text: 'Show Hidden',
+                text: loc.tipsShowHidden,
               ),
             ),
           ],
@@ -122,11 +127,12 @@ class _TipsPageState extends ConsumerState<TipsPage>
   }
 
   void _showAboutDialog(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Tips Hider'),
+          title: Text(loc.tipsTipsHider),
           icon: const Icon(Icons.lightbulb),
           iconColor: Theme.of(context).colorScheme.onSurface,
           content: ConstrainedBox(
@@ -141,7 +147,7 @@ class _TipsPageState extends ConsumerState<TipsPage>
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Close'),
+              child: Text(loc.commonClose),
             ),
           ],
         );
@@ -189,14 +195,15 @@ class _TipsPageState extends ConsumerState<TipsPage>
     TipsPageState state,
     TipsPageController controller,
   ) {
+    final loc = AppLocalizations.of(context);
     if (state.errorMessage != null) {
-      return Center(child: Text('Error: ${state.errorMessage}'));
+      return Center(child: Text(loc.tipsError(state.errorMessage!)));
     }
     if (state.isLoading && state.allTips.isEmpty) {
       return Center(child: ThemedCircularProgressIndicator());
     }
     if (state.visibleTips.isEmpty) {
-      return const Center(child: Text('No tips (or mods) found.'));
+      return Center(child: Text(loc.tipsNoTipsOrMods));
     }
 
     final hiddenTips = state.hiddenTips.toSet();
@@ -244,7 +251,7 @@ class _TipsPageState extends ConsumerState<TipsPage>
                             ),
                             onPressed: () =>
                                 controller.toggleSelectAll(entry.value),
-                            child: Text('Select'),
+                            child: Text(loc.tipsSelect),
                           ),
                         ),
                       ],
@@ -377,6 +384,7 @@ class _TipCardViewState extends ConsumerState<TipCardView> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final tip = widget.tip;
     final isSelected = widget.isSelected;
     final isHidden = widget.isHidden;
@@ -400,7 +408,7 @@ class _TipCardViewState extends ConsumerState<TipCardView> {
             },
           ),
           MenuItem(
-            label: 'Open Folder',
+            label: loc.modInfoDialogOpenFolder,
             onSelected: () {
               tip.tipFile.parent.path.openAsUriInBrowser();
             },

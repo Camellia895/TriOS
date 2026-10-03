@@ -6,6 +6,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/mod.dart';
@@ -510,12 +511,13 @@ class ModProfileManagerNotifier
     showDialog(
       context: context,
       builder: (context) {
+        final loc = AppLocalizations.of(context);
         final hasMissingModsOrVariants =
             missingMods.isNotEmpty || missingVariants.isNotEmpty;
         final theme = Theme.of(context);
         final iconColor = theme.iconTheme.color?.withOpacity(0.8);
         return AlertDialog(
-          title: Text("Activate '${profile.name}'?"),
+          title: Text(loc.profileActivateConfirm(profile.name)),
           content: changes.isEmpty
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -590,7 +592,7 @@ class ModProfileManagerNotifier
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: Text(loc.commonCancel),
             ),
             TextButton.icon(
               onPressed: () {
@@ -616,7 +618,7 @@ class ModProfileManagerNotifier
                     ..activateModProfile(profile.id);
                 },
                 icon: const SvgImageIcon("assets/images/icon-clone.svg"),
-                label: const Text('Back up Profile & Activate'),
+                label: Text(loc.profileBackupAndActivate),
               ),
           ],
         );
@@ -708,6 +710,7 @@ class ModProfileManagerNotifier
     BuildContext context,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     Widget buildRow(
       ModChange change,
@@ -746,7 +749,7 @@ class ModProfileManagerNotifier
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextWithIcon(
-                text: 'Missing Mods',
+                text: loc.profileMissingMods,
                 style: theme.textTheme.labelLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -772,7 +775,7 @@ class ModProfileManagerNotifier
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextWithIcon(
-                text: 'Missing Versions',
+                text: loc.profileMissingVersions,
                 style: theme.textTheme.labelLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -820,7 +823,7 @@ class ModProfileManagerNotifier
               ),
             );
           },
-          child: const Text("Copy missing to clipboard"),
+          child: Text(loc.profileCopyMissingToClipboard),
         ),
         const SizedBox(height: 8),
         if (missingMods.isNotEmpty ||

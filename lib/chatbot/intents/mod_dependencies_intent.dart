@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -73,8 +74,8 @@ class ModDependenciesIntent extends ChatIntent with ModAwareIntent {
     }
 
     if (dependedOnCount.isEmpty) {
-      return const ChatResponse(
-        text: 'No mod dependencies found.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModDependenciesFound,
       );
     }
 

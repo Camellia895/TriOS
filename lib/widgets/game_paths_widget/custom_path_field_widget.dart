@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:toastification/toastification.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/widgets/disable.dart';
@@ -103,6 +104,7 @@ class _CustomPathFieldState extends ConsumerState<CustomPathField> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final showApplyButton =
         (widget.showApplyButton?.call(_textController.text) == true) ||
         (widget.isChecked &&
@@ -152,14 +154,14 @@ class _CustomPathFieldState extends ConsumerState<CustomPathField> {
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: TextButton.icon(
-              label: const Text("Apply"),
+              label: Text(loc.commonApply),
               icon: const Icon(Icons.check),
               onPressed: () => widget.onSubmitted(_textController.text),
             ),
           ),
         if (showApplyButton)
           MovingTooltipWidget.text(
-            message: "Discard change",
+            message: loc.commonDiscardChange,
             child: IconButton(
               icon: Icon(
                 Icons.undo,

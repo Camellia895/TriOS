@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -58,7 +59,9 @@ class UtilityModsIntent extends ChatIntent with ModAwareIntent {
       ..sort();
 
     if (utilityMods.isEmpty) {
-      return const ChatResponse(text: 'No utility/library mods are installed.');
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoUtilityLibraryMods,
+      );
     }
 
     final buf = StringBuffer(

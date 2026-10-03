@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/thirdparty/flutter_context_menu/flutter_context_menu.dart';
 import 'package:trios/toolbar/activity_icon_button.dart';
 import 'package:trios/toolbar/app_action_buttons.dart';
@@ -42,6 +43,7 @@ class FullTopBar extends ConsumerWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final navState = ref.watch(navOrderProvider);
     final controller = ref.read(navOrderProvider.notifier);
     final debugMode = ref.watch(appSettings.select((s) => s.debugMode));
@@ -149,7 +151,7 @@ class FullTopBar extends ConsumerWidget implements PreferredSizeWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: MovingTooltipWidget.text(
-                message: 'Exit rearrange mode',
+                message: loc.app_sidebarExitRearrangeMode,
                 child: SizedBox.square(
                   dimension: 32,
                   child: FilledButton(
@@ -255,7 +257,7 @@ class FullTopBar extends ConsumerWidget implements PreferredSizeWidget {
               left: 0,
               right: 0,
               child: MovingTooltipWidget.text(
-                message: 'Tab rearrange mode is on',
+                message: loc.app_sidebarTabRearrangeModeIs,
                 child: Container(height: 2, color: theme.statusColors.success),
               ),
             ),

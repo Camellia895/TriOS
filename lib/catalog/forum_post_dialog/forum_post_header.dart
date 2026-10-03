@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/catalog/catalog_download_resolver.dart';
 import 'package:trios/catalog/download_candidate_actions.dart';
 import 'package:trios/catalog/models/forum_llm_data.dart';
@@ -60,6 +61,7 @@ class ForumPostHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
@@ -96,7 +98,7 @@ class ForumPostHeader extends StatelessWidget {
                           ),
                         if (onOpenInEmbeddedBrowser != null)
                           Tooltip(
-                            message: 'Open in the built-in browser',
+                            message: loc.catalogOpenInBuiltInBrowser,
                             child: IconButton(
                               icon: const Icon(Icons.web),
                               onPressed: onOpenInEmbeddedBrowser,
@@ -104,7 +106,7 @@ class ForumPostHeader extends StatelessWidget {
                           ),
                         if (onOpenInSystemBrowser != null)
                           Tooltip(
-                            message: 'Open in your web browser',
+                            message: loc.catalogOpenInWebBrowser,
                             child: IconButton(
                               icon: const Icon(Icons.open_in_new),
                               onPressed: onOpenInSystemBrowser,
@@ -126,7 +128,7 @@ class ForumPostHeader extends StatelessWidget {
                           ),
                         if (onClose != null)
                           Tooltip(
-                            message: 'Close',
+                            message: loc.catalogClose,
                             child: IconButton(
                               icon: const Icon(Icons.close),
                               onPressed: onClose,
@@ -194,6 +196,7 @@ class _DownloadSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final headingStyle = theme.textTheme.labelSmall?.copyWith(
       color: theme.colorScheme.onSurface.withAlpha(200),
       fontStyle: .italic,
@@ -214,7 +217,7 @@ class _DownloadSection extends StatelessWidget {
       crossAxisAlignment: .start,
       spacing: 6,
       children: [
-        Text('Downloads', style: headingStyle),
+        Text(loc.catalogDownloads, style: headingStyle),
         _DownloadRow(
           group: leadGroup,
           showGroupName: showLeadName,
@@ -223,7 +226,7 @@ class _DownloadSection extends StatelessWidget {
         ),
         if (otherGroups.isNotEmpty) ...[
           const SizedBox(height: 2),
-          Text('Also in this thread', style: headingStyle),
+          Text(loc.catalogAlsoInThisThread, style: headingStyle),
           for (final group in otherGroups)
             _DownloadRow(
               group: group,
@@ -349,6 +352,7 @@ class _DependencyLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final style = theme.textTheme.labelSmall?.copyWith(
       color: theme.textTheme.labelSmall?.color?.withValues(alpha: 0.7),
     );
@@ -362,7 +366,7 @@ class _DependencyLine extends StatelessWidget {
       runSpacing: 2,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        Text('Also needs:', style: style),
+        Text(loc.catalogAlsoNeeds, style: style),
         for (final dep in group.dependencies)
           MovingTooltipWidget.text(
             message: dep.installed ? 'Already installed' : 'Not installed',
@@ -410,6 +414,7 @@ class _DownloadSplitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final primary = primaryCandidate(candidates);
     final mainCandidate = primary ?? candidates.first;
     // No one-click candidate: the best we can do is open the download page.
@@ -456,7 +461,7 @@ class _DownloadSplitButton extends StatelessWidget {
               ),
           ],
           builder: (context, controller, _) => MovingTooltipWidget.text(
-            message: 'Other download options',
+            message: loc.catalogOtherDownloadOptions,
             child: IconButton(
               icon: const Icon(Icons.arrow_drop_down),
               visualDensity: VisualDensity.compact,

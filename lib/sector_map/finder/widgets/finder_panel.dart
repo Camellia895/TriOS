@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/sector_map/finder/finder_catalog.dart';
 import 'package:trios/sector_map/finder/finder_criteria.dart';
 import 'package:trios/sector_map/models/sector.dart';
@@ -17,6 +18,7 @@ class FinderPanel extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final criteria = ref.watch(
       sectorMapControllerProvider.select((s) => s.criteria),
     );
@@ -30,7 +32,7 @@ class FinderPanel extends ConsumerWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        _sectionHeader(theme, 'Presets'),
+        _sectionHeader(theme, loc.finderPresets),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -41,20 +43,20 @@ class FinderPanel extends ConsumerWidget {
                 child: Text(preset.name),
               ),
             MovingTooltipWidget.text(
-              message: 'Clear all knobs',
+              message: loc.finderClearAllKnobs,
               child: TextButton.icon(
                 onPressed: () => update(const FinderCriteria()),
                 icon: const Icon(Icons.clear, size: 16),
-                label: const Text('Reset'),
+                label: Text(loc.finderReset),
               ),
             ),
           ],
         ),
 
         const SizedBox(height: 16),
-        _sectionHeader(theme, 'Resources'),
+        _sectionHeader(theme, loc.finderResources),
         Text(
-          'Floor is a hard cutoff; weight ranks how much you care.',
+          loc.finderFloorWeightHint,
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
@@ -74,23 +76,23 @@ class FinderPanel extends ConsumerWidget {
           ),
 
         const SizedBox(height: 16),
-        _sectionHeader(theme, 'Must have'),
+        _sectionHeader(theme, loc.finderMustHave),
         CheckboxWithLabel(
-          label: 'Habitable world',
+          label: loc.finderHabitableWorld,
           value: criteria.mustBeHabitable,
           onChanged: (v) =>
               update(criteria.copyWith(mustBeHabitable: v ?? false)),
         ),
         CheckboxWithLabel(
-          label: 'Gas giant (for volatiles / fuel)',
+          label: loc.finderGasGiantForVolatiles,
           value: criteria.mustHaveGasGiant,
           onChanged: (v) =>
               update(criteria.copyWith(mustHaveGasGiant: v ?? false)),
         ),
         MovingTooltipWidget.text(
-          message: 'Skip systems that already have a faction colony',
+          message: loc.finderSkipSystemsWithFactionColony,
           child: CheckboxWithLabel(
-            label: 'Unclaimed only (no existing colony)',
+            label: loc.finderUnclaimedOnly,
             value: criteria.excludeColonized,
             onChanged: (v) =>
                 update(criteria.copyWith(excludeColonized: v ?? false)),
@@ -101,7 +103,7 @@ class FinderPanel extends ConsumerWidget {
           child: Row(
             spacing: 12,
             children: [
-              const Expanded(child: Text('Min. stable locations')),
+              Expanded(child: Text(loc.finderMinStableLocations)),
               DropdownButton<int>(
                 value: criteria.minStableLocations,
                 onChanged: (v) =>
@@ -110,7 +112,7 @@ class FinderPanel extends ConsumerWidget {
                   for (var i = 0; i <= 4; i++)
                     DropdownMenuItem(
                       value: i,
-                      child: Text(i == 0 ? 'Any' : '$i+'),
+                      child: Text(i == 0 ? loc.finderAny : '$i+'),
                     ),
                 ],
               ),
@@ -119,12 +121,12 @@ class FinderPanel extends ConsumerWidget {
         ),
 
         const SizedBox(height: 16),
-        _sectionHeader(theme, 'Near a landmark'),
+        _sectionHeader(theme, loc.finderNearALandmark),
         for (final entry in kLandmarkLabels.entries)
           CheckboxWithLabel(
             label: landmarkTypesPresent.contains(entry.key)
                 ? entry.value
-                : '${entry.value} (none in this save)',
+                : loc.finderLandmarkNoneInSave(entry.value),
             value: criteria.landmarkNearby[entry.key] ?? false,
             onChanged: landmarkTypesPresent.contains(entry.key)
                 ? (v) {
@@ -136,7 +138,7 @@ class FinderPanel extends ConsumerWidget {
           ),
         if (criteria.requiredLandmarks.isNotEmpty)
           _LabeledSlider(
-            label: 'Within',
+            label: loc.finderWithin,
             valueLabel: '${criteria.nearbyRangeLy.round()} LY',
             value: criteria.nearbyRangeLy,
             min: 2,
@@ -146,9 +148,9 @@ class FinderPanel extends ConsumerWidget {
           ),
 
         const SizedBox(height: 16),
-        _sectionHeader(theme, 'Preferences'),
+        _sectionHeader(theme, loc.finderPreferences),
         _LabeledSlider(
-          label: 'Prefer low hazard',
+          label: loc.finderPreferLowHazard,
           valueLabel: _weightLabel(criteria.lowHazardWeight),
           value: criteria.lowHazardWeight,
           min: 0,
@@ -156,7 +158,7 @@ class FinderPanel extends ConsumerWidget {
           onChanged: (v) => update(criteria.copyWith(lowHazardWeight: v)),
         ),
         _LabeledSlider(
-          label: 'Prefer close to core',
+          label: loc.finderPreferCloseToCore,
           valueLabel: _weightLabel(criteria.closeToCoreWeight),
           value: criteria.closeToCoreWeight,
           min: 0,
@@ -169,11 +171,11 @@ class FinderPanel extends ConsumerWidget {
           ExpansionTile(
             tilePadding: EdgeInsets.zero,
             title: Text(
-              'Other conditions (${otherIds.length})',
+              loc.finderOtherConditions(otherIds.length),
               style: theme.textTheme.titleSmall,
             ),
             subtitle: Text(
-              'Uncurated / modded conditions in this save',
+              loc.finderUncuratedConditions,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
@@ -205,6 +207,24 @@ class FinderPanel extends ConsumerWidget {
 
 String _weightLabel(double w) => w <= 0 ? 'off' : '${(w * 100).round()}%';
 
+/// Localized display name for a resource family. The English labels live on
+/// [ResourceFamily] (a const data structure); resolve them at display time.
+String resourceFamilyLabel(AppLocalizations loc, ResourceFamily family) {
+  switch (family.id) {
+    case 'ore':
+      return loc.finderCatalogOre;
+    case 'rare_ore':
+      return loc.finderCatalogRareOre;
+    case 'organics':
+      return loc.finderCatalogOrganics;
+    case 'volatiles':
+      return loc.finderCatalogVolatiles;
+    case 'farmland':
+      return loc.finderCatalogFarmland;
+  }
+  return family.label;
+}
+
 class _ResourceRow extends StatelessWidget {
   final ResourceFamily family;
   final ResourceCriterion criterion;
@@ -218,23 +238,24 @@ class _ResourceRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         spacing: 8,
         children: [
-          SizedBox(width: 80, child: Text(family.label)),
+          SizedBox(width: 80, child: Text(resourceFamilyLabel(loc, family))),
           // Min-tier floor (hard).
           MovingTooltipWidget.text(
-            message: 'Hard cutoff: at least this tier on some planet',
+            message: loc.finderHardCutoffAtLeast,
             child: DropdownButton<int?>(
               value: criterion.minTier,
-              hint: const Text('Any'),
+              hint: Text(loc.finderAny),
               onChanged: (v) => onChanged(
                 ResourceCriterion(minTier: v, weight: criterion.weight),
               ),
               items: [
-                const DropdownMenuItem(value: null, child: Text('Any')),
+                DropdownMenuItem(value: null, child: Text(loc.finderAny)),
                 for (var t = 1; t <= family.maxTier; t++)
                   DropdownMenuItem(
                     value: t,
@@ -246,7 +267,9 @@ class _ResourceRow extends StatelessWidget {
           // Weight (soft).
           Expanded(
             child: MovingTooltipWidget.text(
-              message: 'Weight: ${_weightLabel(criterion.weight)}',
+              message: loc.finderWeightLabel(
+                _weightLabel(criterion.weight),
+              ),
               child: Slider(
                 value: criterion.weight,
                 onChanged: (v) => onChanged(

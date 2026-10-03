@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vram_estimator/graphics_lib_config_provider.dart';
@@ -41,6 +42,7 @@ class VramPieChartState extends ConsumerState<VramPieChart> {
   }
 
   Future<void> _showSliceMenu(Offset globalPosition, VramMod mod) async {
+    final loc = AppLocalizations.of(context);
     final overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
     final isGlobalScanning =
         ref.read(AppState.vramEstimatorProvider).value?.isScanning ?? false;
@@ -63,8 +65,8 @@ class VramPieChartState extends ConsumerState<VramPieChart> {
               Flexible(
                 child: Text(
                   isGlobalScanning
-                      ? 'Scan in progress…'
-                      : 'Rescan ${mod.info.name ?? mod.info.modId}',
+                      ? loc.vramScanInProgress
+                      : loc.vramRescanNamed(mod.info.name ?? mod.info.modId),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

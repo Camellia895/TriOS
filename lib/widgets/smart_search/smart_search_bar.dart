@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:text_search/text_search.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/filter_pill.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 import 'package:trios/widgets/smart_search/search_dsl_field.dart';
@@ -17,7 +18,9 @@ class SmartSearchBar extends StatefulWidget {
   /// selection). Use this to persist the query to search history.
   final VoidCallback? onSubmitted;
   final String initialValue;
-  final String hintText;
+
+  /// Hint shown in the empty text field. Defaults to the localized "Search".
+  final String? hintText;
 
   const SmartSearchBar({
     super.key,
@@ -26,7 +29,7 @@ class SmartSearchBar extends StatefulWidget {
     required this.onChanged,
     this.onSubmitted,
     this.initialValue = '',
-    this.hintText = 'Search',
+    this.hintText,
   });
 
   @override
@@ -845,10 +848,11 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
   };
 
   void _showInfoPanel() {
+    final loc = AppLocalizations.of(context);
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Search Field Reference'),
+        title: Text(loc.smartSearchFieldReference),
         content: SizedBox(
           width: 460,
           child: SingleChildScrollView(
@@ -857,7 +861,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SelectableText(
-                  'Syntax: field:value   field:>value   -field:value   field:"multi word"',
+                  loc.smartSearchSyntaxExamples,
                   style: Theme.of(ctx).textTheme.bodySmall?.copyWith(
                     fontFamily: 'monospace',
                     color: Theme.of(ctx).colorScheme.onSurfaceVariant,
@@ -872,7 +876,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Close'),
+            child: Text(loc.commonClose),
           ),
         ],
       ),
@@ -931,6 +935,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final hasSomething =
         _committedPills.isNotEmpty || _controller.text.isNotEmpty;
 
@@ -978,7 +983,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
-                              children: [..._buildPillsAndTextField(theme)],
+                              children: [..._buildPillsAndTextField(theme, loc)],
                             ),
                           ),
                         ),
@@ -986,7 +991,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
                     ),
                     if (hasSomething)
                       MovingTooltipWidget.text(
-                        message: 'Clear search',
+                        message: loc.filterClearSearch,
                         child: IconButton(
                           icon: const Icon(Icons.clear, size: 16),
                           padding: EdgeInsets.zero,
@@ -999,7 +1004,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
                       ),
                     const SizedBox(width: 2),
                     MovingTooltipWidget.text(
-                      message: 'View search field reference',
+                      message: loc.smartSearchViewFieldReference,
                       child: IconButton(
                         icon: const Icon(Icons.info_outline, size: 18),
                         padding: const EdgeInsets.all(6),
@@ -1021,7 +1026,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
     );
   }
 
-  List<Widget> _buildPillsAndTextField(ThemeData theme) {
+  List<Widget> _buildPillsAndTextField(ThemeData theme, AppLocalizations loc) {
     final textField = IntrinsicWidth(
       child: ConstrainedBox(
         constraints: const BoxConstraints(minWidth: 120),
@@ -1031,7 +1036,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
           onSubmitted: (_) => widget.onSubmitted?.call(),
           decoration: InputDecoration(
             hintText: _committedPills.isEmpty && _editingAtIndex == null
-                ? widget.hintText
+                ? (widget.hintText ?? loc.commonSearch)
                 : null,
             border: InputBorder.none,
             isDense: true,

@@ -1,3 +1,5 @@
+import 'package:trios/l10n/trios_localizations.dart';
+
 /// Time units for clamping [relativeTimestamp] output.
 enum TimeUnit { seconds, minutes, hours, days, weeks, months, years }
 
@@ -11,6 +13,7 @@ extension RelativeTimeExtension on DateTime {
     TimeUnit minUnit = TimeUnit.seconds,
     TimeUnit maxUnit = TimeUnit.years,
   }) {
+    final loc = AppLocalizationsSync.instance;
     final Duration difference = DateTime.now().difference(this);
     final bool isPast = difference.isNegative == false;
     final int seconds = difference.inSeconds.abs();
@@ -19,39 +22,47 @@ extension RelativeTimeExtension on DateTime {
     final int days = difference.inDays.abs();
 
     String timeString;
-    String unit;
 
     if (seconds < 60 &&
         minUnit.index <= TimeUnit.seconds.index &&
         maxUnit.index >= TimeUnit.seconds.index) {
-      unit = seconds == 1 ? 'second' : 'seconds';
-      timeString = '$seconds $unit';
+      timeString = seconds == 1
+          ? loc.commonDurationSecond(seconds)
+          : loc.commonDurationSeconds(seconds);
     } else if (minutes < 60 && maxUnit.index >= TimeUnit.minutes.index) {
       // Clamp up: if below minUnit, show the minUnit value.
       final m = minutes < 1 ? 1 : minutes;
-      unit = m == 1 ? 'minute' : 'minutes';
-      timeString = '$m $unit';
+      timeString = m == 1
+          ? loc.commonDurationMinute(m)
+          : loc.commonDurationMinutes(m);
     } else if (hours < 24 && maxUnit.index >= TimeUnit.hours.index) {
-      unit = hours == 1 ? 'hour' : 'hours';
-      timeString = '$hours $unit';
+      timeString = hours == 1
+          ? loc.commonDurationHour(hours)
+          : loc.commonDurationHours(hours);
     } else if (days < 7 && maxUnit.index >= TimeUnit.days.index) {
-      unit = days == 1 ? 'day' : 'days';
-      timeString = '$days $unit';
+      timeString = days == 1
+          ? loc.commonDurationDay(days)
+          : loc.commonDurationDays(days);
     } else if (days < 30 && maxUnit.index >= TimeUnit.weeks.index) {
       final weeks = (days / 7).floor();
-      unit = weeks == 1 ? 'week' : 'weeks';
-      timeString = '$weeks $unit';
+      timeString = weeks == 1
+          ? loc.commonDurationWeek(weeks)
+          : loc.commonDurationWeeks(weeks);
     } else if (days < 365 && maxUnit.index >= TimeUnit.months.index) {
       final months = (days / 30).floor();
-      unit = months == 1 ? 'month' : 'months';
-      timeString = '$months $unit';
+      timeString = months == 1
+          ? loc.commonDurationMonth(months)
+          : loc.commonDurationMonths(months);
     } else {
       final years = (days / 365).floor();
-      unit = years == 1 ? 'year' : 'years';
-      timeString = '$years $unit';
+      timeString = years == 1
+          ? loc.commonDurationYear(years)
+          : loc.commonDurationYears(years);
     }
 
-    return isPast ? '$timeString ago' : 'in $timeString';
+    return isPast
+        ? loc.commonTimeAgo(timeString)
+        : loc.commonTimeInFuture(timeString);
   }
 
   /// Compact age string relative to now: `"5s"`, `"3m"`, `"2h"`, `"4d"`.

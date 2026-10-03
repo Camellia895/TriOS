@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/mod_variant.dart';
@@ -161,6 +162,7 @@ class _ModInstallSelectionDialogState<T>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final hasConflicts = _conflictIndices.isNotEmpty;
     final selectedCount = _selected.length;
 
@@ -193,9 +195,9 @@ class _ModInstallSelectionDialogState<T>
                   children: [
                     for (final group in _choiceGroups)
                       if (group.length > 1)
-                        _buildExclusiveGroup(group, theme)
+                        _buildExclusiveGroup(group, theme, loc)
                       else
-                        _buildChoiceCard(group.first, theme),
+                        _buildChoiceCard(group.first, theme, loc),
                     if (widget.invalidItems.isNotEmpty) ...[
                       // Only separate from the list above when there is one;
                       // on its own the divider would just float.
@@ -227,7 +229,7 @@ class _ModInstallSelectionDialogState<T>
                   value: _replaceAllValue,
                   tristate: true,
                   onChanged: (_) => _toggleReplaceAll(),
-                  label: "Replace all already-present mods",
+                  label: loc.modInstallSelectionDialogReplaceAllAlreadyPresent,
                 ),
               ),
             ],
@@ -237,7 +239,7 @@ class _ModInstallSelectionDialogState<T>
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(null),
-          child: const Text("Cancel"),
+          child: Text(loc.commonCancel),
         ),
         FilledButton(
           onPressed: selectedCount > 0
@@ -259,7 +261,7 @@ class _ModInstallSelectionDialogState<T>
   }
 
   /// A single choice as a selectable, outlined card.
-  Widget _buildChoiceCard(int index, ThemeData theme) {
+  Widget _buildChoiceCard(int index, ThemeData theme, AppLocalizations loc) {
     final isSelected = _selected.contains(index);
     return Card.outlined(
       shape: RoundedRectangleBorder(
@@ -270,13 +272,17 @@ class _ModInstallSelectionDialogState<T>
         ),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: _buildChoiceTile(index, theme),
+      child: _buildChoiceTile(index, theme, loc),
     );
   }
 
   /// A set of mutually exclusive choices (same mod and version) boxed together
   /// with a "pick one" heading, so it's clear only one can be installed.
-  Widget _buildExclusiveGroup(List<int> indices, ThemeData theme) {
+  Widget _buildExclusiveGroup(
+    List<int> indices,
+    ThemeData theme,
+    AppLocalizations loc,
+  ) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
@@ -296,13 +302,13 @@ class _ModInstallSelectionDialogState<T>
               ),
             ),
           ),
-          for (final i in indices) _buildChoiceCard(i, theme),
+          for (final i in indices) _buildChoiceCard(i, theme, loc),
         ],
       ),
     );
   }
 
-  Widget _buildChoiceTile(int index, ThemeData theme) {
+  Widget _buildChoiceTile(int index, ThemeData theme, AppLocalizations loc) {
     final choice = widget.choices[index];
     final modInfo = choice.modInfo.modInfo;
     final isSelected = _selected.contains(index);
@@ -373,7 +379,9 @@ class _ModInstallSelectionDialogState<T>
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: "v${modInfo.version}",
+                      text: loc.modManagerVersionShort(
+                        modInfo.version?.toString() ?? "",
+                      ),
                       style: const TextStyle(fontSize: subtitleSize),
                     ),
                     TextSpan(

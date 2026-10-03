@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
 import 'package:trios/hullmod_viewer/widgets/hullmod_codex_card.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/dialog_pager.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
@@ -48,6 +49,7 @@ Widget buildHullmodDetailsDialogBody(
   Hullmod h, {
   Widget pagerControls = const SizedBox.shrink(),
 }) {
+  final loc = AppLocalizations.of(context);
   return SelectionArea(
     child: ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 600),
@@ -62,7 +64,7 @@ Widget buildHullmodDetailsDialogBody(
                 children: [
                   pagerControls,
                   MovingTooltipWidget.text(
-                    message: 'Close',
+                    message: loc.commonClose,
                     child: IconButton(
                       icon: const Icon(Icons.close),
                       onPressed: () => Navigator.of(context).pop(),
@@ -77,7 +79,7 @@ Widget buildHullmodDetailsDialogBody(
                   const Spacer(),
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
+                    child: Text(loc.commonClose),
                   ),
                 ],
               ),

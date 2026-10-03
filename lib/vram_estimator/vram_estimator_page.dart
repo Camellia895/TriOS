@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/thirdparty/dartx/iterable.dart';
 import 'package:trios/trios/app_state.dart';
@@ -320,6 +321,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
     double totalVram,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final fraction = totalVram > 0
         ? (estimatedBytes / totalVram).clamp(0.0, 1.0).toDouble()
         : 0.0;
@@ -332,8 +334,10 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Estimated VRAM Usage: "
-          "${estimatedBytes.bytesAsReadableGB()} / ${totalVram.toInt().bytesAsReadableGB()}",
+          loc.vramEstimatedVramUsageBar(
+            estimatedBytes.bytesAsReadableGB(),
+            totalVram.toInt().bytesAsReadableGB(),
+          ),
           style: theme.textTheme.labelLarge,
         ),
         const SizedBox(height: 4),
@@ -356,12 +360,13 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
     int unscannedCount,
     List<VramMod> modVramInfoToShow,
   ) {
+    final loc = AppLocalizations.of(context);
     final hasUnscanned = !isScanning && unscannedCount > 0;
     final scanLabel = hasUnscanned
-        ? 'Scan $unscannedCount mod${unscannedCount == 1 ? "" : "s"}'
+        ? loc.vramScanUnscannedMods(unscannedCount)
         : isScanning
-        ? _buildRefreshTooltip(vramState)
-        : 'All mods scanned';
+        ? _buildRefreshTooltip(loc, vramState)
+        : loc.vramAllModsScanned;
 
     return SizedBox(
       // height: 50,
@@ -374,14 +379,14 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
                 children: [
                   const SizedBox(width: 4),
                   Text(
-                    'VRAM Estimator',
+                    loc.vramVramEstimator,
                     style: Theme.of(
                       context,
                     ).textTheme.headlineSmall?.copyWith(fontSize: 20),
                   ),
                   const SizedBox(width: 8),
                   MovingTooltipWidget.text(
-                    message: "About VRAM & VRAM Estimator",
+                    message: loc.vramAboutVramAndEstimator,
                     child: IconButton(
                       icon: const Icon(Icons.info),
                       onPressed: () => showDialog(
@@ -418,7 +423,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
                         Flexible(
                           child: ViewerSearchBox(
                             searchController: _searchController,
-                            hintText: 'Filter mods...',
+                            hintText: loc.vramFilterMods,
                             onChanged: (query) =>
                                 setState(() => _searchQuery = query),
                             onClear: () => setState(() => _searchQuery = ''),
@@ -447,6 +452,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
     String scanLabel,
     VramEstimatorManagerState vramState,
   ) {
+    final loc = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -516,7 +522,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
           color: colorScheme.onInverseSurface.withValues(alpha: 0.3),
         ),
         MovingTooltipWidget.text(
-          message: 'More scan options',
+          message: loc.vramMoreScanOptions,
           child: Disable(
             isEnabled: !isScanning,
             child: Material(
@@ -544,8 +550,8 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
                       leading: const Icon(Icons.refresh),
                       title: Text(
                         vramState.modVramInfo.isEmpty
-                            ? 'Scan all mods'
-                            : 'Re-scan all mods',
+                            ? loc.vramScanAllMods
+                            : loc.vramReScanAllMods,
                       ),
                     ),
                   ),
@@ -570,6 +576,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
   }
 
   Widget _buildOverflowMenu(VramEstimatorManagerState vramState) {
+    final loc = AppLocalizations.of(context);
     final settings = ref.watch(appSettings);
     final activeId = settings.vramEstimatorSelectorId;
     final options = allSelectorOptions();
@@ -577,7 +584,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
     return OverflowMenuButton(
       menuItems: [
         OverflowMenuCheckItem(
-          title: 'Enabled Mods Only',
+          title: loc.vramEnabledModsOnly,
           icon: Icons.filter_list,
           checked: settings.vramEstimatorEnabledModsOnly,
           onTap: () => ref
@@ -611,7 +618,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
           ).toEntry(null),
         const PopupMenuDivider(),
         OverflowMenuItem(
-          title: 'Export cache as JSON…',
+          title: loc.vramExportCacheAsJson,
           icon: Icons.file_download,
           onTap: vramState.modVramInfo.isEmpty
               ? () {}
@@ -637,28 +644,34 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
         .toList();
   }
 
-  String _buildRefreshTooltip(VramEstimatorManagerState state) {
+  String _buildRefreshTooltip(
+    AppLocalizations loc,
+    VramEstimatorManagerState state,
+  ) {
     if (!state.isScanning) {
-      return state.modVramInfo.isEmpty ? 'Estimate VRAM' : 'Re-estimate VRAM';
+      return state.modVramInfo.isEmpty
+          ? loc.vramEstimateVram
+          : loc.vramReEstimateVram;
     }
     final done = state.modsScannedThisRun;
     final total = state.totalModsToScan;
     final progress = total > 0 ? ' ($done/$total)' : '';
     final current = state.currentlyScanningModName;
     if (current != null && current.isNotEmpty) {
-      return 'Scanning: $current$progress';
+      return loc.vramScanningCurrent(current, progress);
     }
-    return 'Scanning$progress';
+    return loc.vramScanning(progress);
   }
 
   Future<void> _exportCacheAsJson(BuildContext context, WidgetRef ref) async {
+    final loc = AppLocalizations.of(context);
     final timestamp = DateFormat('yyyyMMdd-HHmmss').format(DateTime.now());
     final suggestedName = 'TriOS-VRAM_CheckerCache-$timestamp.json';
 
     String? chosen;
     try {
       chosen = await FilePicker.platform.saveFile(
-        dialogTitle: 'Export VRAM cache as JSON',
+        dialogTitle: loc.vramExportDialogTitle,
         fileName: suggestedName,
         type: FileType.custom,
         allowedExtensions: ['json'],
@@ -674,7 +687,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
         showSnackBar(
           context: context,
           type: SnackBarType.error,
-          content: const Text('Could not open save dialog.'),
+          content: Text(loc.vramCouldNotOpenSaveDialog),
         );
       }
       return;
@@ -693,7 +706,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
         showSnackBar(
           context: context,
           type: SnackBarType.info,
-          content: Text('Exported VRAM cache to $chosen'),
+          content: Text(loc.vramExportedCacheTo(chosen)),
         );
       }
     } catch (e, st) {
@@ -706,7 +719,7 @@ class _VramEstimatorPageState extends ConsumerState<VramEstimatorPage>
         showSnackBar(
           context: context,
           type: SnackBarType.error,
-          content: Text('Export failed: $e'),
+          content: Text(loc.vramExportFailed(e.toString())),
         );
       }
     }

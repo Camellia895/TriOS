@@ -3,6 +3,7 @@ import 'package:trios/trios/constants_theme.dart';
 
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/utils/extensions.dart';
@@ -37,6 +38,7 @@ class _DashboardState extends ConsumerState<Dashboard>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final loc = AppLocalizations.of(context);
 
     // For startup performance, wait to load until after mods have loaded.
     // Loading sets the log provider's state, so it has to wait until this
@@ -78,7 +80,7 @@ class _DashboardState extends ConsumerState<Dashboard>
                             Padding(
                               padding: const EdgeInsets.only(top: 4),
                               child: TriOSExpansionTile(
-                                title: const Text("RAM and Game Settings"),
+                                title: Text(loc.dashboardRamAndGameSettings),
                                 leading:
                                     (ref
                                             .watch(vmparamsManagerProvider)
@@ -204,7 +206,7 @@ class _DashboardState extends ConsumerState<Dashboard>
                                           color: theme.colorScheme.onSurface,
                                         ),
                                         style: logButtonStyle,
-                                        label: const Text("Open"),
+                                        label: Text(loc.catalogOpen),
                                       ),
                                     ),
                                     Padding(
@@ -227,7 +229,7 @@ class _DashboardState extends ConsumerState<Dashboard>
                                           color: theme.colorScheme.onSurface,
                                         ),
                                         style: logButtonStyle,
-                                        label: const Text("Reload"),
+                                        label: Text(loc.catalogReload),
                                       ),
                                     ),
                                   ],
@@ -249,9 +251,9 @@ class _DashboardState extends ConsumerState<Dashboard>
                                         style: theme.textTheme.bodyMedium
                                             ?.copyWith(fontSize: 14),
                                       )
-                                    : const SizedBox(
+                                    : SizedBox(
                                         width: 350,
-                                        child: Text("No log loaded"),
+                                        child: Text(loc.dashboardNoLogLoaded),
                                       ),
                               ),
                               Padding(

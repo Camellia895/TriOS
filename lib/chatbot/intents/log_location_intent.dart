@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -58,8 +59,11 @@ class LogLocationIntent extends ChatIntent with LogAwareIntent {
   @override
   ChatResponse respond(String input, ConversationContext context) {
     final chips = logChips;
-    if (chips?.filepath != null) {
-      return ChatResponse(text: 'Your log file is at:\n${chips!.filepath}');
+    final filepath = chips?.filepath;
+    if (filepath != null) {
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotYourLogFileIsAt(filepath),
+      );
     }
 
     return const ChatResponse(

@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/widgets/disable.dart';
 
@@ -35,6 +36,7 @@ class RefreshModsButton extends ConsumerStatefulWidget {
 class _RefreshModsButtonState extends ConsumerState<RefreshModsButton> {
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final modVariants = ref.watch(AppState.modVariants);
     final isRefreshing =
         (modVariants.isLoading ||
@@ -44,7 +46,7 @@ class _RefreshModsButtonState extends ConsumerState<RefreshModsButton> {
     return Disable(
       isEnabled: !isRefreshing,
       child: MovingTooltipWidget.text(
-        message: "Refresh mods and recheck versions",
+        message: loc.refreshModsAndRecheck,
         child: widget.iconOnly
             ? IconButton(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -74,7 +76,9 @@ class _RefreshModsButtonState extends ConsumerState<RefreshModsButton> {
                 padding: widget.padding,
                 child: OutlinedButton.icon(
                   onPressed: () => _refresh(),
-                  label: Text(isRefreshing ? "Refreshing" : "Refresh"),
+                  label: Text(
+                    isRefreshing ? loc.refreshModsRefreshing : loc.commonRefresh,
+                  ),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Theme.of(
                       context,

@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/dashboard/mod_summary_widget.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/download_progress.dart';
 import 'package:trios/models/mod_variant.dart';
@@ -41,6 +42,7 @@ class CompletedActivityTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final isFailed = entry.status == ActivityStatus.failed;
     final isCancelled = entry.status == ActivityStatus.cancelled;
 
@@ -138,7 +140,7 @@ class CompletedActivityTile extends ConsumerWidget {
                               !isCancelled &&
                               variant != null)
                             MovingTooltipWidget.text(
-                              message: 'Open mod folder',
+                              message: loc.triosOpenModFolder,
                               child: SizedBox(
                                 width: 20,
                                 height: 20,
@@ -157,7 +159,7 @@ class CompletedActivityTile extends ConsumerWidget {
                             ),
                           if (showActions)
                             MovingTooltipWidget.text(
-                              message: 'Clear',
+                              message: loc.triosClear,
                               child: SizedBox(
                                 width: 20,
                                 height: 20,
@@ -232,7 +234,7 @@ class CompletedActivityTile extends ConsumerWidget {
                                 variant != null)
                               if (!isEnabled && mod != null)
                                 MovingTooltipWidget.text(
-                                  message: 'Enable this mod',
+                                  message: loc.triosEnableThisMod,
                                   child: ElevatedButton.icon(
                                     onPressed: () async {
                                       await ref
@@ -247,7 +249,7 @@ class CompletedActivityTile extends ConsumerWidget {
                                       size: 14,
                                     ),
                                     label: Text(
-                                      'Enable',
+                                      loc.triosEnable,
                                       style: theme.textTheme.bodySmall
                                           ?.copyWith(fontSize: 11),
                                     ),
@@ -356,6 +358,7 @@ class InProgressActivityTile extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final status = download.task.status.value;
     final dlAmount = download.task.downloaded.value;
 
@@ -420,7 +423,7 @@ class InProgressActivityTile extends StatelessWidget {
               ),
               if (onCancel != null)
                 MovingTooltipWidget.text(
-                  message: 'Cancel',
+                  message: loc.triosCancel,
                   child: SizedBox(
                     width: 24,
                     height: 24,

@@ -4,6 +4,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart' show StateProvider;
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/mod_profiles/models/mod_profile.dart';
@@ -73,6 +74,7 @@ class _ModListMiniState extends ConsumerState<ModListMini>
     final query = ref.watch(_searchQuery);
     final versionCheck = ref.watch(AppState.versionCheckResults).value;
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final vramEstState = ref.watch(AppState.vramEstimatorProvider).value;
     final sorting = ref.watch(
       appSettings.select((s) => s.dashboardModListSort),
@@ -340,7 +342,7 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                             ),
                             SizedBox(width: 8),
                             MovingTooltipWidget.text(
-                              message: "Sort By",
+                              message: loc.mod_list_basicSortBy,
                               child: PopupMenuButton<String>(
                                 icon: Padding(
                                   padding: const EdgeInsets.only(
@@ -698,7 +700,8 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                   child: ThemedCircularProgressIndicator(),
                 ),
               ),
-              error: (error, stackTrace) => Text('Error: $error'),
+              error: (error, stackTrace) =>
+                  Text(loc.dashboardError(error.toString())),
             ),
           ),
         ].animate(interval: 400.ms).fade(duration: 300.ms),
@@ -723,6 +726,7 @@ class _ModListMiniState extends ConsumerState<ModListMini>
     VersionCheckerState? versionCheck,
     BuildContext context,
   ) {
+    final loc = AppLocalizations.of(context);
     downloadUpdates() {
       for (var mod in modsWithUpdates) {
         if (mod == null) continue;
@@ -749,7 +753,7 @@ class _ModListMiniState extends ConsumerState<ModListMini>
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text("Are you sure?"),
+            title: Text(loc.mod_list_basicAreYouSure),
             content: Text(
               "Download updates for ${modsWithUpdates.whereType<Mod>().length} mods?",
             ),
@@ -758,14 +762,14 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text("Cancel"),
+                child: Text(loc.commonCancel),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                   downloadUpdates();
                 },
-                child: const Text("Download"),
+                child: Text(loc.catalogDownload),
               ),
             ],
           );
@@ -889,6 +893,7 @@ class UpdatesHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     return switch (dashboardGridModUpdateVisibility) {
       DashboardGridModUpdateVisibility.allVisible => Text(
         "ALL UPDATES (${updatesToDisplay.nonNulls.length})",
@@ -907,7 +912,7 @@ class UpdatesHeader extends ConsumerWidget {
               style: Theme.of(context).textTheme.labelMedium,
             ),
             MovingTooltipWidget.text(
-              message: "Muted updates",
+              message: loc.mod_list_basicMutedUpdates,
               child: Icon(
                 Icons.notifications_off,
                 size: 14,
@@ -931,7 +936,7 @@ class UpdatesHeader extends ConsumerWidget {
               style: Theme.of(context).textTheme.labelMedium,
             ),
             MovingTooltipWidget.text(
-              message: "Muted updates",
+              message: loc.mod_list_basicMutedUpdates,
               child: Icon(
                 Icons.notifications_off,
                 size: 14,
@@ -951,8 +956,9 @@ class _SettingsPopupMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     return MovingTooltipWidget.text(
-      message: "More Settings",
+      message: loc.mod_list_basicMoreSettings,
       child: PopupMenuButton<String>(
         icon: const Icon(Icons.settings, size: 20),
         tooltip: "",
@@ -966,7 +972,7 @@ class _SettingsPopupMenu extends ConsumerWidget {
                 ModUpdateBehavior.switchToNewVersionIfWasEnabled,
             tooltip:
                 "When checked, updating an enabled mod switches to the new version.",
-            label: "Swap on Update",
+            label: loc.mod_list_basicSwapOnUpdate,
             onChanged: (consumerRef, newValue) {
               consumerRef
                   .read(appSettings.notifier)
@@ -985,7 +991,7 @@ class _SettingsPopupMenu extends ConsumerWidget {
             isCheckedSelector: (s) => s.dashboardModListColorful,
             tooltip:
                 "Color mod list rows using each mod's icon palette.",
-            label: "Colorful",
+            label: loc.mod_list_basicColorful,
             onChanged: (consumerRef, newValue) {
               consumerRef
                   .read(appSettings.notifier)

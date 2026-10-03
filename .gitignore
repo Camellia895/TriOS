@@ -245,3 +245,6 @@ CLAUDE.local.md
 # Saved memory measurements from flutter_ram.
 .flutter_ram/
 /.flutter_ram/
+
+# l10n migration batch intermediates
+tool/l10n/batches/

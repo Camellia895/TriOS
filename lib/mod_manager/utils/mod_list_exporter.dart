@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:csv/csv.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_profiles/models/mod_profile.dart';
 import 'package:trios/mod_profiles/models/shared_mod_list.dart';
@@ -80,7 +81,11 @@ void copyModListToClipboardFromMods(List<Mod> mods, BuildContext context) {
     ),
   );
   ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(content: Text("Copied mod list to clipboard.")),
+    SnackBar(
+      content: Text(
+        AppLocalizations.of(context).modListExporterCopiedToClipboard,
+      ),
+    ),
   );
 }
 

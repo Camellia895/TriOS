@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/code.dart';
 import 'package:trios/widgets/trios_expansion_tile.dart';
 
@@ -17,11 +18,12 @@ class _VramCheckerExplanationDialogState
     extends ConsumerState<VramCheckerExplanationDialog> {
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final titleStyle = Theme.of(
       context,
     ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold);
     return AlertDialog(
-      title: const Text("About VRAM Estimator"),
+      title: Text(loc.vramAboutVramEstimator),
       icon: const Icon(Icons.memory),
       content: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -30,19 +32,16 @@ class _VramCheckerExplanationDialogState
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text("Your VRAM is based on your GPU and can't be adjusted."),
+            Text(loc.vramYourVramIsBased),
+            const SizedBox(height: 8),
+            Text(loc.vramUsedByMods),
             const SizedBox(height: 8),
             Text(
-              "It's used by mods with ships and weapons. Running out crashes the game.",
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "${Constants.appName} can estimate how much VRAM your mods use, but it's not perfect."
-              "\nTo see accurate usage, open the console (from Console Commands) and look in the top-left corner.",
+              loc.vramAppCanEstimate(Constants.appName),
             ),
             const SizedBox(height: 16),
             TriOSExpansionTile(
-              title: Text("View more Info"),
+              title: Text(loc.vramViewMoreInfo),
               leading: const Icon(Icons.menu_book),
               backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
               children: [
@@ -55,76 +54,42 @@ class _VramCheckerExplanationDialogState
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text("What is VRAM?", style: titleStyle),
+                          Text(loc.vramWhatIsVram, style: titleStyle),
                           const SizedBox(height: 8),
-                          Text(
-                            "VRAM is Video RAM. It's different than RAM, being physically located on the graphics card. It cannot be upgraded without a new graphics card.",
-                          ),
+                          Text(loc.vramWhatIsVramRamVsVram),
                           const SizedBox(height: 8),
-                          Text(
-                            "Unlike RAM, VRAM cannot be manually assigned (vmparams file is for normal RAM only), and the game will use as much as it needs.",
-                          ),
+                          Text(loc.vramWhatIsVramNotAssignable),
                           const SizedBox(height: 8),
-                          Text(
-                            "Essentially, the more images (ships, weapons, etc.) you load, the more VRAM you need. If you run out, it will use normal RAM instead, but very inefficiently, and if that runs out, the game will crash.",
-                          ),
+                          Text(loc.vramWhatIsVramMoreImages),
                           const SizedBox(height: 8),
-                          Text(
-                            "GraphicsLib's default settings uses additional VRAM to improve visuals, so if you are running out but don't want to disable mods, try adjusting its settings.",
-                          ),
+                          Text(loc.vramGraphicsLibDefaults),
                           const SizedBox(height: 16),
-                          Text("About this tool", style: titleStyle),
+                          Text(loc.vramAboutThisTool, style: titleStyle),
                           const SizedBox(height: 8),
-                          const Text(
-                            'This tool estimates the amount of VRAM used by a mod, based on the images in the mod folder.',
-                          ),
+                          Text(loc.vramToolEstimates),
                           const SizedBox(height: 8),
-                          Text(
-                            'A few mods, such as Illustrated Entities, load images only when needed, so their real VRAM use will be much lower than estimated.',
-                          ),
+                          Text(loc.vramLazyLoadingMods),
                           const SizedBox(height: 16),
-                          Text('Selectors', style: titleStyle),
+                          Text(loc.vramSelectors, style: titleStyle),
                           const SizedBox(height: 8),
-                          const Text(
-                            'Pick how the tool decides which images to count, using the dropdown on the VRAM page toolbar:',
-                          ),
+                          Text(loc.vramSelectorsIntro),
                           const SizedBox(height: 4),
-                          const Text(
-                            '• Folder scan: counts every image in the mod folder (minus a few filename markers). Matches the tool\'s original behavior. May over-count when mods ship unused assets.',
-                          ),
+                          Text(loc.vramSelectorFolderScan),
                           const SizedBox(height: 4),
-                          const Text(
-                            '• Referenced only: parses .ship, .wpn, .proj, ship_data.csv, weapon_data.csv, .faction, portraits.csv, settings.json, the GraphicsLib CSV, .jar string literals, and loose .java sources to identify only images that are actually referenced. Images found on disk but not referenced are shown separately as "Unreferenced" (they may be dev leftovers or loaded via dynamic paths).',
-                          ),
+                          Text(loc.vramSelectorReferencedOnly),
                           const SizedBox(height: 8),
-                          const Text(
-                            'Known imprecisions in reference mode:',
-                          ),
-                          const Text(
-                            '• Asset paths constructed dynamically in Java (string concatenation) may not be detected. The debug panel\'s "Track attribution" toggle and the Unreferenced bucket make gaps visible.',
-                          ),
-                          const Text(
-                            '• Obfuscated or packed jars may defeat string extraction.',
-                          ),
-                          const Text(
-                            '• GraphicsLib normal/material/surface maps are kept whenever their CSV entry exists, regardless of whether their base sprite is referenced. This matches how GraphicsLib loads maps in practice.',
-                          ),
+                          Text(loc.vramKnownImprecisions),
+                          Text(loc.vramImprecisionDynamicPaths),
+                          Text(loc.vramImprecisionObfuscatedJars),
+                          Text(loc.vramImprecisionGfxLibMaps),
                           const SizedBox(height: 8),
-                          const Text(
-                            'Debug panel toggles (visible only in Referenced mode):',
-                          ),
-                          const Text(
-                            '• Per-source chips: turn individual reference parsers on/off to bisect false positives.',
-                          ),
-                          const Text(
-                            '• Suppress unreferenced: hide the unreferenced bucket entirely for a clean comparison against folder-scan totals.',
-                          ),
-                          const Text(
-                            '• Track attribution: record which parser(s) flagged each file, surfaced in the per-file detail view.',
-                          ),
+                          Text(loc.vramDebugToggles),
+                          Text(loc.vramDebugPerSourceChips),
+                          Text(loc.vramDebugSuppressUnreferenced),
+                          Text(loc.vramDebugTrackAttribution),
                           const SizedBox(height: 8),
                           Text(
-                            "To see true VRAM usage, enable the Console Commands mod and open it in-game. The amount of free VRAM will be shown in the top-left corner.",
+                            loc.vramSeeTrueUsage,
                             style: Theme.of(context).textTheme.bodyMedium
                                 ?.copyWith(
                                   fontWeight: FontWeight.bold,
@@ -132,11 +97,9 @@ class _VramCheckerExplanationDialogState
                                 ),
                           ),
                           const SizedBox(height: 16),
-                          Text("Calculation", style: titleStyle),
+                          Text(loc.vramCalculation, style: titleStyle),
                           const SizedBox(height: 8),
-                          Text(
-                            "VRAM use is based on an image's width, height, and number of channels. File size is irrelevant.",
-                          ),
+                          Text(loc.vramCalcBasis),
                           const SizedBox(height: 8),
                           Code(
                             child: Text(
@@ -155,17 +118,11 @@ class _VramCheckerExplanationDialogState
                             ),
                           ),
                           const SizedBox(height: 8),
-                          Text(
-                            'Multiplier = 1x for background images and 1.33x for other images. The 1.33x is extra memory used for mipmapping.',
-                          ),
+                          Text(loc.vramMultiplierNote),
                           const SizedBox(height: 8),
-                          Text(
-                            "Backgrounds are ignored if they are the same size as vanilla's backgrounds (because vanilla always has only one background loaded, so a vanilla-sized background is not adding more VRAM use).",
-                          ),
+                          Text(loc.vramBackgroundsIgnored),
                           const SizedBox(height: 8),
-                          Text(
-                            "If the mod has one or more backgrounds that are larger than a vanilla background, then the single largest of them is counted as additional VRAM used (additionalVRAMUse = modBackgroundVRAMUse - vanillaBackgroundVRAMUse).",
-                          ),
+                          Text(loc.vramLargestBackgroundCounted),
                         ],
                       ),
                     ),
@@ -179,7 +136,7 @@ class _VramCheckerExplanationDialogState
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text("Close"),
+          child: Text(loc.vramClose),
         ),
       ],
     );

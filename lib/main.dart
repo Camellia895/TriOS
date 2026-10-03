@@ -335,14 +335,14 @@ void main(List<String> args) async {
   } catch (e) {
     Fimber.e("Error reading app settings.", ex: e);
     onAppLoadedActions.add((context) async {
+      final loc = AppLocalizations.of(context);
       await showAlertDialog(
         context,
-        title: "TriOS Settings Reset",
-        content:
-            "Your ${Constants.appName} settings have been reset."
-            "\nThis may be due to an update or a broken settings file."
-            "\n\nPlease check your settings. Your mods have not been affected."
-            "\n\n\nError: \n$e",
+        title: loc.appSettingsResetTitle,
+        content: loc.appSettingsResetContent(
+          Constants.appName,
+          e.toString(),
+        ),
       );
     });
   }
@@ -810,6 +810,7 @@ class _DeepLinkRegistrationToast extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.only(right: 32),
       child: Card(
@@ -827,13 +828,12 @@ class _DeepLinkRegistrationToast extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      '"Install with TriOS" link support',
+                      loc.appDeepLinkTitle,
                       style: theme.textTheme.titleSmall,
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Enable support for "Install with TriOS" buttons on the forum?'
-                      '\nYou can always change this on the Settings page.',
+                      loc.appDeepLinkBody,
                       style: theme.textTheme.bodySmall,
                     ),
                     const SizedBox(height: 8),
@@ -852,7 +852,7 @@ class _DeepLinkRegistrationToast extends ConsumerWidget {
                                 );
                             toastification.dismiss(item);
                           },
-                          child: const Text('No thanks'),
+                          child: Text(loc.appNoThanks),
                         ),
                         FilledButton(
                           onPressed: () {
@@ -866,7 +866,7 @@ class _DeepLinkRegistrationToast extends ConsumerWidget {
                             ProtocolRegistration.register();
                             toastification.dismiss(item);
                           },
-                          child: const Text('Enable'),
+                          child: Text(loc.appEnable),
                         ),
                       ],
                     ),

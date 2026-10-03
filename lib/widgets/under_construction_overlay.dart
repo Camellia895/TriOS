@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
 class UnderConstructionOverlay extends StatelessWidget {
@@ -12,7 +13,7 @@ class UnderConstructionOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MovingTooltipWidget.text(
-      message: "UNDER CONSTRUCTION",
+      message: AppLocalizations.of(context).underConstruction,
       warningLevel: TooltipWarningLevel.warning,
       child: Stack(
         children: [

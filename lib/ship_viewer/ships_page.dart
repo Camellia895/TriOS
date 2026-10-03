@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 import 'package:super_clipboard/super_clipboard.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
@@ -365,23 +366,25 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
   }
 
   Widget buildRowContextMenu(Ship ship, Widget child) {
+    final loc = AppLocalizations.of(context);
+    final shipFileType = ship.isSkin ? '.skin' : '.ship';
     return ContextMenuRegion(
       contextMenu: ContextMenu(
         entries: <ContextMenuEntry>[
           MenuItem(
-            label: 'Copy ID',
+            label: loc.factionViewerCopyId,
             icon: Icons.copy,
             onSelected: () => Clipboard.setData(ClipboardData(text: ship.id)),
           ),
           if (ship.dataFiles.isNotEmpty)
             buildOpenModDataFileMenuItem(
               ship.dataFiles,
-              label: 'Open ${ship.isSkin ? '.skin' : '.ship'} file',
+              label: loc.shipsOpenShipOrSkinFile(shipFileType),
             ),
           if (ship.csvFiles.isNotEmpty)
             buildOpenModDataFileMenuItem(
               ship.csvFiles,
-              label: 'Open ship_data.csv',
+              label: loc.shipsOpenShipDataCsv,
               notes: ModDataFileNotes.oneWins,
             ),
           if (ship.spriteFile != null)
@@ -389,7 +392,7 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
           if (ship.modVariant != null)
             buildOpenSingleFolderMenuItem(
               ship.modVariant!.modFolder.absolute,
-              label: 'Open Mod Folder',
+              label: loc.factionViewerOpenModFolder,
             ),
           if (ship.modVariant != null)
             buildMenuItemOpenForumPage(ship.modVariant!, context),
@@ -621,10 +624,11 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
     required ShipsPageState controllerState,
   }) {
     final controller = ref.read(shipsPageControllerProvider.notifier);
+    final loc = AppLocalizations.of(context);
     return OverflowMenuButton(
       menuItems: [
         OverflowMenuItem(
-          title: 'Export to CSV',
+          title: loc.hullmodsExportToCsv,
           icon: Icons.table_view,
           onTap: () {
             if (_gridController == null) return;
@@ -652,13 +656,13 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
           },
         ).toEntry(0),
         OverflowMenuCheckItem(
-          title: 'Stretch icons to fit',
+          title: loc.hullmodsStretchIconsToFit,
           icon: Icons.fit_screen,
           checked: controllerState.useContainFit,
           onTap: () => controller.toggleUseContainFit(),
         ).toEntry(1),
         OverflowMenuCheckItem(
-          title: 'Always show engine glow',
+          title: loc.shipsAlwaysShowEngineGlow,
           icon: Icons.local_fire_department,
           checked: controllerState.alwaysShowEngineGlow,
           onTap: () => controller.toggleAlwaysShowEngineGlow(),
@@ -727,6 +731,7 @@ class _ShipImageCellState extends State<ShipImageCell> {
   @override
   Widget build(BuildContext context) {
     const size = 40.0;
+    final loc = AppLocalizations.of(context);
 
     if (_extantPath == null) {
       return const SizedBox(
@@ -764,12 +769,12 @@ class _ShipImageCellState extends State<ShipImageCell> {
         contextMenu: ContextMenu(
           entries: <ContextMenuEntry>[
             MenuItem(
-              label: 'Copy sprite to clipboard',
+              label: loc.shipsCopySpriteToClipboard,
               icon: Icons.copy,
               onSelected: _copySpriteToClipboard,
             ),
             MenuItem(
-              label: 'Open sprite folder',
+              label: loc.shipsOpenSpriteFolder,
               icon: Icons.folder_open,
               onSelected: () => _extantPath?.toFile().showInExplorer(),
             ),
@@ -812,12 +817,11 @@ class _ShipImageCellState extends State<ShipImageCell> {
     final clipboard = SystemClipboard.instance;
     if (clipboard == null) {
       if (!mounted) return;
+      final loc = AppLocalizations.of(context);
       showSnackBar(
         context: context,
         type: SnackBarType.warn,
-        content: const Text(
-          'Copying images is not supported on this platform.',
-        ),
+        content: Text(loc.viewerCopyingImagesNotSupported),
       );
       return;
     }
@@ -830,14 +834,16 @@ class _ShipImageCellState extends State<ShipImageCell> {
       showSnackBar(
         context: context,
         type: SnackBarType.info,
-        content: const Text('Copied sprite to clipboard.'),
+        content: Text(AppLocalizations.of(context).shipsCopiedSpriteToClipboard),
       );
     } catch (e) {
       if (!mounted) return;
       showSnackBar(
         context: context,
         type: SnackBarType.error,
-        content: Text('Failed to copy sprite: $e'),
+        content: Text(
+          AppLocalizations.of(context).shipsFailedToCopySprite('$e'),
+        ),
       );
     }
   }

@@ -6,6 +6,7 @@ import 'package:trios/catalog/models/mod_repo_entry.dart';
 import 'package:trios/models/mod_info_json.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/models/version_checker_info.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/version_checker.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/trios/deep_link/deep_link_parser.dart';
@@ -117,7 +118,7 @@ List<DownloadCandidate> resolveDownloadCandidates(
     candidates.add(
       DownloadCandidate(
         url: catalogDirect,
-        label: 'Direct download',
+        label: AppLocalizationsSync.instance.catalogDirectDownload,
         kind: DownloadCandidateKind.catalogDirect,
         sourceHost: _hostOf(catalogDirect),
       ),
@@ -130,7 +131,7 @@ List<DownloadCandidate> resolveDownloadCandidates(
     candidates.add(
       DownloadCandidate(
         url: website,
-        label: 'Website',
+        label: AppLocalizationsSync.instance.catalogWebsite,
         kind: DownloadCandidateKind.website,
         sourceHost: _hostOf(website),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:path/path.dart' as p;
 
 import '../chatbot_engine.dart';
@@ -59,9 +60,8 @@ class RamInfoIntent extends ChatIntent with SettingsAwareIntent {
     final state = vmparamsState;
 
     if (state == null) {
-      return const ChatResponse(
-        text: 'No RAM information available. Make sure your game folder '
-            'is configured in Settings.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoRamInformationAvailable,
       );
     }
 

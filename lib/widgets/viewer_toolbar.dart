@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/disable.dart';
 import 'package:trios/widgets/expanding_constrained_aligned_widget.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
@@ -38,6 +39,7 @@ class ViewerToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     return Padding(
       padding: const EdgeInsets.all(4),
@@ -50,7 +52,7 @@ class ViewerToolbar extends StatelessWidget {
               children: [
                 const SizedBox(width: 4),
                 Text(
-                  '$total $entityName${total != visible ? " ($visible shown)" : ""}',
+                  '$total $entityName${total != visible ? " ${loc.viewerToolbarShownCount(visible)}" : ""}',
                   style: theme.textTheme.headlineSmall?.copyWith(fontSize: 20),
                 ),
                 const SizedBox(width: 4),
@@ -65,7 +67,7 @@ class ViewerToolbar extends StatelessWidget {
                   ),
                 if (!isLoading)
                   MovingTooltipWidget.text(
-                    message: "Refresh",
+                    message: loc.commonRefresh,
                     child: Disable(
                       isEnabled: !isLoading,
                       child: IconButton(
@@ -83,10 +85,9 @@ class ViewerToolbar extends StatelessWidget {
                 const SizedBox(width: 8),
                 if (onToggleSplitPane != null)
                   MovingTooltipWidget.text(
-                    message:
-                        "Split to show two displays that can be scrolled independently.",
+                    message: loc.viewerToolbarSplitTooltip,
                     child: TriOSToolbarCheckboxButton(
-                      text: "Compare Mode",
+                      text: loc.viewerToolbarCompareMode,
                       value: splitPane,
                       onChanged: (_) => onToggleSplitPane!(),
                     ),

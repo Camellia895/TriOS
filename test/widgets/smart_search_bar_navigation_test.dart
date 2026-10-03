@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/filter_pill.dart';
 import 'package:trios/widgets/smart_search/search_dsl_field.dart';
 import 'package:trios/widgets/smart_search/smart_search_bar.dart';
@@ -11,6 +12,8 @@ void main() {
     ValueChanged<String>? onChanged,
   }) {
     return MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: Scaffold(
         body: SmartSearchBar(
           fields: [

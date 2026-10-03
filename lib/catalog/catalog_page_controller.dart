@@ -6,6 +6,8 @@ import 'package:trios/catalog/catalog_links.dart';
 import 'package:trios/catalog/catalog_manager.dart';
 import 'package:trios/catalog/models/catalog_mod.dart';
 import 'package:trios/utils/dart_mappable_utils.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/mod_manager/version_checker.dart';
@@ -229,7 +231,7 @@ class CatalogPageController extends Notifier<CatalogPageState>
         fields: [
           StringChoiceField<CatalogMod>(
             id: 'installed',
-            label: 'Installed',
+            label: AppLocalizationsSync.instance.catalogInstalled,
             allLabel: 'Both Installed & Available',
             options: const ['installed', 'available'],
             optionLabel: (v) =>
@@ -242,7 +244,7 @@ class CatalogPageController extends Notifier<CatalogPageState>
           ),
           BoolField<CatalogMod>(
             id: 'hasUpdate',
-            label: 'Has Update',
+            label: AppLocalizationsSync.instance.catalogHasUpdate,
             badgeCount: () => updatesCount,
             labelSuffix: (context) {
               final muted = mutedUpdatesCount;
@@ -266,11 +268,11 @@ class CatalogPageController extends Notifier<CatalogPageState>
       ),
       CompositeFilterGroup<CatalogMod>(
         id: 'version',
-        name: 'Game Version',
+        name: AppLocalizationsSync.instance.catalogGameVersion,
         fields: [
           StringChoiceField<CatalogMod>(
             id: 'versionBucket',
-            label: 'Game Version',
+            label: AppLocalizationsSync.instance.catalogGameVersion,
             options: _versionGroupOptions.keys.toList(),
             allLabel: 'All Versions',
             predicate: (mod, selected) {
@@ -406,14 +408,15 @@ class _MutedUpdatesCount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     return MovingTooltipWidget.text(
-      message: "$count muted update${count == 1 ? '' : 's'}",
+      message: loc.catalogMutedUpdates(count),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         spacing: 2,
         children: [
-          Text("+ $count", style: theme.textTheme.labelMedium),
+          Text(loc.catalogMutedUpdatesBadge(count), style: theme.textTheme.labelMedium),
           Icon(
             Icons.notifications_off,
             size: 14,

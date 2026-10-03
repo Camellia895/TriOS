@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 
 import '../chatbot_engine.dart';
@@ -57,9 +58,8 @@ class VramEstimateIntent extends ChatIntent with ModAwareIntent {
         ref.read(AppState.vramEstimatorProvider).value;
 
     if (vramState == null || vramState.modVramInfo.isEmpty) {
-      return const ChatResponse(
-        text: 'No VRAM data available yet.\n'
-            'Open the VRAM Estimator page in the sidebar to run a scan.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoVramDataAvailable,
       );
     }
 

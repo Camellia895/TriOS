@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -62,8 +63,8 @@ class LogModListIntent extends ChatIntent with LogAwareIntent {
 
     final mods = chips.modList.modList;
     if (mods.isEmpty) {
-      return const ChatResponse(
-        text: 'No mods were detected in the log file.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModsDetectedInLog,
       );
     }
 

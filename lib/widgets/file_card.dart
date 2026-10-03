@@ -3,6 +3,7 @@ import 'package:trios/trios/constants_theme.dart';
 
 import 'package:material_ui/material_ui.dart';
 import 'package:path/path.dart' as p;
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/widgets/dotted_border.dart';
@@ -21,6 +22,7 @@ class DragDropInstallModOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
@@ -49,8 +51,8 @@ class DragDropInstallModOverlay extends StatelessWidget {
                       color: theme.iconTheme.color?.withOpacity(0.9),
                     ),
                     const SizedBox(height: 8.0),
-                    const Text(
-                      'Add to Starsector',
+                    Text(
+                      loc.fileCardAddToStarsector,
                       style: TextStyle(
                         fontSize: 16.0,
                         fontFamily: TriOSThemeConstants.orbitron,
@@ -88,7 +90,7 @@ class DragDropInstallModOverlay extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Drop to download",
+                            loc.fileCardDropToDownload,
                             style: TextStyle(
                               color: theme.colorScheme.onSurface,
                               fontStyle: FontStyle.italic,

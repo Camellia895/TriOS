@@ -5,6 +5,7 @@ import 'package:trios/trios/constants_theme.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/utils/logging.dart';
@@ -83,6 +84,7 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
       appSettings.select((value) => value.launchSettings),
       (_, _) => _syncControllerTexts(),
     );
+    final loc = AppLocalizations.of(context);
 
     final enableDirectLaunch = ref.watch(
       appSettings.select((s) => s.enableDirectLaunch),
@@ -198,7 +200,7 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                               height: 16,
                               width: 24,
                               child: MovingTooltipWidget.text(
-                                message: "Change which file launches the game",
+                                message: loc.launch_with_settingsChangeWhichFileLaunches,
                                 child: IconButton(
                                   onPressed: () {
                                     ref
@@ -244,7 +246,7 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     CheckboxWithLabel(
-                                      label: "Fullscreen",
+                                      label: loc.launch_with_settingsFullscreen,
                                       value:
                                           ref
                                               .watch(
@@ -270,7 +272,7 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                                       },
                                     ),
                                     CheckboxWithLabel(
-                                      label: "Sound",
+                                      label: loc.launch_with_settingsSound,
                                       value:
                                           ref
                                               .watch(
@@ -355,7 +357,7 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                                                 ),
                                               );
                                         },
-                                        text: "Clear Custom Launch Settings",
+                                        text: loc.launch_with_settingsClearCustomLaunchSettings,
                                         style: Theme.of(
                                           context,
                                         ).textTheme.bodySmall,

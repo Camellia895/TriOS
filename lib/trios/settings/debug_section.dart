@@ -13,6 +13,7 @@ import 'package:trios/catalog/forum_data_manager.dart';
 import 'package:trios/chipper/utils.dart';
 import 'package:trios/companion_mod/companion_mod_manager.dart';
 import 'package:trios/compression/archive.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/vmparams/vmparams_manager.dart';
 import 'package:trios/mod_profiles/mod_profiles_manager.dart';
 import 'package:trios/models/download_progress.dart';
@@ -75,6 +76,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -96,11 +98,11 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                     state.copyWith(debugMode: value ?? false),
               );
             },
-            label: "Debug mode",
+            label: loc.debugSectionDebugMode,
           ),
         ),
         MovingTooltipWidget.text(
-          message: "If mods are failing to download or update, disabling verification of SSL certificates may help.",
+          message: loc.debugSectionIfModsAreFailing,
           child: CheckboxWithLabel(
             value: ref.watch(appSettings.select((s) => s.allowInsecureConnections)),
             onChanged: (value) {
@@ -108,7 +110,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                 (state) => state.copyWith(allowInsecureConnections: value ?? false),
               );
             },
-            label: "Allow insecure HTTPS connections",
+            label: loc.debugSectionAllowInsecureHttpsConnections,
           ),
         ),
         MovingTooltipWidget.text(
@@ -125,7 +127,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                         state.copyWith(showEngineTrails: value ?? false),
                   );
             },
-            label: "Show engine trails",
+            label: loc.debugSectionShowEngineTrails,
           ),
         ),
         Padding(
@@ -173,7 +175,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               ),
               CheckboxWithLabel(
                 value: _includePrereleases,
-                label: "Include pre-releases",
+                label: loc.debugSectionIncludePreReleases,
                 onChanged: (value) {
                   setState(() {
                     _includePrereleases = value ?? false;
@@ -203,7 +205,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               );
             });
           },
-          label: const Text('Check for update (allow older versions)'),
+          label: Text(loc.debugSectionCheckForUpdateAllow),
         ),
         Row(
           spacing: 8,
@@ -287,7 +289,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
             final folder = Constants.configDataFolderPath;
             folder.openInExplorer();
           },
-          label: const Text('Open ${Constants.appName} Settings Folder'),
+          label: Text(loc.debugSectionOpenSettingsFolder(Constants.appName)),
         ),
         CheckboxWithLabel(
           value: ref.watch(appSettings.select((s) => s.forceShowAprilFools2026)) ?? false,
@@ -296,7 +298,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               (state) => state.copyWith(forceShowAprilFools2026: value ?? false),
             );
           },
-          label: "Force Enable April Fools 2026 (${Constants.chatbotName})",
+          label: loc.debugSectionForceEnableAprilFools(Constants.chatbotName),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.restart_alt),
@@ -307,7 +309,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               barrierDismissible: false,
             );
           },
-          label: const Text('Re-open Onboarding dialog'),
+          label: Text(loc.debugSectionReOpenOnboardingDialog),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.play_arrow),
@@ -326,12 +328,12 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               (error, stackTrace) {
                 showSnackBar(
                   context: context,
-                  content: Text("Error running self-update script: $error"),
+                  content: Text(loc.debugSectionErrorRunningSelfUpdateScript('$error')),
                 );
               },
             );
           },
-          label: const Text('Run existing self-update script if exists'),
+          label: Text(loc.debugSectionRunExistingSelfUpdate),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.cloud_download_rounded),
@@ -353,7 +355,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   sourceHint: null,
                 );
           },
-          label: const Text('Redownload MagicLib (shows toast)'),
+          label: Text(loc.debugSectionRedownloadMagiclibShowsToast),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.group_work),
@@ -371,7 +373,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
             if (testMods.isEmpty) {
               showSnackBar(
                 context: context,
-                content: const Text('No mods with download URLs found for testing'),
+                content: Text(loc.debugSectionNoModsWithDownload),
               );
               return;
             }
@@ -389,10 +391,10 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
 
             showSnackBar(
               context: context,
-              content: Text('Started ${testMods.length} test downloads - check grouped toast!'),
+              content: Text(loc.debugSectionStartedTestDownloads(testMods.length)),
             );
           },
-          label: const Text('Test Notification Grouping (download 5 mods)'),
+          label: Text(loc.debugSectionTestNotificationGroupingDownload),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.notification_add),
@@ -423,7 +425,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   ModDownloadToast(fakeDownload, item, durationMillis),
             );
           },
-          label: const Text('Show Mod Added Toast for MagicLib'),
+          label: Text(loc.debugSectionShowModAddedToast),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.clean_hands),
@@ -433,14 +435,14 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text("Are you sure?"),
-                  content: const Text("This will wipe TriOS's settings."),
+                  title: Text(loc.triosAreYouSure),
+                  content: Text(loc.debugSectionThisWillWipeTrios),
                   actions: [
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: const Text('Cancel'),
+                      child: Text(loc.triosCancel),
                     ),
                     TextButton(
                       onPressed: () {
@@ -452,14 +454,14 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                             .update((_) => Settings());
                         RestartableApp.softRestartApp(context);
                       },
-                      child: const Text('Wipe Settings'),
+                      child: Text(loc.debugSectionWipeSettings),
                     ),
                   ],
                 );
               },
             );
           },
-          label: const Text('Wipe Settings'),
+          label: Text(loc.debugSectionWipeSettings),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.category),
@@ -468,7 +470,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text("Reset Categories?"),
+                  title: Text(loc.debugSectionResetCategories),
                   content: const Text(
                     "This will reset categories to defaults, removing any user-created categories."
                     "\nMod assignments to default categories will be kept.",
@@ -476,7 +478,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Cancel'),
+                      child: Text(loc.triosCancel),
                     ),
                     TextButton(
                       onPressed: () {
@@ -485,21 +487,21 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                             .resetCategoriesToDefaults();
                         Navigator.of(context).pop();
                       },
-                      child: const Text('Reset'),
+                      child: Text(loc.triosReset),
                     ),
                   ],
                 );
               },
             );
           },
-          label: const Text('Reset Categories to Defaults'),
+          label: Text(loc.debugSectionResetCategoriesToDefaults),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.nearby_error),
           onPressed: () {
             throw Exception("This is a test error");
           },
-          label: const Text('Throw error'),
+          label: Text(loc.debugSectionThrowError),
         ),
         SizedBox(
           width: 200,
@@ -516,7 +518,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                       .read(AppState.selfUpdate.notifier)
                       .updateSelf(latestRelease!);
                 },
-                label: const Text("Force Update"),
+                label: Text(loc.debugSectionForceUpdate),
               ),
               const SizedBox(height: 4),
               TriOSDownloadProgressIndicator(
@@ -536,11 +538,11 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
             ).then((value) {
               showSnackBar(
                 context: ref.read(AppState.appContext)!,
-                content: Text("Game version: $value"),
+                content: Text(loc.debugSectionGameVersion('$value')),
               );
             });
           },
-          label: const Text('Read game version from starfarer_obf.jar.'),
+          label: Text(loc.debugSectionReadGameVersionFrom),
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.diversity_1),
@@ -557,12 +559,12 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               ),
             );
           },
-          label: const Text('Read weapons'),
+          label: Text(loc.debugSectionReadWeapons),
         ),
         Builder(
           builder: (context) {
             return MovingTooltipWidget.text(
-              message: "Read ships from csv and json files",
+              message: loc.debugSectionReadShipsFromCsv,
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.rocket),
                 onPressed: () async {
@@ -578,7 +580,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                     ),
                   );
                 },
-                label: const Text('Read ships'),
+                label: Text(loc.debugSectionReadShips),
               ),
             );
           },
@@ -587,7 +589,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
           builder: (context) {
             final path = "F:/Downloads/starsector_install-0.97a-RC11.exe";
             return MovingTooltipWidget.text(
-              message: "Tries to read from '$path'",
+              message: loc.debugSectionTriesToReadFrom(path),
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.folder_zip),
                 onPressed: () async {
@@ -602,14 +604,14 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                     "\nTime to read archive: $timeToRead",
                   );
                 },
-                label: const Text('Read Starsector installer'),
+                label: Text(loc.debugSectionReadStarsectorInstaller),
               ),
             );
           },
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.people_alt_outlined),
-          label: const Text("Force Replace TriOS Companion Mod"),
+          label: Text(loc.debugSectionForceReplaceTriosCompanion),
           onPressed: () async {
             try {
               await ref.read(companionModManagerProvider).copyModToModsFolder();
@@ -623,7 +625,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
         ),
         ElevatedButton.icon(
           icon: const Icon(Icons.description),
-          label: const Text("Show detected vmparams files"),
+          label: Text(loc.debugSectionShowDetectedVmparamsFiles),
           onPressed: () async {
             try {
               final vmState = ref.read(vmparamsManagerProvider).value;
@@ -650,7 +652,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
             spacing: 8,
             children: [
               Text(
-                "Forum Data",
+                loc.debugSectionForumData,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               Builder(
@@ -680,7 +682,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                 children: [
                   ElevatedButton.icon(
                     icon: const Icon(Icons.refresh),
-                    label: const Text('Force Refresh'),
+                    label: Text(loc.debugSectionForceRefresh),
                     onPressed: () async {
                       try {
                         await forumDataFetcher.fetch(bypassCache: true);
@@ -697,7 +699,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                         if (context.mounted) {
                           showSnackBar(
                             context: context,
-                            content: Text('Refresh failed: $e'),
+                            content: Text(loc.debugSectionRefreshFailed('$e')),
                           );
                         }
                       }
@@ -705,19 +707,19 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   ),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.delete_outline),
-                    label: const Text('Clear Cache'),
+                    label: Text(loc.debugSectionClearCache),
                     onPressed: () {
                       forumDataFetcher.clearCache();
                       ref.invalidate(forumDataProvider);
                       showSnackBar(
                         context: context,
-                        content: const Text('Forum data cache cleared.'),
+                        content: Text(loc.debugSectionForumDataCacheCleared),
                       );
                     },
                   ),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.info_outline),
-                    label: const Text('Show Forum Data'),
+                    label: Text(loc.debugSectionShowForumData),
                     onPressed: () {
                       final bundle =
                           ref.read(forumDataProvider).value;
@@ -732,13 +734,13 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          title: const Text('Forum Data'),
+                          title: Text(loc.debugSectionForumData),
                           content: SizedBox(
                             width: 600,
                             height: 500,
                             child: bundle == null
-                                ? const Center(
-                                    child: Text('No forum data loaded.'),
+                                ? Center(
+                                    child: Text(loc.debugSectionNoForumDataLoaded),
                                   )
                                 : Column(
                                     crossAxisAlignment:
@@ -785,7 +787,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                             TextButton(
                               onPressed: () =>
                                   Navigator.of(context).pop(),
-                              child: const Text('Close'),
+                              child: Text(loc.commonClose),
                             ),
                           ],
                         ),
@@ -823,11 +825,11 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                     "Current directory based on executable: ${Platform.resolvedExecutable.toFile().parent}",
                   ),
                   const SizedBox(height: 8),
-                  Text("Current executable: ${Platform.resolvedExecutable}"),
+                  Text(loc.debugSectionCurrentExecutable(Platform.resolvedExecutable)),
                   const SizedBox(height: 8),
-                  Text("Temp folder: ${Directory.systemTemp.path}"),
+                  Text(loc.debugSectionTempFolder(Directory.systemTemp.path)),
                   const SizedBox(height: 8),
-                  Text("Locale: ${Platform.localeName}"),
+                  Text(loc.debugSectionLocale(Platform.localeName)),
                   const SizedBox(height: 8),
                   Text(
                     "Locale (using Intl package): ${Intl.getCurrentLocale()}",
@@ -859,13 +861,13 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   const SizedBox(height: 8),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.settings),
-                    label: const Text("Show Current App Settings"),
+                    label: Text(loc.debugSectionShowCurrentAppSettings),
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Settings"),
+                            title: Text(loc.triosSettings),
                             content: SingleChildScrollView(
                               child: SelectableText(
                                 ref
@@ -882,13 +884,13 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   const SizedBox(height: 8),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.view_carousel),
-                    label: const Text("Show Loaded Mod Profiles"),
+                    label: Text(loc.debugSectionShowLoadedModProfiles),
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Mod Profiles"),
+                            title: Text(loc.triosModProfiles),
                             content: SingleChildScrollView(
                               child: SelectableText(
                                 ref
@@ -907,13 +909,13 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   const SizedBox(height: 8),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.landscape),
-                    label: const Text("Show Environment Variables"),
+                    label: Text(loc.debugSectionShowEnvironmentVariables),
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Environment Variables"),
+                            title: Text(loc.debugSectionEnvironmentVariables),
                             content: SingleChildScrollView(
                               child: SelectableText(
                                 Platform.environment.prettyPrintJson() ?? "",
@@ -927,13 +929,13 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   const SizedBox(height: 8),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.heart_broken),
-                    label: const Text("Show Mod Compatibility"),
+                    label: Text(loc.debugSectionShowModCompatibility),
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Mod Compatibility"),
+                            title: Text(loc.debugSectionModCompatibility),
                             content: SingleChildScrollView(
                               child: ModCompatibilityFilterWidget(),
                             ),
@@ -945,13 +947,13 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   const SizedBox(height: 8),
                   ElevatedButton.icon(
                     icon: const Icon(Icons.check),
-                    label: const Text("Show Loaded Version Checker Cache"),
+                    label: Text(loc.debugSectionShowLoadedVersionChecker),
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Version Checker Cache"),
+                            title: Text(loc.debugSectionVersionCheckerCache),
                             content: SingleChildScrollView(
                               child: SelectableText(
                                 ref
@@ -1009,6 +1011,7 @@ class _ModCompatibilityFilterWidgetState
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return Builder(
       builder: (context) {
         final allSmolIds =
@@ -1021,7 +1024,7 @@ class _ModCompatibilityFilterWidgetState
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Mod Compatibility"),
+            Text(loc.debugSectionModCompatibility),
             SearchAnchor(
               searchController: _searchController,
               builder: (BuildContext context, SearchController controller) {

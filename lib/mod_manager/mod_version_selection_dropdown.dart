@@ -7,6 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:toastification/toastification.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/thirdparty/dartx/iterable.dart';
@@ -228,9 +229,12 @@ class _ModVersionSelectionDropdownState
     //////// Multiple variants button
     final items = [
       if (isEnabled)
-        const DropdownItem(
+        DropdownItem(
           value: null,
-          child: Text("Disable", overflow: TextOverflow.ellipsis),
+          child: Text(
+            AppLocalizations.of(context).triosDisable,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ...(widget.mod.modVariants
           .map(
@@ -400,7 +404,9 @@ class _ModVersionSelectionDropdownState
     required Color borderColor,
   }) {
     return MovingTooltipWidget.text(
-      message: "Select a different version",
+      message: AppLocalizations.of(
+        context,
+      ).modVersionSelectionDropdownSelectADifferentVersion,
       child: Container(
         width: 32,
         decoration: BoxDecoration(

@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/sector_map/models/sector.dart';
 
 /// Side panel shown when a system is selected. Lists the system's faction
@@ -24,6 +25,7 @@ class SystemDetailPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final muted = theme.colorScheme.onSurface.withValues(alpha: 0.6);
 
     return Material(
@@ -58,7 +60,7 @@ class SystemDetailPanel extends StatelessWidget {
                   ),
                   IconButton(
                     icon: const Icon(Icons.close, size: 18),
-                    tooltip: 'Close',
+                    tooltip: loc.sectorMapClose,
                     onPressed: onClose,
                   ),
                 ],
@@ -70,14 +72,14 @@ class SystemDetailPanel extends StatelessWidget {
               const SizedBox(height: 16),
               Text(
                 system.isInhabited
-                    ? 'Markets (${system.markets.length})'
-                    : 'No markets',
+                    ? loc.sectorMapMarkets(system.markets.length)
+                    : loc.sectorMapNoMarkets,
                 style: theme.textTheme.labelLarge,
               ),
               const SizedBox(height: 8),
               if (!system.isInhabited)
                 Text(
-                  'This system is uninhabited.',
+                  loc.sectorMapSystemUninhabited,
                   style: theme.textTheme.bodyMedium?.copyWith(
                     fontStyle: FontStyle.italic,
                     color: muted,
@@ -112,7 +114,10 @@ class SystemDetailPanel extends StatelessWidget {
                                       style: theme.textTheme.bodyMedium,
                                     ),
                                     Text(
-                                      '${nameFor(m.factionId)} • size ${m.size}',
+                                      loc.sectorMapMarketSize(
+                                        nameFor(m.factionId),
+                                        m.size,
+                                      ),
                                       style: theme.textTheme.bodySmall?.copyWith(
                                         color: muted,
                                       ),
@@ -137,7 +142,7 @@ class SystemDetailPanel extends StatelessWidget {
                   const Spacer(),
                   TextButton.icon(
                     icon: const Icon(Icons.my_location, size: 16),
-                    label: const Text('Center'),
+                    label: Text(loc.sectorMapCenter),
                     onPressed: onCenter,
                   ),
                 ],

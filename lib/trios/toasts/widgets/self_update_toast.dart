@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:toastification/toastification.dart';
 import 'package:trios/models/download_progress.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/trios/self_updater/self_updater.dart';
@@ -24,6 +25,7 @@ class SelfUpdateToast extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.only(right: 32),
       child: Card(
@@ -51,7 +53,7 @@ class SelfUpdateToast extends ConsumerWidget {
                   Expanded(
                     child: Column(
                       children: [
-                        const Text("New ${Constants.appName} version"),
+                        Text(loc.toastNewAppVersion(Constants.appName)),
                         Text(
                           "${latestRelease.tagName} is now available!",
                           style: Theme.of(context).textTheme.labelLarge,
@@ -71,7 +73,7 @@ class SelfUpdateToast extends ConsumerWidget {
                                 icon: const SvgImageIcon(
                                   "assets/images/icon-log.svg",
                                 ),
-                                label: const Text("View Changelog"),
+                                label: Text(loc.triosViewChangelog),
                               ),
                             ),
                             Padding(
@@ -90,7 +92,7 @@ class SelfUpdateToast extends ConsumerWidget {
                                         .updateSelf(latestRelease);
                                   },
                                   icon: const Icon(Icons.download),
-                                  label: const Text("Update"),
+                                  label: Text(loc.triosUpdate),
                                 ),
                               ),
                             ),

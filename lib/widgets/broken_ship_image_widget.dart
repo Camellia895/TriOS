@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
 /// Placeholder shown when a *ship* sprite is missing or can't be decoded:
@@ -22,7 +23,7 @@ class BrokenShipImageWidget extends StatelessWidget {
     return FittedBox(
       fit: BoxFit.contain,
       child: MovingTooltipWidget.text(
-        message: "Image not found. This is a banana.",
+        message: AppLocalizations.of(context).brokenShipImageTooltip,
         child: Stack(
           alignment: Alignment.center,
           children: [

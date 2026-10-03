@@ -1,10 +1,13 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
 /// Three-dot icon button that displays a popup menu.
 class OverflowMenuButton extends StatelessWidget {
   final List<PopupMenuEntry<int>> menuItems;
-  final String tooltip;
+
+  /// Defaults to the localized "More options" when null.
+  final String? tooltip;
   final IconData? buttonIcon;
   final Color? iconColor;
   final double? iconSize;
@@ -12,7 +15,7 @@ class OverflowMenuButton extends StatelessWidget {
   const OverflowMenuButton({
     super.key,
     required this.menuItems,
-    this.tooltip = "More options",
+    this.tooltip,
     this.buttonIcon,
     this.iconColor,
     this.iconSize,
@@ -21,7 +24,7 @@ class OverflowMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MovingTooltipWidget.text(
-      message: tooltip,
+      message: tooltip ?? AppLocalizations.of(context).commonMoreOptions,
       child: Tooltip(
         message: "",
         child: PopupMenuButton<int>(
@@ -111,7 +114,9 @@ class OverflowMenuCheckItem {
 // Alternative version with confirmation dialogs support
 class GenericOverflowButtonWithConfirmation extends StatelessWidget {
   final List<OverflowMenuItem> menuItems;
-  final String tooltip;
+
+  /// Defaults to the localized "More options" when null.
+  final String? tooltip;
   final IconData? buttonIcon;
   final Color? iconColor;
   final double? iconSize;
@@ -119,7 +124,7 @@ class GenericOverflowButtonWithConfirmation extends StatelessWidget {
   const GenericOverflowButtonWithConfirmation({
     super.key,
     required this.menuItems,
-    this.tooltip = "More options",
+    this.tooltip,
     this.buttonIcon,
     this.iconColor,
     this.iconSize,
@@ -128,7 +133,7 @@ class GenericOverflowButtonWithConfirmation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: tooltip,
+      message: tooltip ?? AppLocalizations.of(context).commonMoreOptions,
       child: PopupMenuButton<int>(
         tooltip: "",
         icon: Icon(
@@ -186,8 +191,8 @@ class ConfirmationOverflowMenuItem extends OverflowMenuItem {
     required String confirmationTitle,
     required Widget confirmationContent,
     String? subtitle,
-    String confirmButtonText = "Confirm",
-    String cancelButtonText = "Cancel",
+    String? confirmButtonText,
+    String? cancelButtonText,
   }) {
     return OverflowMenuItem(
       title: title,
@@ -197,20 +202,21 @@ class ConfirmationOverflowMenuItem extends OverflowMenuItem {
         showDialog(
           context: context,
           builder: (context) {
+            final loc = AppLocalizations.of(context);
             return AlertDialog(
               title: Text(confirmationTitle),
               content: confirmationContent,
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text(cancelButtonText),
+                  child: Text(cancelButtonText ?? loc.commonCancel),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                     onConfirm();
                   },
-                  child: Text(confirmButtonText),
+                  child: Text(confirmButtonText ?? loc.commonConfirm),
                 ),
               ],
             );

@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:toastification/toastification.dart';
 import 'package:trios/companion_mod/companion_mod_manager.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/trios/constants.dart';
@@ -26,6 +27,7 @@ class _CompanionModUpdateToastState
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.only(right: 32),
       child: Card(
@@ -53,7 +55,7 @@ class _CompanionModUpdateToastState
                   Expanded(
                     child: Column(
                       children: [
-                        const Text("Update ${Constants.appName} Companion Mod"),
+                        Text(loc.companionModUpdateTitle(Constants.appName)),
                         Text(
                           widget.installedVersion != null
                               ? "${widget.installedVersion} → ${Constants.companionModVersion}"
@@ -82,7 +84,7 @@ class _CompanionModUpdateToastState
                                     }
                                   },
                                   icon: const Icon(Icons.download),
-                                  label: const Text("Update"),
+                                  label: Text(loc.triosUpdate),
                                 ),
                         ),
                       ],

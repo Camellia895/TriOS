@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/catalog/catalog_mod_card.dart';
 import 'package:trios/catalog/models/catalog_mod.dart';
 import 'package:trios/catalog/models/forum_llm_data.dart';
@@ -99,6 +100,7 @@ class ModSummaryWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final aiMode = ref.watch(effectiveCatalogAiSummaryModeProvider);
 
     final summary = config.showSummary
@@ -142,7 +144,7 @@ class ModSummaryWidget extends ConsumerWidget {
                 mainAxisSize: .min,
                 spacing: 4,
                 children: [
-                  const _SectionHeader(icon: Icons.save, label: 'Summary'),
+                  _SectionHeader(icon: Icons.save, label: loc.catalogSummary),
                   Padding(
                     padding: const .only(left: 20),
                     child: _SummarySection(
@@ -238,6 +240,7 @@ class _InfoColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final mutedStyle = theme.textTheme.labelSmall?.copyWith(
       color: theme.textTheme.labelSmall?.color?.withValues(alpha: 0.6),
     );
@@ -269,22 +272,22 @@ class _InfoColumn extends StatelessWidget {
         if (config.showAuthor && data.authors.trim().isNotEmpty)
           _AuthorChip(data: data, interactive: config.interactive),
         if (config.showCategory && (data.category?.trim().isNotEmpty ?? false))
-          Text('in ${data.category!.trim()}', style: mutedStyle),
+          Text(loc.catalogInCategory(data.category!.trim()), style: mutedStyle),
         if (config.showDates && (postDate != null || showLastEdit))
           Text.rich(
             TextSpan(
               children: [
                 if (postDate != null) ...[
-                  const TextSpan(
-                    text: 'Posted ',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  TextSpan(
+                    text: loc.catalogPosted,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(text: ModSummaryWidget._dateFormat.format(postDate)),
                 ],
                 if (showLastEdit) ...[
-                  const TextSpan(
-                    text: '  •  Edited ',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  TextSpan(
+                    text: loc.catalogEdited,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextSpan(text: ModSummaryWidget._dateFormat.format(lastEdit)),
                 ],
@@ -599,6 +602,7 @@ class _SaveCompatibilitySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return MovingTooltipWidget.text(
       message:
           'What happens to your existing saved games when you update '
@@ -608,7 +612,10 @@ class _SaveCompatibilitySection extends StatelessWidget {
         mainAxisSize: .min,
         spacing: 4,
         children: [
-          const _SectionHeader(icon: Icons.save, label: 'Save compatibility'),
+          _SectionHeader(
+            icon: Icons.save,
+            label: loc.catalogSaveCompatibility,
+          ),
           Padding(
             padding: const .only(left: 20),
             child: Text(text, style: theme.textTheme.bodySmall),
@@ -663,6 +670,7 @@ class _ChangelogSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final entries = changelog.entries;
     final link = changelog.link?.trim();
     final hasEntries = entries != null && entries.isNotEmpty;
@@ -697,9 +705,9 @@ class _ChangelogSection extends StatelessWidget {
         mainAxisSize: .min,
         spacing: 4,
         children: [
-          const _SectionHeader(
+          _SectionHeader(
             iconAsset: 'assets/images/icon-bullhorn-variant.svg',
-            label: 'Recent updates',
+            label: loc.catalogRecentUpdates,
           ),
           for (final entry in shownEntries)
             Builder(
@@ -734,7 +742,7 @@ class _ChangelogSection extends StatelessWidget {
             child: TextButton.icon(
               onPressed: () => launchUrl(Uri.parse(link)),
               icon: Icon(Icons.open_in_new, size: 14),
-              label: Text('Full changelog'),
+              label: Text(loc.catalogFullChangelog),
               style: TextButton.styleFrom(
                 textStyle: theme.textTheme.bodySmall,
                 visualDensity: VisualDensity.compact,
@@ -752,9 +760,9 @@ class _ChangelogSection extends StatelessWidget {
         mainAxisSize: .min,
         spacing: 4,
         children: [
-          const _SectionHeader(
+          _SectionHeader(
             iconAsset: 'assets/images/icon-bullhorn-variant.svg',
-            label: 'Recent updates',
+            label: loc.catalogRecentUpdates,
           ),
           ?fullChangelogLink,
         ],
@@ -769,7 +777,7 @@ class _ChangelogSection extends StatelessWidget {
       children: [
         _SectionHeader(
           iconAsset: 'assets/images/icon-bullhorn-variant.svg',
-          label: 'Recent updates (${shownEntries.length})',
+          label: loc.catalogRecentUpdatesCount(shownEntries.length),
         ),
         Padding(
           padding: const .only(left: 20),
@@ -870,6 +878,7 @@ class _SourceCodeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final hostName = sourceCodeHostName(url);
 
     return Column(
@@ -877,7 +886,7 @@ class _SourceCodeSection extends StatelessWidget {
       mainAxisSize: .min,
       spacing: 6,
       children: [
-        const _SectionHeader(icon: Icons.code, label: 'Source code'),
+        _SectionHeader(icon: Icons.code, label: loc.catalogSourceCode),
         Padding(
           padding: const .only(left: 20),
           child: interactive
@@ -898,7 +907,7 @@ class _SourceCodeSection extends StatelessWidget {
                   crossAxisAlignment: .start,
                   mainAxisSize: .min,
                   children: [
-                    Text("$hostName  ", style: theme.textTheme.bodySmall),
+                    Text(loc.catalogSourceCodeHost(hostName), style: theme.textTheme.bodySmall),
                     Text(
                       url,
                       style: theme.textTheme.labelSmall?.copyWith(
@@ -926,6 +935,7 @@ class _LicenseSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final license = data.licenseText!;
     // The pop-up has room for more than a tooltip does, but not for the
     // longest licenses, which would push the download buttons off screen.
@@ -943,7 +953,7 @@ class _LicenseSection extends StatelessWidget {
       mainAxisSize: .min,
       spacing: 4,
       children: [
-        const _SectionHeader(icon: Icons.balance, label: 'License'),
+        _SectionHeader(icon: Icons.balance, label: loc.catalogLicense),
         Padding(
           padding: const .only(left: 20),
           child: Column(
@@ -957,7 +967,7 @@ class _LicenseSection extends StatelessWidget {
                   child: TextButton.icon(
                     onPressed: () => launchUrl(Uri.parse(licenseUrl)),
                     icon: const Icon(Icons.open_in_new, size: 14),
-                    label: const Text('Read the license'),
+                    label: Text(loc.catalogReadLicense),
                     style: buttonStyle,
                   ),
                 )
@@ -974,7 +984,7 @@ class _LicenseSection extends StatelessWidget {
                       license: license,
                     ),
                     style: buttonStyle,
-                    child: const Text('Read full license'),
+                    child: Text(loc.catalogReadFullLicense),
                   ),
               ],
             ],
@@ -1002,12 +1012,13 @@ class _DonationLinksSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: .start,
       mainAxisSize: .min,
       spacing: 6,
       children: [
-        const _SectionHeader(icon: Icons.favorite, label: 'Donation links'),
+        _SectionHeader(icon: Icons.favorite, label: loc.catalogDonationLinks),
         Padding(
           padding: const .only(left: 00),
           child: Wrap(

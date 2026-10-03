@@ -3,6 +3,7 @@ import 'package:dart_extensions_methods/dart_extension_methods.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/themes/theme_manager.dart';
@@ -38,6 +39,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
   @override
   Widget build(BuildContext context) {
     final selectedMod = widget.mod;
+    final loc = AppLocalizations.of(context);
     final modVariants = ref.watch(AppState.modVariants).value;
     final enabledMods = ref
         .watch(AppState.enabledModsFile)
@@ -308,7 +310,10 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                         CrossAxisAlignment.start,
                                     children: [
                                       const SizedBox(height: 16),
-                                      Text("Version(s)", style: labelTextStyle),
+                                      Text(
+                                        loc.modSummaryVersions,
+                                        style: labelTextStyle,
+                                      ),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -334,7 +339,10 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                           CrossAxisAlignment.start,
                                       children: [
                                         const SizedBox(height: 16),
-                                        Text("Author", style: labelTextStyle),
+                                        Text(
+                                          loc.modSummaryAuthor,
+                                          style: labelTextStyle,
+                                        ),
                                         Text(
                                           variant.modInfo.author ??
                                               "(no author)",
@@ -344,7 +352,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                     ),
                                   if (modMetadata != null)
                                     MovingTooltipWidget.text(
-                                      message: "First seen by TriOS",
+                                      message: loc.modSummaryFirstSeenByTrios,
                                       child: Padding(
                                         padding: const EdgeInsets.only(top: 16),
                                         child: Row(
@@ -368,7 +376,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                   if (modMetadata != null &&
                                       modMetadata.lastEnabled != null)
                                     MovingTooltipWidget.text(
-                                      message: "Last enabled by TriOS",
+                                      message: loc.modSummaryLastEnabledByTrios,
                                       child: Padding(
                                         padding: const EdgeInsets.only(top: 4),
                                         child: Row(
@@ -427,7 +435,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                         children: [
                                           const SizedBox(height: 16),
                                           Text(
-                                            "Dependencies",
+                                            loc.modInfoDialogDependencies,
                                             style: labelTextStyle,
                                           ),
                                           if (variant
@@ -478,7 +486,10 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                   ),
                                   const SizedBox(height: 16),
                                   // TODO graphicslib doesn't show up for LazyLib 3.0 but it does for 2.8b
-                                  Text("Dependents", style: labelTextStyle),
+                                  Text(
+                                    loc.modInfoDialogDependents,
+                                    style: labelTextStyle,
+                                  ),
                                   Builder(
                                     builder: (context) {
                                       final enabledDependents = dependents

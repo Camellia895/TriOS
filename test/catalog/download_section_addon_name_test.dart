@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/catalog/catalog_download_resolver.dart';
 import 'package:trios/catalog/forum_post_dialog/forum_post_header.dart';
 import 'package:trios/catalog/models/catalog_mod.dart';
@@ -37,6 +38,8 @@ Future<void> _pumpHeader(WidgetTester tester, List<DownloadGroup> groups) =>
     tester.pumpWidget(
       ProviderScope(
         child: MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(extensions: const [TriOSThemeExtension()]),
           home: Scaffold(
             body: ForumPostHeader(

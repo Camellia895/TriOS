@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/ship_viewer/models/ship.dart';
 import 'package:trios/ship_viewer/ships_page_controller.dart';
 import 'package:trios/ship_viewer/widgets/ship_blueprint_view.dart';
@@ -57,6 +58,8 @@ Widget buildShipDetailsDialogBody(
   Widget pagerControls = const SizedBox.shrink(),
 }) {
   final theme = Theme.of(context);
+  final loc = AppLocalizations.of(context);
+  final skinFileType = s.isSkin ? '.skin' : '.ship';
 
   return SelectionArea(
     child: ConstrainedBox(
@@ -83,17 +86,17 @@ Widget buildShipDetailsDialogBody(
                       buildOpenModDataFileButton(
                         context,
                         s.dataFiles,
-                        label: 'Open ${s.isSkin ? '.skin' : '.ship'} file',
+                        label: loc.shipsOpenShipOrSkinFile(skinFileType),
                       ),
                       buildOpenModDataFileButton(
                         context,
                         s.csvFiles,
-                        label: 'Open ship_data.csv',
+                        label: loc.shipsOpenShipDataCsv,
                         notes: ModDataFileNotes.oneWins,
                       ),
                       if (s.spriteFile != null)
                         MovingTooltipWidget.text(
-                          message: 'Open Folder',
+                          message: loc.modInfoDialogOpenFolder,
                           child: IconButton(
                             icon: const Icon(Icons.folder),
                             onPressed: () => s.spriteFile!
@@ -108,7 +111,7 @@ Widget buildShipDetailsDialogBody(
                   const Spacer(),
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
+                    child: Text(loc.catalogClose),
                   ),
                 ],
               ),
@@ -127,6 +130,7 @@ Widget _buildShipInfoPane(
   ShipsPageState controllerState,
   Widget pagerControls,
 ) {
+  final loc = AppLocalizations.of(context);
   Widget section(String title) => Padding(
     padding: const EdgeInsets.only(top: 12, bottom: 4),
     child: Text(
@@ -182,14 +186,16 @@ Widget _buildShipInfoPane(
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
-                            'Skin',
+                            loc.shipsSkin,
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: theme.colorScheme.onSecondaryContainer,
                             ),
                           ),
                         ),
                         Text(
-                          'of ${controllerState.hullNameById(s.baseHullId!)}',
+                          loc.shipsSkinOf(
+                            controllerState.hullNameById(s.baseHullId!),
+                          ),
                           style: theme.textTheme.labelSmall,
                         ),
                       ],
@@ -200,7 +206,7 @@ Widget _buildShipInfoPane(
           ),
           pagerControls,
           IconButton(
-            tooltip: 'Close',
+            tooltip: loc.catalogClose,
             icon: const Icon(Icons.close),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -241,7 +247,7 @@ Widget _buildShipInfoPane(
         child: mergeModSourcesView(
           s.modSources,
           theme,
-          fileLabel: 'Ship file',
+          fileLabel: loc.shipsShipFile,
           fallbackName: s.modVariant?.modInfo.nameOrId ?? 'Vanilla',
         ),
       ),

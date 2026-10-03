@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants_theme.dart';
 import 'package:trios/trios/deep_link/deep_link_parser.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
@@ -153,6 +154,7 @@ class _DeepLinkConfirmationDialogState
 
   Widget _buildDialog(BuildContext context, DeepLinkConfirmData data) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     // Group by role: main mods first, then dependencies. Within each role,
     // sort by status: to-install, then couldn't-load, then already-installed.
     // Dependencies that are also main mods were already dropped upstream
@@ -211,7 +213,7 @@ class _DeepLinkConfirmationDialogState
               value: _dontAskAgain,
               onChanged: (value) =>
                   setState(() => _dontAskAgain = value ?? false),
-              label: "Always install new mods without confirming",
+              label: loc.deepLinkAlwaysInstallNewMods,
               labelStyle: theme.textTheme.bodySmall,
             ),
           ],
@@ -220,7 +222,7 @@ class _DeepLinkConfirmationDialogState
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(null),
-          child: const Text('Cancel'),
+          child: Text(loc.triosCancel),
         ),
         FilledButton.icon(
           onPressed: selectedCount == 0
@@ -321,6 +323,7 @@ class _DeepLinkConfirmationDialogState
     VoidCallback? onTap,
   }) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     // Already-installed takes precedence, so don't style it as an error.
     final hasError = entry.error != null && !entry.alreadyInstalled;
 
@@ -362,7 +365,7 @@ class _DeepLinkConfirmationDialogState
           ),
         if (entry.entry.modId != null)
           MovingTooltipWidget.text(
-            message: 'Id: ${entry.entry.modId}',
+            message: loc.deepLinkIdTooltip('${entry.entry.modId}'),
             child: _urlLine(
               theme,
               Icons.tag,
@@ -381,7 +384,7 @@ class _DeepLinkConfirmationDialogState
           )
         else if (entry.modVersion != null)
           MovingTooltipWidget.text(
-            message: 'Version ${entry.modVersion}',
+            message: loc.deepLinkVersionTooltip('${entry.modVersion}'),
             child: _urlLine(
               theme,
               Icons.numbers,
@@ -390,7 +393,7 @@ class _DeepLinkConfirmationDialogState
             ),
           ),
         MovingTooltipWidget.text(
-          message: isVersionFile ? 'Version file' : 'Download link',
+          message: isVersionFile ? 'Version file' : loc.deepLinkDownloadLink,
           child: _urlLine(
             theme,
             isVersionFile ? Icons.description_outlined : Icons.download,
@@ -400,7 +403,7 @@ class _DeepLinkConfirmationDialogState
         ),
         if (showResolved)
           MovingTooltipWidget.text(
-            message: 'Download link',
+            message: loc.deepLinkDownloadLink,
             child: _urlLine(theme, Icons.download, resolvedUrl, onTap: onTap),
           ),
       ],

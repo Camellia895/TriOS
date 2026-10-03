@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/launcher/launcher.dart';
 import 'package:trios/rules_autofresh/rules_hotreload.dart';
 import 'package:trios/themes/theme_modifiers.dart';
@@ -41,6 +42,7 @@ class AppSidebar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final navState = ref.watch(navOrderProvider);
     final controller = ref.read(navOrderProvider.notifier);
     final debugMode = ref.watch(appSettings.select((s) => s.debugMode));
@@ -153,7 +155,7 @@ class AppSidebar extends ConsumerWidget {
                 bottom: 0,
                 left: 0,
                 child: MovingTooltipWidget.text(
-                  message: "Tab rearrange mode is on",
+                  message: loc.app_sidebarTabRearrangeModeIs,
                   child: SizedBox(
                     width: 4,
                     child: Container(color: theme.statusColors.success),
@@ -294,10 +296,11 @@ class _DragModeDoneBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: MovingTooltipWidget.text(
-        message: 'Exit rearrange mode',
+        message: loc.app_sidebarExitRearrangeMode,
         child: IconButton(
           onPressed: onDone,
           icon: Icon(
@@ -498,6 +501,7 @@ class _SidebarLayoutToggle extends ConsumerWidget {
     if (!ref.watch(appSettings.select((s) => s.showLayoutToggle))) {
       return const SizedBox.shrink();
     }
+    final loc = AppLocalizations.of(context);
     return GestureDetector(
       onSecondaryTapDown: (details) async {
         final result = await showMenu<String>(
@@ -509,9 +513,9 @@ class _SidebarLayoutToggle extends ConsumerWidget {
             details.globalPosition.dy,
           ),
           items: [
-            const PopupMenuItem<String>(
+            PopupMenuItem<String>(
               value: 'hide',
-              child: Text('Hide layout toggle'),
+              child: Text(loc.app_action_buttonsHideLayoutToggle),
             ),
           ],
         );
@@ -528,7 +532,7 @@ class _SidebarLayoutToggle extends ConsumerWidget {
             .read(appSettings.notifier)
             .update((s) => s.copyWith(useTopToolbar: !s.useTopToolbar)),
         icon: Icon(Icons.web, size: 20),
-        label: "Switch layout",
+        label: loc.app_sidebarSwitchLayout,
         tooltip: "Switch to top toolbar",
       ),
     );

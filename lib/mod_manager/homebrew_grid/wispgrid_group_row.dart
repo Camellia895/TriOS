@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
 import 'package:trios/mod_tag_manager/category.dart';
@@ -379,6 +380,7 @@ class _WispGridRowState<T extends WispGridItem>
   }
 
   ContextMenu _buildGroupHeaderContextMenu() {
+    final loc = AppLocalizations.of(context);
     final groupingSetting = widget.gridState.groupingSetting;
     final currentStyle = groupingSetting?.headerStyle ?? GroupHeaderStyle.small;
     final currentPrimaryKey = groupingSetting?.currentGroupedByKey;
@@ -394,7 +396,7 @@ class _WispGridRowState<T extends WispGridItem>
       entries: [
         if (widget.groups.length > 1)
           MenuItem.submenu(
-            label: 'Group By',
+            label: loc.wispgridGroupRowGroupBy,
             icon: Icons.horizontal_split,
             items: widget.groups
                 .map(
@@ -427,11 +429,11 @@ class _WispGridRowState<T extends WispGridItem>
           ),
         if (showThenBy)
           MenuItem.submenu(
-            label: 'Then By',
+            label: loc.wispgridGroupRowThenBy,
             icon: Icons.subdirectory_arrow_right,
             items: [
               MenuItem(
-                label: 'None',
+                label: loc.codexNone,
                 icon: currentSecondaryKey == null ? Icons.check : null,
                 onSelected: () {
                   widget.updateGridState((WispGridState state) {
@@ -465,23 +467,23 @@ class _WispGridRowState<T extends WispGridItem>
             ],
           ),
         MenuItem.submenu(
-          label: 'Header Style',
+          label: loc.wispgridGroupRowHeaderStyle,
           icon: Icons.view_agenda_outlined,
           items: [
             MenuItem(
-              label: 'Tall Card',
+              label: loc.wispgridGroupRowTallCard,
               icon: currentStyle == GroupHeaderStyle.large ? Icons.check : null,
               onSelected: () => _setHeaderStyle(GroupHeaderStyle.large),
             ),
             MenuItem(
-              label: 'Short Card',
+              label: loc.wispgridGroupRowShortCard,
               icon: currentStyle == GroupHeaderStyle.medium
                   ? Icons.check
                   : null,
               onSelected: () => _setHeaderStyle(GroupHeaderStyle.medium),
             ),
             MenuItem(
-              label: 'Line',
+              label: loc.wispgridGroupRowLine,
               icon: currentStyle == GroupHeaderStyle.small ? Icons.check : null,
               onSelected: () => _setHeaderStyle(GroupHeaderStyle.small),
             ),

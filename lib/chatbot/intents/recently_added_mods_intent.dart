@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -59,8 +60,8 @@ class RecentlyAddedModsIntent extends ChatIntent with ModAwareIntent {
 
     final metadata = modsMetadata;
     if (metadata == null) {
-      return const ChatResponse(
-        text: 'Mod metadata is not available yet.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotModMetadataNotAvailableYet,
       );
     }
 
@@ -81,7 +82,9 @@ class RecentlyAddedModsIntent extends ChatIntent with ModAwareIntent {
     }
 
     if (modsWithDate.isEmpty) {
-      return const ChatResponse(text: 'No mod metadata available.');
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModMetadataAvailable,
+      );
     }
 
     // Sort by firstSeen descending (most recent first)

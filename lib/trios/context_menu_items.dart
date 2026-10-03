@@ -7,6 +7,7 @@ import 'package:dart_extensions_methods/dart_extension_methods.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:trios/dashboard/changelogs.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/deep_link/deep_link_parser.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/faction_viewer/faction_manager.dart';
@@ -33,8 +34,9 @@ MenuItem<dynamic> buildMenuItemForceChangeModGameVersion(
   WidgetRef ref,
   ModVariant modVariant,
 ) {
+  final loc = AppLocalizationsSync.instance;
   return MenuItem(
-    label: 'Force to $currentStarsectorVersion',
+    label: loc.contextMenuForceToVersion(currentStarsectorVersion),
     icon: Icons.electric_bolt,
     onSelected: () {
       showDialog(
@@ -104,6 +106,7 @@ MenuItem<dynamic> buildMenuItemCopyInstallLink(
   final vci = modVariant.versionCheckerInfo;
   final url = vci?.masterVersionFile ?? vci?.directDownloadURL;
   final hasUrl = url != null && url.isNotEmpty;
+  final loc = AppLocalizationsSync.instance;
   return MenuItem(
     label: hasUrl ? 'Copy install link' : 'Copy install link (unavailable)',
     icon: Icons.link,
@@ -126,7 +129,7 @@ MenuItem<dynamic> buildMenuItemCopyInstallLink(
       showSnackBar(
         context: context,
         type: SnackBarType.info,
-        content: const Text('Install link copied to clipboard.'),
+        content: Text(loc.contextMenuInstallLinkCopiedTo),
       );
     },
   );
@@ -134,8 +137,9 @@ MenuItem<dynamic> buildMenuItemCopyInstallLink(
 
 /// Opens the dialog that shows, and lets the user edit, where a mod came from.
 MenuItem buildMenuItemModSources(Mod mod, BuildContext context) {
+  final loc = AppLocalizationsSync.instance;
   return MenuItem(
-    label: "Mod Sources...",
+    label: loc.contextMenuModSources,
     icon: Icons.source,
     onSelected: () => showModRecordSourcesDialog(
       context,
@@ -146,13 +150,14 @@ MenuItem buildMenuItemModSources(Mod mod, BuildContext context) {
 }
 
 MenuItem buildMenuItemOpenFolder(Mod mod) {
+  final loc = AppLocalizationsSync.instance;
   if (mod.modVariants.length == 1) {
     return buildOpenSingleFolderMenuItem(
       mod.modVariants.first.modFolder.absolute,
     );
   } else {
     return MenuItem.submenu(
-      label: "Open Folder...",
+      label: loc.contextMenuOpenFolder,
       icon: Icons.folder,
       onSelected: () {
         mod.findFirstEnabledOrHighestVersion?.modFolder.absolute.path
@@ -188,11 +193,12 @@ MenuItem<dynamic> buildOpenSingleFolderMenuItem(
 }
 
 MenuItem buildMenuItemChangeVersion(Mod mod, WidgetRef ref) {
+  final loc = AppLocalizationsSync.instance;
   final enabledSmolId = mod.findFirstEnabled?.smolId;
   final isEnabled = enabledSmolId != null;
 
   return MenuItem.submenu(
-    label: "Change to...",
+    label: loc.contextMenuChangeTo,
     icon: Icons.toggle_on,
     onSelected: () {
       if (isEnabled) {
@@ -210,7 +216,7 @@ MenuItem buildMenuItemChangeVersion(Mod mod, WidgetRef ref) {
     items: [
       if (isEnabled)
         MenuItem(
-          label: "Disable",
+          label: loc.triosDisable,
           icon: Icons.close,
           onSelected: () {
             ref.watch(modManager.notifier).changeActiveModVariant(mod, null);
@@ -238,9 +244,10 @@ MenuItem buildMenuItemChangeVersion(Mod mod, WidgetRef ref) {
 }
 
 MenuItem buildMenuItemOpenModInfoFile(Mod mod) {
+  final loc = AppLocalizationsSync.instance;
   final modVariant = mod.findFirstEnabledOrHighestVersion!;
   return MenuItem(
-    label: 'Open mod_info.json',
+    label: loc.contextMenuOpenModInfoJson,
     icon: Icons.edit_note,
     onSelected: () {
       launchUrl(
@@ -253,9 +260,10 @@ MenuItem buildMenuItemOpenModInfoFile(Mod mod) {
 }
 
 MenuItem menuItemDeleteFolder(Mod mod, BuildContext context, WidgetRef ref) {
+  final loc = AppLocalizationsSync.instance;
   if (mod.modVariants.length == 1) {
     return MenuItem(
-      label: 'Delete Mod...',
+      label: loc.contextMenuDeleteMod,
       icon: Icons.delete,
       onSelected: () {
         showDeleteModFoldersConfirmationDialog(
@@ -268,7 +276,7 @@ MenuItem menuItemDeleteFolder(Mod mod, BuildContext context, WidgetRef ref) {
   } else {
     final modVariantsSorted = mod.modVariants.sortedDescending();
     return MenuItem.submenu(
-      label: "Delete Mod...",
+      label: loc.contextMenuDeleteMod,
       icon: Icons.delete,
       items: [
         for (var variant in modVariantsSorted)
@@ -279,7 +287,9 @@ MenuItem menuItemDeleteFolder(Mod mod, BuildContext context, WidgetRef ref) {
             },
           ),
         MenuItem(
-          label: "All but ${modVariantsSorted.firstOrNull?.modInfo.version}",
+          label: loc.contextMenuAllButVersion(
+            modVariantsSorted.firstOrNull?.modInfo.version?.toString() ?? "",
+          ),
           onSelected: () {
             showDeleteModFoldersConfirmationDialog(
               modVariantsSorted.skip(1).map((v) => v).toList(),
@@ -289,7 +299,7 @@ MenuItem menuItemDeleteFolder(Mod mod, BuildContext context, WidgetRef ref) {
           },
         ),
         MenuItem(
-          label: "All versions",
+          label: loc.contextMenuAllVersions,
           onSelected: () {
             showDeleteModFoldersConfirmationDialog(
               modVariantsSorted.map((v) => v).toList(),
@@ -308,16 +318,17 @@ MenuItem menuItemDeleteMultipleMods(
   BuildContext context,
   WidgetRef ref,
 ) {
+  final loc = AppLocalizationsSync.instance;
   if (mods.length == 1) {
     return menuItemDeleteFolder(mods.first, context, ref);
   }
 
   return MenuItem.submenu(
-    label: "Delete Mods...",
+    label: loc.contextMenuDeleteMods,
     icon: Icons.delete,
     items: [
       MenuItem(
-        label: "All but enabled/highest version of each",
+        label: loc.contextMenuAllButEnabledHighest,
         onSelected: () {
           showDeleteModFoldersConfirmationDialog(
             mods
@@ -335,7 +346,7 @@ MenuItem menuItemDeleteMultipleMods(
         },
       ),
       MenuItem(
-        label: "All selected mods",
+        label: loc.contextMenuAllSelectedMods,
         onSelected: () {
           showDeleteModFoldersConfirmationDialog(
             mods.flatMap((mod) => mod.modVariants).map((v) => v).toList(),
@@ -384,13 +395,14 @@ MenuItem buildMenuItemDebugging(
           : savedDownloadUrl(latestVersionWithSavedDownload));
 
   var redownloadEnabled = redownloadUrl != null;
+  final loc = AppLocalizationsSync.instance;
   return MenuItem.submenu(
-    label: "Troubleshoot...",
+    label: loc.contextMenuTroubleshoot,
     icon: Icons.bug_report,
     onSelected: () => showDebugViewDialog(context, mod),
     items: [
       MenuItem(
-        label: "Show Raw Info",
+        label: loc.contextMenuShowRawInfo,
         icon: Icons.info_outline,
         onSelected: () => showDebugViewDialog(context, mod),
       ),
@@ -439,9 +451,10 @@ MenuItem buildMenuItemViewChangelog(
       .read(AppState.changelogsProvider.notifier)
       .getChangelogUrl(localVersionCheck, remoteVersionCheck);
   final hasChangelog = changelogUrl.isNotNullOrEmpty();
+  final loc = AppLocalizationsSync.instance;
 
   return MenuItem(
-    label: hasChangelog ? 'View Changelog' : 'View Changelog (unavailable)',
+    label: hasChangelog ? loc.triosViewChangelog : 'View Changelog (unavailable)',
     icon: Icons.history,
     iconOpacity: hasChangelog ? 1 : 0.5,
     onSelected: () {
@@ -472,7 +485,7 @@ MenuItem buildMenuItemViewChangelog(
 
 MenuItem buildMenuItemCheckVram(Mod mod, WidgetRef ref) {
   return MenuItem(
-    label: 'Estimate VRAM Usage',
+    label: AppLocalizationsSync.instance.contextMenuEstimateVramUsage,
     icon: Icons.memory,
     onSelected: () {
       ref
@@ -490,7 +503,7 @@ MenuItem buildMenuItemOpenInSidebar(
   Function(Mod? mod) openSidebar,
 ) {
   return MenuItem(
-    label: 'Open in side panel',
+    label: AppLocalizationsSync.instance.contextMenuOpenInSidePanel,
     icon: Icons.view_sidebar,
     onSelected: () {
       openSidebar(mod);
@@ -534,7 +547,7 @@ MenuItem buildMenuItemToggleMuteUpdates(Mod mod, WidgetRef ref) {
   // Already fully muted, so the only thing left to offer is turning it back on.
   if (areUpdatesMuted) {
     return MenuItem(
-      label: 'Unmute updates',
+      label: AppLocalizationsSync.instance.contextMenuUnmuteUpdates,
       icon: Icons.notifications,
       onSelected: () => setAllUpdatesMuted(false),
     );
@@ -550,7 +563,7 @@ MenuItem buildMenuItemToggleMuteUpdates(Mod mod, WidgetRef ref) {
   if (remoteVersion == null ||
       (!isVersionMuted && comparison?.hasUpdate != true)) {
     return MenuItem(
-      label: 'Mute updates',
+      label: AppLocalizationsSync.instance.contextMenuMuteUpdates,
       icon: Icons.notifications_off,
       onSelected: () => setAllUpdatesMuted(true),
     );
@@ -588,7 +601,7 @@ MenuItem buildMenuItemToggleMuteUpdates(Mod mod, WidgetRef ref) {
         onSelected: toggleVersionMute,
       ),
       MenuItem(
-        label: 'Mute all updates',
+        label: AppLocalizationsSync.instance.contextMenuMuteAllUpdates,
         icon: Icons.notifications_off,
         onSelected: () => setAllUpdatesMuted(true),
       ),
@@ -597,6 +610,7 @@ MenuItem buildMenuItemToggleMuteUpdates(Mod mod, WidgetRef ref) {
 }
 
 MenuItem buildMenuItemViewInViewer(Mod mod, WidgetRef ref) {
+  final loc = AppLocalizationsSync.instance;
   final modName =
       mod.findFirstEnabledOrHighestVersion?.modInfo.nameOrId ?? mod.id;
 
@@ -616,31 +630,31 @@ MenuItem buildMenuItemViewInViewer(Mod mod, WidgetRef ref) {
         ..sort((a, b) => a.displayName.compareTo(b.displayName));
 
   return MenuItem.submenu(
-    label: 'View...',
+    label: loc.contextMenuView,
     icon: Icons.search,
     items: [
       MenuItem(
-        label: 'Ships',
+        label: loc.contextMenuShips,
         leading: SvgImageIcon("assets/images/icon-onslaught.svg"),
         onSelected: () => navigate(TriOSTools.ships),
       ),
       MenuItem(
-        label: 'Weapons',
+        label: loc.contextMenuWeapons,
         leading: SvgImageIcon("assets/images/icon-target.svg"),
         onSelected: () => navigate(TriOSTools.weapons),
       ),
       MenuItem(
-        label: 'Hullmods',
+        label: loc.contextMenuHullmods,
         leading: SvgImageIcon("assets/images/icon-hullmod.svg"),
         onSelected: () => navigate(TriOSTools.hullmods),
       ),
       if (modFactions.isNotEmpty)
         MenuItem.submenu(
-          label: 'Factions (${modFactions.length})',
+          label: loc.contextMenuFactionsCount(modFactions.length),
           icon: Icons.flag,
           items: [
             MenuItem(
-              label: 'View all in Faction Viewer',
+              label: loc.contextMenuViewAllInFaction,
               icon: Icons.open_in_new,
               onSelected: () => navigate(TriOSTools.factions),
             ),
@@ -662,12 +676,12 @@ MenuItem buildMenuItemViewInViewer(Mod mod, WidgetRef ref) {
         ),
       if (modFactions.isEmpty)
         MenuItem(
-          label: 'Factions',
+          label: loc.contextMenuFactions,
           icon: Icons.flag,
           onSelected: () => navigate(TriOSTools.factions),
         ),
       MenuItem(
-        label: 'Portraits',
+        label: loc.contextMenuPortraits,
         leading: SvgImageIcon("assets/images/icon-account-box-outline.svg"),
         onSelected: () => navigate(TriOSTools.portraits),
       ),

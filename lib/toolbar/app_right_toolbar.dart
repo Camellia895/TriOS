@@ -3,6 +3,7 @@ import 'package:trios/trios/constants_theme.dart';
 
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/utils/extensions.dart';
@@ -135,6 +136,7 @@ class DonateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 650),
       child: Column(
@@ -160,7 +162,7 @@ class DonateView extends StatelessWidget {
               spacing: 4,
               children: [
                 ListTile(
-                  title: const Text("Ko-Fi"),
+                  title: Text(loc.app_right_toolbarKoFi),
                   leading: Icon(Icons.coffee, size: 20),
                   tileColor: Theme.of(context).colorScheme.surfaceContainer,
                   onTap: () {
@@ -169,7 +171,7 @@ class DonateView extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  title: const Text("Patreon"),
+                  title: Text(loc.app_right_toolbarPatreon),
                   leading: SvgImageIcon(
                     "assets/images/icon-patreon.svg",
                     height: 20,

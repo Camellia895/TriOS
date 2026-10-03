@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/utils/mod_search.dart' as mod_search;
 
@@ -61,9 +62,8 @@ class ModChangelogIntent extends ChatIntent with ModAwareIntent {
         ref.read(AppState.changelogsProvider).value;
 
     if (changelogs == null || changelogs.isEmpty) {
-      return const ChatResponse(
-        text: 'No changelogs loaded yet. Changelogs are fetched when '
-            'mod updates are checked.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoChangelogsLoadedYet,
       );
     }
 
@@ -100,7 +100,7 @@ class ModChangelogIntent extends ChatIntent with ModAwareIntent {
     final results = mod_search.searchMods(mods, query);
     if (results == null || results.isEmpty) {
       return ChatResponse(
-        text: 'No mod found matching "$query".',
+        text: AppLocalizationsSync.instance.chatbotNoModFoundMatching(query),
       );
     }
 
@@ -116,7 +116,7 @@ class ModChangelogIntent extends ChatIntent with ModAwareIntent {
           text = '${text.substring(0, 500)}...\n(truncated)';
         }
         return ChatResponse(
-          text: 'Changelog for $name:\n$text',
+          text: AppLocalizationsSync.instance.chatbotChangelogFor(name, text),
         );
       }
     }

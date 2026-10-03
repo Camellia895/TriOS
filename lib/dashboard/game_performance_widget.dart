@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:styled_text/styled_text.dart';
 import 'package:trios/dashboard/game_settings_manager.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/utils/extensions.dart';
@@ -30,10 +31,11 @@ class _GamePerformanceWidgetState extends ConsumerState<GamePerformanceWidget>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final loc = AppLocalizations.of(context);
     final gameDir = ref.read(AppState.gameFolder).value?.toDirectory();
 
     if (gameDir == null) {
-      return const Center(child: Text("Game directory not set."));
+      return Center(child: Text(loc.game_performanceGameDirectoryNotSet));
     }
 
     return ConstrainedBox(
@@ -62,6 +64,7 @@ class ChangeRamWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     final vmState = ref.watch(vmparamsManagerProvider).value;
     final ramAmount = vmState?.currentRamAmountInMb;
     final hasMultipleWithDifferentRam =
@@ -85,7 +88,7 @@ class ChangeRamWidget extends ConsumerWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: MovingTooltipWidget.text(
-                        message: "Choose which vmparams files to manage",
+                        message: loc.game_performanceChooseWhichVmparamsFiles,
                         child: SizedBox(
                           height: 32,
                           width: 32,
@@ -184,6 +187,7 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final fpsInSettings = ref.watch(gameSettingsProvider).value?.fps;
 
     if (fpsSliderValue == null && fpsInSettings != null) {
@@ -305,7 +309,7 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8),
                                   child: MovingTooltipWidget.text(
-                                    message: "Reset to 60 FPS",
+                                    message: loc.game_performanceResetToFps,
                                     child: IconButton(
                                       padding: EdgeInsets.zero,
                                       visualDensity: VisualDensity.compact,
@@ -336,7 +340,7 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
                               message:
                                   "Vsync reduces screen tearing but introduces a tiny input delay.",
                               child: CheckboxWithLabel(
-                                label: "Use Vsync",
+                                label: loc.game_performanceUseVsync,
                                 value: gameSettings.vsync!,
                                 labelStyle: Theme.of(
                                   context,
@@ -351,7 +355,7 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
                     ],
                   ),
                   error: (err, stack) => TextTriOS(
-                    "Error: $err",
+                    loc.dashboardError(err.toString()),
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   loading: () => ThemedCircularProgressIndicator(),

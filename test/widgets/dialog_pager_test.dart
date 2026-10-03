@@ -1,11 +1,14 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/dialog_pager.dart';
 
 void main() {
   Widget harness(List<String> items, {int startIndex = 0}) {
     return MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: Scaffold(
         body: DialogPager<String>(
           items: items,

@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/utils/extensions.dart';
@@ -15,6 +16,7 @@ class DebugInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     final vcResultsCache =
         (ref.watch(AppState.versionCheckResults).value)
             ?.versionCheckResultsBySmolId ??
@@ -50,24 +52,24 @@ class DebugInfo extends ConsumerWidget {
                                 ),
                           ),
                           SimpleDataRow(
-                            label: "id: ",
+                            label: loc.debugInfoId,
                             value: variant.modInfo.id,
                           ),
                           SimpleDataRow(
-                            label: "Version: ",
+                            label: loc.debugInfoVersion,
                             value:
-                                '${variant.modInfo.version} • Version Checker: ${variant.versionCheckerInfo?.modVersion}',
+                                '${variant.modInfo.version} • ${loc.debugInfoVersionChecker}: ${variant.versionCheckerInfo?.modVersion}',
                           ),
                           SimpleDataRow(
-                            label: "Internal id: ",
+                            label: loc.debugInfoInternalId,
                             value: variant.smolId,
                           ),
                           SimpleDataRow(
-                            label: "Mod Folder: ",
+                            label: loc.debugInfoModFolder,
                             value: variant.modFolder.path,
                           ),
                           SimpleDataRow(
-                            label: "Icon: ",
+                            label: loc.debugInfoIcon,
                             value: variant.iconFilePath ?? "",
                           ),
                         ],
@@ -96,12 +98,13 @@ class DebugInfo extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Version Checker - Local",
+                            loc.debugInfoVersionCheckerLocal,
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            variant.versionCheckerInfo?.toString() ?? "(none)",
+                            variant.versionCheckerInfo?.toString() ??
+                                loc.debugInfoNone,
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
@@ -113,13 +116,13 @@ class DebugInfo extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Version Checker - Remote (cached lookup)",
+                            loc.debugInfoVersionCheckerRemote,
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           Text(
                             vcResultsCache[variant.smolId]?.toString() ??
-                                "(none)",
+                                loc.debugInfoNone,
                             style: Theme.of(context).textTheme.labelLarge,
                           ),
                         ],
@@ -131,16 +134,16 @@ class DebugInfo extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Mod Metadata",
+                            loc.debugInfoModMetadata,
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                           SimpleDataRow(
-                            label: "Whole mod: ",
-                            value: modMetadata?.toString() ?? "(none)",
+                            label: loc.debugInfoWholeMod,
+                            value: modMetadata?.toString() ?? loc.debugInfoNone,
                           ),
                           SimpleDataRow(
-                            label: "This version: ",
+                            label: loc.debugInfoThisVersion,
                             value:
                                 modsMetadata
                                     ?.getMergedModVariantMetadata(
@@ -148,7 +151,7 @@ class DebugInfo extends ConsumerWidget {
                                       variant.smolId,
                                     )
                                     ?.toString() ??
-                                "(none)",
+                                loc.debugInfoNone,
                           ),
                         ],
                       ),
@@ -159,7 +162,7 @@ class DebugInfo extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Search Tags",
+                            loc.debugInfoSearchTags,
                             style: Theme.of(context).textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -196,7 +199,7 @@ showDebugViewDialog(BuildContext context, Mod mod) {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text("Close"),
+            child: Text(AppLocalizations.of(context).commonClose),
           ),
         ],
       );

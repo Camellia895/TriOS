@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_records/mod_record.dart';
 import 'package:trios/mod_records/mod_record_source.dart';
 import 'package:trios/mod_records/mod_records_store.dart';
@@ -240,6 +241,7 @@ class _ModRecordSourcesDialogState
         .value
         ?.records[widget.recordKey];
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final dateFmt = DateFormat.yMd().add_jm();
 
     if (record != null) {
@@ -247,7 +249,7 @@ class _ModRecordSourcesDialogState
     }
 
     return AlertDialog(
-      title: Text("Mod Sources: ${widget.displayName}"),
+      title: Text(loc.recordModSourcesTitle(widget.displayName)),
       backgroundColor: theme.colorScheme.surface,
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 600),
@@ -272,30 +274,30 @@ class _ModRecordSourcesDialogState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           spacing: 4,
                           children: [
-                            Text("Identity", style: theme.textTheme.titleSmall),
+                            Text(loc.recordIdentity, style: theme.textTheme.titleSmall),
                             SimpleDataRow(
-                              label: "Record Key: ",
+                              label: loc.recordKeyLabel,
                               value: record.recordKey,
                             ),
                             SimpleDataRow(
-                              label: "Mod ID: ",
+                              label: loc.recordModIdLabel,
                               value: record.modId ?? "(none)",
                             ),
                             SimpleDataRow(
-                              label: "Names: ",
+                              label: loc.recordNamesLabel,
                               value: record.allNames.isNotEmpty
                                   ? record.allNames.join(", ")
                                   : "(none)",
                             ),
                             SimpleDataRow(
-                              label: "Authors: ",
+                              label: loc.recordAuthorsLabel,
                               value: record.allAuthors.isNotEmpty
                                   ? record.allAuthors.join(", ")
                                   : "(none)",
                             ),
                             if (record.firstSeen != null)
                               SimpleDataRow(
-                                label: "First Seen: ",
+                                label: loc.recordFirstSeenLabel,
                                 value: dateFmt.format(record.firstSeen!),
                               ),
                           ],
@@ -304,16 +306,16 @@ class _ModRecordSourcesDialogState
                     ),
 
                     // Installed source
-                    _buildInstalledSection(record, dateFmt),
+                    _buildInstalledSection(record, dateFmt, loc),
 
                     // Version Checker source
-                    _buildVersionCheckerSection(record, dateFmt),
+                    _buildVersionCheckerSection(record, dateFmt, loc),
 
                     // Catalog source
-                    _buildCatalogSection(record, dateFmt),
+                    _buildCatalogSection(record, dateFmt, loc),
 
                     // Download History source
-                    _buildDownloadHistorySection(record, dateFmt),
+                    _buildDownloadHistorySection(record, dateFmt, loc),
                   ],
                 ),
         ),
@@ -321,21 +323,25 @@ class _ModRecordSourcesDialogState
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text("Cancel"),
+          child: Text(loc.commonCancel),
         ),
         if (record != null)
           TextButton(
             onPressed: _isDirty ? _onSave : null,
-            child: const Text("Save"),
+            child: Text(loc.recordSave),
           ),
       ],
     );
   }
 
-  Widget _buildInstalledSection(ModRecord record, DateFormat dateFmt) {
+  Widget _buildInstalledSection(
+    ModRecord record,
+    DateFormat dateFmt,
+    AppLocalizations loc,
+  ) {
     final source = record.installed;
     return TriOSExpansionTile(
-      title: Text("Installed"),
+      title: Text(loc.catalogInstalled),
       leading: const Icon(Icons.folder, size: 20),
       initiallyExpanded: source != null,
       children: [
@@ -353,24 +359,24 @@ class _ModRecordSourcesDialogState
                   ]
                 : [
                     SimpleDataRow(
-                      label: "Name: ",
+                      label: loc.recordNameLabel,
                       value: source.name ?? "(unknown)",
                     ),
                     SimpleDataRow(
-                      label: "Author: ",
+                      label: loc.recordAuthorLabel,
                       value: source.author ?? "(unknown)",
                     ),
                     SimpleDataRow(
-                      label: "Path: ",
+                      label: loc.recordPathLabel,
                       value: source.installPath ?? "(unknown)",
                     ),
                     SimpleDataRow(
-                      label: "Version: ",
+                      label: loc.recordVersionLabel,
                       value: source.version ?? "(unknown)",
                     ),
                     if (source.lastSeen != null)
                       SimpleDataRow(
-                        label: "Last Seen: ",
+                        label: loc.recordLastSeenLabel,
                         value: dateFmt.format(source.lastSeen!),
                       ),
                   ],
@@ -380,10 +386,14 @@ class _ModRecordSourcesDialogState
     );
   }
 
-  Widget _buildVersionCheckerSection(ModRecord record, DateFormat dateFmt) {
+  Widget _buildVersionCheckerSection(
+    ModRecord record,
+    DateFormat dateFmt,
+    AppLocalizations loc,
+  ) {
     final source = record.versionChecker;
     return TriOSExpansionTile(
-      title: Text("Version Checker"),
+      title: Text(loc.recordVersionChecker),
       leading: const Icon(Icons.update, size: 20),
       initiallyExpanded: source != null,
       children: [
@@ -399,33 +409,33 @@ class _ModRecordSourcesDialogState
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               InlineEditText(
-                label: "Forum Thread ID: ",
+                label: loc.recordForumThreadIdLabel,
                 controller: _vcForumThreadId,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Nexus Mods ID: ",
+                label: loc.recordNexusModsIdLabel,
                 controller: _vcNexusModsId,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Direct Download URL: ",
+                label: loc.recordDirectDownloadUrlLabel,
                 controller: _vcDirectDownloadUrl,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Changelog URL: ",
+                label: loc.recordChangelogUrlLabel,
                 controller: _vcChangelogUrl,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Master Version File URL: ",
+                label: loc.recordMasterVersionFileUrlLabel,
                 controller: _vcMasterVersionFileUrl,
                 onChanged: _markDirty,
               ),
               if (source?.lastSeen != null)
                 SimpleDataRow(
-                  label: "Last Seen: ",
+                  label: loc.recordLastSeenLabel,
                   value: dateFmt.format(source!.lastSeen!),
                 ),
             ],
@@ -435,10 +445,14 @@ class _ModRecordSourcesDialogState
     );
   }
 
-  Widget _buildCatalogSection(ModRecord record, DateFormat dateFmt) {
+  Widget _buildCatalogSection(
+    ModRecord record,
+    DateFormat dateFmt,
+    AppLocalizations loc,
+  ) {
     final source = record.catalog;
     return TriOSExpansionTile(
-      title: Text("Catalog"),
+      title: Text(loc.recordCatalog),
       leading: const Icon(Icons.library_books, size: 20),
       initiallyExpanded: source != null,
       children: [
@@ -454,50 +468,50 @@ class _ModRecordSourcesDialogState
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               if (source?.name != null)
-                SimpleDataRow(label: "Catalog Name: ", value: source!.name!),
+                SimpleDataRow(label: loc.recordCatalogNameLabel, value: source!.name!),
               InlineEditText(
-                label: "Forum URL: ",
+                label: loc.recordForumUrlLabel,
                 controller: _catForumUrl,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Nexus URL: ",
+                label: loc.recordNexusUrlLabel,
                 controller: _catNexusUrl,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Discord URL: ",
+                label: loc.recordDiscordUrlLabel,
                 controller: _catDiscordUrl,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Direct Download URL: ",
+                label: loc.recordDirectDownloadUrlLabel,
                 controller: _catDirectDownloadUrl,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Download Page URL: ",
+                label: loc.recordDownloadPageUrlLabel,
                 controller: _catDownloadPageUrl,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Forum Thread ID: ",
+                label: loc.recordForumThreadIdLabel,
                 controller: _catForumThreadId,
                 onChanged: _markDirty,
               ),
               InlineEditText(
-                label: "Nexus Mods ID: ",
+                label: loc.recordNexusModsIdLabel,
                 controller: _catNexusModsId,
                 onChanged: _markDirty,
               ),
               if (source?.categories != null && source!.categories!.isNotEmpty)
                 SimpleDataRow(
-                  label: "Categories: ",
+                  label: loc.recordCategoriesLabel,
                   value: source.categories!.join(", "),
                 ),
               if (source?.lastSeen != null)
                 SimpleDataRow(
-                  label: "Last Seen: ",
+                  label: loc.recordLastSeenLabel,
                   value: dateFmt.format(source!.lastSeen!),
                 ),
             ],
@@ -507,10 +521,14 @@ class _ModRecordSourcesDialogState
     );
   }
 
-  Widget _buildDownloadHistorySection(ModRecord record, DateFormat dateFmt) {
+  Widget _buildDownloadHistorySection(
+    ModRecord record,
+    DateFormat dateFmt,
+    AppLocalizations loc,
+  ) {
     final source = record.downloadHistory;
     return TriOSExpansionTile(
-      title: Text("Download History"),
+      title: Text(loc.recordDownloadHistory),
       leading: const Icon(Icons.download, size: 20),
       initiallyExpanded: true,
       children: [
@@ -526,18 +544,18 @@ class _ModRecordSourcesDialogState
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               InlineEditText(
-                label: "Downloaded From: ",
+                label: loc.recordDownloadedFromLabel,
                 controller: _dlDownloadedFrom,
                 onChanged: _markDirty,
               ),
               if (source?.lastDownloadedAt != null)
                 SimpleDataRow(
-                  label: "Downloaded At: ",
+                  label: loc.recordDownloadedAtLabel,
                   value: dateFmt.format(source!.lastDownloadedAt!),
                 ),
               if (source?.lastSeen != null)
                 SimpleDataRow(
-                  label: "Last Seen: ",
+                  label: loc.recordLastSeenLabel,
                   value: dateFmt.format(source!.lastSeen!),
                 ),
             ],

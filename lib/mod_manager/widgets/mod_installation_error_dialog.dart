@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:open_filex/open_filex.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/utils/dialogs.dart';
@@ -26,7 +27,7 @@ class ModInstallationErrorDialog extends StatelessWidget {
   ) {
     return showAlertDialog(
       context,
-      title: "Error",
+      title: AppLocalizations.of(context).modInstallationErrorDialogError,
       widget: ModInstallationErrorDialog(errors: errors),
     );
   }
@@ -34,6 +35,7 @@ class ModInstallationErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +87,7 @@ class ModInstallationErrorDialog extends StatelessWidget {
                           failedMod.sourceFileEntity.parent.path,
                         );
                       },
-                      child: const Text("Show mod file"),
+                      child: Text(loc.modInstallationErrorDialogShowModFile),
                     ),
                     const SizedBox(width: 8),
                     OutlinedButton(
@@ -94,7 +96,9 @@ class ModInstallationErrorDialog extends StatelessWidget {
                           failedMod.destinationFolder.path,
                         );
                       },
-                      child: const Text("Open Starsector mods folder"),
+                      child: Text(
+                        loc.modInstallationErrorDialogOpenStarsectorModsFolder,
+                      ),
                     ),
                   ],
                 ),

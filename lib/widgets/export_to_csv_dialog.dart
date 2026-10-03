@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/snackbar.dart';
 
 import 'package:file_picker/file_picker.dart';
@@ -6,14 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:trios/thirdparty/dartx/string.dart';
 
-enum _ExportOption {
-  allData('All Data'),
-  gridData('Grid Data');
-
-  const _ExportOption(this.label);
-
-  final String label;
-}
+enum _ExportOption { allData, gridData }
 
 /// Shows a dialog allowing the user to export data to a CSV file or copy it to the clipboard.
 ///
@@ -27,6 +21,8 @@ Future<void> showExportOrCopyDialog(
   String Function()? getAllDataCsvString,
 ) async {
   _ExportOption? selectedOption;
+
+  final loc = AppLocalizations.of(context);
 
   await showDialog<void>(
     context: context,
@@ -62,7 +58,9 @@ Future<void> showExportOrCopyDialog(
                         const Icon(Icons.exit_to_app, size: 24),
                         const SizedBox(width: 8),
                         Text(
-                          'Export ${nameOfThingBeingExported.capitalize()} Data',
+                          loc.csvExportTitle(
+                            nameOfThingBeingExported.capitalize(),
+                          ),
                           style: Theme.of(ctx).textTheme.titleLarge,
                         ),
                         const Spacer(),
@@ -85,14 +83,20 @@ Future<void> showExportOrCopyDialog(
                                   crossAxisAlignment: .start,
                                   children: [
                                     Text(
-                                      option.label,
+                                      option == _ExportOption.allData
+                                          ? loc.csvExportOptionAllData
+                                          : loc.csvExportOptionGridData,
                                       style: Theme.of(ctx).textTheme.bodyMedium,
                                     ),
                                     Text(switch (option) {
-                                      _ExportOption.allData =>
-                                        'All loaded $nameOfThingBeingExported data and fields.',
-                                      _ExportOption.gridData =>
-                                        'Only the $nameOfThingBeingExported data and fields visible in the grid.',
+                                      _ExportOption.allData => loc
+                                          .csvExportAllLoadedData(
+                                            nameOfThingBeingExported,
+                                          ),
+                                      _ExportOption.gridData => loc
+                                          .csvExportGridDataOnly(
+                                            nameOfThingBeingExported,
+                                          ),
                                     }, style: Theme.of(ctx).textTheme.labelMedium),
                                   ],
                                 ),
@@ -119,15 +123,19 @@ Future<void> showExportOrCopyDialog(
                               minimumSize: const Size(220, 64),
                             ),
                             icon: const Icon(Icons.copy_all),
-                            label: const Text('Copy to Clipboard'),
+                            label: Text(loc.csvExportCopyToClipboard),
                             onPressed: () async {
                               await Clipboard.setData(
                                 ClipboardData(text: getCsv(selectedOption!)),
                               );
                               if (ctx.mounted) {
                                 ScaffoldMessenger.of(ctx).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Copied to clipboard!'),
+                                  SnackBar(
+                                    content: Text(
+                                      AppLocalizations.of(
+                                        ctx,
+                                      ).csvExportCopiedToClipboard,
+                                    ),
                                   ),
                                 );
                               }
@@ -138,7 +146,7 @@ Future<void> showExportOrCopyDialog(
                               minimumSize: const Size(220, 64),
                             ),
                             icon: const Icon(Icons.save_alt),
-                            label: const Text('Save to File'),
+                            label: Text(loc.csvExportSaveToFile),
                             onPressed: () async {
                               final path = await _pickSaveLocation(ctx);
                               if (path == null) return;
@@ -146,7 +154,13 @@ Future<void> showExportOrCopyDialog(
                               await file.writeAsString(getCsv(selectedOption!));
                               if (ctx.mounted) {
                                 ScaffoldMessenger.of(ctx).showSnackBar(
-                                  SnackBar(content: Text('Saved: $path')),
+                                  SnackBar(
+                                    content: Text(
+                                      AppLocalizations.of(ctx).csvExportSaved(
+                                        path,
+                                      ),
+                                    ),
+                                  ),
                                 );
                               }
                             },
@@ -160,7 +174,7 @@ Future<void> showExportOrCopyDialog(
                         const Spacer(),
                         TextButton(
                           onPressed: () => Navigator.of(ctx).pop(),
-                          child: const Text('Close'),
+                          child: Text(loc.commonClose),
                         ),
                       ],
                     ),
@@ -180,7 +194,7 @@ Future<String?> _pickSaveLocation(BuildContext context) async {
   try {
     // Uses `file_picker` save dialog; falls back to temp file if unsupported.
     final result = await FilePicker.platform.saveFile(
-      dialogTitle: 'Save Weapons CSV',
+      dialogTitle: AppLocalizations.of(context).csvExportSaveDialogTitle,
       fileName: 'weapons_export.csv',
       type: FileType.custom,
       allowedExtensions: ['csv'],
@@ -198,7 +212,9 @@ Future<String?> _pickSaveLocation(BuildContext context) async {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Save dialog unavailable. Example file at: ${temp.path}',
+            AppLocalizations.of(context).csvExportSaveDialogUnavailable(
+              temp.path,
+            ),
           ),
         ),
       );

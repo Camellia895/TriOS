@@ -9,6 +9,7 @@ import 'package:trios/hullmod_viewer/widgets/hullmod_codex_card.dart';
 import 'package:trios/hullmod_viewer/widgets/hullmod_details_dialog.dart';
 import 'package:trios/hullmod_viewer/hullmods_page_controller.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
@@ -330,11 +331,12 @@ class _HullmodsPageState extends ConsumerState<HullmodsPage>
   }
 
   Widget _buildRowContextMenu(Hullmod hullmod, Widget child) {
+    final loc = AppLocalizations.of(context);
     return ContextMenuRegion(
       contextMenu: ContextMenu(
         entries: <ContextMenuEntry>[
           MenuItem(
-            label: 'Copy ID',
+            label: loc.factionViewerCopyId,
             icon: Icons.copy,
             onSelected: () =>
                 Clipboard.setData(ClipboardData(text: hullmod.id)),
@@ -342,12 +344,12 @@ class _HullmodsPageState extends ConsumerState<HullmodsPage>
           if (hullmod.csvFile != null)
             buildOpenSingleFolderMenuItem(
               hullmod.csvFile!.parent,
-              label: 'Open hullmod data folder',
+              label: loc.hullmodsOpenHullmodDataFolder,
             ),
           if (hullmod.modVariant != null)
             buildOpenSingleFolderMenuItem(
               hullmod.modVariant!.modFolder.absolute,
-              label: 'Open Mod Folder',
+              label: loc.factionViewerOpenModFolder,
             ),
           if (hullmod.modVariant != null)
             buildMenuItemOpenForumPage(hullmod.modVariant!, context),
@@ -498,10 +500,11 @@ class _HullmodsPageState extends ConsumerState<HullmodsPage>
     required HullmodsPageState controllerState,
   }) {
     final controller = ref.read(hullmodsPageControllerProvider.notifier);
+    final loc = AppLocalizations.of(context);
     return OverflowMenuButton(
       menuItems: [
         OverflowMenuItem(
-          title: 'Export to CSV',
+          title: loc.hullmodsExportToCsv,
           icon: Icons.table_view,
           onTap: () {
             if (_gridController == null) return;
@@ -520,7 +523,7 @@ class _HullmodsPageState extends ConsumerState<HullmodsPage>
           },
         ).toEntry(0),
         OverflowMenuCheckItem(
-          title: 'Stretch icons to fit',
+          title: loc.hullmodsStretchIconsToFit,
           icon: Icons.fit_screen,
           checked: controllerState.useContainFit,
           onTap: () => controller.toggleUseContainFit(),

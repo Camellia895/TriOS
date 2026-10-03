@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/chipper/utils.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -67,8 +68,8 @@ class ModlistRatingIntent extends ChatIntent with ModAwareIntent {
     final enabledMods = mods.where((m) => m.isEnabledInGame).toList();
 
     if (enabledMods.isEmpty) {
-      return const ChatResponse(
-        text: "You have zero mods enabled. That's not a modlist.",
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotYouHaveZeroMods,
       );
     }
 

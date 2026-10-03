@@ -7,6 +7,7 @@ import 'package:trios/codex/models/codex_entry.dart';
 import 'package:trios/codex/widgets/codex_reference_link.dart';
 import 'package:trios/descriptions/description_entry.dart';
 import 'package:trios/descriptions/descriptions_manager.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants_theme.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/weapon_viewer/models/weapon.dart';
@@ -383,7 +384,7 @@ class WeaponCodexCard {
               padding: const EdgeInsets.only(top: 4),
               child: Text.rich(
                 TextSpan(
-                  text: 'Base value: ',
+                  text: AppLocalizations.of(context).weaponCodexCardBaseValue,
                   style: theme.textTheme.bodySmall,
                   children: [
                     TextSpan(

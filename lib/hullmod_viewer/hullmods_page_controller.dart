@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/notify_on_new_state.dart';
 import 'package:trios/descriptions/descriptions_manager.dart';
 import 'package:trios/hullmod_viewer/hullmods_manager.dart';
@@ -170,6 +171,7 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
   }
 
   FilterScopeController<Hullmod> _buildFilters() {
+    final loc = AppLocalizationsSync.instance;
     final groups = <FilterGroup<Hullmod>>[
       CompositeFilterGroup<Hullmod>(
         id: 'general',
@@ -177,8 +179,8 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
         fields: [
           BoolField<Hullmod>(
             id: 'showEnabled',
-            label: 'Only Enabled Mods',
-            tooltip: 'Only hullmods from enabled mods.',
+            label: loc.factionViewerOnlyEnabledMods,
+            tooltip: loc.hullmodsFilterOnlyEnabledModsTooltip,
             predicate: (hullmod) {
               final mods = ref.read(AppState.mods);
               return hullmod.modVariant == null ||
@@ -187,8 +189,8 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
           ),
           BoolField<Hullmod>(
             id: 'showHidden',
-            label: 'Show Hidden Hullmods',
-            tooltip: 'Show hidden hullmods (built-in, internal).',
+            label: loc.hullmodsShowHiddenHullmods,
+            tooltip: loc.hullmodsFilterShowHiddenTooltip,
             // [_applyEnabledAndHidden].
             predicate: (_) => true,
             defaultValue: true,
@@ -196,7 +198,7 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
           ),
           EnumField<Hullmod, HullmodSpoilerLevel>(
             id: 'spoiler',
-            label: 'Spoilers',
+            label: loc.hullmodsSpoilers,
             defaultValue: HullmodSpoilerLevel.noSpoilers,
             options: HullmodSpoilerLevel.values,
             predicate: _spoilerMatches,
@@ -246,15 +248,17 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
       hullmodMatchesSpoilerLevel(hullmod, level);
 
   String _spoilerLabel(HullmodSpoilerLevel e) => switch (e) {
-    HullmodSpoilerLevel.noSpoilers => 'No spoilers',
-    HullmodSpoilerLevel.showAllSpoilers => 'Show all spoilers',
+    HullmodSpoilerLevel.noSpoilers =>
+      AppLocalizationsSync.instance.hullmodsSpoilerNone,
+    HullmodSpoilerLevel.showAllSpoilers =>
+      AppLocalizationsSync.instance.hullmodsSpoilerAll,
   };
 
   String _spoilerTooltip(HullmodSpoilerLevel e) => switch (e) {
     HullmodSpoilerLevel.noSpoilers =>
-      'Hides hullmods tagged CODEX_UNLOCKABLE or CODEX_REQUIRE_RELATED.',
+      AppLocalizationsSync.instance.hullmodsSpoilerNoneTooltip,
     HullmodSpoilerLevel.showAllSpoilers =>
-      'Shows hullmods tagged CODEX_UNLOCKABLE or CODEX_REQUIRE_RELATED.',
+      AppLocalizationsSync.instance.hullmodsSpoilerAllTooltip,
   };
 
   void _persistState(HullmodsPageState newState) {

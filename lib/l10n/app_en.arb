@@ -45,5 +45,2913 @@
     "placeholders": {
       "appName": {}
     }
-  }
+  },
+  "catalogAlwaysLoad": "Always Load",
+  "catalogAlsoInThisThread": "Also in this thread",
+  "catalogAlsoNeeds": "Also needs:",
+  "catalogBack": "Back",
+  "catalogBrowser": "Browser",
+  "catalogCancel": "Cancel",
+  "catalogClearCache": "Clear cache",
+  "catalogClose": "Close",
+  "catalogCopyBestDownloadHint": "Copy the best download link to the clipboard",
+  "catalogCopyDiscordLink": "Copy Discord link",
+  "catalogCopyDownloadLink": "Copy download link",
+  "catalogCopyUrl": "Copy URL",
+  "catalogDataSources": "Data sources…",
+  "catalogDataSourcesTitle": "Catalog Data Sources",
+  "catalogDebugInfo": "Debug Info",
+  "catalogDirectDownload": "Direct download",
+  "catalogDisable": "Disable",
+  "catalogDiscordLinkCopied": "Discord link copied to clipboard",
+  "catalogDonationLinks": "Donation links",
+  "catalogDownload": "Download",
+  "catalogDownloadConfirmPrompt": "Do you want to download '{modName}'?",
+  "@catalogDownloadConfirmPrompt": {
+    "placeholders": {
+      "modName": {
+        "type": "String"
+      }
+    }
+  },
+  "catalogDownloadLinkCopied": "Download link copied to clipboard",
+  "catalogDownloads": "Downloads",
+  "catalogEdited": "  •  Edited ",
+  "catalogEnable": "Enable",
+  "catalogForward": "Forward",
+  "catalogForumIndexSubforumsAndDiscord": "forum index, subforums, and discord",
+  "catalogFullChangelog": "Full changelog",
+  "catalogGameVersion": "Game Version",
+  "catalogGridItemMinSize": "Grid item min. size",
+  "catalogHasUpdate": "Has Update",
+  "catalogInCategory": "in {category}",
+  "@catalogInCategory": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "catalogIndex": "Index",
+  "catalogInstalled": "Installed",
+  "catalogInstalledMod": "Installed Mod",
+  "catalogLicense": "License",
+  "catalogLinks": "Links",
+  "catalogLoadOnce": "Load Once",
+  "catalogMutedUpdates": "{count, plural, =1{{count} muted update} other{{count} muted updates}}",
+  "@catalogMutedUpdates": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "catalogMutedUpdatesBadge": "+ {count}",
+  "@catalogMutedUpdatesBadge": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "catalogOk": "Ok",
+  "catalogOpen": "Open",
+  "catalogOpenCacheFolder": "Open cache folder",
+  "catalogOpenCacheFolderTooltip": "Open the cache folder in your file explorer",
+  "catalogOpenFile": "Open File",
+  "catalogOpenForumPage": "Open forum page",
+  "catalogOpenInBrowser": "Open in Browser",
+  "catalogOpenInBuiltInBrowser": "Open in the built-in browser",
+  "catalogOpenInDiscord": "Open in Discord",
+  "catalogOpenInWebBrowser": "Open in your web browser",
+  "catalogOpenNexusModsPage": "Open NexusMods page",
+  "catalogOtherDownloadOptions": "Other download options",
+  "catalogPosted": "Posted ",
+  "catalogPreparingToInstall": "Preparing to install {modName}…",
+  "@catalogPreparingToInstall": {
+    "placeholders": {
+      "modName": {
+        "type": "String"
+      }
+    }
+  },
+  "catalogQbsForumBundle": "QB's Forum Bundle",
+  "catalogReadFullLicense": "Read full license",
+  "catalogReadLicense": "Read the license",
+  "catalogRecentUpdates": "Recent updates",
+  "catalogRecentUpdatesCount": "Recent updates ({count})",
+  "@catalogRecentUpdatesCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "catalogRecheck": "Recheck",
+  "catalogRefreshNow": "Refresh now",
+  "catalogReload": "Reload",
+  "catalogRestart": "and then restart {appName}.",
+  "@catalogRestart": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "catalogSaveCompatibility": "Save compatibility",
+  "catalogSliderValueWithUnit": "{value} {unit}",
+  "@catalogSliderValueWithUnit": {
+    "placeholders": {
+      "value": {
+        "type": "num"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "catalogSourceCode": "Source code",
+  "catalogSourceCodeHost": "{hostName}  ",
+  "@catalogSourceCodeHost": {
+    "placeholders": {
+      "hostName": {
+        "type": "String"
+      }
+    }
+  },
+  "catalogSpaceBetweenCards": "Space between cards",
+  "catalogSummary": "Summary",
+  "catalogViewModDetails": "View Mod Details...",
+  "catalogWebsite": "Website",
+  "catalogWispsModRepo": "Wisp's Mod Repo",
+  "chatbotAppVersion": "{appName} v{version}",
+  "@chatbotAppVersion": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotAllEnabledModsAppearCompatible": "All enabled mods appear compatible!",
+  "chatbotAllInstalledModsAreCurrentlyEnabled": "All installed mods are currently enabled.",
+  "chatbotAllModsAreUpToDate": "All mods are up to date!",
+  "chatbotChangelogFor": "Changelog for {name}:\n{text}",
+  "@chatbotChangelogFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotCouldNotDetermineCurrentRam": "Could not determine current RAM allocation. Make sure your game folder is configured in Settings.",
+  "chatbotCurrentRamAllocation": "Current RAM allocation: {ram} MB{ramGb}\n\nTo change this, go to the Dashboard page and adjust the\nRAM slider, or ask \"more ram\" for recommendations.",
+  "@chatbotCurrentRamAllocation": {
+    "placeholders": {
+      "ram": {
+        "type": "String"
+      },
+      "ramGb": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotSuggestionHelpMeWithMods": "Help me with mods",
+  "chatbotModMetadataNotAvailableYet": "Mod metadata is not available yet.",
+  "chatbotNoRamInformationAvailable": "No RAM information available. Make sure your game folder is configured in Settings.",
+  "chatbotNoVramDataAvailable": "No VRAM data available yet.\nOpen the VRAM Estimator page in the sidebar to run a scan.",
+  "chatbotNoChangelogsLoadedYet": "No changelogs loaded yet. Changelogs are fetched when mod updates are checked.",
+  "chatbotNoConflictsFound": "No conflicts found among your enabled mods.",
+  "chatbotNoErrorsFoundInLog": "No errors found in the log. Looks good!",
+  "chatbotNoModCategoriesDefinedYet": "No mod categories defined yet.\nYou can create categories in the Mod Manager by right-clicking a mod.",
+  "chatbotNoModChangeHistory": "No mod change history recorded yet.",
+  "chatbotNoModDependenciesFound": "No mod dependencies found.",
+  "chatbotNoModFoundMatching": "No mod found matching \"{query}\".",
+  "@chatbotNoModFoundMatching": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotNoModFoundMatchingHint": "No mod found matching \"{query}\". Check your spelling, try a shorter name, or use an acronym.",
+  "@chatbotNoModFoundMatchingHint": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotNoModMetadataAvailable": "No mod metadata available.",
+  "chatbotNoModProfileToCompare": "No mod profile is currently active to compare against.",
+  "chatbotNoModProfileActive": "No mod profile is currently active.\nCreate and activate a profile on the Mod Profiles page.",
+  "chatbotNoModProfilesSaved": "No mod profiles saved yet.\nCreate profiles on the Mod Profiles page to save different mod configurations.",
+  "chatbotNoModsCurrentlyEnabled": "No mods are currently enabled.",
+  "chatbotNoModsInstalled": "No mods are installed.",
+  "chatbotNoModsFoundByAuthor": "No mods found by author \"{authorQuery}\".",
+  "@chatbotNoModsFoundByAuthor": {
+    "placeholders": {
+      "authorQuery": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotNoModsDetectedInLog": "No mods were detected in the log file.",
+  "chatbotNoTipsAvailable": "No tips available. Tips come from your installed mods' mod_info.json files.",
+  "chatbotNoTotalConversionMods": "No total conversion mods are installed.",
+  "chatbotNoUtilityLibraryMods": "No utility/library mods are installed.",
+  "chatbotStarsectorNotRunning": "Starsector does not appear to be running.",
+  "chatbotStarsectorCurrentlyRunning": "Starsector is currently running.\nNote: Mod changes won't take effect until you restart the game.",
+  "chatbotSuggestionTroubleshoot": "Troubleshoot",
+  "chatbotVersionCheckDataNotAvailable": "Version check data is not available yet. Try again in a moment.",
+  "chatbotSuggestionWhatCanYouDo": "What can you do?",
+  "chatbotYouAreRunningNoUpdateInfo": "You are running {appName} v{version}.\nNo update information available at this time.",
+  "@chatbotYouAreRunningNoUpdateInfo": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotYouAreRunningUpdating": "You are running {appName} v{version}.\nAn update is being downloaded. Check the Settings page for details.",
+  "@chatbotYouAreRunningUpdating": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotFindItInSidebar": "You can find it in the sidebar:\n  {page}",
+  "@chatbotFindItInSidebar": {
+    "placeholders": {
+      "page": {
+        "type": "String"
+      }
+    }
+  },
+  "chatbotYouHaveZeroMods": "You have zero mods enabled. That's not a modlist.",
+  "chatbotYourLogFileIsAt": "Your log file is at:\n{path}",
+  "@chatbotYourLogFileIsAt": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "modManagerModsSelected": "{count} mods selected",
+  "@modManagerModsSelected": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "modManagerModsCount": "{count} mods",
+  "@modManagerModsCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "wispgridGroupReEstimateVramUsage": "(Re)estimate VRAM Usage",
+  "modsGridNoneActive": "(none active)",
+  "modsGridAboutVramVramEstimator": "About VRAM & VRAM Estimator",
+  "createCategoryDialogAddCategory": "Add Category",
+  "categoryContextMenuAddCategory": "Add Category...",
+  "modsGridAddMods": "Add Mod(s)",
+  "modsGridAddSecondGroupingLevel": "Add a second level of grouping under the primary group.",
+  "categoryContextMenuAllIcons": "All icons…",
+  "modSummaryAuthor": "Author",
+  "modContextMenuCategories": "Categories",
+  "modsGridCategory": "Category",
+  "categoryContextMenuCategoryColor": "Category Color",
+  "categoryContextMenuCategoryIcon": "Category Icon",
+  "modContextMenuChangeCategory": "Change Category",
+  "categoryManagementPopupChangeColor": "Change color",
+  "modsGridChangeGrouping": "Change how mods are grouped in the grid.",
+  "categoryManagementPopupChangeIcon": "Change icon",
+  "modContextMenuCheckVramOfSelected": "Check VRAM of selected",
+  "modContextMenuCheckForUpdates": "Check for updates",
+  "categoryContextMenuChooseCategories": "Choose Categories",
+  "modManagerClear": "Clear",
+  "createCategoryDialogColor": "Color:",
+  "modListExporterCopiedToClipboard": "Copied mod list to clipboard.",
+  "modsGridCopyAllModsToClipboard": "Copy All Mods to Clipboard",
+  "modsGridCopyEnabledModsToClipboard": "Copy Enabled Mods to Clipboard",
+  "modContextMenuCopyToClipboard": "Copy to clipboard",
+  "createCategoryDialogCreate": "Create",
+  "categoryManagementPopupCustom": "Custom",
+  "modManagerDataIssuesIn": "Data issues in {modName}",
+  "@modManagerDataIssuesIn": {
+    "placeholders": {
+      "modName": {
+        "type": "String"
+      }
+    }
+  },
+  "categoryManagementPopupDelete": "Delete",
+  "categoryManagementPopupDeleteCategory": "Delete \"{categoryName}\"?",
+  "@categoryManagementPopupDeleteCategory": {
+    "placeholders": {
+      "categoryName": {
+        "type": "String"
+      }
+    }
+  },
+  "modInfoDialogDependencies": "Dependencies",
+  "modInfoDialogDependents": "Dependents",
+  "modInfoDialogDescription": "Description",
+  "modsGridDisableAll": "Disable All",
+  "modsGridDisableAllMods": "Disable All Mods",
+  "modsGridDontShowUpdates": "Don't show updates",
+  "categoryManagementPopupDone": "Done",
+  "modsGridEnableAll": "Enable All",
+  "modsGridEnableAllMods": "Enable All Mods",
+  "modInstallationErrorDialogError": "Error",
+  "modsGridEstimate": "Estimate",
+  "modsGridEstimateVram": "Estimate VRAM",
+  "modInfoDialogEstimateVramUsage": "Estimate VRAM usage",
+  "modsGridFirstSeen": "First Seen",
+  "modSummaryFirstSeenByTrios": "First seen by TriOS",
+  "modContextMenuForceToVersion": "Force to {version}",
+  "@modContextMenuForceToVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "wispgridGroupRowGroupBy": "Group By",
+  "wispgridGroupRowHeaderStyle": "Header Style",
+  "wispgridHeaderRowHideAll": "Hide All",
+  "modManagerHideModDataWarnings": "Hide mod data warnings",
+  "wispgridHeaderRowHideShowColumns": "Hide/Show Columns",
+  "categoryIconPickerDialogIconFor": "Icon for {modName}",
+  "@categoryIconPickerDialogIconFor": {
+    "placeholders": {
+      "modName": {
+        "type": "String"
+      }
+    }
+  },
+  "createCategoryDialogIcon": "Icon:",
+  "wispGridIncoherentScreaming": "Incoherent screaming",
+  "modsGridItDoesntMeanOld": "It doesn't mean you're old.",
+  "modSummaryLastEnabledByTrios": "Last enabled by TriOS",
+  "wispgridGroupRowLine": "Line",
+  "modsGridLoad": "Load #",
+  "categoryManagementPopupManageCategories": "Manage Categories",
+  "wispgridGroupManageCategories": "Manage Categories...",
+  "categoryManagementPopupMaterial": "Material",
+  "auditModAuditLog": "Mod Audit Log",
+  "modsGridModButtonsHighContrast": "Mod Buttons: High Contrast",
+  "modContextMenuModColor": "Mod Color",
+  "modInfoDialogModIndex": "Mod Index",
+  "modInfoDialogModInfo": "Mod Info",
+  "modInfoDialogModRepo": "Mod Repo",
+  "modsGridMoreOptions": "More options",
+  "modsGridName": "Name",
+  "categoryIconPickerDialogNoIcon": "No Icon",
+  "categoryIconPickerDialogNoIconsFound": "No icons found",
+  "categoryIconPickerDialogNoMaterialIconsFound": "No material icons found",
+  "modsGridOnlyShowEnabledMods": "Only show enabled mods",
+  "modInfoDialogOpenFolder": "Open Folder",
+  "modInfoDialogOpenPage": "Open Page",
+  "modInstallationErrorDialogOpenStarsectorModsFolder": "Open Starsector mods folder",
+  "modInfoDialogOpenModFolder": "Open mod folder",
+  "modsGridOpenSidePanel": "Open side panel",
+  "createCategoryDialogPickAColor": "Pick a color",
+  "modsGridPinFavoritedModsToTop": "Pin Favorited Mods to Top",
+  "modsGridProfile": "Profile:",
+  "categoryContextMenuRename": "Rename",
+  "categoryContextMenuRenameCategory": "Rename \"{categoryName}\"",
+  "@categoryContextMenuRenameCategory": {
+    "placeholders": {
+      "categoryName": {
+        "type": "String"
+      }
+    }
+  },
+  "wispgridGroupRepeatModsInEachCategory": "Repeat Mods In Each Category",
+  "modInstallSelectionDialogReplaceAllAlreadyPresent": "Replace all already-present mods",
+  "wispgridHeaderRowResetGridLayout": "Reset grid layout",
+  "modVersionSelectionDropdownSelectADifferentVersion": "Select a different version",
+  "categoryContextMenuSetPrimaryCategory": "Set Primary Category",
+  "wispgridGroupRowShortCard": "Short Card",
+  "wispgridHeaderRowShowAll": "Show All",
+  "modsGridShowModDataWarnings": "Show Mod Data Warnings",
+  "modsGridShowAllUpdates": "Show all updates",
+  "modInstallationErrorDialogShowModFile": "Show mod file",
+  "modsGridShowUnmutedUpdates": "Show unmuted updates",
+  "modInfoDialogSources": "Sources",
+  "wispgridGroupRowTallCard": "Tall Card",
+  "wispgridGroupRowThenBy": "Then By",
+  "modInfoDialogTrios": "TriOS",
+  "modInfoDialogUpdate": "Update",
+  "modsGridUpdatesVisibility": "Updates Visibility",
+  "modInfoDialogUpdatesStatus": "Updates: {updatesStatus}",
+  "@modInfoDialogUpdatesStatus": {
+    "placeholders": {
+      "updatesStatus": {
+        "type": "String"
+      }
+    }
+  },
+  "modInfoDialogVram": "VRAM",
+  "modsGridVramEst": "VRAM Est.",
+  "modsGridVersion": "Version",
+  "modSummaryVersions": "Version(s)",
+  "modInfoDialogByAuthor": "by {author}",
+  "@modInfoDialogByAuthor": {
+    "placeholders": {
+      "author": {
+        "type": "String"
+      }
+    }
+  },
+  "modManagerVersionShort": "v{version}",
+  "@modManagerVersionShort": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "profileModsCount": "{count} mods",
+  "@profileModsCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "profileTheyMayClick": "3. They may click",
+  "profileActivateConfirm": "Activate '{profileName}'?",
+  "@profileActivateConfirm": {
+    "placeholders": {
+      "profileName": {
+        "type": "String"
+      }
+    }
+  },
+  "profileBackupAndActivate": "Back up Profile & Activate",
+  "profileBothIdentical": "Both profiles are identical.",
+  "profileClipboardEmpty": "Clipboard is empty",
+  "profileCopyButtonOnA": "Copy button on a Mod Profile.",
+  "profileCopyMissingToClipboard": "Copy missing to clipboard",
+  "profileCopyToClipboard": "Copy mod profile to clipboard",
+  "profileCreateProfile": "Create Profile",
+  "profileDeleteProfile": "Delete profile",
+  "profileDeleteProfileConfirm": "Delete profile?",
+  "profileDuplicateProfile": "Duplicate profile",
+  "profileFailedToImport": "Failed to import profile: {error}",
+  "@profileFailedToImport": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "profileImport": "Import",
+  "profileImportASharedProfile": "Import a shared mod Profile from clipboard",
+  "profileImportAsCopy": "Import as Copy",
+  "profileImported": "Successfully imported profile: {name}",
+  "@profileImported": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "profileImportUnable": "Unable to import profile '{name}'.",
+  "@profileImportUnable": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "profileMissingMods": "Missing Mods",
+  "profileMissingVersions": "Missing Versions",
+  "profileModProfiles": "Mod Profiles",
+  "profileModListCopied": "Mod list copied to clipboard",
+  "profileNewProfile": "New Profile",
+  "profileOk": "OK",
+  "profileOpenSaveFolder": "Open save folder",
+  "profileAlreadyExists": "Profile Already Exists",
+  "profileRereadFromSavesFolder": "Reread from Saves folder",
+  "profileSearchCatalog": "Search Catalog",
+  "profileSharingModProfiles": "Sharing Mod Profiles",
+  "profileOverwriteExisting": "Overwrite Existing",
+  "profileWip": "WIP",
+  "recordAuthorLabel": "Author: ",
+  "recordAuthorsLabel": "Authors: ",
+  "recordCatalog": "Catalog",
+  "recordCatalogNameLabel": "Catalog Name: ",
+  "recordCategoriesLabel": "Categories: ",
+  "recordChangelogUrlLabel": "Changelog URL: ",
+  "recordDirectDownloadUrlLabel": "Direct Download URL: ",
+  "recordDiscordUrlLabel": "Discord URL: ",
+  "recordDownloadHistory": "Download History",
+  "recordDownloadPageUrlLabel": "Download Page URL: ",
+  "recordDownloadedAtLabel": "Downloaded At: ",
+  "recordDownloadedFromLabel": "Downloaded From: ",
+  "recordFirstSeenLabel": "First Seen: ",
+  "recordForumThreadIdLabel": "Forum Thread ID: ",
+  "recordForumUrlLabel": "Forum URL: ",
+  "recordIdentity": "Identity",
+  "recordLastSeenLabel": "Last Seen: ",
+  "recordMasterVersionFileUrlLabel": "Master Version File URL: ",
+  "recordModIdLabel": "Mod ID: ",
+  "recordModSourcesTitle": "Mod Sources: {name}",
+  "@recordModSourcesTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "recordNameLabel": "Name: ",
+  "recordNamesLabel": "Names: ",
+  "recordNexusModsIdLabel": "Nexus Mods ID: ",
+  "recordNexusUrlLabel": "Nexus URL: ",
+  "recordPathLabel": "Path: ",
+  "recordKeyLabel": "Record Key: ",
+  "recordSave": "Save",
+  "recordVersionChecker": "Version Checker",
+  "recordVersionLabel": "Version: ",
+  "portraitConfirmedPortraits": "Confirmed Portraits",
+  "portraitOnlyYourChanges": "Only Your Changes",
+  "portraitErrorAddingReplacement": "Error adding replacement: {error}",
+  "@portraitErrorAddingReplacement": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "portraitErrorImporting": "Error importing portraits: {error}",
+  "@portraitErrorImporting": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "portraitFemale": "Female",
+  "portraitIdLabel": "ID: {id}",
+  "@portraitIdLabel": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "portraitImportPortraits": "Import Portrait(s)",
+  "portraitImportResults": "Import Results",
+  "portraitLoading": "Loading portraits...",
+  "portraitMale": "Male",
+  "portraitNoOthersAvailable": "No other portraits available for replacement",
+  "portraitNoneFound": "No portrait replacements found.",
+  "portraitOpenOriginalFolder": "Open Folder Of Original",
+  "portraitOpenReplacementFolder": "Open Folder of Replacement",
+  "portraitOpenOriginal": "Open Original",
+  "portraitOpenReplacement": "Open Replacement",
+  "portraitOriginal": "Original",
+  "portraitOriginalNotFound": "Original portrait not found",
+  "portraitPathLabel": "Path: {path}",
+  "@portraitPathLabel": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "portraitPickReplacement": "Pick Replacement",
+  "portraitReplacement": "Portrait Replacement",
+  "portraitReplacements": "Portrait Replacements",
+  "portraitRetry": "Retry",
+  "portraitRevertToOriginal": "Revert to Original",
+  "portraitShowFilters": "Show filters",
+  "portraitSizeLabel": "Size: {size}",
+  "@portraitSizeLabel": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "portraitUnderTheHood": "Under the Hood",
+  "portraitViewReplacements": "View Replacements",
+  "shipsAlwaysShowEngineGlow": "Always show engine glow",
+  "shipsCopiedSpriteToClipboard": "Copied sprite to clipboard.",
+  "shipsCopySpriteToClipboard": "Copy sprite to clipboard",
+  "shipsOpenShipDataCsv": "Open ship_data.csv",
+  "shipsOpenSpriteFolder": "Open sprite folder",
+  "shipsHasBuiltInWeapons": "Has Built-in Weapons",
+  "shipsHasModules": "Has Modules",
+  "shipsShowShipsThatAreModules": "Show Ships That Are Modules",
+  "hullmodsSpoilers": "Spoilers",
+  "weaponsAlwaysShowWeaponGlow": "Always show weapon glow",
+  "weaponsOpenWpnFile": "Open .wpn file",
+  "weaponsOpenWeaponDataFolder": "Open weapon data folder(s)",
+  "weaponsOpenWeaponDataCsv": "Open weapon_data.csv",
+  "weaponsShowHiddenWeapons": "Show Hidden Weapons",
+  "hullmodsExportToCsv": "Export to CSV",
+  "hullmodsOpenHullmodDataFolder": "Open hullmod data folder",
+  "hullmodsStretchIconsToFit": "Stretch icons to fit",
+  "hullmodsShowHiddenHullmods": "Show Hidden Hullmods",
+  "factionViewerCopyId": "Copy ID",
+  "factionViewerOpenModFolder": "Open Mod Folder",
+  "factionViewerOpenFactionFile": "Open .faction file",
+  "factionViewerOpenFactionFolder": "Open faction folder",
+  "factionViewerNoFactionsFound": "No factions found.",
+  "factionViewerOnlyEnabledMods": "Only Enabled Mods",
+  "factionViewerHideHiddenFactions": "Hide hidden factions",
+  "factionViewerHideModOnlyFactions": "Hide mod-only factions",
+  "shipBlueprintAnimateEngines": "Animate engines",
+  "shipBlueprintAnimateShields": "Animate shields",
+  "shipBlueprintStationModule": "Station Module",
+  "shipCodexCardFighterBay": " Fighter bay",
+  "weaponCodexCardBaseValue": "Base value: ",
+  "weaponImageCellCopySpriteWithGlow": "Copy sprite (with glow)",
+  "spawnWeightsCalculatingSpawnWeights": "Calculating spawn weights…",
+  "spawnWeightsFaction": "Faction",
+  "spawnWeightsRole": "Role",
+  "vanillaShareBarStillReadingMods": "Still reading mods",
+  "vanillaShareBarVanilla": "Vanilla",
+  "launcherExecutable": "Executable: ",
+  "launcherGameIsRunning": "Game is running",
+  "launcherLaunchPrecheckFailed": "Launch Precheck Failed",
+  "launcherLaunchAnyway": "Launch anyway",
+  "launcherRam": "RAM: ",
+  "ramChangerApply": "Apply",
+  "vmparamsFileSelectorDialogMoreInformation": "More information",
+  "vmparamsFileSelectorDialogNoVmparamsTypeFiles": "No vmparams-type files found in the game directory.",
+  "vmparamsFileSelectorDialogRescan": "Rescan",
+  "vmparamsFileSelectorDialogVmparamsFiles": "vmparams Files",
+  "factionCardDoctrineTooltip": "{tooltip}: {value}/5\nNote: May be changed by mods.",
+  "@factionCardDoctrineTooltip": {
+    "placeholders": {
+      "tooltip": {
+        "type": "String"
+      },
+      "value": {
+        "type": "num"
+      }
+    }
+  },
+  "ramChangerRamGb": "{ram} GB",
+  "@ramChangerRamGb": {
+    "placeholders": {
+      "ram": {
+        "type": "num"
+      }
+    }
+  },
+  "factionProfileDialogDoctrineTooltip": "{label}: {value}/{max}\nNote: May be changed by mods.",
+  "@factionProfileDialogDoctrineTooltip": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "value": {
+        "type": "num"
+      },
+      "max": {
+        "type": "num"
+      }
+    }
+  },
+  "factionProfileDialogModifiedBy": "Modified by: {modifiers}",
+  "@factionProfileDialogModifiedBy": {
+    "placeholders": {
+      "modifiers": {
+        "type": "String"
+      }
+    }
+  },
+  "factionProfileDialogOpenFactionFile": "Open .faction file{suffix}",
+  "@factionProfileDialogOpenFactionFile": {
+    "placeholders": {
+      "suffix": {
+        "type": "String"
+      }
+    }
+  },
+  "factionProfileDialogOpenFactionFolder": "Open faction folder{suffix}",
+  "@factionProfileDialogOpenFactionFolder": {
+    "placeholders": {
+      "suffix": {
+        "type": "String"
+      }
+    }
+  },
+  "spawnWeightsOpenWeightFile": "Open the file that set this weight\n{path}",
+  "@spawnWeightsOpenWeightFile": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "shipsFailedToCopySprite": "Failed to copy sprite: {error}",
+  "@shipsFailedToCopySprite": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "shipsOpenShipOrSkinFile": "Open {fileType} file",
+  "@shipsOpenShipOrSkinFile": {
+    "placeholders": {
+      "fileType": {
+        "type": "String"
+      }
+    }
+  },
+  "shipBlueprintBackground": "Background: {label}",
+  "@shipBlueprintBackground": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "shipBlueprintModule": "Module: {moduleName}",
+  "@shipBlueprintModule": {
+    "placeholders": {
+      "moduleName": {
+        "type": "String"
+      }
+    }
+  },
+  "shipBlueprintSlotType": "Type: {type}",
+  "@shipBlueprintSlotType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "viewerCopyingImagesNotSupported": "Copying images is not supported on this platform.",
+  "shipsSkin": "Skin",
+  "shipsSkinOf": "of {hullName}",
+  "@shipsSkinOf": {
+    "placeholders": {
+      "hullName": {
+        "type": "String"
+      }
+    }
+  },
+  "shipsShipFile": "Ship file",
+  "weaponsWeaponFile": "Weapon file",
+  "weaponImageCellCopySpriteNoGlow": "Copy sprite (no glow)",
+  "weaponImageCellCopiedSpriteWithGlow": "Copied sprite (with glow) to clipboard.",
+  "shipsFilterOnlyEnabledModsTooltip": "Only show ships from enabled mods.\nShared with the weapons, factions and codex pages.",
+  "shipsFilterHasModulesTooltip": "Only show ships that have modules.",
+  "shipsFilterHasBuiltInWeaponsTooltip": "Only show ships that have built-in weapons.",
+  "shipsFilterShowModuleShipsTooltip": "Show ships that are used as modules on other ships.",
+  "shipsSpoilerNone": "No Spoilers",
+  "shipsSpoilerSlight": "Show slight spoilers",
+  "shipsSpoilerAll": "Show all spoilers",
+  "shipsSpoilerNoneTooltip": "No spoilers shown at all.",
+  "shipsSpoilerSlightTooltip": "Shows CODEX_UNLOCKABLE ships.",
+  "shipsSpoilerAllTooltip": "Show all spoilers, including HIDE_IN_CODEX and certain ultra-redacted vanilla tagged ships",
+  "weaponsFilterOnlyEnabledModsTooltip": "Only show weapons from enabled mods.\nShared with the ships, factions and codex pages.",
+  "weaponsFilterShowHiddenTooltip": "Show hidden weapons (built-in, internal).",
+  "weaponsSpoilerNone": "No spoilers",
+  "weaponsSpoilerAll": "Show all spoilers",
+  "weaponsSpoilerNoneTooltip": "Hides weapons tagged CODEX_UNLOCKABLE.",
+  "weaponsSpoilerAllTooltip": "Shows weapons tagged CODEX_UNLOCKABLE.",
+  "hullmodsFilterOnlyEnabledModsTooltip": "Only hullmods from enabled mods.",
+  "hullmodsFilterShowHiddenTooltip": "Show hidden hullmods (built-in, internal).",
+  "hullmodsSpoilerNone": "No spoilers",
+  "hullmodsSpoilerAll": "Show all spoilers",
+  "hullmodsSpoilerNoneTooltip": "Hides hullmods tagged CODEX_UNLOCKABLE or CODEX_REQUIRE_RELATED.",
+  "hullmodsSpoilerAllTooltip": "Shows hullmods tagged CODEX_UNLOCKABLE or CODEX_REQUIRE_RELATED.",
+  "factionViewerHideHiddenFactionsTooltip": "Hide factions with showInIntelTab: false (Remnants, Omega, etc.)",
+  "factionViewerSearchShips": "Search ships...",
+  "factionViewerSearchFactions": "Search factions...",
+  "factionViewerOnlyEnabledModsTooltip": "Show faction data from enabled mods only.\nShips, weapons, and spawn weights added by disabled mods are hidden.",
+  "factionViewerAscending": "Ascending",
+  "factionViewerDescending": "Descending",
+  "factionViewerViewModeCards": "Cards",
+  "factionViewerViewModeGrid": "Grid",
+  "factionViewerSpawnWeights": "Spawn weights",
+  "factionViewerPatchOnly": "Patch only",
+  "factionViewerNoWarshipsToSpawn": "This faction has no warships to spawn.",
+  "factionCardFleetWeights": "Fleet Wgts:",
+  "factionCardFleetWeightsTooltip": "How much of the fleet weight is contributed by vanilla/mods",
+  "factionCardCalculatingFleetWeights": "Calculating fleet weights…",
+  "factionCardModsAddedOne": "{name} +{count} mod",
+  "@factionCardModsAddedOne": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "factionCardModsAddedMany": "{name} +{count} mods",
+  "@factionCardModsAddedMany": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "factionCardWar": "War",
+  "factionCardCarr": "Carr",
+  "factionCardPhse": "Phse",
+  "factionCardOffQ": "OffQ",
+  "factionCardShpQ": "ShpQ",
+  "factionCardFleet": "Fleet",
+  "factionCardShpNum": "Shp#",
+  "factionCardAggr": "Aggr",
+  "factionCardStatShips": "Ships",
+  "factionCardStatWpns": "Wpns",
+  "factionCardStatMods": "Mods",
+  "factionDoctrineWarships": "Warships",
+  "factionDoctrineCarriers": "Carriers",
+  "factionDoctrinePhaseShips": "Phase Ships",
+  "factionDoctrineOfficerQuality": "Officer Quality",
+  "factionDoctrineShipQuality": "Ship Quality",
+  "factionDoctrineFleetSize": "Fleet Size",
+  "factionDoctrineShipSize": "Ship Size",
+  "factionDoctrineAggression": "Aggression",
+  "factionDoctrinePhase": "Phase",
+  "factionProfileDialogDoctrine": "Doctrine",
+  "factionProfileDialogFleet": "Fleet",
+  "factionProfileDialogPortraits": "Portraits",
+  "factionProfileDialogBehavior": "Behavior",
+  "factionProfileDialogModsAddingFaction": "Mods that add/modify this faction",
+  "factionProfileDialogShipPrefix": "Ship prefix: {prefix}",
+  "@factionProfileDialogShipPrefix": {
+    "placeholders": {
+      "prefix": {
+        "type": "String"
+      }
+    }
+  },
+  "factionProfileDialogPortraitsCount": "{maleCount} male, {femaleCount} female",
+  "@factionProfileDialogPortraitsCount": {
+    "placeholders": {
+      "maleCount": {
+        "type": "num"
+      },
+      "femaleCount": {
+        "type": "num"
+      }
+    }
+  },
+  "factionProfileDialogMoreCount": "+{count} more",
+  "@factionProfileDialogMoreCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "factionProfileDialogIllegalCommodities": "Illegal commodities: {commodities}",
+  "@factionProfileDialogIllegalCommodities": {
+    "placeholders": {
+      "commodities": {
+        "type": "String"
+      }
+    }
+  },
+  "factionProfileDialogAddedBy": "Added by: {name}",
+  "@factionProfileDialogAddedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "factionProfileDialogNotAddedByEnabledMod": "Not added by any enabled mod. It may belong to a disabled mod.",
+  "factionProfileDialogSeeAllShips": "See all ships",
+  "factionProfileDialogShipSpoilers": "Ship spoilers",
+  "factionProfileDialogWeaponSpoilers": "Weapon spoilers",
+  "factionProfileDialogNoSpoilers": "No spoilers",
+  "factionProfileDialogSlightSpoilers": "Slight spoilers",
+  "factionProfileDialogAllSpoilers": "All spoilers",
+  "factionProfileDialogSectionCount": "{label}: {total}",
+  "@factionProfileDialogSectionCount": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "total": {
+        "type": "num"
+      }
+    }
+  },
+  "factionProfileDialogSectionCountShown": "{label}: {total} ({shown} shown)",
+  "@factionProfileDialogSectionCountShown": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "total": {
+        "type": "num"
+      },
+      "shown": {
+        "type": "num"
+      }
+    }
+  },
+  "factionProfileDialogSectionCountZero": "{label}: 0",
+  "@factionProfileDialogSectionCountZero": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "factionProfileDialogSectionCountNoneShown": "{label}: {total} (0 shown)",
+  "@factionProfileDialogSectionCountNoneShown": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "total": {
+        "type": "num"
+      }
+    }
+  },
+  "spawnWeightsFallbackRole": "Nothing spawns in \"{selectedRole}\" here, so the game uses \"{fallbackRole}\" instead.",
+  "@spawnWeightsFallbackRole": {
+    "placeholders": {
+      "selectedRole": {
+        "type": "String"
+      },
+      "fallbackRole": {
+        "type": "String"
+      }
+    }
+  },
+  "spawnWeightsNothingToSpawn": "Nothing to spawn in \"{role}\" for this faction.",
+  "@spawnWeightsNothingToSpawn": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "spawnWeightsNothingToSpawnFallback": "Nothing to spawn in \"{role}\" for this faction, so the game picks from \"{fallbackRole}\" instead.",
+  "@spawnWeightsNothingToSpawnFallback": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      },
+      "fallbackRole": {
+        "type": "String"
+      }
+    }
+  },
+  "spawnWeightsFooterTooltip": "These numbers miss a few things:\n• ships that mods add in code\n• the game trimming ships that cost too many fleet points\n• combat freighters being mixed in\n• mods that fully replace a file instead of adding to it",
+  "spawnWeightsFooterNote": "These numbers are close but not exact. Hover for details.",
+  "spawnWeightsSkippedEntries": " {count} entries were left out because their ship is not installed.",
+  "@spawnWeightsSkippedEntries": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "spawnWeightsNoShipsMatchSearch": "No ships match your search.",
+  "spawnWeightsPriorityLegend": "Priority ship. The faction favors these, so they spawn more than their weight alone suggests.",
+  "spawnWeightsPriorityTooltip": "Priority ship: this faction favors it, so it spawns more often than its weight alone suggests.",
+  "spawnWeightsHeaderShip": "Ship",
+  "spawnWeightsHeaderSize": "Size",
+  "spawnWeightsHeaderWeight": "Weight",
+  "spawnWeightsHeaderWeightTooltip": "The number the game files give this ship.\nHigher means it gets picked more often.",
+  "spawnWeightsHeaderShare": "Share",
+  "spawnWeightsHeaderShareTooltip": "This ship's slice of the total weight for this role.",
+  "spawnWeightsHeaderSetBy": "Set by",
+  "spawnWeightsHeaderSetByTooltip": "The mod (or the base game) whose file set this weight.",
+  "vanillaShareStillReading": "Still reading the mods. The split will show once that finishes.",
+  "vanillaShareTooltipOne": "When the game builds a fleet for this faction, {share} of the chance to pick each ship comes from the base game. The rest comes from 1 mod.\n\nThis is a share of spawn chance, not a share of ships.",
+  "@vanillaShareTooltipOne": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      }
+    }
+  },
+  "vanillaShareTooltipMany": "When the game builds a fleet for this faction, {share} of the chance to pick each ship comes from the base game. The rest comes from {modCount} mods.\n\nThis is a share of spawn chance, not a share of ships.",
+  "@vanillaShareTooltipMany": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      },
+      "modCount": {
+        "type": "num"
+      }
+    }
+  },
+  "vanillaShareSegmentTooltip": "{name}: {share}",
+  "@vanillaShareSegmentTooltip": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "share": {
+        "type": "String"
+      }
+    }
+  },
+  "vanillaShareSegmentTooltipOfFaction": "{name}: {share} of {faction}'s spawn weight",
+  "@vanillaShareSegmentTooltipOfFaction": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "share": {
+        "type": "String"
+      },
+      "faction": {
+        "type": "String"
+      }
+    }
+  },
+  "vanillaShareStillReadingUnsorted": "Still reading mods. This part isn't sorted yet.",
+  "vanillaShareBarVanillaShare": "Vanilla: {share}",
+  "@vanillaShareBarVanillaShare": {
+    "placeholders": {
+      "share": {
+        "type": "String"
+      }
+    }
+  },
+  "vanillaShareBarVanillaDash": "Vanilla: —",
+  "shipBlueprintHardpoint": "Hardpoint",
+  "shipBlueprintTurret": "Turret",
+  "shipBlueprintBuiltIn": "Built-in: {name}",
+  "@shipBlueprintBuiltIn": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "shipBlueprintSizeMount": "{size} {mount}",
+  "@shipBlueprintSizeMount": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      },
+      "mount": {
+        "type": "String"
+      }
+    }
+  },
+  "shipBlueprintArc": "Arc: {arc}°",
+  "@shipBlueprintArc": {
+    "placeholders": {
+      "arc": {
+        "type": "String"
+      }
+    }
+  },
+  "shipBlueprintAngle": "Angle: {angle}°",
+  "@shipBlueprintAngle": {
+    "placeholders": {
+      "angle": {
+        "type": "String"
+      }
+    }
+  },
+  "ramChangerCannotWrite": "Cannot write to vmparams file:\n{files}.\n\nMake sure it exists or try running {appName} as an administrator.",
+  "@ramChangerCannotWrite": {
+    "placeholders": {
+      "files": {
+        "type": "String"
+      },
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "ramChangerMbSetIn": "{ram} MB set in {path}",
+  "@ramChangerMbSetIn": {
+    "placeholders": {
+      "ram": {
+        "type": "String"
+      },
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "ramChangerOrCustomRam": "or set a custom RAM assignment",
+  "vmparamsFileSelectorDialogIntro": "Select which files TriOS should use for reading and writing RAM allocation.",
+  "vmparamsFileSelectorDialogMoreInfoBody": "Different game launchers use different configuration files.\n\nFor example, if you launch the game using Fast Rendering, it will use the amount of RAM specified in the `starsector-core/fr.vmparams` file (as of March 2026).\n\n{appName} scanned your game folder for files containing a pattern for Java RAM allocation arguments `(?<=xmx).*?(?=\\s)`.\n\nFor each of these files checked below, when you pick a RAM value, it will surgically modify just the RAM allocation part of those files without changing the rest of the file.",
+  "@vmparamsFileSelectorDialogMoreInfoBody": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "vmparamsFileSelectorDialogRamNotDetected": "RAM not detected",
+  "vmparamsFileSelectorDialogSave": "Save",
+  "launcherLaunch": "Launch {version}",
+  "@launcherLaunch": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "launcherRunning": "RUNNING...",
+  "launcherLaunchButton": "LAUNCH",
+  "launcherTipNeverRequired": "\nTip: {appName} is never required to launch the game.",
+  "@launcherTipNeverRequired": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "launcherDirectLaunchWarning": "Direct Launch is on.\nInvisible ships, zoomed-in combat,\nand more may result.",
+  "launcherUnknownRam": "(unknown RAM)",
+  "launcherPrecheckModIncompatible": "Mod {modName} requires game version {modVersion} and is not compatible with {gameVersion}.",
+  "@launcherPrecheckModIncompatible": {
+    "placeholders": {
+      "modName": {
+        "type": "String"
+      },
+      "modVersion": {
+        "type": "String"
+      },
+      "gameVersion": {
+        "type": "String"
+      }
+    }
+  },
+  "launcherPrecheckDependencyMissing": "Dependency {dependency} is missing",
+  "@launcherPrecheckDependencyMissing": {
+    "placeholders": {
+      "dependency": {
+        "type": "String"
+      }
+    }
+  },
+  "launcherPrecheckDependencyDisabled": "Dependency {dependency} is disabled",
+  "@launcherPrecheckDependencyDisabled": {
+    "placeholders": {
+      "dependency": {
+        "type": "String"
+      }
+    }
+  },
+  "launcherPrecheckDependencyWrongVersion": "Dependency {dependency} has wrong version",
+  "@launcherPrecheckDependencyWrongVersion": {
+    "placeholders": {
+      "dependency": {
+        "type": "String"
+      }
+    }
+  },
+  "launcherPrecheckForceCompatibility": "Force compatibility (not recommended)",
+  "factionProfileDialogFactionColor": "Faction color",
+  "factionProfileDialogKnownShips": "Known Ships",
+  "factionProfileDialogKnownWeapons": "Known Weapons",
+  "factionProfileDialogKnownFighters": "Known Fighters",
+  "factionProfileDialogKnownHullmods": "Known Hullmods",
+  "onboardingUpTo": " (up to ",
+  "onboarding2": "ಠ_ಠ",
+  "onboardingAllowReporting": "Allow Reporting",
+  "onboardingEnableOneClickMod": "Enable one-click mod install",
+  "onboardingKeepReportingDisabled": "Keep Reporting Disabled",
+  "onboardingKeepAllModVersions": "Keep all mod versions",
+  "onboardingKeepOnlyOneMod": "Keep only one mod version",
+  "toolbarChangelog": "{appName} Changelog",
+  "@toolbarChangelog": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "toolbarChatWith": "Chat with {name}",
+  "@toolbarChatWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "toolbarOpenAppLogFileFolder": "Open {appName} log file folder",
+  "@toolbarOpenAppLogFileFolder": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "toolbarRearrangeIcons": "Rearrange icons",
+  "app_action_buttonsAbout": "About",
+  "app_action_buttonsDisabled": "Disabled",
+  "app_action_buttonsDonations": "Donations",
+  "app_action_buttonsHideDonationButton": "Hide donation button",
+  "app_action_buttonsHideLayoutToggle": "Hide layout toggle",
+  "app_action_buttonsNotYetDetecting": "Not yet detecting",
+  "app_action_buttonsOpenStarsectorFolder": "Open Starsector folder",
+  "app_action_buttonsSettings": "Settings",
+  "app_action_buttonsShowDonationPopup": "Show donation popup",
+  "activity_icon_buttonDismissNotification": "Dismiss notification",
+  "activity_icon_buttonEnableAllNewlyInstalled": "Enable all newly installed mods",
+  "activity_icon_buttonHideThisPopup": "Hide this popup",
+  "activity_icon_buttonInstallationActivity": "Installation Activity",
+  "app_sidebarExitRearrangeMode": "Exit rearrange mode",
+  "app_sidebarSwitchLayout": "Switch layout",
+  "app_sidebarTabRearrangeModeIs": "Tab rearrange mode is on",
+  "app_right_toolbarKoFi": "Ko-Fi",
+  "app_right_toolbarPatreon": "Patreon",
+  "nav_reorder_menuResetNavOrder": "Reset nav order?",
+  "nav_reorder_menuResetToDefaultOrder": "Reset to default order",
+  "dashboardError": "Error: {error}",
+  "@dashboardError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboardNoLogLoaded": "No log loaded",
+  "dashboardRamAndGameSettings": "RAM and Game Settings",
+  "launch_with_settingsChangeWhichFileLaunches": "Change which file launches the game",
+  "launch_with_settingsClearCustomLaunchSettings": "Clear Custom Launch Settings",
+  "launch_with_settingsFullscreen": "Fullscreen",
+  "launch_with_settingsSound": "Sound",
+  "game_performanceChooseWhichVmparamsFiles": "Choose which vmparams files to manage",
+  "game_performanceGameDirectoryNotSet": "Game directory not set.",
+  "game_performanceResetToFps": "Reset to 60 FPS",
+  "game_performanceUseVsync": "Use Vsync",
+  "mod_dependenciesRequiredMods": "Required Mods:",
+  "mod_list_basicAreYouSure": "Are you sure?",
+  "mod_list_basicColorful": "Colorful",
+  "mod_list_basicMoreSettings": "More Settings",
+  "mod_list_basicMutedUpdates": "Muted updates",
+  "mod_list_basicSortBy": "Sort By",
+  "mod_list_basicSwapOnUpdate": "Swap on Update",
+  "tipsAboutTipsHider": "About Tips Hider",
+  "tipsEnabledModsOnly": "Enabled Mods Only",
+  "tipsError": "Error: {errorMessage}",
+  "@tipsError": {
+    "placeholders": {
+      "errorMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "tipsGroupByMod": "Group By Mod",
+  "tipsNoGrouping": "No Grouping",
+  "tipsNoTipsOrMods": "No tips (or mods) found.",
+  "tipsSelect": "Select",
+  "tipsSelectAll": "Select All",
+  "tipsShowHidden": "Show Hidden",
+  "tipsTipsHider": "Tips Hider",
+  "triosCancel": "Cancel",
+  "triosOk": "OK",
+  "triosAreYouSure": "Are you sure?",
+  "triosClear": "Clear",
+  "triosClearAll": "Clear All",
+  "triosEnable": "Enable",
+  "triosDisable": "Disable",
+  "triosUpdate": "Update",
+  "triosReset": "Reset",
+  "triosSettings": "Settings",
+  "triosNoThanks": "No thanks",
+  "triosModProfiles": "Mod Profiles",
+  "triosOpenModFolder": "Open mod folder",
+  "triosViewChangelog": "View Changelog",
+  "triosEnableThisMod": "Enable this mod",
+  "contextMenuForceToVersion": "Force to {version}",
+  "@contextMenuForceToVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "contextMenuInstallLinkCopiedTo": "Install link copied to clipboard.",
+  "contextMenuModSources": "Mod Sources...",
+  "contextMenuOpenFolder": "Open Folder...",
+  "contextMenuChangeTo": "Change to...",
+  "contextMenuOpenModInfoJson": "Open mod_info.json",
+  "contextMenuDeleteMod": "Delete Mod...",
+  "contextMenuAllButVersion": "All but {version}",
+  "@contextMenuAllButVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "contextMenuAllVersions": "All versions",
+  "contextMenuDeleteMods": "Delete Mods...",
+  "contextMenuAllButEnabledHighest": "All but enabled/highest version of each",
+  "contextMenuAllSelectedMods": "All selected mods",
+  "contextMenuTroubleshoot": "Troubleshoot...",
+  "contextMenuShowRawInfo": "Show Raw Info",
+  "contextMenuEstimateVramUsage": "Estimate VRAM Usage",
+  "contextMenuOpenInSidePanel": "Open in side panel",
+  "contextMenuUnmuteUpdates": "Unmute updates",
+  "contextMenuMuteUpdates": "Mute updates",
+  "contextMenuMuteAllUpdates": "Mute all updates",
+  "contextMenuView": "View...",
+  "contextMenuShips": "Ships",
+  "contextMenuWeapons": "Weapons",
+  "contextMenuHullmods": "Hullmods",
+  "contextMenuFactionsCount": "Factions ({count})",
+  "@contextMenuFactionsCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "contextMenuViewAllInFaction": "View all in Faction Viewer",
+  "contextMenuFactions": "Factions",
+  "contextMenuPortraits": "Portraits",
+  "debugSectionDebugMode": "Debug mode",
+  "debugSectionIfModsAreFailing": "If mods are failing to download or update, disabling verification of SSL certificates may help.",
+  "debugSectionAllowInsecureHttpsConnections": "Allow insecure HTTPS connections",
+  "debugSectionShowEngineTrails": "Show engine trails",
+  "debugSectionIncludePreReleases": "Include pre-releases",
+  "debugSectionCheckForUpdateAllow": "Check for update (allow older versions)",
+  "debugSectionOpenSettingsFolder": "Open {appName} Settings Folder",
+  "@debugSectionOpenSettingsFolder": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionForceEnableAprilFools": "Force Enable April Fools 2026 ({chatbotName})",
+  "@debugSectionForceEnableAprilFools": {
+    "placeholders": {
+      "chatbotName": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionReOpenOnboardingDialog": "Re-open Onboarding dialog",
+  "debugSectionErrorRunningSelfUpdateScript": "Error running self-update script: {error}",
+  "@debugSectionErrorRunningSelfUpdateScript": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionRunExistingSelfUpdate": "Run existing self-update script if exists",
+  "debugSectionRedownloadMagiclibShowsToast": "Redownload MagicLib (shows toast)",
+  "debugSectionNoModsWithDownload": "No mods with download URLs found for testing",
+  "debugSectionStartedTestDownloads": "Started {count} test downloads - check grouped toast!",
+  "@debugSectionStartedTestDownloads": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionTestNotificationGroupingDownload": "Test Notification Grouping (download 5 mods)",
+  "debugSectionShowModAddedToast": "Show Mod Added Toast for MagicLib",
+  "debugSectionThisWillWipeTrios": "This will wipe TriOS's settings.",
+  "debugSectionWipeSettings": "Wipe Settings",
+  "debugSectionResetCategories": "Reset Categories?",
+  "debugSectionResetCategoriesToDefaults": "Reset Categories to Defaults",
+  "debugSectionThrowError": "Throw error",
+  "debugSectionForceUpdate": "Force Update",
+  "debugSectionGameVersion": "Game version: {version}",
+  "@debugSectionGameVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionReadGameVersionFrom": "Read game version from starfarer_obf.jar.",
+  "debugSectionReadWeapons": "Read weapons",
+  "debugSectionReadShipsFromCsv": "Read ships from csv and json files",
+  "debugSectionReadShips": "Read ships",
+  "debugSectionTriesToReadFrom": "Tries to read from '{path}'",
+  "@debugSectionTriesToReadFrom": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionReadStarsectorInstaller": "Read Starsector installer",
+  "debugSectionForceReplaceTriosCompanion": "Force Replace TriOS Companion Mod",
+  "debugSectionShowDetectedVmparamsFiles": "Show detected vmparams files",
+  "debugSectionForumData": "Forum Data",
+  "debugSectionForceRefresh": "Force Refresh",
+  "debugSectionRefreshFailed": "Refresh failed: {error}",
+  "@debugSectionRefreshFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionClearCache": "Clear Cache",
+  "debugSectionForumDataCacheCleared": "Forum data cache cleared.",
+  "debugSectionShowForumData": "Show Forum Data",
+  "debugSectionNoForumDataLoaded": "No forum data loaded.",
+  "debugSectionCurrentExecutable": "Current executable: {path}",
+  "@debugSectionCurrentExecutable": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionTempFolder": "Temp folder: {path}",
+  "@debugSectionTempFolder": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionLocale": "Locale: {locale}",
+  "@debugSectionLocale": {
+    "placeholders": {
+      "locale": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionShowCurrentAppSettings": "Show Current App Settings",
+  "debugSectionShowLoadedModProfiles": "Show Loaded Mod Profiles",
+  "debugSectionShowEnvironmentVariables": "Show Environment Variables",
+  "debugSectionEnvironmentVariables": "Environment Variables",
+  "debugSectionShowModCompatibility": "Show Mod Compatibility",
+  "debugSectionModCompatibility": "Mod Compatibility",
+  "debugSectionShowLoadedVersionChecker": "Show Loaded Version Checker Cache",
+  "debugSectionVersionCheckerCache": "Version Checker Cache",
+  "dragDropCannotModifyModsFolder": "Cannot modify mods folder",
+  "dragDropTryRunningTriosAs": "Try running TriOS as administrator.",
+  "activityClearAllActivity": "Clear All Activity?",
+  "activityPermanentlyClearsHistory": "Permanently clears history",
+  "deepLinkAlwaysInstallNewMods": "Always install new mods without confirming",
+  "deepLinkIdTooltip": "Id: {id}",
+  "@deepLinkIdTooltip": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "deepLinkVersionTooltip": "Version {version}",
+  "@deepLinkVersionTooltip": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "deepLinkDownloadLink": "Download link",
+  "toastNewAppVersion": "New {appName} version",
+  "@toastNewAppVersion": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "aprilFoolsStillNo": "Still no",
+  "aprilFoolsOkFine": "Ok fine",
+  "companionModUpdateTitle": "Update {appName} Companion Mod",
+  "@companionModUpdateTitle": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "catalog_data_sources_dialogClose": "Close",
+  "codexAll": "All",
+  "settingsAffectsHowQuicklyVersion": "Affects how quickly Version Checker searches. If version checker is showing timeout errors, reduce this number.",
+  "settingsAllRightThenKeep": "All right then, keep your secrets.",
+  "settingsAllowErrorReporting": "Allow error reporting",
+  "settingsAlwaysInstallModsFrom": "Always install mods from 'Open with TriOS' links without confirming",
+  "settingsAnimatedBackgrounds": "Animated backgrounds",
+  "settingsAppIcon": "App icon",
+  "settingsAppName": "App name",
+  "settingsApplyUiScaling": "Apply UI Scaling",
+  "settingsAutoSwapOnMod": "Auto-swap on mod update",
+  "settingsBackgroundStyle": "Background style",
+  "settingsCheckForUpdate": "Check for update",
+  "settingsCheckIfGameIs": "Check if game is running",
+  "settingsCleanUp": "Clean up...",
+  "settingsColor": "Color",
+  "settingsConcurrentExtractions": "Concurrent extractions",
+  "settingsDebugging": "Debugging",
+  "settingsDefault": "Default",
+  "settingsDisableAllAiRelated": "Disable all AI-related features",
+  "settingsEnableAccessibilitySemanticsMay": "Enable Accessibility Semantics (may cause freezes)",
+  "settingsEnableLaunchPrecheck": "Enable Launch Precheck",
+  "settingsErrorReporting": "Error Reporting",
+  "settingsFollowTheme": "Follow theme",
+  "settingsFont": "Font",
+  "settingsHowLongNotificationsE": "How long notifications (e.g. 'Downloading') should appear for.",
+  "settingsIDonTBelieve": "I don't believe you (show update prompt)",
+  "settingsIMFeelingLucky": "I'm feeling lucky",
+  "settingsInstallingOrUpdatingA": "Installing or updating a mod will replace the previous version of it.",
+  "settingsLanguage": "Language",
+  "settingsLanguageTooltip": "The language the interface is shown in.\nSystem follows your operating system's language.",
+  "settingsLaunchButton": "Launch button",
+  "settingsLoadedThemes": "Loaded {count} of your themes.",
+  "@settingsLoadedThemes": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "settingsManualFolderNaming": "Manual folder naming",
+  "settingsNevermind": "Nevermind",
+  "settingsNoNewReleaseFound": "No new release found",
+  "settingsNoSolicitors": "No solicitors!",
+  "settingsOpenReleasesPage": "Open Releases Page",
+  "settingsOverridePartsOfThe": "Override parts of the active theme",
+  "settingsOverrideTheAppIcon": "Override the app icon regardless of the active theme.",
+  "settingsOverrideTheAppName": "Override the app name regardless of the active theme.",
+  "settingsOverrideTheLaunchButton": "Override the launch button style regardless of the active theme.",
+  "settingsPlayer": "Player",
+  "settingsRainbow": "Rainbow",
+  "settingsReloadThemes": "Reload themes",
+  "settingsRenameAllModFolders": "Rename all mod folders",
+  "settingsRestartNow": "Restart Now",
+  "settingsRestartRequired": "Restart Required",
+  "settingsShowChangelog": "Show Changelog",
+  "settingsShowDonationButton": "Show Donation Button",
+  "settingsShowForceUpdateWarning": "Show 'Force Update' Warning",
+  "settingsShowLayoutToggleButton": "Show Layout Toggle Button",
+  "settingsShowReportBugButton": "Show Report Bug Button",
+  "settingsShowDriftingMotesWhen": "Show drifting motes when app is in foreground.",
+  "settingsThemeModifiers": "Theme Modifiers",
+  "settingsUseTopToolbarInstead": "Use top toolbar instead of sidebar",
+  "settingsWhenCheckedUpdatingAn": "When checked, updating an enabled mod switches to the new version.",
+  "settingsWhenEnabledModsOpened": "When enabled, mods opened via a 'Open with TriOS' link install immediately, skipping the confirmation dialog.",
+  "settingsWhetherToShowThe": "Whether to show the warning when forcing a mod to run on the current game version.",
+  "settingsWhichAnimationPlaysIn": "Which animation plays in the background.",
+  "settingsWhichThemeSColors": "Which theme's colors the motes use. Default follows the active theme.",
+  "sectorMapSelectASave": "Select a save",
+  "sectorMapSavePickerLabel": "{name} (lvl {level})",
+  "@sectorMapSavePickerLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "level": {
+        "type": "num"
+      }
+    }
+  },
+  "sectorMapFindSystem": "Find system…",
+  "sectorMapSystemFinder": "System Finder",
+  "sectorMapSystemsSummary": "{count} systems  •  {inhabited} inhabited",
+  "@sectorMapSystemsSummary": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      },
+      "inhabited": {
+        "type": "num"
+      }
+    }
+  },
+  "sectorMapBackToTheSystem": "Back to the System Finder",
+  "sectorMapFinder": "Finder",
+  "sectorMapRevealTheWholeSector": "Reveal the whole sector now",
+  "sectorMapShowEverythingSpoiler": "Show everything (spoiler)",
+  "sectorMapFilterSystemsByFaction": "Filter systems by faction",
+  "sectorMapShowAll": "Show all",
+  "sectorMapSelectASaveTo": "Select a save to view its sector.",
+  "sectorMapCouldNotReadSector": "Could not read this sector.\n\n{error}",
+  "@sectorMapCouldNotReadSector": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sectorMapClose": "Close",
+  "sectorMapMarkets": "Markets ({count})",
+  "@sectorMapMarkets": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "sectorMapNoMarkets": "No markets",
+  "sectorMapSystemUninhabited": "This system is uninhabited.",
+  "sectorMapMarketSize": "{faction} • size {size}",
+  "@sectorMapMarketSize": {
+    "placeholders": {
+      "faction": {
+        "type": "String"
+      },
+      "size": {
+        "type": "num"
+      }
+    }
+  },
+  "sectorMapCenter": "Center",
+  "finderClearAllKnobs": "Clear all knobs",
+  "finderReset": "Reset",
+  "finderPresets": "Presets",
+  "finderResources": "Resources",
+  "finderFloorWeightHint": "Floor is a hard cutoff; weight ranks how much you care.",
+  "finderMustHave": "Must have",
+  "finderHabitableWorld": "Habitable world",
+  "finderGasGiantForVolatiles": "Gas giant (for volatiles / fuel)",
+  "finderSkipSystemsWithFactionColony": "Skip systems that already have a faction colony",
+  "finderUnclaimedOnly": "Unclaimed only (no existing colony)",
+  "finderMinStableLocations": "Min. stable locations",
+  "finderAny": "Any",
+  "finderNearALandmark": "Near a landmark",
+  "finderLandmarkNoneInSave": "{name} (none in this save)",
+  "@finderLandmarkNoneInSave": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "finderWithin": "Within",
+  "finderPreferences": "Preferences",
+  "finderPreferLowHazard": "Prefer low hazard",
+  "finderPreferCloseToCore": "Prefer close to core",
+  "finderOtherConditions": "Other conditions ({count})",
+  "@finderOtherConditions": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "finderUncuratedConditions": "Uncurated / modded conditions in this save",
+  "finderHardCutoffAtLeast": "Hard cutoff: at least this tier on some planet",
+  "finderWeightLabel": "Weight: {weight}",
+  "@finderWeightLabel": {
+    "placeholders": {
+      "weight": {
+        "type": "String"
+      }
+    }
+  },
+  "finderCatalogOre": "Ore",
+  "finderCatalogRareOre": "Rare ore",
+  "finderCatalogOrganics": "Organics",
+  "finderCatalogVolatiles": "Volatiles",
+  "finderCatalogFarmland": "Farmland",
+  "finderHintTuneKnobs": "Tune the knobs until the count is small, then reveal a hint to your best match.",
+  "finderHintSomewhereInConstellations": "Somewhere in one of these {count} constellations.",
+  "@finderHintSomewhereInConstellations": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "finderHintNarrowedToConstellations": "Narrowed to these {count} constellations.",
+  "@finderHintNarrowedToConstellations": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "finderHintUnnamedRegion": "In an unnamed region of deep space.",
+  "finderHintInConstellation": "In the {name} constellation.",
+  "@finderHintInConstellation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "finderHintExactSystem": "{system}{constellation} (hazard from {hazard}%).",
+  "@finderHintExactSystem": {
+    "placeholders": {
+      "system": {
+        "type": "String"
+      },
+      "constellation": {
+        "type": "String"
+      },
+      "hazard": {
+        "type": "num"
+      }
+    }
+  },
+  "finderSystemsFit": "{count} systems fit",
+  "@finderSystemsFit": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "finderBestMatchSummary": "{count} systems fit  •  best match {ordinal} of {total}",
+  "@finderBestMatchSummary": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      },
+      "ordinal": {
+        "type": "num"
+      },
+      "total": {
+        "type": "num"
+      }
+    }
+  },
+  "finderRevealAHint": "Reveal a hint",
+  "finderShowOnTheMap": "Show on the map",
+  "finderNarrowItDown": "Narrow it down",
+  "finderRevealTheNextBestMatch": "Reveal the next-best match instead",
+  "finderDifferentMatch": "Different match",
+  "finderNoSystemsFit": "No systems fit",
+  "finderLoosenTheKnobs": "Loosen the knobs to find some matches.",
+  "finderRelaxingOneOfThese": "Relaxing one of these would help:",
+  "finderHintTurnOff": "• Turn off {constraint} → {count} fit",
+  "@finderHintTurnOff": {
+    "placeholders": {
+      "constraint": {
+        "type": "String"
+      },
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "codexFilters": "Filters",
+  "codexBack": "Back",
+  "codexForward": "Forward",
+  "codexUpALevel": "Up a level",
+  "codexRandomEntry": "Random entry",
+  "codexSearchTheCodex": "Search the Codex…",
+  "codexLoadingCategory": "Loading {name}…",
+  "@codexLoadingCategory": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "codexPickACategory": "Pick a category, or search across everything.",
+  "codexAllCategories": "All categories",
+  "codexGroupBy": "Group by",
+  "codexLockedEntry": "Locked entry",
+  "codexHiddenBySpoilerFilter": "(hidden by spoiler filter)",
+  "codexSearchResults": "Search results ({count})",
+  "@codexSearchResults": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "codexRelatedEntries": "Related entries",
+  "codexNothingRelated": "Nothing related",
+  "codexGeneral": "General",
+  "codexSpoilers": "Spoilers",
+  "codexNone": "None",
+  "codexSlight": "Slight",
+  "codexMod": "Mod",
+  "codexVanillaOnly": "Vanilla only",
+  "codexOnlyEnabledMods": "Only enabled mods",
+  "codexShowHiddenWeapons": "Show hidden weapons",
+  "codexShowHiddenHullmods": "Show hidden hullmods",
+  "codexShowHiddenShipSystems": "Show hidden ship systems",
+  "codexShowModulesAsShipsTooltip": "List a station's modules (its docked parts) as their own ship entries. They always show as related entries on the station either way.",
+  "codexShowModulesAsShips": "Show modules as ships",
+  "codexSelectAnEntryToSeeDetails": "Select an entry to see its details.",
+  "codexEntryNotAvailable": "This entry is not available.",
+  "codexOpenTheFullDetails": "Open the full details window for this entry.",
+  "codexOpenDetails": "Open details",
+  "codexThirdPartyDataProvidedBy": "Third party data provided by ",
+  "codexTriTachyonDisclaimer": ". The Tri-Tachyon corporation is not responsible for the accuracy or reliability of information supplied by external sources. By accessing this Codex adjunct, you acknowledge and agree to relieve Tri-Tachyon of any liability and responsibility for any damages resulting from use or cognition of third party data.",
+  "codexShipUsedByFactionTooltip": "This ship is used by this faction, and may sometimes be found for sale at their colonies.",
+  "vramScansActive": "Progress  •  {count, plural, one{{count} scan} other{{count} scans}} active",
+  "@vramScansActive": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramCancelling": "Cancelling…",
+  "vramCancel": "Cancel",
+  "vramOverall": "Overall: ",
+  "vramOverallProgress": "{done} of {total} mods  ({percent})",
+  "@vramOverallProgress": {
+    "placeholders": {
+      "done": {
+        "type": "num"
+      },
+      "total": {
+        "type": "num"
+      },
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "vramModsCount": "{count} mods",
+  "@vramModsCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramPreparingScan": "Preparing scan, collecting mod folders…",
+  "vramDiscoveringImageFiles": "discovering image files…",
+  "vramLastScan": "Last scan:",
+  "vramNever": "never",
+  "vramTook": "took {duration}",
+  "@vramTook": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "vramEnabled": "Enabled",
+  "vramDisabled": "Disabled",
+  "vramAllMods": "All mods",
+  "vramEstimatedVramUse": "Estimated VRAM use",
+  "vramUnscannedCount": "({count} unscanned)",
+  "@vramUnscannedCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramScanAllToSeeTotals": "Scan all {cohort} mods to see totals",
+  "@vramScanAllToSeeTotals": {
+    "placeholders": {
+      "cohort": {
+        "type": "String"
+      }
+    }
+  },
+  "vramNotScanned": " not scanned ({count} mods)",
+  "@vramNotScanned": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramNotScannedTooltip": "These {count} mods haven't been scanned yet, so their VRAM usage is unknown. Run a scan to see a total.",
+  "@vramNotScannedTooltip": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramModsCountInParens": "({count} mods)",
+  "@vramModsCountInParens": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramAddedByMods": "{bytes} added by mods ({images} images)",
+  "@vramAddedByMods": {
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      },
+      "images": {
+        "type": "num"
+      }
+    }
+  },
+  "vramRoughly": "roughly",
+  "vramImagesCount": "{count} images",
+  "@vramImagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramAddedByGraphicsLib": "{bytes} added by your GraphicsLib settings ({detail})",
+  "@vramAddedByGraphicsLib": {
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      },
+      "detail": {
+        "type": "String"
+      }
+    }
+  },
+  "vramAddedByVanilla": "{bytes} added by vanilla",
+  "@vramAddedByVanilla": {
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTotalLine": "{bytes} total",
+  "@vramTotalLine": {
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      }
+    }
+  },
+  "vramEstimatedVramUseBy": "Estimated VRAM use by: {cohort}",
+  "@vramEstimatedVramUseBy": {
+    "placeholders": {
+      "cohort": {
+        "type": "String"
+      }
+    }
+  },
+  "vramUnscannedOf": "{unscanned} of {total} mods unscanned.",
+  "@vramUnscannedOf": {
+    "placeholders": {
+      "unscanned": {
+        "type": "num"
+      },
+      "total": {
+        "type": "num"
+      }
+    }
+  },
+  "vramGraphicsLibSettings": "GraphicsLib settings",
+  "vramYes": "yes",
+  "vramNo": "no",
+  "vramOn": "on",
+  "vramOff": "off",
+  "vramGfxStatusMain": "Enabled: {effects}\nGenerate Normal maps: {normals}\nPreload all: {preload}",
+  "@vramGfxStatusMain": {
+    "placeholders": {
+      "effects": {
+        "type": "String"
+      },
+      "normals": {
+        "type": "String"
+      },
+      "preload": {
+        "type": "String"
+      }
+    }
+  },
+  "vramGfxStatusMaps": "Normal maps: {normals}\nMaterial maps: {materials}\nSurface maps: {surfaces}",
+  "@vramGfxStatusMaps": {
+    "placeholders": {
+      "normals": {
+        "type": "String"
+      },
+      "materials": {
+        "type": "String"
+      },
+      "surfaces": {
+        "type": "String"
+      }
+    }
+  },
+  "vramAboutVramEstimator": "About VRAM Estimator",
+  "vramYourVramIsBased": "Your VRAM is based on your GPU and can't be adjusted.",
+  "vramUsedByMods": "It's used by mods with ships and weapons. Running out crashes the game.",
+  "vramAppCanEstimate": "{appName} can estimate how much VRAM your mods use, but it's not perfect.\nTo see accurate usage, open the console (from Console Commands) and look in the top-left corner.",
+  "@vramAppCanEstimate": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "vramViewMoreInfo": "View more Info",
+  "vramWhatIsVram": "What is VRAM?",
+  "vramWhatIsVramRamVsVram": "VRAM is Video RAM. It's different than RAM, being physically located on the graphics card. It cannot be upgraded without a new graphics card.",
+  "vramWhatIsVramNotAssignable": "Unlike RAM, VRAM cannot be manually assigned (vmparams file is for normal RAM only), and the game will use as much as it needs.",
+  "vramWhatIsVramMoreImages": "Essentially, the more images (ships, weapons, etc.) you load, the more VRAM you need. If you run out, it will use normal RAM instead, but very inefficiently, and if that runs out, the game will crash.",
+  "vramGraphicsLibDefaults": "GraphicsLib's default settings uses additional VRAM to improve visuals, so if you are running out but don't want to disable mods, try adjusting its settings.",
+  "vramAboutThisTool": "About this tool",
+  "vramToolEstimates": "This tool estimates the amount of VRAM used by a mod, based on the images in the mod folder.",
+  "vramLazyLoadingMods": "A few mods, such as Illustrated Entities, load images only when needed, so their real VRAM use will be much lower than estimated.",
+  "vramSelectors": "Selectors",
+  "vramSelectorsIntro": "Pick how the tool decides which images to count, using the dropdown on the VRAM page toolbar:",
+  "vramSelectorFolderScan": "• Folder scan: counts every image in the mod folder (minus a few filename markers). Matches the tool's original behavior. May over-count when mods ship unused assets.",
+  "vramSelectorReferencedOnly": "• Referenced only: parses .ship, .wpn, .proj, ship_data.csv, weapon_data.csv, .faction, portraits.csv, settings.json, the GraphicsLib CSV, .jar string literals, and loose .java sources to identify only images that are actually referenced. Images found on disk but not referenced are shown separately as \"Unreferenced\" (they may be dev leftovers or loaded via dynamic paths).",
+  "vramKnownImprecisions": "Known imprecisions in reference mode:",
+  "vramImprecisionDynamicPaths": "• Asset paths constructed dynamically in Java (string concatenation) may not be detected. The debug panel's \"Track attribution\" toggle and the Unreferenced bucket make gaps visible.",
+  "vramImprecisionObfuscatedJars": "• Obfuscated or packed jars may defeat string extraction.",
+  "vramImprecisionGfxLibMaps": "• GraphicsLib normal/material/surface maps are kept whenever their CSV entry exists, regardless of whether their base sprite is referenced. This matches how GraphicsLib loads maps in practice.",
+  "vramDebugToggles": "Debug panel toggles (visible only in Referenced mode):",
+  "vramDebugPerSourceChips": "• Per-source chips: turn individual reference parsers on/off to bisect false positives.",
+  "vramDebugSuppressUnreferenced": "• Suppress unreferenced: hide the unreferenced bucket entirely for a clean comparison against folder-scan totals.",
+  "vramDebugTrackAttribution": "• Track attribution: record which parser(s) flagged each file, surfaced in the per-file detail view.",
+  "vramSeeTrueUsage": "To see true VRAM usage, enable the Console Commands mod and open it in-game. The amount of free VRAM will be shown in the top-left corner.",
+  "vramCalculation": "Calculation",
+  "vramCalcBasis": "VRAM use is based on an image's width, height, and number of channels. File size is irrelevant.",
+  "vramMultiplierNote": "Multiplier = 1x for background images and 1.33x for other images. The 1.33x is extra memory used for mipmapping.",
+  "vramBackgroundsIgnored": "Backgrounds are ignored if they are the same size as vanilla's backgrounds (because vanilla always has only one background loaded, so a vanilla-sized background is not adding more VRAM use).",
+  "vramLargestBackgroundCounted": "If the mod has one or more backgrounds that are larger than a vanilla background, then the single largest of them is counted as additional VRAM used (additionalVRAMUse = modBackgroundVRAMUse - vanillaBackgroundVRAMUse).",
+  "vramScanDebug": "VRAM scan debug",
+  "vramMultithreadedScanning": "Multithreaded scanning",
+  "vramMultithreadedSubtitle": "Faster scans, higher CPU and file-handle pressure",
+  "vramMultithreadedTooltip": "Run the per-mod scan loop across an isolate pool. Faster on large mod lists, but uses more CPU and multiplies the per-isolate file-handle limit by the pool size. Takes effect on the next scan.",
+  "vramEnabledReferenceSources": "Enabled reference sources",
+  "vramSuppressUnreferencedBucket": "Suppress unreferenced bucket",
+  "vramSuppressUnreferencedTooltip": "Hide the unreferenced bucket to compare directly to folder-scan totals.",
+  "vramEstimateFor": "VRAM Estimate: {mod}",
+  "@vramEstimateFor": {
+    "placeholders": {
+      "mod": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTabCountTotal": "{base} ({total})",
+  "@vramTabCountTotal": {
+    "placeholders": {
+      "base": {
+        "type": "String"
+      },
+      "total": {
+        "type": "num"
+      }
+    }
+  },
+  "vramTabCountFiltered": "{base} ({filtered} / {total})",
+  "@vramTabCountFiltered": {
+    "placeholders": {
+      "base": {
+        "type": "String"
+      },
+      "filtered": {
+        "type": "num"
+      },
+      "total": {
+        "type": "num"
+      }
+    }
+  },
+  "vramReferenced": "Referenced",
+  "vramUnreferenced": "Unreferenced",
+  "vramSearchPathOrReferencedBy": "Search path or referenced-by…",
+  "vramClose": "Close",
+  "vramModStatus": "Status:{status}",
+  "@vramModStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "vramScanMethod": "Method: {method}",
+  "@vramScanMethod": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "vramScanAll": "Scan All",
+  "vramSelectiveScan": "Selective Scan",
+  "vramGraphicsLibCsvEntries": "GraphicsLib CSV: {count} entries",
+  "@vramGraphicsLibCsvEntries": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramLastScanned": "Last scanned {time}",
+  "@vramLastScanned": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "vramLastScanAt": "Last scan: {time}",
+  "@vramLastScanAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "vramRescanningThisMod": "Rescanning this mod…",
+  "vramRescanThisMod": "Rescan this mod",
+  "vramScanInProgressNoRescan": "Scan in progress, rescan unavailable",
+  "vramBaseTextures": "Base textures (excl. GraphicsLib)",
+  "vramGfxLibMaps": "GraphicsLib {type} maps",
+  "@vramGfxLibMaps": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTotals": "Totals",
+  "vramReferencedTotal": "Referenced total (counted against VRAM)",
+  "vramUnreferencedTooltip": "Images on disk with no detected reference. May include dev leftovers or paths constructed dynamically in Java.",
+  "vramUnreferencedNotCounted": "Unreferenced (not counted)",
+  "vramUnreferencedAdvisory": "Advisory: images on disk that no parsed reference points to. May be dev leftovers, or loaded via dynamic paths the parsers can't detect.",
+  "vramUnreferencedSuffix": "+{bytes} unreferenced",
+  "@vramUnreferencedSuffix": {
+    "placeholders": {
+      "bytes": {
+        "type": "String"
+      }
+    }
+  },
+  "vramScanInProgress": "Scan in progress…",
+  "vramRescanNamed": "Rescan {mod}",
+  "@vramRescanNamed": {
+    "placeholders": {
+      "mod": {
+        "type": "String"
+      }
+    }
+  },
+  "vramReasonGfxLibNotEnabled": "GraphicsLib not enabled",
+  "vramReasonTypeDisabledInConfig": "type disabled in GraphicsLib config",
+  "vramReasonStreamedOnDemand": "streamed on-demand by GraphicsLib; not counted",
+  "vramReasonNotCounted": "not counted",
+  "vramNoUnreferencedImages": "No unreferenced images.",
+  "vramNoReferencedImages": "No referenced images counted.",
+  "vramFile": "File",
+  "vramExplanation": "Explanation",
+  "vramDimensions": "Dimensions",
+  "vramGraphicsLib": "GraphicsLib",
+  "vramBytes": "Bytes",
+  "vramTooltipDimensions": "Dimensions (POT): {size}",
+  "@vramTooltipDimensions": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTooltipChannels": "Channels × bits: {channels}",
+  "@vramTooltipChannels": {
+    "placeholders": {
+      "channels": {
+        "type": "num"
+      }
+    }
+  },
+  "vramTooltipType": "Type: {type}{gfxlib}",
+  "@vramTooltipType": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      },
+      "gfxlib": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTooltipTypeGfxLib": " · GraphicsLib {name}",
+  "@vramTooltipTypeGfxLib": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTooltipVanillaReplaceNoExtra": "Replaces a vanilla file already counted in vanilla VRAM, so adds nothing extra.",
+  "vramTooltipVanillaReplaceLarger": "Replaces a vanilla file ({original}) with a larger version. Only the extra {extra} counts.",
+  "@vramTooltipVanillaReplaceLarger": {
+    "placeholders": {
+      "original": {
+        "type": "String"
+      },
+      "extra": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTooltipReferencedBy": "Referenced by:\n{refs}",
+  "@vramTooltipReferencedBy": {
+    "placeholders": {
+      "refs": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTooltipNoAttribution": "No attribution recorded (folder-scan mode, or background file).",
+  "vramTooltipNotCounted": "Not counted; {reason}",
+  "@vramTooltipNotCounted": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "vramTooltipBackground": "Background; only the largest oversized one counts",
+  "vramGfxLibTypeDisabledInConfig": "GraphicsLib {type} maps disabled in config",
+  "@vramGfxLibTypeDisabledInConfig": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "vramGfxLibOnDemand": "GraphicsLib loads/unloads {type} maps on-demand when preloadAllMaps is off",
+  "@vramGfxLibOnDemand": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "vramMapsNotCounted": "{type} maps not counted",
+  "@vramMapsNotCounted": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "vramExplReplacesVanilla": "Replaces vanilla, no extra VRAM",
+  "vramExplReplacesVanillaLarger": "Replaces vanilla, {extra} larger",
+  "@vramExplReplacesVanillaLarger": {
+    "placeholders": {
+      "extra": {
+        "type": "String"
+      }
+    }
+  },
+  "vramExplUnreferenced": "(unreferenced)",
+  "vramExplBackground": "background",
+  "vramEstimateVram": "Estimate VRAM",
+  "vramReEstimateVram": "Re-estimate VRAM",
+  "vramScanningCurrent": "Scanning: {current}{progress}",
+  "@vramScanningCurrent": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "progress": {
+        "type": "String"
+      }
+    }
+  },
+  "vramScanning": "Scanning{progress}",
+  "@vramScanning": {
+    "placeholders": {
+      "progress": {
+        "type": "String"
+      }
+    }
+  },
+  "vramMoreScanOptions": "More scan options",
+  "vramScanUnscannedMods": "{count, plural, one{Scan {count} mod} other{Scan {count} mods}}",
+  "@vramScanUnscannedMods": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "vramAllModsScanned": "All mods scanned",
+  "vramVramEstimator": "VRAM Estimator",
+  "vramAboutVramAndEstimator": "About VRAM & VRAM Estimator",
+  "vramFilterMods": "Filter mods...",
+  "vramScanAllMods": "Scan all mods",
+  "vramReScanAllMods": "Re-scan all mods",
+  "vramEnabledModsOnly": "Enabled Mods Only",
+  "vramExportCacheAsJson": "Export cache as JSON…",
+  "vramExportDialogTitle": "Export VRAM cache as JSON",
+  "vramCouldNotOpenSaveDialog": "Could not open save dialog.",
+  "vramExportedCacheTo": "Exported VRAM cache to {path}",
+  "@vramExportedCacheTo": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "vramExportFailed": "Export failed: {error}",
+  "@vramExportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "vramEstimatedVramUsageBar": "Estimated VRAM Usage: {used} / {total}",
+  "@vramEstimatedVramUsageBar": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "chipperSubtitle": "A Starsector log viewer",
+  "chipperLoadMyLog": "Load my log",
+  "chipperCopyAll": "Copy all",
+  "chipperOpenLogFile": "Open Log File",
+  "chipperUploadLogFile": "Upload log file",
+  "chipperWhatsItDo": "What's it do?",
+  "chipperWhatsItDoBody": "Chipper pulls useful information out of the log for easier viewing.\n\nThe first part of troubleshooting Starsector issues is looking through a log file for errors and/or outdated mods.",
+  "chipperWhatDoYouDoWithLogs": "\nWhat do you do with my logs?",
+  "chipperLogsPrivacy": "Nothing; I can't see them. Everything is done on your browser. Neither the file nor any part of it are ever sent over the Internet.\n\nI do not collect any analytics except for what Cloudflare, the hosting provider, collects by default, which is all anonymous.",
+  "chipperCreatedUsingFlutter": "\nCreated using Flutter, by Google ",
+  "chipperProbablyDiscontinued": "so it'll probably get discontinued next year.",
+  "chipperSourceCode": "Source Code: https://github.com/wispborne/chipper",
+  "chipperNotFoundInLog": "Not found in log.",
+  "chipperSystem": "System",
+  "chipperCopy": "Copy",
+  "chipperStarsectorLabel": "Starsector: ",
+  "chipperJreLabel": "\nJRE: ",
+  "chipperOsLabel": "\nOS: ",
+  "chipperListMayBeIncomplete": "This list may be incomplete.\n\"Running with the following mods\" block not found in log.",
+  "chipperModsCount": "Mods ({count})",
+  "@chipperModsCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "chipperCopyLessInfo": "Copy (less info)",
+  "chipperPopup": "Popup",
+  "chipperChippedIn": " chipped in {ms}ms",
+  "@chipperChippedIn": {
+    "placeholders": {
+      "ms": {
+        "type": "String"
+      }
+    }
+  },
+  "chipperErrorsCount": "Errors ({count})",
+  "@chipperErrorsCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "chipperErrorsFilteredCount": "Errors ({filtered}/{total})",
+  "@chipperErrorsFilteredCount": {
+    "placeholders": {
+      "filtered": {
+        "type": "num"
+      },
+      "total": {
+        "type": "num"
+      }
+    }
+  },
+  "chipperFilter": "Filter...",
+  "chipperPreviousLineOn": "Previous line on {thread}",
+  "@chipperPreviousLineOn": {
+    "placeholders": {
+      "thread": {
+        "type": "String"
+      }
+    }
+  },
+  "chipperGenericThread": "thread",
+  "chipperDropLogHere": "Drop starsector.log here",
+  "chipperOrCtrlVPaste": "or control-v to paste",
+  "chipperWindowsPathLabel": "\nWindows: ",
+  "chipperMacosPathLabel": "\n\nMacOS: ",
+  "chipperLinuxPathLabel": "\n\nLinux: ",
+  "chipperLoadingThinking": "thinking...",
+  "chipperLoadingProcessing": "processing...",
+  "chipperLoadingParsing": "parsing...",
+  "chipperLoadingPondering": "pondering the log",
+  "chipperLoadingChipping": "chipping...",
+  "chipperLoadingBreakingDown": "breaking logs down...",
+  "chipperLoadingAnalyzing": "analyzing...",
+  "chipperLoadingAnalysing": "analysing...",
+  "chipperLoadingSpinning": "spinning...",
+  "chipperLoadingPleaseWait": "please wait...",
+  "chipperLoadingPleaseHold": "please hold...",
+  "commonClose": "Close",
+  "commonCancel": "Cancel",
+  "commonError": "Error",
+  "commonErrorWithDetails": "Error: {error}",
+  "@commonErrorWithDetails": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "commonSelectAll": "Select all",
+  "commonDeselectAll": "Deselect all",
+  "commonApply": "Apply",
+  "commonDiscardChange": "Discard change",
+  "commonCopyToClipboard": "Copy to clipboard",
+  "commonCopiedToClipboard": "Copied to clipboard",
+  "commonNothingToCopy": "Nothing to copy",
+  "commonConfirm": "Confirm",
+  "commonEdit": "Edit",
+  "commonEmpty": "(empty)",
+  "commonSearch": "Search",
+  "commonMoreOptions": "More options",
+  "commonRefresh": "Refresh",
+  "commonDurationSecond": "{count} second",
+  "@commonDurationSecond": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationSeconds": "{count} seconds",
+  "@commonDurationSeconds": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationMinute": "{count} minute",
+  "@commonDurationMinute": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationMinutes": "{count} minutes",
+  "@commonDurationMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationHour": "{count} hour",
+  "@commonDurationHour": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationHours": "{count} hours",
+  "@commonDurationHours": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationDay": "{count} day",
+  "@commonDurationDay": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationDays": "{count} days",
+  "@commonDurationDays": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationWeek": "{count} week",
+  "@commonDurationWeek": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationWeeks": "{count} weeks",
+  "@commonDurationWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationMonth": "{count} month",
+  "@commonDurationMonth": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationMonths": "{count} months",
+  "@commonDurationMonths": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationYear": "{count} year",
+  "@commonDurationYear": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonDurationYears": "{count} years",
+  "@commonDurationYears": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "commonTimeAgo": "{duration} ago",
+  "@commonTimeAgo": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "commonTimeInFuture": "in {duration}",
+  "@commonTimeInFuture": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "dialogsModsFolderWarning": "Did you just try to delete your mods folder? No! Bad!",
+  "dialogsFailedToDelete": "Failed to delete {name}: {error}",
+  "@dialogsFailedToDelete": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "dialogsEnabledSuffix": " (enabled)",
+  "dialogsCompanionModWarning": "Deleting the Companion Mod will also delete any custom images you've imported with the Portrait Replacer!\n\nIf you've used {appName} to import custom portraits, you'll need to re-import them if you want to use them again.",
+  "@dialogsCompanionModWarning": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "dialogsDeleteModTitle": "Delete Mod",
+  "dialogsDeleteModsTitle": "Delete Mods",
+  "dialogsDeleteCountMod": "Delete {count} Mod",
+  "@dialogsDeleteCountMod": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "dialogsDeleteCountMods": "Delete {count} Mods",
+  "@dialogsDeleteCountMods": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "dialogsSelectTheModFolders": "Select the mod folders to delete:",
+  "dialogsDeleteWarningSg": "This will delete the mod folder on disk. This action cannot be undone.",
+  "dialogsDeleteWarningPl": "This will delete the mod folders on disk. This action cannot be undone.",
+  "dialogsAnErrorOccurredWhile": "An error occurred while deleting the mod folder(s).",
+  "dialogsAboutAppName": "{appName} v{version}",
+  "@dialogsAboutAppName": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "dialogsAboutTagline": "A Starsector toolkit\nby Wisp",
+  "debugInfoId": "id: ",
+  "debugInfoVersion": "Version: ",
+  "debugInfoVersionChecker": "Version Checker",
+  "debugInfoInternalId": "Internal id: ",
+  "debugInfoModFolder": "Mod Folder: ",
+  "debugInfoIcon": "Icon: ",
+  "debugInfoVersionCheckerLocal": "Version Checker - Local",
+  "debugInfoVersionCheckerRemote": "Version Checker - Remote (cached lookup)",
+  "debugInfoModMetadata": "Mod Metadata",
+  "debugInfoWholeMod": "Whole mod: ",
+  "debugInfoThisVersion": "This version: ",
+  "debugInfoSearchTags": "Search Tags",
+  "debugInfoNone": "(none)",
+  "dialogPagerPrevious": "Previous (Left arrow)",
+  "dialogPagerNext": "Next (Right arrow)",
+  "brokenShipImageTooltip": "Image not found. This is a banana.",
+  "modDataFileSubmenuLabel": "{label} ({count})",
+  "@modDataFileSubmenuLabel": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "modDataFileStatsAffected": "{label} (stats affected by {count} files)",
+  "@modDataFileStatsAffected": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "forceVersionCouldNotDetermine": "Could not determine current Starsector version.",
+  "forceVersionForce": "Force",
+  "forceVersionTitleSingle": "Force to {version}?",
+  "@forceVersionTitleSingle": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "forceVersionTitleMultiple": "Force {count} mods to {version}?",
+  "@forceVersionTitleMultiple": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "forceVersionMadeForSuffix": " was made for Starsector {gameVersion}, but you can try running it in {currentVersion}.\n",
+  "@forceVersionMadeForSuffix": {
+    "placeholders": {
+      "gameVersion": {
+        "type": "String"
+      },
+      "currentVersion": {
+        "type": "String"
+      }
+    }
+  },
+  "forceVersionSimpleModsNote": "Simple mods like portrait packs should be fine. Game updates usually don't break mods, but it depends on the mod and the game version.\n\n",
+  "forceVersionModMeantFor": "- {name} ({version}) is meant for Starsector '{gameVersion}'.",
+  "@forceVersionModMeantFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      },
+      "gameVersion": {
+        "type": "String"
+      }
+    }
+  },
+  "forceVersionConfirmMultiple": "Are you sure you want to modify {count} mod_info.json files to run on {version}?",
+  "@forceVersionConfirmMultiple": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "forceVersionConfirmSingle": "Are you sure you want to modify the '{name}' mod_info.json file to run on {version}?",
+  "@forceVersionConfirmSingle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "viewerToolbarShownCount": "({count} shown)",
+  "@viewerToolbarShownCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "viewerToolbarSplitTooltip": "Split to show two displays that can be scrolled independently.",
+  "viewerToolbarCompareMode": "Compare Mode",
+  "refreshModsAndRecheck": "Refresh mods and recheck versions",
+  "refreshModsRefreshing": "Refreshing",
+  "rangeFilterResetThisRange": "Reset this range",
+  "rangeFilterAny": "Any",
+  "underConstruction": "UNDER CONSTRUCTION",
+  "smartSearchFieldReference": "Search Field Reference",
+  "smartSearchViewFieldReference": "View search field reference",
+  "smartSearchSyntaxExamples": "Syntax: field:value   field:>value   -field:value   field:\"multi word\"",
+  "filterAdvanced": "Advanced",
+  "filterAdvancedTooltip": "Advanced filters: adds an \"any\" / \"all\" choice to each group.",
+  "filterClearSearch": "Clear search",
+  "filterHideFilters": "Hide filters",
+  "filterShowFilters": "Show filters",
+  "filterTitle": "Filters",
+  "filterSearchHint": "Filter filters",
+  "filterClearAll": "Clear All",
+  "filterClearAllTooltip": "Resets filters back to default.\nSome filters are applied by default, such as spoiler warnings.",
+  "filterIncludeAll": "Include all",
+  "filterExcludeAll": "Exclude all",
+  "filterClearAllFilters": "Clear all filters",
+  "filterGroupSearchScopedTooltip": "Only the values the search is showing.\nHold shift to do the whole group.",
+  "filterLogicAllTooltip": "All: only shows items that have every value you include.\nClick for \"any\".",
+  "filterLogicAnyTooltip": "Any: shows items with at least one of the values you include.\nClick for \"all\".",
+  "filterLogicAll": "all",
+  "filterLogicAny": "any",
+  "filterPillRemove": "Remove \"{label}\"",
+  "@filterPillRemove": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "filterGroupPersistOn": "Filter group is being saved",
+  "filterGroupPersistOff": "Filter group is not being saved",
+  "csvExportTitle": "Export {name} Data",
+  "@csvExportTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "csvExportAllLoadedData": "All loaded {name} data and fields.",
+  "@csvExportAllLoadedData": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "csvExportGridDataOnly": "Only the {name} data and fields visible in the grid.",
+  "@csvExportGridDataOnly": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "csvExportOptionAllData": "All Data",
+  "csvExportOptionGridData": "Grid Data",
+  "csvExportCopyToClipboard": "Copy to Clipboard",
+  "csvExportCopiedToClipboard": "Copied to clipboard!",
+  "csvExportSaveToFile": "Save to File",
+  "csvExportSaved": "Saved: {path}",
+  "@csvExportSaved": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "csvExportSaveDialogTitle": "Save Weapons CSV",
+  "csvExportSaveDialogUnavailable": "Save dialog unavailable. Example file at: {path}",
+  "@csvExportSaveDialogUnavailable": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "changelogTitle": "Changelog",
+  "changelogRefreshTooltip": "Refresh changelog",
+  "graphBarChart": "Bar Chart",
+  "graphPieChart": "Pie Chart",
+  "addModsTooltipGameRunning": "Game is running",
+  "addModsTooltipIconOnly": "Tip: drag'n'drop to install mods!",
+  "addModsTooltip": "Add new mod(s)\n\nTip: drag'n'drop to install mods!",
+  "fileCardAddToStarsector": "Add to Starsector",
+  "fileCardDropToDownload": "Drop to download",
+  "disableCannotWriteGameFolder": "Cannot modify game folder and/or vmparams.\nTry running {appName} as administrator.",
+  "@disableCannotWriteGameFolder": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "disableCannotWriteMods": "Cannot modify mods folder.\nTry running {appName} as administrator and make sure that mods/enabled_mods.json exists and can be modified.",
+  "@disableCannotWriteMods": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "descriptionPlaceholderHint": "Values shown as {placeholder} are placeholders filled in by game code. Additional text may be entirely added by game code.",
+  "@descriptionPlaceholderHint": {
+    "placeholders": {
+      "placeholder": {
+        "type": "String"
+      }
+    }
+  },
+  "gamePathsPathDoesNotExist": "Path does not exist",
+  "gamePathsStarsectorNotFound": "Starsector not found",
+  "gamePathsGameFolder": "Game Folder",
+  "gamePathsStarsectorLauncher": "Starsector launcher",
+  "gamePathsOverrideTooltip": "If checked, overrides the default path.",
+  "gamePathsLauncherTooltip": "What to launch when you click 'Launch' within {appName}.",
+  "@gamePathsLauncherTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "gamePathsSelectLauncher": "Select Starsector launcher",
+  "gamePathsMods": "Mods",
+  "gamePathsModsTooltip": "Where your mods are located.",
+  "gamePathsSelectMods": "Select Mods folder",
+  "gamePathsSaves": "Saves",
+  "gamePathsSavesTooltip": "Where the game's saves are located.",
+  "gamePathsSelectSaves": "Select Saves folder",
+  "gamePathsCoreData": "Core data",
+  "gamePathsCoreDataTooltip": "Where the game's data is located.\nThis is the folder that contains data, graphics, sounds, and jar files.",
+  "gamePathsSelectCore": "Select Core folder",
+  "gamePathsFootnote": "These paths tell {appName} where to look for data. They do not affect Starsector or how it loads data.",
+  "@gamePathsFootnote": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettingsResetTitle": "TriOS Settings Reset",
+  "appSettingsResetContent": "Your {appName} settings have been reset.\nThis may be due to an update or a broken settings file.\n\nPlease check your settings. Your mods have not been affected.\n\n\nError: \n{error}",
+  "@appSettingsResetContent": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "appDeepLinkTitle": "\"Install with TriOS\" link support",
+  "appDeepLinkBody": "Enable support for \"Install with TriOS\" buttons on the forum?\nYou can always change this on the Settings page.",
+  "appNoThanks": "No thanks",
+  "appEnable": "Enable"
 }

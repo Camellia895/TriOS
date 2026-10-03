@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/app_state.dart';
-import 'package:trios/trios/constants.dart';
+import 'package:trios/utils/extensions.dart';
 import 'package:trios/vmparams/vmparams_manager.dart';
 import 'package:trios/widgets/rainbow/themed_progress_indicator.dart';
 import 'package:trios/widgets/trios_expansion_tile.dart';
@@ -65,6 +66,7 @@ class _VmparamsFileSelectorDialogState
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final gameDir = ref.watch(AppState.gameFolder).value;
     final vmState = ref.watch(vmparamsManagerProvider).value;
     final files = _detectedFiles ?? vmState?.detectedVmparamsFiles ?? [];
@@ -72,7 +74,7 @@ class _VmparamsFileSelectorDialogState
     final theme = Theme.of(context);
 
     return AlertDialog(
-      title: const Text("vmparams Files"),
+      title: Text(loc.vmparamsFileSelectorDialogVmparamsFiles),
       content: SizedBox(
         width: 500,
         child: Column(
@@ -80,22 +82,21 @@ class _VmparamsFileSelectorDialogState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SelectableText(
-              "Select which files TriOS should use for reading and writing RAM allocation.",
+              loc.vmparamsFileSelectorDialogIntro,
               style: theme.textTheme.bodyMedium,
             ),
             Padding(
               padding: const .only(top: 4),
               child: TriOSExpansionTile(
-                title: Text("More information"),
+                title: Text(loc.vmparamsFileSelectorDialogMoreInformation),
                 dense: true,
                 leading: const Icon(Icons.info),
                 childrenPadding: .all(8),
                 children: [
                   SelectableText(
-                    "Different game launchers use different configuration files."
-                    "\n\nFor example, if you launch the game using Fast Rendering, it will use the amount of RAM specified in the `starsector-core/fr.vmparams` file (as of March 2026)."
-                    "\n\n${Constants.appName} scanned your game folder for files containing a pattern for Java RAM allocation arguments `(?<=xmx).*?(?=\\s)`."
-                    "\n\nFor each of these files checked below, when you pick a RAM value, it will surgically modify just the RAM allocation part of those files without changing the rest of the file.",
+                    loc.vmparamsFileSelectorDialogMoreInfoBody(
+                      context.appName,
+                    ),
                     style: theme.textTheme.labelLarge,
                   ),
                 ],
@@ -105,7 +106,7 @@ class _VmparamsFileSelectorDialogState
             if (_isScanning)
               Center(child: ThemedCircularProgressIndicator())
             else if (files.isEmpty)
-              const Text("No vmparams-type files found in the game directory.")
+              Text(loc.vmparamsFileSelectorDialogNoVmparamsTypeFiles)
             else
               ConstrainedBox(
                 constraints: const BoxConstraints(maxHeight: 300),
@@ -136,7 +137,9 @@ class _VmparamsFileSelectorDialogState
                         style: theme.textTheme.bodyMedium,
                       ),
                       subtitle: Text(
-                        ram != null ? "$ram MB" : "RAM not detected",
+                        ram != null
+                            ? "$ram MB"
+                            : loc.vmparamsFileSelectorDialogRamNotDetected,
                         style: theme.textTheme.bodySmall,
                       ),
                       dense: true,
@@ -153,12 +156,12 @@ class _VmparamsFileSelectorDialogState
             TextButton.icon(
               onPressed: _isScanning ? null : _rescan,
               icon: const Icon(Icons.refresh),
-              label: const Text("Rescan"),
+              label: Text(loc.vmparamsFileSelectorDialogRescan),
             ),
             const Spacer(),
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Cancel"),
+              child: Text(loc.triosCancel),
             ),
             const SizedBox(width: 8),
             FilledButton(
@@ -168,7 +171,7 @@ class _VmparamsFileSelectorDialogState
                     .setSelectedFiles(_selectedPaths.toList());
                 Navigator.of(context).pop();
               },
-              child: const Text("Save"),
+              child: Text(loc.vmparamsFileSelectorDialogSave),
             ),
           ],
         ),

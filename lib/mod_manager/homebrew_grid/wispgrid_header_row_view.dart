@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multi_split_view/multi_split_view.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
 import 'package:trios/thirdparty/dartx/function.dart';
@@ -211,6 +212,7 @@ class _WispGridHeaderRowViewState extends ConsumerState<WispGridHeaderRowView>
                           columnKey: column.key,
                           extraEntries:
                               widget.perColumnContextMenuEntries[column.key],
+                          loc: AppLocalizations.of(context),
                         ),
                         child: header,
                       );
@@ -234,6 +236,7 @@ class _WispGridHeaderRowViewState extends ConsumerState<WispGridHeaderRowView>
     groups: widget.groups,
     updateGridState: updateGridState,
     columnKey: columnKey,
+    loc: AppLocalizations.of(context),
   );
 }
 
@@ -280,6 +283,7 @@ ContextMenu buildWispGridColumnContextMenu({
   required Function(WispGridState? Function(WispGridState)) updateGridState,
   required String columnKey,
   List<ContextMenuEntry>? extraEntries,
+  required AppLocalizations loc,
 }) {
   final shared = buildWispGridHeaderContextMenu(
     gridState: gridState,
@@ -287,6 +291,7 @@ ContextMenu buildWispGridColumnContextMenu({
     groups: groups,
     updateGridState: updateGridState,
     columnKey: columnKey,
+    loc: loc,
   );
   if (extraEntries == null || extraEntries.isEmpty) return shared;
   return ContextMenu(
@@ -348,6 +353,7 @@ class WispGridFrozenHeaderRowView extends StatelessWidget {
                       updateGridState: updateGridState,
                       columnKey: column.key,
                       extraEntries: perColumnContextMenuEntries[column.key],
+                      loc: AppLocalizations.of(context),
                     ),
                     child: Align(
                       alignment: Alignment.centerLeft,
@@ -379,6 +385,7 @@ ContextMenu buildWispGridHeaderContextMenu({
   required List<WispGridGroup> groups,
   required Function(WispGridState? Function(WispGridState)) updateGridState,
   String? columnKey,
+  required AppLocalizations loc,
 }) {
   final groupingSetting = gridState.groupingSetting;
   final currentPrimaryKey = groupingSetting?.currentGroupedByKey;
@@ -421,7 +428,7 @@ ContextMenu buildWispGridHeaderContextMenu({
         ),
       if (groups.length > 1)
         MenuItem.submenu(
-          label: "Group By",
+          label: loc.wispgridGroupRowGroupBy,
           icon: Icons.horizontal_split,
           items: groups
               .map(
@@ -453,11 +460,11 @@ ContextMenu buildWispGridHeaderContextMenu({
         ),
       if (showThenBy)
         MenuItem.submenu(
-          label: "Then By",
+          label: loc.wispgridGroupRowThenBy,
           icon: Icons.subdirectory_arrow_right,
           items: [
             MenuItem(
-              label: 'None',
+              label: loc.codexNone,
               icon: currentSecondaryKey == null ? Icons.check : null,
               onSelected: () {
                 updateGridState((WispGridState state) {
@@ -492,16 +499,16 @@ ContextMenu buildWispGridHeaderContextMenu({
         ),
       MenuDivider(),
       MenuItem(
-        label: 'Reset grid layout',
+        label: loc.wispgridHeaderRowResetGridLayout,
         icon: Icons.settings_backup_restore,
         onSelected: () {
           updateGridState((WispGridState state) => null);
         },
       ),
       MenuDivider(),
-      MenuHeader(text: "Hide/Show Columns", disableUppercase: true),
+      MenuHeader(text: loc.wispgridHeaderRowHideShowColumns, disableUppercase: true),
       MenuItem(
-        label: 'Show All',
+        label: loc.wispgridHeaderRowShowAll,
         icon: Icons.visibility,
         onSelected: () {
           updateGridState((WispGridState state) {
@@ -516,7 +523,7 @@ ContextMenu buildWispGridHeaderContextMenu({
         },
       ),
       MenuItem(
-        label: 'Hide All',
+        label: loc.wispgridHeaderRowHideAll,
         icon: Icons.visibility_off,
         onSelected: () {
           updateGridState((WispGridState state) {

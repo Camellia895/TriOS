@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/catalog/catalog_download_resolver.dart';
 import 'package:trios/catalog/download_confirm.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/deep_link/deep_link_handler.dart';
 import 'package:trios/trios/deep_link/deep_link_parser.dart';
 import 'package:trios/trios/download_manager/download_manager.dart';
@@ -38,7 +39,9 @@ void executeDownloadCandidate(
         showSnackBar(
           context: context,
           type: SnackBarType.info,
-          content: Text('Preparing to install $modName…'),
+          content: Text(
+            AppLocalizations.of(context).catalogPreparingToInstall(modName),
+          ),
         );
       }
       ref

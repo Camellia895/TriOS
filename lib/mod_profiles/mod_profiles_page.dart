@@ -3,6 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/audit_page.dart';
 import 'package:trios/mod_profiles/models/shared_mod_list.dart';
 import 'package:trios/mod_profiles/save_reader.dart';
@@ -46,6 +47,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final loc = AppLocalizations.of(context);
     final modProfilesAsync = ref.watch(modProfilesProvider);
     final saveGamesAsync = ref.watch(saveFileProvider);
     const minHeight = 120.0;
@@ -74,7 +76,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                     child: Row(
                       children: [
                         Text(
-                          'Mod Profiles',
+                          loc.profileModProfiles,
                           style: Theme.of(
                             context,
                           ).textTheme.headlineSmall?.copyWith(fontSize: 20),
@@ -86,7 +88,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  title: const Text("Mod Profiles"),
+                                  title: Text(loc.profileModProfiles),
                                   content: const Text(
                                     "Mod profiles are a way to quickly switch between different mods, including specific versions."
                                     "\nWhen one is enabled, any mods you change will update the profile as well."
@@ -98,7 +100,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: const Text("OK"),
+                                      child: Text(loc.profileOk),
                                     ),
                                   ],
                                 );
@@ -154,7 +156,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                       loading: () =>
                           Center(child: ThemedCircularProgressIndicator()),
                       error: (error, stackTrace) =>
-                          Center(child: Text('Error: $error')),
+                          Center(child: Text(loc.commonErrorWithDetails(error.toString()))),
                     ),
                   ),
                 ],
@@ -185,7 +187,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                           ),
                           const Spacer(),
                           MovingTooltipWidget.text(
-                            message: 'Reread from Saves folder',
+                            message: loc.profileRereadFromSavesFolder,
                             child: IconButton(
                               onPressed: () {
                                 ref.invalidate(saveFileProvider);
@@ -232,7 +234,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                         loading: () =>
                             Center(child: ThemedCircularProgressIndicator()),
                         error: (error, stackTrace) =>
-                            Center(child: Text('Error: $error')),
+                            Center(child: Text(loc.commonErrorWithDetails(error.toString()))),
                       ),
                     ),
                   ],
@@ -262,6 +264,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
   }
 
   Widget _buildNewProfileCard() {
+    final loc = AppLocalizations.of(context);
     final newProfileNameController = TextEditingController();
     return Card(
       margin: const EdgeInsets.all(0),
@@ -281,14 +284,14 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
               children: [
                 const Spacer(),
                 MovingTooltipWidget.text(
-                  message: "Import a shared mod Profile from clipboard",
+                  message: loc.profileImportASharedProfile,
                   child: OutlinedButton.icon(
                     onPressed: () async {
                       final success = await _importModProfileFromClipboard();
                       if (!success) {
                         showAlertDialog(
                           context,
-                          title: "Sharing Mod Profiles",
+                          title: loc.profileSharingModProfiles,
                           widget: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -321,7 +324,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                                     //   height: 24,
                                     // ),
                                   ),
-                                  const Text("Copy button on a Mod Profile."),
+                                  Text(loc.profileCopyButtonOnA),
                                 ],
                               ),
                               const Text(
@@ -329,7 +332,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                               ),
                               Row(
                                 children: [
-                                  const Text("3. They may click"),
+                                  Text(loc.profileTheyMayClick),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 4,
@@ -357,7 +360,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                       "assets/images/icon-import-horiz.svg",
                       color: Theme.of(context).colorScheme.primary,
                     ),
-                    label: const Text('Import'),
+                    label: Text(loc.profileImport),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -373,7 +376,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                       Icons.add,
                       color: Theme.of(context).colorScheme.primary,
                     ),
-                    label: const Text('New Profile'),
+                    label: Text(loc.profileNewProfile),
                   ),
                 ),
               ],
@@ -400,6 +403,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
   }
 
   Future<bool> _importModProfileFromClipboard() async {
+    final loc = AppLocalizations.of(context);
     try {
       final clipboardData = await Clipboard.getData(Clipboard.kTextPlain);
       if (clipboardData?.text == null || clipboardData!.text!.isEmpty) {
@@ -413,7 +417,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
         Fimber.w('Clipboard is empty');
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('Clipboard is empty')));
+        ).showSnackBar(SnackBar(content: Text(loc.profileClipboardEmpty)));
         return false;
       }
 
@@ -457,7 +461,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
         final result = await showDialog<String>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Profile Already Exists'),
+            title: Text(loc.profileAlreadyExists),
             content: StatefulBuilder(
               builder: (context, stateSetter) {
                 // Build a minimal diff of mod name + versions (Existing vs Imported)
@@ -508,13 +512,13 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Unable to import profile '$finalName'."),
+                        Text(loc.profileImportUnable(finalName)),
                         Text(
                           "\nA profile with the same ${existingProfileWithId != null ? "ID (name: '${existingProfile.name}')" : existingProfile.name} already exists.",
                         ),
                         const SizedBox(height: 8),
                         if (differingIds.isEmpty)
-                          Text('Both profiles are identical.')
+                          Text(loc.profileBothIdentical)
                         else
                           Container(
                             decoration: BoxDecoration(
@@ -634,15 +638,15 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop('cancel'),
-                child: const Text('Cancel'),
+                child: Text(loc.commonCancel),
               ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop('rename'),
-                child: const Text('Import as Copy'),
+                child: Text(loc.profileImportAsCopy),
               ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop('overwrite'),
-                child: const Text('Overwrite Existing'),
+                child: Text(loc.profileOverwriteExisting),
               ),
             ],
           ),
@@ -707,7 +711,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
         );
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Successfully imported profile: ${modProfile.name}'),
+            content: Text(loc.profileImported(modProfile.name)),
           ),
         );
       }
@@ -715,7 +719,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
       return true;
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to import profile: ${e.toString()}')),
+        SnackBar(content: Text(loc.profileFailedToImport(e.toString()))),
       );
       return false;
     }

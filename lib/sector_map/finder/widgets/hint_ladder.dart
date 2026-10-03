@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/sector_map/finder/finder_criteria.dart';
 import 'package:trios/sector_map/finder/finder_engine.dart';
 import 'package:trios/sector_map/models/sector.dart';
@@ -31,6 +32,7 @@ class HintLadder extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final state = ref.watch(sectorMapControllerProvider);
     final controller = ref.read(sectorMapControllerProvider.notifier);
 
@@ -92,7 +94,7 @@ class HintLadder extends ConsumerWidget {
             matchOrdinal: matchIndex + 1,
             totalMatches: matches.length,
             match: match,
-            revealText: _revealText(match, level, reveal),
+            revealText: _revealText(match, level, reveal, loc),
             onReveal: () => controller.bumpReveal(maxLevel),
             onShowOnMap: () => controller
               ..setMode(SectorMapMode.atlas)
@@ -153,25 +155,29 @@ class HintLadder extends ConsumerWidget {
     ScoredSystem match,
     int level,
     RevealSet reveal,
+    AppLocalizations loc,
   ) {
     if (level <= 0) {
-      return 'Tune the knobs until the count is small, then reveal a hint to '
-          'your best match.';
+      return loc.finderHintTuneKnobs;
     }
     final conName = match.system.constellationId == null
         ? null
         : _conName(match.system.constellationId!);
     return switch (level) {
-      1 => 'Somewhere in one of these ${reveal.constellationIds.length} '
-          'constellations.',
-      2 => 'Narrowed to these ${reveal.constellationIds.length} '
-          'constellations.',
+      1 => loc.finderHintSomewhereInConstellations(
+        reveal.constellationIds.length,
+      ),
+      2 => loc.finderHintNarrowedToConstellations(
+        reveal.constellationIds.length,
+      ),
       3 => conName == null
-          ? 'In an unnamed region of deep space.'
-          : 'In the $conName constellation.',
-      _ => '${match.system.name}'
-          '${conName == null ? '' : ' — $conName'} '
-          '(hazard from ${(_minHazardPct(match.system))}%).',
+          ? loc.finderHintUnnamedRegion
+          : loc.finderHintInConstellation(conName),
+      _ => loc.finderHintExactSystem(
+        match.system.name,
+        conName == null ? '' : ' — $conName',
+        _minHazardPct(match.system),
+      ),
     };
   }
 
@@ -242,6 +248,7 @@ class _HintControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final atMax = level >= HintLadder.maxLevel;
     return Card(
       margin: const EdgeInsets.all(16),
@@ -253,8 +260,13 @@ class _HintControls extends StatelessWidget {
           spacing: 8,
           children: [
             Text(
-              '$totalMatches systems fit'
-              '${totalMatches > 1 ? '  •  best match $matchOrdinal of $totalMatches' : ''}',
+              totalMatches > 1
+                  ? loc.finderBestMatchSummary(
+                      totalMatches,
+                      matchOrdinal,
+                      totalMatches,
+                    )
+                  : loc.finderSystemsFit(totalMatches),
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
               ),
@@ -268,23 +280,26 @@ class _HintControls extends StatelessWidget {
                   icon: Icon(atMax ? Icons.public : Icons.visibility, size: 18),
                   label: Text(
                     level <= 0
-                        ? 'Reveal a hint'
+                        ? loc.finderRevealAHint
                         : atMax
-                        ? 'Show on the map'
-                        : 'Narrow it down',
+                        ? loc.finderShowOnTheMap
+                        : loc.finderNarrowItDown,
                   ),
                 ),
                 if (totalMatches > 1)
                   MovingTooltipWidget.text(
-                    message: 'Reveal the next-best match instead',
+                    message: loc.finderRevealTheNextBestMatch,
                     child: OutlinedButton.icon(
                       onPressed: onNextMatch,
                       icon: const Icon(Icons.skip_next, size: 18),
-                      label: const Text('Different match'),
+                      label: Text(loc.finderDifferentMatch),
                     ),
                   ),
                 if (level > 0)
-                  TextButton(onPressed: onReset, child: const Text('Reset')),
+                  TextButton(
+                    onPressed: onReset,
+                    child: Text(loc.finderReset),
+                  ),
               ],
             ),
           ],
@@ -303,6 +318,7 @@ class _ZeroMatchHelp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final hints = engine.bottleneck(criteria);
     return Center(
       child: ConstrainedBox(
@@ -315,20 +331,20 @@ class _ZeroMatchHelp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 8,
               children: [
-                Text('No systems fit', style: theme.textTheme.titleMedium),
+                Text(loc.finderNoSystemsFit, style: theme.textTheme.titleMedium),
                 if (hints.isEmpty)
                   Text(
-                    'Loosen the knobs to find some matches.',
+                    loc.finderLoosenTheKnobs,
                     style: theme.textTheme.bodyMedium,
                   )
                 else ...[
                   Text(
-                    'Relaxing one of these would help:',
+                    loc.finderRelaxingOneOfThese,
                     style: theme.textTheme.bodyMedium,
                   ),
                   for (final h in hints.take(4))
                     Text(
-                      '• Turn off ${h.constraint} → ${h.countIfRemoved} fit',
+                      loc.finderHintTurnOff(h.constraint, h.countIfRemoved),
                       style: theme.textTheme.bodyMedium,
                     ),
                 ],

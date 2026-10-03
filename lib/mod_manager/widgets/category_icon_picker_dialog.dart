@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_tag_manager/category.dart';
 import 'package:trios/mod_tag_manager/category_icon_palette.dart';
 import 'package:trios/mod_tag_manager/material_icons_all.dart';
@@ -94,9 +95,10 @@ class _CategoryIconPickerDialogState
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final iconColor = theme.colorScheme.onSurface;
+    final loc = AppLocalizations.of(context);
 
     return AlertDialog(
-      title: Text("Icon for ${widget.mod.name}"),
+      title: Text(loc.categoryIconPickerDialogIconFor(widget.mod.name)),
       content: SizedBox(
         width: 480,
         height: 520,
@@ -129,7 +131,7 @@ class _CategoryIconPickerDialogState
             Expanded(
               child: _filteredSvgIcons.isEmpty &&
                       _filteredMaterialIcons.isEmpty
-                  ? const Center(child: Text('No icons found'))
+                  ? Center(child: Text(loc.categoryIconPickerDialogNoIconsFound))
                   : CustomScrollView(
                       slivers: [
                         // Custom SVG icons section
@@ -199,12 +201,14 @@ class _CategoryIconPickerDialogState
                             },
                           )
                         else
-                          const SliverToBoxAdapter(
+                          SliverToBoxAdapter(
                             child: Center(
                               child: Padding(
                                 padding: EdgeInsets.all(16),
-                                child:
-                                    Text('No material icons found'),
+                                child: Text(
+                                  loc
+                                      .categoryIconPickerDialogNoMaterialIconsFound,
+                                ),
                               ),
                             ),
                           ),
@@ -220,7 +224,7 @@ class _CategoryIconPickerDialogState
             widget.onIconSelected(null);
             Navigator.of(context).pop();
           },
-          child: const Text('No Icon'),
+          child: Text(loc.categoryIconPickerDialogNoIcon),
         ),
       ],
     );

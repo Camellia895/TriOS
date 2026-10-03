@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/trios/constants.dart';
@@ -41,6 +42,7 @@ class _ScanProgressPanelState extends ConsumerState<ScanProgressPanel> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final vramStateProvider = ref.watch(AppState.vramEstimatorProvider);
     if (vramStateProvider.isLoading) return const SizedBox.shrink();
     final state = vramStateProvider.requireValue;
@@ -90,7 +92,7 @@ class _ScanProgressPanelState extends ConsumerState<ScanProgressPanel> {
             ),
             const SizedBox(width: 8),
             Text(
-              'Progress  •  ${activeScans.length} scan${activeScans.length == 1 ? '' : 's'} active',
+              loc.vramScansActive(activeScans.length),
               style: theme.textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -103,7 +105,7 @@ class _ScanProgressPanelState extends ConsumerState<ScanProgressPanel> {
                     .read(AppState.vramEstimatorProvider.notifier)
                     .cancelEstimation(),
                 icon: const Icon(Icons.stop, size: 16),
-                label: Text(state.isCancelled ? 'Cancelling…' : 'Cancel'),
+                label: Text(state.isCancelled ? loc.vramCancelling : loc.vramCancel),
                 style: OutlinedButton.styleFrom(
                   visualDensity: VisualDensity.compact,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -116,13 +118,15 @@ class _ScanProgressPanelState extends ConsumerState<ScanProgressPanel> {
         Row(
           children: [
             Text(
-              'Overall: ',
+              loc.vramOverall,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
             ),
             Text(
-              hasTotal ? '$done of $total mods  ($percentText)' : '$done mods',
+              hasTotal
+                  ? loc.vramOverallProgress(done, total, percentText)
+                  : loc.vramModsCount(done),
               style: theme.textTheme.bodySmall,
             ),
           ],
@@ -162,7 +166,7 @@ class _ScanProgressPanelState extends ConsumerState<ScanProgressPanel> {
           )
         else
           Text(
-            'Preparing scan, collecting mod folders…',
+            loc.vramPreparingScan,
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               fontStyle: FontStyle.italic,
@@ -184,6 +188,7 @@ class _ActiveScanRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final hasFileProgress = scan.totalFiles > 0;
     final fileFraction = hasFileProgress
         ? (scan.filesScanned / scan.totalFiles).clamp(0.0, 1.0)
@@ -212,7 +217,7 @@ class _ActiveScanRow extends StatelessWidget {
               Text(
                 hasFileProgress
                     ? '${scan.filesScanned} / ${scan.totalFiles}  ($filePercentText)'
-                    : 'discovering image files…',
+                    : loc.vramDiscoveringImageFiles,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   fontStyle: hasFileProgress
@@ -261,6 +266,7 @@ class _IdleSummary extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final mutedStyle = theme.textTheme.bodySmall?.copyWith(
       color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
     );
@@ -279,11 +285,11 @@ class _IdleSummary extends ConsumerWidget {
         size: 16,
         color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
       ),
-      Text('Last scan:', style: mutedStyle),
+      Text(loc.vramLastScan, style: mutedStyle),
     ];
 
     if (lastUpdated == null || modCount == 0) {
-      lastScanRow.add(Text('never', style: valueStyle));
+      lastScanRow.add(Text(loc.vramNever, style: valueStyle));
     } else {
       lastScanRow.addAll([
         Tooltip(
@@ -294,11 +300,13 @@ class _IdleSummary extends ConsumerWidget {
           ),
         ),
         Text('•', style: mutedStyle),
-        Text('$modCount mods', style: valueStyle),
+        Text(loc.vramModsCount(modCount), style: valueStyle),
         if (lastScanDurationMs != null) ...[
           Text('•', style: mutedStyle),
           Text(
-            'took ${_formatScanDuration(Duration(milliseconds: lastScanDurationMs))}',
+            loc.vramTook(
+              _formatScanDuration(Duration(milliseconds: lastScanDurationMs)),
+            ),
             style: valueStyle,
           ),
         ],
@@ -319,21 +327,21 @@ class _IdleSummary extends ConsumerWidget {
         ? const <_CohortSummary>[]
         : <_CohortSummary>[
             _buildCohort(
-              label: 'Enabled',
+              label: loc.vramEnabled,
               mods: mods.where((m) => m.isEnabledOnUi).toList(),
               vramMap: vramMap,
               gfxConfig: gfxConfig,
               vanillaBytes: vanillaBytes,
             ),
             _buildCohort(
-              label: 'Disabled',
+              label: loc.vramDisabled,
               mods: mods.where((m) => !m.isEnabledOnUi).toList(),
               vramMap: vramMap,
               gfxConfig: gfxConfig,
               vanillaBytes: vanillaBytes,
             ),
             _buildCohort(
-              label: 'All mods',
+              label: loc.vramAllMods,
               mods: mods,
               vramMap: vramMap,
               gfxConfig: gfxConfig,
@@ -349,7 +357,7 @@ class _IdleSummary extends ConsumerWidget {
         if (cohorts.isNotEmpty) ...[
           const SizedBox(height: 8),
           Text(
-            'Estimated VRAM use',
+            loc.vramEstimatedVramUse,
             style: theme.textTheme.labelSmall?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               fontWeight: FontWeight.w600,
@@ -458,6 +466,7 @@ class _CohortRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final approxStyle = valueStyle?.copyWith(
       fontStyle: FontStyle.italic,
       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
@@ -470,17 +479,16 @@ class _CohortRow extends StatelessWidget {
 
     if (!hasScannedAllMods) {
       valueText = Text(
-        "(${cohort.unscannedCount} unscanned)",
+        loc.vramUnscannedCount(cohort.unscannedCount),
         style: approxStyle,
       );
-      hideReason = "Scan all ${cohort.label} mods to see totals";
+      hideReason = loc.vramScanAllToSeeTotals(cohort.label);
     } else if (cohort.totalMods > 0 && cohort.hasNoScans) {
       valueText = Text(
-        ' not scanned (${cohort.totalMods} mods)',
+        loc.vramNotScanned(cohort.totalMods),
         style: approxStyle,
       );
-      hideReason =
-          "These ${cohort.totalMods} mods haven't been scanned yet, so their VRAM usage is unknown. Run a scan to see a total.";
+      hideReason = loc.vramNotScannedTooltip(cohort.totalMods);
     } else {
       valueText = Text(
         cohort.totalBytes.bytesAsReadableMB(),
@@ -488,7 +496,9 @@ class _CohortRow extends StatelessWidget {
       );
     }
 
-    final countSuffix = hasScannedAllMods ? '(${cohort.totalMods} mods)' : null;
+    final countSuffix = hasScannedAllMods
+        ? loc.vramModsCountInParens(cohort.totalMods)
+        : null;
 
     final row = Row(
       mainAxisSize: MainAxisSize.min,
@@ -530,37 +540,39 @@ class _CohortBreakdownTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final lines = <String>[];
     lines.add(
-      '${cohort.modsBytes.bytesAsReadableMB()} added by mods '
-      '(${cohort.modsImageCount} images)',
+      loc.vramAddedByMods(
+        cohort.modsBytes.bytesAsReadableMB(),
+        cohort.modsImageCount,
+      ),
     );
     if (cohort.gfxBytes > 0) {
       final detail = cohort.isApproxGfx
-          ? 'roughly'
-          : '${cohort.gfxImageCount} images';
+          ? loc.vramRoughly
+          : loc.vramImagesCount(cohort.gfxImageCount);
       lines.add(
-        '${cohort.gfxBytes.bytesAsReadableMB()} added by your '
-        'GraphicsLib settings ($detail)',
+        loc.vramAddedByGraphicsLib(cohort.gfxBytes.bytesAsReadableMB(), detail),
       );
     }
-    lines.add('${cohort.vanillaBytes.bytesAsReadableMB()} added by vanilla');
+    lines.add(loc.vramAddedByVanilla(cohort.vanillaBytes.bytesAsReadableMB()));
     lines.add('---');
-    lines.add('${cohort.totalBytes.bytesAsReadableMB()} total');
+    lines.add(loc.vramTotalLine(cohort.totalBytes.bytesAsReadableMB()));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          'Estimated VRAM use by: ${cohort.label.toLowerCase()}',
+          loc.vramEstimatedVramUseBy(cohort.label.toLowerCase()),
           style: theme.textTheme.labelLarge?.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
         if (!cohort.hasNoMods && cohort.unscannedCount > 0)
           Text(
-            '${cohort.unscannedCount} of ${cohort.totalMods} mods unscanned.',
+            loc.vramUnscannedOf(cohort.unscannedCount, cohort.totalMods),
             style: theme.textTheme.labelSmall?.copyWith(
               fontStyle: FontStyle.italic,
               color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -569,22 +581,32 @@ class _CohortBreakdownTooltip extends StatelessWidget {
         if (gfxConfig != null) ...[
           const SizedBox(height: 6),
           Text(
-            'GraphicsLib settings',
+            loc.vramGraphicsLibSettings,
             style: theme.textTheme.labelLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
-            'Enabled: ${gfxConfig!.areAnyEffectsEnabled ? "yes" : "no"}'
-            '\nGenerate Normal maps: ${gfxConfig!.autoGenNormals ? "on" : "off"}'
-            '\nPreload all: ${gfxConfig!.preloadAllMaps ? "on" : "off"}',
+            loc.vramGfxStatusMain(
+              gfxConfig!.areAnyEffectsEnabled ? loc.vramYes : loc.vramNo,
+              gfxConfig!.autoGenNormals ? loc.vramOn : loc.vramOff,
+              gfxConfig!.preloadAllMaps ? loc.vramOn : loc.vramOff,
+            ),
             style: theme.textTheme.labelLarge,
           ),
           if (gfxConfig!.areAnyEffectsEnabled)
             Text(
-              'Normal maps: ${gfxConfig!.areGfxLibNormalMapsEnabled ? "on" : "off"}'
-              '\nMaterial maps: ${gfxConfig!.areGfxLibMaterialMapsEnabled ? "on" : "off"}'
-              '\nSurface maps: ${gfxConfig!.areGfxLibSurfaceMapsEnabled ? "on" : "off"}',
+              loc.vramGfxStatusMaps(
+                gfxConfig!.areGfxLibNormalMapsEnabled
+                    ? loc.vramOn
+                    : loc.vramOff,
+                gfxConfig!.areGfxLibMaterialMapsEnabled
+                    ? loc.vramOn
+                    : loc.vramOff,
+                gfxConfig!.areGfxLibSurfaceMapsEnabled
+                    ? loc.vramOn
+                    : loc.vramOff,
+              ),
               style: theme.textTheme.labelLarge,
             ),
         ],

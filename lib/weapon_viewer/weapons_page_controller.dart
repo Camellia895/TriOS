@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/notify_on_new_state.dart';
 import 'package:trios/models/mod.dart';
 import 'package:trios/trios/app_state.dart';
@@ -185,6 +186,7 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
   }
 
   FilterScopeController<Weapon> _buildFilters() {
+    final loc = AppLocalizationsSync.instance;
     final groups = <FilterGroup<Weapon>>[
       CompositeFilterGroup<Weapon>(
         id: 'general',
@@ -192,10 +194,8 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
         fields: [
           BoolField<Weapon>(
             id: 'showEnabled',
-            label: 'Only Enabled Mods',
-            tooltip:
-                'Only show weapons from enabled mods.'
-                '\nShared with the ships, factions and codex pages.',
+            label: loc.factionViewerOnlyEnabledMods,
+            tooltip: loc.weaponsFilterOnlyEnabledModsTooltip,
             predicate: (weapon) {
               final mods = ref.read(AppState.mods);
               return weapon.modVariant == null ||
@@ -204,15 +204,15 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
           ),
           BoolField<Weapon>(
             id: 'showHidden',
-            label: 'Show Hidden Weapons',
-            tooltip: 'Show hidden weapons (built-in, internal).',
+            label: loc.weaponsShowHiddenWeapons,
+            tooltip: loc.weaponsFilterShowHiddenTooltip,
             predicate: (_) => true,
             defaultValue: true,
             initialValue: false,
           ),
           EnumField<Weapon, WeaponSpoilerLevel>(
             id: 'spoiler',
-            label: 'Spoilers',
+            label: loc.hullmodsSpoilers,
             defaultValue: WeaponSpoilerLevel.noSpoilers,
             options: WeaponSpoilerLevel.values,
             predicate: _spoilerMatches,
@@ -307,14 +307,17 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
       weaponMatchesSpoilerLevel(weapon, level);
 
   String _spoilerLabel(WeaponSpoilerLevel e) => switch (e) {
-    WeaponSpoilerLevel.noSpoilers => 'No spoilers',
-    WeaponSpoilerLevel.showAllSpoilers => 'Show all spoilers',
+    WeaponSpoilerLevel.noSpoilers =>
+      AppLocalizationsSync.instance.weaponsSpoilerNone,
+    WeaponSpoilerLevel.showAllSpoilers =>
+      AppLocalizationsSync.instance.weaponsSpoilerAll,
   };
 
   String _spoilerTooltip(WeaponSpoilerLevel e) => switch (e) {
-    WeaponSpoilerLevel.noSpoilers => 'Hides weapons tagged CODEX_UNLOCKABLE.',
+    WeaponSpoilerLevel.noSpoilers =>
+      AppLocalizationsSync.instance.weaponsSpoilerNoneTooltip,
     WeaponSpoilerLevel.showAllSpoilers =>
-      'Shows weapons tagged CODEX_UNLOCKABLE.',
+      AppLocalizationsSync.instance.weaponsSpoilerAllTooltip,
   };
 
   void _persistState(WeaponsPageState newState) {

@@ -6,6 +6,7 @@ import 'package:trios/descriptions/description_entry.dart';
 import 'package:trios/descriptions/descriptions_manager.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
 import 'package:trios/hullmod_viewer/widgets/hullmod_codex_card.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/ship_systems_manager/ship_system.dart';
 import 'package:trios/ship_viewer/models/ship.dart';
 import 'package:trios/ship_viewer/models/ship_weapon_slot.dart';
@@ -138,6 +139,7 @@ class ShipCodexCard {
     CodexEntitySelected? onEntitySelected,
   }) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final highlightColor = TriOSThemeConstants.vanillaCyanColor;
 
     final shieldUpper = ship.shieldType?.toUpperCase();
@@ -453,6 +455,7 @@ class ShipCodexCard {
                             ship.fighterBays,
                             theme,
                             TriOSThemeConstants.vanillaYellowGoldColor,
+                            loc.shipCodexCardFighterBay,
                           ),
                         ),
                       ],
@@ -674,6 +677,7 @@ Widget _mountWrap(
   double? fighterBays,
   ThemeData theme,
   Color highlightColor,
+  String fighterBayLabel,
 ) {
   final baseStyle = theme.textTheme.bodySmall;
   final countStyle = baseStyle?.copyWith(
@@ -686,7 +690,10 @@ Widget _mountWrap(
       (e) => (count: '${e.value}\u00D7', label: ' ${e.key}'),
     ),
     if (fighterBays != null && fighterBays > 0)
-      (count: '${tooltipFmt(fighterBays)}\u00D7', label: ' Fighter bay'),
+      (
+        count: '${tooltipFmt(fighterBays)}\u00D7',
+        label: fighterBayLabel,
+      ),
   ];
 
   return Wrap(

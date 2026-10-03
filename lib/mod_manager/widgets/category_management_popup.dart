@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_tag_manager/category.dart';
 import 'package:trios/mod_tag_manager/category_auto_color.dart';
 import 'package:trios/mod_tag_manager/category_icon_palette.dart';
@@ -104,6 +105,7 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
 
     final categories = _notifier.getAllCategories();
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     return Dialog(
       clipBehavior: Clip.antiAlias,
@@ -124,7 +126,10 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
               child: Row(
                 spacing: 8,
                 children: [
-                  Text('Manage Categories', style: theme.textTheme.titleLarge),
+                  Text(
+                    loc.categoryManagementPopupManageCategories,
+                    style: theme.textTheme.titleLarge,
+                  ),
                   const Spacer(),
                   IconButton(
                     icon: const Icon(Icons.close, size: 20),
@@ -207,7 +212,7 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
                   const Spacer(),
                   FilledButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Done'),
+                    child: Text(loc.categoryManagementPopupDone),
                   ),
                 ],
               ),
@@ -302,7 +307,9 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
                 _SmallIconButton(
                   icon: Icons.edit_outlined,
                   color: theme.iconTheme.color,
-                  tooltip: 'Rename',
+                  tooltip: AppLocalizations.of(
+                    context,
+                  ).categoryContextMenuRename,
                   onPressed: () => setState(() {
                     _editingCategoryId = category.id;
                     _renameController.text = category.name;
@@ -350,7 +357,9 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
               // Delete button.
               _SmallIconButton(
                 icon: Icons.delete,
-                tooltip: 'Delete',
+                tooltip: AppLocalizations.of(
+                  context,
+                ).categoryManagementPopupDelete,
                 onPressed: () => _handleDelete(category, store),
               ),
             ],
@@ -415,7 +424,11 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Delete "${category.name}"?'),
+        title: Text(
+          AppLocalizations.of(
+            context,
+          ).categoryManagementPopupDeleteCategory(category.name),
+        ),
         content: Text(
           'This category is assigned to $count mod(s). '
           'They will become uncategorized.',
@@ -423,7 +436,7 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context).commonCancel),
           ),
           FilledButton.icon(
             icon: const Icon(Icons.delete),
@@ -432,7 +445,9 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
               Navigator.of(ctx).pop();
               setState(() {});
             },
-            label: const Text('Delete'),
+            label: Text(
+              AppLocalizations.of(context).categoryManagementPopupDelete,
+            ),
           ),
         ],
       ),
@@ -630,7 +645,7 @@ class _ColorCircle extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Tooltip(
-      message: 'Change color',
+      message: AppLocalizations.of(context).categoryManagementPopupChangeColor,
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
         onTap: onTap,
@@ -671,7 +686,7 @@ class _IconIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Tooltip(
-      message: 'Change icon',
+      message: AppLocalizations.of(context).categoryManagementPopupChangeIcon,
       child: InkWell(
         borderRadius: BorderRadius.circular(TriOSThemeConstants.cornerRadius),
         onTap: onTap,
@@ -754,9 +769,10 @@ class _StrikethroughCircle extends StatelessWidget {
         ? colorScheme.onSurface.mix(iconColor ?? colorScheme.onSurface, 0.5)!
         : colorScheme.outline;
     final borderWidth = isSelected ? 2.0 : 1.0;
+    final loc = AppLocalizations.of(context);
 
     return Tooltip(
-      message: 'None',
+      message: loc.codexNone,
       child: InkWell(
         borderRadius: BorderRadius.circular(size / 2),
         onTap: onTap,
@@ -911,7 +927,10 @@ class _InlineIconPicker extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 6,
         children: [
-          Text('Custom', style: theme.textTheme.labelSmall),
+          Text(
+            AppLocalizations.of(context).categoryManagementPopupCustom,
+            style: theme.textTheme.labelSmall,
+          ),
           Wrap(
             spacing: 6,
             runSpacing: 6,
@@ -941,7 +960,10 @@ class _InlineIconPicker extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 2),
-          Text('Material', style: theme.textTheme.labelSmall),
+          Text(
+            AppLocalizations.of(context).categoryManagementPopupMaterial,
+            style: theme.textTheme.labelSmall,
+          ),
           Wrap(
             spacing: 6,
             runSpacing: 6,

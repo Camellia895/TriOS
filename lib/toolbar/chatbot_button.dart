@@ -3,6 +3,7 @@ import 'package:trios/trios/constants_theme.dart';
 
 import 'package:material_ui/material_ui.dart';
 import 'package:trios/chatbot/chatbot_dialog.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/widgets/animated_gradient_border.dart';
@@ -79,6 +80,7 @@ class _ChatbotButtonState extends State<ChatbotButton>
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final gradientColors = deltaCoreColors;
 
     return MouseRegion(
@@ -123,7 +125,7 @@ class _ChatbotButtonState extends State<ChatbotButton>
                   // );
                   return MovingTooltipWidget(
                     tooltipWidget: _AnimatedGradientTooltip(
-                      message: "Chat with ${Constants.chatbotName}",
+                      message: loc.toolbarChatWith(Constants.chatbotName),
                       colors: gradientColors,
                     ),
                     child: IconButton(

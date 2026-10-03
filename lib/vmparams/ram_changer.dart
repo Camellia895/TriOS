@@ -5,8 +5,8 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/app_state.dart';
-import 'package:trios/trios/constants.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vmparams/vmparams_manager.dart';
 import 'package:trios/widgets/conditional_wrap.dart';
@@ -88,8 +88,10 @@ class _RamChangerState extends ConsumerState<RamChanger> {
 
     if (!areVmparamsWritable) {
       return Text(
-        "Cannot write to vmparams file:\n${vmParamsFilesThatCannotBeWritten.join("\n")}."
-        "\n\nMake sure it exists or try running ${Constants.appName} as an administrator.",
+        AppLocalizations.of(context).ramChangerCannotWrite(
+          vmParamsFilesThatCannotBeWritten.join("\n"),
+          context.appName,
+        ),
         style: Theme.of(context).textTheme.bodySmall?.copyWith(
           color: TriOSThemeConstants.vanillaWarningColor,
         ),
@@ -128,8 +130,12 @@ class _RamChangerState extends ConsumerState<RamChanger> {
                     : theme.colorScheme.primary;
                 return MovingTooltipWidget.text(
                   message: filesWithThisRam
-                      .map((f) =>
-                          "${vmState?.fileRamAmounts[f]} MB set in ${p.relative(f.path, from: gamePath.path)}")
+                      .map(
+                        (f) => AppLocalizations.of(context).ramChangerMbSetIn(
+                          vmState?.fileRamAmounts[f] ?? '',
+                          p.relative(f.path, from: gamePath.path),
+                        ),
+                      )
                       .join("\n"),
                   child: Container(
                     decoration: BoxDecoration(
@@ -148,7 +154,7 @@ class _RamChangerState extends ConsumerState<RamChanger> {
                       .read(vmparamsManagerProvider.notifier)
                       .changeRamAmount(ramInMb.toDouble());
                 },
-                child: Text("$ram GB"),
+                child: Text(AppLocalizations.of(context).ramChangerRamGb(ram)),
               ),
             );
           },
@@ -173,7 +179,7 @@ class _RamChangerState extends ConsumerState<RamChanger> {
               spacing: 4,
               children: [
                 Text(
-                  "or set a custom RAM assignment",
+                  AppLocalizations.of(context).ramChangerOrCustomRam,
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontStyle: FontStyle.italic,
                   ),
@@ -199,7 +205,7 @@ class _RamChangerState extends ConsumerState<RamChanger> {
                       height: 24,
                       child: ElevatedButton(
                         onPressed: _applyCustomRam,
-                        child: const Text("Apply"),
+                        child: Text(AppLocalizations.of(context).ramChangerApply),
                       ),
                     ),
                   ],

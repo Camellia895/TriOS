@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 
 import '../chatbot_engine.dart';
@@ -110,8 +111,8 @@ class ModCompatibilityIntent extends ChatIntent with ModAwareIntent {
     }
 
     if (issueEntries.isEmpty) {
-      return const ChatResponse(
-        text: 'All enabled mods appear compatible!',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotAllEnabledModsAppearCompatible,
       );
     }
 

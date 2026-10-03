@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants_theme.dart';
 import 'package:trios/widgets/snackbar.dart';
 
@@ -110,6 +111,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final cardPadding = widget.cardPadding;
     final minHeight = widget.minHeight;
 
@@ -320,7 +322,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                             ),
                           Row(
                             children: [
-                              Text('${enabledModVariants.length} mods'),
+                              Text(loc.profileModsCount(enabledModVariants.length)),
                               // bullet
                               Text("  •  ", style: theme.textTheme.labelSmall),
                               MovingTooltipWidget.text(
@@ -351,7 +353,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                         const Spacer(),
                         if (!isSaveGame)
                           MovingTooltipWidget.text(
-                            message: 'Duplicate profile',
+                            message: loc.profileDuplicateProfile,
                             child: IconButton(
                               icon: const SvgImageIcon(
                                 "assets/images/icon-clone.svg",
@@ -373,7 +375,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                         //   ),
                         // ),
                         MovingTooltipWidget.text(
-                          message: 'Copy mod profile to clipboard',
+                          message: loc.profileCopyToClipboard,
                           child: IconButton(
                             icon: const Icon(Icons.content_copy),
                             onPressed: () {
@@ -395,14 +397,14 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                 widget.modProfiles!.length > 1 &&
                                 activeProfileId != profile?.id,
                             child: MovingTooltipWidget.text(
-                              message: 'Delete profile',
+                              message: loc.profileDeleteProfile,
                               child: IconButton(
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
-                                      title: const Text('Delete profile?'),
+                                      title: Text(loc.profileDeleteProfileConfirm),
                                       content: Text(
                                         "Are you sure you want to delete profile '${profile?.name}'?",
                                       ),
@@ -411,7 +413,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
-                                          child: const Text('Cancel'),
+                                          child: Text(loc.commonCancel),
                                         ),
                                         TextButton(
                                           onPressed: () {
@@ -422,7 +424,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                                 )
                                                 .removeModProfile(profile!.id);
                                           },
-                                          child: const Text('Delete'),
+                                          child: Text(loc.categoryManagementPopupDelete),
                                         ),
                                       ],
                                     ),
@@ -439,7 +441,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                         if (isSaveGame)
                           // Open save folder
                           MovingTooltipWidget.text(
-                            message: 'Open save folder',
+                            message: loc.profileOpenSaveFolder,
                             child: IconButton(
                               icon: const SvgImageIcon(
                                 "assets/images/icon-folder-open.svg",
@@ -485,7 +487,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                       enabledModVariants: enabledModVariants,
                                     );
                               },
-                              child: const Text("Create Profile"),
+                              child: Text(loc.profileCreateProfile),
                             ),
                           ),
                       ],
@@ -545,7 +547,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                 Padding(
                                   padding: const EdgeInsets.only(right: 4),
                                   child: MovingTooltipWidget.text(
-                                    message: 'Search Catalog',
+                                    message: loc.profileSearchCatalog,
                                     child: IconButton.outlined(
                                       icon: Icon(Icons.search),
                                       iconSize: 16,
@@ -561,7 +563,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                       onPressed: () {
                                         showAlertDialog(
                                           context,
-                                          title: "WIP",
+                                          title: loc.profileWip,
                                           content: "Unimplemented",
                                         );
                                       },
@@ -608,6 +610,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
   }
 
   void _copyModListToClipboard(List<ShallowModVariant> enabledModVariants) {
+    final loc = AppLocalizations.of(context);
     final modList = enabledModVariants
         .map(
           (mod) =>
@@ -616,7 +619,7 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
         .join('\n');
     Clipboard.setData(ClipboardData(text: modList));
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Mod list copied to clipboard')),
+      SnackBar(content: Text(loc.profileModListCopied)),
     );
   }
 }

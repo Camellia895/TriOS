@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 
 import '../../models/mod.dart';
@@ -107,8 +108,9 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
 
     if (results == null || results.isEmpty) {
       return ChatResponse(
-        text: 'No mod found matching "$query". Check your spelling, '
-            'try a shorter name, or use an acronym.',
+        text: AppLocalizationsSync.instance.chatbotNoModFoundMatchingHint(
+          query,
+        ),
       );
     }
 

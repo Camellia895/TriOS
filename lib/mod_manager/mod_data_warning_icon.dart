@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_data_issues.dart';
 import 'package:trios/thirdparty/flutter_context_menu/flutter_context_menu.dart';
 import 'package:trios/trios/constants_theme.dart';
@@ -23,12 +24,13 @@ class ModDataWarningIcon extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (issues.isEmpty) return const SizedBox.shrink();
+    final loc = AppLocalizations.of(context);
 
     return ContextMenuRegion(
       contextMenu: ContextMenu(
         entries: [
           MenuItem(
-            label: "Hide mod data warnings",
+            label: loc.modManagerHideModDataWarnings,
             icon: Icons.visibility_off,
             onSelected: () {
               ref
@@ -77,8 +79,9 @@ class _ModDataIssuesDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return AlertDialog(
-      title: Text("Data issues in $modName"),
+      title: Text(loc.modManagerDataIssuesIn(modName)),
       content: SizedBox(
         width: 400,
         child: Column(
@@ -107,7 +110,7 @@ class _ModDataIssuesDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text("Close"),
+          child: Text(loc.commonClose),
         ),
       ],
     );

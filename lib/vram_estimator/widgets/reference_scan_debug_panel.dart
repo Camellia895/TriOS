@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/vram_estimator/selectors/referenced_assets_selector.dart';
@@ -17,6 +18,7 @@ class ReferenceScanDebugPanel extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     final settings = ref.watch(appSettings);
     final isReferencedSelector =
         settings.vramEstimatorSelectorId == VramSelectorId.referenced;
@@ -24,7 +26,7 @@ class ReferenceScanDebugPanel extends ConsumerWidget {
 
     return Card(
       child: TriOSExpansionTile(
-        title: const Text('VRAM scan debug'),
+        title: Text(loc.vramScanDebug),
         leading: const Icon(Icons.tune),
         children: [
           Padding(
@@ -33,16 +35,10 @@ class ReferenceScanDebugPanel extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MovingTooltipWidget.text(
-                  message:
-                      'Run the per-mod scan loop across an isolate pool. '
-                      'Faster on large mod lists, but uses more CPU and '
-                      'multiplies the per-isolate file-handle limit by the '
-                      'pool size. Takes effect on the next scan.',
+                  message: loc.vramMultithreadedTooltip,
                   child: SwitchListTile(
-                    title: const Text('Multithreaded scanning'),
-                    subtitle: const Text(
-                      'Faster scans, higher CPU and file-handle pressure',
-                    ),
+                    title: Text(loc.vramMultithreadedScanning),
+                    subtitle: Text(loc.vramMultithreadedSubtitle),
                     value: settings.vramEstimatorMultithreaded,
                     onChanged: (val) => ref
                         .read(appSettings.notifier)
@@ -55,7 +51,7 @@ class ReferenceScanDebugPanel extends ConsumerWidget {
                   const Divider(),
                   const SizedBox(height: 8),
                   Text(
-                    'Enabled reference sources',
+                    loc.vramEnabledReferenceSources,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   const SizedBox(height: 4),
@@ -79,11 +75,9 @@ class ReferenceScanDebugPanel extends ConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   MovingTooltipWidget.text(
-                    message:
-                        'Hide the unreferenced bucket to compare directly to '
-                        'folder-scan totals.',
+                    message: loc.vramSuppressUnreferencedTooltip,
                     child: SwitchListTile(
-                      title: const Text('Suppress unreferenced bucket'),
+                      title: Text(loc.vramSuppressUnreferencedBucket),
                       value: config.suppressUnreferenced,
                       onChanged: (val) => _updateConfig(
                         ref,

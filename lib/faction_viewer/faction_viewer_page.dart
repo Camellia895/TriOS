@@ -13,6 +13,7 @@ import 'package:trios/faction_viewer/spawn_weights/vanilla_share_bar.dart';
 import 'package:trios/faction_viewer/widgets/faction_card.dart';
 import 'package:trios/faction_viewer/widgets/faction_profile_dialog.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
 import 'package:trios/models/mod_variant.dart';
@@ -59,6 +60,7 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final loc = AppLocalizations.of(context);
     final controllerState = ref.watch(factionViewerControllerProvider);
     final controller = ref.watch(factionViewerControllerProvider.notifier);
     final isLoading = ref.watch(isLoadingFactionsList);
@@ -97,8 +99,8 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
             ),
             initialValue: controllerState.searchQuery,
             hintText: controllerState.viewMode == FactionViewMode.spawnWeights
-                ? 'Search ships...'
-                : 'Search factions...',
+                ? loc.factionViewerSearchShips
+                : loc.factionViewerSearchFactions,
             onChanged: (query) => ref
                 .read(factionViewerControllerProvider.notifier)
                 .updateSearchQuery(query),
@@ -111,11 +113,9 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
               _buildGallerySortDropdown(controller, controllerState),
             const SizedBox(width: 8),
             MovingTooltipWidget.text(
-              message:
-                  'Show faction data from enabled mods only.\nShips, weapons, '
-                  'and spawn weights added by disabled mods are hidden.',
+              message: loc.factionViewerOnlyEnabledModsTooltip,
               child: TriOSToolbarCheckboxButton(
-                text: 'Only Enabled Mods',
+                text: loc.factionViewerOnlyEnabledMods,
                 value: controllerState.onlyEnabledMods,
                 onChanged: (value) =>
                     controller.setOnlyEnabledMods(value ?? false),
@@ -131,7 +131,7 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
               _buildFiltersSection(controllerState, controller),
               Expanded(
                 child: controllerState.filteredFactions.isEmpty && !isLoading
-                    ? const Center(child: Text('No factions found.'))
+                    ? Center(child: Text(loc.factionViewerNoFactionsFound))
                     : switch (controllerState.viewMode) {
                         FactionViewMode.grid => _buildGrid(
                           controllerState,
@@ -159,6 +159,7 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
     FactionViewerController controller,
     FactionViewerState state,
   ) {
+    final loc = AppLocalizations.of(context);
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -180,7 +181,9 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
           ),
         ),
         MovingTooltipWidget.text(
-          message: state.gallerySortAscending ? 'Ascending' : 'Descending',
+          message: state.gallerySortAscending
+              ? loc.factionViewerAscending
+              : loc.factionViewerDescending,
           child: IconButton(
             icon: Icon(
               state.gallerySortAscending
@@ -199,14 +202,15 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
     FactionViewerController controller,
     FactionViewerState state,
   ) {
+    final loc = AppLocalizations.of(context);
     return ModeSwitcher<FactionViewMode>(
       selected: state.viewMode,
       onChanged: controller.setViewMode,
       iconsOnly: true,
-      modes: const {
-        FactionViewMode.gallery: 'Cards',
-        FactionViewMode.grid: 'Grid',
-        FactionViewMode.spawnWeights: 'Spawn weights',
+      modes: {
+        FactionViewMode.gallery: loc.factionViewerViewModeCards,
+        FactionViewMode.grid: loc.factionViewerViewModeGrid,
+        FactionViewMode.spawnWeights: loc.factionViewerSpawnWeights,
       },
       modeIcons: const {
         FactionViewMode.gallery: Icon(Icons.grid_view, size: 18),
@@ -469,7 +473,10 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
           final summary = summaries[item.mergeKey] ?? FactionSpawnSummary.empty;
           final share = summary.vanillaShare;
           return MovingTooltipWidget.text(
-            message: vanillaShareTooltip(summary),
+            message: vanillaShareTooltip(
+              summary,
+              AppLocalizations.of(context),
+            ),
             child: TextTriOS(
               share == null ? '—' : formatShare(share),
               maxLines: 1,
@@ -490,7 +497,8 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
         itemCellBuilder: (item, _) => MovingTooltipWidget.text(
           message: item.attributionTooltip,
           child: TextTriOS(
-            item.addedBy?.name ?? (item.sources.isEmpty ? '' : 'Patch only'),
+            item.addedBy?.name ??
+                (item.sources.isEmpty ? '' : AppLocalizations.of(context).factionViewerPatchOnly),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -510,6 +518,7 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
     // the disk once per mod that ships one.
     return ContextMenuRegion(
       contextMenuBuilder: () {
+        final loc = AppLocalizations.of(context);
         final primarySource = faction.addedBy ?? faction.sources.firstOrNull;
         // Every mod that ships a copy of this faction's file, not just the one
         // that added the faction — mods patch each other's factions freely.
@@ -518,7 +527,7 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
         return ContextMenu(
           entries: <ContextMenuEntry>[
             MenuItem(
-              label: 'Copy ID',
+              label: loc.factionViewerCopyId,
               icon: Icons.copy,
               onSelected: () =>
                   Clipboard.setData(ClipboardData(text: faction.id)),
@@ -526,17 +535,17 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
             if (factionFiles.isNotEmpty)
               buildOpenModDataFileMenuItem(
                 factionFiles,
-                label: 'Open .faction file',
+                label: loc.factionViewerOpenFactionFile,
               ),
             if (factionFiles.isNotEmpty)
               buildOpenSingleFolderMenuItem(
                 factionFiles.first.file.parent,
-                label: 'Open faction folder',
+                label: loc.factionViewerOpenFactionFolder,
               ),
             if (primarySource?.modVariant is ModVariant)
               buildOpenSingleFolderMenuItem(
                 (primarySource!.modVariant as ModVariant).modFolder.absolute,
-                label: 'Open Mod Folder',
+                label: loc.factionViewerOpenModFolder,
               ),
           ],
           padding: const .all(8.0),

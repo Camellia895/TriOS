@@ -1,3 +1,4 @@
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/constants.dart';
 
 import '../chatbot_engine.dart';
@@ -43,7 +44,10 @@ class AppVersionIntent extends ChatIntent {
   @override
   ChatResponse respond(String input, ConversationContext context) {
     return ChatResponse(
-      text: '${Constants.appName} v${Constants.version}',
+      text: AppLocalizationsSync.instance.chatbotAppVersion(
+        Constants.appName,
+        Constants.version,
+      ),
     );
   }
 }

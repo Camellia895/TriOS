@@ -4,6 +4,7 @@ import 'package:trios/catalog/forum_data_manager.dart';
 import 'package:trios/catalog/catalog_manager.dart';
 import 'package:trios/catalog/models/forum_mod_index.dart';
 import 'package:trios/catalog/models/mod_repo_entry.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_info_dialog.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/mod_manager/widgets/category_context_menu.dart';
@@ -42,7 +43,7 @@ ContextMenu buildModContextMenu(
       buildMenuItemViewChangelog(mod, ref, context),
       buildMenuItemCopyInstallLink(modVariant, context),
       _buildCategorySubmenu(mod.id, ref, context),
-      _buildColorSubmenu(mod.id, ref),
+      _buildColorSubmenu(mod.id, ref, AppLocalizations.of(context)),
       if (isModGameVersionIncorrect(
         currentStarsectorVersion,
         isGameRunning,
@@ -79,13 +80,14 @@ ContextMenu buildModBulkActionContextMenu(
     appSettings.select((s) => s.lastStarsectorVersion),
   );
   final isGameRunning = ref.watch(AppState.isGameRunning).value == true;
+  final loc = AppLocalizations.of(context);
 
   return ContextMenu(
     entries: <ContextMenuEntry>[
-      MenuHeader(text: "${selectedMods.length} mods"),
+      MenuHeader(text: loc.modManagerModsCount(selectedMods.length)),
       if (!isGameRunning && selectedMods.any((mod) => !mod.hasEnabledVariant))
         MenuItem(
-          label: 'Enable',
+          label: loc.appEnable,
           icon: Icons.toggle_on,
           onSelected: () async {
             for (final mod in selectedMods.sublist(
@@ -113,7 +115,7 @@ ContextMenu buildModBulkActionContextMenu(
         ),
       if (!isGameRunning && selectedMods.any((mod) => mod.hasEnabledVariant))
         MenuItem(
-          label: 'Disable',
+          label: loc.triosDisable,
           icon: Icons.toggle_off,
           onSelected: () async {
             // Validate dependencies only at the end.
@@ -143,7 +145,7 @@ ContextMenu buildModBulkActionContextMenu(
         ),
       // check vram of selected
       MenuItem(
-        label: 'Check VRAM of selected',
+        label: loc.modContextMenuCheckVramOfSelected,
         icon: Icons.memory,
         onSelected: () {
           ref
@@ -156,7 +158,7 @@ ContextMenu buildModBulkActionContextMenu(
         },
       ),
       MenuItem(
-        label: 'Check for updates',
+        label: loc.modContextMenuCheckForUpdates,
         icon: Icons.refresh,
         onSelected: () {
           ref
@@ -170,16 +172,16 @@ ContextMenu buildModBulkActionContextMenu(
         },
       ),
       MenuItem(
-        label: 'Copy to clipboard',
+        label: loc.modContextMenuCopyToClipboard,
         icon: Icons.copy,
         onSelected: () {
           copyModListToClipboardFromMods(selectedMods, context);
         },
       ),
 
-      _buildBulkColorSubmenu(selectedMods, ref),
+      _buildBulkColorSubmenu(selectedMods, ref, loc),
       MenuItem.submenu(
-        label: 'Change Category',
+        label: loc.modContextMenuChangeCategory,
         icon: Icons.category,
         items: buildCategoryBatchMenuEntries(
           modIds: selectedMods.map((m) => m.id).toSet(),
@@ -198,7 +200,7 @@ ContextMenu buildModBulkActionContextMenu(
         ),
       ))
         MenuItem(
-          label: 'Force to $currentStarsectorVersion',
+          label: loc.modContextMenuForceToVersion(currentStarsectorVersion!),
           icon: Icons.electric_bolt,
           onSelected: () {
             showDialog(
@@ -227,7 +229,11 @@ const _colorPresets = <ColorPreset>[
   ('Rose', Color(0xFFEC407A)),
 ];
 
-MenuItem _buildBulkColorSubmenu(List<Mod> selectedMods, WidgetRef ref) {
+MenuItem _buildBulkColorSubmenu(
+  List<Mod> selectedMods,
+  WidgetRef ref,
+  AppLocalizations loc,
+) {
   final metadata = ref.read(AppState.modsMetadata).value;
   final colors = selectedMods.map(
     (mod) => metadata?.getMergedModMetadata(mod.id)?.color?.toARGB32(),
@@ -239,7 +245,7 @@ MenuItem _buildBulkColorSubmenu(List<Mod> selectedMods, WidgetRef ref) {
       : null;
 
   return MenuItem.submenu(
-    label: 'Mod Color',
+    label: loc.modContextMenuModColor,
     icon: Icons.palette,
     items: [
       MenuItem(
@@ -274,7 +280,11 @@ MenuItem _buildBulkColorSubmenu(List<Mod> selectedMods, WidgetRef ref) {
   );
 }
 
-MenuItem _buildColorSubmenu(String modId, WidgetRef ref) {
+MenuItem _buildColorSubmenu(
+  String modId,
+  WidgetRef ref,
+  AppLocalizations loc,
+) {
   final currentColor = ref
       .read(AppState.modsMetadata)
       .value
@@ -282,7 +292,7 @@ MenuItem _buildColorSubmenu(String modId, WidgetRef ref) {
       ?.color;
 
   return MenuItem.submenu(
-    label: 'Mod Color',
+    label: loc.modContextMenuModColor,
     icon: Icons.palette,
     items: [
       MenuItem(
@@ -323,9 +333,10 @@ MenuItem _buildCategorySubmenu(
   final allCategories = notifier.getAllCategories();
   final assignments = notifier.getAssignmentsForMod(modId);
   final assignedIds = assignments.map((a) => a.categoryId).toSet();
+  final loc = AppLocalizations.of(context);
 
   return MenuItem.submenu(
-    label: 'Categories',
+    label: loc.modContextMenuCategories,
     icon: Icons.category,
     items: buildCategoryMenuItems(modId: modId, ref: ref, context: context),
   );
@@ -336,8 +347,10 @@ MenuItem _buildMenuItemViewModDetails(
   WidgetRef ref,
   BuildContext context,
 ) {
+  final loc = AppLocalizations.of(context);
+
   return MenuItem(
-    label: 'View Mod Details...',
+    label: loc.catalogViewModDetails,
     icon: Icons.info_outline,
     onSelected: () {
       final variant = mod.findFirstEnabledOrHighestVersion!;

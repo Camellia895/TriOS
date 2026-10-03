@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -77,7 +78,9 @@ class ModsByAuthorIntent extends ChatIntent with ModAwareIntent {
 
       if (matchingAuthors.isEmpty) {
         return ChatResponse(
-          text: 'No mods found by author "$authorQuery".',
+          text: AppLocalizationsSync.instance.chatbotNoModsFoundByAuthor(
+            authorQuery,
+          ),
         );
       }
 

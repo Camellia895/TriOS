@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/mod_context_menu.dart';
@@ -326,6 +327,7 @@ class CategoryModGridGroup extends WispGridGroup<Mod> {
     List<ContextMenuEntry> additionalMenuEntries = const [],
   }) {
     final category = _getCategoryForGroup(itemsInGroup);
+    final loc = AppLocalizations.of(context);
     final categoryEntries = category == null
         ? []
         : buildCategoryContextMenuEntries(
@@ -347,11 +349,11 @@ class CategoryModGridGroup extends WispGridGroup<Mod> {
               icon: ref.read(appSettings).modsGridShowModInAllCategories
                   ? Icons.check
                   : null,
-              label: 'Repeat Mods In Each Category',
+              label: loc.wispgridGroupRepeatModsInEachCategory,
               onSelected: () => toggleShowModInAllCategories(ref),
             ),
             MenuItem(
-              label: 'Manage Categories...',
+              label: loc.wispgridGroupManageCategories,
               icon: Icons.settings,
               onSelected: () {
                 showCategoryManagementPopup(context: context, ref: ref);
@@ -671,7 +673,9 @@ OverlayWidgetData? _vramSummaryOverlayWidget(
           contextMenu: ContextMenu(
             entries: [
               MenuItem(
-                label: '(Re)estimate VRAM Usage',
+                label: AppLocalizations.of(
+                  context,
+                ).wispgridGroupReEstimateVramUsage,
                 icon: Icons.memory,
                 onSelected: () {
                   ref

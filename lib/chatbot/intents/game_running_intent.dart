@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -49,14 +50,14 @@ class GameRunningIntent extends ChatIntent with SettingsAwareIntent {
 
   @override
   ChatResponse respond(String input, ConversationContext context) {
+    final loc = AppLocalizationsSync.instance;
     if (isGameRunning) {
-      return const ChatResponse(
-        text: 'Starsector is currently running.\n'
-            'Note: Mod changes won\'t take effect until you restart the game.',
+      return ChatResponse(
+        text: loc.chatbotStarsectorCurrentlyRunning,
       );
     }
-    return const ChatResponse(
-      text: 'Starsector does not appear to be running.',
+    return ChatResponse(
+      text: loc.chatbotStarsectorNotRunning,
     );
   }
 }

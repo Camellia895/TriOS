@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 
 import '../chatbot_engine.dart';
@@ -59,9 +60,8 @@ class ModTipsIntent extends ChatIntent with ModAwareIntent {
     final tips = ref.read(AppState.tipsProvider).value;
 
     if (tips == null || tips.isEmpty) {
-      return const ChatResponse(
-        text: 'No tips available. Tips come from your installed mods\' '
-            'mod_info.json files.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoTipsAvailable,
       );
     }
 

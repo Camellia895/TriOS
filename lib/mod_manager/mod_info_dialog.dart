@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:trios/catalog/models/forum_mod_index.dart';
 import 'package:trios/catalog/models/mod_repo_entry.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/mod_records/mod_record.dart';
@@ -178,6 +179,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
   // ───────────────────── HEADER ─────────────────────
 
   Widget _buildHeader(ThemeData paletteTheme) {
+    final loc = AppLocalizations.of(context);
     final iconPath = _variant?.iconFilePath;
     final isUtility = _variant?.modInfo.isUtility ?? false;
     final isTotalConversion = _variant?.modInfo.isTotalConversion ?? false;
@@ -206,7 +208,10 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
                   ),
                 ),
                 if (_author != null)
-                  Text("by $_author", style: paletteTheme.textTheme.bodyMedium),
+                  Text(
+                    loc.modInfoDialogByAuthor(_author!),
+                    style: paletteTheme.textTheme.bodyMedium,
+                  ),
                 Row(
                   children: [
                     if (_version != null)
@@ -345,6 +350,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
 
   Widget? _buildModInfoCard(ThemeData theme) {
     final sections = <Widget>[];
+    final loc = AppLocalizations.of(context);
 
     // Description
     final desc = _description;
@@ -352,7 +358,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
       sections.add(
         _buildCardSection(
           theme,
-          title: "Description",
+          title: loc.modInfoDialogDescription,
           child: TextTriOS(
             desc!,
             maxLines: 6,
@@ -372,7 +378,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
     final deps = _buildDependenciesContent(theme);
     if (deps != null) {
       sections.add(
-        _buildCardSection(theme, title: "Dependencies", child: deps),
+        _buildCardSection(theme, title: loc.modInfoDialogDependencies, child: deps),
       );
     }
 
@@ -380,19 +386,19 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
     final dependents = _buildDependentsContent(theme);
     if (dependents != null) {
       sections.add(
-        _buildCardSection(theme, title: "Dependents", child: dependents),
+        _buildCardSection(theme, title: loc.modInfoDialogDependents, child: dependents),
       );
     }
 
     // TriOS metadata
     final metadata = _buildTriOSMetadataContent(theme);
     if (metadata != null) {
-      sections.add(_buildCardSection(theme, title: "TriOS", child: metadata));
+      sections.add(_buildCardSection(theme, title: loc.modInfoDialogTrios, child: metadata));
     }
 
     if (sections.isEmpty) return null;
 
-    return _SectionCard(title: "Mod Info", theme: theme, children: sections);
+    return _SectionCard(title: loc.modInfoDialogModInfo, theme: theme, children: sections);
   }
 
   Widget _buildCardSection(
@@ -420,6 +426,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
     final mod = widget.mod;
     final comparison = widget.versionCheckComparison;
     final children = <Widget>[];
+    final loc = AppLocalizations.of(context);
 
     if (mod != null) {
       final variants = mod.modVariants.sortedDescending();
@@ -436,7 +443,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
               children: variants.map((variant) {
                 final isEnabled = mod.isEnabled(variant);
                 return MovingTooltipWidget.text(
-                  message: "Open mod folder",
+                  message: loc.modInfoDialogOpenModFolder,
                   child: ElevatedButton.icon(
                     icon: Icon(
                       Icons.folder_open,
@@ -475,7 +482,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
         children.add(
           _buildCardSection(
             theme,
-            title: "Update",
+            title: loc.modInfoDialogUpdate,
             child: Text(label, style: theme.textTheme.bodyMedium),
           ),
         );
@@ -584,6 +591,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
     if (modMetadata == null) return null;
 
     final dateFormat = Constants.dateTimeFormat;
+    final loc = AppLocalizations.of(context);
     final isMuted = modMetadata.areUpdatesMuted;
     final mutedVersion = modMetadata.mutedUpdateVersion;
     final updatesStatus = isMuted
@@ -605,20 +613,24 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
             "Last enabled: ${dateFormat.format(DateTime.fromMillisecondsSinceEpoch(modMetadata.lastEnabled!))}",
             style: theme.textTheme.bodyMedium,
           ),
-        Text("Updates: $updatesStatus", style: theme.textTheme.bodyMedium),
+        Text(
+          loc.modInfoDialogUpdatesStatus(updatesStatus),
+          style: theme.textTheme.bodyMedium,
+        ),
       ],
     );
   }
 
   Widget? _buildModRepoCard(ThemeData theme) {
     final children = <Widget>[];
+    final loc = AppLocalizations.of(context);
 
     final catalogCategories = widget.catalogMod?.getCategories() ?? [];
     if (catalogCategories.isNotEmpty) {
       children.add(
         _buildCardSection(
           theme,
-          title: "Categories",
+          title: loc.modContextMenuCategories,
           child: Text(
             catalogCategories.join(", "),
             style: theme.textTheme.bodyMedium,
@@ -632,7 +644,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
       children.add(
         _buildCardSection(
           theme,
-          title: "Sources",
+          title: loc.modInfoDialogSources,
           child: Text(
             catalogSources.map((s) => s.name).join(", "),
             style: theme.textTheme.bodyMedium,
@@ -643,7 +655,11 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
 
     if (children.isEmpty) return null;
 
-    return _SectionCard(title: "Mod Repo", theme: theme, children: children);
+    return _SectionCard(
+      title: loc.modInfoDialogModRepo,
+      theme: theme,
+      children: children,
+    );
   }
 
   // ───────────────────── MOD INDEX CARD (forum data) ─────────────────────
@@ -651,6 +667,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
   Widget? _buildModIndexCard(ThemeData theme) {
     final forum = widget.forumModIndex;
     if (forum == null) return null;
+    final loc = AppLocalizations.of(context);
 
     final dateFormat = DateFormat.yMMMd();
     final rows = <LabelValue>[
@@ -665,7 +682,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
     ];
 
     return _SectionCard(
-      title: "Mod Index",
+      title: loc.modInfoDialogModIndex,
       theme: theme,
       children: [
         Column(
@@ -703,6 +720,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
   Widget _buildActionBar(ThemeData theme) {
     final mod = widget.mod;
     final isGameRunning = ref.watch(AppState.isGameRunning).value == true;
+    final loc = AppLocalizations.of(context);
 
     // Catalog-only: show only link buttons
     if (mod == null) {
@@ -719,12 +737,12 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
             if (bestUrl != null)
               FilledButton.icon(
                 icon: const Icon(Icons.open_in_browser, size: 18),
-                label: const Text("Open Page"),
+                label: Text(loc.modInfoDialogOpenPage),
                 onPressed: () => launchUrl(Uri.parse(bestUrl)),
               ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Close"),
+              child: Text(loc.commonClose),
             ),
           ],
         ),
@@ -750,7 +768,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
               message: isGameRunning ? "Game is running" : "Disable this mod",
               child: OutlinedButton.icon(
                 icon: const Icon(Icons.toggle_off, size: 18),
-                label: const Text("Disable"),
+                label: Text(loc.triosDisable),
                 onPressed: isGameRunning
                     ? null
                     : () {
@@ -766,7 +784,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
               message: isGameRunning ? "Game is running" : "Enable this mod",
               child: FilledButton.icon(
                 icon: const Icon(Icons.toggle_on, size: 18),
-                label: const Text("Enable"),
+                label: Text(loc.appEnable),
                 onPressed: isGameRunning
                     ? null
                     : () {
@@ -797,13 +815,17 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
                                 );
                             Navigator.of(context).pop();
                           },
-                    child: Text("v${v.modInfo.version}"),
+                    child: Text(
+                      loc.modManagerVersionShort(
+                        v.modInfo.version?.toString() ?? "",
+                      ),
+                    ),
                   );
                 }).toList(),
                 builder: (context, controller, child) {
                   return FilledButton.icon(
                     icon: const Icon(Icons.toggle_on, size: 18),
-                    label: const Text("Enable"),
+                    label: Text(loc.appEnable),
                     onPressed: isGameRunning
                         ? null
                         : () {
@@ -830,7 +852,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
                 ),
                 variant: ModDownloadButtonVariant.filledTonal,
                 icon: const Icon(Icons.update, size: 18),
-                label: const Text("Update"),
+                label: Text(loc.modInfoDialogUpdate),
                 tooltip: "Update available",
                 onPressed: directUrl == null
                     ? null
@@ -851,10 +873,10 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
 
           // Open Folder
           MovingTooltipWidget.text(
-            message: "Open mod folder",
+            message: loc.modInfoDialogOpenModFolder,
             child: OutlinedButton.icon(
               icon: const Icon(Icons.folder_open, size: 18),
-              label: const Text("Open Folder"),
+              label: Text(loc.modInfoDialogOpenFolder),
               onPressed: () =>
                   _variant?.modFolder.absolute.path.openAsUriInBrowser(),
             ),
@@ -862,10 +884,10 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
 
           // VRAM Check
           MovingTooltipWidget.text(
-            message: "Estimate VRAM usage",
+            message: loc.modInfoDialogEstimateVramUsage,
             child: OutlinedButton.icon(
               icon: const Icon(Icons.memory, size: 18),
-              label: const Text("VRAM"),
+              label: Text(loc.modInfoDialogVram),
               onPressed: () {
                 ref
                     .read(AppState.vramEstimatorProvider.notifier)

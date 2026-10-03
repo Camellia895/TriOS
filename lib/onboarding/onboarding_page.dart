@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:open_filex/open_filex.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/trios/deep_link/protocol_registration.dart';
@@ -69,6 +70,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return Dialog(
       child: PopScope(
         canPop: false,
@@ -79,7 +81,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
               Align(
                 alignment: Alignment.topRight,
                 child: MovingTooltipWidget.text(
-                  message: "ಠ_ಠ",
+                  message: loc.onboarding2,
                   child: IconButton(
                     onPressed: () async {
                       // Persist allowCrashReporting: false so the onboarding
@@ -129,6 +131,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
   }
 
   Widget _buildGameDirectoryAndModPreferencesPage() {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
@@ -227,7 +230,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
               message:
                   "Installing or updating a mod will replace the previous version of it.",
               child: RadioListTile(
-                title: const Text("Keep only one mod version"),
+                title: Text(loc.onboardingKeepOnlyOneMod),
                 value: false,
                 groupValue: enableMultipleVersions,
                 onChanged: (value) => setState(() {
@@ -243,7 +246,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
                         ? "TriOS will never automatically remove mod versions."
                         : "Installing or updating a mod will remove all but the last $lastNVersionsSetting highest versions.",
                     child: RadioListTile(
-                      title: const Text("Keep all mod versions"),
+                      title: Text(loc.onboardingKeepAllModVersions),
                       value: true,
                       groupValue: enableMultipleVersions,
                       onChanged: (value) => setState(() {
@@ -256,7 +259,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
                   isEnabled: enableMultipleVersions,
                   child: Row(
                     children: [
-                      const Text(" (up to "),
+                      Text(loc.onboardingUpTo),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: TriOSDropdownButton<int>(
@@ -290,6 +293,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
   }
 
   Widget _buildCrashReportingPage() {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -325,7 +329,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
               children: [
                 const Icon(Icons.track_changes),
                 const SizedBox(width: 16),
-                const Text("Allow Reporting"),
+                Text(loc.onboardingAllowReporting),
               ],
             ),
             value: true,
@@ -341,7 +345,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
               children: [
                 const SvgImageIcon("assets/images/icon-incognito-circle.svg"),
                 const SizedBox(width: 16),
-                const Text("Keep Reporting Disabled"),
+                Text(loc.onboardingKeepReportingDisabled),
               ],
             ),
             value: false,
@@ -358,6 +362,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
   }
 
   Widget _buildDeepLinkPage() {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -382,7 +387,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
           ),
           const SizedBox(height: 16),
           TriOSRadioTile<bool>(
-            title: const Text("Enable one-click mod install"),
+            title: Text(loc.onboardingEnableOneClickMod),
             value: true,
             groupValue: enableDeepLinks,
             onChanged: (value) {
@@ -392,7 +397,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
             },
           ),
           TriOSRadioTile<bool>(
-            title: const Text("No thanks"),
+            title: Text(loc.appNoThanks),
             value: false,
             groupValue: enableDeepLinks,
             onChanged: (value) {
@@ -407,6 +412,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
   }
 
   Widget _buildBottomNavigation() {
+    final loc = AppLocalizations.of(context);
     return Stack(
       children: [
         Row(
@@ -457,7 +463,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
                       curve: Curves.easeInOut,
                     );
                   },
-                  child: const Text("Back"),
+                  child: Text(loc.codexBack),
                 ),
               )
             else

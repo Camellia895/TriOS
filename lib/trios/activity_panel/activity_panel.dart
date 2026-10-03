@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/batch_installation/batch_installation_notifier.dart';
 import 'package:trios/trios/activity_panel/activity_entry.dart';
 import 'package:trios/trios/activity_panel/activity_filters.dart';
@@ -134,10 +135,11 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
 
   /// Asks for confirmation before permanently clearing activity history.
   Future<void> _confirmClearHistory(BuildContext context) async {
+    final loc = AppLocalizations.of(context);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Clear All Activity?'),
+        title: Text(loc.activityClearAllActivity),
         content: const Text(
           'This permanently clears the installation activity history. '
           'This action cannot be undone.',
@@ -145,11 +147,11 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(loc.triosCancel),
           ),
           TextButton.icon(
             onPressed: () => Navigator.of(context).pop(true),
-            label: const Text('Clear All'),
+            label: Text(loc.triosClearAll),
             icon: const Icon(Icons.clear_all),
           ),
         ],
@@ -164,6 +166,7 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final downloads = ref.watch(downloadManager).value ?? [];
     final history = ref.watch(activityHistoryStore).value?.entries ?? [];
     final batch = ref.watch(batchInstallationProvider);
@@ -296,10 +299,10 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
                   children: [
                     const Spacer(),
                     MovingTooltipWidget.text(
-                      message: "Permanently clears history",
+                      message: loc.activityPermanentlyClearsHistory,
                       child: TextButton.icon(
                         onPressed: () => _confirmClearHistory(context),
-                        label: const Text('Clear All'),
+                        label: Text(loc.triosClearAll),
                         icon: const Icon(Icons.clear_all),
                         style: TextButton.styleFrom(
                           foregroundColor: theme.colorScheme.onSurfaceVariant,

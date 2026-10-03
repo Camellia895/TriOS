@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/batch_installation/batch_installation_notifier.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/trios/constants.dart';
@@ -26,14 +27,15 @@ class AddNewModsButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isGameRunning = ref.watch(AppState.isGameRunning).value == true;
+    final loc = AppLocalizations.of(context);
 
     var isIconOnly = labelWidget != null;
     return MovingTooltipWidget.text(
       message: isGameRunning
-          ? "Game is running"
+          ? loc.addModsTooltipGameRunning
           : isIconOnly
-          ? "Tip: drag'n'drop to install mods!"
-          : "Add new mod(s)\n\nTip: drag'n'drop to install mods!",
+          ? loc.addModsTooltipIconOnly
+          : loc.addModsTooltip,
       child: Disable(
         isEnabled: !isGameRunning,
         child: DisableIfCannotWriteMods(

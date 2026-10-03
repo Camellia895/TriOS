@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod.dart';
 import 'package:trios/mod_manager/batch_installation/batch_installation.dart';
 import 'package:trios/mod_manager/batch_installation/batch_installation_notifier.dart';
@@ -100,6 +101,7 @@ class _ActivityIconButtonState extends ConsumerState<ActivityIconButton> {
       unseenCount: unseenCount,
       downloads: downloads,
     );
+    final loc = AppLocalizations.of(context);
 
     final hasActivity =
         data.activeBatchEntries.isNotEmpty ||
@@ -158,7 +160,7 @@ class _ActivityIconButtonState extends ConsumerState<ActivityIconButton> {
       );
     } else {
       result = MovingTooltipWidget.text(
-        message: 'Installation Activity',
+        message: loc.activity_icon_buttonInstallationActivity,
         child: iconStack,
       );
     }
@@ -170,7 +172,7 @@ class _ActivityIconButtonState extends ConsumerState<ActivityIconButton> {
         contextMenu: ContextMenu(
           entries: [
             MenuItem(
-              label: 'Dismiss notification',
+              label: loc.activity_icon_buttonDismissNotification,
               value: 'dismiss',
               onSelected: () {
                 ref.read(activityUnseenCount.notifier).clearUnseen();
@@ -195,6 +197,7 @@ class _ActivityTooltipContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     final downloads = ref.watch(downloadManager).value ?? [];
     final unseenCount = ref.watch(activityUnseenCount);
     final batch = ref.watch(batchInstallationProvider);
@@ -217,7 +220,7 @@ class _ActivityTooltipContent extends ConsumerWidget {
           children: [
             Padding(
               padding: const .only(bottom: 4),
-              child: Text('Installation Activity'),
+              child: Text(loc.activity_icon_buttonInstallationActivity),
             ),
             for (final entry in data.activeBatchEntries)
               BatchEntryTile(entry: entry),
@@ -281,6 +284,7 @@ class _ActivityPopupState extends ConsumerState<_ActivityPopup>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final entries = ref.watch(recentInstallPopupProvider);
     final activityStarts = ref.watch(activityStartedPopupProvider);
     final downloads = activityStarts > 0
@@ -374,7 +378,7 @@ class _ActivityPopupState extends ConsumerState<_ActivityPopup>
                         ),
                         if (enableable.length >= 2)
                           MovingTooltipWidget.text(
-                            message: 'Enable all newly installed mods',
+                            message: loc.activity_icon_buttonEnableAllNewlyInstalled,
                             child: TextButton.icon(
                               onPressed: () async {
                                 await ref
@@ -385,7 +389,7 @@ class _ActivityPopupState extends ConsumerState<_ActivityPopup>
                                 Icons.power_settings_new,
                                 size: 14,
                               ),
-                              label: const Text('Enable All'),
+                              label: Text(loc.modsGridEnableAll),
                               style: TextButton.styleFrom(
                                 padding: .symmetric(horizontal: 8, vertical: 4),
                                 minimumSize: Size.zero,
@@ -394,7 +398,7 @@ class _ActivityPopupState extends ConsumerState<_ActivityPopup>
                             ),
                           ),
                         MovingTooltipWidget.text(
-                          message: 'Hide this popup',
+                          message: loc.activity_icon_buttonHideThisPopup,
                           child: IconButton(
                             icon: const Icon(Icons.close, size: 14),
                             onPressed: () {

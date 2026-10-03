@@ -8,6 +8,7 @@ import 'package:trios/mod_tag_manager/category_icon_palette.dart';
 import 'package:trios/mod_tag_manager/category_manager.dart';
 import 'package:trios/mod_tag_manager/category_store.dart';
 import 'package:trios/mod_tag_manager/mod_category_assignment.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod.dart';
 import 'package:trios/thirdparty/flutter_context_menu/flutter_context_menu.dart';
 import 'package:trios/trios/app_state.dart';
@@ -41,6 +42,7 @@ List<ContextMenuEntry> buildCategoryMenuItems({
   final notifier = ref.read(categoryManagerProvider.notifier);
   final allCategories = notifier.getAllCategories();
   final assignments = notifier.getAssignmentsForMod(modId);
+  final loc = AppLocalizations.of(context);
   final assignedIds = assignments.map((a) => a.categoryId).toSet();
   final primaryId = assignments
       .firstWhere(
@@ -61,7 +63,7 @@ List<ContextMenuEntry> buildCategoryMenuItems({
       const MenuDivider(),
     ],
     if (assignedIds.isNotEmpty) ...[
-      MenuHeader(text: 'Set Primary Category'),
+      MenuHeader(text: loc.categoryContextMenuSetPrimaryCategory),
       ...allCategories
           .where((c) => assignedIds.contains(c.id))
           .map(
@@ -90,7 +92,7 @@ List<ContextMenuEntry> buildCategoryMenuItems({
       const MenuDivider(),
     ],
     MenuItem(
-      label: 'Add Category...',
+      label: loc.categoryContextMenuAddCategory,
       icon: Icons.add,
       onSelected: () {
         showCreateCategoryDialog(
@@ -104,14 +106,14 @@ List<ContextMenuEntry> buildCategoryMenuItems({
       },
     ),
     MenuItem(
-      label: 'Manage Categories...',
+      label: loc.wispgridGroupManageCategories,
       icon: Icons.settings,
       onSelected: () {
         showCategoryManagementPopup(context: context, ref: ref, mod: mod);
       },
     ),
     const MenuDivider(),
-    MenuHeader(text: 'Choose Categories'),
+    MenuHeader(text: loc.categoryContextMenuChooseCategories),
     ...allCategories.map((category) {
       final isAssigned = assignedIds.contains(category.id);
       return CheckableMenuItem(
@@ -160,6 +162,7 @@ List<ContextMenuEntry> buildCategoryBatchMenuEntries({
 
   final notifier = ref.read(categoryManagerProvider.notifier);
   final allCategories = notifier.getAllCategories();
+  final loc = AppLocalizations.of(context);
 
   // A category is "assigned to all" if every selected mod has it.
   Set<String> assignedToAllIds() {
@@ -175,10 +178,10 @@ List<ContextMenuEntry> buildCategoryBatchMenuEntries({
 
   return [
     if (includeHeader) ...[
-      MenuHeader(text: '${modIds.length} mods selected'),
+      MenuHeader(text: loc.modManagerModsSelected(modIds.length)),
       const MenuDivider(),
     ],
-    MenuHeader(text: 'Set Primary Category'),
+    MenuHeader(text: loc.categoryContextMenuSetPrimaryCategory),
     ...allCategories.map(
       (category) => MenuItem(
         label: category.name,
@@ -190,14 +193,14 @@ List<ContextMenuEntry> buildCategoryBatchMenuEntries({
     ),
     const MenuDivider(),
     MenuItem(
-      label: 'Manage Categories...',
+      label: loc.wispgridGroupManageCategories,
       icon: Icons.settings,
       onSelected: () {
         showCategoryManagementPopup(context: context, ref: ref);
       },
     ),
     const MenuDivider(),
-    MenuHeader(text: 'Choose Categories'),
+    MenuHeader(text: loc.categoryContextMenuChooseCategories),
     ...allCategories.map((category) {
       final isAssigned = commonIds.contains(category.id);
       return CheckableMenuItem(
@@ -262,6 +265,7 @@ List<ContextMenuEntry> buildCategoryContextMenuEntries(
   Mod mod,
 ) {
   final notifier = ref.read(categoryManagerProvider.notifier);
+  final loc = AppLocalizations.of(context);
 
   void onBrowseAllSelected() {
     showCategoryIconPicker(
@@ -280,14 +284,16 @@ List<ContextMenuEntry> buildCategoryContextMenuEntries(
 
   return [
     MenuItem(
-      label: 'Rename',
+      label: loc.categoryContextMenuRename,
       icon: Icons.edit,
       onSelected: () {
         final controller = TextEditingController(text: category.name);
         showDialog(
           context: context,
           builder: (dialogContext) => AlertDialog(
-            title: Text('Rename "${category.name}"'),
+            title: Text(
+              loc.categoryContextMenuRenameCategory(category.name),
+            ),
             content: TextField(
               controller: controller,
               autofocus: true,
@@ -302,7 +308,7 @@ List<ContextMenuEntry> buildCategoryContextMenuEntries(
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(dialogContext).pop(),
-                child: const Text('Cancel'),
+                child: Text(loc.commonCancel),
               ),
               TextButton(
                 onPressed: () {
@@ -312,7 +318,7 @@ List<ContextMenuEntry> buildCategoryContextMenuEntries(
                   }
                   Navigator.of(dialogContext).pop();
                 },
-                child: const Text('Rename'),
+                child: Text(loc.categoryContextMenuRename),
               ),
             ],
           ),
@@ -320,7 +326,7 @@ List<ContextMenuEntry> buildCategoryContextMenuEntries(
       },
     ),
     MenuItem.submenu(
-      label: 'Category Color',
+      label: loc.categoryContextMenuCategoryColor,
       icon: Icons.palette,
       items: [
         MenuItem(
@@ -342,12 +348,12 @@ List<ContextMenuEntry> buildCategoryContextMenuEntries(
       ],
     ),
     MenuItem.submenu(
-      label: 'Category Icon',
+      label: loc.categoryContextMenuCategoryIcon,
       icon: Icons.emoji_symbols,
       onSelected: onBrowseAllSelected,
       items: [
         MenuItem(
-          label: 'None',
+          label: loc.codexNone,
           icon: Icons.clear,
           onSelected: () {
             notifier.updateCategory(category.id, clearIcon: true);
@@ -365,7 +371,7 @@ List<ContextMenuEntry> buildCategoryContextMenuEntries(
               ),
             ),
         MenuItem(
-          label: 'All icons…',
+          label: loc.categoryContextMenuAllIcons,
           icon: Icons.apps,
           onSelected: onBrowseAllSelected,
         ),

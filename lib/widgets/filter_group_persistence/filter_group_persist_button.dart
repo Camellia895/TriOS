@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/widgets/filter_engine/filter_scope.dart';
 import 'package:trios/widgets/filter_group_persistence/filter_group_persistence_provider.dart';
@@ -29,9 +30,12 @@ class FilterGridPersistButton extends ConsumerWidget {
     );
     final isLocked = persisted != null;
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     return MovingTooltipWidget.text(
-      message: isLocked ? 'Filter group is being saved' : 'Filter group is not being saved',
+      message: isLocked
+          ? loc.filterGroupPersistOn
+          : loc.filterGroupPersistOff,
       child: IconButton(
         onPressed: () {
           if (isLocked) {

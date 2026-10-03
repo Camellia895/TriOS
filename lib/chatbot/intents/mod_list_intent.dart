@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -54,7 +55,9 @@ class ModListIntent extends ChatIntent with ModAwareIntent {
 
     final allMods = mods..sort();
     if (allMods.isEmpty) {
-      return const ChatResponse(text: 'No mods are installed.');
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModsInstalled,
+      );
     }
 
     const maxDisplay = 30;

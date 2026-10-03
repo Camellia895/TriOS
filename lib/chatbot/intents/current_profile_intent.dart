@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -50,9 +51,8 @@ class CurrentProfileIntent extends ChatIntent with ProfileAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final profile = currentProfile;
     if (profile == null) {
-      return const ChatResponse(
-        text: 'No mod profile is currently active.\n'
-            'Create and activate a profile on the Mod Profiles page.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModProfileActive,
       );
     }
 

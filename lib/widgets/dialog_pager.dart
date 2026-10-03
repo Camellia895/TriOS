@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
 /// Pages a details dialog through a list of items without closing it.
@@ -68,20 +69,20 @@ class _DialogPagerState<T> extends State<DialogPager<T>> {
     return KeyEventResult.ignored;
   }
 
-  Widget _buildControls() {
+  Widget _buildControls(AppLocalizations loc) {
     if (widget.items.length < 2) return const SizedBox.shrink();
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         MovingTooltipWidget.text(
-          message: 'Previous (Left arrow)',
+          message: loc.dialogPagerPrevious,
           child: IconButton(
             icon: const Icon(Icons.chevron_left),
             onPressed: _index > 0 ? () => _step(-1) : null,
           ),
         ),
         MovingTooltipWidget.text(
-          message: 'Next (Right arrow)',
+          message: loc.dialogPagerNext,
           child: IconButton(
             icon: const Icon(Icons.chevron_right),
             onPressed: _index < widget.items.length - 1
@@ -95,6 +96,7 @@ class _DialogPagerState<T> extends State<DialogPager<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return Focus(
       autofocus: true,
       onKeyEvent: _onKeyEvent,
@@ -105,7 +107,7 @@ class _DialogPagerState<T> extends State<DialogPager<T>> {
         child: widget.itemBuilder(
           context,
           widget.items[_index],
-          _buildControls(),
+          _buildControls(loc),
         ),
       ),
     );

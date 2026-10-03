@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/filter_engine/filter_group.dart';
 import 'package:trios/widgets/filter_group_persistence/filter_group_persist_button.dart';
 import 'package:trios/widgets/filter_engine/filter_scope.dart';
@@ -41,10 +42,10 @@ class _RangeFilterWidgetState<T> extends State<RangeFilterWidget<T>> {
   }
 
   /// The selected range as text, e.g. "10–40", "20+" or "Any".
-  String get _rangeLabel {
+  String _rangeLabel(AppLocalizations loc) {
     final group = widget.group;
     final suffix = group.suffix == null ? '' : ' ${group.suffix}';
-    if (!group.isActive) return 'Any';
+    if (!group.isActive) return loc.rangeFilterAny;
     final atTop = group.curMax >= group.max;
     if (atTop && group.allowGreater) {
       return '${_format(group.curMin)}+$suffix';
@@ -85,6 +86,7 @@ class _RangeFilterWidgetState<T> extends State<RangeFilterWidget<T>> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final group = widget.group;
 
     // Nothing to slide over — no data, or every item has the same value.
@@ -127,7 +129,7 @@ class _RangeFilterWidgetState<T> extends State<RangeFilterWidget<T>> {
                 ),
                 Text(
                   _dragging == null
-                      ? _rangeLabel
+                      ? _rangeLabel(loc)
                       : '${_format(_valueAt(positions.start))}–'
                             '${_format(_valueAt(positions.end))}',
                   style: theme.textTheme.labelMedium?.copyWith(
@@ -139,7 +141,7 @@ class _RangeFilterWidgetState<T> extends State<RangeFilterWidget<T>> {
                 ),
                 if (group.isActive)
                   MovingTooltipWidget.text(
-                    message: 'Reset this range',
+                    message: loc.rangeFilterResetThisRange,
                     child: IconButton(
                       onPressed: _reset,
                       icon: const Icon(Icons.close, size: 16),

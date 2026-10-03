@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_tag_manager/category_manager.dart';
 
 import '../chatbot_engine.dart';
@@ -55,9 +56,8 @@ class ModsByCategoryIntent extends ChatIntent with ModAwareIntent {
         ref.read(categoryManagerProvider).value;
 
     if (store == null || store.categories.isEmpty) {
-      return const ChatResponse(
-        text: 'No mod categories defined yet.\n'
-            'You can create categories in the Mod Manager by right-clicking a mod.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModCategoriesDefinedYet,
       );
     }
 

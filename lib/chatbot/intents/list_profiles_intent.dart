@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -50,10 +51,8 @@ class ListProfilesIntent extends ChatIntent with ProfileAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final profiles = modProfiles;
     if (profiles == null || profiles.modProfiles.isEmpty) {
-      return const ChatResponse(
-        text: 'No mod profiles saved yet.\n'
-            'Create profiles on the Mod Profiles page to save different '
-            'mod configurations.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoModProfilesSaved,
       );
     }
 

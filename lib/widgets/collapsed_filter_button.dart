@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/filter_widget.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
@@ -23,7 +24,7 @@ class CollapsedFilterButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: MovingTooltipWidget.text(
-            message: "Show filters",
+            message: AppLocalizations.of(context).filterShowFilters,
             child: Stack(
               clipBehavior: Clip.none,
               children: [

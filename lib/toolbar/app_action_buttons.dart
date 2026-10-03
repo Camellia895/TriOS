@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/rules_autofresh/rules_hotreload.dart';
 import 'package:trios/themes/theme_manager.dart';
@@ -28,10 +29,11 @@ class GameFolderButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     var gameFolderPath = ref.watch(AppState.gameFolder).value?.path;
     if (gameFolderPath == null) return const SizedBox.shrink();
     return MovingTooltipWidget.text(
-      message: "Open Starsector folder",
+      message: loc.app_action_buttonsOpenStarsectorFolder,
       child: IconButton(
         icon: const SvgImageIcon("assets/images/icon-folder-game.svg"),
         color: Theme.of(context).iconTheme.color,
@@ -64,9 +66,10 @@ class LogFileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     if (logFilePath == null) return const SizedBox.shrink();
     return MovingTooltipWidget.text(
-      message: "Open ${Constants.appName} log file folder",
+      message: loc.toolbarOpenAppLogFileFolder(Constants.appName),
       child: IconButton(
         icon: const SvgImageIcon("assets/images/icon-file-debug.svg"),
         color: Theme.of(context).iconTheme.color,
@@ -88,6 +91,7 @@ class BugReportButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     if (!ref.watch(appSettings.select((s) => s.showReportBugButton))) {
       return const SizedBox.shrink();
     }
@@ -119,12 +123,12 @@ class BugReportButton extends ConsumerWidget {
               if (!context.mounted) return;
               showAlertDialog(
                 context,
-                title: "Are you sure?",
+                title: loc.mod_list_basicAreYouSure,
                 content:
                     "Continuing will send a bug report. You will be able to enter additional details about the issue on the next page.",
                 actions: [
                   TextButton(
-                    child: const Text('Cancel'),
+                    child: Text(loc.commonCancel),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -170,6 +174,7 @@ class ToolbarLayoutToggle extends ConsumerWidget {
     if (!ref.watch(appSettings.select((s) => s.showLayoutToggle))) {
       return const SizedBox.shrink();
     }
+    final loc = AppLocalizations.of(context);
     final useTopToolbar = ref.watch(appSettings.select((s) => s.useTopToolbar));
     return GestureDetector(
       onSecondaryTapDown: (details) async {
@@ -182,9 +187,9 @@ class ToolbarLayoutToggle extends ConsumerWidget {
             details.globalPosition.dy,
           ),
           items: [
-            const PopupMenuItem<String>(
+            PopupMenuItem<String>(
               value: 'hide',
-              child: Text('Hide layout toggle'),
+              child: Text(loc.app_action_buttonsHideLayoutToggle),
             ),
           ],
         );
@@ -227,8 +232,9 @@ class SettingsNavButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return MovingTooltipWidget.text(
-      message: "Settings",
+      message: loc.app_action_buttonsSettings,
       child: IconButton(
         onPressed: () => onTabChanged(TriOSTools.settings),
         color: currentPage == TriOSTools.settings
@@ -247,8 +253,9 @@ class ChangelogButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return MovingTooltipWidget.text(
-      message: "${Constants.appName} Changelog",
+      message: loc.toolbarChangelog(Constants.appName),
       child: IconButton(
         icon: const SvgImageIcon("assets/images/icon-bullhorn-variant.svg"),
         color: Theme.of(context).iconTheme.color,
@@ -273,8 +280,9 @@ class AboutButton extends ConsumerWidget {
     final appName = context.appNameWithModifiers(
       ref.watch(appSettings.select((s) => s.themeModifiers)),
     );
+    final loc = AppLocalizations.of(context);
     return MovingTooltipWidget.text(
-      message: "About",
+      message: loc.app_action_buttonsAbout,
       child: IconButton(
         icon: const SvgImageIcon("assets/images/icon-info.svg"),
         color: Theme.of(context).iconTheme.color,
@@ -296,6 +304,7 @@ class DonateButton extends ConsumerWidget {
     if (!ref.watch(appSettings.select((s) => s.showDonationButton))) {
       return const SizedBox.shrink();
     }
+    final loc = AppLocalizations.of(context);
 
     return GestureDetector(
       onSecondaryTapDown: (details) async {
@@ -308,9 +317,9 @@ class DonateButton extends ConsumerWidget {
             details.globalPosition.dy,
           ),
           items: [
-            const PopupMenuItem<String>(
+            PopupMenuItem<String>(
               value: 'hide',
-              child: Text('Hide donation button'),
+              child: Text(loc.app_action_buttonsHideDonationButton),
             ),
           ],
         );
@@ -321,7 +330,7 @@ class DonateButton extends ConsumerWidget {
         }
       },
       child: MovingTooltipWidget.text(
-        message: "Show donation popup",
+        message: loc.app_action_buttonsShowDonationPopup,
         child: IconButton(
           icon: const SvgImageIcon("assets/images/icon-donate.svg"),
           color: Theme.of(context).iconTheme.color,
@@ -330,12 +339,12 @@ class DonateButton extends ConsumerWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text("Donations"),
+                  title: Text(loc.app_action_buttonsDonations),
                   content: DonateView(),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text("Close"),
+                      child: Text(loc.commonClose),
                     ),
                   ],
                 );
@@ -411,6 +420,7 @@ class _DebugTooltipContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final labelStyle = theme.textTheme.bodySmall;
     final valueStyle = theme.textTheme.bodySmall?.copyWith(
       fontWeight: FontWeight.bold,
@@ -427,7 +437,7 @@ class _DebugTooltipContent extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Debug Info", style: theme.textTheme.titleSmall),
+          Text(loc.catalogDebugInfo, style: theme.textTheme.titleSmall),
           const SizedBox(height: 8),
           Text(
             "Game Detection",
@@ -435,9 +445,9 @@ class _DebugTooltipContent extends ConsumerWidget {
           ),
           const SizedBox(height: 4),
           if (!isDetectionEnabled)
-            Text("Disabled", style: labelStyle)
+            Text(loc.app_action_buttonsDisabled, style: labelStyle)
           else if (diagnostics == null)
-            Text("Not yet detecting", style: labelStyle)
+            Text(loc.app_action_buttonsNotYetDetecting, style: labelStyle)
           else ...[
             _row("Starsector", diagnostics.wasGameRunning ? "Running" : "Not running", labelStyle, valueStyle),
             _row("Matched by", diagnostics.matchedDetectorName ?? "None", labelStyle, valueStyle),

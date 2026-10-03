@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/thirdparty/flutter_context_menu/flutter_context_menu.dart';
 import 'package:trios/toolbar/nav_order_controller.dart';
 
@@ -16,11 +17,14 @@ ContextMenu buildNavReorderContextMenu(
 }) {
   final controller = ref.read(navOrderProvider.notifier);
   final state = ref.read(navOrderProvider);
+  final loc = AppLocalizations.of(context);
 
   return ContextMenu(
     entries: [
       MenuItem(
-        label: state.isInDragMode ? 'Exit rearrange mode' : 'Rearrange icons',
+        label: state.isInDragMode
+            ? loc.app_sidebarExitRearrangeMode
+            : loc.toolbarRearrangeIcons,
         icon: state.isInDragMode ? Icons.check : Icons.drag_indicator,
         onSelected: () {
           controller.toggleDragMode();
@@ -28,7 +32,7 @@ ContextMenu buildNavReorderContextMenu(
       ),
       const MenuDivider(),
       MenuItem(
-        label: 'Reset to default order',
+        label: loc.nav_reorder_menuResetToDefaultOrder,
         icon: Icons.restart_alt,
         onSelected: () async {
           if (!controller.isCustomized) {
@@ -47,21 +51,22 @@ ContextMenu buildNavReorderContextMenu(
 }
 
 Future<bool?> _confirmReset(BuildContext context) {
+  final loc = AppLocalizations.of(context);
   return showDialog<bool>(
     context: context,
     builder: (ctx) => AlertDialog(
-      title: const Text('Reset nav order?'),
+      title: Text(loc.nav_reorder_menuResetNavOrder),
       content: const Text(
         'This restores the default order of the navigation icons.',
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(ctx).pop(false),
-          child: const Text('Cancel'),
+          child: Text(loc.commonCancel),
         ),
         FilledButton(
           onPressed: () => Navigator.of(ctx).pop(true),
-          child: const Text('Reset'),
+          child: Text(loc.finderReset),
         ),
       ],
     ),

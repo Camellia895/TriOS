@@ -3,6 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multi_split_view/multi_split_view.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
@@ -365,35 +366,36 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
 
   Widget buildRowContextMenu(Weapon weapon, Widget child) {
     final weaponSpritePath = weapon.allSpriteFiles.firstOrNull;
+    final loc = AppLocalizations.of(context);
     return ContextMenuRegion(
       contextMenu: ContextMenu(
         entries: <ContextMenuEntry>[
           MenuItem(
-            label: 'Copy ID',
+            label: loc.factionViewerCopyId,
             icon: Icons.copy,
             onSelected: () => Clipboard.setData(ClipboardData(text: weapon.id)),
           ),
           if (weapon.wpnFiles.isNotEmpty)
             buildOpenModDataFileMenuItem(
               weapon.wpnFiles,
-              label: 'Open .wpn file',
+              label: loc.weaponsOpenWpnFile,
             ),
           if (weapon.csvFiles.isNotEmpty)
             buildOpenModDataFileMenuItem(
               weapon.csvFiles,
-              label: 'Open weapon_data.csv',
+              label: loc.weaponsOpenWeaponDataCsv,
               notes: ModDataFileNotes.oneWins,
             ),
           if (weaponSpritePath != null && weapon.csvFile != null)
             buildOpenSingleFolderMenuItem(
               weapon.csvFile!.parent,
               secondFolder: weapon.wpnFile?.parent,
-              label: 'Open weapon data folder(s)',
+              label: loc.weaponsOpenWeaponDataFolder,
             ),
           if (weapon.modVariant != null)
             buildOpenSingleFolderMenuItem(
               weapon.modVariant!.modFolder.absolute,
-              label: 'Open Mod Folder',
+              label: loc.factionViewerOpenModFolder,
             ),
           if (weapon.modVariant != null)
             buildMenuItemOpenForumPage(weapon.modVariant!, context),
@@ -708,10 +710,11 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
     required WeaponsPageState controllerState,
   }) {
     final controller = ref.read(weaponsPageControllerProvider.notifier);
+    final loc = AppLocalizations.of(context);
     return OverflowMenuButton(
       menuItems: [
         OverflowMenuItem(
-          title: 'Export to CSV',
+          title: loc.hullmodsExportToCsv,
           icon: Icons.table_view,
           onTap: () {
             if (_gridController == null) return;
@@ -739,13 +742,13 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
           },
         ).toEntry(0),
         OverflowMenuCheckItem(
-          title: 'Stretch icons to fit',
+          title: loc.hullmodsStretchIconsToFit,
           icon: Icons.fit_screen,
           checked: controllerState.useContainFit,
           onTap: () => controller.toggleUseContainFit(),
         ).toEntry(1),
         OverflowMenuCheckItem(
-          title: 'Always show weapon glow',
+          title: loc.weaponsAlwaysShowWeaponGlow,
           icon: Icons.auto_awesome,
           checked: controllerState.alwaysShowGlow,
           onTap: () => controller.toggleAlwaysShowGlow(),

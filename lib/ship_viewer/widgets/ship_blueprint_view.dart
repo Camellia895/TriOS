@@ -9,6 +9,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/hullmod_viewer/hullmods_manager.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/ship_systems_manager/ship_system.dart';
 import 'package:trios/ship_systems_manager/ship_systems_manager.dart';
 import 'package:trios/ship_viewer/engine_styles_manager.dart';
@@ -1897,6 +1898,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
     GameFileResolver? fileResolver,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     // Every background choice, paired with the picture file behind it. A
     // picture this install doesn't have is left off the list entirely.
@@ -1914,7 +1916,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
 
     return PopupStyleMenuAnchor(
       builder: (context, controller, _) => MovingTooltipWidget.text(
-        message: 'More options',
+        message: loc.modsGridMoreOptions,
         child: IconButton(
           onPressed: () =>
               controller.isOpen ? controller.close() : controller.open(),
@@ -1933,7 +1935,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
               _persistBlueprintState();
             },
             child: PopupStyleMenuAnchor.paddedLabel(
-              const Text('Animate shields'),
+              Text(loc.shipBlueprintAnimateShields),
             ),
           ),
         if (hasEngines)
@@ -1945,7 +1947,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
               _persistBlueprintState();
             },
             child: PopupStyleMenuAnchor.paddedLabel(
-              const Text('Animate engines'),
+              Text(loc.shipBlueprintAnimateEngines),
             ),
           ),
         SubmenuButton(
@@ -1980,7 +1982,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
               ),
             ],
           ],
-          child: Text('Background: ${_background.label}'),
+          child: Text(loc.shipBlueprintBackground(_background.label)),
         ),
       ],
     );
@@ -2083,10 +2085,11 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
     List<ResolvedModule> modules,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final color = _colorForType(slot.type);
     final mountLabel = slot.mount.toUpperCase() == 'HARDPOINT'
-        ? 'Hardpoint'
-        : 'Turret';
+        ? loc.shipBlueprintHardpoint
+        : loc.shipBlueprintTurret;
 
     String? moduleName;
     if (slot.isStationModule) {
@@ -2099,6 +2102,8 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
     }
 
     final builtInWeaponId = widget.ship.builtInWeapons?[slot.id];
+    final arcDeg = slot.arc.toStringAsFixed(0);
+    final angleDeg = slot.angle.toStringAsFixed(0);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -2106,7 +2111,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
       children: [
         if (builtInWeaponId != null) ...[
           Text(
-            'Built-in: ${_builtInWeaponName(builtInWeaponId)}',
+            loc.shipBlueprintBuiltIn(_builtInWeaponName(builtInWeaponId)),
             style: theme.textTheme.bodySmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -2137,23 +2142,29 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
         ),
         const SizedBox(height: 4),
         if (slot.isStationModule) ...[
-          Text('Station Module', style: theme.textTheme.bodySmall),
+          Text(loc.shipBlueprintStationModule, style: theme.textTheme.bodySmall),
           if (moduleName != null)
-            Text('Module: $moduleName', style: theme.textTheme.bodySmall),
+            Text(
+              loc.shipBlueprintModule(moduleName),
+              style: theme.textTheme.bodySmall,
+            ),
         ] else ...[
           Text(
-            '${slot.sizeUppercase} $mountLabel',
+            loc.shipBlueprintSizeMount(slot.sizeUppercase, mountLabel),
             style: theme.textTheme.bodySmall,
           ),
-          Text('Type: ${slot.type}', style: theme.textTheme.bodySmall),
+          Text(
+            loc.shipBlueprintSlotType(slot.type),
+            style: theme.textTheme.bodySmall,
+          ),
           if (slot.arc > 0)
             Text(
-              'Arc: ${slot.arc.toStringAsFixed(0)}°',
+              loc.shipBlueprintArc(arcDeg),
               style: theme.textTheme.bodySmall,
             ),
         ],
         Text(
-          'Angle: ${slot.angle.toStringAsFixed(0)}°',
+          loc.shipBlueprintAngle(angleDeg),
           style: theme.textTheme.bodySmall,
         ),
       ],
@@ -2197,11 +2208,14 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
     BuildContext context,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final slot = ts.slot;
     final color = _colorForType(slot.typeUppercase);
     final mountLabel = slot.mount.toUpperCase() == 'HARDPOINT'
-        ? 'Hardpoint'
-        : 'Turret';
+        ? loc.shipBlueprintHardpoint
+        : loc.shipBlueprintTurret;
+    final arcDeg = slot.arc.toStringAsFixed(0);
+    final angleDeg = ts.adjustedAngleDeg.toStringAsFixed(0);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -2209,7 +2223,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
       children: [
         if (ts.builtInWeaponId != null) ...[
           Text(
-            'Built-in: ${_builtInWeaponName(ts.builtInWeaponId!)}',
+            loc.shipBlueprintBuiltIn(_builtInWeaponName(ts.builtInWeaponId!)),
             style: theme.textTheme.bodySmall?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -2246,17 +2260,20 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
           ),
         ),
         Text(
-          '${slot.sizeUppercase} $mountLabel',
+          loc.shipBlueprintSizeMount(slot.sizeUppercase, mountLabel),
           style: theme.textTheme.bodySmall,
         ),
-        Text('Type: ${slot.type}', style: theme.textTheme.bodySmall),
+        Text(
+          loc.shipBlueprintSlotType(slot.type),
+          style: theme.textTheme.bodySmall,
+        ),
         if (slot.arc > 0)
           Text(
-            'Arc: ${slot.arc.toStringAsFixed(0)}°',
+            loc.shipBlueprintArc(arcDeg),
             style: theme.textTheme.bodySmall,
           ),
         Text(
-          'Angle: ${ts.adjustedAngleDeg.toStringAsFixed(0)}°',
+          loc.shipBlueprintAngle(angleDeg),
           style: theme.textTheme.bodySmall,
         ),
       ],

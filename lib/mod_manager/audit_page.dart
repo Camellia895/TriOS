@@ -4,6 +4,7 @@ import 'package:dart_extensions_methods/dart_extension_methods.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/thirdparty/dartx/list.dart';
 import 'package:trios/thirdparty/dartx/map.dart';
@@ -22,6 +23,7 @@ class AuditPage extends ConsumerStatefulWidget {
 class _AuditPageState extends ConsumerState<AuditPage> {
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final modVariantsBySmolId =
         (ref
                     .watch(AppState.modVariants)
@@ -40,7 +42,7 @@ class _AuditPageState extends ConsumerState<AuditPage> {
     final dateFormat = DateFormat.yMMMMd(Intl.getCurrentLocale()).add_jms();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Mod Audit Log')),
+      appBar: AppBar(title: Text(loc.auditModAuditLog)),
       body: ListView.separated(
         itemCount: auditLog.flatten().length,
         itemBuilder: (context, index) {

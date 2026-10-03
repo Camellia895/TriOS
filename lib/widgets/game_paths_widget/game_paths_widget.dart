@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/utils/util.dart';
@@ -29,6 +30,7 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final customGamePathsController = ref.watch(
       gamePathsControllerProvider.notifier,
     );
@@ -36,7 +38,7 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
     final settings = ref.watch(appSettings);
     final theme = Theme.of(context);
 
-    final invalidPathMessage = "Path does not exist";
+    final invalidPathMessage = loc.gamePathsPathDoesNotExist;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -54,8 +56,8 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
                     labelStyle: theme.textTheme.labelLarge,
                     errorText: state.gamePathExists
                         ? null
-                        : "Starsector not found",
-                    labelText: 'Game Folder',
+                        : loc.gamePathsStarsectorNotFound,
+                    labelText: loc.gamePathsGameFolder,
                   ),
                 ),
               ),
@@ -70,7 +72,7 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
               ),
               if (gamePathController.text != state.gamePathText)
                 TextButton.icon(
-                  label: const Text("Apply"),
+                  label: Text(loc.commonApply),
                   icon: const Icon(Icons.check),
                   onPressed: () => customGamePathsController.updateGameRootFolderPath(
                     gamePathController.text,
@@ -85,16 +87,15 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
           highlightKey: "settings.starsectorLauncher",
           borderPadding: .all(8),
           child: CustomPathField(
-            labelText: "Starsector launcher",
-            checkboxTooltip: "If checked, overrides the default path.",
-            fieldTooltip:
-                "What to launch when you click 'Launch' within ${Constants.appName}.",
+            labelText: loc.gamePathsStarsectorLauncher,
+            checkboxTooltip: loc.gamePathsOverrideTooltip,
+            fieldTooltip: loc.gamePathsLauncherTooltip(Constants.appName),
             pathWhenUnchecked: state.customExecutablePathState.defaultPath,
             customPathWhenChecked: state.customExecutablePathState.customPath,
             isChecked: state.customExecutablePathState.useCustomPath,
             isDirectoryPicker: false,
             initialDirectory: settings.gameDir?.path ?? defaultGamePath().path,
-            pickerDialogTitle: "Select Starsector launcher",
+            pickerDialogTitle: loc.gamePathsSelectLauncher,
             errorMessage: state.customExecutablePathState.pathExists
                 ? null
                 : invalidPathMessage,
@@ -107,15 +108,15 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
         ),
         const SizedBox(height: 16),
         CustomPathField(
-          labelText: "Mods",
-          checkboxTooltip: "If checked, overrides the default path.",
-          fieldTooltip: "Where your mods are located.",
+          labelText: loc.gamePathsMods,
+          checkboxTooltip: loc.gamePathsOverrideTooltip,
+          fieldTooltip: loc.gamePathsModsTooltip,
           pathWhenUnchecked: state.customModsPathState.defaultPath,
           customPathWhenChecked: state.customModsPathState.customPath,
           isChecked: state.customModsPathState.useCustomPath,
           isDirectoryPicker: true,
           initialDirectory: settings.gameDir?.path ?? defaultGamePath().path,
-          pickerDialogTitle: "Select Mods folder",
+          pickerDialogTitle: loc.gamePathsSelectMods,
           errorMessage: state.customModsPathState.pathExists
               ? null
               : invalidPathMessage,
@@ -127,15 +128,15 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
         ),
         const SizedBox(height: 16),
         CustomPathField(
-          labelText: "Saves",
-          checkboxTooltip: "If checked, overrides the default path.",
-          fieldTooltip: "Where the game's saves are located.",
+          labelText: loc.gamePathsSaves,
+          checkboxTooltip: loc.gamePathsOverrideTooltip,
+          fieldTooltip: loc.gamePathsSavesTooltip,
           pathWhenUnchecked: state.customSavesPathState.defaultPath,
           customPathWhenChecked: state.customSavesPathState.customPath,
           isChecked: state.customSavesPathState.useCustomPath,
           isDirectoryPicker: true,
           initialDirectory: settings.gameDir?.path ?? defaultGamePath().path,
-          pickerDialogTitle: "Select Saves folder",
+          pickerDialogTitle: loc.gamePathsSelectSaves,
           errorMessage: state.customSavesPathState.pathExists
               ? null
               : invalidPathMessage,
@@ -147,17 +148,15 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
         ),
         const SizedBox(height: 16),
         CustomPathField(
-          labelText: "Core data",
-          checkboxTooltip: "If checked, overrides the default path.",
-          fieldTooltip:
-              "Where the game's data is located."
-              "\nThis is the folder that contains data, graphics, sounds, and jar files.",
+          labelText: loc.gamePathsCoreData,
+          checkboxTooltip: loc.gamePathsOverrideTooltip,
+          fieldTooltip: loc.gamePathsCoreDataTooltip,
           pathWhenUnchecked: state.customCorePathState.defaultPath,
           customPathWhenChecked: state.customCorePathState.customPath,
           isChecked: state.customCorePathState.useCustomPath,
           isDirectoryPicker: true,
           initialDirectory: settings.gameDir?.path ?? defaultGamePath().path,
-          pickerDialogTitle: "Select Core folder",
+          pickerDialogTitle: loc.gamePathsSelectCore,
           errorMessage: state.customCorePathState.pathExists
               ? null
               : invalidPathMessage,
@@ -170,7 +169,7 @@ class _GamePathsWidgetState extends ConsumerState<GamePathsWidget> {
         Padding(
           padding: const EdgeInsets.only(left: 48, top: 16),
           child: Text(
-            "These paths tell ${Constants.appName} where to look for data. They do not affect Starsector or how it loads data.",
+            loc.gamePathsFootnote(Constants.appName),
             style: theme.textTheme.bodySmall?.copyWith(
               fontStyle: FontStyle.italic,
             ),

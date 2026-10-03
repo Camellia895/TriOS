@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path/path.dart' as p;
 import 'package:trios/about/about_page.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/themes/theme.dart';
 import 'package:trios/themes/theme_manager.dart';
@@ -31,6 +32,7 @@ Future<void> showMyDialog(
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
+      final loc = AppLocalizations.of(context);
       return AlertDialog(
         title: title,
         content: SingleChildScrollView(
@@ -38,7 +40,7 @@ Future<void> showMyDialog(
         ),
         actions: <Widget>[
           TextButton(
-            child: const Text('Close'),
+            child: Text(loc.commonClose),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -60,6 +62,7 @@ Future<void> showAlertDialog(
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
+      final loc = AppLocalizations.of(context);
       return AlertDialog(
         title: title != null ? Text(title) : null,
         content: SingleChildScrollView(
@@ -81,7 +84,7 @@ Future<void> showAlertDialog(
             actions ??
             <Widget>[
               TextButton(
-                child: const Text('Close'),
+                child: Text(loc.commonClose),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -96,11 +99,15 @@ Future<void> showTriOSAboutDialog(
   BuildContext context, {
   String? appNameOverride,
 }) async {
+  final loc = AppLocalizations.of(context);
   return showAboutDialog(
     context: context,
     applicationIcon: const TriOSAppIcon(),
-    applicationName: "${appNameOverride ?? context.appName} v${Constants.version}",
-    applicationVersion: "A Starsector toolkit\nby Wisp",
+    applicationName: loc.dialogsAboutAppName(
+      appNameOverride ?? context.appName,
+      Constants.version,
+    ),
+    applicationVersion: loc.dialogsAboutTagline,
     children: [
       ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 700),
@@ -117,6 +124,8 @@ Future<void> showDeleteModFoldersConfirmationDialog(
   bool? allowDeletingEnabledModsDefaultState = false,
   bool dryRun = false,
 }) async {
+  final loc = AppLocalizations.of(context);
+
   Future<void> deleteFolder(String folderPath) async {
     final directory = Directory(folderPath);
     final modsDir = ref.read(AppState.modsFolder).value!.path;
@@ -124,10 +133,8 @@ Future<void> showDeleteModFoldersConfirmationDialog(
     if (p.equals(folderPath, modsDir)) {
       Fimber.e("Refusing to delete the mods root folder");
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            "Did you just try to delete your mods folder? No! Bad!",
-          ),
+        SnackBar(
+          content: Text(loc.dialogsModsFolderWarning),
         ),
       );
       return;
@@ -141,7 +148,10 @@ Future<void> showDeleteModFoldersConfirmationDialog(
           showSnackBar(
             context: context,
             content: Text(
-              "Failed to delete ${folderPath.toFile().nameWithExtension}: $e",
+              loc.dialogsFailedToDelete(
+                folderPath.toFile().nameWithExtension,
+                e.toString(),
+              ),
             ),
           );
         }
@@ -179,7 +189,7 @@ Future<void> showDeleteModFoldersConfirmationDialog(
                     ),
                     if (isEnabled)
                       Text(
-                        " (enabled)",
+                        loc.dialogsEnabledSuffix,
                         style: theme.textTheme.labelLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -188,10 +198,9 @@ Future<void> showDeleteModFoldersConfirmationDialog(
                       Padding(
                         padding: const .only(left: 4),
                         child: MovingTooltipWidget.text(
-                          message:
-                              "Deleting the Companion Mod will also delete any custom images you've imported with the Portrait Replacer!"
-                              ""
-                              "\n\nIf you've used ${Constants.appName} to import custom portraits, you'll need to re-import them if you want to use them again.",
+                          message: loc.dialogsCompanionModWarning(
+                            Constants.appName,
+                          ),
                           child: Icon(
                             Icons.warning,
                             color: TriOSThemeConstants.vanillaWarningColor,
@@ -262,10 +271,13 @@ Future<void> showDeleteModFoldersConfirmationDialog(
               final hasBothEnabledAndDisabled =
                   enabledSmolIds.isNotEmpty && disabledSmolIds.isNotEmpty;
               final selectedCount = selectedSmolIds.length;
-              final s = selectedCount == 1 ? "" : "s";
 
               return AlertDialog(
-                title: Text('Delete Mod$s'),
+                title: Text(
+                  selectedCount == 1
+                      ? loc.dialogsDeleteModTitle
+                      : loc.dialogsDeleteModsTitle,
+                ),
                 content: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -273,7 +285,7 @@ Future<void> showDeleteModFoldersConfirmationDialog(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 8,
                     children: [
-                      const Text('Select the mod folders to delete:'),
+                      Text(loc.dialogsSelectTheModFolders),
                       Flexible(
                         child: FadedScrollable(
                           child: Scrollbar(
@@ -330,7 +342,7 @@ Future<void> showDeleteModFoldersConfirmationDialog(
                                   });
                                 },
                                 icon: const Icon(Icons.select_all),
-                                label: const Text('Select all'),
+                                label: Text(loc.commonSelectAll),
                               ),
                             ),
                             Align(
@@ -342,7 +354,7 @@ Future<void> showDeleteModFoldersConfirmationDialog(
                                   });
                                 },
                                 icon: const Icon(Icons.deselect),
-                                label: const Text('Deselect all'),
+                                label: Text(loc.commonDeselectAll),
                               ),
                             ),
                           ],
@@ -350,7 +362,9 @@ Future<void> showDeleteModFoldersConfirmationDialog(
                       Padding(
                         padding: const .only(top: 16),
                         child: Text(
-                          "This will delete the mod folder$s on disk. This action cannot be undone.",
+                          selectedCount == 1
+                              ? loc.dialogsDeleteWarningSg
+                              : loc.dialogsDeleteWarningPl,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -362,13 +376,17 @@ Future<void> showDeleteModFoldersConfirmationDialog(
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(false),
-                    child: const Text('Cancel'),
+                    child: Text(loc.commonCancel),
                   ),
                   Disable(
                     isEnabled: selectedCount > 0,
                     child: TextButton.icon(
                       onPressed: () => Navigator.of(context).pop(true),
-                      label: Text('Delete $selectedCount Mod$s'),
+                      label: Text(
+                        selectedCount == 1
+                            ? loc.dialogsDeleteCountMod(selectedCount)
+                            : loc.dialogsDeleteCountMods(selectedCount),
+                      ),
                       icon: const Icon(Icons.delete),
                     ),
                   ),
@@ -391,8 +409,8 @@ Future<void> showDeleteModFoldersConfirmationDialog(
     (e, s) {
       Fimber.w("Error deleting mod folder", ex: e, stacktrace: s);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("An error occurred while deleting the mod folder(s)."),
+        SnackBar(
+          content: Text(loc.dialogsAnErrorOccurredWhile),
         ),
       );
     },

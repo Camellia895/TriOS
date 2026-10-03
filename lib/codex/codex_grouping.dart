@@ -1,4 +1,5 @@
 import 'package:trios/codex/models/codex_entry.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/widgets/filter_engine/filter_group.dart';
 
 /// One way to group a category's list into labeled sections. Options mirror
@@ -40,10 +41,14 @@ List<CodexGrouping> buildCodexGroupings({
   required String Function(String modId) modNameOf,
 }) {
   return [
-    CodexGrouping(id: 'none', label: 'None', keysOf: (_) => const []),
+    CodexGrouping(
+      id: 'none',
+      label: AppLocalizationsSync.instance.codexNone,
+      keysOf: (_) => const [],
+    ),
     CodexGrouping(
       id: 'mod',
-      label: 'Mod',
+      label: AppLocalizationsSync.instance.codexMod,
       keysOf: (e) => e.modIds.isEmpty
           ? const ['Vanilla']
           : e.modIds.map(modNameOf).toList(),

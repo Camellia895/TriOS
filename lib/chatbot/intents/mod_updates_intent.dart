@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 
 import '../chatbot_engine.dart';
@@ -58,9 +59,8 @@ class ModUpdatesIntent extends ChatIntent with ModAwareIntent {
 
     final vcState = versionCheckResults;
     if (vcState == null) {
-      return const ChatResponse(
-        text: 'Version check data is not available yet. '
-            'Try again in a moment.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotVersionCheckDataNotAvailable,
       );
     }
 
@@ -85,7 +85,9 @@ class ModUpdatesIntent extends ChatIntent with ModAwareIntent {
     }
 
     if (updatesAvailable.isEmpty) {
-      return const ChatResponse(text: 'All mods are up to date!');
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotAllModsAreUpToDate,
+      );
     }
 
     final buf = StringBuffer(

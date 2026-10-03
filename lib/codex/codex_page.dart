@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:multi_split_view/multi_split_view.dart';
@@ -369,6 +370,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
     CodexEntryType? category,
     bool showFacets,
   ) {
+    final loc = AppLocalizations.of(context);
     final groups = showFacets ? _facetControllers[category]!.groups : const [];
     final items = category != null
         ? (_facetItems[category] ?? const <CodexEntry>[])
@@ -380,7 +382,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _panelHeader(context, Icons.filter_list, 'Filters'),
+        _panelHeader(context, Icons.filter_list, loc.codexFilters),
         Expanded(
           child: SingleChildScrollView(
             padding: const EdgeInsets.only(bottom: 8),
@@ -406,27 +408,28 @@ class _CodexPageState extends ConsumerState<CodexPage>
 
   // ── Toolbar ────────────────────────────────────────────────────────────
   Widget _buildToolbar(BuildContext context, CodexPageState state) {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Row(
         spacing: 4,
         children: [
           MovingTooltipWidget.text(
-            message: 'Back',
+            message: loc.codexBack,
             child: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: state.canGoBack ? _controller.back : null,
             ),
           ),
           MovingTooltipWidget.text(
-            message: 'Forward',
+            message: loc.codexForward,
             child: IconButton(
               icon: const Icon(Icons.arrow_forward),
               onPressed: state.canGoForward ? _controller.forward : null,
             ),
           ),
           MovingTooltipWidget.text(
-            message: 'Up a level',
+            message: loc.codexUpALevel,
             child: IconButton(
               icon: const Icon(Icons.arrow_upward),
               onPressed: (state.category != null || state.isSearching)
@@ -435,7 +438,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
             ),
           ),
           MovingTooltipWidget.text(
-            message: 'Random entry',
+            message: loc.codexRandomEntry,
             child: IconButton(icon: Icon(Symbols.ifl), onPressed: _randomEntry),
           ),
           const Spacer(),
@@ -447,7 +450,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
               decoration: InputDecoration(
                 isDense: true,
                 prefixIcon: const Icon(Icons.search, size: 18),
-                hintText: 'Search the Codex…',
+                hintText: loc.codexSearchTheCodex,
                 border: const OutlineInputBorder(),
                 suffixIcon: state.isSearching
                     ? IconButton(
@@ -477,6 +480,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
 
   Widget _buildRootCategories(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     // How many entries each category would list right now (after the standing
     // filters). The number is hidden while a category is still loading.
     final listed = ref.watch(codexListedIndexProvider);
@@ -497,7 +501,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
             titleTextStyle: theme.textTheme.labelLarge,
             trailing: ref.watch(codexCategoryLoadingProvider(type))
                 ? MovingTooltipWidget.text(
-                    message: 'Loading ${codexCategoryLabel(type)}…',
+                    message: loc.codexLoadingCategory(codexCategoryLabel(type)),
                     child: const SizedBox(
                       width: 18,
                       height: 18,
@@ -510,7 +514,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
         Padding(
           padding: const EdgeInsets.all(16),
           child: Text(
-            'Pick a category, or search across everything.',
+            loc.codexPickACategory,
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
             ),
@@ -619,6 +623,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
     CodexGrouping grouping,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Column(
       children: [
         Padding(
@@ -627,14 +632,14 @@ class _CodexPageState extends ConsumerState<CodexPage>
             spacing: 8,
             children: [
               MovingTooltipWidget.text(
-                message: 'Up a level',
+                message: loc.codexUpALevel,
                 child: TextButton.icon(
                   onPressed: _controller.goUp,
                   style: TextButton.styleFrom(
                     foregroundColor: theme.colorScheme.onSurface,
                   ),
                   icon: const Icon(Icons.arrow_back, size: 18),
-                  label: const Text('All categories'),
+                  label: Text(loc.codexAllCategories),
                 ),
               ),
               Expanded(
@@ -673,7 +678,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
             spacing: 8,
             children: [
               Text(
-                'Group by',
+                loc.codexGroupBy,
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
@@ -822,6 +827,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
   /// nothing about it — just that something is there, locked. Not tappable.
   Widget _buildLockedRow(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final dim = theme.colorScheme.onSurface.withValues(alpha: 0.45);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -841,13 +847,13 @@ class _CodexPageState extends ConsumerState<CodexPage>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Locked entry',
+                  loc.codexLockedEntry,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall?.copyWith(color: dim),
                 ),
                 Text(
-                  '(hidden by spoiler filter)',
+                  loc.codexHiddenBySpoilerFilter,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall?.copyWith(
@@ -948,6 +954,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
   }
 
   Widget _buildSearchResults(BuildContext context, CodexPageState state) {
+    final loc = AppLocalizations.of(context);
     final listed = ref.watch(codexListedIndexProvider);
     final pool = state.category == null
         ? listed
@@ -959,7 +966,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
         ListTile(
           dense: true,
           leading: const Icon(Icons.search, size: 18),
-          title: Text('Search results (${results.length})'),
+          title: Text(loc.codexSearchResults(results.length)),
           trailing: IconButton(
             icon: const Icon(Icons.clear, size: 18),
             onPressed: () => _controller.setSearch(''),
@@ -993,6 +1000,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
   // ── Related panel (below the detail, between categories and filters) ─────
   Widget _buildRelatedPanel(BuildContext context, CodexPageState state) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final selected = state.selected;
     final visible = ref.watch(codexVisibleIndexProvider);
     final links = ref.watch(codexLinksProvider);
@@ -1010,7 +1018,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _panelHeader(context, null, 'Related entries'),
+        _panelHeader(context, null, loc.codexRelatedEntries),
         Expanded(
           child: related.isEmpty
               ? Padding(
@@ -1018,7 +1026,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Nothing related',
+                      loc.codexNothingRelated,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurface.withValues(
                           alpha: 0.5,
@@ -1071,6 +1079,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
   // ── Standing controls (top of the filters panel, vertical) ───────────────
   Widget _buildStandingControls(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final filters = ref.watch(codexStandingFiltersProvider);
     final notifier = ref.read(codexStandingFiltersProvider.notifier);
     final mods = ref.watch(AppState.mods);
@@ -1110,7 +1119,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
               child: Text(
-                'General',
+                loc.codexGeneral,
                 style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: theme.colorScheme.onSurface,
@@ -1118,22 +1127,22 @@ class _CodexPageState extends ConsumerState<CodexPage>
               ),
             ),
             labeled(
-              'Spoilers',
+              loc.codexSpoilers,
               TriOSDropdownButton<SpoilerLevel>(
                 value: filters.spoilerLevel,
                 isExpanded: true,
-                items: const [
+                items: [
                   DropdownMenuItem(
                     value: SpoilerLevel.showNone,
-                    child: Text('None'),
+                    child: Text(loc.codexNone),
                   ),
                   DropdownMenuItem(
                     value: SpoilerLevel.showSlightSpoilers,
-                    child: Text('Slight'),
+                    child: Text(loc.codexSlight),
                   ),
                   DropdownMenuItem(
                     value: SpoilerLevel.showAllSpoilers,
-                    child: Text('All'),
+                    child: Text(loc.codexAll),
                   ),
                 ],
                 onChanged: (v) {
@@ -1142,15 +1151,15 @@ class _CodexPageState extends ConsumerState<CodexPage>
               ),
             ),
             labeled(
-              'Mod',
+              loc.codexMod,
               TriOSDropdownButton<String?>(
                 value: filters.modId,
                 isExpanded: true,
                 items: [
-                  const DropdownMenuItem(value: null, child: Text('All')),
-                  const DropdownMenuItem(
+                  DropdownMenuItem(value: null, child: Text(loc.codexAll)),
+                  DropdownMenuItem(
                     value: codexVanillaModId,
-                    child: Text('Vanilla only'),
+                    child: Text(loc.codexVanillaOnly),
                   ),
                   for (final entry in modNames.entries)
                     DropdownMenuItem(
@@ -1164,7 +1173,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
             Align(
               alignment: Alignment.centerLeft,
               child: CheckboxWithLabel(
-                label: 'Only enabled mods',
+                label: loc.codexOnlyEnabledMods,
                 value: ref.watch(appSettings.select((s) => s.onlyEnabledMods)),
                 labelStyle: theme.textTheme.labelMedium,
                 onChanged: (v) => ref
@@ -1175,7 +1184,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
             Align(
               alignment: Alignment.centerLeft,
               child: CheckboxWithLabel(
-                label: 'Show hidden weapons',
+                label: loc.codexShowHiddenWeapons,
                 value: filters.showHidden,
                 labelStyle: theme.textTheme.labelMedium,
                 onChanged: (v) => notifier.setShowHidden(v ?? false),
@@ -1184,7 +1193,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
             Align(
               alignment: Alignment.centerLeft,
               child: CheckboxWithLabel(
-                label: 'Show hidden hullmods',
+                label: loc.codexShowHiddenHullmods,
                 value: filters.showHiddenHullmods,
                 labelStyle: theme.textTheme.labelMedium,
                 onChanged: (v) => notifier.setShowHiddenHullmods(v ?? false),
@@ -1193,7 +1202,7 @@ class _CodexPageState extends ConsumerState<CodexPage>
             Align(
               alignment: Alignment.centerLeft,
               child: CheckboxWithLabel(
-                label: 'Show hidden ship systems',
+                label: loc.codexShowHiddenShipSystems,
                 value: filters.showHiddenShipSystems,
                 labelStyle: theme.textTheme.labelMedium,
                 onChanged: (v) => notifier.setShowHiddenShipSystems(v ?? false),
@@ -1202,12 +1211,9 @@ class _CodexPageState extends ConsumerState<CodexPage>
             Align(
               alignment: Alignment.centerLeft,
               child: MovingTooltipWidget.text(
-                message:
-                    'List a station\'s modules (its docked parts) as their own '
-                    'ship entries. They always show as related entries on the '
-                    'station either way.',
+                message: loc.codexShowModulesAsShipsTooltip,
                 child: CheckboxWithLabel(
-                  label: 'Show modules as ships',
+                  label: loc.codexShowModulesAsShips,
                   value: filters.showModulesAsShips,
                   labelStyle: theme.textTheme.labelMedium,
                   onChanged: (v) => notifier.setShowModulesAsShips(v ?? false),

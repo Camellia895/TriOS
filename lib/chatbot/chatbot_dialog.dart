@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/widgets/animated_gradient_border.dart';
 
@@ -334,6 +335,7 @@ class _EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final loc = AppLocalizations.of(context);
 
     return Center(
       child: Padding(
@@ -368,15 +370,17 @@ class _EmptyState extends StatelessWidget {
               alignment: WrapAlignment.center,
               children: [
                 ActionChip(
-                  label: const Text("What can you do?"),
+                  label: Text(loc.chatbotSuggestionWhatCanYouDo),
+                  // Sent text stays English: it feeds the chatbot's
+                  // English keyword/phrase intent matching.
                   onPressed: () => onSuggestionTap("What can you do?"),
                 ),
                 ActionChip(
-                  label: const Text("Help me with mods"),
+                  label: Text(loc.chatbotSuggestionHelpMeWithMods),
                   onPressed: () => onSuggestionTap("Help me with mods"),
                 ),
                 ActionChip(
-                  label: const Text("Troubleshoot"),
+                  label: Text(loc.chatbotSuggestionTroubleshoot),
                   onPressed: () => onSuggestionTap("Troubleshoot"),
                 ),
               ],

@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:trios/faction_viewer/spawn_weights/spawn_weight_calculator.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/widgets/mod_icon.dart';
@@ -10,20 +11,18 @@ import 'package:trios/widgets/moving_tooltip.dart';
 String formatShare(double share) => '${(share * 100).round()}%';
 
 /// Explains what the "% from the base game" number means, in one tooltip.
-String vanillaShareTooltip(FactionSpawnSummary summary) {
+String vanillaShareTooltip(FactionSpawnSummary summary, AppLocalizations loc) {
   final share = summary.vanillaShare;
   if (summary.totalWeight <= 0) {
-    return 'This faction has no warships to spawn.';
+    return loc.factionViewerNoWarshipsToSpawn;
   }
   if (share == null) {
-    return 'Still reading the mods. The split will show once that finishes.';
+    return loc.vanillaShareStillReading;
   }
   final modCount = summary.topMods.length;
-  return 'When the game builds a fleet for this faction, '
-      '${formatShare(share)} of the chance to pick each ship comes from the '
-      'base game. The rest comes from '
-      '${modCount == 1 ? '1 mod' : '$modCount mods'}.\n\n'
-      'This is a share of spawn chance, not a share of ships.';
+  return modCount == 1
+      ? loc.vanillaShareTooltipOne(formatShare(share))
+      : loc.vanillaShareTooltipMany(formatShare(share), modCount);
 }
 
 /// Icon file path for each enabled mod, keyed by the mod's display name — the
@@ -124,11 +123,11 @@ class VanillaShareBar extends ConsumerWidget {
     return hsl.withLightness((0.66 - t * 0.38).clamp(0.0, 1.0)).toColor();
   }
 
-  String _tooltipFor(String name, double share) {
+  String _tooltipFor(AppLocalizations loc, String name, double share) {
     final pct = formatShare(share);
     return factionName == null
-        ? '$name: $pct'
-        : "$name: $pct of $factionName's spawn weight";
+        ? loc.vanillaShareSegmentTooltip(name, pct)
+        : loc.vanillaShareSegmentTooltipOfFaction(name, pct, factionName!);
   }
 
   /// Wraps a slice in its tooltip: a framed icon + text when the mod has an
@@ -160,6 +159,7 @@ class VanillaShareBar extends ConsumerWidget {
     ThemeData theme,
     WidgetRef ref,
     Map<String, String> iconPaths,
+    AppLocalizations loc,
   ) {
     final total = summary.totalWeight;
     if (total <= 0) return const [];
@@ -171,10 +171,10 @@ class VanillaShareBar extends ConsumerWidget {
       final share = vanillaWeight / total;
       segments.add(
         _BarSegment(
-          label: 'Vanilla',
+          label: loc.vanillaShareBarVanilla,
           share: share,
           color: theme.colorScheme.onSurface,
-          tooltip: _tooltipFor('Vanilla', share),
+          tooltip: _tooltipFor(loc, loc.vanillaShareBarVanilla, share),
         ),
       );
     }
@@ -192,7 +192,7 @@ class VanillaShareBar extends ConsumerWidget {
           label: name,
           share: share,
           color: iconColor ?? _modShade(factionColor, i, mods.length),
-          tooltip: _tooltipFor(name, share),
+          tooltip: _tooltipFor(loc, name, share),
           iconPath: iconPath,
         ),
       );
@@ -202,10 +202,10 @@ class VanillaShareBar extends ConsumerWidget {
       final share = summary.unknownWeight / total;
       segments.add(
         _BarSegment(
-          label: 'Still reading mods',
+          label: loc.vanillaShareBarStillReadingMods,
           share: share,
           color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
-          tooltip: "Still reading mods. This part isn't sorted yet.",
+          tooltip: loc.vanillaShareStillReadingUnsorted,
         ),
       );
     }
@@ -216,8 +216,9 @@ class VanillaShareBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final share = summary.vanillaShare;
-    final segments = _segments(theme, ref, ref.watch(_modIconPathsProvider));
+    final segments = _segments(theme, ref, ref.watch(_modIconPathsProvider), loc);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -225,9 +226,11 @@ class VanillaShareBar extends ConsumerWidget {
       children: [
         if (showLabel)
           MovingTooltipWidget.text(
-            message: vanillaShareTooltip(summary),
+            message: vanillaShareTooltip(summary, loc),
             child: Text(
-              share == null ? 'Vanilla: —' : 'Vanilla: ${formatShare(share)}',
+              share == null
+                  ? loc.vanillaShareBarVanillaDash
+                  : loc.vanillaShareBarVanillaShare(formatShare(share)),
               style: theme.textTheme.labelSmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontFeatures: [const FontFeature.tabularFigures()],

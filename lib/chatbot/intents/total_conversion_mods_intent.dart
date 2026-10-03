@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -56,8 +57,8 @@ class TotalConversionModsIntent extends ChatIntent with ModAwareIntent {
       ..sort();
 
     if (tcMods.isEmpty) {
-      return const ChatResponse(
-        text: 'No total conversion mods are installed.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoTotalConversionMods,
       );
     }
 

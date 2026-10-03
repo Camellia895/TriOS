@@ -6,6 +6,7 @@ import 'package:cross_file/cross_file.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/utils/logging.dart';
 import 'package:trios/widgets/rainbow/themed_progress_indicator.dart';
 
@@ -54,6 +55,7 @@ class DesktopDropState extends ConsumerState<DesktopDrop> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     final parsing = ref.watch(ChipperState.isLoadingLog);
     // ref.listen(logRawContents, (pref, next) => parseLogListener(next));
@@ -72,17 +74,17 @@ class DesktopDropState extends ConsumerState<DesktopDrop> {
                           Container(height: 10),
                           Text(
                             [
-                              "thinking...",
-                              "processing...",
-                              "parsing...",
-                              "pondering the log",
-                              "chipping...",
-                              "breaking logs down...",
-                              "analyzing...",
-                              "analysing...",
-                              "spinning...",
-                              "please wait...",
-                              "please hold...",
+                              loc.chipperLoadingThinking,
+                              loc.chipperLoadingProcessing,
+                              loc.chipperLoadingParsing,
+                              loc.chipperLoadingPondering,
+                              loc.chipperLoadingChipping,
+                              loc.chipperLoadingBreakingDown,
+                              loc.chipperLoadingAnalyzing,
+                              loc.chipperLoadingAnalysing,
+                              loc.chipperLoadingSpinning,
+                              loc.chipperLoadingPleaseWait,
+                              loc.chipperLoadingPleaseHold,
                             ].random(),
                             style: theme.textTheme.headlineMedium,
                           ),
@@ -95,14 +97,14 @@ class DesktopDropState extends ConsumerState<DesktopDrop> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Drop starsector.log here",
+                                  loc.chipperDropLogHere,
                                   style: theme.textTheme.headlineMedium
                                       ?.copyWith(fontSize: 34),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10),
                                   child: Text(
-                                    "or control-v to paste",
+                                    loc.chipperOrCtrlVPaste,
                                     style: theme.textTheme.bodyMedium?.copyWith(
                                       fontSize: 18,
                                       color: theme.textTheme.bodyMedium?.color
@@ -123,7 +125,7 @@ class DesktopDropState extends ConsumerState<DesktopDrop> {
                                     TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: "\nWindows: ",
+                                          text: loc.chipperWindowsPathLabel,
                                           style: theme.textTheme.headlineSmall
                                               ?.copyWith(
                                                 fontSize: 20,
@@ -148,7 +150,7 @@ class DesktopDropState extends ConsumerState<DesktopDrop> {
                                               ),
                                         ),
                                         TextSpan(
-                                          text: "\n\nMacOS: ",
+                                          text: loc.chipperMacosPathLabel,
                                           style: theme.textTheme.headlineSmall
                                               ?.copyWith(
                                                 fontSize: 20,
@@ -173,7 +175,7 @@ class DesktopDropState extends ConsumerState<DesktopDrop> {
                                               ),
                                         ),
                                         TextSpan(
-                                          text: "\n\nLinux: ",
+                                          text: loc.chipperLinuxPathLabel,
                                           style: theme.textTheme.headlineSmall
                                               ?.copyWith(
                                                 fontSize: 20,

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/chipper/models/error_lines.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
@@ -80,7 +81,9 @@ class LogErrorsIntent extends ChatIntent with LogAwareIntent {
 
     final errors = chips.errorBlock;
     if (errors.isEmpty) {
-      return const ChatResponse(text: 'No errors found in the log. Looks good!');
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoErrorsFoundInLog,
+      );
     }
 
     final buf = StringBuffer('Found ${errors.length} error line(s) in the log.\n');

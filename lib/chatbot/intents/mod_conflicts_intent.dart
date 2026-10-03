@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 
 import '../chatbot_engine.dart';
@@ -94,8 +95,8 @@ class ModConflictsIntent extends ChatIntent with ModAwareIntent {
     }
 
     if (issues.isEmpty) {
-      return const ChatResponse(
-        text: 'No conflicts found among your enabled mods.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotNoConflictsFound,
       );
     }
 

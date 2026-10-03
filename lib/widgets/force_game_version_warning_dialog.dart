@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/mod.dart';
 import 'package:trios/models/mod_variant.dart';
@@ -28,6 +29,7 @@ class ForceGameVersionWarningDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     final showForceUpdateWarning = ref.read(
       appSettings.select((s) => s.showForceUpdateWarning),
     );
@@ -39,8 +41,8 @@ class ForceGameVersionWarningDialog extends ConsumerWidget {
 
     if (currentStarsectorVersion == null) {
       return AlertDialog(
-        title: const Text("Error"),
-        content: const Text("Could not determine current Starsector version."),
+        title: Text(loc.commonError),
+        content: Text(loc.forceVersionCouldNotDetermine),
       );
     }
 
@@ -63,11 +65,8 @@ class ForceGameVersionWarningDialog extends ConsumerWidget {
     }
 
     final hasMultiple = modsToForce.length > 1;
-    final singleModIntro = hasMultiple
-        ? ""
-        : "'${modsToForce.single.modInfo.nameOrId}' was made for Starsector ${modsToForce.single.modInfo.gameVersion}, but you can try running it in $currentStarsectorVersion.\n";
 
-    // Split the singleModIntro into parts to apply bold formatting to the mod name
+    // Split the intro into parts to apply bold formatting to the mod name
     final singleModIntroParts = hasMultiple
         ? <TextSpan>[]
         : [
@@ -76,14 +75,21 @@ class ForceGameVersionWarningDialog extends ConsumerWidget {
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             TextSpan(
-              text:
-                  " was made for Starsector ${modsToForce.single.modInfo.gameVersion}, but you can try running it in $currentStarsectorVersion.\n",
+              text: loc.forceVersionMadeForSuffix(
+                modsToForce.single.modInfo.gameVersion ?? '',
+                currentStarsectorVersion,
+              ),
             ),
           ];
 
     return AlertDialog(
       title: Text(
-        "Force ${hasMultiple ? "${modsToForce.length} mods " : ""}to $currentStarsectorVersion?",
+        hasMultiple
+            ? loc.forceVersionTitleMultiple(
+                modsToForce.length,
+                currentStarsectorVersion,
+              )
+            : loc.forceVersionTitleSingle(currentStarsectorVersion),
       ),
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,22 +99,23 @@ class ForceGameVersionWarningDialog extends ConsumerWidget {
             text: TextSpan(
               children: [
                 ...singleModIntroParts, // Use the split parts here
-                TextSpan(
-                  text:
-                      "${hasMultiple ? singleModIntro : ""}Simple mods like portrait packs should be fine. Game updates usually don't break mods, but it depends on the mod and the game version.\n\n",
-                ),
+                TextSpan(text: loc.forceVersionSimpleModsNote),
                 if (hasMultiple)
                   TextSpan(
                     text:
-                        "${modsToForce.joinToString(separator: '\n', transform: (mod) => "- ${mod.modInfo.nameOrId} (${mod.modInfo.version}) is meant for Starsector '${mod.modInfo.gameVersion}'.")}"
+                        "${modsToForce.joinToString(separator: '\n', transform: (mod) => loc.forceVersionModMeantFor(mod.modInfo.nameOrId, mod.modInfo.version?.toString() ?? '', mod.modInfo.gameVersion ?? ''))}"
                         "\n\n",
                   ),
                 TextSpan(
                   text: hasMultiple
-                      ? "Are you sure you want to modify ${modsToForce.length} mod_info.json files "
-                            "to run on $currentStarsectorVersion?"
-                      : "Are you sure you want to modify the '${modsToForce.single.modInfo.nameOrId}' mod_info.json file "
-                            "to run on $currentStarsectorVersion?",
+                      ? loc.forceVersionConfirmMultiple(
+                          modsToForce.length,
+                          currentStarsectorVersion,
+                        )
+                      : loc.forceVersionConfirmSingle(
+                          modsToForce.single.modInfo.nameOrId,
+                          currentStarsectorVersion,
+                        ),
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -152,7 +159,7 @@ class ForceGameVersionWarningDialog extends ConsumerWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text("Cancel"),
+          child: Text(loc.commonCancel),
         ),
         TextButton(
           onPressed: () {
@@ -163,7 +170,7 @@ class ForceGameVersionWarningDialog extends ConsumerWidget {
               currentStarsectorVersion,
             );
           },
-          child: const Text("Force"),
+          child: Text(loc.forceVersionForce),
         ),
       ],
     );

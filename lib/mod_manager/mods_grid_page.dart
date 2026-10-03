@@ -15,6 +15,7 @@ import 'package:trios/dashboard/mod_summary_widget.dart';
 import 'package:trios/catalog/download_confirm.dart';
 import 'package:trios/catalog/catalog_manager.dart';
 import 'package:trios/catalog/models/mod_repo_entry.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/mod_context_menu.dart';
@@ -107,6 +108,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
     final allMods = ref.watch(AppState.mods);
     final isGameRunning = ref.watch(AppState.isGameRunning).value == true;
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final gridState = ref.watch(appSettings.select((s) => s.modsGridState));
     // Watch category state so the grid rebuilds immediately on category changes
     // (e.g. drag-and-drop between category groups, context menu reassignment).
@@ -174,10 +176,10 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               const SizedBox(width: 4),
-                              const AddNewModsButton(
+                              AddNewModsButton(
                                 labelWidget: Padding(
                                   padding: EdgeInsets.only(left: 4),
-                                  child: Text("Add Mod(s)"),
+                                  child: Text(loc.modsGridAddMods),
                                 ),
                                 padding: EdgeInsets.zero,
                               ),
@@ -243,7 +245,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                               ),
                               const SizedBox(width: 8),
                               MovingTooltipWidget.text(
-                                message: "Open side panel",
+                                message: loc.modsGridOpenSidePanel,
                                 child: IconButton(
                                   onPressed: () {
                                     setState(() {
@@ -299,7 +301,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   perColumnContextMenuEntries: {
                     ModGridHeader.categories.name: [
                       MenuItem(
-                        label: 'Manage Categories...',
+                        label: loc.wispgridGroupManageCategories,
                         icon: Icons.settings,
                         onSelected: () {
                           showCategoryManagementPopup(
@@ -319,7 +321,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   ),
                   pinnedGroupContextMenuEntries: [
                     MenuItem.submenu(
-                      label: 'Updates Visibility',
+                      label: loc.modsGridUpdatesVisibility,
                       leading: Center(
                         child: SvgImageIcon(
                           "assets/images/icon-update-badge.svg",
@@ -330,7 +332,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                       ),
                       items: [
                         MenuItem(
-                          label: 'Show unmuted updates',
+                          label: loc.modsGridShowUnmutedUpdates,
                           icon:
                               modsGridUpdateVisibility ==
                                   ModsGridUpdateVisibility.showUnmuted
@@ -348,7 +350,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                           },
                         ),
                         MenuItem(
-                          label: 'Show all updates',
+                          label: loc.modsGridShowAllUpdates,
                           icon:
                               modsGridUpdateVisibility ==
                                   ModsGridUpdateVisibility.showAll
@@ -366,7 +368,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                           },
                         ),
                         MenuItem(
-                          label: "Don't show updates",
+                          label: loc.modsGridDontShowUpdates,
                           icon:
                               modsGridUpdateVisibility ==
                                   ModsGridUpdateVisibility.hide
@@ -386,7 +388,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                       ],
                     ),
                     MenuItem(
-                      label: 'Only show enabled mods',
+                      label: loc.modsGridOnlyShowEnabledMods,
                       icon: modsGridUpdatesShowDisabledMods
                           ? null
                           : Icons.check,
@@ -994,6 +996,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
       builder: (context) {
         final vramEst = ref.watch(AppState.vramEstimatorProvider);
         final isScanningVram = vramEst.value?.isScanning == true;
+        final loc = AppLocalizations.of(context);
         return Animate(
           controller: animationController,
           effects: [
@@ -1017,7 +1020,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     context: context,
                     builder: (context) => AlertDialog(
                       icon: const Icon(Icons.memory),
-                      title: const Text("Estimate VRAM"),
+                      title: Text(loc.modsGridEstimateVram),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -1038,7 +1041,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: const Text("Cancel"),
+                          child: Text(loc.commonCancel),
                         ),
                         TextButton(
                           onPressed: () {
@@ -1047,7 +1050,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                                 .startEstimating();
                             Navigator.of(context).pop();
                           },
-                          child: const Text("Estimate"),
+                          child: Text(loc.modsGridEstimate),
                         ),
                       ],
                     ),
@@ -1071,6 +1074,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
   Widget buildProfileSelector(bool isGameRunning) {
     return Builder(
       builder: (context) {
+        final loc = AppLocalizations.of(context);
         final profiles = ref.watch(modProfilesProvider).value;
         final activeProfileId = ref.watch(
           appSettings.select((s) => s.activeModProfileId),
@@ -1134,9 +1138,9 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
 
         return Row(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(right: 8),
-              child: Text("Profile:"),
+              child: Text(loc.modsGridProfile),
             ),
             MovingTooltipWidget.text(
               message: isGameRunning ? "Game is running" : "",
@@ -1152,7 +1156,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                         ),
                         isDense: true,
                         isExpanded: true,
-                        hint: const Text("(none active)"),
+                        hint: Text(loc.modsGridNoneActive),
                         padding: const EdgeInsets.all(4),
                         focusColor: Colors.transparent,
                         items:
@@ -1202,6 +1206,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
 
   Widget buildGroupBySelector(WispGridState gridState) {
     final groups = _allGroupOptions;
+    final loc = AppLocalizations.of(context);
     final currentKey =
         gridState.groupingSetting?.currentGroupedByKey ??
         EnabledStateModGridGroup().key;
@@ -1211,7 +1216,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
     return SizedBox(
       height: 36,
       child: MovingTooltipWidget.text(
-        message: "Change how mods are grouped in the grid.",
+        message: loc.modsGridChangeGrouping,
         child: PopupMenuButton<WispGridGroup<Mod>>(
           onSelected: (group) {
             ref.read(appSettings.notifier).update((state) {
@@ -1254,7 +1259,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Group By",
+                  loc.wispgridGroupRowGroupBy,
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
                 Text(
@@ -1273,6 +1278,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
 
   Widget buildThenBySelector(WispGridState gridState) {
     final groups = _allGroupOptions;
+    final loc = AppLocalizations.of(context);
     final currentPrimaryKey =
         gridState.groupingSetting?.currentGroupedByKey ??
         EnabledStateModGridGroup().key;
@@ -1308,7 +1314,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
     return SizedBox(
       height: 36,
       child: MovingTooltipWidget.text(
-        message: "Add a second level of grouping under the primary group.",
+        message: loc.modsGridAddSecondGroupingLevel,
         child: PopupMenuButton<Object>(
           onSelected: (value) {
             if (value is WispGridGroup<Mod>) {
@@ -1331,7 +1337,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                         : null,
                   ),
                   const SizedBox(width: 4),
-                  const Text('None', style: TextStyle(fontSize: 13)),
+                  Text(loc.codexNone, style: const TextStyle(fontSize: 13)),
                 ],
               ),
             ),
@@ -1358,7 +1364,10 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Then By", style: Theme.of(context).textTheme.labelMedium),
+                Text(
+                  loc.wispgridGroupRowThenBy,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
                 Text(
                   currentSecondary?.displayName ?? 'None',
                   style: Theme.of(
@@ -1375,12 +1384,13 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
 
   Widget buildOverflowButton(List<Mod> allMods) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final modsGridUpdateVisibility = ref.watch(
       appSettings.select((s) => s.modsGridUpdateVisibility),
     );
 
     return MovingTooltipWidget.text(
-      message: "More options",
+      message: loc.modsGridMoreOptions,
       child: PopupStyleMenuAnchor(
         builder: (context, menuController, child) {
           return IconButton(
@@ -1404,7 +1414,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   .read(appSettings.notifier)
                   .update((s) => s.copyWith(pinFavorites: !current));
             },
-            child: const Text("Pin Favorited Mods to Top"),
+            child: Text(loc.modsGridPinFavoritedModsToTop),
           ),
           PopupStyleMenuAnchor.checkboxItem(
             value: ref.watch(appSettings.select((s) => s.modsGridColorful)),
@@ -1417,7 +1427,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             child: MovingTooltipWidget.text(
               message:
                   "If a mod has an icon, use its colors to style the mod row.",
-              child: const Text("Colorful"),
+              child: Text(loc.mod_list_basicColorful),
             ),
           ),
           PopupStyleMenuAnchor.checkboxItem(
@@ -1436,8 +1446,8 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   );
             },
             child: MovingTooltipWidget.text(
-              message: "It doesn't mean you're old.",
-              child: const Text("Mod Buttons: High Contrast"),
+              message: loc.modsGridItDoesntMeanOld,
+              child: Text(loc.modsGridModButtonsHighContrast),
             ),
           ),
           PopupStyleMenuAnchor.checkboxItem(
@@ -1455,7 +1465,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             child: MovingTooltipWidget.text(
               message:
                   "Show a warning icon next to mods whose data has a problem, like a mod whose .version file and mod_info.json don't agree on the version.",
-              child: const Text("Show Mod Data Warnings"),
+              child: Text(loc.modsGridShowModDataWarnings),
             ),
           ),
           if (ref.watch(
@@ -1473,7 +1483,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
               child: MovingTooltipWidget.text(
                 message:
                     "If a mod is in multiple categories, show the mod in each category rather than only in its primary category.",
-                child: const Text("Repeat Mods In Each Category"),
+                child: Text(loc.wispgridGroupRepeatModsInEachCategory),
               ),
             ),
           Divider(),
@@ -1501,7 +1511,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                         ),
                       );
                 },
-                child: const Text("Show unmuted updates"),
+                child: Text(loc.modsGridShowUnmutedUpdates),
               ),
               MenuItemButton(
                 leadingIcon: PopupStyleMenuAnchor.paddedIcon(
@@ -1521,7 +1531,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                         ),
                       );
                 },
-                child: const Text("Show all updates"),
+                child: Text(loc.modsGridShowAllUpdates),
               ),
               MenuItemButton(
                 leadingIcon: PopupStyleMenuAnchor.paddedIcon(
@@ -1541,7 +1551,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                         ),
                       );
                 },
-                child: const Text("Don't show updates"),
+                child: Text(loc.modsGridDontShowUpdates),
               ),
             ],
             child: MovingTooltipWidget.text(
@@ -1566,7 +1576,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: Text("Enable All Mods"),
+                    title: Text(loc.modsGridEnableAllMods),
                     content: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -1585,21 +1595,21 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text("Cancel"),
+                        child: Text(loc.commonCancel),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                           ref.read(modManager.notifier).enableMultiple(allMods);
                         },
-                        child: const Text("Enable All"),
+                        child: Text(loc.modsGridEnableAll),
                       ),
                     ],
                   );
                 },
               );
             },
-            child: Text("Enable All Mods"),
+            child: Text(loc.modsGridEnableAllMods),
           ),
           MenuItemButton(
             leadingIcon: PopupStyleMenuAnchor.paddedIcon(
@@ -1610,7 +1620,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: Text("Disable All Mods"),
+                    title: Text(loc.modsGridDisableAllMods),
                     content: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -1623,7 +1633,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text("Cancel"),
+                        child: Text(loc.commonCancel),
                       ),
                       TextButton(
                         onPressed: () {
@@ -1632,14 +1642,14 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                               .read(modManager.notifier)
                               .disableMultiple(allMods);
                         },
-                        child: const Text("Disable All"),
+                        child: Text(loc.modsGridDisableAll),
                       ),
                     ],
                   );
                 },
               );
             },
-            child: Text("Disable All Mods"),
+            child: Text(loc.modsGridDisableAllMods),
           ),
           MenuItemButton(
             leadingIcon: PopupStyleMenuAnchor.paddedIcon(Icon(Icons.copy)),
@@ -1649,14 +1659,14 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                 context,
               );
             },
-            child: Text("Copy Enabled Mods to Clipboard"),
+            child: Text(loc.modsGridCopyEnabledModsToClipboard),
           ),
           MenuItemButton(
             leadingIcon: PopupStyleMenuAnchor.paddedIcon(Icon(Icons.copy_all)),
             onPressed: () {
               copyModListToClipboardFromMods(allMods, context);
             },
-            child: Text("Copy All Mods to Clipboard"),
+            child: Text(loc.modsGridCopyAllModsToClipboard),
           ),
           MenuItemButton(
             leadingIcon: PopupStyleMenuAnchor.paddedIcon(
@@ -1674,7 +1684,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                 () => ref.read(modManager.notifier).allModsAsCsv(),
               );
             },
-            child: Text("Export to CSV"),
+            child: Text(loc.hullmodsExportToCsv),
           ),
           Divider(),
           MenuItemButton(
@@ -1682,7 +1692,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             onPressed: () {
               showCategoryManagementPopup(context: context, ref: ref);
             },
-            child: Text("Manage Categories..."),
+            child: Text(loc.wispgridGroupManageCategories),
           ),
         ],
       ),
@@ -1722,6 +1732,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
         final headerTextStyle = Theme.of(
           context,
         ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold);
+        final loc = AppLocalizations.of(context);
 
         return switch (header) {
           ModGridHeader.favorites => Container(),
@@ -1730,22 +1741,34 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
           ModGridHeader.modIcon => Container(),
           ModGridHeader.loadOrder => MovingTooltipWidget.text(
             message: ModListMini.modLoadOrderSettingExplanation,
-            child: Text('Load #', style: headerTextStyle),
+            child: Text(loc.modsGridLoad, style: headerTextStyle),
           ),
-          ModGridHeader.name => Text('Name', style: headerTextStyle),
-          ModGridHeader.author => Text('Author', style: headerTextStyle),
-          ModGridHeader.updateStatus => Text('Update', style: headerTextStyle),
-          ModGridHeader.version => Text('Version', style: headerTextStyle),
+          ModGridHeader.name => Text(
+            loc.modsGridName,
+            style: headerTextStyle,
+          ),
+          ModGridHeader.author => Text(
+            loc.modSummaryAuthor,
+            style: headerTextStyle,
+          ),
+          ModGridHeader.updateStatus => Text(
+            loc.modInfoDialogUpdate,
+            style: headerTextStyle,
+          ),
+          ModGridHeader.version => Text(
+            loc.modsGridVersion,
+            style: headerTextStyle,
+          ),
           ModGridHeader.vramImpact => MovingTooltipWidget.text(
             message:
                 'An *estimate* of how much VRAM is used based on the images in the mod folder.'
                 '\nThis may be inaccurate.',
             child: Row(
               children: [
-                Text('VRAM Est.', style: headerTextStyle),
+                Text(loc.modsGridVramEst, style: headerTextStyle),
                 const SizedBox(width: 4),
                 MovingTooltipWidget.text(
-                  message: "About VRAM & VRAM Estimator",
+                  message: loc.modsGridAboutVramVramEstimator,
                   child: IconButton(
                     onPressed: () => showDialog(
                       context: context,
@@ -1763,7 +1786,10 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             'Game Version',
             style: headerTextStyle,
           ),
-          ModGridHeader.firstSeen => Text('First Seen', style: headerTextStyle),
+          ModGridHeader.firstSeen => Text(
+            loc.modsGridFirstSeen,
+            style: headerTextStyle,
+          ),
           ModGridHeader.lastEnabled => Text(
             'Last Enabled',
             style: headerTextStyle,
@@ -1772,7 +1798,10 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             'Last Updated',
             style: headerTextStyle,
           ),
-          ModGridHeader.categories => Text('Category', style: headerTextStyle),
+          ModGridHeader.categories => Text(
+            loc.modsGridCategory,
+            style: headerTextStyle,
+          ),
         };
       },
     );
@@ -1788,6 +1817,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
     return Builder(
       builder: (context) {
         final theme = Theme.of(context);
+        final loc = AppLocalizations.of(context);
         final lightTextColor = theme.colorScheme.onSurface.withOpacity(
           lightTextOpacity,
         );
@@ -1926,7 +1956,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                                     vramEstimatorState.value?.isScanning !=
                                     true,
                                 child: MovingTooltipWidget.text(
-                                  message: "Estimate VRAM usage",
+                                  message: loc.modInfoDialogEstimateVramUsage,
                                   child: IconButton(
                                     icon: const Icon(Icons.memory),
                                     iconSize: 24,
@@ -1971,6 +2001,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
     return Builder(
       builder: (context) {
         final theme = Theme.of(context);
+        final loc = AppLocalizations.of(context);
         final lightTextColor = theme.colorScheme.onSurface.withOpacity(
           lightTextOpacity,
         );
@@ -2003,7 +2034,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   entries: [
                     if (!areUpdatesMuted)
                       MenuItem(
-                        label: 'Recheck',
+                        label: loc.catalogRecheck,
                         icon: Icons.refresh,
                         onSelected: () {
                           ref

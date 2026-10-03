@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show ProviderOrFamily;
 import 'package:open_filex/open_filex.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/catalog/forum_data_manager.dart';
 import 'package:trios/catalog/catalog_manager.dart';
 import 'package:trios/trios/constants.dart';
@@ -57,6 +58,7 @@ class _CatalogDataSourcesDialogState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final cacheDir = Constants.cacheDirPath;
 
     // --- Wisp's Mod Repo state ---
@@ -72,7 +74,7 @@ class _CatalogDataSourcesDialogState
     final forumCount = forumAsync.value?.index.length;
 
     return AlertDialog(
-      title: const Text('Catalog Data Sources'),
+      title: Text(loc.catalogDataSourcesTitle),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 640),
         child: SingleChildScrollView(
@@ -83,8 +85,8 @@ class _CatalogDataSourcesDialogState
             children: [
               _DataSourceCard(
                 info: _DataSourceInfo(
-                  title: "Wisp's Mod Repo",
-                  subtitle: 'forum index, subforums, and discord',
+                  title: loc.catalogWispsModRepo,
+                  subtitle: loc.catalogForumIndexSubforumsAndDiscord,
                   status: modRepoStatus,
                   itemCount: modRepoCount,
                   itemNoun: 'mods',
@@ -109,7 +111,7 @@ class _CatalogDataSourcesDialogState
               ),
               _DataSourceCard(
                 info: _DataSourceInfo(
-                  title: "QB's Forum Bundle",
+                  title: loc.catalogQbsForumBundle,
                   subtitle:
                       'forum index, subforums, individual posts and stats',
                   status: forumStatus,
@@ -140,10 +142,10 @@ class _CatalogDataSourcesDialogState
       ),
       actions: [
         MovingTooltipWidget.text(
-          message: 'Open the cache folder in your file explorer',
+          message: loc.catalogOpenCacheFolderTooltip,
           child: TextButton.icon(
             icon: const Icon(Icons.folder_open),
-            label: const Text('Open cache folder'),
+            label: Text(loc.catalogOpenCacheFolder),
             style: TextButton.styleFrom(
               foregroundColor: theme.colorScheme.onSurfaceVariant,
             ),
@@ -154,7 +156,7 @@ class _CatalogDataSourcesDialogState
         ),
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Close'),
+          child: Text(loc.catalogClose),
         ),
       ],
     );
@@ -249,6 +251,7 @@ class _DataSourceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final neutral = theme.colorScheme.onSurfaceVariant;
     final canClear = info.sizeBytes != null || info.cachedAt != null;
 
@@ -307,7 +310,7 @@ class _DataSourceCard extends StatelessWidget {
                   ),
                 ),
                 MovingTooltipWidget.text(
-                  message: 'Copy URL',
+                  message: loc.catalogCopyUrl,
                   child: IconButton(
                     icon: const Icon(Icons.copy, size: 16),
                     tooltip: '',
@@ -338,7 +341,7 @@ class _DataSourceCard extends StatelessWidget {
                   ),
                 ),
                 MovingTooltipWidget.text(
-                  message: 'Open File',
+                  message: loc.catalogOpenFile,
                   child: IconButton(
                     icon: const Icon(Icons.folder_open, size: 16),
                     tooltip: '',
@@ -358,7 +361,7 @@ class _DataSourceCard extends StatelessWidget {
                 TextButton.icon(
                   onPressed: () => info.website.toString().openAsUriInBrowser(),
                   icon: const Icon(Icons.open_in_new, size: 18),
-                  label: const Text('Website'),
+                  label: Text(loc.catalogWebsite),
                 ),
                 Spacer(),
                 MovingTooltipWidget.text(
@@ -367,7 +370,7 @@ class _DataSourceCard extends StatelessWidget {
                       : 'Fetch fresh data, bypassing the cache',
                   child: TextButton.icon(
                     icon: const Icon(Icons.refresh, size: 18),
-                    label: const Text('Refresh now'),
+                    label: Text(loc.catalogRefreshNow),
                     style: TextButton.styleFrom(foregroundColor: neutral),
                     onPressed: info.isLoading ? null : () => onRefresh(),
                   ),
@@ -378,7 +381,7 @@ class _DataSourceCard extends StatelessWidget {
                       : 'Nothing cached to clear',
                   child: TextButton.icon(
                     icon: const Icon(Icons.delete_outline, size: 18),
-                    label: const Text('Clear cache'),
+                    label: Text(loc.catalogClearCache),
                     style: TextButton.styleFrom(foregroundColor: neutral),
                     onPressed: canClear ? onClear : null,
                   ),

@@ -7,6 +7,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_color/flutter_color.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multi_split_view/multi_split_view.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/companion_mod/companion_mod_manager.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/mod.dart';
@@ -131,6 +132,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
     final notifier = ref.read(portraitsPageControllerProvider.notifier);
     final paneState = controllerState.getPaneState(pane);
     final activeFilterCount = notifier.activeFilterCountFor(pane);
+    final loc = AppLocalizations.of(context);
 
     if (!paneState.showFilters) {
       return Padding(
@@ -144,7 +146,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: MovingTooltipWidget.text(
-                message: "Show filters",
+                message: loc.portraitShowFilters,
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
@@ -312,6 +314,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final loc = AppLocalizations.of(context);
 
     final isActive =
         ref.watch(appSettings.select((s) => s.defaultTool)) ==
@@ -359,7 +362,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ThemedCircularProgressIndicator(),
-            Padding(padding: .all(16), child: Text('Loading portraits...')),
+            Padding(padding: .all(16), child: Text(loc.portraitLoading)),
           ],
         ),
       ),
@@ -385,7 +388,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                 turns: _refreshSpinController,
                 child: const Icon(Icons.refresh),
               ),
-              label: const Text('Retry'),
+              label: Text(loc.portraitRetry),
             ),
           ],
         ),
@@ -517,7 +520,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                                     ),
                                     onPressed: () => showMyDialog(
                                       context,
-                                      title: Text("Portrait Replacement"),
+                                      title: Text(loc.portraitReplacement),
                                       body: [
                                         ConstrainedBox(
                                           constraints: const BoxConstraints(
@@ -543,7 +546,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                                                 leading: const Icon(
                                                   Icons.menu_book,
                                                 ),
-                                                title: Text("Under the Hood"),
+                                                title: Text(loc.portraitUnderTheHood),
                                                 children: [
                                                   Padding(
                                                     padding: const .all(8.0),
@@ -599,7 +602,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                             OverflowMenuButton(
                               menuItems: [
                                 OverflowMenuItem(
-                                  title: "View Replacements",
+                                  title: loc.portraitViewReplacements,
                                   icon: Icons.swap_horiz,
                                   onTap: () =>
                                       _showReplacementsDialog(replacements),
@@ -1034,6 +1037,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
     Portrait originalPortrait,
     List<PortraitEntry> allPortraits,
   ) async {
+    final loc = AppLocalizations.of(context);
     try {
       // Filter out the original portrait and get a random replacement
       final otherPortraits = allPortraits
@@ -1043,9 +1047,9 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
       if (otherPortraits.isEmpty) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('No other portraits available for replacement'),
-              duration: Duration(seconds: 2),
+            SnackBar(
+              content: Text(loc.portraitNoOthersAvailable),
+              duration: const Duration(seconds: 2),
             ),
           );
         }
@@ -1084,7 +1088,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error adding replacement: $e'),
+            content: Text(loc.portraitErrorAddingReplacement(e.toString())),
             backgroundColor: Theme.of(context).colorScheme.error,
             duration: const Duration(seconds: 3),
           ),
@@ -1108,13 +1112,14 @@ class ReplacementsDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     return AlertDialog(
-      title: const Text('Portrait Replacements'),
+      title: Text(loc.portraitReplacements),
       content: SizedBox(
         width: 800,
         height: 600,
         child: replacements.isEmpty
-            ? const Center(child: Text('No portrait replacements found.'))
+            ? Center(child: Text(loc.portraitNoneFound))
             : StatefulBuilder(
                 builder: (context, setState) {
                   return ListView.builder(
@@ -1126,8 +1131,8 @@ class ReplacementsDialog extends StatelessWidget {
 
                       final original = hashToPortrait[originalHash];
                       if (original == null) {
-                        return const Center(
-                          child: Text('Original portrait not found'),
+                        return Center(
+                          child: Text(loc.portraitOriginalNotFound),
                         );
                       }
                       return ReplacementListItem(
@@ -1149,7 +1154,7 @@ class ReplacementsDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Close'),
+          child: Text(loc.commonClose),
         ),
       ],
     );
@@ -1172,6 +1177,7 @@ class ReplacementListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     final replacementFile = File(replacementPath);
     final fileExists = replacementFile.existsSync();
     final originalExists = originalPortrait.imageFile.existsSync();
@@ -1207,12 +1213,15 @@ class ReplacementListItem extends StatelessWidget {
                         },
                       ),
                     )
-                  : const Center(
+                  : Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.image, size: 24),
-                          Text('Original', style: TextStyle(fontSize: 10)),
+                          const Icon(Icons.image, size: 24),
+                          Text(
+                            loc.portraitOriginal,
+                            style: const TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                     ),

@@ -5,6 +5,7 @@ import 'dart:ui' as ui;
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:super_clipboard/super_clipboard.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/thirdparty/flutter_context_menu/components/menu_item.dart';
 import 'package:trios/thirdparty/flutter_context_menu/core/models/context_menu.dart';
 import 'package:trios/thirdparty/flutter_context_menu/core/models/context_menu_entry.dart';
@@ -212,14 +213,13 @@ class _WeaponImageCellState extends ConsumerState<WeaponImageCell>
     if (!mounted) return;
     if (bytes == null) return;
 
+    final loc = AppLocalizations.of(context);
     final clipboard = SystemClipboard.instance;
     if (clipboard == null) {
       showSnackBar(
         context: context,
         type: SnackBarType.warn,
-        content: const Text(
-          'Copying images is not supported on this platform.',
-        ),
+        content: Text(loc.viewerCopyingImagesNotSupported),
       );
       return;
     }
@@ -232,8 +232,10 @@ class _WeaponImageCellState extends ConsumerState<WeaponImageCell>
       type: SnackBarType.info,
       content: Text(
         withGlow
-            ? 'Copied sprite (with glow) to clipboard.'
-            : 'Copied sprite to clipboard.',
+            ? AppLocalizations.of(
+                context,
+              ).weaponImageCellCopiedSpriteWithGlow
+            : AppLocalizations.of(context).shipsCopiedSpriteToClipboard,
       ),
     );
   }
@@ -445,25 +447,26 @@ class _WeaponImageCellState extends ConsumerState<WeaponImageCell>
 
     // Right-click: open the sprite's folder, copy the composite to clipboard.
     // (No tap handler — taps fall through to the row's default handler.)
+    final loc = AppLocalizations.of(context);
     composite = ContextMenuRegion(
       contextMenu: ContextMenu(
         entries: <ContextMenuEntry>[
           if (tooltipPath != null)
             MenuItem(
-              label: 'Open sprite folder',
+              label: loc.shipsOpenSpriteFolder,
               icon: Icons.folder_open,
               onSelected: () => tooltipPath.toFile().showInExplorer(),
             ),
           MenuItem(
             label: _glowLayers.isEmpty
-                ? 'Copy sprite to clipboard'
-                : 'Copy sprite (no glow)',
+                ? loc.shipsCopySpriteToClipboard
+                : loc.weaponImageCellCopySpriteNoGlow,
             icon: Icons.copy,
             onSelected: () => _copySpriteToClipboard(withGlow: false),
           ),
           if (_glowLayers.isNotEmpty)
             MenuItem(
-              label: 'Copy sprite (with glow)',
+              label: loc.weaponImageCellCopySpriteWithGlow,
               icon: Icons.auto_awesome,
               onSelected: () => _copySpriteToClipboard(withGlow: true),
             ),

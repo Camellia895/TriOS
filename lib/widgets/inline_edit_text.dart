@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/text_trios.dart';
 
 /// A text field that displays as read-only text with a small edit icon,
@@ -11,14 +12,16 @@ import 'package:trios/widgets/text_trios.dart';
 class InlineEditText extends StatefulWidget {
   final String label;
   final TextEditingController controller;
-  final String placeholder;
+
+  /// Shown when the value is empty. Defaults to the localized "(empty)".
+  final String? placeholder;
   final VoidCallback? onChanged;
 
   const InlineEditText({
     super.key,
     required this.label,
     required this.controller,
-    this.placeholder = '(empty)',
+    this.placeholder,
     this.onChanged,
   });
 
@@ -63,6 +66,7 @@ class _InlineEditTextState extends State<InlineEditText> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final labelStyle = theme.textTheme.labelLarge?.copyWith(
       fontWeight: FontWeight.w100,
     );
@@ -71,15 +75,19 @@ class _InlineEditTextState extends State<InlineEditText> {
     );
 
     if (_editing) {
-      return _buildEditMode(theme, labelStyle);
+      return _buildEditMode(theme, loc, labelStyle);
     }
-    return _buildReadMode(labelStyle, valueStyle);
+    return _buildReadMode(loc, labelStyle, valueStyle);
   }
 
-  Widget _buildReadMode(TextStyle? labelStyle, TextStyle? valueStyle) {
+  Widget _buildReadMode(
+    AppLocalizations loc,
+    TextStyle? labelStyle,
+    TextStyle? valueStyle,
+  ) {
     final text = widget.controller.text.trim();
     final hasValue = text.isNotEmpty;
-    final displayText = hasValue ? text : widget.placeholder;
+    final displayText = hasValue ? text : (widget.placeholder ?? loc.commonEmpty);
 
     final theme = Theme.of(context);
     final dottedStyle =
@@ -111,7 +119,7 @@ class _InlineEditTextState extends State<InlineEditText> {
         ),
         const SizedBox(width: 4),
         Tooltip(
-          message: 'Edit',
+          message: loc.commonEdit,
           child: InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: _enterEditMode,
@@ -125,7 +133,11 @@ class _InlineEditTextState extends State<InlineEditText> {
     );
   }
 
-  Widget _buildEditMode(ThemeData theme, TextStyle? labelStyle) {
+  Widget _buildEditMode(
+    ThemeData theme,
+    AppLocalizations loc,
+    TextStyle? labelStyle,
+  ) {
     return Row(
       children: [
         Text(widget.label, style: labelStyle),
@@ -156,7 +168,7 @@ class _InlineEditTextState extends State<InlineEditText> {
         ),
         const SizedBox(width: 4),
         Tooltip(
-          message: 'Confirm',
+          message: loc.commonConfirm,
           child: InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: _confirm,
@@ -167,7 +179,7 @@ class _InlineEditTextState extends State<InlineEditText> {
           ),
         ),
         Tooltip(
-          message: 'Cancel',
+          message: loc.commonCancel,
           child: InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: _cancel,

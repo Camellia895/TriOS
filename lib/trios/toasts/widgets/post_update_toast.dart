@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:toastification/toastification.dart';
 import 'package:trios/models/version.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/widgets/svg_image_icon.dart';
 import 'package:trios/widgets/trios_app_icon.dart';
@@ -17,6 +18,7 @@ class PostUpdateToast extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.only(right: 32),
       child: Card(
@@ -70,7 +72,7 @@ class PostUpdateToast extends ConsumerWidget {
                             icon: const SvgImageIcon(
                               "assets/images/icon-bullhorn-variant.svg",
                             ),
-                            label: const Text("View Changelog"),
+                            label: Text(loc.triosViewChangelog),
                           ),
                         ),
                       ],

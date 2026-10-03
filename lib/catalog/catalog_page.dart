@@ -3,6 +3,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:open_filex/open_filex.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/catalog/catalog_mod_card.dart';
 import 'package:trios/catalog/catalog_page_controller.dart';
 import 'package:trios/catalog/models/ai_summary_mode.dart';
@@ -188,6 +189,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
     super.build(context);
     final httpClient = ref.watch(triOSHttpClient);
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     final catalogState = ref.watch(catalogPageControllerProvider);
     final catalogController = ref.watch(catalogPageControllerProvider.notifier);
@@ -414,7 +416,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
             panels: [
               SideRailPanel(
                 id: 'browser',
-                label: 'Browser',
+                label: loc.catalogBrowser,
                 icon: Icons.public,
                 builder: (context) {
                   final hasHiddenDarkModeTip = ref.watch(
@@ -443,7 +445,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                       return Disable(
                                         isEnabled: canGoBack == true,
                                         child: MovingTooltipWidget.text(
-                                          message: "Back",
+                                          message: loc.catalogBack,
                                           child: IconButton(
                                             onPressed: () async {
                                               await webViewController?.goBack();
@@ -466,7 +468,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                       return Disable(
                                         isEnabled: canGoForward == true,
                                         child: MovingTooltipWidget.text(
-                                          message: "Forward",
+                                          message: loc.catalogForward,
                                           child: IconButton(
                                             onPressed: () async {
                                               await webViewController
@@ -521,7 +523,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                                   snapshot.hasData &&
                                                   snapshot.data != null,
                                               child: MovingTooltipWidget.text(
-                                                message: "Reload",
+                                                message: loc.catalogReload,
                                                 child: IconButton(
                                                   onPressed: () async {
                                                     await webViewController
@@ -537,7 +539,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                     },
                                   ),
                                   MovingTooltipWidget.text(
-                                    message: "Open in Browser",
+                                    message: loc.catalogOpenInBrowser,
                                     child: IconButton(
                                       onPressed: () {
                                         webViewController?.getUrl().then(
@@ -550,7 +552,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                     ),
                                   ),
                                   MovingTooltipWidget.text(
-                                    message: "Index",
+                                    message: loc.catalogIndex,
                                     child: IconButton(
                                       onPressed: () {
                                         webViewController?.loadUrl(
@@ -637,7 +639,9 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                                   onPressed: () {
                                                     Navigator.of(context).pop();
                                                   },
-                                                  child: const Text("Close"),
+                                                  child: Text(
+                                                    loc.catalogClose,
+                                                  ),
                                                 ),
                                               ],
                                             );
@@ -752,7 +756,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                           child: OutlinedButton.icon(
                                             onPressed: _loadWebViewOnce,
                                             icon: Icon(Icons.web),
-                                            label: const Text("Load Once"),
+                                            label: Text(loc.catalogLoadOnce),
                                           ),
                                         ),
                                         const SizedBox(width: 12),
@@ -762,7 +766,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                           child: OutlinedButton.icon(
                                             onPressed: _loadWebViewAlways,
                                             icon: const Icon(Icons.web),
-                                            label: const Text("Always Load"),
+                                            label: Text(loc.catalogAlwaysLoad),
                                           ),
                                         ),
                                       ],
@@ -903,7 +907,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                       "Please install it from https://developer.microsoft.com/en-us/microsoft-edge/webview2/",
                                   onOpen: (link) => OpenFilex.open(link.url),
                                 ),
-                                Text("and then restart ${context.appName}."),
+                                Text(loc.catalogRestart(context.appName)),
                               ],
                             ),
                             WebViewStatus.linuxNotSupported => Column(
@@ -994,6 +998,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
 
   Widget buildCatalogOverflowButton() {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final currentAiSummaryMode = ref.watch(
       appSettings.select((s) => s.catalogAiSummaryMode),
     );
@@ -1005,7 +1010,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
     return OverflowMenuButton(
       menuItems: [
         OverflowMenuItem(
-          title: 'Data sources…',
+          title: loc.catalogDataSources,
           icon: Icons.storage,
           onTap: () {
             showCatalogDataSourcesDialog(context);
@@ -1043,7 +1048,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
           ).toEntry(20 + i),
         const PopupMenuDivider(),
         _SliderMenuEntry(
-          label: 'Grid item min. size',
+          label: loc.catalogGridItemMinSize,
           unit: 'px',
           min: 300,
           max: 600,
@@ -1056,7 +1061,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
           },
         ),
         _SliderMenuEntry(
-          label: 'Space between cards',
+          label: loc.catalogSpaceBetweenCards,
           unit: 'px',
           min: 0,
           max: 24,
@@ -1121,6 +1126,7 @@ class _SliderMenuEntryState extends State<_SliderMenuEntry> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final labelStyle = theme.textTheme.labelMedium?.copyWith(
       color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
     );
@@ -1134,7 +1140,7 @@ class _SliderMenuEntryState extends State<_SliderMenuEntry> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(widget.label, style: labelStyle),
-              Text('${_value.round()} ${widget.unit}', style: labelStyle),
+              Text(loc.catalogSliderValueWithUnit(_value.round(), widget.unit), style: labelStyle),
             ],
           ),
           SliderTheme(

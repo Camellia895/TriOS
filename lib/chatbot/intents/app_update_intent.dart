@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/trios/constants.dart';
 
@@ -55,17 +56,22 @@ class AppUpdateIntent extends ChatIntent {
     final updateState =
         ref.read(AppState.selfUpdate).value;
 
+    final loc = AppLocalizationsSync.instance;
     if (updateState == null) {
       return ChatResponse(
-        text: 'You are running ${Constants.appName} v${Constants.version}.\n'
-            'No update information available at this time.',
+        text: loc.chatbotYouAreRunningNoUpdateInfo(
+          Constants.appName,
+          Constants.version,
+        ),
       );
     }
 
     // If there's active download progress, an update is in progress.
     return ChatResponse(
-      text: 'You are running ${Constants.appName} v${Constants.version}.\n'
-          'An update is being downloaded. Check the Settings page for details.',
+      text: loc.chatbotYouAreRunningUpdating(
+        Constants.appName,
+        Constants.version,
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:toastification/toastification.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
@@ -23,6 +24,7 @@ class _AprilFools2026ToastState extends ConsumerState<AprilFools2026Toast> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     final gradientColors = deltaCoreColors;
 
@@ -81,7 +83,7 @@ class _AprilFools2026ToastState extends ConsumerState<AprilFools2026Toast> {
                                         );
                                     toastification.dismiss(widget.item);
                                   },
-                                  child: const Text("Still no"),
+                                  child: Text(loc.aprilFoolsStillNo),
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
@@ -94,7 +96,7 @@ class _AprilFools2026ToastState extends ConsumerState<AprilFools2026Toast> {
                                         );
                                     toastification.dismiss(widget.item);
                                   },
-                                  child: const Text("Ok fine"),
+                                  child: Text(loc.aprilFoolsOkFine),
                                 ),
                               ]
                             : [
@@ -109,13 +111,13 @@ class _AprilFools2026ToastState extends ConsumerState<AprilFools2026Toast> {
                                         );
                                     toastification.dismiss(widget.item);
                                   },
-                                  child: const Text("Enable"),
+                                  child: Text(loc.triosEnable),
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
                                     setState(() => _showSecondPhase = true);
                                   },
-                                  child: const Text("No thanks"),
+                                  child: Text(loc.triosNoThanks),
                                 ),
                               ],
                       ),

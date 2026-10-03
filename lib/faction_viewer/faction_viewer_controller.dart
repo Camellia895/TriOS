@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/utils/notify_on_new_state.dart';
 import 'package:trios/faction_viewer/faction_manager.dart';
 import 'package:trios/faction_viewer/models/faction.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/widgets/filter_engine/filter_engine.dart';
 import 'package:trios/widgets/filter_group_persistence/filter_group_persistence_provider.dart';
@@ -141,6 +142,7 @@ class FactionViewerController extends Notifier<FactionViewerState>
   }
 
   FilterScopeController<Faction> _buildFilters() {
+    final loc = AppLocalizationsSync.instance;
     return FilterScopeController<Faction>(
       scope: _scope,
       groups: [
@@ -150,15 +152,14 @@ class FactionViewerController extends Notifier<FactionViewerState>
           fields: [
             BoolField<Faction>(
               id: 'hideHidden',
-              label: 'Hide hidden factions',
-              tooltip:
-                  'Hide factions with showInIntelTab: false (Remnants, Omega, etc.)',
+              label: loc.factionViewerHideHiddenFactions,
+              tooltip: loc.factionViewerHideHiddenFactionsTooltip,
               predicate: (f) => f.showInIntelTab,
               initialValue: true,
             ),
             BoolField<Faction>(
               id: 'hideModOnly',
-              label: 'Hide mod-only factions',
+              label: loc.factionViewerHideModOnlyFactions,
               predicate: (f) => !f.isModOnly,
             ),
           ],
