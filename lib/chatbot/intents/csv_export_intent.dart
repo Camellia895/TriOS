@@ -1,6 +1,7 @@
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Tells users about CSV export functionality in viewers and mod manager.
 class CsvExportIntent extends ChatIntent {
@@ -47,16 +48,8 @@ class CsvExportIntent extends ChatIntent {
 
   @override
   ChatResponse respond(String input, ConversationContext context) {
-    return const ChatResponse(text: _response);
+    return ChatResponse(
+      text: AppLocalizationsSync.instance.chatbotCsvExportGuide,
+    );
   }
-
-  static const _response = 'CSV Export\n'
-      '\n'
-      'You can export data to CSV from several pages:\n'
-      '  Mod Manager — exports your mod list with versions, authors, etc.\n'
-      '  Ships — exports all ship/hull data\n'
-      '  Weapons — exports all weapon data\n'
-      '  Hullmods — exports all hull modification data\n'
-      '\n'
-      'Look for the export button in the toolbar or menu on each page.';
 }

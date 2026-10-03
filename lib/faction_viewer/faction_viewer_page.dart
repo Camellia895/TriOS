@@ -14,6 +14,7 @@ import 'package:trios/faction_viewer/widgets/faction_card.dart';
 import 'package:trios/faction_viewer/widgets/faction_profile_dialog.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
 import 'package:trios/models/mod_variant.dart';
@@ -352,6 +353,7 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
     Directory? gameCoreDir,
     Map<String, FactionSpawnSummary> summaries,
   ) {
+    final loc = AppLocalizations.of(context);
     int position = 0;
 
     WispGridColumn<Faction> col(
@@ -466,7 +468,7 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
       WispGridColumn<Faction>(
         key: 'vanillaSpawn',
         isSortable: true,
-        name: 'Vanilla %',
+        name: loc.factionViewerVanillaPercent,
         // Factions with no warships sort below the ones that have them.
         getSortValue: (f) => summaries[f.mergeKey]?.vanillaShare ?? -1,
         itemCellBuilder: (item, _) {
@@ -492,7 +494,7 @@ class _FactionViewerPageState extends ConsumerState<FactionViewerPage>
       WispGridColumn<Faction>(
         key: 'source',
         isSortable: true,
-        name: 'Added by',
+        name: loc.factionViewerAddedBy,
         getSortValue: (f) => (f.addedBy?.name ?? '').toLowerCase(),
         itemCellBuilder: (item, _) => MovingTooltipWidget.text(
           message: item.attributionTooltip,
@@ -594,7 +596,7 @@ class UngroupedFactionGridGroup extends WispGridGroup<Faction> {
 
   @override
   String getGroupName(Faction item, {Comparable? groupSortValue}) =>
-      'All Factions';
+      AppLocalizationsSync.instance.factionViewerAllFactions;
 
   @override
   Comparable getGroupSortValue(Faction item) => 1;
@@ -604,11 +606,15 @@ class UngroupedFactionGridGroup extends WispGridGroup<Faction> {
 }
 
 class SourceFactionGridGroup extends WispGridGroup<Faction> {
-  SourceFactionGridGroup() : super('source', 'Added by');
+  SourceFactionGridGroup() :
+    super('source', AppLocalizationsSync.instance.factionViewerAddedBy);
 
   @override
   String getGroupName(Faction item, {Comparable? groupSortValue}) =>
-      item.addedBy?.name ?? (item.sources.isEmpty ? 'Unknown' : 'Patch only');
+      item.addedBy?.name ??
+      (item.sources.isEmpty
+          ? AppLocalizationsSync.instance.commonUnknown
+          : AppLocalizationsSync.instance.factionViewerPatchOnly);
 
   @override
   Comparable getGroupSortValue(Faction item) =>

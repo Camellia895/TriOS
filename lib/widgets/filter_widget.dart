@@ -449,8 +449,9 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
                         children: [
                           if (includedCount > 0)
                             MovingTooltipWidget.text(
-                              message:
-                                  'Included:\n${includedValues.join('\n')}',
+                              message: loc.filterIncludedValuesTooltip(
+                                includedValues.join('\n'),
+                              ),
                               child: Row(
                                 children: [
                                   Text(
@@ -466,8 +467,9 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
                             const SizedBox(width: 8),
                           if (excludedCount > 0)
                             MovingTooltipWidget.text(
-                              message:
-                                  'Excluded:\n${excludedValues.join('\n')}',
+                              message: loc.filterExcludedValuesTooltip(
+                                excludedValues.join('\n'),
+                              ),
                               child: Row(
                                 children: [
                                   Text(
@@ -545,8 +547,8 @@ class _GridFilterWidgetState<T> extends ConsumerState<GridFilterWidget<T>> {
 
                         return MovingTooltipWidget.text(
                           message: switch (state) {
-                            true => "Included",
-                            false => "Excluded",
+                            true => loc.filterIncluded,
+                            false => loc.filterExcluded,
                             null => "",
                           },
                           child: FilterChip(

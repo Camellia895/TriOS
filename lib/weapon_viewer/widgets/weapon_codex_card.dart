@@ -108,6 +108,7 @@ class WeaponCodexCard {
   }) {
     final theme = Theme.of(context);
     final highlightColor = TriOSThemeConstants.vanillaCyanColor;
+    final loc = AppLocalizations.of(context);
 
     final isBeam = weapon.isBeam;
     final isMissile =
@@ -146,8 +147,8 @@ class WeaponCodexCard {
     final displayBurst = weapon.tooltipDisplay.burstSize;
     final hasBurst = weapon.tooltipDisplay.showBurstRow;
     final showRefireDelay = refireDelaySeconds != null;
-    final damageCell = _damageCell(weapon);
-    final empCell = _empCell(weapon);
+    final damageCell = _damageCell(loc, weapon);
+    final empCell = _empCell(loc, weapon);
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -178,16 +179,16 @@ class WeaponCodexCard {
         ],
 
         // ════════════ Primary data ════════════
-        tooltipSectionHeader('Primary data', theme, highlightColor),
+        tooltipSectionHeader(loc.weaponCodexSectionPrimary, theme, highlightColor),
         const SizedBox(height: 4),
         _iconRow(
               icon: showSprite ? _weaponSprite(weapon) : null,
               child: tooltipStatsGrid(theme, [
                 if (weapon.primaryRoleStr ?? description?.text2
                     case final role?)
-                  tooltipRow('Primary role', role),
-                tooltipRow('Mount type', _mountType(weapon)),
-                ..._mountNotes(weapon),
+                  tooltipRow(loc.weaponCodexPrimaryRole, role),
+                tooltipRow(loc.weaponCodexMountType, _mountType(weapon)),
+                ..._mountNotes(loc, weapon),
                 // "Counts as X for stat modifiers" when mount type differs from
                 // actual weapon type.
                 if (weapon.weaponType != null &&
@@ -195,12 +196,12 @@ class WeaponCodexCard {
                     weapon.weaponType!.toUpperCase() !=
                         weapon.mountTypeOverride!.toUpperCase())
                   tooltipNote(
-                    'Counts as ${weapon.weaponType!.toTitleCase()} for stat modifiers',
+                    loc.weaponCodexCountsAs(weapon.weaponType!.toTitleCase()),
                     rightAlign: true,
                   ),
                 // The game prints "n/a" for free and system weapons.
                 tooltipRow(
-                  'Ordnance points',
+                  loc.shipsLabelOrdnancePoints,
                   (weapon.ops ?? 0) > 0 && baseType != 'SYSTEM'
                       ? '${weapon.ops}'
                       : 'n/a',
@@ -209,13 +210,17 @@ class WeaponCodexCard {
 
                 if (showStats) ...[
                   if (weapon.range != null)
-                    tooltipRow('Range', tooltipFmt(weapon.range)),
-                  if (damageCell != null) tooltipRow('Damage', damageCell),
+                    tooltipRow(
+                      loc.weaponsColumnRange,
+                      tooltipFmt(weapon.range),
+                    ),
+                  if (damageCell != null)
+                    tooltipRow(loc.weaponCodexDamage, damageCell),
                   if (!noDPS && effectiveDps != null)
                     tooltipRow(
                       hasSustained
-                          ? 'Damage / second (sustained)'
-                          : 'Damage / second',
+                          ? loc.weaponCodexDpsSustained
+                          : loc.weaponCodexDps,
                       hasSustained
                           ? '${tooltipFmt(effectiveDps)} (${tooltipFmt(sustainedDps)})'
                           : tooltipFmt(effectiveDps),
@@ -229,37 +234,50 @@ class WeaponCodexCard {
                   if (!noDPS && fluxPerSecond != null)
                     tooltipRow(
                       hasSustained
-                          ? 'Flux / second (sustained)'
-                          : 'Flux / second',
+                          ? loc.weaponCodexFluxSecSustained
+                          : loc.weaponCodexFluxSec,
                       hasSustained && sustainedFluxPerSecond != null
                           ? '${tooltipFmt(fluxPerSecond)} (${tooltipFmt(sustainedFluxPerSecond)})'
                           : tooltipFmt(fluxPerSecond),
                     ),
                   if (!isBeam && (weapon.energyPerShot ?? 0) > 0)
-                    tooltipRow('Flux / shot', tooltipFmt(weapon.energyPerShot)),
+                    tooltipRow(
+                      loc.weaponCodexFluxShot,
+                      tooltipFmt(weapon.energyPerShot),
+                    ),
                   if (fluxPerDam != null)
                     tooltipRow(
                       empCell != null
-                          ? 'Flux / non-EMP damage'
-                          : 'Flux / damage',
+                          ? loc.weaponCodexFluxPerNonEmpDamage
+                          : loc.weaponCodexFluxPerDamage,
                       tooltipFmt(fluxPerDam, forceDecimal: true),
                     ),
                   if (limitedAmmo) ...[
                     tooltipGap,
                     tooltipNote(
-                      'Limited ${chargesInNotes ? "charges" : "ammo"}'
-                      ' (${tooltipFmt(weapon.ammo)})',
+                      chargesInNotes
+                          ? loc.weaponCodexLimitedCharges(
+                              tooltipFmt(weapon.ammo),
+                            )
+                          : loc.weaponCodexLimitedAmmo(
+                              tooltipFmt(weapon.ammo),
+                            ),
                       rightAlign: true,
                     ),
                   ],
                 ] else if (limitedAmmo) ...[
                   tooltipNote(
-                    'No flux cost to fire, limited '
-                    '${chargesInNotes ? "charges" : "ammo"} (${tooltipFmt(weapon.ammo)})',
+                    chargesInNotes
+                        ? loc.weaponCodexNoFluxLimitedCharges(
+                            tooltipFmt(weapon.ammo),
+                          )
+                        : loc.weaponCodexNoFluxLimitedAmmo(
+                            tooltipFmt(weapon.ammo),
+                          ),
                     rightAlign: true,
                   ),
                 ] else ...[
-                  tooltipNote('No flux cost to fire'),
+                  tooltipNote(loc.weaponCodexNoFluxCost),
                 ],
               ], valueColumnWidth: _statsValueColumnWidth),
             ) ??
@@ -280,19 +298,19 @@ class WeaponCodexCard {
         const SizedBox(height: 8),
 
         // ════════════ Ancillary data ════════════
-        tooltipSectionHeader('Ancillary data', theme, highlightColor),
+        tooltipSectionHeader(loc.weaponCodexSectionAncillary, theme, highlightColor),
         const SizedBox(height: 4),
         _iconRow(
               icon: SizedBox(width: 80), //_damageTypeIcon(weapon, theme),
               child: tooltipStatsGrid(theme, [
                 if (showStats) ...[
                   tooltipRow(
-                    'Damage type',
-                    _damageTypeName(weapon, isSoftFlux),
+                    loc.weaponCodexDamageType,
+                    _damageTypeName(loc, weapon, isSoftFlux),
                   ),
-                  if (_damageTypeDesc(weapon, isSoftFlux).isNotEmpty)
+                  if (_damageTypeDesc(loc, weapon, isSoftFlux).isNotEmpty)
                     tooltipNote(
-                      _damageTypeDesc(weapon, isSoftFlux),
+                      _damageTypeDesc(loc, weapon, isSoftFlux),
                       rightAlign: true,
                     ),
                   tooltipGap,
@@ -302,30 +320,30 @@ class WeaponCodexCard {
                   // Accuracy, Turn rate. The words come from the CSV; only
                   // MIRVs compute them from the missile when the CSV is
                   // blank.
-                  if (weapon.speedStr ?? _mirvSpeedWord(weapon)
+                  if (weapon.speedStr ?? _mirvSpeedWord(loc, weapon)
                       case final speed?)
-                    tooltipRow('Speed', speed),
-                  if (weapon.trackingStr ?? _mirvTrackingWord(weapon)
+                    tooltipRow(loc.weaponsColumnSpeed, speed),
+                  if (weapon.trackingStr ?? _mirvTrackingWord(loc, weapon)
                       case final tracking?)
-                    tooltipRow('Tracking', tracking),
+                    tooltipRow(loc.weaponsColumnTracking, tracking),
                   if (hasMissileDisplay)
                     if (_hitpointsCell(weapon) case final hitpoints?)
-                      tooltipRow('Hitpoints', hitpoints),
+                      tooltipRow(loc.weaponCodexHitpoints, hitpoints),
                   if (weapon.accuracyStr != null)
-                    tooltipRow('Accuracy', weapon.accuracyStr!)
+                    tooltipRow(loc.weaponsColumnAccuracy, weapon.accuracyStr!)
                   else if (!hasMissileDisplay && isBeam)
-                    tooltipRow('Accuracy', 'Perfect')
+                    tooltipRow(loc.weaponsColumnAccuracy, loc.weaponCodexQualityPerfect)
                   else if (!hasMissileDisplay)
                     tooltipRow(
-                      'Accuracy',
-                      _accuracyDisplayName(weapon.maxSpread ?? 0),
+                      loc.weaponsColumnAccuracy,
+                      _accuracyDisplayName(loc, weapon.maxSpread ?? 0),
                     ),
                   if (weapon.turnRateStr != null)
-                    tooltipRow('Turn rate', weapon.turnRateStr!)
+                    tooltipRow(loc.weaponCodexTurnRate, weapon.turnRateStr!)
                   else if (!hasMissileDisplay && weapon.turnRate != null)
                     tooltipRow(
-                      'Turn rate',
-                      _turnRateDisplayName(weapon.turnRate!),
+                      loc.weaponCodexTurnRate,
+                      _turnRateDisplayName(loc, weapon.turnRate!),
                     ),
                 ],
 
@@ -333,29 +351,36 @@ class WeaponCodexCard {
                 if (usesAmmo && hasReload) ...[
                   tooltipGap,
                   tooltipRow(
-                    chargesInRows ? 'Max charges' : 'Max ammo',
+                    chargesInRows
+                        ? loc.weaponCodexMaxCharges
+                        : loc.weaponCodexMaxAmmo,
                     tooltipFmt(weapon.ammo),
                   ),
                   if (weapon.ammoPerSec! > 0)
                     tooltipRow(
-                      chargesInRows ? 'Seconds / recharge' : 'Seconds / reload',
+                      chargesInRows
+                          ? loc.weaponCodexSecondsRecharge
+                          : loc.weaponCodexSecondsReload,
                       tooltipFmt(
                         (weapon.reloadSize ?? 1.0) / weapon.ammoPerSec!,
                       ),
                     ),
                   tooltipRow(
-                    chargesInRows ? 'Charges gained' : 'Reload size',
+                    chargesInRows
+                        ? loc.weaponCodexChargesGained
+                        : loc.weaponCodexReloadSize,
                     tooltipFmt(weapon.reloadSize ?? 1.0),
                   ),
                 ],
 
                 if (hasBurst || showRefireDelay) tooltipGap,
 
-                if (hasBurst) tooltipRow('Burst size', '$displayBurst'),
+                if (hasBurst)
+                  tooltipRow(loc.weaponCodexBurstSize, '$displayBurst'),
 
                 if (showRefireDelay)
                   tooltipRow(
-                    'Refire delay (seconds)',
+                    loc.weaponCodexRefireDelay,
                     tooltipFmt(refireDelaySeconds),
                   ),
               ], valueColumnWidth: _statsValueColumnWidth),
@@ -465,32 +490,34 @@ Widget _damageTypeIcon(Weapon weapon, ThemeData theme) {
 
 /// Returns the game's display name for the weapon's damage type.
 /// For beam weapons, appends " (Beam)" matching the Java `var68` logic.
-String _damageTypeName(Weapon weapon, bool isSoftFlux) {
+String _damageTypeName(AppLocalizations loc, Weapon weapon, bool isSoftFlux) {
   final name = switch (weapon.damageType?.toUpperCase()) {
-    'KINETIC' => 'Kinetic',
-    'HIGH_EXPLOSIVE' => 'High Explosive',
-    'FRAGMENTATION' => 'Fragmentation',
-    'ENERGY' => 'Energy',
-    _ => 'Other',
+    'KINETIC' => loc.weaponCodexDamageKinetic,
+    'HIGH_EXPLOSIVE' => loc.weaponCodexDamageHighExplosive,
+    'FRAGMENTATION' => loc.weaponCodexDamageFragmentation,
+    'ENERGY' => loc.weaponCodexDamageEnergy,
+    _ => loc.weaponCodexDamageOther,
   };
   // The game appends "(Beam)" for beams and for anything tagged
   // damage_soft_flux — the Hydra is a missile that gets it.
-  return isSoftFlux ? '$name (Beam)' : name;
+  return isSoftFlux ? loc.weaponCodexDamageTypeBeam(name) : name;
 }
 
 /// The Damage cell, or null when the row is hidden. Burst beams show one
 /// burst's damage unless they display as continuous; MIRVs show their
 /// submunitions; the `damage_special` tag overrides everything.
-String? _damageCell(Weapon weapon) {
+String? _damageCell(AppLocalizations loc, Weapon weapon) {
   if (weapon.isBeam) {
     if (!weapon.tooltipDisplay.displayAsBurstBeam) return null;
     final burstDamage = weapon.burstDamage;
     if (burstDamage == null) return null;
     return weapon.tagsAsSet.contains('damage_special')
-        ? 'Special'
+        ? loc.shipCodexLabelSpecial
         : tooltipFmt(burstDamage);
   }
-  if (weapon.tagsAsSet.contains('damage_special')) return 'Special';
+  if (weapon.tagsAsSet.contains('damage_special')) {
+    return loc.shipCodexLabelSpecial;
+  }
   if (_mirvTimes(weapon, weapon.mirvDamage) case final mirv?) return mirv;
   if (weapon.damagePerShot == null) return null;
   final base = tooltipFmt(weapon.damagePerShot);
@@ -504,27 +531,27 @@ String? _damageCell(Weapon weapon) {
 /// as continuous, like the IR Autolance — are labeled "EMP DPS" and show the
 /// raw per-second value; burst beams show one burst's worth; projectiles get
 /// the same "xN" suffix as the Damage row.
-_EmpCell? _empCell(Weapon weapon) {
+_EmpCell? _empCell(AppLocalizations loc, Weapon weapon) {
   if (weapon.isBeam) {
     if (weapon.tooltipDisplay.displayAsBurstBeam) {
       final perBurst = weapon.empPerActivation;
       if (perBurst == null || perBurst <= 0) return null;
-      return _EmpCell('EMP damage', tooltipFmt(perBurst));
+      return _EmpCell(loc.weaponCodexEmpDamage, tooltipFmt(perBurst));
     }
     final emp = weapon.emp;
     if (emp == null || emp <= 0) return null;
-    return _EmpCell('EMP DPS', tooltipFmt(emp));
+    return _EmpCell(loc.weaponCodexEmpDps, tooltipFmt(emp));
   }
   if (weapon.isMirv && weapon.mirvNumShots != null && weapon.mirvEmp != null) {
     if (weapon.mirvEmp! <= 0) return null;
     final mirv = _mirvTimes(weapon, weapon.mirvEmp);
-    return mirv == null ? null : _EmpCell('EMP damage', mirv);
+    return mirv == null ? null : _EmpCell(loc.weaponCodexEmpDamage, mirv);
   }
   final emp = weapon.emp;
   if (emp == null || emp <= 0) return null;
   final base = tooltipFmt(emp);
   return _EmpCell(
-    'EMP damage',
+    loc.weaponCodexEmpDamage,
     weapon.tooltipDisplay.showDamageTimesBurst
         ? '${base}x${weapon.tooltipDisplay.burstSize}'
         : base,
@@ -570,18 +597,20 @@ String? _hitpointsCell(Weapon weapon) {
 /// The computed Speed word for a MIRV whose CSV `speedStr` is blank. The
 /// thresholds are the game's, against the missile's top speed (which the
 /// CSV `proj speed` column sets).
-String? _mirvSpeedWord(Weapon weapon) {
+String? _mirvSpeedWord(AppLocalizations loc, Weapon weapon) {
   final speed = weapon.projSpeed;
   if (!weapon.isMirv || speed == null) return null;
-  if (speed <= 125) return 'Very Slow';
-  if (speed <= 175) return 'Slow';
-  if (speed <= 225) return 'Medium';
-  return speed <= 275 ? 'Fast' : 'Very Fast';
+  if (speed <= 125) return loc.weaponCodexQualityVerySlow;
+  if (speed <= 175) return loc.weaponCodexQualitySlow;
+  if (speed <= 225) return loc.weaponCodexQualityMedium;
+  return speed <= 275
+      ? loc.weaponCodexQualityFast
+      : loc.weaponCodexQualityVeryFast;
 }
 
 /// The computed Tracking word for a MIRV whose CSV `trackingStr` is blank:
 /// time to reach top speed plus time to turn 180°, banded like the game.
-String? _mirvTrackingWord(Weapon weapon) {
+String? _mirvTrackingWord(AppLocalizations loc, Weapon weapon) {
   if (!weapon.isMirv) return null;
   final speed = weapon.projSpeed;
   final acceleration = weapon.missileAcceleration;
@@ -589,49 +618,55 @@ String? _mirvTrackingWord(Weapon weapon) {
   if (speed == null || acceleration == null || turnRate == null) return null;
   if (acceleration <= 0 || turnRate <= 0) return null;
   final sluggishness = speed / acceleration + 180 / turnRate;
-  if (sluggishness <= 0) return 'None';
-  if (sluggishness <= 2) return 'Excellent';
-  if (sluggishness <= 4) return 'Good';
-  if (sluggishness <= 6) return 'Medium';
-  return sluggishness <= 8 ? 'Poor' : 'Very Poor';
+  if (sluggishness <= 0) return loc.codexNone;
+  if (sluggishness <= 2) return loc.weaponCodexQualityExcellent;
+  if (sluggishness <= 4) return loc.weaponCodexQualityGood;
+  if (sluggishness <= 6) return loc.weaponCodexQualityMedium;
+  return sluggishness <= 8
+      ? loc.weaponCodexQualityPoor
+      : loc.weaponCodexQualityVeryPoor;
 }
 
 /// Maps maxSpread to the game's accuracy display name.
 /// Thresholds from `Oo0O.getAccuracyDisplayName` in the game JAR.
-String _accuracyDisplayName(double maxSpread) {
-  if (maxSpread <= 0) return 'Perfect';
-  if (maxSpread <= 2) return 'Excellent';
-  if (maxSpread <= 5) return 'Good';
-  if (maxSpread <= 10) return 'Medium';
-  if (maxSpread <= 15) return 'Poor';
-  if (maxSpread <= 20) return 'Very Poor';
-  return 'Terrible';
+String _accuracyDisplayName(AppLocalizations loc, double maxSpread) {
+  if (maxSpread <= 0) return loc.weaponCodexQualityPerfect;
+  if (maxSpread <= 2) return loc.weaponCodexQualityExcellent;
+  if (maxSpread <= 5) return loc.weaponCodexQualityGood;
+  if (maxSpread <= 10) return loc.weaponCodexQualityMedium;
+  if (maxSpread <= 15) return loc.weaponCodexQualityPoor;
+  if (maxSpread <= 20) return loc.weaponCodexQualityVeryPoor;
+  return loc.weaponCodexQualityTerrible;
 }
 
 /// Maps turnRate to the game's display name.
 /// Thresholds from `BaseWeaponSpec.getTurnRateDisplayName` in the game JAR.
-String _turnRateDisplayName(double turnRate) {
-  if (turnRate <= 0) return "Can't turn";
-  if (turnRate <= 5) return 'Very Slow';
-  if (turnRate <= 15) return 'Slow';
-  if (turnRate <= 25) return 'Medium';
-  if (turnRate <= 35) return 'Fast';
-  if (turnRate <= 50) return 'Very Fast';
-  return 'Excellent';
+String _turnRateDisplayName(AppLocalizations loc, double turnRate) {
+  if (turnRate <= 0) return loc.weaponCodexCantTurn;
+  if (turnRate <= 5) return loc.weaponCodexQualityVerySlow;
+  if (turnRate <= 15) return loc.weaponCodexQualitySlow;
+  if (turnRate <= 25) return loc.weaponCodexQualityMedium;
+  if (turnRate <= 35) return loc.weaponCodexQualityFast;
+  if (turnRate <= 50) return loc.weaponCodexQualityVeryFast;
+  return loc.weaponCodexQualityExcellent;
 }
 
 /// Returns the game's description sentence for the damage type,
 /// with " (no hard flux)" appended for soft-flux weapons (beams, etc.).
-String _damageTypeDesc(Weapon weapon, bool isSoftFlux) {
+String _damageTypeDesc(
+  AppLocalizations loc,
+  Weapon weapon,
+  bool isSoftFlux,
+) {
   final base = switch (weapon.damageType?.toUpperCase()) {
-    'KINETIC' => '200% vs shields, 50% vs armor',
-    'HIGH_EXPLOSIVE' => '200% vs armor, 50% vs shields',
-    'FRAGMENTATION' => '25% vs shields and armor, 100% vs hull',
-    'ENERGY' => '100% vs shields, armor, and hull',
+    'KINETIC' => loc.weaponCodexDescKinetic,
+    'HIGH_EXPLOSIVE' => loc.weaponCodexDescHighExplosive,
+    'FRAGMENTATION' => loc.weaponCodexDescFragmentation,
+    'ENERGY' => loc.weaponCodexDescEnergy,
     _ => '',
   };
   if (base.isEmpty) return '';
-  return isSoftFlux ? '$base (no hard flux)' : base;
+  return isSoftFlux ? loc.weaponCodexNoHardFlux(base) : base;
 }
 
 /// Returns "Size, Type" for mount display, title-cased.
@@ -644,12 +679,12 @@ String _mountType(Weapon w) {
 }
 
 /// Slot compatibility notes for special mount types.
-List<TooltipStatEntry> _mountNotes(Weapon w) {
+List<TooltipStatEntry> _mountNotes(AppLocalizations loc, Weapon w) {
   final note = switch (w.effectiveMountType?.toUpperCase()) {
-    'HYBRID' => 'Requires a Ballistic, Energy, or Hybrid slot',
-    'SYNERGY' => 'Requires an Energy, Missile, or Synergy slot',
-    'COMPOSITE' => 'Requires a Ballistic, Missile, or Composite slot',
-    'UNIVERSAL' => 'Can be installed in any type of slot',
+    'HYBRID' => loc.weaponCodexRequiresBallisticEnergyHybrid,
+    'SYNERGY' => loc.weaponCodexRequiresEnergyMissileSynergy,
+    'COMPOSITE' => loc.weaponCodexRequiresBallisticMissileComposite,
+    'UNIVERSAL' => loc.weaponCodexUniversalSlot,
     _ => null,
   };
   if (note == null) return const [];

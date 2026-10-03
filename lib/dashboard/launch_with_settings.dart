@@ -104,9 +104,8 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Tooltip(
-                    message:
-                        "EXPERIMENTAL\nIf you encounter strange issues in-game, disable this."
-                        "\nPossible issues include: invisible ships, zoomed-in combat, no Windows title bar, probably more.",
+                    message: loc
+                        .launch_with_settingsExperimentalTooltip,
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.error,
                       borderRadius: BorderRadius.circular(
@@ -119,7 +118,7 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                         labelWidget: Row(
                           children: [
                             Text(
-                              "Skip Launcher",
+                              loc.launch_with_settingsSkipLauncher,
                               style: Theme.of(context).textTheme.labelMedium,
                             ),
                             if (enableDirectLaunch)
@@ -189,7 +188,8 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                                     });
 
                                 return Text(
-                                  path ?? "No game exe",
+                                  path ??
+                                      loc.launch_with_settingsNoGameExe,
                                   style: Theme.of(
                                     context,
                                   ).textTheme.labelMedium,
@@ -222,12 +222,12 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                         ),
                         Text(
                           ref.watch(AppState.starsectorVersion).value ??
-                              "Starsector version unknown",
+                              loc.launch_with_settingsStarsectorVersionUnknown,
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                         Text(
                           ref.watch(AppState.modsFolder).value?.path ??
-                              "No mods folder!",
+                              loc.launch_with_settingsNoModsFolder,
                           style: Theme.of(context).textTheme.labelMedium,
                         ),
                       ],
@@ -309,8 +309,9 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                                           FilteringTextInputFormatter
                                               .digitsOnly,
                                         ],
-                                        decoration: const InputDecoration(
-                                          labelText: 'Width',
+                                        decoration: InputDecoration(
+                                          labelText:
+                                              loc.launch_with_settingsWidth,
                                         ),
                                       ),
                                     ),
@@ -332,8 +333,9 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                                           FilteringTextInputFormatter
                                               .digitsOnly,
                                         ],
-                                        decoration: const InputDecoration(
-                                          labelText: 'Height',
+                                        decoration: InputDecoration(
+                                          labelText:
+                                              loc.launch_with_settingsHeight,
                                         ),
                                       ),
                                     ),
@@ -342,8 +344,8 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8),
                                   child: Tooltip(
-                                    message:
-                                        "Use your non-TriOS launcher settings instead",
+                                    message: loc
+                                        .launch_with_settingsUseVanillaLauncherSettings,
                                     child: Opacity(
                                       opacity: 0.8,
                                       child: TextLinkButton(
@@ -376,12 +378,12 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                         child: Column(
                           children: [
                             Text(
-                              "Note: These settings are separate from the normal launcher's settings.",
+                              loc.launch_with_settingsNote,
                               style: Theme.of(context).textTheme.labelMedium,
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              "If you encounter strange issues in-game, disable Skip Launcher.",
+                              loc.launch_with_settingsDisableSkipLauncherWarning,
                               style: Theme.of(context).textTheme.labelMedium
                                   ?.copyWith(
                                     color: TriOSThemeConstants
@@ -390,7 +392,7 @@ class _LaunchWithSettingsState extends ConsumerState<LaunchWithSettings> {
                                   ),
                             ),
                             Text(
-                              "Possible issues include: invisible ships, zoomed-in combat, no Windows title bar, probably more.",
+                              loc.launch_with_settingsPossibleIssues,
                               style: Theme.of(context).textTheme.labelMedium
                                   ?.copyWith(
                                     color: TriOSThemeConstants

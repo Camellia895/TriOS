@@ -62,7 +62,10 @@ class DisabledModsIntent extends ChatIntent with ModAwareIntent {
       );
     }
 
-    final buf = StringBuffer('Disabled Mods (${disabled.length})\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(
+      loc.chatbotDisabledModsTitle(disabled.length) + '\n',
+    );
     for (final mod in disabled) {
       final variant = mod.findHighestVersion;
       final name = variant?.modInfo.nameOrId ?? mod.id;

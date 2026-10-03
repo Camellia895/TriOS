@@ -48,8 +48,11 @@ class _AuditPageState extends ConsumerState<AuditPage> {
         itemBuilder: (context, index) {
           final entry = auditLog.flatten()[index];
           final variant = modVariantsBySmolId[entry.smolId];
-          final actionWord =
-              "${entry.action.name.replaceFirstMapped(RegExp(r'^.'), (match) => match.group(0)!.toUpperCase())}d";
+          final actionWord = switch (entry.action) {
+            ModAction.enable => loc.auditActionEnabled,
+            ModAction.disable => loc.auditActionDisabled,
+            ModAction.delete => loc.auditActionDeleted,
+          };
 
           return Container(
             padding: const EdgeInsets.all(8.0),
@@ -90,7 +93,11 @@ class _AuditPageState extends ConsumerState<AuditPage> {
                       ),
                       const SizedBox(height: 4),
                       SelectableText(
-                        "$actionWord ${dateFormat.format(entry.timestamp)}\nReason: ${entry.reason}",
+                        loc.auditActionWithTimestamp(
+                          actionWord,
+                          dateFormat.format(entry.timestamp),
+                          entry.reason,
+                        ),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: Theme.of(
                             context,

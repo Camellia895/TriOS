@@ -1,3 +1,5 @@
+import 'package:trios/l10n/trios_localizations.dart';
+
 enum DownloadStatus {
   queued,
   retrievingFileInfo,
@@ -30,21 +32,22 @@ extension DownloadStatusExtension on DownloadStatus {
   }
 
   String get displayString {
+    final loc = AppLocalizationsSync.instance;
     switch (this) {
       case DownloadStatus.queued:
-        return "Queued";
+        return loc.downloadStatusQueued;
       case DownloadStatus.retrievingFileInfo:
-        return "Retrieving File Info";
+        return loc.downloadStatusRetrievingFileInfo;
       case DownloadStatus.downloading:
-        return "Downloading";
+        return loc.downloadStatusDownloading;
       case DownloadStatus.completed:
-        return "Completed";
+        return loc.downloadStatusCompleted;
       case DownloadStatus.failed:
-        return "Failed";
+        return loc.downloadStatusFailed;
       case DownloadStatus.paused:
-        return "Paused";
+        return loc.downloadStatusPaused;
       case DownloadStatus.canceled:
-        return "Canceled";
+        return loc.downloadStatusCanceled;
     }
   }
 }

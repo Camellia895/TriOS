@@ -4,6 +4,7 @@ import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
 import 'viewer_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows combined ship, weapon, hullmod, and portrait counts.
 class ViewerStatsIntent extends ChatIntent with ViewerAwareIntent {
@@ -58,36 +59,37 @@ class ViewerStatsIntent extends ChatIntent with ViewerAwareIntent {
     final hullmodList = hullmods;
     final portraitMap = portraits;
 
-    final buf = StringBuffer('Game Content Overview\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotViewerStatsTitle + '\n');
 
     if (shipList != null && shipList.isNotEmpty) {
-      buf.writeln('  Ships:    ${shipList.length}');
+      buf.writeln(loc.chatbotViewerStatsShips('${shipList.length}'));
     } else {
-      buf.writeln('  Ships:    Not loaded');
+      buf.writeln(loc.chatbotViewerStatsShips(loc.chatbotNotLoaded));
     }
 
     if (weaponList != null && weaponList.isNotEmpty) {
-      buf.writeln('  Weapons:  ${weaponList.length}');
+      buf.writeln(loc.chatbotViewerStatsWeapons('${weaponList.length}'));
     } else {
-      buf.writeln('  Weapons:  Not loaded');
+      buf.writeln(loc.chatbotViewerStatsWeapons(loc.chatbotNotLoaded));
     }
 
     if (hullmodList != null && hullmodList.isNotEmpty) {
-      buf.writeln('  Hullmods: ${hullmodList.length}');
+      buf.writeln(loc.chatbotViewerStatsHullmods('${hullmodList.length}'));
     } else {
-      buf.writeln('  Hullmods: Not loaded');
+      buf.writeln(loc.chatbotViewerStatsHullmods(loc.chatbotNotLoaded));
     }
 
     if (portraitMap != null && portraitMap.isNotEmpty) {
       final totalPortraits = portraitMap.values
           .fold<int>(0, (sum, list) => sum + list.length);
-      buf.writeln('  Portraits: $totalPortraits');
+      buf.writeln(loc.chatbotViewerStatsPortraits('$totalPortraits'));
     } else {
-      buf.writeln('  Portraits: Not loaded');
+      buf.writeln(loc.chatbotViewerStatsPortraits(loc.chatbotNotLoaded));
     }
 
     buf.writeln(
-      '\nOpen a viewer page to load its data if not yet loaded.',
+      loc.chatbotOpenViewerToLoad,
     );
 
     return ChatResponse(text: buf.toString().trimRight());

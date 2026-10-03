@@ -1,6 +1,7 @@
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Provides a static guide to common Starsector/TriOS issues and fixes.
 class CommonIssuesIntent extends ChatIntent {
@@ -56,31 +57,8 @@ class CommonIssuesIntent extends ChatIntent {
 
   @override
   ChatResponse respond(String input, ConversationContext context) {
-    return const ChatResponse(text: _response);
+    return ChatResponse(
+      text: AppLocalizationsSync.instance.chatbotCommonIssuesGuide,
+    );
   }
-
-  static const _response = 'Common Starsector Issues & Fixes\n'
-      '\n'
-      'OutOfMemoryError / Crash during loading\n'
-      '  Increase RAM allocation on the Dashboard page.\n'
-      '  Try "current ram" to see your setting, or "more ram" for a guide.\n'
-      '\n'
-      'Game won\'t start / Black screen\n'
-      '  Verify the game install is intact and not blocked by antivirus.\n'
-      '  Try disabling recently-added mods.\n'
-      '  On Windows, try running as Administrator.\n'
-      '\n'
-      'Missing mod dependencies\n'
-      '  Ask "mod compatibility" to see which mods have issues.\n'
-      '  Install missing dependencies from the Catalog page.\n'
-      '\n'
-      'Mod version mismatch\n'
-      '  Ask "mod updates" to check for newer versions.\n'
-      '  Check the mod\'s required game version vs yours ("game version").\n'
-      '\n'
-      'Permission errors\n'
-      '  Ask "permission issues" for platform-specific help.\n'
-      '\n'
-      'For detailed error info, try "log summary" and "log errors"\n'
-      'to analyze your Starsector log file.';
 }

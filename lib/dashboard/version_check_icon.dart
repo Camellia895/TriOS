@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/models/version_checker_info.dart';
 import 'package:trios/themes/theme_manager.dart';
 import 'package:trios/trios/app_state.dart';
@@ -173,8 +174,10 @@ Widget? buildMutedUpdatesIcon(
 
   return MovingTooltipWidget.text(
     message: isVersionMuted
-        ? "Update $remoteVersion is muted. You'll be notified for the next version."
-        : "Updates muted",
+        ? AppLocalizationsSync.instance.version_check_iconUpdateIsMuted(
+            remoteVersion ?? '',
+          )
+        : AppLocalizationsSync.instance.version_check_iconUpdatesMuted,
     child: Icon(
       isVersionMuted ? Icons.notifications_paused : Icons.notifications_off,
       size: 20.0,

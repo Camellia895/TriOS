@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:dart_extensions_methods/dart_extension_methods.dart';
 import 'package:trios/compression/archive.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/batch_installation/batch_installation.dart';
 import 'package:trios/mod_manager/mod_install_source.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
@@ -33,7 +34,8 @@ class BatchPreScanner {
       if (!source.existsSync()) {
         entry
           ..status = BatchEntryStatus.failed
-          ..errorDetail = "Source does not exist";
+          ..errorDetail = AppLocalizationsSync
+              .instance.batchPreScannerSourceDoesNotExist;
         return;
       }
 
@@ -52,7 +54,9 @@ class BatchPreScanner {
         )) {
           entry
             ..status = BatchEntryStatus.failed
-            ..errorDetail = "Not a supported archive format";
+            ..errorDetail = AppLocalizationsSync
+                .instance
+                .batchPreScannerNotASupportedArchive;
           return;
         }
 
@@ -75,7 +79,8 @@ class BatchPreScanner {
       if (modInfoPaths.isEmpty) {
         entry
           ..status = BatchEntryStatus.failed
-          ..errorDetail = "No mod_info.json found in source";
+          ..errorDetail =
+              AppLocalizationsSync.instance.batchPreScannerNoModInfoJson;
         return;
       }
 
@@ -101,7 +106,8 @@ class BatchPreScanner {
       if (parsedModInfos.isEmpty) {
         entry
           ..status = BatchEntryStatus.failed
-          ..errorDetail = "Could not parse any mod_info.json in source";
+          ..errorDetail =
+              AppLocalizationsSync.instance.batchPreScannerCouldNotParseAny;
         return;
       }
 

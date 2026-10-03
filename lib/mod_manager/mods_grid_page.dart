@@ -314,7 +314,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   },
                   pinnedItems: pinnedUpdateMods,
                   pinnedGroupInfo: PinnedGroupInfo(
-                    name: "Updates Available",
+                    name: loc.modsGridUpdatesAvailable,
                     icon: SvgCategoryIcon(
                       "assets/images/icon-update-badge.svg",
                     ),
@@ -505,7 +505,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   columns: [
                     WispGridColumn<Mod>(
                       key: ModGridHeader.favorites.name,
-                      name: "Favorite",
+                      name: loc.modsGridFavorite,
                       isSortable: false,
                       headerCellBuilder: (modifiers) => buildColumnHeader(
                         ModGridHeader.favorites,
@@ -531,7 +531,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.changeVariantButton.name,
-                      name: "Version Select",
+                      name: loc.modsGridVersionSelect,
                       isSortable: false,
                       headerCellBuilder: (modifiers) => Container(),
                       itemCellBuilder: (mod, modifiers) => Disable(
@@ -552,7 +552,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.icons.name,
-                      name: "Mod Icon",
+                      name: loc.modsGridModIcon,
                       isSortable: true,
                       getSortValue: (mod) => mod.getSortValueForModIcon(),
                       headerCellBuilder: (modifiers) => Container(),
@@ -572,7 +572,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.modIcon.name,
-                      name: "Mod Type Icon",
+                      name: loc.modsGridModTypeIcon,
                       isSortable: true,
                       getSortValue: (mod) => mod.getSortValueForType(),
                       headerCellBuilder: (modifiers) => Container(),
@@ -588,7 +588,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.loadOrder.name,
-                      name: "Load #",
+                      name: loc.modsGridLoad,
                       isSortable: true,
                       getSortValue: (mod) => mod.getSortValueForLoadOrder(),
                       headerCellBuilder: (modifiers) => buildColumnHeader(
@@ -614,7 +614,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.name.name,
-                      name: "Name",
+                      name: loc.modsGridName,
                       isSortable: true,
                       getSortValue: (mod) => mod.getSortValueForName(),
                       headerCellBuilder: (modifiers) => buildColumnHeader(
@@ -638,7 +638,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.author.name,
-                      name: "Author",
+                      name: loc.modSummaryAuthor,
                       isSortable: true,
                       getSortValue: (mod) => mod.getSortValueForAuthor(),
                       headerCellBuilder: (modifiers) => buildColumnHeader(
@@ -660,7 +660,9 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                                   "\n",
                                   "   ",
                                 ) ??
-                                "(no author)",
+                                AppLocalizations.of(
+                                  context,
+                                ).modSummaryNoAuthor,
                             maxLines: 1,
                             style: theme.textTheme.labelLarge?.copyWith(
                               color: lightTextColor,
@@ -678,7 +680,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.updateStatus.name,
-                      name: "Update",
+                      name: loc.modInfoDialogUpdate,
                       isSortable: true,
                       getSortValue: (mod) =>
                           mod.getSortValueForUpdateStatus(ref, modsMetadata),
@@ -701,7 +703,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.version.name,
-                      name: "Version",
+                      name: loc.modsGridVersion,
                       isSortable: true,
                       getSortValue: (mod) => mod.getSortValueForVersion(),
                       itemCellBuilder: (mod, modifiers) => Builder(
@@ -727,7 +729,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.vramImpact.name,
-                      name: "VRAM Est.",
+                      name: loc.modsGridVramEst,
                       isSortable: true,
                       getSortValue: (mod) =>
                           mod.getSortValueForVram(vramEstState.value),
@@ -755,7 +757,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.categories.name,
-                      name: "Category",
+                      name: loc.modsGridCategory,
                       isSortable: true,
                       getSortValue: (mod) {
                         final notifier = ref.read(
@@ -788,7 +790,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.gameVersion.name,
-                      name: "Game Version",
+                      name: loc.catalogGameVersion,
                       isSortable: true,
                       getSortValue: (mod) => mod.getSortValueForGameVersion(),
                       headerCellBuilder: (modifiers) => buildColumnHeader(
@@ -804,12 +806,15 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
 
                           return MovingTooltipWidget.text(
                             message: originalGameVersion != null
-                                ? "Original game version: $originalGameVersion"
+                                ? AppLocalizations.of(context)
+                                      .modsGridOriginalGameVersion(
+                                        originalGameVersion,
+                                      )
                                 : null,
                             child: Opacity(
                               opacity: WispGrid.lightTextOpacity,
                               child: Text(
-                                "${bestVersion.modInfo.gameVersion ?? "(no game version)"}"
+                                "${bestVersion.modInfo.gameVersion ?? AppLocalizations.of(context).modsGridNoGameVersion}"
                                 "${originalGameVersion != null ? "**" : ""}",
                                 style:
                                     compareGameVersions(
@@ -840,7 +845,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.firstSeen.name,
-                      name: "First Seen",
+                      name: loc.modsGridFirstSeen,
                       isSortable: true,
                       getSortValue: (mod) =>
                           mod.getSortValueForFirstSeen(modsMetadata),
@@ -882,7 +887,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.lastEnabled.name,
-                      name: "Last Enabled",
+                      name: loc.modsGridLastEnabled,
                       isSortable: true,
                       getSortValue: (mod) =>
                           mod.getSortValueForLastEnabled(modsMetadata),
@@ -928,7 +933,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     ),
                     WispGridColumn<Mod>(
                       key: ModGridHeader.lastUpdated.name,
-                      name: "Last Updated",
+                      name: loc.modsGridLastUpdated,
                       isSortable: true,
                       getSortValue: (mod) =>
                           mod.getSortValueForLastUpdated(modsMetadata),
@@ -1024,12 +1029,10 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text(
-                            "This will scan all enabled mods and estimate the total VRAM usage.",
-                          ),
+                          Text(loc.modsGridThisWillScanAll),
                           const SizedBox(height: 8),
                           Text(
-                            "This may take a few minutes and cause your computer to lag!",
+                            loc.modsGridThisMayTakeALag,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.error,
                             ),
@@ -1055,7 +1058,9 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                       ],
                     ),
                   ),
-            label: Text(isScanningVram ? "Cancel Scan" : "Est. VRAM"),
+            label: Text(
+              isScanningVram ? loc.modsGridCancelScan : loc.modsGridEstVram,
+            ),
             style: OutlinedButton.styleFrom(
               foregroundColor: Theme.of(
                 context,
@@ -1087,7 +1092,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
           height: 36,
           child: MovingTooltipWidget.text(
             message:
-                "Swap between mod loadouts. Manage them in the Profiles tab.",
+                loc.modsGridSwapBetweenModLoadouts,
             child: PopupMenuButton(
               onSelected: (profile) {
                 if (profile is ModProfile) {
@@ -1107,7 +1112,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                         (p) => PopupMenuItem(
                           value: p,
                           child: Text(
-                            "${p.name} (${p.enabledModVariants.length} mods)",
+                            "${p.name} (${loc.modManagerModsCount(p.enabledModVariants.length)})",
                             style: const TextStyle(fontSize: 13),
                           ),
                         ),
@@ -1120,7 +1125,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Mod Profile",
+                      loc.modsGridModProfile,
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     Text(
@@ -1426,7 +1431,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             },
             child: MovingTooltipWidget.text(
               message:
-                  "If a mod has an icon, use its colors to style the mod row.",
+                  loc.modsGridIfAModHasIconUseColors,
               child: Text(loc.mod_list_basicColorful),
             ),
           ),
@@ -1463,8 +1468,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                   );
             },
             child: MovingTooltipWidget.text(
-              message:
-                  "Show a warning icon next to mods whose data has a problem, like a mod whose .version file and mod_info.json don't agree on the version.",
+              message: loc.modsGridShowAWarningIcon,
               child: Text(loc.modsGridShowModDataWarnings),
             ),
           ),
@@ -1481,8 +1485,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
               ),
               onPressed: () => toggleShowModInAllCategories(ref),
               child: MovingTooltipWidget.text(
-                message:
-                    "If a mod is in multiple categories, show the mod in each category rather than only in its primary category.",
+                message: loc.modsGridIfAModIsInMultipleCategories,
                 child: Text(loc.wispgridGroupRepeatModsInEachCategory),
               ),
             ),
@@ -1555,14 +1558,13 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
               ),
             ],
             child: MovingTooltipWidget.text(
-              message:
-                  "Whether to show a section at the top of the page containing only mods with updates.",
+              message: loc.modsGridWhetherToShowUpdatesSection,
               child: Text(switch (modsGridUpdateVisibility) {
                 ModsGridUpdateVisibility.showUnmuted =>
-                  "Showing Updates section",
+                  loc.modsGridShowingUpdatesSection,
                 ModsGridUpdateVisibility.showAll =>
-                  "Showing Updates section (incl. muted)",
-                ModsGridUpdateVisibility.hide => "Not showing Update section",
+                  loc.modsGridShowingUpdatesSectionInclMuted,
+                ModsGridUpdateVisibility.hide => loc.modsGridNotShowingUpdateSection,
               }),
             ),
           ),
@@ -1581,13 +1583,10 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          "Are you sure you want to enable all ${allMods.length} mods?",
-                        ),
+                        Text(loc.modsGridEnableAllConfirm(allMods.length)),
                         const SizedBox(height: 16),
                         Text(
-                          "This will enable the latest version of all disabled mods."
-                          "\nMods that are already enabled won't be changed.",
+                          loc.modsGridThisWillEnableLatest,
                           style: theme.textTheme.labelLarge,
                         ),
                       ],
@@ -1625,9 +1624,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          "Are you sure you want to disable all ${allMods.length} mods?",
-                        ),
+                        Text(loc.modsGridDisableAllConfirm(allMods.length)),
                       ],
                     ),
                     actions: [
@@ -1760,9 +1757,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             style: headerTextStyle,
           ),
           ModGridHeader.vramImpact => MovingTooltipWidget.text(
-            message:
-                'An *estimate* of how much VRAM is used based on the images in the mod folder.'
-                '\nThis may be inaccurate.',
+            message: loc.modsGridVramEstimateTooltip,
             child: Row(
               children: [
                 Text(loc.modsGridVramEst, style: headerTextStyle),
@@ -1783,7 +1778,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             ),
           ),
           ModGridHeader.gameVersion => Text(
-            'Game Version',
+            loc.catalogGameVersion,
             style: headerTextStyle,
           ),
           ModGridHeader.firstSeen => Text(
@@ -1791,11 +1786,11 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             style: headerTextStyle,
           ),
           ModGridHeader.lastEnabled => Text(
-            'Last Enabled',
+            loc.modsGridLastEnabled,
             style: headerTextStyle,
           ),
           ModGridHeader.lastUpdated => Text(
-            'Last Updated',
+            loc.modsGridLastUpdated,
             style: headerTextStyle,
           ),
           ModGridHeader.categories => Text(
@@ -1867,20 +1862,17 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "VRAM Estimate",
+                              loc.modsGridVramEstimate,
                               style: theme.textTheme.labelLarge?.copyWith(
                                 fontSize: 14,
                               ),
                             ),
                             Text(
                               "${mod.findFirstEnabledOrHighestVersion?.modInfo.nameOrId} v${vramEstimate.info.version}"
-                              "\n\n${withoutGraphicsLib?.sum().bytesAsReadableMB()} from mod (${withoutGraphicsLib?.length} images)"
+                              "\n\n${loc.modsGridFromModImages(withoutGraphicsLib?.sum().bytesAsReadableMB() ?? "", withoutGraphicsLib?.length ?? 0)}"
                               "\n---"
-                              "\n${withoutGraphicsLib?.sum().bytesAsReadableMB()} total"
-                              "${isIllustratedEntities ? ""
-                                        ""
-                                        "\n\nNOTE"
-                                        "\nIllustrated Entities dynamically loads and unloads images from VRAM." : ""}",
+                              "\n${loc.vramTotalLine(withoutGraphicsLib?.sum().bytesAsReadableMB() ?? "")}"
+                              "${isIllustratedEntities ? loc.modsGridIllustratedEntitiesNote : ""}",
                               style: theme.textTheme.labelLarge,
                             ),
                             Padding(
@@ -2082,7 +2074,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                                           ),
                                         ),
                                         Text(
-                                          "Click horn to see full changelog",
+                                          loc.modsGridClickHornToSeeFullChangelog,
                                           style: theme.textTheme.bodySmall
                                               ?.copyWith(
                                                 fontWeight: FontWeight.bold,
@@ -2136,8 +2128,10 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
                     (areUpdatesMuted || isVersionMuted)
                         ? MovingTooltipWidget.text(
                             message: isVersionMuted
-                                ? "Update $remoteVersion is muted. You'll be notified for the next version."
-                                : "Updates muted",
+                                ? loc.modsGridUpdateVersionIsMuted(
+                                    remoteVersion.toString(),
+                                  )
+                                : loc.modsGridUpdatesMuted,
                             child: Padding(
                               padding: const EdgeInsets.only(
                                 left: 4.0,
@@ -2278,6 +2272,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
     return Builder(
       builder: (context) {
         final theme = Theme.of(context);
+        final loc = AppLocalizations.of(context);
         final modColor = ref
             .watch(AppState.modsMetadata)
             .value
@@ -2285,7 +2280,7 @@ class _ModsGridState extends ConsumerState<ModsGridPage>
             ?.color;
 
         final nameText = Text(
-          bestVersion.modInfo.name ?? "(no name)",
+          bestVersion.modInfo.name ?? loc.modSummaryNoName,
           style: GoogleFonts.roboto(
             textStyle: theme.textTheme.labelLarge?.copyWith(
               fontWeight: FontWeight.bold,
@@ -2425,6 +2420,7 @@ class MissingDependencyButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     // A present-but-off dependency only matters once the parent mod is on:
     // enabling it alone does nothing while the parent is still off.
     if (checkResult.satisfiedAmount is Disabled && !isParentEnabled) {
@@ -2444,8 +2440,10 @@ class MissingDependencyButton extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 4),
       child: MovingTooltipWidget.text(
-        message:
-            "${enabledVersion?.modInfo.nameOrId} requires ${checkResult.dependency.formattedNameVersion}",
+        message: loc.modsGridModRequires(
+          enabledVersion?.modInfo.nameOrId ?? "",
+          checkResult.dependency.formattedNameVersion,
+        ),
         child: Row(
           children: [
             // if (checkResult.satisfiedAmount is Disabled)
@@ -2467,8 +2465,9 @@ class MissingDependencyButton extends ConsumerWidget {
                       },
                       style: buttonStyle,
                       child: TextWithIcon(
-                        text:
-                            "Enable ${disabledVariant?.modInfo.formattedNameVersion}",
+                        text: loc.modsGridEnableDependencyName(
+                          disabledVariant?.modInfo.formattedNameVersion ?? "",
+                        ),
                         leading: disabledVariant?.iconFilePath == null
                             ? null
                             : Image.file(
@@ -2528,9 +2527,7 @@ class MissingDependencyButton extends ConsumerWidget {
                       } else if (context.mounted) {
                         showSnackBar(
                           context: context,
-                          content: const Text(
-                            "Couldn't open browser. Google recommends Chrome for a faster experience!",
-                          ),
+                          content: Text(loc.modsGridCouldnTOpenBrowser),
                         );
                       }
                     }
@@ -2582,41 +2579,48 @@ class MissingDependencyButton extends ConsumerWidget {
                     }
 
                     if (isOutdated) {
-                      final outdatedTooltip =
-                          "You have $installedVersion. This mod needs "
-                          "$requiredVersion or newer.";
-                      final updateText =
-                          "Update ${missingDependency.nameOrId} "
-                          "($requiredVersion required)";
+                      final outdatedTooltip = loc.modsGridYouHaveInstalledNeeds(
+                        installedVersion.toString(),
+                        requiredVersion.toString(),
+                      );
+                      final updateText = loc.modsGridUpdateDependencyVersionRequired(
+                        missingDependency.nameOrId,
+                        requiredVersion.toString(),
+                      );
                       if (hasDirectDownload) {
                         text = updateText;
                         tooltipMessage =
-                            "$outdatedTooltip Click to download the latest version.";
+                            "$outdatedTooltip ${loc.modsGridClickToDownloadLatest}";
                         leading = downloadIcon;
                         onPressed = confirmAndDownload;
                       } else if (websiteUrl != null) {
                         text = updateText;
                         tooltipMessage =
-                            "$outdatedTooltip Click to open the download page.";
+                            "$outdatedTooltip ${loc.modsGridClickToOpenDownloadPage}";
                         leading = openPageIcon;
                         onPressed = () => openUrl(websiteUrl);
                       } else {
-                        text = "Search for newer ${missingDependency.nameOrId}";
+                        text = loc.modsGridSearchForNewerDependency(
+                          missingDependency.nameOrId,
+                        );
                         tooltipMessage = outdatedTooltip;
                         leading = searchIcon;
                         onPressed = searchOnline;
                       }
                     } else if (hasDirectDownload) {
-                      text =
-                          "Install ${missingDependency.formattedNameVersion}";
-                      tooltipMessage =
-                          "Download and install ${missingDependency.nameOrId} "
-                          "with ${Constants.appName}";
+                      text = loc.modsGridInstallDependency(
+                        missingDependency.formattedNameVersion,
+                      );
+                      tooltipMessage = loc.modsGridDownloadAndInstallDependency(
+                        missingDependency.nameOrId,
+                        Constants.appName,
+                      );
                       leading = downloadIcon;
                       onPressed = confirmAndDownload;
                     } else {
-                      text =
-                          "Search ${missingDependency.formattedNameVersionId}";
+                      text = loc.modsGridSearchDependency(
+                        missingDependency.formattedNameVersionId,
+                      );
                       tooltipMessage = null;
                       leading = searchIcon;
                       onPressed = searchOnline;

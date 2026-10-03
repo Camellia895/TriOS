@@ -45,16 +45,15 @@ class ModInstallationErrorDialog extends StatelessWidget {
             children: [
               TextSpan(
                 text: errors.length == 1
-                    ? "There was an error while installing.\nPlease install the mod manually."
-                    : "There were errors while installing.\nPlease install the mods manually.\n",
+                    ? loc.modInstallationErrorDialogThereWasAnError
+                    : loc.modInstallationErrorDialogThereWereErrorsWhile,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
               TextSpan(
-                text:
-                    "Check the ${Constants.appName} logs for more information.\n\n",
+                text: loc.modInstallationErrorDialogCheckLogs(Constants.appName),
               ),
             ],
           ),

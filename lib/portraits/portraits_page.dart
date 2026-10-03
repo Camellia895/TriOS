@@ -377,7 +377,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
             ),
             const SizedBox(height: 16),
             Text(
-              'Error loading portraits: $error',
+              loc.portraitsErrorLoading(error.toString()),
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
@@ -418,7 +418,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
         final isCompanionModEnabled = companionMod?.hasEnabledVariant == true;
         multiSplitController.areas = areas;
         final textColor = Theme.of(context).colorScheme.onSurface;
-        final replacementPoolString = "Portrait Pool";
+        final replacementPoolString = loc.portraitsPortraitPool;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -440,14 +440,13 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                             Padding(
                               padding: const .only(),
                               child: MovingTooltipWidget.text(
-                                message:
-                                    "Portrait Viewer: View and search portraits from your mods."
-                                    "\nPortrait Replacer: Drag and drop portraits from the right pane to replace portraits on the left pane.",
+                                message: loc.portraitsViewerReplacerTooltip,
                                 child: ModeSwitcher(
                                   selected: controllerState.mode,
                                   modes: {
-                                    PortraitsMode.viewer: 'Viewer',
-                                    PortraitsMode.replacer: 'Replacer',
+                                    PortraitsMode.viewer: loc.portraitsViewer,
+                                    PortraitsMode.replacer:
+                                        loc.portraitsReplacer,
                                   },
                                   modeIcons: {
                                     PortraitsMode.viewer: const Icon(
@@ -471,13 +470,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                             ),
                             // if (!controllerState.inReplaceMode)
                             MovingTooltipWidget.text(
-                              message:
-                                  "Displays images that are *likely* to be portraits from the highest version of each mod."
-                                  "\n\nBecause mods may use any image as a portrait and load images dynamically in code, this is not an exact science, but best guesses."
-                                  "\nPortraits must be:"
-                                  "\n- Square"
-                                  "\n- Between 128x128 and 256x256"
-                                  "\n- An image file",
+                              message: loc.portraitsViewerInfoTooltip,
                               child: Padding(
                                 padding: const .only(left: 8, right: 8),
                                 child: Icon(Icons.info),
@@ -515,7 +508,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                                   child: TextButton.icon(
                                     icon: Icon(Icons.help, color: textColor),
                                     label: Text(
-                                      "Tutorial",
+                                      loc.portraitsTutorial,
                                       style: TextStyle(color: textColor),
                                     ),
                                     onPressed: () => showMyDialog(
@@ -530,16 +523,16 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                                             crossAxisAlignment: .start,
                                             children: [
                                               Text(
-                                                "How To Use",
+                                                loc.portraitsHowToUse,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20,
                                                 ),
                                               ),
                                               Text(
-                                                "On the left side are the portraits that you will see in-game."
-                                                "\nOn the right side is the $replacementPoolString - your options for replacing images on the left."
-                                                "\n\nGrab portraits from the right side and move them to the left side to replace what you see in-game.",
+                                                loc.portraitsHowToUseBody(
+                                                  replacementPoolString,
+                                                ),
                                               ),
                                               const SizedBox(height: 24),
                                               TriOSExpansionTile(
@@ -551,9 +544,9 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                                                   Padding(
                                                     padding: const .all(8.0),
                                                     child: Text(
-                                                      "A list of portraits to replace is saved as a json file (in the ${Constants.appName} data folder, which is synced one-way to the Companion Mod)."
-                                                      "\nThe ${Constants.appName} Companion Mod reads that file when you load your game, then swaps the portraits for that game session only."
-                                                      "\nIt does not change any mod files - replacement is all done in-memory, in-game.",
+                                                      loc.portraitsUnderTheHoodBody(
+                                                        Constants.appName,
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -639,7 +632,12 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                         Padding(
                           padding: const .only(left: 8, bottom: 6),
                           child: Text(
-                            '${total ?? "..."} images${total != visible ? " ($visible shown)" : ""}',
+                            total != visible
+                                ? loc.portraitsImagesCountWithShown(
+                                    total,
+                                    visible,
+                                  )
+                                : loc.portraitsImagesCount(total),
                             style: theme.textTheme.labelMedium?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(
                                 alpha: 0.8,
@@ -754,7 +752,9 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                                                 bottom: 4,
                                               ),
                                               child: Text(
-                                                '${leftFilteredImages.length} images',
+                                                loc.vramImagesCount(
+                                                  leftFilteredImages.length,
+                                                ),
                                                 style: theme
                                                     .textTheme
                                                     .labelSmall
@@ -844,7 +844,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                                               ),
                                               MovingTooltipWidget.text(
                                                 message:
-                                                    "Import custom images to use as portrait replacements",
+                                                    loc.portraitsImportCustomImages,
                                                 child: IconButton(
                                                   onPressed: () => ref
                                                       .read(
@@ -869,7 +869,9 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
                                                 bottom: 4,
                                               ),
                                               child: Text(
-                                                '${rightFilteredImages.length} images',
+                                                loc.vramImagesCount(
+                                                  rightFilteredImages.length,
+                                                ),
                                                 style: theme
                                                     .textTheme
                                                     .labelSmall
@@ -925,6 +927,7 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
   }
 
   Padding buildCompanionModWarningIcon(ThemeData theme, Mod? companionMod) {
+    final loc = AppLocalizations.of(context);
     return Padding(
       padding: const .all(0),
       child: Stack(
@@ -944,8 +947,8 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
           ),
           MovingTooltipWidget.text(
             message: companionMod == null
-                ? "${Constants.appName} Companion mod not found!\nPortrait Replacement will not work.\n\nClick to install it."
-                : "${Constants.appName} Companion mod is not enabled. Portrait replacements will not work.\n\nClick to enable it.",
+                ? loc.portraitsCompanionModNotFound(Constants.appName)
+                : loc.portraitsCompanionModNotEnabled(Constants.appName),
             child: IconButton(
               onPressed: () {
                 if (companionMod == null) {
@@ -1073,7 +1076,10 @@ class _PortraitsPageState extends ConsumerState<PortraitsPage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Replacement added: ${originalPortrait.imageFile.path.split('\\').last} -> ${randomPortrait.image.imageFile.path.split('\\').last}',
+              loc.portraitsReplacementAdded(
+                originalPortrait.imageFile.path.split('\\').last,
+                randomPortrait.image.imageFile.path.split('\\').last,
+              ),
             ),
             duration: const Duration(seconds: 3),
           ),
@@ -1269,7 +1275,11 @@ class ReplacementListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Original: ${originalPortrait.imageFile.path.split(Platform.pathSeparator).last ?? "Unknown"}',
+                    loc.portraitsOriginalFile(
+                      originalPortrait.imageFile.path
+                          .split(Platform.pathSeparator)
+                          .last,
+                    ),
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   if (originalExists)
@@ -1278,13 +1288,15 @@ class ReplacementListItem extends StatelessWidget {
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                   if (!originalExists)
-                    const Text(
-                      'Original file not found',
+                    Text(
+                      loc.portraitsOriginalFileNotFound,
                       style: TextStyle(color: Colors.red, fontSize: 12),
                     ),
                   const SizedBox(height: 4),
                   Text(
-                    'Replacement: ${replacementFile.path.split(Platform.pathSeparator).last}',
+                    loc.portraitsReplacementFile(
+                      replacementFile.path.split(Platform.pathSeparator).last,
+                    ),
                     style: TextStyle(color: fileExists ? null : Colors.red),
                   ),
                   Text(
@@ -1292,13 +1304,15 @@ class ReplacementListItem extends StatelessWidget {
                     style: const TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   if (!fileExists)
-                    const Text(
-                      'Replacement file not found',
+                    Text(
+                      loc.portraitsReplacementFileNotFound,
                       style: TextStyle(color: Colors.red, fontSize: 12),
                     ),
                   if (fileExists)
                     Text(
-                      'Size: ${replacementFile.lengthSync().bytesAsReadableKB()}',
+                      loc.portraitSizeLabel(
+                        replacementFile.lengthSync().bytesAsReadableKB(),
+                      ),
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                 ],
@@ -1312,26 +1326,26 @@ class ReplacementListItem extends StatelessWidget {
                     icon: const Icon(Icons.open_in_new),
                     onPressed: () =>
                         launchUrlString(originalPortrait.imageFile.path),
-                    tooltip: 'Open original image',
+                    tooltip: loc.portraitsOpenOriginalImage,
                   ),
                 if (fileExists)
                   IconButton(
                     icon: const Icon(Icons.open_in_new),
                     onPressed: () => launchUrlString(replacementPath),
-                    tooltip: 'Open replacement image',
+                    tooltip: loc.portraitsOpenReplacementImage,
                   ),
                 if (fileExists)
                   IconButton(
                     icon: const Icon(Icons.folder_open),
                     onPressed: () =>
                         launchUrlString(replacementFile.parent.path),
-                    tooltip: 'Open folder',
+                    tooltip: loc.portraitsOpenFolder,
                   ),
                 if (onDelete != null)
                   IconButton(
                     icon: const Icon(Icons.delete_outline, color: Colors.red),
                     onPressed: () => onDelete?.call(originalPortrait),
-                    tooltip: 'Remove replacement',
+                    tooltip: loc.portraitsRemoveReplacement,
                   ),
               ],
             ),

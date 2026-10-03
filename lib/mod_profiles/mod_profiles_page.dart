@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/audit_page.dart';
 import 'package:trios/mod_profiles/models/shared_mod_list.dart';
 import 'package:trios/mod_profiles/save_reader.dart';
@@ -89,11 +90,8 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                               builder: (context) {
                                 return AlertDialog(
                                   title: Text(loc.profileModProfiles),
-                                  content: const Text(
-                                    "Mod profiles are a way to quickly switch between different mods, including specific versions."
-                                    "\nWhen one is enabled, any mods you change will update the profile as well."
-                                    "\n"
-                                    "\n\nYou can also generate profiles from your saves.",
+                                  content: Text(
+                                    loc.profileModProfilesDescription,
                                   ),
                                   actions: [
                                     TextButton(
@@ -180,7 +178,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                       child: Row(
                         children: [
                           Text(
-                            'Save Games',
+                            loc.profileSaveGames,
                             style: Theme.of(
                               context,
                             ).textTheme.headlineSmall?.copyWith(fontSize: 20),
@@ -295,14 +293,14 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                           widget: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "No valid mod profile was found on your clipboard.",
+                              Text(
+                                loc.profileNoValidProfileOnClipboard,
                               ),
                               const SizedBox(height: 8.0),
                               Row(
                                 children: [
-                                  const Text(
-                                    "1. Export a profile by clicking the",
+                                  Text(
+                                    loc.profileExportStep1,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -327,8 +325,8 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                                   Text(loc.profileCopyButtonOnA),
                                 ],
                               ),
-                              const Text(
-                                "2. Paste the text to another TriOS user.",
+                              Text(
+                                loc.profilePasteStep2,
                               ),
                               Row(
                                 children: [
@@ -346,8 +344,8 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                                       height: 24,
                                     ),
                                   ),
-                                  const Text(
-                                    "Import Profile to use your profile.",
+                                  Text(
+                                    loc.profileImportToUse,
                                   ),
                                 ],
                               ),
@@ -365,9 +363,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                 ),
                 const SizedBox(width: 8),
                 MovingTooltipWidget.text(
-                  message:
-                      "Creates a new profile using your current mods."
-                      "\nDoes not set it to active.",
+                  message: loc.profileCreateNewProfileTooltip,
                   child: OutlinedButton.icon(
                     onPressed: () {
                       _onSubmittedNewProfile(newProfileNameController);
@@ -425,7 +421,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
         importedModList = SharedModListCodec.fromShareString(
           clipboardData.text!,
           fallbackProfileId: "shared-mod-list",
-          fallbackProfileName: "Shared Mod List",
+          fallbackProfileName: loc.profileSharedModListName,
         );
         // importedModList = SharedModListMapper.fromJson(clipboardData.text!);
       } catch (e) {
@@ -438,7 +434,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
 
       final originalId = importedModList.id as String?;
       final originalName =
-          importedModList.name as String? ?? 'Imported Profile';
+          importedModList.name as String? ?? loc.profileDefaultImportedName;
 
       // Check for existing profiles
       final existingProfiles =
@@ -540,7 +536,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                                       Expanded(
                                         flex: 2,
                                         child: Text(
-                                          'Mod',
+                                          loc.profileDiffHeaderMod,
                                           style: theme.textTheme.labelMedium
                                               ?.copyWith(
                                                 fontWeight: FontWeight.bold,
@@ -549,7 +545,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                                       ),
                                       Expanded(
                                         child: Text(
-                                          'Existing',
+                                          loc.mod_profilesExisting,
                                           style: theme.textTheme.labelMedium
                                               ?.copyWith(
                                                 fontWeight: FontWeight.bold,
@@ -559,7 +555,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
                                       const SizedBox(width: 8),
                                       Expanded(
                                         child: Text(
-                                          'Imported',
+                                          loc.mod_profilesImported,
                                           style: theme.textTheme.labelMedium
                                               ?.copyWith(
                                                 fontWeight: FontWeight.bold,
@@ -698,7 +694,7 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Successfully overwritten profile: ${modProfile.name}',
+              loc.profileSuccessfullyOverwritten(modProfile.name),
             ),
           ),
         );
@@ -736,16 +732,19 @@ class _ModProfilePageState extends ConsumerState<ModProfilePage>
     }
 
     // Try "Base Name (Copy)", "Base Name (Copy 2)", etc.
-    String copyName = '$baseName (Copy)';
+    final sync = AppLocalizationsSync.instance;
+    String copyName = sync.profileCopySuffix(baseName);
     if (!existingNames.contains(copyName)) {
       return copyName;
     }
 
     int counter = 2;
-    while (existingNames.contains('$baseName (Copy $counter)')) {
+    while (existingNames.contains(
+      sync.profileCopySuffixCount(baseName, counter),
+    )) {
       counter++;
     }
 
-    return '$baseName (Copy $counter)';
+    return sync.profileCopySuffixCount(baseName, counter);
   }
 }

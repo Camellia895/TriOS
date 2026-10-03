@@ -56,8 +56,8 @@ Future<bool?> _confirmReset(BuildContext context) {
     context: context,
     builder: (ctx) => AlertDialog(
       title: Text(loc.nav_reorder_menuResetNavOrder),
-      content: const Text(
-        'This restores the default order of the navigation icons.',
+      content: Text(
+        loc.nav_reorder_menuThisRestoresTheDefault,
       ),
       actions: [
         TextButton(

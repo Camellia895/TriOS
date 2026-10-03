@@ -106,7 +106,7 @@ class _DragDropHandlerState extends ConsumerState<DragDropHandler> {
               ref
                   .read(downloadManager.notifier)
                   .downloadAndInstallMod(
-                    "Web link download",
+                    loc.dragDropWebLinkDownload,
                     uri.uri.toString(),
                     activateVariantOnComplete: false,
                     sourceHint: null,
@@ -241,8 +241,8 @@ class _DragDropHandlerState extends ConsumerState<DragDropHandler> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: isGameRunning
-                                    ? const Text(
-                                        "Game is running. Close to install mods.",
+                                    ? Text(
+                                        loc.dragDropGameRunningClose,
                                       )
                                     : FutureBuilder(
                                         future: Future.wait(

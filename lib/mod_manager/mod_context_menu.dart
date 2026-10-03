@@ -229,6 +229,20 @@ const _colorPresets = <ColorPreset>[
   ('Rose', Color(0xFFEC407A)),
 ];
 
+/// The preset names above are data; the labels shown to the user are localized.
+String _localizedColorPresetName(AppLocalizations loc, String name) =>
+    switch (name) {
+      'Red' => loc.modContextMenuRed,
+      'Coral' => loc.modContextMenuCoral,
+      'Amber' => loc.modContextMenuAmber,
+      'Chartreuse' => loc.modContextMenuChartreuse,
+      'Emerald' => loc.modContextMenuEmerald,
+      'Sky' => loc.modContextMenuSky,
+      'Violet' => loc.modContextMenuViolet,
+      'Rose' => loc.modContextMenuRose,
+      _ => name,
+    };
+
 MenuItem _buildBulkColorSubmenu(
   List<Mod> selectedMods,
   WidgetRef ref,
@@ -263,7 +277,7 @@ MenuItem _buildBulkColorSubmenu(
       ),
       ..._colorPresets.map(
         (preset) => _ColorMenuItem(
-          label: preset.$1,
+          label: _localizedColorPresetName(loc, preset.$1),
           color: preset.$2,
           isSelected: allSameColor == preset.$2.toARGB32(),
           onSelected: () {
@@ -307,7 +321,7 @@ MenuItem _buildColorSubmenu(
       ),
       ..._colorPresets.map(
         (preset) => _ColorMenuItem(
-          label: preset.$1,
+          label: _localizedColorPresetName(loc, preset.$1),
           color: preset.$2,
           isSelected: currentColor?.toARGB32() == preset.$2.toARGB32(),
           onSelected: () {

@@ -366,11 +366,11 @@ class _ActivityPopupState extends ConsumerState<_ActivityPopup>
                           child: Text(
                             entries.isEmpty
                                 ? (isDownloading
-                                      ? 'Downloading...'
-                                      : 'Installing...')
+                                      ? loc.activityIconDownloading
+                                      : loc.activityIconInstalling)
                                 : entries.length == 1
-                                ? 'Mod installed'
-                                : 'Mods installed',
+                                ? loc.activityIconModInstalled
+                                : loc.activityIconModsInstalled,
                             style: theme.textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                             ),

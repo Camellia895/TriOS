@@ -55,7 +55,7 @@ class SelfUpdateToast extends ConsumerWidget {
                       children: [
                         Text(loc.toastNewAppVersion(Constants.appName)),
                         Text(
-                          "${latestRelease.tagName} is now available!",
+                          loc.toastVersionNowAvailable(latestRelease.tagName),
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                         Row(

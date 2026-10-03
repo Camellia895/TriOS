@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:path/path.dart' as p;
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/utils/dart_mappable_utils.dart';
@@ -172,12 +173,13 @@ class Faction with FactionMappable implements WispGridItem {
     if (sources.isEmpty) return '';
     final adder = addedBy;
     final modifiers = modifiedBy.map((s) => s.name).join(', ');
+    final loc = AppLocalizationsSync.instance;
     return [
       if (adder != null)
-        'Added by: ${adder.name}'
+        loc.factionProfileDialogAddedBy(adder.name)
       else
-        'Not added by any enabled mod. It may belong to a disabled mod.',
-      if (modifiers.isNotEmpty) 'Modified by: $modifiers',
+        loc.factionProfileDialogNotAddedByEnabledMod,
+      if (modifiers.isNotEmpty) loc.factionViewerModifiedBy(modifiers),
     ].join('\n');
   }
 

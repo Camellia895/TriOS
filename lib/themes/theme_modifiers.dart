@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:trios/utils/dart_mappable_utils.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 part 'theme_modifiers.mapper.dart';
 
@@ -50,7 +51,7 @@ enum AppFont {
   comicSans;
 
   String get label => switch (this) {
-    AppFont.system => 'System',
+    AppFont.system => AppLocalizationsSync.instance.themeFontSystem,
     AppFont.roboto => 'Roboto',
     AppFont.inter => 'Inter',
     AppFont.openSans => 'Open Sans',
@@ -68,9 +69,9 @@ enum GlitterLocation {
   tooltip;
 
   String get label => switch (this) {
-    GlitterLocation.sidebar => 'Sidebar',
-    GlitterLocation.toolbar => 'Toolbar',
-    GlitterLocation.tooltip => 'Tooltips',
+    GlitterLocation.sidebar => AppLocalizationsSync.instance.themeGlitterSidebar,
+    GlitterLocation.toolbar => AppLocalizationsSync.instance.themeGlitterToolbar,
+    GlitterLocation.tooltip => AppLocalizationsSync.instance.themeGlitterTooltips,
   };
 }
 
@@ -88,15 +89,16 @@ enum BackgroundStyle {
   circuitry;
 
   String get label => switch (this) {
-    BackgroundStyle.motes => 'Motes',
-    BackgroundStyle.starfield => 'Starfield',
-    BackgroundStyle.nebula => 'Nebula',
-    BackgroundStyle.constellation => 'Constellation',
-    BackgroundStyle.embers => 'Embers',
-    BackgroundStyle.aurora => 'Aurora',
-    BackgroundStyle.rain => 'Rain',
-    BackgroundStyle.radar => 'Radar',
-    BackgroundStyle.circuitry => 'Circuitry',
+    BackgroundStyle.motes => AppLocalizationsSync.instance.themeBackgroundMotes,
+    BackgroundStyle.starfield => AppLocalizationsSync.instance.themeBackgroundStarfield,
+    BackgroundStyle.nebula => AppLocalizationsSync.instance.themeBackgroundNebula,
+    BackgroundStyle.constellation =>
+        AppLocalizationsSync.instance.themeBackgroundConstellation,
+    BackgroundStyle.embers => AppLocalizationsSync.instance.themeBackgroundEmbers,
+    BackgroundStyle.aurora => AppLocalizationsSync.instance.themeBackgroundAurora,
+    BackgroundStyle.rain => AppLocalizationsSync.instance.themeBackgroundRain,
+    BackgroundStyle.radar => AppLocalizationsSync.instance.themeBackgroundRadar,
+    BackgroundStyle.circuitry => AppLocalizationsSync.instance.themeBackgroundCircuitry,
   };
 }
 

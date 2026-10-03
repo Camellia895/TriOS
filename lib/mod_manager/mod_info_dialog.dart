@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:trios/catalog/models/forum_mod_index.dart';
 import 'package:trios/catalog/models/mod_repo_entry.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/mod_records/mod_record.dart';
@@ -76,7 +77,9 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
 
   String get _modName {
     final variant = widget.mod?.findFirstEnabledOrHighestVersion;
-    return variant?.modInfo.name ?? widget.catalogMod?.name ?? "(unknown)";
+    return variant?.modInfo.name ??
+        widget.catalogMod?.name ??
+        AppLocalizationsSync.instance.modInfoDialogUnknown;
   }
 
   String? get _author {
@@ -226,7 +229,9 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
                       ModTypeIcon(modVariant: _variant!),
                       const SizedBox(width: 4),
                       Text(
-                        isTotalConversion ? "Total Conversion" : "Utility Mod",
+                        isTotalConversion
+                        ? loc.modInfoDialogTotalConversion
+                        : loc.modInfoDialogUtilityMod,
                         style: paletteTheme.textTheme.bodySmall,
                       ),
                     ],
@@ -256,6 +261,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
   // ───────────────────── LINK BUTTONS ─────────────────────
 
   Widget? _buildLinkButtons(ThemeData theme) {
+    final loc = AppLocalizations.of(context);
     // Addresses come from the mod's saved record, which already merges what
     // TriOS found automatically with anything the user typed into the Mod
     // Sources dialog. The raw version checker and catalog data are the
@@ -282,7 +288,8 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
     final downloadedFrom = record?.downloadedFrom;
 
     final links = <LabeledIconLink>[
-      if (forumUrl.isNotNullOrEmpty()) ("Forum", Icons.forum, forumUrl!),
+      if (forumUrl.isNotNullOrEmpty())
+        (loc.catalogForum, Icons.forum, forumUrl!),
       if (nexusUrl.isNotNullOrEmpty()) ("NexusMods", Icons.store, nexusUrl!),
       if (changelogUrl.isNotNullOrEmpty())
         ("Changelog", Icons.history, changelogUrl!),
@@ -290,7 +297,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
         ("Download", Icons.download, downloadUrl!),
       if (discordUrl.isNotNullOrEmpty()) ("Discord", Icons.discord, discordUrl!),
       if (downloadedFrom.isNotNullOrEmpty())
-        ("Downloaded from", Icons.link, downloadedFrom!),
+        (loc.modInfoDialogDownloadedFrom, Icons.link, downloadedFrom!),
     ];
 
     if (links.isEmpty) return null;
@@ -435,8 +442,8 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
           _buildCardSection(
             theme,
             title: variants.length > 1
-                ? "Installed Versions"
-                : "Installed Version",
+                ? loc.modInfoDialogInstalledVersions
+                : loc.modInfoDialogInstalledVersion,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 16,
@@ -477,8 +484,8 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
         final label = cmp < 0
             ? (comparison.remoteVersionCheck?.remoteVersion?.modVersion
                       ?.toString() ??
-                  "Available")
-            : "Up to date";
+                  loc.modInfoDialogAvailable)
+            : loc.modInfoDialogUpToDate;
         children.add(
           _buildCardSection(
             theme,
@@ -533,6 +540,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
   Widget? _buildDependentsContent(ThemeData theme) {
     final variant = _variant;
     if (variant == null) return null;
+    final loc = AppLocalizations.of(context);
 
     final modVariants = ref.watch(AppState.modVariants).value;
     final enabledMods = ref
@@ -565,14 +573,14 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
       children: [
         if (enabled.isNotEmpty)
           Text(
-            "  Enabled: ${enabled.map((m) => m.findFirstEnabledOrHighestVersion?.modInfo.name ?? m.id).join(", ")}",
+            "  ${loc.modInfoDialogEnabledList(enabled.map((m) => m.findFirstEnabledOrHighestVersion?.modInfo.name ?? m.id).join(", "))}",
             style: theme.textTheme.bodyMedium,
           ),
         if (disabled.isNotEmpty)
           Opacity(
             opacity: 0.7,
             child: Text(
-              "  Disabled: ${disabled.map((m) => m.findFirstEnabledOrHighestVersion?.modInfo.name ?? m.id).join(", ")}",
+              "  ${loc.modInfoDialogDisabledList(disabled.map((m) => m.findFirstEnabledOrHighestVersion?.modInfo.name ?? m.id).join(", "))}",
               style: theme.textTheme.bodyMedium,
             ),
           ),
@@ -595,22 +603,30 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
     final isMuted = modMetadata.areUpdatesMuted;
     final mutedVersion = modMetadata.mutedUpdateVersion;
     final updatesStatus = isMuted
-        ? 'Muted'
+        ? loc.modInfoDialogMuted
         : mutedVersion != null
-        ? '$mutedVersion muted'
-        : 'Unmuted';
+        ? loc.modInfoDialogVersionMuted(mutedVersion)
+        : loc.modInfoDialogUnmuted;
 
     return Wrap(
       spacing: 24,
       runSpacing: 4,
       children: [
         Text(
-          "First seen: ${dateFormat.format(DateTime.fromMillisecondsSinceEpoch(modMetadata.firstSeen))}",
+          loc.modInfoDialogFirstSeenDate(
+            dateFormat.format(
+              DateTime.fromMillisecondsSinceEpoch(modMetadata.firstSeen),
+            ),
+          ),
           style: theme.textTheme.bodyMedium,
         ),
         if (modMetadata.lastEnabled != null)
           Text(
-            "Last enabled: ${dateFormat.format(DateTime.fromMillisecondsSinceEpoch(modMetadata.lastEnabled!))}",
+            loc.modInfoDialogLastEnabledDate(
+              dateFormat.format(
+                DateTime.fromMillisecondsSinceEpoch(modMetadata.lastEnabled!),
+              ),
+            ),
             style: theme.textTheme.bodyMedium,
           ),
         Text(
@@ -671,14 +687,14 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
 
     final dateFormat = DateFormat.yMMMd();
     final rows = <LabelValue>[
-      ("Views", NumberFormat.compact().format(forum.views)),
-      ("Replies", NumberFormat.compact().format(forum.replies)),
+      (loc.modInfoDialogViews, NumberFormat.compact().format(forum.views)),
+      (loc.modInfoDialogReplies, NumberFormat.compact().format(forum.replies)),
       if (forum.lastPostDate != null)
-        ("Last Post", dateFormat.format(forum.lastPostDate!)),
+        (loc.modInfoDialogLastPost, dateFormat.format(forum.lastPostDate!)),
       if (forum.createdDate != null)
-        ("Created", dateFormat.format(forum.createdDate!)),
-      if (forum.category != null) ("Board", forum.category!),
-      ("WIP", forum.isWip ? "Yes" : "No"),
+        (loc.modInfoDialogCreated, dateFormat.format(forum.createdDate!)),
+      if (forum.category != null) (loc.modInfoDialogBoard, forum.category!),
+      ("WIP", forum.isWip ? loc.modInfoDialogYes : loc.modInfoDialogNo),
     ];
 
     return _SectionCard(
@@ -765,7 +781,9 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
           // Enable/Disable
           if (isEnabled)
             MovingTooltipWidget.text(
-              message: isGameRunning ? "Game is running" : "Disable this mod",
+              message: isGameRunning
+                  ? loc.launcherGameIsRunning
+                  : loc.modInfoDialogDisableThisMod,
               child: OutlinedButton.icon(
                 icon: const Icon(Icons.toggle_off, size: 18),
                 label: Text(loc.triosDisable),
@@ -781,7 +799,9 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
             )
           else if (variants.length == 1)
             MovingTooltipWidget.text(
-              message: isGameRunning ? "Game is running" : "Enable this mod",
+              message: isGameRunning
+                  ? loc.launcherGameIsRunning
+                  : loc.triosEnableThisMod,
               child: FilledButton.icon(
                 icon: const Icon(Icons.toggle_on, size: 18),
                 label: Text(loc.appEnable),
@@ -800,7 +820,9 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
             )
           else
             MovingTooltipWidget.text(
-              message: isGameRunning ? "Game is running" : "Enable a version",
+              message: isGameRunning
+                  ? loc.launcherGameIsRunning
+                  : loc.modInfoDialogEnableAVersion,
               child: MenuAnchor(
                 menuChildren: variants.map((v) {
                   return MenuItemButton(
@@ -853,7 +875,7 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
                 variant: ModDownloadButtonVariant.filledTonal,
                 icon: const Icon(Icons.update, size: 18),
                 label: Text(loc.modInfoDialogUpdate),
-                tooltip: "Update available",
+                tooltip: loc.catalogUpdateAvailable,
                 onPressed: directUrl == null
                     ? null
                     : () {
@@ -902,7 +924,9 @@ class _ModInfoDialogState extends ConsumerState<ModInfoDialog>
 
           // Delete
           MovingTooltipWidget.text(
-            message: isGameRunning ? "Game is running" : "Delete this mod",
+            message: isGameRunning
+                  ? loc.launcherGameIsRunning
+                  : loc.modInfoDialogDeleteThisMod,
             child: OutlinedButton.icon(
               icon: Icon(
                 Icons.delete,

@@ -99,9 +99,8 @@ class BugReportButton extends ConsumerWidget {
         ref.watch(appSettings.select((s) => s.allowCrashReporting)) ?? false;
     return MovingTooltipWidget.text(
       message: allowSentry
-          ? "Report a bug"
-          : "You must enable 'Allow Crash Reporting' in Settings to report bugs."
-                "\nThis icon may be hidden on the Settings page.",
+          ? loc.app_action_buttonsReportABug
+          : loc.app_action_buttonsYouMustEnableAllowReporting,
       child: Disable(
         isEnabled: allowSentry,
         child: IconButton(
@@ -124,8 +123,7 @@ class BugReportButton extends ConsumerWidget {
               showAlertDialog(
                 context,
                 title: loc.mod_list_basicAreYouSure,
-                content:
-                    "Continuing will send a bug report. You will be able to enter additional details about the issue on the next page.",
+                content: loc.app_action_buttonsContinuingWillSendA,
                 actions: [
                   TextButton(
                     child: Text(loc.commonCancel),
@@ -134,8 +132,10 @@ class BugReportButton extends ConsumerWidget {
                     },
                   ),
                   TextButton(
-                    child: const Text(
-                      'I want to report a ${Constants.appName} bug',
+                    child: Text(
+                      loc.app_action_buttonsIWantToReportA(
+                        Constants.appName,
+                      ),
                     ),
                     onPressed: () async {
                       Navigator.of(context).pop();
@@ -201,8 +201,8 @@ class ToolbarLayoutToggle extends ConsumerWidget {
       },
       child: MovingTooltipWidget.text(
         message: useTopToolbar
-            ? "Switch to sidebar layout"
-            : "Switch to top toolbar layout",
+            ? loc.app_action_buttonsSwitchToSidebarLayout
+            : loc.app_action_buttonsSwitchToTopToolbarLayout,
         child: IconButton(
           icon: Transform.flip(
             flipX: true,
@@ -368,12 +368,13 @@ class RulesHotReloadButton extends ConsumerWidget {
     final isRulesHotReloadEnabled = ref.watch(
       appSettings.select((value) => value.isRulesHotReloadEnabled),
     );
+    final loc = AppLocalizations.of(context);
 
     return MovingTooltipWidget.text(
       message:
-          "When enabled, modifying a mod's rules.csv will\nreload in-game rules as long as dev mode is enabled."
-          "\n\nrules.csv hot reload is ${isRulesHotReloadEnabled ? "enabled" : "disabled"}."
-          "\nClick to ${isRulesHotReloadEnabled ? "disable" : "enable"}.",
+          "${loc.app_action_buttonsWhenEnabledModifyingA}"
+          "\n\n${loc.app_action_buttonsRulesHotReloadIs(isRulesHotReloadEnabled ? loc.vramEnabled : loc.vramDisabled)}"
+          "\n${loc.app_action_buttonsClickTo(isRulesHotReloadEnabled ? loc.triosDisable : loc.triosEnable)}",
       child: InkWell(
         borderRadius: BorderRadius.circular(TriOSThemeConstants.cornerRadius),
         onTap: () => ref
@@ -440,7 +441,7 @@ class _DebugTooltipContent extends ConsumerWidget {
           Text(loc.catalogDebugInfo, style: theme.textTheme.titleSmall),
           const SizedBox(height: 8),
           Text(
-            "Game Detection",
+            loc.app_action_buttonsGameDetection,
             style: labelStyle?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 4),
@@ -449,14 +450,46 @@ class _DebugTooltipContent extends ConsumerWidget {
           else if (diagnostics == null)
             Text(loc.app_action_buttonsNotYetDetecting, style: labelStyle)
           else ...[
-            _row("Starsector", diagnostics.wasGameRunning ? "Running" : "Not running", labelStyle, valueStyle),
-            _row("Matched by", diagnostics.matchedDetectorName ?? "None", labelStyle, valueStyle),
-            _row("Detectors", diagnostics.detectorNames.join(", "), labelStyle, valueStyle),
-            _row("Check Duration", "${diagnostics.checkDuration.inMilliseconds} ms", labelStyle, valueStyle),
+            _row(
+              "Starsector",
+              diagnostics.wasGameRunning
+                  ? loc.app_action_buttonsRunning
+                  : loc.app_action_buttonsNotRunning,
+              labelStyle,
+              valueStyle,
+            ),
+            _row(
+              loc.app_action_buttonsMatchedBy,
+              diagnostics.matchedDetectorName ?? "None",
+              labelStyle,
+              valueStyle,
+            ),
+            _row(
+              loc.app_action_buttonsDetectors,
+              diagnostics.detectorNames.join(", "),
+              labelStyle,
+              valueStyle,
+            ),
+            _row(
+              loc.app_action_buttonsCheckDuration,
+              "${diagnostics.checkDuration.inMilliseconds} ms",
+              labelStyle,
+              valueStyle,
+            ),
             if (diagnostics.runInterval != null)
-              _row("Period", "${diagnostics.runInterval!.inMilliseconds} ms (${(60000 / diagnostics.runInterval!.inMilliseconds).toStringAsFixed(1)}/min)", labelStyle, valueStyle),
+              _row(
+                loc.app_action_buttonsPeriod,
+                "${diagnostics.runInterval!.inMilliseconds} ms (${(60000 / diagnostics.runInterval!.inMilliseconds).toStringAsFixed(1)}/min)",
+                labelStyle,
+                valueStyle,
+              ),
             if (diagnostics.errors.isNotEmpty)
-              _row("Errors", diagnostics.errors.map((e) => e.toString()).join("; "), labelStyle, valueStyle?.copyWith(color: theme.colorScheme.error)),
+              _row(
+                loc.app_action_buttonsErrors,
+                diagnostics.errors.map((e) => e.toString()).join("; "),
+                labelStyle,
+                valueStyle?.copyWith(color: theme.colorScheme.error),
+              ),
           ],
         ],
       ),

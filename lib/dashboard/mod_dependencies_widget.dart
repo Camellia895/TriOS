@@ -61,7 +61,7 @@ class _ModDependenciesWidgetState extends ConsumerState<ModDependenciesWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Required game version",
+          loc.mod_dependenciesRequiredGameVersion,
           style: theme.textTheme.labelMedium?.copyWith(
             color: theme.disabledColor,
           ),
@@ -80,7 +80,7 @@ class _ModDependenciesWidgetState extends ConsumerState<ModDependenciesWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Original game version",
+                loc.mod_dependenciesOriginalGameVersion,
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: TriOSThemeConstants.vanillaWarningColor.withOpacity(0.8),
                 ),
@@ -97,7 +97,7 @@ class _ModDependenciesWidgetState extends ConsumerState<ModDependenciesWidget> {
             ],
           ),
         Text(
-          "Game version",
+          loc.mod_dependenciesGameVersion,
           style: theme.textTheme.labelMedium?.copyWith(
             color: theme.disabledColor,
           ),
@@ -108,7 +108,7 @@ class _ModDependenciesWidgetState extends ConsumerState<ModDependenciesWidget> {
         ),
         if (widget.compatWithGame == GameCompatibility.incompatible)
           Text(
-            "Error: this mod requires a different version of the game.",
+            loc.mod_dependenciesErrorThisModRequires,
             style: theme.textTheme.labelMedium?.copyWith(
               color: widget.compatTextColor,
             ),
@@ -131,11 +131,11 @@ class _ModDependenciesWidgetState extends ConsumerState<ModDependenciesWidget> {
                 padding: const EdgeInsets.only(left: 8),
                 child: Text(
                   "${dep.name ?? dep.id} ${dep.version?.toString().append(" ") ?? ""}${switch (dependencyState) {
-                    Satisfied _ => "(found ${dependencyState.modVariant?.modInfo.version})",
-                    Missing _ => "(missing)",
-                    Disabled _ => "(disabled: ${dependencyState.modVariant?.modInfo.version})",
-                    VersionInvalid _ => "(wrong version: ${dependencyState.modVariant?.modInfo.version})",
-                    VersionWarning _ => "(found: ${dependencyState.modVariant?.modInfo.version})",
+                    Satisfied _ => loc.mod_dependenciesFound("${dependencyState.modVariant?.modInfo.version}"),
+                    Missing _ => loc.mod_dependenciesMissing,
+                    Disabled _ => loc.mod_dependenciesDisabled("${dependencyState.modVariant?.modInfo.version}"),
+                    VersionInvalid _ => loc.mod_dependenciesWrongVersion("${dependencyState.modVariant?.modInfo.version}"),
+                    VersionWarning _ => loc.mod_dependenciesFoundWarning("${dependencyState.modVariant?.modInfo.version}"),
                   }}",
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: switch (dependencyState) {
@@ -159,7 +159,7 @@ class _ModDependenciesWidgetState extends ConsumerState<ModDependenciesWidget> {
                   is VersionWarning,
         ))
           Text(
-            "Warning: this mod requires a different version of a mod that you have installed, but might run with this one.",
+            loc.mod_dependenciesWarningThisModRequires,
             style: theme.textTheme.labelMedium?.copyWith(
               color: TriOSThemeConstants.vanillaErrorColor,
             ),

@@ -62,8 +62,10 @@ class _AprilFools2026ToastState extends ConsumerState<AprilFools2026Toast> {
                     children: [
                       Text(
                         _showSecondPhase
-                            ? "Ok, it's actually an April Fool's joke. It's completely offline and harmless, promise."
-                            : "New! ${Constants.chatbotName} is now available in TriOS.",
+                            ? loc.aprilFoolsActuallyJoke
+                            : loc.aprilFoolsChatbotAvailable(
+                                Constants.chatbotName,
+                              ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 8),

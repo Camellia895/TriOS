@@ -3,6 +3,7 @@ import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html_parser;
 import 'package:trios/catalog/forum_post_dialog/inline_span_builder.dart';
 import 'package:trios/catalog/forum_post_dialog/spoiler_block.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 
 /// Parses [html] and returns a list of block-level Flutter widgets styled
 /// against the current theme. Designed for SMF BBC-output (fractalsoftworks
@@ -448,7 +449,7 @@ Widget _renderSpoiler(
 ) {
   // SMF structure: sp-wrap > (sp-head, sp-body [folded]) ; sp-foot lives
   // inside sp-body as the close affordance.
-  String label = 'Spoiler';
+  String label = AppLocalizations.of(context).catalogSpoiler;
   dom.Element? bodyEl;
   for (final child in el.children) {
     final cls = child.className;
@@ -509,7 +510,7 @@ Widget _renderIframePlaceholder(
             const SizedBox(width: 8),
             Flexible(
               child: Text(
-                'Embedded video · $label',
+                AppLocalizations.of(context).catalogEmbeddedVideo(label),
                 style: theme.textTheme.bodyMedium,
                 overflow: TextOverflow.ellipsis,
               ),

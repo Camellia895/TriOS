@@ -60,6 +60,7 @@ class ModCompatibilityIntent extends ChatIntent with ModAwareIntent {
     final guard = guardModData();
     if (guard != null) return guard;
 
+    final loc = AppLocalizationsSync.instance;
     final compatibility = modCompatibility;
     final enabledMods = mods.where((m) => m.isEnabledInGame).toList();
     final issueEntries = <String>[];
@@ -75,15 +76,19 @@ class ModCompatibilityIntent extends ChatIntent with ModAwareIntent {
 
       if (!check.isGameCompatible) {
         problems.add(
-          '    - Game version: incompatible '
-          '(requires ${variant.modInfo.gameVersion ?? "unknown"}, '
-          'game is ${starsectorVersion ?? "unknown"})',
+          '    - ' +
+              loc.chatbotCompatGameVersionIncompatible(
+                variant.modInfo.gameVersion ?? loc.chatbotValueUnknown,
+                starsectorVersion ?? loc.chatbotValueUnknown,
+              ),
         );
       } else if (check.gameCompatibility == GameCompatibility.warning) {
         problems.add(
-          '    - Game version: may be incompatible '
-          '(mod targets ${variant.modInfo.gameVersion ?? "unknown"}, '
-          'game is ${starsectorVersion ?? "unknown"})',
+          '    - ' +
+              loc.chatbotCompatGameVersionWarning(
+                variant.modInfo.gameVersion ?? loc.chatbotValueUnknown,
+                starsectorVersion ?? loc.chatbotValueUnknown,
+              ),
         );
       }
 
@@ -92,13 +97,15 @@ class ModCompatibilityIntent extends ChatIntent with ModAwareIntent {
         final depName = depCheck.dependency.nameOrId;
         final state = depCheck.satisfiedAmount;
         if (state is Missing) {
-          problems.add('    - Missing dependency: $depName');
+          problems.add('    - ' + loc.chatbotIssueMissingDependency(depName));
         } else if (state is Disabled) {
-          problems.add('    - Disabled dependency: $depName');
+          problems.add('    - ' + loc.chatbotIssueDisabledDependency(depName));
         } else if (state is VersionWarning) {
-          problems.add('    - Version mismatch: $depName');
+          problems.add('    - ' + loc.chatbotIssueVersionMismatch(depName));
         } else if (state is VersionInvalid) {
-          problems.add('    - Incompatible version: $depName');
+          problems.add(
+            '    - ' + loc.chatbotIssueIncompatibleVersion(depName),
+          );
         }
       }
 
@@ -117,7 +124,7 @@ class ModCompatibilityIntent extends ChatIntent with ModAwareIntent {
     }
 
     final buf = StringBuffer(
-      'Compatibility Issues (${issueEntries.length} mod(s) affected)\n',
+      loc.chatbotCompatTitle(issueEntries.length) + '\n',
     );
     buf.writeAll(issueEntries, '\n');
 

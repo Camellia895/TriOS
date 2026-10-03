@@ -316,16 +316,16 @@ class FactionCard extends ConsumerWidget {
       spacing: 12,
       alignment: WrapAlignment.start,
       children: [
-        _stat(loc.factionCardStatShips, faction.knownShipIds.length, theme),
-        _stat(loc.factionCardStatWpns, faction.knownWeaponIds.length, theme),
-        _stat(loc.factionCardStatMods, faction.knownHullModIds.length, theme),
+        _stat(loc, loc.factionCardStatShips, faction.knownShipIds.length, theme),
+        _stat(loc, loc.factionCardStatWpns, faction.knownWeaponIds.length, theme),
+        _stat(loc, loc.factionCardStatMods, faction.knownHullModIds.length, theme),
       ],
     );
   }
 
-  Widget _stat(String label, int value, ThemeData theme) {
+  Widget _stat(AppLocalizations loc, String label, int value, ThemeData theme) {
     return Text(
-      '$label: $value',
+      loc.commonLabelValue(label, value.toString()),
       style: theme.textTheme.labelSmall?.copyWith(
         fontFeatures: [const FontFeature.tabularFigures()],
       ),

@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/sector_map/models/sector.dart';
 import 'package:trios/sector_map/widgets/sector_map_painter.dart';
 import 'package:trios/widgets/tooltip_frame.dart';
@@ -241,6 +242,7 @@ class _SectorMapCanvasState extends State<SectorMapCanvas> {
   Widget _buildTooltip(BuildContext context) {
     final s = widget.sector.systems.firstWhere((e) => e.id == _hoveredId);
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     // position near cursor, clamped within the viewport
     const w = 220.0;
     final left = (_cursor.dx + 16)
@@ -280,7 +282,7 @@ class _SectorMapCanvasState extends State<SectorMapCanvas> {
                 const SizedBox(height: 4),
                 if (s.markets.isEmpty)
                   Text(
-                    'Uninhabited',
+                    loc.sectorMapUninhabited,
                     style: theme.textTheme.bodySmall?.copyWith(
                       fontStyle: FontStyle.italic,
                     ),
@@ -306,7 +308,7 @@ class _SectorMapCanvasState extends State<SectorMapCanvas> {
                           ),
                         ),
                         Text(
-                          'size ${m.size}',
+                          loc.sectorMapSizeLabel(m.size),
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.onSurface.withValues(
                               alpha: 0.6,

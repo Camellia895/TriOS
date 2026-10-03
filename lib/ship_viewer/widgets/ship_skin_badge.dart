@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
 /// Small "Skin" tag shown next to a ship's name when it came from a `.skin`
@@ -9,6 +10,7 @@ class ShipSkinBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Container(
       padding: const .symmetric(horizontal: 4, vertical: 1),
       decoration: BoxDecoration(
@@ -16,11 +18,9 @@ class ShipSkinBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       child: MovingTooltipWidget.text(
-        message:
-            "This ship comes from a .skin file."
-            "\nSkins are variations of standard hulls. For example, the Falcon (P) is a skin of the Falcon.",
+        message: loc.shipsSkinBadgeTooltip,
         child: Text(
-          'Skin',
+          loc.shipsSkin,
           style: theme.textTheme.labelSmall?.copyWith(
             color: theme.colorScheme.onSecondaryContainer,
             fontSize: 10,

@@ -56,16 +56,21 @@ class ListProfilesIntent extends ChatIntent with ProfileAwareIntent {
       );
     }
 
+    final loc = AppLocalizationsSync.instance;
     final active = currentProfile;
     final buf = StringBuffer(
-      'Mod Profiles (${profiles.modProfiles.length})\n',
+      loc.chatbotModProfilesTitle(profiles.modProfiles.length) + '\n',
     );
 
     for (final p in profiles.modProfiles) {
       final isActive = active != null && p.id == active.id;
-      final marker = isActive ? ' ← active' : '';
+      final marker = isActive ? loc.chatbotProfileActiveMarker : '';
       buf.writeln(
-        '  ${p.name} (${p.enabledModVariants.length} mods)$marker',
+        loc.chatbotProfileEntry(
+          p.name,
+          p.enabledModVariants.length,
+          marker,
+        ),
       );
       if (p.description.isNotEmpty) {
         buf.writeln('    ${p.description}');

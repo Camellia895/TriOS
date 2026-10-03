@@ -6,6 +6,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/thirdparty/dartx/iterable.dart';
 import 'package:trios/trios/app_state.dart';
@@ -44,7 +45,9 @@ class VramEstimatorPage extends ConsumerStatefulWidget {
   static String buildHeaviestImagesTable(
     List<ModImageView> topTenLargestImagesByVram,
   ) {
-    if (topTenLargestImagesByVram.isEmpty) return 'No images.';
+    if (topTenLargestImagesByVram.isEmpty) {
+      return AppLocalizationsSync.instance.vramNoImages;
+    }
 
     // Determine max column widths
     int maxFileNameLength = 0;
@@ -100,13 +103,13 @@ class VramEstimatorPage extends ConsumerStatefulWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Images Estimated to Use the Most VRAM ',
+          AppLocalizationsSync.instance.vramTopImagesTitle,
           style: theme.textTheme.labelLarge?.copyWith(
             fontWeight: FontWeight.w500,
           ),
         ),
         Text(
-          "Note: Image dimensions in VRAM are usually bigger than actual.",
+          AppLocalizationsSync.instance.vramTopImagesNote,
           style: theme.textTheme.labelMedium,
         ),
         const SizedBox(height: 4),

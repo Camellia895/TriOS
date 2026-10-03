@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/compression/archive.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/batch_installation/batch_installation.dart';
 import 'package:trios/mod_manager/batch_installation/batch_pre_scanner.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
@@ -560,7 +561,8 @@ class BatchInstallationNotifier extends Notifier<BatchInstallation?> {
         0,
         0,
         isIndeterminate: true,
-        customStatus: "Finalizing...",
+        customStatus:
+            AppLocalizationsSync.instance.batchInstallationNotifierFinalizing,
       );
       // Only reload the folders this entry installed into — a full rescan per
       // entry races concurrent extractions and is wasted work.

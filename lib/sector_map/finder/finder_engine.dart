@@ -1,8 +1,10 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/sector_map/finder/finder_catalog.dart';
 import 'package:trios/sector_map/finder/finder_criteria.dart';
+import 'package:trios/sector_map/finder/widgets/finder_panel.dart';
 import 'package:trios/sector_map/models/sector.dart';
 
 /// Hyperspace units per light-year (vanilla `settings.json`).
@@ -245,6 +247,7 @@ class FinderEngine {
   /// by how many matches they'd unlock (most first).
   List<BottleneckHint> bottleneck(FinderCriteria c) {
     final hints = <BottleneckHint>[];
+    final loc = AppLocalizationsSync.instance;
 
     void probe(String label, FinderCriteria relaxed) {
       final n = matchCount(relaxed);
@@ -252,37 +255,48 @@ class FinderEngine {
     }
 
     if (c.mustBeHabitable) {
-      probe('Habitable', c.copyWith(mustBeHabitable: false));
+      probe(loc.finderBottleneckHabitable, c.copyWith(mustBeHabitable: false));
     }
     if (c.mustHaveGasGiant) {
-      probe('Gas giant', c.copyWith(mustHaveGasGiant: false));
+      probe(loc.finderBottleneckGasGiant, c.copyWith(mustHaveGasGiant: false));
     }
     if (c.excludeColonized) {
-      probe('Unclaimed only', c.copyWith(excludeColonized: false));
+      probe(loc.finderBottleneckUnclaimedOnly, c.copyWith(excludeColonized: false));
     }
     if (c.minStableLocations > 0) {
-      probe('Stable locations', c.copyWith(minStableLocations: 0));
+      probe(
+        loc.finderBottleneckStableLocations,
+        c.copyWith(minStableLocations: 0),
+      );
     }
     if (c.maxDistanceFromCoreLy != null) {
       probe(
-        'Distance from core',
+        loc.finderBottleneckDistanceFromCore,
         c.copyWith(maxDistanceFromCoreLy: null),
       );
     }
     for (final entry in c.resources.entries) {
       if (entry.value.minTier == null) continue;
       final family = resourceFamilyById(entry.key);
-      final label = family?.label ?? entry.key;
+      final label = family != null
+          ? resourceFamilyLabel(loc, family)
+          : entry.key;
       final relaxedResources = Map<String, ResourceCriterion>.from(c.resources);
       relaxedResources[entry.key] = ResourceCriterion(
         weight: entry.value.weight,
       );
-      probe('$label floor', c.copyWith(resources: relaxedResources));
+      probe(
+        loc.finderBottleneckResourceFloor(label),
+        c.copyWith(resources: relaxedResources),
+      );
     }
     for (final typeId in c.requiredLandmarks.toList()) {
       final label = kLandmarkLabels[typeId] ?? typeId;
       final relaxed = Map<String, bool>.from(c.landmarkNearby)..[typeId] = false;
-      probe('Near $label', c.copyWith(landmarkNearby: relaxed));
+      probe(
+        loc.finderBottleneckNearLandmark(label),
+        c.copyWith(landmarkNearby: relaxed),
+      );
     }
     for (final id in c.requiredOtherConditions.toList()) {
       final relaxed = Map<String, bool>.from(c.otherConditionToggles)

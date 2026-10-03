@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/catalog/models/mod_repo_entry.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/version_checker.dart';
 import 'package:trios/models/download_progress.dart';
 import 'package:trios/models/version_checker_info.dart';
@@ -281,9 +282,10 @@ class TriOSDownloadManager extends AsyncNotifier<List<Download>> {
           }
         } catch (e) {
           Fimber.e("Error installing mod from archive", ex: e);
+          final syncLoc = AppLocalizationsSync.instance;
           value.task.error = Exception(
-            "Failed to install '$displayName'.\n"
-            "Download URL: $uri\n\n$e",
+            "${syncLoc.downloadManagerFailedToInstall(displayName)}\n"
+            "${syncLoc.downloadManagerDownloadUrl(uri)}\n\n$e",
           );
         } finally {
           // Ensure installComplete is always set so the toast can react.

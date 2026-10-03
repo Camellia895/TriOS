@@ -3,6 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/dashboard/mod_summary_widget.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/download_progress.dart';
 import 'package:trios/models/mod_variant.dart';
@@ -200,11 +201,13 @@ class CompletedActivityTile extends ConsumerWidget {
                           children: [
                             MovingTooltipWidget.text(
                               message: isCancelled
-                                  ? "Canceled"
+                                  ? loc.downloadStatusCanceled
                                   : entry.sourceType ==
                                         ActivitySourceType.download
-                                  ? "Downloaded from\n${entry.sourceDetail}"
-                                  : "Installed from archive",
+                                  ? loc.activityDownloadedFrom(
+                                      entry.sourceDetail ?? '',
+                                    )
+                                  : loc.activityInstalledFromArchive,
                               child: Icon(
                                 isCancelled
                                     ? Icons.cancel
@@ -349,7 +352,9 @@ class InProgressActivityTile extends StatelessWidget {
   ) {
     final iconPath = _resolveIconPath();
     return MovingTooltipWidget.text(
-      message: isInstalling ? 'Installing...' : status.displayString,
+      message: isInstalling
+          ? AppLocalizationsSync.instance.commonInstalling
+          : status.displayString,
       child: iconPath != null
           ? ModIcon(iconPath, size: 24)
           : Icon(statusIcon, size: 20, color: theme.iconTheme.color),
@@ -370,11 +375,11 @@ class InProgressActivityTile extends StatelessWidget {
     TriOSDownloadProgress? progressValue;
 
     if (isInstalling) {
-      statusText = installProgress?.customStatus ?? 'Installing...';
+      statusText = installProgress?.customStatus ?? loc.commonInstalling;
       progressValue =
           installProgress ?? TriOSDownloadProgress(0, 0, isIndeterminate: true);
     } else if (status == DownloadStatus.downloading) {
-      statusText = 'Downloading...';
+      statusText = loc.commonDownloading;
       progressValue = TriOSDownloadProgress(
         dlAmount.bytesReceived,
         dlAmount.totalBytes,

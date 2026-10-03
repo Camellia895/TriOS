@@ -6,6 +6,7 @@ import 'package:trios/themes/theme.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/utils/logging.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// What one read of the user themes file produced: the themes that loaded, and
 /// a plain-English line for each one that didn't.
@@ -52,13 +53,17 @@ class UserThemes {
       json = await (await themeFile.readAsString()).parseJsonToMapAsync();
     } catch (e, st) {
       Fimber.w("Couldn't read $fileName.", ex: e, stacktrace: st);
-      problems.add("Couldn't read $fileName. It isn't valid JSON.");
+      problems.add(
+        AppLocalizationsSync.instance.userThemeFileUnreadable(fileName),
+      );
       return (themes: themes, problems: problems);
     }
 
     final entries = json['themes'];
     if (entries is! Map) {
-      problems.add("$fileName has no \"themes\" section.");
+      problems.add(
+        AppLocalizationsSync.instance.userThemeNoThemesSection(fileName),
+      );
       return (themes: themes, problems: problems);
     }
 
@@ -72,8 +77,15 @@ class UserThemes {
             .toList();
         if (missing.isNotEmpty) {
           problems.add(
-            'Couldn\'t load "$key": ${missing.join(" and ")} '
-            '${missing.length == 1 ? "is" : "are"} missing.',
+            missing.length == 1
+                ? AppLocalizationsSync.instance.userThemeMissingField(
+                    key,
+                    missing.join(" and "),
+                  )
+                : AppLocalizationsSync.instance.userThemeMissingFields(
+                    key,
+                    missing.join(" and "),
+                  ),
           );
           continue;
         }
@@ -102,7 +114,9 @@ class UserThemes {
         );
       } catch (e, st) {
         Fimber.w("Couldn't load user theme '$key'.", ex: e, stacktrace: st);
-        problems.add('Couldn\'t load "$key": $e');
+        problems.add(
+          AppLocalizationsSync.instance.userThemeLoadError(key, e.toString()),
+        );
       }
     }
 

@@ -4,6 +4,7 @@ import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
 import 'viewer_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows the total ship count and breakdown.
 class ShipCountIntent extends ChatIntent with ViewerAwareIntent {
@@ -53,7 +54,7 @@ class ShipCountIntent extends ChatIntent with ViewerAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final shipList = ships;
     if (shipList == null || shipList.isEmpty) {
-      return const ChatResponse(
+      return ChatResponse(
         text: ViewerAwareIntent.noViewerDataMessage,
       );
     }
@@ -62,9 +63,12 @@ class ShipCountIntent extends ChatIntent with ViewerAwareIntent {
         shipList.where((s) => s.modVariant == null).length;
     final modded = shipList.length - vanilla;
 
-    final buf = StringBuffer('Ships: ${shipList.length} total\n');
-    buf.writeln('  Vanilla: $vanilla');
-    buf.writeln('  From mods: $modded');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(
+      loc.chatbotShipsHeader(shipList.length) + '\n',
+    );
+    buf.writeln('  ' + loc.chatbotBreakdownVanilla(vanilla));
+    buf.writeln('  ' + loc.chatbotBreakdownFromMods(modded));
 
     return ChatResponse(text: buf.toString().trimRight());
   }

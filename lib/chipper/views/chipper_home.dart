@@ -210,7 +210,7 @@ class DesktopDropState extends ConsumerState<DesktopDrop> {
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: Text(
-                              "Nothing is ever uploaded. All processing is done on your computer.",
+                              loc.chipperNothingUploaded,
                               style: theme.textTheme.bodyMedium?.copyWith(
                                 fontSize: 14,
                                 color: theme.textTheme.bodyMedium?.color

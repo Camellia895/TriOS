@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/models/mod.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/trios/constants.dart';
@@ -216,7 +217,11 @@ class _ActiveScanRow extends StatelessWidget {
               ),
               Text(
                 hasFileProgress
-                    ? '${scan.filesScanned} / ${scan.totalFiles}  ($filePercentText)'
+                    ? loc.vramScanFileProgress(
+                        '${scan.filesScanned}',
+                        '${scan.totalFiles}',
+                        filePercentText,
+                      )
                     : loc.vramDiscoveringImageFiles,
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -379,13 +384,16 @@ class _IdleSummary extends ConsumerWidget {
 }
 
 String _formatScanDuration(Duration d) {
+  final loc = AppLocalizationsSync.instance;
   if (d.inMinutes >= 1) {
     final seconds = d.inSeconds % 60;
-    return '${d.inMinutes}m ${seconds}s';
+    return loc.vramDurationMinSec('${d.inMinutes}', '$seconds');
   }
-  if (d.inSeconds >= 10) return '${d.inSeconds}s';
+  if (d.inSeconds >= 10) return loc.vramDurationSec('${d.inSeconds}');
   // Sub-10s: show one decimal so a fast scan doesn't read as "1s".
-  return '${(d.inMilliseconds / 1000).toStringAsFixed(1)}s';
+  return loc.vramDurationSec(
+    (d.inMilliseconds / 1000).toStringAsFixed(1),
+  );
 }
 
 /// Aggregated VRAM totals for a named cohort of mods.

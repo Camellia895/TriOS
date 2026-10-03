@@ -10,6 +10,7 @@ import 'package:trios/hullmod_viewer/widgets/hullmod_details_dialog.dart';
 import 'package:trios/hullmod_viewer/hullmods_page_controller.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
@@ -364,6 +365,7 @@ class _HullmodsPageState extends ConsumerState<HullmodsPage>
     ThemeData theme,
     HullmodsPageState controllerState,
   ) {
+    final loc = AppLocalizations.of(context);
     int position = 0;
     // The CSV names an icon; any mod, or the game core, can be the one that
     // actually has it. With "Only Enabled Mods" on, disabled mods can't supply
@@ -477,20 +479,20 @@ class _HullmodsPageState extends ConsumerState<HullmodsPage>
         csvValue: (item) => item.name ?? item.id,
         defaultState: WispGridColumnState(position: position++, width: 180),
       ),
-      col('id', 'ID', (h) => h.id),
+      col('id', loc.commonId, (h) => h.id),
       col(
         'techManufacturer',
-        'Tech/Manufacturer',
+        loc.hullmodsTechManufacturer,
         (h) => h.techManufacturer,
         width: 150,
       ),
-      col('costFrigate', 'OP (Frig)', (h) => h.costFrigate, width: 80),
-      col('costDest', 'OP (Dest)', (h) => h.costDest, width: 80),
-      col('costCruiser', 'OP (Cru)', (h) => h.costCruiser, width: 80),
-      col('costCapital', 'OP (Cap)', (h) => h.costCapital, width: 80),
-      col('tier', 'Tier', (h) => h.tier, width: 60),
-      col('uiTags', 'Tags', (h) => h.uiTags, width: 120),
-      col('short', 'Short Desc.', (h) => h.shortDescription, width: 200),
+      col('costFrigate', loc.hullmodsOpFrigate, (h) => h.costFrigate, width: 80),
+      col('costDest', loc.hullmodsOpDestroyer, (h) => h.costDest, width: 80),
+      col('costCruiser', loc.hullmodsOpCruiser, (h) => h.costCruiser, width: 80),
+      col('costCapital', loc.hullmodsOpCapital, (h) => h.costCapital, width: 80),
+      col('tier', loc.commonTier, (h) => h.tier, width: 60),
+      col('uiTags', loc.commonTags, (h) => h.uiTags, width: 120),
+      col('short', loc.hullmodsShortDesc, (h) => h.shortDescription, width: 200),
     ];
   }
 
@@ -565,7 +567,7 @@ class UngroupedHullmodGridGroup extends WispGridGroup<Hullmod> {
 
   @override
   String getGroupName(Hullmod mod, {Comparable? groupSortValue}) =>
-      'All Hullmods';
+      AppLocalizationsSync.instance.hullmodsAllHullmods;
 
   @override
   Comparable getGroupSortValue(Hullmod mod) => 1;

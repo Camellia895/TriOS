@@ -1,3 +1,4 @@
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/references/graphicslib_references.dart';
 import 'package:trios/vram_estimator/selectors/vram_asset_selector.dart';
@@ -22,11 +23,12 @@ class FolderScanSelector extends VramAssetSelector {
   VramSelectorId get id => VramSelectorId.folderScan;
 
   @override
-  String get displayName => 'Scan All (deprecated)';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramSelectorScanAllDeprecated;
 
   @override
   String get description =>
-      'Counts every image in mod folders, even unused ones. Overestimates VRAM use.';
+      AppLocalizationsSync.instance.vramSelectorFolderScanDesc;
 
   @override
   Future<List<SelectedAsset>> select(

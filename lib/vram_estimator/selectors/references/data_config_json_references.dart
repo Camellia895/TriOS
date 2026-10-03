@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
@@ -25,11 +26,12 @@ class DataConfigJsonReferences extends ReferenceParser {
   String get id => 'data-config-json';
 
   @override
-  String get displayName => 'data/config JSON files';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefDataConfigJson;
 
   @override
   String get description =>
-      'Image paths found in JSON files under data/config/ (beyond settings.json).';
+      AppLocalizationsSync.instance.vramRefDataConfigJsonDesc;
 
   @override
   Future<Map<String, Set<String>>> collect(

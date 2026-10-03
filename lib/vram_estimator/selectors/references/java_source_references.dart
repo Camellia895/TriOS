@@ -1,3 +1,4 @@
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
 import 'package:trios/vram_estimator/selectors/references/_scripting_filter.dart';
@@ -12,11 +13,12 @@ class JavaSourceReferences extends ReferenceParser {
   String get id => 'java-sources';
 
   @override
-  String get displayName => 'Loose .java sources';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefJavaSources;
 
   @override
   String get description =>
-      'Path-like string literals in any .java source file in the mod.';
+      AppLocalizationsSync.instance.vramRefJavaSourcesDesc;
 
   // Match double-quoted string literals. Handles escaped quotes (\") and
   // escaped backslashes. Does not attempt to handle Java 15+ text blocks

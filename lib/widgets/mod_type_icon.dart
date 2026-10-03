@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 import 'package:trios/widgets/svg_image_icon.dart';
@@ -30,10 +31,11 @@ class ModTypeIcon extends StatelessWidget {
   }
 
   static String getTooltipText(ModVariant modVariant) {
+    final loc = AppLocalizationsSync.instance;
     return modVariant.modInfo.isTotalConversion
-        ? "Total Conversion mods should not be run with other mods unless explicitly stated to be compatible."
+        ? loc.mod_type_iconTotalConversionModsShould
         : modVariant.modInfo.isUtility
-        ? "This mod declares that it may be added to or removed from a save at will."
+        ? loc.mod_type_iconThisModDeclaresThat
         : "";
   }
 }

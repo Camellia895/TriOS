@@ -6,6 +6,7 @@ import 'package:trios/trios/app_state.dart';
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Helps diagnose file permission issues and provides platform-specific advice.
 class PermissionIssuesIntent extends ChatIntent {
@@ -62,45 +63,50 @@ class PermissionIssuesIntent extends ChatIntent {
     final canWriteStarsector =
         ref.read(AppState.canWriteToStarsectorFolder).value;
 
-    final buf = StringBuffer('File Permission Check\n');
+    final loc = AppLocalizationsSync.instance;
+    final writableState = (bool? v) => v == true
+        ? loc.chatbotPermissionYes
+        : v == false
+            ? loc.chatbotPermissionNo
+            : loc.chatbotValueUnknown;
+    final buf = StringBuffer(loc.chatbotPermissionTitle + '\n');
 
     if (canWrite != null || canWriteStarsector != null) {
       buf.writeln(
-        '  Mods folder writable: ${canWrite == true ? "Yes" : canWrite == false ? "NO" : "Unknown"}',
+        loc.chatbotPermissionModsWritable(writableState(canWrite)),
       );
       buf.writeln(
-        '  Game folder writable: ${canWriteStarsector == true ? "Yes" : canWriteStarsector == false ? "NO" : "Unknown"}',
+        loc.chatbotPermissionGameWritable(writableState(canWriteStarsector)),
       );
       buf.writeln();
     }
 
     if (Platform.isWindows) {
-      buf.writeln('Windows fixes:');
+      buf.writeln(loc.chatbotPermissionWindowsFixes);
       buf.writeln(
-        '  1. Right-click TriOS → "Run as administrator"',
+        loc.chatbotPermissionWindowsStep1,
       );
       buf.writeln(
-        '  2. Move Starsector out of Program Files to avoid UAC issues.',
+        loc.chatbotPermissionWindowsStep2,
       );
       buf.writeln(
-        '  3. Check that your antivirus isn\'t blocking file access.',
+        loc.chatbotPermissionWindowsStep3,
       );
     } else if (Platform.isMacOS) {
-      buf.writeln('macOS fixes:');
+      buf.writeln(loc.chatbotPermissionMacFixes);
       buf.writeln(
-        '  1. In System Settings → Privacy & Security, grant TriOS '
-        'Full Disk Access.',
+        loc.chatbotPermissionMacStep1,
       );
       buf.writeln(
-        '  2. Run: chmod -R u+rw "<game folder path>"',
+        loc.chatbotPermissionMacStep2,
       );
     } else {
-      buf.writeln('Linux fixes:');
+      buf.writeln(loc.chatbotPermissionLinuxFixes);
       buf.writeln(
-        '  1. Run: chmod -R u+rw "<game folder path>"',
+        loc.chatbotPermissionMacStep2,
       );
       buf.writeln(
-        '  2. Check folder ownership: chown -R \$USER "<game folder path>"',
+        loc.chatbotPermissionLinuxStep2,
       );
     }
 

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Catch-all intent that handles any unrecognized input.
 ///
@@ -11,12 +12,12 @@ import '../chatbot_models.dart';
 class FallbackIntent extends ChatIntent {
   static final _random = Random();
 
-  static const _responses = [
-    "I'm not sure what you mean. Try \"help\" to see what I can answer.",
-    "I didn't catch that. You can ask about mods, RAM, VRAM, logs, or troubleshooting.",
-    "Hmm, I don't have an answer for that. Try asking about mod updates, compatibility, or settings.",
-    "Not sure about that one. Type \"help\" for a list of topics I know about.",
-    "I couldn't match that to anything I know. Try rephrasing, or ask \"help\" for ideas.",
+  static final _responses = [
+    () => AppLocalizationsSync.instance.chatbotFallback1,
+    () => AppLocalizationsSync.instance.chatbotFallback2,
+    () => AppLocalizationsSync.instance.chatbotFallback3,
+    () => AppLocalizationsSync.instance.chatbotFallback4,
+    () => AppLocalizationsSync.instance.chatbotFallback5,
   ];
 
   @override
@@ -27,7 +28,7 @@ class FallbackIntent extends ChatIntent {
 
   @override
   ChatResponse respond(String input, ConversationContext context) {
-    final text = _responses[_random.nextInt(_responses.length)];
+    final text = _responses[_random.nextInt(_responses.length)]();
     return ChatResponse(text: text);
   }
 }

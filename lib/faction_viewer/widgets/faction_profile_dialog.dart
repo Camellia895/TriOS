@@ -201,7 +201,9 @@ class FactionProfileDialog extends ConsumerWidget {
         final items = <PopupMenuEntry<void>>[];
         for (var i = 0; i < files.length; i++) {
           final file = files[i].file;
-          final suffix = showSource ? ' (${files[i].modName})' : '';
+          final suffix = showSource
+              ? loc.factionProfileDialogFileSourceSuffix(files[i].modName)
+              : '';
           items.add(
             PopupMenuItem(
               onTap: () => launchUrlString(file.path),
@@ -491,7 +493,7 @@ class FactionProfileDialog extends ConsumerWidget {
                 ? label
                 : entry.value is bool
                 ? label
-                : '$label: ${entry.value}';
+                : loc.commonLabelValue(label, entry.value);
 
             return Chip(
               label: Text(display),

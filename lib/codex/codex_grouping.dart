@@ -31,7 +31,9 @@ class CodexGrouping {
   bool get isNone => id == 'none';
 
   String labelOf(String key) =>
-      key.isEmpty ? 'Other' : (displayNameOf?.call(key) ?? key);
+      key.isEmpty
+          ? AppLocalizationsSync.instance.codexGroupingOther
+          : (displayNameOf?.call(key) ?? key);
 }
 
 /// The grouping options for a category. [facets] are the category's facet chip

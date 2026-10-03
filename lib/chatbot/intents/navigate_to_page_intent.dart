@@ -34,24 +34,44 @@ class NavigateToPageIntent extends ChatIntent {
     'sidebar': 0.15,
   };
 
-  // Maps page keywords to descriptions.
+  // Maps page keywords (matched against user input, so they stay English)
+  // to page ids.
   static const _pages = {
-    'dashboard': 'Dashboard — the main overview page with RAM settings and mod summary.',
-    'mod manager': 'Mod Manager — enable, disable, and manage your installed mods.',
-    'mod profiles': 'Mod Profiles — save and switch between different mod configurations.',
-    'vram estimator': 'VRAM Estimator — estimate GPU memory usage for your mods.',
-    'vram': 'VRAM Estimator — estimate GPU memory usage for your mods.',
-    'chipper': 'Chipper (Log Viewer) — analyze your Starsector log file.',
-    'log viewer': 'Chipper (Log Viewer) — analyze your Starsector log file.',
-    'log': 'Chipper (Log Viewer) — analyze your Starsector log file.',
-    'portraits': 'Portraits — browse and replace character portraits.',
-    'weapons': 'Weapons — browse all weapons from vanilla and mods.',
-    'ships': 'Ships — browse all ships/hulls from vanilla and mods.',
-    'hullmods': 'Hullmods — browse all hull modifications.',
-    'settings': 'Settings — configure TriOS preferences and paths.',
-    'catalog': 'Catalog — browse and download mods from the online catalog.',
-    'tips': 'Tips — view gameplay tips from your installed mods.',
+    'dashboard': 'dashboard',
+    'mod manager': 'modManager',
+    'mod profiles': 'modProfiles',
+    'vram estimator': 'vramEstimator',
+    'vram': 'vramEstimator',
+    'chipper': 'chipper',
+    'log viewer': 'chipper',
+    'log': 'chipper',
+    'portraits': 'portraits',
+    'weapons': 'weapons',
+    'ships': 'ships',
+    'hullmods': 'hullmods',
+    'settings': 'settings',
+    'catalog': 'catalog',
+    'tips': 'tips',
   };
+
+  static String _pageDescription(String id) {
+    final loc = AppLocalizationsSync.instance;
+    return switch (id) {
+      'dashboard' => loc.chatbotPageDashboard,
+      'modManager' => loc.chatbotPageModManager,
+      'modProfiles' => loc.chatbotPageModProfiles,
+      'vramEstimator' => loc.chatbotPageVramEstimator,
+      'chipper' => loc.chatbotPageChipper,
+      'portraits' => loc.chatbotPagePortraits,
+      'weapons' => loc.chatbotPageWeapons,
+      'ships' => loc.chatbotPageShips,
+      'hullmods' => loc.chatbotPageHullmods,
+      'settings' => loc.chatbotPageSettings,
+      'catalog' => loc.chatbotPageCatalog,
+      'tips' => loc.chatbotPageTips,
+      _ => id,
+    };
+  }
 
   @override
   String get id => 'navigate_to_page';
@@ -73,22 +93,23 @@ class NavigateToPageIntent extends ChatIntent {
       if (input.contains(entry.key)) {
         return ChatResponse(
           text: AppLocalizationsSync.instance.chatbotFindItInSidebar(
-            entry.value,
+            _pageDescription(entry.value),
           ),
         );
       }
     }
 
     // No specific page matched — list all pages.
-    final buf = StringBuffer('Available pages in the sidebar:\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotAvailablePages);
     final seen = <String>{};
     for (final entry in _pages.entries) {
-      final desc = entry.value;
+      final desc = _pageDescription(entry.value);
       if (seen.add(desc)) {
         buf.writeln('  $desc');
       }
     }
-    buf.writeln('\nAsk about a specific page for details.');
+    buf.writeln(loc.chatbotAskAboutSpecificPage);
     return ChatResponse(text: buf.toString().trimRight());
   }
 }

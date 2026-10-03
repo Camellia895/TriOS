@@ -303,7 +303,12 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                               children: [
                                 if (save.gameTimestamp != null)
                                   Text(
-                                    "Level ${save.characterLevel}",
+                                    "Level ${save.characterLevel}"
+                                        .let(
+                                          (levelText) => AppLocalizations.of(
+                                            context,
+                                          ).profileCardLevel(save.characterLevel),
+                                        ),
                                     style: theme.textTheme.labelSmall,
                                   ),
                                 Text(
@@ -326,15 +331,24 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                               // bullet
                               Text("  •  ", style: theme.textTheme.labelSmall),
                               MovingTooltipWidget.text(
-                                message:
-                                    'Created: ${Constants.dateTimeFormat.format(dateCreated?.toLocal() ?? DateTime.now())}'
-                                    '\nLast modified: ${Constants.dateTimeFormat.format(profile?.dateModified?.toLocal() ?? DateTime.now())}',
+                                message: AppLocalizations.of(context)
+                                    .profileCardCreatedModified(
+                                      Constants.dateTimeFormat.format(
+                                        dateCreated?.toLocal() ?? DateTime.now(),
+                                      ),
+                                      Constants.dateTimeFormat.format(
+                                        profile?.dateModified?.toLocal() ??
+                                            DateTime.now(),
+                                      ),
+                                    ),
                                 child: Text(
                                   dateCreated?.toLocal().let(
                                         (d) =>
                                             Constants.dateTimeFormat.format(d),
                                       ) ??
-                                      "(date missing)",
+                                      AppLocalizations.of(
+                                        context,
+                                      ).mod_profile_cardDateMissing,
                                 ),
                               ),
                             ],
@@ -406,7 +420,10 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                     builder: (context) => AlertDialog(
                                       title: Text(loc.profileDeleteProfileConfirm),
                                       content: Text(
-                                        "Are you sure you want to delete profile '${profile?.name}'?",
+                                        AppLocalizations.of(context)
+                                            .profileDeleteProfileBody(
+                                              "${profile?.name}",
+                                            ),
                                       ),
                                       actions: [
                                         TextButton(
@@ -469,15 +486,21 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                             );
                                       },
                                 child: Text(
-                                  isActiveProfile ? 'Enabled' : 'Enable',
+                                  isActiveProfile
+                                      ? AppLocalizations.of(
+                                          context,
+                                        ).profileCardEnabled
+                                      : AppLocalizations.of(
+                                          context,
+                                        ).profileCardEnable,
                                 ),
                               ),
                             ),
                           ),
                         if (isSaveGame)
                           MovingTooltipWidget.text(
-                            message:
-                                "Creates a profile based on this save's last-used mods.",
+                            message: AppLocalizations.of(context)
+                                .mod_profile_cardCreatesAProfileBased,
                             child: OutlinedButton(
                               onPressed: () {
                                 ref
@@ -532,9 +555,16 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
 
                       return MovingTooltipWidget.text(
                         message: switch (change?.changeType) {
-                          ModChangeType.missingMod => "Mod not found",
+                          ModChangeType.missingMod => AppLocalizations.of(
+                            context,
+                          ).mod_profile_cardModNotFound,
                           ModChangeType.missingVariant =>
-                            "Version ${mod.version} not found for ${mod.nameOrId}. You have ${change?.fromVariant?.modInfo.version} installed.",
+                            AppLocalizations.of(context)
+                                .mod_profile_cardVersionNotFound(
+                                  "${mod.version}",
+                                  mod.nameOrId,
+                                  "${change?.fromVariant?.modInfo.version}",
+                                ),
                           _ => null,
                         },
                         child: Row(
@@ -564,7 +594,9 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
                                         showAlertDialog(
                                           context,
                                           title: loc.profileWip,
-                                          content: "Unimplemented",
+                                          content: AppLocalizations.of(
+                                            context,
+                                          ).mod_profile_cardUnimplemented,
                                         );
                                       },
                                     ),
@@ -613,8 +645,10 @@ class _ModProfileCardState extends ConsumerState<ModProfileCard> {
     final loc = AppLocalizations.of(context);
     final modList = enabledModVariants
         .map(
-          (mod) =>
-              '${mod.modName ?? mod.modId} - Version: ${mod.version ?? 'Unknown'}',
+          (mod) => loc.mod_profile_cardCopyModEntry(
+            mod.modName ?? mod.modId,
+            mod.version?.toString() ?? loc.commonUnknown,
+          ),
         )
         .join('\n');
     Clipboard.setData(ClipboardData(text: modList));

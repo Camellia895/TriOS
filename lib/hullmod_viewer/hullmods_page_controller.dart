@@ -225,12 +225,12 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
       ),
       ChipFilterGroup<Hullmod>(
         id: 'techManufacturer',
-        name: 'Tech/Manufacturer',
+        name: loc.hullmodsTechManufacturer,
         valueGetter: (hullmod) => hullmod.techManufacturer ?? '',
       ),
       ChipFilterGroup<Hullmod>(
         id: 'uiTags',
-        name: 'UI Tags',
+        name: loc.hullmodsUiTags,
         valueGetter: (hullmod) => hullmod.uiTags ?? '',
         valuesGetter: (hullmod) =>
             hullmod.uiTags
@@ -432,20 +432,21 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
   }
 
   List<SearchField<Hullmod>> _buildSearchFields() {
+    final loc = AppLocalizationsSync.instance;
     return [
       SearchField.string(
         'tier',
-        'Hullmod tier (1, 2, 3)',
+        loc.hullmodsSearchTier,
         (h) => h.tier?.toString(),
       ),
       SearchField.string(
         'tech',
-        'Tech/manufacturer',
+        loc.commonTechManufacturer,
         (h) => h.techManufacturer,
       ),
       SearchField<Hullmod>(
         key: 'mod',
-        description: 'Mod name substring match',
+        description: loc.hullmodsSearchModNameSubstring,
         valueSuggestions: (hullmods) =>
             hullmods
                 .map((h) => h.modVariant?.modInfo.nameOrId)
@@ -462,7 +463,7 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
       ),
       SearchField.multiValue(
         'tag',
-        'CSV tag; matches any tag',
+        loc.hullmodsSearchCsvTagMatchesAny,
         (h) => h.tags
             ?.split(',')
             .map((t) => t.trim())
@@ -471,33 +472,37 @@ class HullmodsPageController extends Notifier<HullmodsPageState>
       ),
       SearchField.multiValue(
         'uitag',
-        'UI tag; matches any UI tag',
+        loc.hullmodsSearchUiTagMatchesAny,
         (h) => h.uiTags
             ?.split(',')
             .map((t) => t.trim())
             .where((t) => t.isNotEmpty)
             .toList(),
       ),
-      SearchField.numeric('rarity', 'Rarity value', (h) => h.rarity),
-      SearchField.numeric('value', 'Base credit value', (h) => h.baseValue),
+      SearchField.numeric('rarity', loc.hullmodsSearchRarityValue, (h) => h.rarity),
+      SearchField.numeric(
+        'value',
+        loc.hullmodsSearchBaseCreditValue,
+        (h) => h.baseValue,
+      ),
       SearchField.numeric(
         'costfrigate',
-        'Ordnance points cost for frigates',
+        loc.hullmodsSearchOpCostFrigates,
         (h) => h.costFrigate,
       ),
       SearchField.numeric(
         'costdest',
-        'Ordnance points cost for destroyers',
+        loc.hullmodsSearchOpCostDestroyers,
         (h) => h.costDest,
       ),
       SearchField.numeric(
         'costcruiser',
-        'Ordnance points cost for cruisers',
+        loc.hullmodsSearchOpCostCruisers,
         (h) => h.costCruiser,
       ),
       SearchField.numeric(
         'costcapital',
-        'Ordnance points cost for capital ships',
+        loc.hullmodsSearchOpCostCapitalShips,
         (h) => h.costCapital,
       ),
     ];

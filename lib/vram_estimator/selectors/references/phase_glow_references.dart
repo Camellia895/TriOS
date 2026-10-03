@@ -1,3 +1,4 @@
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
 import 'package:trios/vram_estimator/selectors/references/reference_parser.dart';
@@ -23,13 +24,12 @@ class PhaseGlowReferences extends ReferenceParser {
   String get id => parserId;
 
   @override
-  String get displayName => 'Phase glows';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefPhaseGlows;
 
   @override
   String get description =>
-      "Finds ship phase-glow siblings (e.g. foo_glow.png, foo_glow1.png) "
-      "of referenced sprites. Starsector auto-loads these from the same "
-      "folder when the base ship sprite is referenced.";
+      AppLocalizationsSync.instance.vramRefPhaseGlowsDesc;
 
   @override
   Future<Map<String, Set<String>>> collect(

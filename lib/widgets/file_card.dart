@@ -121,12 +121,14 @@ class DragDropInstallModOverlay extends StatelessWidget {
           return ThemedCircularProgressIndicator();
         } else if (snapshot.hasError) {
           return Text(
-            'Error: ${snapshot.error}',
+            AppLocalizations.of(
+              context,
+            ).commonErrorWithDetails("${snapshot.error}"),
             style: const TextStyle(color: Colors.red),
           );
         } else {
           return Text(
-            snapshot.data ?? "Calculating...",
+            snapshot.data ?? AppLocalizations.of(context).file_cardCalculating,
             style: TextStyle(
               color: theme.colorScheme.onSurface,
               fontSize: 16.0,

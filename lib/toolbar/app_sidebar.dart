@@ -331,11 +331,14 @@ class _SidebarToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     return SizedBox(
       height: 40,
       child: MovingTooltipWidget.text(
-        message: isCollapsed ? 'Expand sidebar' : 'Collapse sidebar',
+        message: isCollapsed
+            ? loc.app_sidebarExpandSidebar
+            : loc.app_sidebarCollapseSidebar,
         child: InkWell(
           borderRadius: BorderRadius.circular(TriOSThemeConstants.cornerRadius),
           onTap: onToggle,
@@ -474,6 +477,7 @@ class _SidebarRulesHotReload extends ConsumerWidget {
     final isEnabled = ref.watch(
       appSettings.select((value) => value.isRulesHotReloadEnabled),
     );
+    final loc = AppLocalizations.of(context);
 
     return _SidebarNavItem(
       isSelected: false,
@@ -484,9 +488,9 @@ class _SidebarRulesHotReload extends ConsumerWidget {
       icon: RulesHotReload(isEnabled: isEnabled, showText: false),
       label: "rules.csv",
       tooltip:
-          "When enabled, modifying a mod's rules.csv will\nreload in-game rules as long as dev mode is enabled."
-          "\n\nrules.csv hot reload is ${isEnabled ? "enabled" : "disabled"}."
-          "\nClick to ${isEnabled ? "disable" : "enable"}.",
+          "${loc.app_action_buttonsWhenEnabledModifyingA}"
+          "\n\n${loc.app_action_buttonsRulesHotReloadIs(isEnabled ? loc.vramEnabled : loc.vramDisabled)}"
+          "\n${loc.app_action_buttonsClickTo(isEnabled ? loc.triosDisable : loc.triosEnable)}",
     );
   }
 }
@@ -533,7 +537,7 @@ class _SidebarLayoutToggle extends ConsumerWidget {
             .update((s) => s.copyWith(useTopToolbar: !s.useTopToolbar)),
         icon: Icon(Icons.web, size: 20),
         label: loc.app_sidebarSwitchLayout,
-        tooltip: "Switch to top toolbar",
+        tooltip: loc.app_sidebarSwitchToTopToolbar,
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 part 'ship_blueprint_view_state.mapper.dart';
 
@@ -66,24 +67,28 @@ enum ShipBlueprintBackground {
     _ => null,
   };
 
-  String get label => switch (this) {
-    ShipBlueprintBackground.transparent => 'Transparent',
-    ShipBlueprintBackground.black => 'Black',
-    ShipBlueprintBackground.darkGrey => 'Dark grey',
-    ShipBlueprintBackground.lightGrey => 'Light grey',
-    ShipBlueprintBackground.white => 'White',
-    ShipBlueprintBackground.darkBlue => 'Dark blue',
-    ShipBlueprintBackground.darkRed => 'Dark red',
-    ShipBlueprintBackground.background1 => 'Space 1',
-    ShipBlueprintBackground.background2 => 'Space 2',
-    ShipBlueprintBackground.background3 => 'Space 3',
-    ShipBlueprintBackground.background4 => 'Space 4',
-    ShipBlueprintBackground.background5 => 'Space 5',
-    ShipBlueprintBackground.background6 => 'Space 6',
-    ShipBlueprintBackground.galatia => 'Galatia',
-    ShipBlueprintBackground.hyperspace => 'Hyperspace',
-    ShipBlueprintBackground.hyperspaceCool => 'Hyperspace (cool)',
-  };
+  String get label {
+    final loc = AppLocalizationsSync.instance;
+    return switch (this) {
+      ShipBlueprintBackground.transparent => loc.shipBlueprintBackgroundTransparent,
+      ShipBlueprintBackground.black => loc.shipBlueprintBackgroundBlack,
+      ShipBlueprintBackground.darkGrey => loc.shipBlueprintBackgroundDarkGrey,
+      ShipBlueprintBackground.lightGrey => loc.shipBlueprintBackgroundLightGrey,
+      ShipBlueprintBackground.white => loc.shipBlueprintBackgroundWhite,
+      ShipBlueprintBackground.darkBlue => loc.shipBlueprintBackgroundDarkBlue,
+      ShipBlueprintBackground.darkRed => loc.shipBlueprintBackgroundDarkRed,
+      ShipBlueprintBackground.background1 => loc.shipBlueprintBackgroundSpace1,
+      ShipBlueprintBackground.background2 => loc.shipBlueprintBackgroundSpace2,
+      ShipBlueprintBackground.background3 => loc.shipBlueprintBackgroundSpace3,
+      ShipBlueprintBackground.background4 => loc.shipBlueprintBackgroundSpace4,
+      ShipBlueprintBackground.background5 => loc.shipBlueprintBackgroundSpace5,
+      ShipBlueprintBackground.background6 => loc.shipBlueprintBackgroundSpace6,
+      ShipBlueprintBackground.galatia => loc.shipBlueprintBackgroundGalatia,
+      ShipBlueprintBackground.hyperspace => loc.shipBlueprintBackgroundHyperspace,
+      ShipBlueprintBackground.hyperspaceCool =>
+        loc.shipBlueprintBackgroundHyperspaceCool,
+    };
+  }
 }
 
 /// Which layers the interactive ship blueprint view shows, plus its animation

@@ -53,7 +53,10 @@ class PostUpdateToast extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${Constants.appName} was updated to ${Constants.version}!",
+                      loc.toastUpdatedToVersion(
+                        Constants.appName,
+                        Constants.version,
+                      ),
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
                     Row(

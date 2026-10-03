@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/batch_installation/batch_installation_notifier.dart';
 import 'package:trios/trios/activity_panel/activity_entry.dart';
 import 'package:trios/trios/activity_panel/activity_filters.dart';
@@ -78,9 +79,10 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
     final dateFormat = DateFormat.MMMd();
 
     String labelFor(DateTime ts) {
+      final loc = AppLocalizationsSync.instance;
       final date = DateTime(ts.year, ts.month, ts.day);
-      if (date == today) return 'Today';
-      if (date == yesterday) return 'Yesterday';
+      if (date == today) return loc.activityToday;
+      if (date == yesterday) return loc.activityYesterday;
       if (date.year != today.year) return DateFormat.yMMMd().format(ts);
       return dateFormat.format(ts);
     }
@@ -140,10 +142,7 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(loc.activityClearAllActivity),
-        content: const Text(
-          'This permanently clears the installation activity history. '
-          'This action cannot be undone.',
-        ),
+        content: Text(loc.activityClearHistoryWarning),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
@@ -204,12 +203,14 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
             child: Row(
               children: [
                 Text(
-                  'Installation Activity',
+                  loc.activity_icon_buttonInstallationActivity,
                   style: theme.textTheme.titleSmall,
                 ),
                 const Spacer(),
                 MovingTooltipWidget.text(
-                  message: isPinned ? 'Unpin (overlay)' : 'Pin (side panel)',
+                  message: isPinned
+                      ? loc.activityUnpinOverlay
+                      : loc.activityPinSidePanel,
                   child: IconButton(
                     icon: Icon(
                       isPinned ? Icons.push_pin : Icons.push_pin_outlined,
@@ -237,7 +238,7 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
             child: (!hasInProgress && !hasHistory)
                 ? Center(
                     child: Text(
-                      'No activity yet',
+                      loc.activityNoActivityYet,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
@@ -248,7 +249,7 @@ class _ActivityPanelState extends ConsumerState<ActivityPanel> {
                     children: [
                       // In-progress section.
                       if (hasInProgress) ...[
-                        _sectionHeader('In Progress', theme),
+                        _sectionHeader(loc.activityInProgress, theme),
                         for (final (i, entry) in batchEntries.indexed) ...[
                           if (i > 0) const SizedBox(height: 8),
                           BatchEntryTile(key: ValueKey(entry.id), entry: entry),

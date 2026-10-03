@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'log_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows a summary of the parsed log file: game version, OS, Java,
 /// mod count, error count, file path, and last-updated time.
@@ -67,26 +68,30 @@ class LogSummaryIntent extends ChatIntent with LogAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final chips = logChips;
     if (chips == null) {
-      return const ChatResponse(text: LogAwareIntent.noLogMessage);
+      return ChatResponse(text: LogAwareIntent.noLogMessage);
     }
 
     final modCount = chips.modList.modList.length;
     final errorCount = chips.errorBlock.length;
+    final loc = AppLocalizationsSync.instance;
+    final unknown = loc.chatbotValueUnknown;
     final updated = chips.lastUpdated != null
         ? DateFormat.yMMMd().add_jm().format(chips.lastUpdated!)
-        : 'unknown';
+        : unknown;
 
-    final buf = StringBuffer('Log Summary\n');
+    final buf = StringBuffer(loc.chatbotLogSummaryTitle + '\n');
     buf.writeln('───────────');
-    buf.writeln('Game version: ${chips.gameVersion ?? 'unknown'}');
-    buf.writeln('OS: ${chips.os ?? 'unknown'}');
-    buf.writeln('Java: ${chips.javaVersion ?? 'unknown'}');
-    buf.writeln('Mods loaded: $modCount');
-    buf.writeln('Errors found: $errorCount');
+    buf.writeln(
+      loc.chatbotLogSummaryGameVersion(chips.gameVersion ?? unknown),
+    );
+    buf.writeln(loc.chatbotLogSummaryOs(chips.os ?? unknown));
+    buf.writeln(loc.chatbotLogSummaryJava(chips.javaVersion ?? unknown));
+    buf.writeln(loc.chatbotLogSummaryModsLoaded(modCount));
+    buf.writeln(loc.chatbotLogSummaryErrors(errorCount));
     if (chips.filepath != null) {
-      buf.writeln('Log file: ${chips.filepath}');
+      buf.writeln(loc.chatbotLogSummaryFile(chips.filepath!));
     }
-    buf.write('Last updated: $updated');
+    buf.write(loc.chatbotLogSummaryLastUpdated(updated));
 
     return ChatResponse(text: buf.toString());
   }

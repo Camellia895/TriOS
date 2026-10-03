@@ -4,6 +4,7 @@ import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
 import 'viewer_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows the total weapon count and breakdown.
 class WeaponCountIntent extends ChatIntent with ViewerAwareIntent {
@@ -49,7 +50,7 @@ class WeaponCountIntent extends ChatIntent with ViewerAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final weaponList = weapons;
     if (weaponList == null || weaponList.isEmpty) {
-      return const ChatResponse(
+      return ChatResponse(
         text: ViewerAwareIntent.noViewerDataMessage,
       );
     }
@@ -58,9 +59,12 @@ class WeaponCountIntent extends ChatIntent with ViewerAwareIntent {
         weaponList.where((w) => w.modVariant == null).length;
     final modded = weaponList.length - vanilla;
 
-    final buf = StringBuffer('Weapons: ${weaponList.length} total\n');
-    buf.writeln('  Vanilla: $vanilla');
-    buf.writeln('  From mods: $modded');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(
+      loc.chatbotWeaponsHeader(weaponList.length) + '\n',
+    );
+    buf.writeln('  ' + loc.chatbotBreakdownVanilla(vanilla));
+    buf.writeln('  ' + loc.chatbotBreakdownFromMods(modded));
 
     return ChatResponse(text: buf.toString().trimRight());
   }

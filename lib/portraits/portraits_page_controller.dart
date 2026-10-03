@@ -69,7 +69,9 @@ class PortraitFilterItem {
 
   String get modName => variant?.modInfo.nameOrId ?? 'Vanilla';
 
-  String get genderString => metadata?.gender?.toString() ?? 'Unknown';
+  String get genderString =>
+      metadata?.gender?.toString() ??
+      AppLocalizationsSync.instance.commonUnknown;
 }
 
 /// State for a single filter pane (main, left, or right).
@@ -252,23 +254,22 @@ class PortraitsPageController extends Notifier<PortraitsPageState>
             id: 'showOnlyWithMetadata',
             label: AppLocalizationsSync.instance.portraitConfirmedPortraits,
             defaultValue: true,
-            tooltip:
-                "Only show images that are confirmed portraits."
-                "\n\nPortraits defined in .faction files have genders."
-                "\nPortraits from settings.json files do not.",
+            tooltip: AppLocalizationsSync.instance.portraitsFilterConfirmedTooltip,
             predicate: (item) => item.metadata != null,
           ),
           BoolField<PortraitFilterItem>(
             id: 'showOnlyReplaced',
             label: AppLocalizationsSync.instance.portraitOnlyYourChanges,
-            tooltip: 'Only show images that have replacements.',
+            tooltip:
+                AppLocalizationsSync.instance.portraitsFilterReplacedTooltip,
             // predicate cannot see state.replacements here; applied page-locally.
             predicate: (_) => true,
           ),
           BoolField<PortraitFilterItem>(
             id: 'showOnlyEnabledMods',
             label: AppLocalizationsSync.instance.factionViewerOnlyEnabledMods,
-            tooltip: 'Only show images from enabled mods.',
+            tooltip:
+                AppLocalizationsSync.instance.portraitsFilterEnabledModsTooltip,
             predicate: (item) {
               final mods = ref.read(AppState.mods);
               return item.variant == null ||
@@ -312,7 +313,7 @@ class PortraitsPageController extends Notifier<PortraitsPageState>
       ),
       ChipFilterGroup<PortraitFilterItem>(
         id: 'gender',
-        name: 'Gender',
+        name: AppLocalizationsSync.instance.portraitsFilterGender,
         valueGetter: (item) => item.genderString,
       ),
     ];
@@ -477,7 +478,9 @@ class PortraitsPageController extends Notifier<PortraitsPageState>
             context: context,
             type: SnackBarType.error,
             content: Text(
-              '${Constants.appName} Companion Mod not found. Please install it first from Settings.',
+              AppLocalizationsSync.instance.portraitsCompanionModInstallFirst(
+                Constants.appName,
+              ),
             ),
           );
         }
@@ -495,7 +498,8 @@ class PortraitsPageController extends Notifier<PortraitsPageState>
             _ImportResult(
               fileName: file.name,
               success: false,
-              reason: 'File path not available',
+              reason:
+                  AppLocalizationsSync.instance.portraitsFilePathNotAvailable,
             ),
           );
           continue;
@@ -595,7 +599,9 @@ class PortraitsPageController extends Notifier<PortraitsPageState>
             _ImportResult(
               fileName: pending.fileName,
               success: false,
-              reason: 'Failed to copy: $e',
+              reason: AppLocalizationsSync.instance.portraitsFailedToCopy(
+                e.toString(),
+              ),
             ),
           );
         }
@@ -911,17 +917,21 @@ Future<_ValidationResult> _validatePortraitImage(File file) async {
     final (width, height) = await _getImageDimensions(file.path, bytes);
 
     if (!PortraitScanner.isValidPortraitSize(width, height)) {
+      final loc = AppLocalizationsSync.instance;
       // Provide a descriptive error message
       if (width != height) {
         return _ValidationResult(
           isValid: false,
-          reason: 'Image must be square (${width}x$height is not square)',
+          reason: loc.portraitsImageMustBeSquare('${width}x$height'),
         );
       } else {
         return _ValidationResult(
           isValid: false,
-          reason:
-              'Image must be between ${PortraitScanner.minWidth}x${PortraitScanner.minWidth} and ${PortraitScanner.maxWidth}x${PortraitScanner.maxWidth} (got ${width}x$height)',
+          reason: loc.portraitsImageSizeRange(
+            PortraitScanner.minWidth,
+            PortraitScanner.maxWidth,
+            '${width}x$height',
+          ),
         );
       }
     }
@@ -930,7 +940,9 @@ Future<_ValidationResult> _validatePortraitImage(File file) async {
   } catch (e) {
     return _ValidationResult(
       isValid: false,
-      reason: 'Failed to read image: $e',
+      reason: AppLocalizationsSync.instance.portraitsFailedToReadImage(
+        e.toString(),
+      ),
     );
   }
 }
@@ -989,7 +1001,7 @@ Future<void> _showImportResultsDialog(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '$successCount imported successfully, $failureCount failed',
+              loc.portraitsImportSummary(successCount, failureCount),
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 16),
@@ -1131,14 +1143,17 @@ class _GenderSelectionDialogState extends State<_GenderSelectionDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '$validCount valid portrait${validCount == 1 ? '' : 's'}'
-              '${failedCount > 0 ? ', $failedCount failed validation' : ''}',
+              (validCount == 1
+                  ? loc.portraitsValidPortraitSingular(validCount)
+                  : loc.portraitsValidPortraitsCount(validCount)) +
+                  (failedCount > 0
+                      ? loc.portraitsFailedValidationSuffix(failedCount)
+                      : ''),
               style: theme.textTheme.titleMedium,
             ),
             const SizedBox(height: 8),
             Text(
-              'Select male or female for each portrait.'
-              '\nPortraits in .faction files only support male and female.',
+              loc.portraitsSelectGenderHint,
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
               ),
@@ -1151,7 +1166,7 @@ class _GenderSelectionDialogState extends State<_GenderSelectionDialog> {
                     onPressed: () => _setAllGenders(_PortraitGender.male),
                     icon: const Icon(Icons.male, size: 18),
                     label: Text(
-                      'All Male',
+                      loc.portraitsAllMale,
                       style: TextStyle(
                         color: theme.textTheme.bodyMedium?.color,
                       ),
@@ -1162,7 +1177,7 @@ class _GenderSelectionDialogState extends State<_GenderSelectionDialog> {
                     onPressed: () => _setAllGenders(_PortraitGender.female),
                     icon: const Icon(Icons.female, size: 18),
                     label: Text(
-                      'All Female',
+                      loc.portraitsAllFemale,
                       style: TextStyle(
                         color: theme.textTheme.bodyMedium?.color,
                       ),

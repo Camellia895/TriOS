@@ -83,7 +83,8 @@ class ModDependenciesIntent extends ChatIntent with ModAwareIntent {
     final sorted = dependedOnCount.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
-    final buf = StringBuffer('Most Required Mods\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotMostRequiredTitle + '\n');
     for (final entry in sorted.take(15)) {
       final name = dependedOnName[entry.key] ?? entry.key;
       // Check if this dependency is installed
@@ -91,16 +92,16 @@ class ModDependenciesIntent extends ChatIntent with ModAwareIntent {
       final isEnabled =
           isInstalled && mods.any((m) => m.id == entry.key && m.isEnabledInGame);
       final status = !isInstalled
-          ? ' [NOT INSTALLED]'
+          ? loc.chatbotDepNotInstalled
           : isEnabled
               ? ''
-              : ' [DISABLED]';
+              : loc.chatbotDepDisabled;
       buf.writeln(
-        '  $name: required by ${entry.value} mod${entry.value == 1 ? '' : 's'}$status',
+        loc.chatbotDependencyEntry(name, entry.value, status),
       );
     }
     if (sorted.length > 15) {
-      buf.writeln('  ...and ${sorted.length - 15} more');
+      buf.writeln('  ' + loc.chatbotAndNMore(sorted.length - 15));
     }
 
     return ChatResponse(text: buf.toString().trimRight());

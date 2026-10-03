@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:toastification/toastification.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/download_progress.dart';
 import 'package:trios/models/mod_variant.dart';
@@ -181,6 +182,7 @@ class _ModDownloadToastState extends ConsumerState<ModDownloadToast>
           child: Builder(
             builder: (context) {
               final theme = Theme.of(context);
+              final loc = AppLocalizations.of(context);
               return MouseRegion(
                 onEnter: (_) {
                   setState(() => _isHovering = true);
@@ -239,8 +241,8 @@ class _ModDownloadToastState extends ConsumerState<ModDownloadToast>
                                                             .completed &&
                                                     installedMod == null
                                                 ? download.hasInstallError
-                                                      ? "Installation failed"
-                                                      : "Installing..."
+                                                      ? loc.toastInstallationFailed
+                                                      : loc.commonInstalling
                                                 : status.displayString,
                                             child: Icon(
                                               size: 40,
@@ -331,7 +333,12 @@ class _ModDownloadToastState extends ConsumerState<ModDownloadToast>
                                                   top: 2,
                                                 ),
                                                 child: Text(
-                                                  "Previously enabled: ${currentlyEnabled.modInfo.version}",
+                                                  loc.toastPreviouslyEnabled(
+                                                    currentlyEnabled
+                                                        .modInfo
+                                                        .version
+                                                        .toString(),
+                                                  ),
                                                   style: theme
                                                       .textTheme
                                                       .labelMedium,
@@ -355,7 +362,7 @@ class _ModDownloadToastState extends ConsumerState<ModDownloadToast>
                                                         if (dlBytes > 0)
                                                           Tooltip(
                                                             message:
-                                                                "Downloaded archive size",
+                                                                loc.toastDownloadedArchiveSize,
                                                             child: Row(
                                                               spacing: 4,
                                                               children: [
@@ -385,7 +392,7 @@ class _ModDownloadToastState extends ConsumerState<ModDownloadToast>
                                                             null)
                                                           Tooltip(
                                                             message:
-                                                                "Installed size on disk",
+                                                                loc.toastInstalledSizeOnDisk,
                                                             child: Row(
                                                               spacing: 4,
                                                               children: [
@@ -468,7 +475,7 @@ class _ModDownloadToastState extends ConsumerState<ModDownloadToast>
                                                           .onSurface,
                                                     ),
                                                     label: Text(
-                                                      "Open",
+                                                      loc.catalogOpen,
                                                       style: theme
                                                           .textTheme
                                                           .bodyMedium
@@ -518,8 +525,8 @@ class _ModDownloadToastState extends ConsumerState<ModDownloadToast>
                                                                   .power_settings_new,
                                                             ),
                                                           ),
-                                                          label: const Text(
-                                                            "Enable",
+                                                          label: Text(
+                                                            loc.triosEnable,
                                                           ),
                                                         );
                                                       },
@@ -559,7 +566,7 @@ class _ModDownloadToastState extends ConsumerState<ModDownloadToast>
                                                   top: 4,
                                                 ),
                                                 child: Text(
-                                                  "Installing...",
+                                                  loc.commonInstalling,
                                                   style: theme
                                                       .textTheme
                                                       .labelMedium,

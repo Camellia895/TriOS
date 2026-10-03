@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows a quick count of total, enabled, and disabled mods.
 class ModCountIntent extends ChatIntent with ModAwareIntent {
@@ -56,10 +57,11 @@ class ModCountIntent extends ChatIntent with ModAwareIntent {
     final enabledCount = allMods.where((m) => m.isEnabledInGame).length;
     final disabledCount = allMods.length - enabledCount;
 
-    final buf = StringBuffer('Mod Count\n');
-    buf.writeln('  Total: ${allMods.length}');
-    buf.writeln('  Enabled: $enabledCount');
-    buf.writeln('  Disabled: $disabledCount');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotModCountTitle + '\n');
+    buf.writeln(loc.chatbotModCountTotal(allMods.length));
+    buf.writeln(loc.chatbotModCountEnabled(enabledCount));
+    buf.writeln(loc.chatbotModCountDisabled(disabledCount));
 
     return ChatResponse(text: buf.toString().trimRight());
   }

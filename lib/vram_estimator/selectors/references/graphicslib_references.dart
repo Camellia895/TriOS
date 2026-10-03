@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:csv/csv.dart';
 import 'package:path/path.dart' as p;
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vram_estimator/models/graphics_lib_info.dart';
@@ -17,12 +18,12 @@ class GraphicsLibReferenceParser extends ReferenceParser {
   String get id => 'graphicslib';
 
   @override
-  String get displayName => 'GraphicsLib maps (CSV + cache folder)';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefGraphicsLibMaps;
 
   @override
   String get description =>
-      "Map paths declared in the mod's GraphicsLib CSV, plus GraphicsLib "
-      "mod's own cache/ folder. Kept independently of base-sprite references.";
+      AppLocalizationsSync.instance.vramRefGraphicsLibMapsDesc;
 
   @override
   Future<Map<String, Set<String>>> collect(

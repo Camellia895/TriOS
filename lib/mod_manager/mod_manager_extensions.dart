@@ -13,6 +13,7 @@ import 'package:trios/vram_estimator/vram_estimator_manager.dart';
 import '../models/mod.dart';
 import '../models/mod_info.dart';
 import 'mod_manager_logic.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 extension DependencyExt on Dependency {
   ModDependencySatisfiedState isSatisfiedBy(
@@ -220,12 +221,14 @@ extension ModExt on Mod {
 
 extension ModDependencySatisfiedStateExt on ModDependencySatisfiedState {
   String getDependencyStateText() {
+    final loc = AppLocalizationsSync.instance;
+    final version = modVariant?.modInfo.version.toString() ?? "";
     return switch (this) {
-      Satisfied _ => "(found ${modVariant?.modInfo.version})",
-      Missing _ => "(missing)",
-      Disabled _ => "(disabled: ${modVariant?.modInfo.version})",
-      VersionInvalid _ => "(wrong version: ${modVariant?.modInfo.version})",
-      VersionWarning _ => "(found: ${modVariant?.modInfo.version})",
+      Satisfied _ => loc.modManagerDependencyFound(version),
+      Missing _ => loc.modManagerDependencyMissing,
+      Disabled _ => loc.modManagerDependencyDisabled(version),
+      VersionInvalid _ => loc.modManagerDependencyWrongVersion(version),
+      VersionWarning _ => loc.modManagerDependencyFoundVersion(version),
     };
   }
 }

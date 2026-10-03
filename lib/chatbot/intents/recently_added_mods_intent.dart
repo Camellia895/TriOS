@@ -90,31 +90,43 @@ class RecentlyAddedModsIntent extends ChatIntent with ModAwareIntent {
     // Sort by firstSeen descending (most recent first)
     modsWithDate.sort((a, b) => b.firstSeen.compareTo(a.firstSeen));
 
+    final loc = AppLocalizationsSync.instance;
     final now = DateTime.now();
-    final buf = StringBuffer('Recently Added Mods\n');
+    final buf = StringBuffer(loc.chatbotRecentlyAddedTitle + '\n');
     for (final entry in modsWithDate.take(10)) {
       final addedDate =
           DateTime.fromMillisecondsSinceEpoch(entry.firstSeen);
       final age = _formatAge(now.difference(addedDate));
-      buf.writeln('  ${entry.name} ${entry.version} — added $age');
+      buf.writeln(
+        loc.chatbotRecentlyAddedEntry(entry.name, entry.version, age),
+      );
     }
 
     return ChatResponse(text: buf.toString().trimRight());
   }
 
   String _formatAge(Duration duration) {
+    final loc = AppLocalizationsSync.instance;
     if (duration.inDays > 365) {
       final years = duration.inDays ~/ 365;
-      return '$years year${years == 1 ? '' : 's'} ago';
+      return years == 1
+          ? loc.chatbotAgoYear(years)
+          : loc.chatbotAgoYears(years);
     } else if (duration.inDays > 30) {
       final months = duration.inDays ~/ 30;
-      return '$months month${months == 1 ? '' : 's'} ago';
+      return months == 1
+          ? loc.chatbotAgoMonth(months)
+          : loc.chatbotAgoMonths(months);
     } else if (duration.inDays > 0) {
-      return '${duration.inDays} day${duration.inDays == 1 ? '' : 's'} ago';
+      return duration.inDays == 1
+          ? loc.chatbotAgoDay(duration.inDays)
+          : loc.chatbotAgoDays(duration.inDays);
     } else if (duration.inHours > 0) {
-      return '${duration.inHours} hour${duration.inHours == 1 ? '' : 's'} ago';
+      return duration.inHours == 1
+          ? loc.chatbotAgoHour(duration.inHours)
+          : loc.chatbotAgoHours(duration.inHours);
     } else {
-      return 'just now';
+      return loc.chatbotAgoJustNow;
     }
   }
 }

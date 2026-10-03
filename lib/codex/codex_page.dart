@@ -496,7 +496,10 @@ class _CodexPageState extends ConsumerState<CodexPage>
             title: Text(
               ref.watch(codexCategoryLoadingProvider(type))
                   ? codexCategoryLabel(type)
-                  : '${codexCategoryLabel(type)} (${counts[type] ?? 0})',
+                  : loc.commonLabelCount(
+                      codexCategoryLabel(type),
+                      counts[type] ?? 0,
+                    ),
             ),
             titleTextStyle: theme.textTheme.labelLarge,
             trailing: ref.watch(codexCategoryLoadingProvider(type))
@@ -806,7 +809,10 @@ class _CodexPageState extends ConsumerState<CodexPage>
                 child: Padding(
                   padding: const EdgeInsets.only(left: 4, right: 8),
                   child: TextTriOS(
-                    "${label.trim()} ($count)",
+                    AppLocalizations.of(context).commonLabelCount(
+                      label.trim(),
+                      count,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.roboto(

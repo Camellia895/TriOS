@@ -387,10 +387,9 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
                                     ),
                                   if (enrichedMod.isPartOfThread)
                                     MovingTooltipWidget.text(
-                                      message:
-                                      'Part of the "${enrichedMod
-                                          .partOfThreadTitle}" '
-                                          'forum thread.',
+                                      message: loc.catalogPartOfThreadTooltip(
+                                        enrichedMod.partOfThreadTitle ?? '',
+                                      ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         spacing: 3,
@@ -406,8 +405,9 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
                                           ),
                                           Flexible(
                                             child: Text(
-                                              'part of ${enrichedMod
-                                                  .partOfThreadTitle}',
+                                              loc.catalogPartOfThread(
+                                                enrichedMod.partOfThreadTitle ?? '',
+                                              ),
                                               style: theme.textTheme.labelSmall
                                                   ?.copyWith(
                                                 fontSize: 10,
@@ -478,8 +478,8 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
                         bottom: 0,
                         child: MovingTooltipWidget.text(
                           message: _catalogMod.installedMod!.isEnabledInGame
-                              ? 'Enabled'
-                              : 'Installed, disabled',
+                              ? loc.vramEnabled
+                              : loc.catalogInstalledDisabled,
                           child: Container(
                             width: 4,
                             color: _statusBarColor(
@@ -535,7 +535,8 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
     final showingAiSentence = resolved?.source == ModSummarySource.ai;
 
     final hasNoDescription = shownText == null;
-    final description = shownText ?? 'No description...yet!';
+    final description =
+        shownText ?? AppLocalizations.of(context).catalogNoDescriptionYet;
     final trimmedDescription = description
         .split('\n')
         .where((line) => line.isNotEmpty)
@@ -719,9 +720,9 @@ class _CatalogModCardState extends ConsumerState<CatalogModCard> {
     );
 
     final sections = <String, String?>{
-      'Catalog mod': mod.toString(),
-      'LLM mod (this card)': _catalogMod.llmMod?.toString(),
-      'Resolved download candidates': downloadCandidates.isEmpty
+      loc.catalogCatalogMod: mod.toString(),
+      loc.catalogLlmModThisCard: _catalogMod.llmMod?.toString(),
+      loc.catalogResolvedDownloadCandidates: downloadCandidates.isEmpty
           ? null
           : downloadCandidates.join('\n\n'),
     };
@@ -972,11 +973,12 @@ class Tags extends StatelessWidget {
     final tags = [
       ...?mod.categories,
       ...?mod.sources?.map((source) {
+        final loc = AppLocalizations.of(context);
         switch (source) {
           case ModSource.Index:
-            return 'Index';
+            return loc.catalogIndex;
           case ModSource.ModdingSubforum:
-            return 'Modding Subforum';
+            return loc.catalogModdingSubforum;
           case ModSource.Discord:
             return 'Discord';
           case ModSource.NexusMods:
@@ -1072,6 +1074,7 @@ class CatalogDownloadButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
 
     final candidates = resolveDownloadCandidates(
       mod,
@@ -1135,29 +1138,29 @@ class CatalogDownloadButton extends ConsumerWidget {
         backgroundColor = theme.colorScheme.primary;
         foregroundColor = theme.colorScheme.onPrimary;
         tooltip = isTrios
-            ? 'Update available.\n\nThis mod supports Install with TriOS'
-            : 'Update available';
+            ? loc.catalogUpdateAvailableSupportsInstall
+            : loc.catalogUpdateAvailable;
         onPressed = runPrimary;
       case _CatalogDownloadState.updateWebsite:
         icon = Icons.arrow_upward;
         label = 'Update';
         backgroundColor = theme.colorScheme.primary;
         foregroundColor = theme.colorScheme.onPrimary;
-        tooltip = 'Update available.\nOpen download page';
+        tooltip = loc.catalogUpdateAvailableOpenDownload;
         onPressed = () => linkLoader(browserLink!.url);
       case _CatalogDownloadState.installedEnabled:
         icon = Icons.check;
         label = 'Installed';
         backgroundColor = theme.statusColors.success.withValues(alpha: 0.85);
         foregroundColor = theme.statusColors.onSuccess;
-        tooltip = 'Installed and enabled.\nRight-click the card to disable.';
+        tooltip = loc.catalogInstalledAndEnabledHint;
         onPressed = null;
       case _CatalogDownloadState.installedDisabled:
         icon = Icons.check;
         label = 'Installed';
         backgroundColor = theme.statusColors.neutral.withValues(alpha: 0.7);
         foregroundColor = theme.statusColors.onNeutral;
-        tooltip = 'Installed but disabled.\nRight-click the card to enable.';
+        tooltip = loc.catalogInstalledButDisabledHint;
         onPressed = null;
       case _CatalogDownloadState.notInstalledDirectDownload:
         icon = Icons.download;
@@ -1165,15 +1168,15 @@ class CatalogDownloadButton extends ConsumerWidget {
         backgroundColor = theme.statusColors.info;
         foregroundColor = theme.statusColors.onInfo;
         tooltip = isTrios
-            ? 'Download ${mod.name}.\n\nThis mod supports Install with TriOS.'
-            : 'Download ${mod.name}';
+            ? loc.catalogDownloadSupportsInstall(mod.name)
+            : loc.catalogDownloadName(mod.name);
         onPressed = runPrimary;
       case _CatalogDownloadState.notInstalledWebsite:
         icon = Icons.open_in_browser;
         label = 'Get';
         backgroundColor = theme.statusColors.info;
         foregroundColor = theme.statusColors.onInfo;
-        tooltip = 'Open the download page';
+        tooltip = loc.catalogOpenTheDownloadPage;
         onPressed = () => linkLoader(browserLink!.url);
       case _CatalogDownloadState.noDownloadLink:
         icon = Icons.download;
@@ -1182,7 +1185,7 @@ class CatalogDownloadButton extends ConsumerWidget {
           alpha: 0.5,
         );
         foregroundColor = theme.disabledColor;
-        tooltip = 'No download available';
+        tooltip = loc.catalogNoDownloadAvailable;
         onPressed = null;
     }
 
@@ -1239,7 +1242,7 @@ class CatalogDownloadButton extends ConsumerWidget {
     )
         : null;
     final tooltipText = useChooser
-        ? 'Several downloads available.\nClick to choose'
+        ? loc.catalogSeveralDownloadsAvailable
         : tooltip;
 
     Widget buildButton(VoidCallback? onTap, {required bool marksPending}) =>
@@ -1319,7 +1322,11 @@ class CatalogDownloadButton extends ConsumerWidget {
 void showLicenseDialog(BuildContext context, {
   required String modTitle,
   required String license,
-}) => showAlertDialog(context, title: 'License: $modTitle', content: license);
+  }) => showAlertDialog(
+    context,
+    title: "${AppLocalizations.of(context).catalogLicense}: $modTitle",
+    content: license,
+  );
 
 class _ForumStatsFromGathered extends StatelessWidget {
   final CatalogMod gathered;
@@ -1341,6 +1348,7 @@ class _ForumStatsFromGathered extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final baseColor = theme.textTheme.labelSmall?.color;
     final style = theme.textTheme.labelSmall?.copyWith(
       color: baseColor?.withValues(alpha: 0.6),
@@ -1409,36 +1417,39 @@ class _ForumStatsFromGathered extends StatelessWidget {
             segment(
               icon: Icons.visibility,
               text: _compactFormat.format(gathered.views),
-              tooltip: '${_decimalFormat.format(gathered.views)} forum views',
+              tooltip: loc.catalogForumViewsCount(
+                _decimalFormat.format(gathered.views),
+              ),
             ),
           if (gathered.replies != null)
             segment(
               icon: Icons.forum,
               text: _compactFormat.format(gathered.replies),
-              tooltip:
-              '${_decimalFormat.format(gathered.replies)} forum replies',
+              tooltip: loc.catalogForumRepliesCount(
+                _decimalFormat.format(gathered.replies),
+              ),
             ),
           if (date != null)
             segment(
               icon: Icons.schedule,
               text: _compactAge(date),
               segStyle: activeStyle,
-              tooltip: 'Last forum post: ${_dateFormat.format(date)}',
+              tooltip: loc.catalogLastForumPost(_dateFormat.format(date)),
             ),
           if (sourceCodeUrl != null)
             iconAction(
               icon: Icons.code,
               tooltip:
-              'Source code on ${sourceCodeHostName(sourceCodeUrl)}\n'
-                  'Click to open in your browser',
+              '${loc.catalogSourceCodeOn(sourceCodeHostName(sourceCodeUrl))}\n'
+                  '${loc.catalogClickToOpenInBrowser}',
               onTap: () => sourceCodeUrl.openAsUriInBrowser(),
             ),
           if (licenseText != null)
             iconAction(
               icon: Icons.balance,
               tooltip: licenseUrl != null
-                  ? '$licenseUrl\nClick to open in your browser'
-                  : _licenseTooltip(licenseText),
+                  ? '$licenseUrl\n${loc.catalogClickToOpenInBrowser}'
+                  : _licenseTooltip(licenseText, loc.catalogClickToReadFullLicense),
               onTap: () =>
               licenseUrl != null
                   ? licenseUrl.openAsUriInBrowser()
@@ -1455,11 +1466,9 @@ class _ForumStatsFromGathered extends StatelessWidget {
 
   /// The license itself, cut short when it runs long, with a nudge to click
   /// for the rest.
-  static String _licenseTooltip(String license) {
+  static String _licenseTooltip(String license, String clickToReadFull) {
     final shown = license.truncate(200);
-    return license.length > 200
-        ? '$shown\n\nClick to read the full license.'
-        : shown;
+    return license.length > 200 ? '$shown\n\n$clickToReadFull' : shown;
   }
 
   static String _compactAge(DateTime date) {

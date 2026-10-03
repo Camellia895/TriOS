@@ -40,7 +40,7 @@ class FinderPanel extends ConsumerWidget {
             for (final preset in kFinderPresets)
               OutlinedButton(
                 onPressed: () => update(preset.criteria),
-                child: Text(preset.name),
+                child: Text(_presetLabel(loc, preset)),
               ),
             MovingTooltipWidget.text(
               message: loc.finderClearAllKnobs,
@@ -139,7 +139,9 @@ class FinderPanel extends ConsumerWidget {
         if (criteria.requiredLandmarks.isNotEmpty)
           _LabeledSlider(
             label: loc.finderWithin,
-            valueLabel: '${criteria.nearbyRangeLy.round()} LY',
+            valueLabel: loc.finderNearbyRangeLyLabel(
+              criteria.nearbyRangeLy.round(),
+            ),
             value: criteria.nearbyRangeLy,
             min: 2,
             max: 30,
@@ -206,6 +208,22 @@ class FinderPanel extends ConsumerWidget {
 }
 
 String _weightLabel(double w) => w <= 0 ? 'off' : '${(w * 100).round()}%';
+
+/// Localized display name for a finder preset. The English names live on
+/// [FinderPreset] (a const data structure); resolve them at display time.
+String _presetLabel(AppLocalizations loc, FinderPreset preset) {
+  switch (preset.name) {
+    case 'Colony Hunter':
+      return loc.finderPresetColonyHunter;
+    case 'Resource Baron':
+      return loc.finderPresetResourceBaron;
+    case 'Cryosleeper Nearby':
+      return loc.finderPresetCryosleeperNearby;
+    case 'Self-Sufficient':
+      return loc.finderPresetSelfSufficient;
+  }
+  return preset.name;
+}
 
 /// Localized display name for a resource family. The English labels live on
 /// [ResourceFamily] (a const data structure); resolve them at display time.

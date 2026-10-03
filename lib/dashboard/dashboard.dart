@@ -68,7 +68,7 @@ class _DashboardState extends ConsumerState<Dashboard>
             child: Column(
               children: [
                 Tooltip(
-                  message: isGameRunning ? "Game is running" : "",
+                  message: isGameRunning ? loc.launcherGameIsRunning : "",
                   child: Disable(
                     isEnabled: !isGameRunning,
                     child: Card(
@@ -95,7 +95,12 @@ class _DashboardState extends ConsumerState<Dashboard>
                                       )
                                     : const Icon(Icons.speed, size: 32),
                                 subtitle: Text(
-                                  "${ref.watch(currentRamAmountInMb) ?? "(unknown RAM)"} MB",
+                                  loc.dashboardRamSubtitle(
+                                    ref
+                                        .watch(currentRamAmountInMb)
+                                        ?.toString() ??
+                                    loc.dashboardUnknownRam,
+                                  ),
                                 ),
                                 collapsedBackgroundColor: Theme.of(context)
                                     .colorScheme
@@ -134,19 +139,13 @@ class _DashboardState extends ConsumerState<Dashboard>
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     MovingTooltipWidget.text(
-                                      message:
-                                          "Errors are normal. You can ignore them unless Starsector is misbehaving."
-                                          "\n"
-                                          "\nIf there is a crash, look at the bottom of the log for a bunch of lines starting with 'at'. Hopefully, one of them will mention the problematic mod's id, name, or prefix."
-                                          "\nFor example, 'at data.scripts.campaign.II_IGFleetInflater.inflate(II_IGFleetInflater.java:59)' shows 'II_', which is Interstellar Imperium."
-                                          "\n"
-                                          "\nMake sure your mods are up to date and report bugs to the mod makers!",
+                                      message: loc.dashboardErrorsTooltip,
                                       child: Row(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Starsector Log",
+                                            loc.dashboardStarsectorLog,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge
@@ -176,7 +175,12 @@ class _DashboardState extends ConsumerState<Dashboard>
                                             top: 4,
                                           ),
                                           child: TextTriOS(
-                                            "${logfile?.nameWithExtension ?? ""} •   last updated ${errors?.lastUpdated?.relativeTimestamp() ?? "unknown"}",
+                                            loc.dashboardLogLastUpdated(
+                                              logfile?.nameWithExtension ?? "",
+                                              errors?.lastUpdated
+                                                      ?.relativeTimestamp() ??
+                                                  loc.dashboardLastUpdatedUnknown,
+                                            ),
                                             style: theme.textTheme.labelSmall,
                                             maxLines: 1,
                                             overflow: .ellipsis,
@@ -259,7 +263,7 @@ class _DashboardState extends ConsumerState<Dashboard>
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 2),
                                 child: Text(
-                                  "Errors are normal. If the game crashes, check here for fatal errors.",
+                                  loc.dashboardErrorsAreNormalCrash,
                                   style: theme.textTheme.labelMedium?.copyWith(
                                     color: theme.textTheme.labelMedium?.color
                                         ?.withValues(alpha: 0.6),

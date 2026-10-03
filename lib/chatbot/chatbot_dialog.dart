@@ -129,6 +129,7 @@ class _ChatbotDialogState extends ConsumerState<ChatbotDialog> {
     final conversation = ref.watch(chatbotControllerProvider);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final loc = AppLocalizations.of(context);
 
     // When typing, hide the last bot message (it was already added by the controller)
     final visibleMessages = _isTyping && conversation.history.isNotEmpty
@@ -169,7 +170,7 @@ class _ChatbotDialogState extends ConsumerState<ChatbotDialog> {
                   const Spacer(),
                   IconButton(
                     icon: const Icon(Icons.insert_drive_file, size: 20),
-                    tooltip: "Start a new chat",
+                    tooltip: loc.chatbotNewChatTooltip,
                     onPressed: () {
                       ref.read(chatbotControllerProvider.notifier).clear();
                       setState(() => _isTyping = false);
@@ -177,7 +178,7 @@ class _ChatbotDialogState extends ConsumerState<ChatbotDialog> {
                   ),
                   IconButton(
                     icon: const Icon(Icons.close, size: 20),
-                    tooltip: "Close",
+                    tooltip: loc.commonClose,
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],
@@ -257,7 +258,9 @@ class _ChatbotDialogState extends ConsumerState<ChatbotDialog> {
                         controller: _textController,
                         focusNode: _focusNode,
                         decoration: InputDecoration(
-                          hintText: "Message ${Constants.chatbotName}...",
+                          hintText: loc.chatbotMessageHint(
+                            Constants.chatbotName,
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -289,7 +292,7 @@ class _ChatbotDialogState extends ConsumerState<ChatbotDialog> {
                   IconButton.filled(
                     icon: const Icon(Icons.arrow_upward, size: 20),
                     onPressed: _isSendEnabled && !_isTyping ? _send : null,
-                    tooltip: "Send",
+                    tooltip: loc.chatbotSend,
                     style: IconButton.styleFrom(
                       backgroundColor: _isSendEnabled && !_isTyping
                           ? colorScheme.primary
@@ -307,8 +310,7 @@ class _ChatbotDialogState extends ConsumerState<ChatbotDialog> {
               child: Padding(
                 padding: const .only(bottom: 6),
                 child: Text(
-                  "Caution: AI can make mistakes. "
-                  "${Constants.chatbotName} will never make mistakes, though, because it isn't a real AI.",
+                  loc.chatbotAiCaution(Constants.chatbotName),
                   style: theme.textTheme.labelMedium?.copyWith(
                     fontStyle: .italic,
                   ),
@@ -351,13 +353,13 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              "How can I help?",
+              loc.chatbotEmptyTitle,
               style: theme.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
             Text(
-              "Ask me about mods, settings, or troubleshooting.",
+              loc.chatbotEmptySubtitle,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: colorScheme.onSurfaceVariant,
               ),
@@ -568,6 +570,7 @@ class _MessageActionsState extends State<_MessageActions> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final loc = AppLocalizations.of(context);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -585,7 +588,9 @@ class _MessageActionsState extends State<_MessageActions> {
         ),
         if (widget.waterUsageLiters != null)
           Text(
-            "\u00b7 ${widget.waterUsageLiters!.toStringAsFixed(2)}L H\u2082O used",
+            loc.chatbotWaterUsed(
+              widget.waterUsageLiters!.toStringAsFixed(2),
+            ),
             style: theme.textTheme.bodySmall?.copyWith(
               color: colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
               fontSize: 11,
@@ -604,7 +609,9 @@ class _MessageActionsState extends State<_MessageActions> {
             ),
             onPressed: _copyToClipboard,
             padding: EdgeInsets.zero,
-            tooltip: _copied ? "Copied!" : "Copy",
+            tooltip: _copied
+                ? loc.commonCopiedToClipboard
+                : loc.commonCopyToClipboard,
           ),
         ),
       ],

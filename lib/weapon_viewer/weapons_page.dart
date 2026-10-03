@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
@@ -158,8 +159,9 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
     WeaponsPageController controller,
     WeaponsPageState controllerState,
   ) {
+    final loc = AppLocalizations.of(context);
     return ViewerToolbar(
-      entityName: "Weapons",
+      entityName: loc.weaponsEntityName,
       total: total,
       visible: visible,
       isLoading: controllerState.isLoading,
@@ -411,6 +413,7 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
     ThemeData theme,
     WeaponsPageState controllerState,
   ) {
+    final loc = AppLocalizations.of(context);
     int position = 0;
 
     String wepValueToString(
@@ -459,10 +462,10 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
       WispGridColumn(
         key: 'modVariant',
         isSortable: true,
-        name: 'Mod',
+        name: loc.codexMod,
         getSortValue: (weapon) => weapon.modVariant?.modInfo.nameOrId,
         itemCellBuilder: (item, _) => TextTriOS(
-          item.modVariant?.modInfo.nameOrId ?? "Vanilla",
+          item.modVariant?.modInfo.nameOrId ?? loc.vanillaShareBarVanilla,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.labelLarge,
@@ -487,7 +490,7 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
       WispGridColumn(
         key: 'name',
         isSortable: true,
-        name: 'Name',
+        name: loc.modsGridName,
         getSortValue: (w) => (w.name ?? w.id).replaceAll(_nonAlphanumeric, ''),
         // Fills the cell so the tooltip shows from anywhere in it, not just
         // over the name text.
@@ -511,192 +514,224 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
         csvValue: (weapon) => weapon.modVariant?.modInfo.nameOrId ?? "Vanilla",
         defaultState: WispGridColumnState(position: position++, width: 150),
       ),
-      col('id', 'ID', (w) => w.id),
+      col('id', loc.weaponsColumnId, (w) => w.id),
       col(
         'weaponType',
-        'Weapon Type',
+        loc.weaponsColumnWeaponType,
         (w) => w.weaponType?.toTitleCase(),
         width: 100,
       ),
-      col('size', 'Size', (w) => w.size?.toTitleCase(), width: 80),
+      col('size', loc.weaponsColumnSize, (w) => w.size?.toTitleCase(), width: 80),
       col(
         'damageType',
-        'Dmg Type',
+        loc.weaponsColumnDmgType,
         (w) => w.damageType?.toTitleCase(),
         width: 90,
       ),
       col(
         'techManufacturer',
-        'Tech/Manufacturer',
+        loc.weaponsColumnTechManufacturer,
         (w) => w.techManufacturer,
         width: 150,
       ),
       col(
         'specClass',
-        'Spec Class',
+        loc.weaponsColumnSpecClass,
         (w) => w.specClass,
         width: 100,
         isVisible: false,
       ),
       col(
         'primaryRoleStr',
-        'Role',
+        loc.weaponsColumnRole,
         (w) => w.primaryRoleStr,
         width: 110,
         isVisible: false,
       ),
       col(
         'accuracyStr',
-        'Accuracy',
+        loc.weaponsColumnAccuracy,
         (w) => w.accuracyStr,
         width: 100,
         isVisible: false,
       ),
       col(
         'trackingStr',
-        'Tracking',
+        loc.weaponsColumnTracking,
         (w) => w.trackingStr,
         width: 100,
         isVisible: false,
       ),
-      col('speedStr', 'Speed', (w) => w.speedStr, width: 90, isVisible: false),
+      col(
+        'speedStr',
+        loc.weaponsColumnSpeed,
+        (w) => w.speedStr,
+        width: 90,
+        isVisible: false,
+      ),
       col(
         'turnRateStr',
-        'Turn Rate (text)',
+        loc.weaponsColumnTurnRateText,
         (w) => w.turnRateStr,
         width: 110,
         isVisible: false,
       ),
-      col('damagePerShot', 'Dmg/Shot', (w) => w.damagePerShot, width: 110),
-      col('impact', 'Impact', (w) => w.impact, width: 80, isVisible: false),
-      col('op', 'OP', (w) => w.ops, width: 110),
-      col('baseValue', 'Cost', (w) => w.baseValue, width: 80),
-      col('energyPerShot', 'Flux/Shot', (w) => w.energyPerShot, width: 90),
-      col('energyPerSecond', 'Flux/Sec', (w) => w.energyPerSecond, width: 90),
-      col('range', 'Range', (w) => w.range, width: 80),
-      col('damagePerSecond', 'Dmg/Sec', (w) => w.damagePerSecond, width: 90),
-      col('ammo', 'Ammo', (w) => w.ammo, width: 80),
+      col(
+        'damagePerShot',
+        loc.weaponsColumnDmgShot,
+        (w) => w.damagePerShot,
+        width: 110,
+      ),
+      col('impact', loc.weaponsColumnImpact, (w) => w.impact, width: 80, isVisible: false),
+      col('op', loc.weaponsColumnOp, (w) => w.ops, width: 110),
+      col('baseValue', loc.weaponsColumnCost, (w) => w.baseValue, width: 80),
+      col(
+        'energyPerShot',
+        loc.weaponsColumnFluxShot,
+        (w) => w.energyPerShot,
+        width: 90,
+      ),
+      col(
+        'energyPerSecond',
+        loc.weaponsColumnFluxSec,
+        (w) => w.energyPerSecond,
+        width: 90,
+      ),
+      col('range', loc.weaponsColumnRange, (w) => w.range, width: 80),
+      col(
+        'damagePerSecond',
+        loc.weaponsColumnDmgSec,
+        (w) => w.damagePerSecond,
+        width: 90,
+      ),
+      col('ammo', loc.weaponsColumnAmmo, (w) => w.ammo, width: 80),
       col(
         'ammoPerSec',
-        'Ammo/Sec',
+        loc.weaponsColumnAmmoSec,
         (w) => w.ammoPerSec,
         width: 90,
         isVisible: false,
       ),
       col(
         'reloadSize',
-        'Reload Size',
+        loc.weaponsColumnReloadSize,
         (w) => w.reloadSize,
         width: 100,
         isVisible: false,
       ),
-      col('emp', 'EMP', (w) => w.emp, width: 80),
+      col('emp', loc.weaponsColumnEmp, (w) => w.emp, width: 80),
       col(
         'chargeup',
-        'Chargeup',
+        loc.weaponsColumnChargeup,
         (w) => w.chargeup,
         width: 90,
         isVisible: false,
       ),
       col(
         'chargedown',
-        'Chargedown',
+        loc.weaponsColumnChargedown,
         (w) => w.chargedown,
         width: 100,
         isVisible: false,
       ),
       col(
         'burstSize',
-        'Burst Size',
+        loc.weaponsColumnBurstSize,
         (w) => w.burstSize,
         width: 90,
         isVisible: false,
       ),
       col(
         'burstDelay',
-        'Burst Delay',
+        loc.weaponsColumnBurstDelay,
         (w) => w.burstDelay,
         width: 100,
         isVisible: false,
       ),
       col(
         'minSpread',
-        'Min Spread',
+        loc.weaponsColumnMinSpread,
         (w) => w.minSpread,
         width: 100,
         isVisible: false,
       ),
       col(
         'maxSpread',
-        'Max Spread',
+        loc.weaponsColumnMaxSpread,
         (w) => w.maxSpread,
         width: 100,
         isVisible: false,
       ),
       col(
         'spreadPerShot',
-        'Spread/Shot',
+        loc.weaponsColumnSpreadShot,
         (w) => w.spreadPerShot,
         width: 110,
         isVisible: false,
       ),
       col(
         'spreadDecayPerSec',
-        'Spread Decay',
+        loc.weaponsColumnSpreadDecay,
         (w) => w.spreadDecayPerSec,
         width: 110,
         isVisible: false,
       ),
       col(
         'autofireAccBonus',
-        'AF Acc Bonus',
+        loc.weaponsColumnAfAccBonus,
         (w) => w.autofireAccBonus,
         width: 110,
         isVisible: false,
       ),
       col(
         'projSpeed',
-        'Proj Speed',
+        loc.weaponsColumnProjSpeed,
         (w) => w.projSpeed,
         width: 100,
         isVisible: false,
       ),
       col(
         'beamSpeed',
-        'Beam Speed',
+        loc.weaponsColumnBeamSpeed,
         (w) => w.beamSpeed,
         width: 100,
         isVisible: false,
       ),
       col(
         'launchSpeed',
-        'Launch Speed',
+        loc.weaponsColumnLaunchSpeed,
         (w) => w.launchSpeed,
         width: 110,
         isVisible: false,
       ),
       col(
         'flightTime',
-        'Flight Time',
+        loc.weaponsColumnFlightTime,
         (w) => w.flightTime,
         width: 100,
         isVisible: false,
       ),
       col(
         'projHitpoints',
-        'Proj HP',
+        loc.weaponsColumnProjHp,
         (w) => w.projHitpoints,
         width: 90,
         isVisible: false,
       ),
-      col('turnRate', 'Turn Rate', (w) => w.turnRate, width: 90),
-      col('tier', 'Tier', (w) => w.tier, width: 60),
-      col('rarity', 'Rarity', (w) => w.rarity, width: 80, isVisible: false),
-      col('hints', 'Hints', (w) => w.hints, width: 150, isVisible: false),
-      col('tags', 'Tags', (w) => w.tags, width: 150, isVisible: false),
+      col('turnRate', loc.weaponsColumnTurnRate, (w) => w.turnRate, width: 90),
+      col('tier', loc.weaponsColumnTier, (w) => w.tier, width: 60),
+      col(
+        'rarity',
+        loc.weaponsColumnRarity,
+        (w) => w.rarity,
+        width: 80,
+        isVisible: false,
+      ),
+      col('hints', loc.weaponsColumnHints, (w) => w.hints, width: 150, isVisible: false),
+      col('tags', loc.weaponsColumnTags, (w) => w.tags, width: 150, isVisible: false),
       col(
         'groupTag',
-        'Group Tag',
+        loc.weaponsColumnGroupTag,
         (w) => w.groupTag,
         width: 120,
         isVisible: false,
@@ -759,11 +794,12 @@ class _WeaponsPageState extends ConsumerState<WeaponsPage>
 }
 
 class UngroupedWeaponGridGroup extends WispGridGroup<Weapon> {
-  UngroupedWeaponGridGroup() : super('none', 'None');
+  UngroupedWeaponGridGroup()
+    : super('none', AppLocalizationsSync.instance.codexNone);
 
   @override
   String getGroupName(Weapon mod, {Comparable? groupSortValue}) =>
-      'All Weapons';
+      AppLocalizationsSync.instance.weaponsGroupAllWeapons;
 
   @override
   Comparable getGroupSortValue(Weapon mod) => 1;
@@ -773,11 +809,13 @@ class UngroupedWeaponGridGroup extends WispGridGroup<Weapon> {
 }
 
 class ModNameWeaponGridGroup extends WispGridGroup<Weapon> {
-  ModNameWeaponGridGroup() : super('modId', 'Mod');
+  ModNameWeaponGridGroup()
+    : super('modId', AppLocalizationsSync.instance.codexMod);
 
   @override
   String getGroupName(Weapon mod, {Comparable? groupSortValue}) =>
-      mod.modVariant?.modInfo.nameOrId ?? 'Vanilla';
+      mod.modVariant?.modInfo.nameOrId ??
+      AppLocalizationsSync.instance.vanillaShareBarVanilla;
 
   @override
   Comparable getGroupSortValue(Weapon mod) =>

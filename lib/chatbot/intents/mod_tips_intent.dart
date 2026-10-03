@@ -70,17 +70,20 @@ class ModTipsIntent extends ChatIntent with ModAwareIntent {
     final shuffled = List.of(tips)..shuffle(rng);
     final selected = shuffled.take(5).toList();
 
-    final buf = StringBuffer('Tips from Your Mods\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotTipsTitle + '\n');
     for (final modTip in selected) {
-      final tipText = modTip.tipObj.tip ?? '(no text)';
-      final source = modTip.variants.firstOrNull?.modInfo.nameOrId ?? 'Unknown';
+      final tipText = modTip.tipObj.tip ?? loc.chatbotTipNoText;
+      final source =
+          modTip.variants.firstOrNull?.modInfo.nameOrId ??
+          loc.chatbotValueUnknown;
       buf.writeln('  "$tipText"');
-      buf.writeln('    — $source');
+      buf.writeln(loc.chatbotTipSource(source));
     }
 
     if (tips.length > 5) {
       buf.writeln(
-        '\n${tips.length - 5} more tips available. Ask again for different ones!',
+        loc.chatbotMoreTips(tips.length - 5),
       );
     }
 

@@ -123,6 +123,7 @@ Column _buildInfoPane(
   BuildContext context,
   Widget pagerControls,
 ) {
+  final loc = AppLocalizations.of(context);
   final imagePaths = w.allSpriteFiles;
 
   Widget section(String title) => Padding(
@@ -216,93 +217,98 @@ Column _buildInfoPane(
           w.modSources,
           theme,
           fileLabel: AppLocalizations.of(context).weaponsWeaponFile,
-          fallbackName: w.modVariant?.modInfo.nameOrId ?? 'Vanilla',
+          fallbackName:
+              w.modVariant?.modInfo.nameOrId ??
+              AppLocalizations.of(context).vanillaShareBarVanilla,
         ),
       ),
-      _kv('Type', w.weaponType?.toTitleCase(), theme),
-      _kv('Size', w.size?.toTitleCase(), theme),
-      _kv('Tech/Manufacturer', w.techManufacturer, theme),
-      _kv('Spec Class', w.specClass, theme),
-      _kv('Raw Type', w.type, theme),
+      _kv(loc.weaponDetailsLabelType, w.weaponType?.toTitleCase(), theme),
+      _kv(loc.weaponsColumnSize, w.size?.toTitleCase(), theme),
+      _kv(loc.weaponsColumnTechManufacturer, w.techManufacturer, theme),
+      _kv(loc.weaponsColumnSpecClass, w.specClass, theme),
+      _kv(loc.weaponDetailsRawType, w.type, theme),
       // Combat
-      section('Combat'),
+      section(loc.weaponDetailsSectionCombat),
       Wrap(
         runSpacing: 6,
         children: [
-          _chip('Dmg/Shot', _fmtNum(w.damagePerShot)),
-          _chip('Dmg/Sec', _fmtNum(w.damagePerSecond)),
-          _chip('EMP', _fmtNum(w.emp)),
-          _chip('Impact', _fmtNum(w.impact)),
-          _chip('Range', _fmtNum(w.range)),
-          _chip('Turn Rate', _fmtNum(w.turnRate)),
-          _chip('OP', _fmtNum(w.ops)),
+          _chip(loc.weaponsColumnDmgShot, _fmtNum(w.damagePerShot)),
+          _chip(loc.weaponsColumnDmgSec, _fmtNum(w.damagePerSecond)),
+          _chip(loc.weaponsColumnEmp, _fmtNum(w.emp)),
+          _chip(loc.weaponsColumnImpact, _fmtNum(w.impact)),
+          _chip(loc.weaponsColumnRange, _fmtNum(w.range)),
+          _chip(loc.weaponsColumnTurnRate, _fmtNum(w.turnRate)),
+          _chip(loc.weaponsColumnOp, _fmtNum(w.ops)),
         ],
       ),
       // Fire Mechanics
-      section('Fire Mechanics'),
+      section(loc.weaponDetailsSectionFireMechanics),
       Wrap(
         runSpacing: 6,
         children: [
-          _chip('Ammo', _fmtNum(w.ammo)),
-          _chip('Ammo/Sec', _fmtNum(w.ammoPerSec)),
-          _chip('Reload Size', _fmtNum(w.reloadSize)),
-          _chip('Energy/Shot', _fmtNum(w.energyPerShot)),
-          _chip('Energy/Sec', _fmtNum(w.energyPerSecond)),
-          _chip('Chargeup', _fmtNum(w.chargeup)),
-          _chip('Chargedown', _fmtNum(w.chargedown)),
-          _chip('Burst Size', _fmtNum(w.burstSize)),
-          _chip('Burst Delay', _fmtNum(w.burstDelay)),
+          _chip(loc.weaponsColumnAmmo, _fmtNum(w.ammo)),
+          _chip(loc.weaponsColumnAmmoSec, _fmtNum(w.ammoPerSec)),
+          _chip(loc.weaponsColumnReloadSize, _fmtNum(w.reloadSize)),
+          _chip(loc.weaponDetailsEnergyShot, _fmtNum(w.energyPerShot)),
+          _chip(loc.weaponDetailsEnergySec, _fmtNum(w.energyPerSecond)),
+          _chip(loc.weaponsColumnChargeup, _fmtNum(w.chargeup)),
+          _chip(loc.weaponsColumnChargedown, _fmtNum(w.chargedown)),
+          _chip(loc.weaponsColumnBurstSize, _fmtNum(w.burstSize)),
+          _chip(loc.weaponsColumnBurstDelay, _fmtNum(w.burstDelay)),
         ],
       ),
       // Accuracy & Spread
-      section('Accuracy & Spread'),
+      section(loc.weaponDetailsSectionAccuracySpread),
       Wrap(
         runSpacing: 6,
         children: [
-          _chip('Min Spread', _fmtNum(w.minSpread)),
-          _chip('Max Spread', _fmtNum(w.maxSpread)),
-          _chip('Spread/Shot', _fmtNum(w.spreadPerShot)),
-          _chip('Spread Decay/Sec', _fmtNum(w.spreadDecayPerSec)),
-          _chip('Autofire Acc Bonus', _fmtNum(w.autofireAccBonus)),
+          _chip(loc.weaponsColumnMinSpread, _fmtNum(w.minSpread)),
+          _chip(loc.weaponsColumnMaxSpread, _fmtNum(w.maxSpread)),
+          _chip(loc.weaponsColumnSpreadShot, _fmtNum(w.spreadPerShot)),
+          _chip(loc.weaponDetailsSpreadDecaySec, _fmtNum(w.spreadDecayPerSec)),
+          _chip(loc.weaponsColumnAfAccBonus, _fmtNum(w.autofireAccBonus)),
           if ((w.extraArcForAI ?? 0) > 0)
-            _chip('Extra Arc (AI)', _fmtNum(w.extraArcForAI)),
+            _chip(loc.weaponDetailsExtraArcAi, _fmtNum(w.extraArcForAI)),
         ],
       ),
       // Projectile
-      section('Projectile'),
+      section(loc.weaponDetailsSectionProjectile),
       Wrap(
         runSpacing: 6,
         children: [
-          _chip('Beam Speed', _fmtNum(w.beamSpeed)),
-          _chip('Proj Speed', _fmtNum(w.projSpeed)),
-          _chip('Launch Speed', _fmtNum(w.launchSpeed)),
-          _chip('Flight Time', _fmtNum(w.flightTime)),
-          _chip('Proj HP', _fmtNum(w.projHitpoints)),
+          _chip(loc.weaponsColumnBeamSpeed, _fmtNum(w.beamSpeed)),
+          _chip(loc.weaponsColumnProjSpeed, _fmtNum(w.projSpeed)),
+          _chip(loc.weaponsColumnLaunchSpeed, _fmtNum(w.launchSpeed)),
+          _chip(loc.weaponsColumnFlightTime, _fmtNum(w.flightTime)),
+          _chip(loc.weaponsColumnProjHp, _fmtNum(w.projHitpoints)),
         ],
       ),
       // Misc
-      section('Misc'),
+      section(loc.weaponDetailsSectionMisc),
       Wrap(
         runSpacing: 6,
         children: [
-          _chip('Tier', _fmtNum(w.tier)),
-          _chip('Rarity', _fmtNum(w.rarity)),
-          _chip('Base Value', w.baseValue.asCredits()),
-          if (w.noDPSInTooltip == true) _chip('No DPS In Tooltip', 'Yes'),
-          if ((w.hints ?? '').isNotEmpty) _chip('Hints', w.hints!),
-          if ((w.tags ?? '').isNotEmpty) _chip('Tags', w.tags!),
-          if ((w.groupTag ?? '').isNotEmpty) _chip('Group Tag', w.groupTag!),
+          _chip(loc.weaponsColumnTier, _fmtNum(w.tier)),
+          _chip(loc.weaponsColumnRarity, _fmtNum(w.rarity)),
+          _chip(loc.shipDetailsBaseValue, w.baseValue.asCredits()),
+          if (w.noDPSInTooltip == true)
+            _chip(loc.weaponDetailsNoDpsInTooltip, loc.weaponDetailsYes),
+          if ((w.hints ?? '').isNotEmpty) _chip(loc.weaponDetailsHints, w.hints!),
+          if ((w.tags ?? '').isNotEmpty) _chip(loc.weaponDetailsTags, w.tags!),
+          if ((w.groupTag ?? '').isNotEmpty)
+            _chip(loc.weaponsColumnGroupTag, w.groupTag!),
           if ((w.forWeaponTooltip ?? '').isNotEmpty)
-            _chip('For Weapon Tooltip', w.forWeaponTooltip!),
+            _chip(loc.weaponDetailsForWeaponTooltip, w.forWeaponTooltip!),
           if ((w.primaryRoleStr ?? '').isNotEmpty)
-            _chip('Primary Role', w.primaryRoleStr!),
-          if ((w.speedStr ?? '').isNotEmpty) _chip('Speed', w.speedStr!),
+            _chip(loc.weaponDetailsPrimaryRole, w.primaryRoleStr!),
+          if ((w.speedStr ?? '').isNotEmpty)
+            _chip(loc.weaponsColumnSpeed, w.speedStr!),
           if ((w.trackingStr ?? '').isNotEmpty)
-            _chip('Tracking', w.trackingStr!),
+            _chip(loc.weaponsColumnTracking, w.trackingStr!),
           if ((w.turnRateStr ?? '').isNotEmpty)
-            _chip('Turn Rate (txt)', w.turnRateStr!),
+            _chip(loc.weaponDetailsTurnRateTxt, w.turnRateStr!),
           if ((w.accuracyStr ?? '').isNotEmpty)
-            _chip('Accuracy', w.accuracyStr!),
+            _chip(loc.weaponsColumnAccuracy, w.accuracyStr!),
         ],
       ),
     ],

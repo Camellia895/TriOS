@@ -66,7 +66,10 @@ class EnabledModsIntent extends ChatIntent with ModAwareIntent {
       );
     }
 
-    final buf = StringBuffer('Enabled Mods (${enabled.length})\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(
+      loc.chatbotEnabledModsTitle(enabled.length) + '\n',
+    );
     for (final mod in enabled) {
       final variant = mod.findFirstEnabled;
       final name = variant?.modInfo.nameOrId ?? mod.id;

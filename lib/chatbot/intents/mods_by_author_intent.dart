@@ -54,6 +54,7 @@ class ModsByAuthorIntent extends ChatIntent with ModAwareIntent {
     final guard = guardModData();
     if (guard != null) return guard;
 
+    final loc = AppLocalizationsSync.instance;
     final authorQuery = _extractAuthorName(input);
 
     // Group mods by author
@@ -65,7 +66,9 @@ class ModsByAuthorIntent extends ChatIntent with ModAwareIntent {
       final name = variant?.modInfo.nameOrId ?? mod.id;
       final version =
           variant?.modInfo.version != null ? ' v${variant!.modInfo.version}' : '';
-      final status = mod.isEnabledInGame ? '[ON]' : '[OFF]';
+      final status = mod.isEnabledInGame
+          ? '[${loc.chatbotTagOn}]'
+          : '[${loc.chatbotTagOff}]';
       byAuthor.putIfAbsent(author, () => []).add('$status $name$version');
     }
 
@@ -86,7 +89,9 @@ class ModsByAuthorIntent extends ChatIntent with ModAwareIntent {
 
       final buf = StringBuffer();
       for (final entry in matchingAuthors) {
-        buf.writeln('Mods by ${entry.key} (${entry.value.length})');
+        buf.writeln(
+          loc.chatbotModsByAuthor(entry.key, entry.value.length),
+        );
         for (final mod in entry.value) {
           buf.writeln('  $mod');
         }
@@ -98,13 +103,13 @@ class ModsByAuthorIntent extends ChatIntent with ModAwareIntent {
     final sorted = byAuthor.entries.toList()
       ..sort((a, b) => b.value.length.compareTo(a.value.length));
 
-    final buf = StringBuffer('Mod Authors\n');
+    final buf = StringBuffer(loc.chatbotModAuthorsTitle + '\n');
     for (final entry in sorted.take(20)) {
       final count = entry.value.length;
-      buf.writeln('  ${entry.key}: $count mod${count == 1 ? '' : 's'}');
+      buf.writeln(loc.chatbotAuthorModCount(entry.key, count));
     }
     if (sorted.length > 20) {
-      buf.writeln('  ...and ${sorted.length - 20} more authors');
+      buf.writeln('  ' + loc.chatbotAndNMoreAuthors(sorted.length - 20));
     }
 
     return ChatResponse(text: buf.toString().trimRight());

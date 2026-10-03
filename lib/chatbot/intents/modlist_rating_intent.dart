@@ -90,7 +90,7 @@ class ModlistRatingIntent extends ChatIntent with ModAwareIntent {
 
       final opinion = _modOpinions[modId];
       if (opinion != null) {
-        recognizedEntries.add('  ${opinion.comment}');
+        recognizedEntries.add('  ${opinion.resolve()}');
         switch (opinion.tier) {
           case _Tier.library:
             libraryCount++;
@@ -113,8 +113,9 @@ class ModlistRatingIntent extends ChatIntent with ModAwareIntent {
       }
     }
 
+    final loc = AppLocalizationsSync.instance;
     final buf = StringBuffer(
-      'Modlist Review (${enabledMods.length} mods enabled)\n\n',
+      loc.chatbotModlistReviewHeader(enabledMods.length),
     );
 
     // Show recognized mods first (capped at 15).
@@ -124,8 +125,10 @@ class ModlistRatingIntent extends ChatIntent with ModAwareIntent {
     }
     if (recognizedEntries.length > maxDisplay) {
       buf.writeln(
-        '  ...and ${recognizedEntries.length - maxDisplay} more mods '
-        "I have opinions about",
+        '  ' +
+            loc.chatbotAndNMoreOpinions(
+              recognizedEntries.length - maxDisplay,
+            ),
       );
     }
 
@@ -133,11 +136,13 @@ class ModlistRatingIntent extends ChatIntent with ModAwareIntent {
     if (unrecognizedNames.isNotEmpty) {
       if (unrecognizedNames.length <= 3) {
         for (final name in unrecognizedNames) {
-          buf.writeln("  $name — never heard of it. You're on your own.");
+          buf.writeln(
+            '  ' + loc.chatbotUnknownModLine(name),
+          );
         }
       } else {
         buf.writeln(
-          '  ...plus ${unrecognizedNames.length} mods I don\'t recognize.',
+          '  ' + loc.chatbotPlusUnrecognized(unrecognizedNames.length),
         );
       }
     }
@@ -167,43 +172,31 @@ class ModlistRatingIntent extends ChatIntent with ModAwareIntent {
   }
 
   List<String> _detectCombos(Set<String> ids, int factionCount) {
+    final loc = AppLocalizationsSync.instance;
     final combos = <String>[];
 
     if (ids.contains('shaderLib') && factionCount >= 6) {
-      combos.add(
-        'GraphicsLib and $factionCount faction mods? '
-      );
+      combos.add(loc.chatbotComboGraphicsLib(factionCount));
     }
 
     if (ids.contains('nexerelin') && factionCount >= 8) {
-      combos.add(
-        'Nex + $factionCount factions. Hope you brought a book for those '
-        'load times.',
-      );
+      combos.add(loc.chatbotComboNexFactions(factionCount));
     }
 
     if (!ids.contains('nexerelin') && factionCount >= 4) {
-      combos.add(
-        "You know, most people would be using Nexerelin with that many factions.",
-      );
+      combos.add(loc.chatbotComboNexerelinExpected);
     } else if (!ids.contains('nexerelin')) {
-      combos.add(
-        "No Nex?",
-      );
+      combos.add(loc.chatbotComboNoNex);
     }
 
     if (ids.contains('lw_console') && ids.contains('nexerelin')) {
-      combos.add(
-        'Console Commands + Nexerelin. "Totally legit conquest playthrough."',
-      );
+      combos.add(loc.chatbotComboConsoleNex);
     }
 
     final contentMods = ids.length -
         ids.where((id) => _modOpinions[id]?.tier == _Tier.library).length;
     if (ids.length >= 5 && contentMods <= 2) {
-      combos.add(
-        'Nice library collection. Where are the actual mods?',
-      );
+      combos.add(loc.chatbotComboLibraryOnly);
     }
 
     return combos;
@@ -235,273 +228,230 @@ class ModlistRatingIntent extends ChatIntent with ModAwareIntent {
     if (unrecognizedCount > recognizedCount) score -= 1;
     score = score.clamp(1, 10);
 
+    final loc = AppLocalizationsSync.instance;
     final verdict = switch (score) {
-      10 => "You're not really playing Starsector at this point.",
-      9 => "Genuinely solid modlist. You know what you're doing.",
-      8 => "Good taste. Your PC might not agree but I do.",
-      7 => "Pretty solid. A few questionable choices but overall not bad.",
-      6 => "Decent. Could be better, could be way worse.",
-      5 => "Mid. Like, aggressively average. Add some faction mods or "
-          "something.",
-      4 => "This modlist needs work. I've seen better from first-time "
-          "modders.",
-      3 => "Are you even trying? This is barely modded.",
-      2 => "This is sad. Install Nexerelin at minimum.",
-      _ => "One mod? Really? That's not a modlist, that's a suggestion.",
+      10 => loc.chatbotVerdict10,
+      9 => loc.chatbotVerdict9,
+      8 => loc.chatbotVerdict8,
+      7 => loc.chatbotVerdict7,
+      6 => loc.chatbotVerdict6,
+      5 => loc.chatbotVerdict5,
+      4 => loc.chatbotVerdict4,
+      3 => loc.chatbotVerdict3,
+      2 => loc.chatbotVerdict2,
+      _ => loc.chatbotVerdict1,
     };
 
-    return '  Verdict: $score/10 — $verdict';
+    return loc.chatbotVerdictLine(score, verdict);
   }
 }
 
 enum _Tier { library, gameplay, faction, content, qol, meme }
 
 class _ModOpinion {
-  final String comment;
+  final String Function() comment;
   final _Tier tier;
 
   const _ModOpinion(this.comment, this.tier);
+
+  String resolve() => comment();
 }
 
-const _modOpinions = <String, _ModOpinion>{
+final _modOpinions = <String, _ModOpinion>{
+
   // === Libraries ===
   'lw_lazylib': _ModOpinion(
-    "LazyLib — you literally can't run anything without this. "
-        "Welcome to modding.",
+    () => AppLocalizationsSync.instance.chatbotOpinionLazyLib,
     _Tier.library,
   ),
   'MagicLib': _ModOpinion(
-    "MagicLib — the other tax you pay to mod this game.",
+    () => AppLocalizationsSync.instance.chatbotOpinionMagicLib,
     _Tier.library,
   ),
   'shaderLib': _ModOpinion(
-    "GraphicsLib — hope you like your GPU running at "
-        "surface-of-the-sun temps.",
+    () => AppLocalizationsSync.instance.chatbotOpinionGraphicsLib,
     _Tier.library,
   ),
   'lunalib': _ModOpinion(
-    "LunaLib — another library. At this point your mod folder is "
-        "50% libraries.",
+    () => AppLocalizationsSync.instance.chatbotOpinionLunaLib,
     _Tier.library,
   ),
-
   // === Major gameplay ===
   'nexerelin': _ModOpinion(
-    "Nexerelin — oh you wanted a 4X grand strategy game? "
-        "Say goodbye to your free time.",
+    () => AppLocalizationsSync.instance.chatbotOpinionNexerelin,
     _Tier.gameplay,
   ),
   'IndEvo': _ModOpinion(
-    "Industrial Evolution — for when vanilla colonies aren't enough "
-        "of a spreadsheet simulator.",
+    () => AppLocalizationsSync.instance.chatbotOpinionIndEvo,
     _Tier.gameplay,
   ),
   'sun_starship_legends': _ModOpinion(
-    "Starship Legends — your ships have feelings now. "
-        "Great, more emotional baggage.",
+    () => AppLocalizationsSync.instance.chatbotOpinionStarshipLegends,
     _Tier.gameplay,
   ),
   'second_in_command': _ModOpinion(
-    "Second-in-Command — finally, someone else to blame when things "
-        "go wrong.",
+    () => AppLocalizationsSync.instance.chatbotOpinionSecondInCommand,
     _Tier.gameplay,
   ),
   'officer_extension': _ModOpinion(
-    "Officer Extension — because the vanilla officer cap was clearly a "
-        "personal insult.",
+    () => AppLocalizationsSync.instance.chatbotOpinionOfficerExtension,
     _Tier.gameplay,
   ),
   'kcmods_knightsofludd': _ModOpinion(
-    "Knights of Ludd — the Luddic Path got a glow-up and honestly "
-        "they didn't deserve it.",
+    () => AppLocalizationsSync.instance.chatbotOpinionKnightsOfLudd,
     _Tier.gameplay,
   ),
   'RealisticCombat': _ModOpinion(
-    "Realistic Combat — for people who thought Starsector was too "
-        "forgiving.",
+    () => AppLocalizationsSync.instance.chatbotOpinionRealisticCombat,
     _Tier.gameplay,
   ),
   'RandomAssortmentOfThings': _ModOpinion(
-    "Random Assortment of Things — the mod equivalent of a mystery box. "
-        "Somehow it works.",
+    () => AppLocalizationsSync.instance.chatbotOpinionRaot,
     _Tier.gameplay,
   ),
-
   // === Faction mods ===
   'diableavionics': _ModOpinion(
-    "Diable Avionics — anime mechs in space. We all know why you "
-        "installed this.",
+    () => AppLocalizationsSync.instance.chatbotOpinionDiableAvionics,
     _Tier.faction,
   ),
   'blackrock_driveyards': _ModOpinion(
-    "Blackrock Drive Yards — the faction for people who think the "
-        "Hegemony isn't oppressive enough.",
+    () => AppLocalizationsSync.instance.chatbotOpinionBlackrock,
     _Tier.faction,
   ),
   'SCY': _ModOpinion(
-    "Scy Nation — gotta go fast. Until you get caught and die "
-        "instantly.",
+    () => AppLocalizationsSync.instance.chatbotOpinionScy,
     _Tier.faction,
   ),
   'shadowyards': _ModOpinion(
-    "Shadowyards — stealth faction for people who think cloaking is a "
-        "personality trait.",
+    () => AppLocalizationsSync.instance.chatbotOpinionShadowyards,
     _Tier.faction,
   ),
   'tahlan': _ModOpinion(
-    "Tahlan Shipworks — Great Houses aesthetic goes hard ngl.",
+    () => AppLocalizationsSync.instance.chatbotOpinionTahlan,
     _Tier.faction,
   ),
   'arkgneisis': _ModOpinion(
-    "Legacy of Arkgneisis — flying garbage cans held together with "
-        "spite and duct tape.",
+    () => AppLocalizationsSync.instance.chatbotOpinionArkgneisis,
     _Tier.faction,
   ),
   'ORA': _ModOpinion(
-    "Outer Rim Alliance — broadsides only. For people who think "
-        "flanking is for cowards.",
+    () => AppLocalizationsSync.instance.chatbotOpinionOra,
     _Tier.faction,
   ),
   'al_ruk': _ModOpinion(
-    "Al-Ruk Ascendancy — what if we made a faction and just cranked "
-        "everything to 11?",
+    () => AppLocalizationsSync.instance.chatbotOpinionAlRuk,
     _Tier.faction,
   ),
   'mayorate': _ModOpinion(
-    "Mayorate — corporate dystopia faction. So just regular Starsector "
-        "but more honest about it.",
+    () => AppLocalizationsSync.instance.chatbotOpinionMayorate,
     _Tier.faction,
   ),
   'kadur_remnant': _ModOpinion(
-    "Kadur Remnant — space vikings. That's it. That's the pitch. "
-        "And it works.",
+    () => AppLocalizationsSync.instance.chatbotOpinionKadur,
     _Tier.faction,
   ),
   'dassault_mikoyan': _ModOpinion(
-    "Dassault-Mikoyan — fighter spam: the faction. Your framerate "
-        "weeps.",
+    () => AppLocalizationsSync.instance.chatbotOpinionDassaultMikoyan,
     _Tier.faction,
   ),
   'perseanchronicles': _ModOpinion(
-    "Persean Chronicles — someone actually wrote lore for this game. "
-        "Like, a lot of it.",
+    () => AppLocalizationsSync.instance.chatbotOpinionPersean,
     _Tier.faction,
   ),
   'vayra': _ModOpinion(
-    "Vayra's Sector — more factions, more bounties, more everything. "
-        "Quantity is a quality of its own.",
+    () => AppLocalizationsSync.instance.chatbotOpinionVayra,
     _Tier.faction,
   ),
   'torchships': _ModOpinion(
-    "Torchships — hard sci-fi in my Starsector? It's more likely than "
-        "you think.",
+    () => AppLocalizationsSync.instance.chatbotOpinionTorchships,
     _Tier.faction,
   ),
   'roider': _ModOpinion(
-    "Roider Union — space rednecks with welding torches. Surprisingly "
-        "endearing.",
+    () => AppLocalizationsSync.instance.chatbotOpinionRoider,
     _Tier.faction,
   ),
   'apex_design': _ModOpinion(
-    "Apex Design Collective — these ships look like someone's thesis "
-        "project and I mean that as a compliment.",
+    () => AppLocalizationsSync.instance.chatbotOpinionApexDesign,
     _Tier.faction,
   ),
   'eis': _ModOpinion(
-    "Enigma Industries — another faction mod. Sure. Why not. "
-        "Throw it on the pile.",
+    () => AppLocalizationsSync.instance.chatbotOpinionEis,
     _Tier.faction,
   ),
-
   // === Content / ship packs ===
   'swp': _ModOpinion(
-    "Ship/Weapon Pack — basically vanilla+ but actually good.",
+    () => AppLocalizationsSync.instance.chatbotOpinionSwp,
     _Tier.content,
   ),
   'dmods': _ModOpinion(
-    "Missing Ships — filling gaps you didn't know existed. "
-        "Solid pick.",
+    () => AppLocalizationsSync.instance.chatbotOpinionDmods,
     _Tier.content,
   ),
   'arsenalExpansion': _ModOpinion(
-    "Arsenal Expansion — more guns, more ships, can't go wrong. "
-        "Or can you.",
+    () => AppLocalizationsSync.instance.chatbotOpinionArsenalExpansion,
     _Tier.content,
   ),
   'armaa': _ModOpinion(
-    "Arma Armatura — giant robots in Starsector. The Gundam fans "
-        "found us.",
+    () => AppLocalizationsSync.instance.chatbotOpinionArmaa,
     _Tier.content,
   ),
   'unknownSkies': _ModOpinion(
-    "Unknown Skies — 30 new planets to colonize. As if you needed "
-        "more territory to mismanage.",
+    () => AppLocalizationsSync.instance.chatbotOpinionUnknownSkies,
     _Tier.content,
   ),
   'more_portrait': _ModOpinion(
-    "More Character Portraits — because staring at the same 20 faces "
-        "gets old fast.",
+    () => AppLocalizationsSync.instance.chatbotOpinionMorePortraits,
     _Tier.content,
   ),
-
   // === QoL ===
   'lw_console': _ModOpinion(
-    "Console Commands — \"I'm just using it for testing\" sure buddy.",
+    () => AppLocalizationsSync.instance.chatbotOpinionConsoleCommands,
     _Tier.qol,
   ),
   'autosave': _ModOpinion(
-    "Autosave — the fact this isn't in vanilla is a war crime.",
+    () => AppLocalizationsSync.instance.chatbotOpinionAutosave,
     _Tier.qol,
   ),
   'common_radar': _ModOpinion(
-    "Common Radar — how did you play without this?",
+    () => AppLocalizationsSync.instance.chatbotOpinionCommonRadar,
     _Tier.qol,
   ),
   'lw_version_checker': _ModOpinion(
-    "Version Checker — responsible modding. Boring but necessary.",
+    () => AppLocalizationsSync.instance.chatbotOpinionVersionChecker,
     _Tier.qol,
   ),
   'more_ship_names': _ModOpinion(
-    "More Ship Names — 7500 new names and somehow still no HMS Boaty "
-        "McBoatface.",
+    () => AppLocalizationsSync.instance.chatbotOpinionMoreShipNames,
     _Tier.qol,
   ),
   'speedUp': _ModOpinion(
-    "SpeedUp — because vanilla game speed is for people with infinite "
-        "patience.",
+    () => AppLocalizationsSync.instance.chatbotOpinionSpeedUp,
     _Tier.qol,
   ),
   'transponder_off': _ModOpinion(
-    "Transponder Off — running dark without consequences. Living the "
-        "pirate dream.",
+    () => AppLocalizationsSync.instance.chatbotOpinionTransponderOff,
     _Tier.qol,
   ),
   'detailedcombatresults': _ModOpinion(
-    "Detailed Combat Results — for when you need to know exactly which "
-        "frigate let you down.",
+    () => AppLocalizationsSync.instance.chatbotOpinionDetailedCombatResults,
     _Tier.qol,
   ),
   'leading_pip': _ModOpinion(
-    "Leading Pip — aim assist for people who can't lead shots. "
-        "No shame. Ok maybe a little.",
+    () => AppLocalizationsSync.instance.chatbotOpinionLeadingPip,
     _Tier.qol,
   ),
   'nexerelin_wardashboard': _ModOpinion(
-    "War Dashboard — spreadsheet simulator for your war simulator. "
-        "We've gone full circle.",
+    () => AppLocalizationsSync.instance.chatbotOpinionWarDashboard,
     _Tier.qol,
   ),
-
   // === Total conversions ===
   'swfactions': _ModOpinion(
-    "Star Wars mod — because no space game is safe from Star Wars.",
+    () => AppLocalizationsSync.instance.chatbotOpinionStarWars,
     _Tier.faction,
   ),
-
   // === Meme / niche ===
   'vram_vore': _ModOpinion(
-    "VRAM Vore — it's literally named VRAM Vore. "
-        "You know what you signed up for.",
+    () => AppLocalizationsSync.instance.chatbotOpinionVramVore,
     _Tier.meme,
   ),
 };

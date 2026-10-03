@@ -7241,6 +7241,9450 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enable'**
   String get appEnable;
+
+  /// No description provided for @chatbotNewChatTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a new chat'**
+  String get chatbotNewChatTooltip;
+
+  /// No description provided for @chatbotMessageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Message {name}...'**
+  String chatbotMessageHint(Object name);
+
+  /// No description provided for @chatbotSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get chatbotSend;
+
+  /// No description provided for @chatbotAiCaution.
+  ///
+  /// In en, this message translates to:
+  /// **'Caution: AI can make mistakes. {name} will never make mistakes, though, because it isn\'t a real AI.'**
+  String chatbotAiCaution(Object name);
+
+  /// No description provided for @chatbotEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How can I help?'**
+  String get chatbotEmptyTitle;
+
+  /// No description provided for @chatbotEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask me about mods, settings, or troubleshooting.'**
+  String get chatbotEmptySubtitle;
+
+  /// No description provided for @chatbotWaterUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'· {liters}L H₂O used'**
+  String chatbotWaterUsed(Object liters);
+
+  /// No description provided for @chatbotTagOn.
+  ///
+  /// In en, this message translates to:
+  /// **'ON'**
+  String get chatbotTagOn;
+
+  /// No description provided for @chatbotTagOff.
+  ///
+  /// In en, this message translates to:
+  /// **'OFF'**
+  String get chatbotTagOff;
+
+  /// No description provided for @chatbotAndNMore.
+  ///
+  /// In en, this message translates to:
+  /// **'...and {count} more'**
+  String chatbotAndNMore(Object count);
+
+  /// No description provided for @chatbotAndNMoreMods.
+  ///
+  /// In en, this message translates to:
+  /// **'...and {count} more mods'**
+  String chatbotAndNMoreMods(Object count);
+
+  /// No description provided for @chatbotAndNMoreAuthors.
+  ///
+  /// In en, this message translates to:
+  /// **'...and {count} more authors'**
+  String chatbotAndNMoreAuthors(Object count);
+
+  /// No description provided for @chatbotAndNMoreSources.
+  ///
+  /// In en, this message translates to:
+  /// **'...and {count} more sources'**
+  String chatbotAndNMoreSources(Object count);
+
+  /// No description provided for @chatbotStatusEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get chatbotStatusEnabled;
+
+  /// No description provided for @chatbotStatusDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get chatbotStatusDisabled;
+
+  /// No description provided for @chatbotStatusOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get chatbotStatusOn;
+
+  /// No description provided for @chatbotStatusOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get chatbotStatusOff;
+
+  /// No description provided for @chatbotValueNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get chatbotValueNotSet;
+
+  /// No description provided for @chatbotValueDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'Default'**
+  String get chatbotValueDefault;
+
+  /// No description provided for @chatbotValueUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown'**
+  String get chatbotValueUnknown;
+
+  /// No description provided for @chatbotNotLoaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not loaded'**
+  String get chatbotNotLoaded;
+
+  /// No description provided for @chatbotTypeUtility.
+  ///
+  /// In en, this message translates to:
+  /// **'Utility'**
+  String get chatbotTypeUtility;
+
+  /// No description provided for @chatbotTypeTotalConversion.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Conversion'**
+  String get chatbotTypeTotalConversion;
+
+  /// No description provided for @chatbotPermissionYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get chatbotPermissionYes;
+
+  /// No description provided for @chatbotPermissionNo.
+  ///
+  /// In en, this message translates to:
+  /// **'NO'**
+  String get chatbotPermissionNo;
+
+  /// No description provided for @chatbotNoModDataYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No mod data available yet. Make sure your game folder is configured in Settings.'**
+  String get chatbotNoModDataYet;
+
+  /// No description provided for @chatbotNoLogLoadedYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No log file has been loaded yet. Make sure your game folder is configured in Settings.'**
+  String get chatbotNoLogLoadedYet;
+
+  /// No description provided for @chatbotNoViewerDataYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewer data hasn\'t loaded yet. Make sure your game folder is configured in Settings and try opening the relevant viewer page first.'**
+  String get chatbotNoViewerDataYet;
+
+  /// No description provided for @chatbotNoProfileDataYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No mod profile data available yet.'**
+  String get chatbotNoProfileDataYet;
+
+  /// No description provided for @chatbotBreakdownVanilla.
+  ///
+  /// In en, this message translates to:
+  /// **'Vanilla: {count}'**
+  String chatbotBreakdownVanilla(Object count);
+
+  /// No description provided for @chatbotBreakdownFromMods.
+  ///
+  /// In en, this message translates to:
+  /// **'From mods: {count}'**
+  String chatbotBreakdownFromMods(Object count);
+
+  /// No description provided for @chatbotCommonIssuesGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Common Starsector Issues & Fixes\n\nOutOfMemoryError / Crash during loading\n  Increase RAM allocation on the Dashboard page.\n  Try \"current ram\" to see your setting, or \"more ram\" for a guide.\n\nGame won\'t start / Black screen\n  Verify the game install is intact and not blocked by antivirus.\n  Try disabling recently-added mods.\n  On Windows, try running as Administrator.\n\nMissing mod dependencies\n  Ask \"mod compatibility\" to see which mods have issues.\n  Install missing dependencies from the Catalog page.\n\nMod version mismatch\n  Ask \"mod updates\" to check for newer versions.\n  Check the mod\'s required game version vs yours (\"game version\").\n\nPermission errors\n  Ask \"permission issues\" for platform-specific help.\n\nFor detailed error info, try \"log summary\" and \"log errors\"\nto analyze your Starsector log file.'**
+  String get chatbotCommonIssuesGuide;
+
+  /// No description provided for @chatbotCsvExportGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'CSV Export\n\nYou can export data to CSV from several pages:\n  Mod Manager — exports your mod list with versions, authors, etc.\n  Ships — exports all ship/hull data\n  Weapons — exports all weapon data\n  Hullmods — exports all hull modification data\n\nLook for the export button in the toolbar or menu on each page.'**
+  String get chatbotCsvExportGuide;
+
+  /// No description provided for @chatbotSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'TriOS Settings'**
+  String get chatbotSettingsTitle;
+
+  /// No description provided for @chatbotSettingsGameFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'  Game folder:     {value}'**
+  String chatbotSettingsGameFolder(Object value);
+
+  /// No description provided for @chatbotSettingsModsFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'  Mods folder:     {value}'**
+  String chatbotSettingsModsFolder(Object value);
+
+  /// No description provided for @chatbotSettingsDirectLaunch.
+  ///
+  /// In en, this message translates to:
+  /// **'  Direct launch:   {value}'**
+  String chatbotSettingsDirectLaunch(Object value);
+
+  /// No description provided for @chatbotSettingsDefaultPage.
+  ///
+  /// In en, this message translates to:
+  /// **'  Default page:    {value}'**
+  String chatbotSettingsDefaultPage(Object value);
+
+  /// No description provided for @chatbotSettingsTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'  Theme:           {value}'**
+  String chatbotSettingsTheme(Object value);
+
+  /// No description provided for @chatbotSettingsGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'  Game version:    {value}'**
+  String chatbotSettingsGameVersion(Object value);
+
+  /// No description provided for @chatbotSettingsColorfulGrid.
+  ///
+  /// In en, this message translates to:
+  /// **'  Colorful grid:   {value}'**
+  String chatbotSettingsColorfulGrid(Object value);
+
+  /// No description provided for @chatbotFallback1.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m not sure what you mean. Try \"help\" to see what I can answer.'**
+  String get chatbotFallback1;
+
+  /// No description provided for @chatbotFallback2.
+  ///
+  /// In en, this message translates to:
+  /// **'I didn\'t catch that. You can ask about mods, RAM, VRAM, logs, or troubleshooting.'**
+  String get chatbotFallback2;
+
+  /// No description provided for @chatbotFallback3.
+  ///
+  /// In en, this message translates to:
+  /// **'Hmm, I don\'t have an answer for that. Try asking about mod updates, compatibility, or settings.'**
+  String get chatbotFallback3;
+
+  /// No description provided for @chatbotFallback4.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure about that one. Type \"help\" for a list of topics I know about.'**
+  String get chatbotFallback4;
+
+  /// No description provided for @chatbotFallback5.
+  ///
+  /// In en, this message translates to:
+  /// **'I couldn\'t match that to anything I know. Try rephrasing, or ask \"help\" for ideas.'**
+  String get chatbotFallback5;
+
+  /// No description provided for @chatbotHelpGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey! I\'m the TriOS assistant. I can help you with a bunch of things — just ask me naturally and I\'ll do my best to figure out what you need.\n\nHere are some of the things I know about:\n\n• Mods — finding mods, checking which are enabled, looking for updates, compatibility issues, browsing by author or category, context menu actions, color tags, and tips\n• Game info — your Starsector version, content counts (ships, weapons, hullmods), and portrait stats\n• Configuration — RAM and VRAM, game folder paths, your settings, and mod profiles\n• Log analysis — summarizing your log file or pulling out errors\n• Troubleshooting — common issues, fixes, and file permission problems\n• Other — TriOS version, whether the game is running, exporting data to CSV, and navigating to different pages\n\nYou don\'t need to use exact commands — just describe what you\'re looking for and I\'ll take it from there!'**
+  String get chatbotHelpGuide;
+
+  /// No description provided for @chatbotFindModsGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding New Mods\n\nTriOS has a built-in Catalog page! Click \"Catalog\" in the sidebar\nto browse, search, and install mods directly.\n\nThe Catalog lets you:\n  Browse all available mods\n  Filter by category and game version\n  Download and install with one click\n\nYou can also find mods at:\n  Starsector Forums — fractalsoftworks.com/forum\n  Unofficial Starsector Discord — has mod channels'**
+  String get chatbotFindModsGuide;
+
+  /// No description provided for @chatbotFolderPathsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Folder Paths'**
+  String get chatbotFolderPathsTitle;
+
+  /// No description provided for @chatbotFolderPathsGame.
+  ///
+  /// In en, this message translates to:
+  /// **'  Game:  {value}'**
+  String chatbotFolderPathsGame(Object value);
+
+  /// No description provided for @chatbotFolderPathsMods.
+  ///
+  /// In en, this message translates to:
+  /// **'  Mods:  {value}'**
+  String chatbotFolderPathsMods(Object value);
+
+  /// No description provided for @chatbotFolderPathsSaves.
+  ///
+  /// In en, this message translates to:
+  /// **'  Saves: {value}'**
+  String chatbotFolderPathsSaves(Object value);
+
+  /// No description provided for @chatbotSetGameFolderFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'\nSet your game folder in Settings to get started.'**
+  String get chatbotSetGameFolderFirst;
+
+  /// No description provided for @chatbotGameVersionHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Version: {version}'**
+  String chatbotGameVersionHeader(Object version);
+
+  /// No description provided for @chatbotGameVersionCompatibleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'  Compatible mods: {count}'**
+  String chatbotGameVersionCompatibleCount(Object count);
+
+  /// No description provided for @chatbotGameVersionWarningsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'  Mods with warnings: {count}'**
+  String chatbotGameVersionWarningsCount(Object count);
+
+  /// No description provided for @chatbotGameVersionIncompatibleCount.
+  ///
+  /// In en, this message translates to:
+  /// **'  Incompatible mods: {count}'**
+  String chatbotGameVersionIncompatibleCount(Object count);
+
+  /// No description provided for @chatbotShipsHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Ships: {count} total'**
+  String chatbotShipsHeader(Object count);
+
+  /// No description provided for @chatbotHullmodsHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Hullmods: {count} total'**
+  String chatbotHullmodsHeader(Object count);
+
+  /// No description provided for @chatbotWeaponsHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapons: {count} total'**
+  String chatbotWeaponsHeader(Object count);
+
+  /// No description provided for @chatbotLaunchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Launch Configuration'**
+  String get chatbotLaunchTitle;
+
+  /// No description provided for @chatbotLaunchDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'  Direct launch:   {value}'**
+  String chatbotLaunchDirect(Object value);
+
+  /// No description provided for @chatbotLaunchDirectEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled (TriOS acts as launcher)'**
+  String get chatbotLaunchDirectEnabled;
+
+  /// No description provided for @chatbotLaunchDirectDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled (opens game exe)'**
+  String get chatbotLaunchDirectDisabled;
+
+  /// No description provided for @chatbotLaunchCustomExe.
+  ///
+  /// In en, this message translates to:
+  /// **'  Custom exe path: {path}'**
+  String chatbotLaunchCustomExe(Object path);
+
+  /// No description provided for @chatbotLaunchTip.
+  ///
+  /// In en, this message translates to:
+  /// **'\nTip: Enable Direct Launch in Settings for better mod compatibility.'**
+  String get chatbotLaunchTip;
+
+  /// No description provided for @chatbotLogSummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Summary'**
+  String get chatbotLogSummaryTitle;
+
+  /// No description provided for @chatbotLogSummaryGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Game version: {value}'**
+  String chatbotLogSummaryGameVersion(Object value);
+
+  /// No description provided for @chatbotLogSummaryOs.
+  ///
+  /// In en, this message translates to:
+  /// **'OS: {value}'**
+  String chatbotLogSummaryOs(Object value);
+
+  /// No description provided for @chatbotLogSummaryJava.
+  ///
+  /// In en, this message translates to:
+  /// **'Java: {value}'**
+  String chatbotLogSummaryJava(Object value);
+
+  /// No description provided for @chatbotLogSummaryModsLoaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Mods loaded: {count}'**
+  String chatbotLogSummaryModsLoaded(Object count);
+
+  /// No description provided for @chatbotLogSummaryErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'Errors found: {count}'**
+  String chatbotLogSummaryErrors(Object count);
+
+  /// No description provided for @chatbotLogSummaryFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Log file: {path}'**
+  String chatbotLogSummaryFile(Object path);
+
+  /// No description provided for @chatbotLogSummaryLastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last updated: {time}'**
+  String chatbotLogSummaryLastUpdated(Object time);
+
+  /// No description provided for @chatbotModCountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Count'**
+  String get chatbotModCountTitle;
+
+  /// No description provided for @chatbotModCountTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'  Total: {count}'**
+  String chatbotModCountTotal(Object count);
+
+  /// No description provided for @chatbotModCountEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'  Enabled: {count}'**
+  String chatbotModCountEnabled(Object count);
+
+  /// No description provided for @chatbotModCountDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'  Disabled: {count}'**
+  String chatbotModCountDisabled(Object count);
+
+  /// No description provided for @chatbotModManagerFeaturesGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Manager Features\n\nRight-click a mod for options:\n  Change active version, open mod folder, open forum page,\n  assign categories, set a color tag, force game version,\n  view in ship/weapon/hullmod viewer, estimate VRAM,\n  mute updates, redownload & reinstall, and delete.\n\nRight-click with multiple mods selected:\n  Bulk enable/disable, check VRAM, check for updates,\n  set color tags, force game version, and delete selected.\n\nColor tags:\n  Assign one of 8 color presets to visually organize mods.\n\nGroup By:\n  Use the \"Group By\" dropdown above the mod list to group\n  mods by various criteria.\n\nCategories:\n  Assign mods to categories via the right-click menu.\n  Mods can appear in multiple categories at once.'**
+  String get chatbotModManagerFeaturesGuide;
+
+  /// No description provided for @chatbotPermissionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'File Permission Check'**
+  String get chatbotPermissionTitle;
+
+  /// No description provided for @chatbotPermissionModsWritable.
+  ///
+  /// In en, this message translates to:
+  /// **'  Mods folder writable: {value}'**
+  String chatbotPermissionModsWritable(Object value);
+
+  /// No description provided for @chatbotPermissionGameWritable.
+  ///
+  /// In en, this message translates to:
+  /// **'  Game folder writable: {value}'**
+  String chatbotPermissionGameWritable(Object value);
+
+  /// No description provided for @chatbotPermissionWindowsFixes.
+  ///
+  /// In en, this message translates to:
+  /// **'Windows fixes:'**
+  String get chatbotPermissionWindowsFixes;
+
+  /// No description provided for @chatbotPermissionWindowsStep1.
+  ///
+  /// In en, this message translates to:
+  /// **'  1. Right-click TriOS → \"Run as administrator\"'**
+  String get chatbotPermissionWindowsStep1;
+
+  /// No description provided for @chatbotPermissionWindowsStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'  2. Move Starsector out of Program Files to avoid UAC issues.'**
+  String get chatbotPermissionWindowsStep2;
+
+  /// No description provided for @chatbotPermissionWindowsStep3.
+  ///
+  /// In en, this message translates to:
+  /// **'  3. Check that your antivirus isn\'t blocking file access.'**
+  String get chatbotPermissionWindowsStep3;
+
+  /// No description provided for @chatbotPermissionMacFixes.
+  ///
+  /// In en, this message translates to:
+  /// **'macOS fixes:'**
+  String get chatbotPermissionMacFixes;
+
+  /// No description provided for @chatbotPermissionMacStep1.
+  ///
+  /// In en, this message translates to:
+  /// **'  1. In System Settings → Privacy & Security, grant TriOS Full Disk Access.'**
+  String get chatbotPermissionMacStep1;
+
+  /// No description provided for @chatbotPermissionMacStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'  2. Run: chmod -R u+rw \"<game folder path>\"'**
+  String get chatbotPermissionMacStep2;
+
+  /// No description provided for @chatbotPermissionLinuxFixes.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux fixes:'**
+  String get chatbotPermissionLinuxFixes;
+
+  /// No description provided for @chatbotPermissionLinuxStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'  2. Check folder ownership: chown -R \$USER \"<game folder path>\"'**
+  String get chatbotPermissionLinuxStep2;
+
+  /// No description provided for @chatbotPortraitsHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Portraits: {count} total'**
+  String chatbotPortraitsHeader(Object count);
+
+  /// No description provided for @chatbotRamAllocationGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjusting RAM Allocation\n\nTriOS makes this easy! Go to the Dashboard page and look for the\nRAM allocation setting. You can adjust the slider or enter a value\ndirectly.\n\nCommon recommendations:\n  Light modding (< 20 mods):  2–4 GB\n  Medium modding (20–50 mods): 4–6 GB\n  Heavy modding (50+ mods):   6–8 GB\n\nTips:\n  Leave at least 4 GB for your OS and other programs.\n  If you have 16 GB total, don\'t go above 10–12 GB.\n  The setting changes the -Xmx JVM flag in vmparams.\n\nSigns you need more RAM:\n  \"OutOfMemoryError\" in your log file.\n  Game freezing or crashing during loading.\n  Lag spikes during large battles.'**
+  String get chatbotRamAllocationGuide;
+
+  /// No description provided for @chatbotRamVsVramGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'RAM vs VRAM — Quick Guide\n\nRAM (System Memory):\n  Used by Starsector\'s Java process for game logic, mod code, and data.\n  Controlled by the JVM heap size (-Xmx flag).\n  More RAM = more mods, bigger battles, fewer OutOfMemoryErrors.\n\nVRAM (Video Memory):\n  Lives on your GPU. Used for textures, sprites, and shaders.\n  NOT controlled by the -Xmx flag or any JVM setting.\n  More VRAM = more graphical mods, higher-res textures.\n\nKey Takeaway:\n  \"OutOfMemoryError\" in your log → you need more RAM.\n  Graphical glitches or missing textures → could be VRAM.\n  Most Starsector modding issues are RAM, not VRAM.\n\nUse the Dashboard page in TriOS to adjust your RAM allocation.'**
+  String get chatbotRamVsVramGuide;
+
+  /// No description provided for @chatbotViewerStatsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Content Overview'**
+  String get chatbotViewerStatsTitle;
+
+  /// No description provided for @chatbotViewerStatsShips.
+  ///
+  /// In en, this message translates to:
+  /// **'  Ships:    {value}'**
+  String chatbotViewerStatsShips(Object value);
+
+  /// No description provided for @chatbotViewerStatsWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'  Weapons:  {value}'**
+  String chatbotViewerStatsWeapons(Object value);
+
+  /// No description provided for @chatbotViewerStatsHullmods.
+  ///
+  /// In en, this message translates to:
+  /// **'  Hullmods: {value}'**
+  String chatbotViewerStatsHullmods(Object value);
+
+  /// No description provided for @chatbotViewerStatsPortraits.
+  ///
+  /// In en, this message translates to:
+  /// **'  Portraits: {value}'**
+  String chatbotViewerStatsPortraits(Object value);
+
+  /// No description provided for @chatbotOpenViewerToLoad.
+  ///
+  /// In en, this message translates to:
+  /// **'\nOpen a viewer page to load its data if not yet loaded.'**
+  String get chatbotOpenViewerToLoad;
+
+  /// No description provided for @chatbotAvailablePages.
+  ///
+  /// In en, this message translates to:
+  /// **'Available pages in the sidebar:\n'**
+  String get chatbotAvailablePages;
+
+  /// No description provided for @chatbotAskAboutSpecificPage.
+  ///
+  /// In en, this message translates to:
+  /// **'\nAsk about a specific page for details.'**
+  String get chatbotAskAboutSpecificPage;
+
+  /// No description provided for @chatbotPageDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard — the main overview page with RAM settings and mod summary.'**
+  String get chatbotPageDashboard;
+
+  /// No description provided for @chatbotPageModManager.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Manager — enable, disable, and manage your installed mods.'**
+  String get chatbotPageModManager;
+
+  /// No description provided for @chatbotPageModProfiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Profiles — save and switch between different mod configurations.'**
+  String get chatbotPageModProfiles;
+
+  /// No description provided for @chatbotPageVramEstimator.
+  ///
+  /// In en, this message translates to:
+  /// **'VRAM Estimator — estimate GPU memory usage for your mods.'**
+  String get chatbotPageVramEstimator;
+
+  /// No description provided for @chatbotPageChipper.
+  ///
+  /// In en, this message translates to:
+  /// **'Chipper (Log Viewer) — analyze your Starsector log file.'**
+  String get chatbotPageChipper;
+
+  /// No description provided for @chatbotPagePortraits.
+  ///
+  /// In en, this message translates to:
+  /// **'Portraits — browse and replace character portraits.'**
+  String get chatbotPagePortraits;
+
+  /// No description provided for @chatbotPageWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapons — browse all weapons from vanilla and mods.'**
+  String get chatbotPageWeapons;
+
+  /// No description provided for @chatbotPageShips.
+  ///
+  /// In en, this message translates to:
+  /// **'Ships — browse all ships/hulls from vanilla and mods.'**
+  String get chatbotPageShips;
+
+  /// No description provided for @chatbotPageHullmods.
+  ///
+  /// In en, this message translates to:
+  /// **'Hullmods — browse all hull modifications.'**
+  String get chatbotPageHullmods;
+
+  /// No description provided for @chatbotPageSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings — configure TriOS preferences and paths.'**
+  String get chatbotPageSettings;
+
+  /// No description provided for @chatbotPageCatalog.
+  ///
+  /// In en, this message translates to:
+  /// **'Catalog — browse and download mods from the online catalog.'**
+  String get chatbotPageCatalog;
+
+  /// No description provided for @chatbotPageTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Tips — view gameplay tips from your installed mods.'**
+  String get chatbotPageTips;
+
+  /// No description provided for @chatbotAskWhichMod.
+  ///
+  /// In en, this message translates to:
+  /// **'What mod are you looking for? Try \"find <name>\", \"do i have <name>\", or just type a mod name.'**
+  String get chatbotAskWhichMod;
+
+  /// No description provided for @chatbotFoundModsMatching.
+  ///
+  /// In en, this message translates to:
+  /// **'Found {count} mods matching \"{query}\":'**
+  String chatbotFoundModsMatching(Object count, Object query);
+
+  /// No description provided for @chatbotAskSpecificMod.
+  ///
+  /// In en, this message translates to:
+  /// **'\nAsk about a specific mod for full details.'**
+  String get chatbotAskSpecificMod;
+
+  /// No description provided for @chatbotFoundHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Found: {name}'**
+  String chatbotFoundHeader(Object name);
+
+  /// No description provided for @chatbotDetailVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'  Version: {value}'**
+  String chatbotDetailVersion(Object value);
+
+  /// No description provided for @chatbotDetailAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'  Author: {value}'**
+  String chatbotDetailAuthor(Object value);
+
+  /// No description provided for @chatbotDetailStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'  Status: {value}'**
+  String chatbotDetailStatus(Object value);
+
+  /// No description provided for @chatbotDetailType.
+  ///
+  /// In en, this message translates to:
+  /// **'  Type: {value}'**
+  String chatbotDetailType(Object value);
+
+  /// No description provided for @chatbotDetailGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'  Game version: {value}'**
+  String chatbotDetailGameVersion(Object value);
+
+  /// No description provided for @chatbotDetailDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'  Description: {value}'**
+  String chatbotDetailDescription(Object value);
+
+  /// No description provided for @chatbotDetailDependencies.
+  ///
+  /// In en, this message translates to:
+  /// **'  Dependencies:'**
+  String get chatbotDetailDependencies;
+
+  /// No description provided for @chatbotDepNotInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **' [NOT INSTALLED]'**
+  String get chatbotDepNotInstalled;
+
+  /// No description provided for @chatbotDepDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **' [DISABLED]'**
+  String get chatbotDepDisabled;
+
+  /// No description provided for @chatbotDetailInstalledVariants.
+  ///
+  /// In en, this message translates to:
+  /// **'  Installed variants: {count}'**
+  String chatbotDetailInstalledVariants(Object count);
+
+  /// No description provided for @chatbotUpdateAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'  Update available: {remote} (you have {local})'**
+  String chatbotUpdateAvailable(Object local, Object remote);
+
+  /// No description provided for @chatbotUpdateNewerVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'newer version'**
+  String get chatbotUpdateNewerVersion;
+
+  /// No description provided for @chatbotIssueGameVersionIncompatible.
+  ///
+  /// In en, this message translates to:
+  /// **'Game version incompatible (requires {needed}, game is {current})'**
+  String chatbotIssueGameVersionIncompatible(Object current, Object needed);
+
+  /// No description provided for @chatbotIssueGameVersionWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Game version may be incompatible (mod targets {target}, game is {current})'**
+  String chatbotIssueGameVersionWarning(Object current, Object target);
+
+  /// No description provided for @chatbotIssueMissingDependency.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing dependency: {name}'**
+  String chatbotIssueMissingDependency(Object name);
+
+  /// No description provided for @chatbotIssueDisabledDependency.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled dependency: {name}'**
+  String chatbotIssueDisabledDependency(Object name);
+
+  /// No description provided for @chatbotIssueVersionMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Version mismatch: {name}'**
+  String chatbotIssueVersionMismatch(Object name);
+
+  /// No description provided for @chatbotIssueIncompatibleVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Incompatible version: {name}'**
+  String chatbotIssueIncompatibleVersion(Object name);
+
+  /// No description provided for @chatbotIssuesHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'  Issues:'**
+  String get chatbotIssuesHeader;
+
+  /// No description provided for @chatbotConflictGameVersionIncompatible.
+  ///
+  /// In en, this message translates to:
+  /// **'game version incompatible (needs {needed}, game is {current})'**
+  String chatbotConflictGameVersionIncompatible(Object current, Object needed);
+
+  /// No description provided for @chatbotConflictGameVersionWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'game version warning'**
+  String get chatbotConflictGameVersionWarning;
+
+  /// No description provided for @chatbotConflictMissingDep.
+  ///
+  /// In en, this message translates to:
+  /// **'missing dep: {name}'**
+  String chatbotConflictMissingDep(Object name);
+
+  /// No description provided for @chatbotConflictDisabledDep.
+  ///
+  /// In en, this message translates to:
+  /// **'disabled dep: {name}'**
+  String chatbotConflictDisabledDep(Object name);
+
+  /// No description provided for @chatbotConflictVersionMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'version mismatch: {name}'**
+  String chatbotConflictVersionMismatch(Object name);
+
+  /// No description provided for @chatbotConflictIncompatibleVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'incompatible version: {name}'**
+  String chatbotConflictIncompatibleVersion(Object name);
+
+  /// No description provided for @chatbotModsWithIssuesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mods With Issues ({count})'**
+  String chatbotModsWithIssuesTitle(Object count);
+
+  /// No description provided for @chatbotCompatGameVersionIncompatible.
+  ///
+  /// In en, this message translates to:
+  /// **'Game version: incompatible (requires {required}, game is {current})'**
+  String chatbotCompatGameVersionIncompatible(Object current, Object required);
+
+  /// No description provided for @chatbotCompatGameVersionWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Game version: may be incompatible (mod targets {target}, game is {current})'**
+  String chatbotCompatGameVersionWarning(Object current, Object target);
+
+  /// No description provided for @chatbotCompatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Compatibility Issues ({count} mod(s) affected)'**
+  String chatbotCompatTitle(Object count);
+
+  /// No description provided for @chatbotModsHaveChangelogs.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} mods have changelogs:'**
+  String chatbotModsHaveChangelogs(Object count);
+
+  /// No description provided for @chatbotAskChangelogFor.
+  ///
+  /// In en, this message translates to:
+  /// **'\nAsk \"changelog for <mod name>\" to see a specific one.'**
+  String get chatbotAskChangelogFor;
+
+  /// No description provided for @chatbotNoChangelogFor.
+  ///
+  /// In en, this message translates to:
+  /// **'No changelog available for \"{name}\".'**
+  String chatbotNoChangelogFor(Object name);
+
+  /// No description provided for @chatbotTruncatedSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'...\n(truncated)'**
+  String get chatbotTruncatedSuffix;
+
+  /// No description provided for @chatbotModsByAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'Mods by {author} ({count})'**
+  String chatbotModsByAuthor(Object author, Object count);
+
+  /// No description provided for @chatbotModAuthorsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Authors'**
+  String get chatbotModAuthorsTitle;
+
+  /// No description provided for @chatbotAuthorModCount.
+  ///
+  /// In en, this message translates to:
+  /// **'  {author}: {count} mod(s)'**
+  String chatbotAuthorModCount(Object author, Object count);
+
+  /// No description provided for @chatbotEnabledModsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled Mods ({count})'**
+  String chatbotEnabledModsTitle(Object count);
+
+  /// No description provided for @chatbotDisabledModsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled Mods ({count})'**
+  String chatbotDisabledModsTitle(Object count);
+
+  /// No description provided for @chatbotInstalledModsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed Mods ({count})'**
+  String chatbotInstalledModsTitle(Object count);
+
+  /// No description provided for @chatbotTcModsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Conversion Mods ({count})'**
+  String chatbotTcModsTitle(Object count);
+
+  /// No description provided for @chatbotUtilityModsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Utility/Library Mods ({count})'**
+  String chatbotUtilityModsTitle(Object count);
+
+  /// No description provided for @chatbotActiveProfileHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Profile: {name}'**
+  String chatbotActiveProfileHeader(Object name);
+
+  /// No description provided for @chatbotProfileModsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'  Mods: {count}'**
+  String chatbotProfileModsCount(Object count);
+
+  /// No description provided for @chatbotProfileCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'  Created: {date}'**
+  String chatbotProfileCreated(Object date);
+
+  /// No description provided for @chatbotProfileModified.
+  ///
+  /// In en, this message translates to:
+  /// **'  Modified: {date}'**
+  String chatbotProfileModified(Object date);
+
+  /// No description provided for @chatbotModProfilesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Profiles ({count})'**
+  String chatbotModProfilesTitle(Object count);
+
+  /// No description provided for @chatbotProfileEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'  {name} ({count} mods){marker}'**
+  String chatbotProfileEntry(Object count, Object marker, Object name);
+
+  /// No description provided for @chatbotProfileActiveMarker.
+  ///
+  /// In en, this message translates to:
+  /// **' ← active'**
+  String get chatbotProfileActiveMarker;
+
+  /// No description provided for @chatbotProfileMatchesCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile \"{name}\" matches your current mod state exactly.'**
+  String chatbotProfileMatchesCurrent(Object name);
+
+  /// No description provided for @chatbotProfileVsCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile \"{name}\" vs Current Mods'**
+  String chatbotProfileVsCurrent(Object name);
+
+  /// No description provided for @chatbotInProfileNotEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'  In profile but not currently enabled:'**
+  String get chatbotInProfileNotEnabled;
+
+  /// No description provided for @chatbotEnabledNotInProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'  Currently enabled but not in profile:'**
+  String get chatbotEnabledNotInProfile;
+
+  /// No description provided for @chatbotModCategoriesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Categories ({count})'**
+  String chatbotModCategoriesTitle(Object count);
+
+  /// No description provided for @chatbotCategoryModCount.
+  ///
+  /// In en, this message translates to:
+  /// **'  {name} ({count} mods)'**
+  String chatbotCategoryModCount(Object count, Object name);
+
+  /// No description provided for @chatbotNoModsInCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'\nNo mods are assigned to categories yet.'**
+  String get chatbotNoModsInCategories;
+
+  /// No description provided for @chatbotModUpdateLine.
+  ///
+  /// In en, this message translates to:
+  /// **'  {name}: v{local} -> v{remote}'**
+  String chatbotModUpdateLine(Object local, Object name, Object remote);
+
+  /// No description provided for @chatbotModUpdateAvailableLine.
+  ///
+  /// In en, this message translates to:
+  /// **'  {name}: update available'**
+  String chatbotModUpdateAvailableLine(Object name);
+
+  /// No description provided for @chatbotUpdatesAvailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Updates Available ({count})'**
+  String chatbotUpdatesAvailableTitle(Object count);
+
+  /// No description provided for @chatbotMostRequiredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Required Mods'**
+  String get chatbotMostRequiredTitle;
+
+  /// No description provided for @chatbotDependencyEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'  {name}: required by {count} mod(s){status}'**
+  String chatbotDependencyEntry(Object count, Object name, Object status);
+
+  /// No description provided for @chatbotRecentChangesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Mod Changes (last {count})'**
+  String chatbotRecentChangesTitle(Object count);
+
+  /// No description provided for @chatbotAuditEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'  [{action}] {name}  ({time})'**
+  String chatbotAuditEntry(Object action, Object name, Object time);
+
+  /// No description provided for @chatbotAuditReason.
+  ///
+  /// In en, this message translates to:
+  /// **'    Reason: {reason}'**
+  String chatbotAuditReason(Object reason);
+
+  /// No description provided for @chatbotTipsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tips from Your Mods'**
+  String get chatbotTipsTitle;
+
+  /// No description provided for @chatbotTipNoText.
+  ///
+  /// In en, this message translates to:
+  /// **'(no text)'**
+  String get chatbotTipNoText;
+
+  /// No description provided for @chatbotTipSource.
+  ///
+  /// In en, this message translates to:
+  /// **'    — {source}'**
+  String chatbotTipSource(Object source);
+
+  /// No description provided for @chatbotMoreTips.
+  ///
+  /// In en, this message translates to:
+  /// **'\n{count} more tips available. Ask again for different ones!'**
+  String chatbotMoreTips(Object count);
+
+  /// No description provided for @chatbotTopVramModsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Top {count} Mods by VRAM Usage'**
+  String chatbotTopVramModsTitle(Object count);
+
+  /// No description provided for @chatbotVramModEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'  [{status}] {name} — ~{size} MB'**
+  String chatbotVramModEntry(Object name, Object size, Object status);
+
+  /// No description provided for @chatbotVramEstimateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'VRAM Usage Estimate'**
+  String get chatbotVramEstimateTitle;
+
+  /// No description provided for @chatbotVramEnabledMods.
+  ///
+  /// In en, this message translates to:
+  /// **'  Enabled mods ({count}): ~{size}'**
+  String chatbotVramEnabledMods(Object count, Object size);
+
+  /// No description provided for @chatbotVramAllMods.
+  ///
+  /// In en, this message translates to:
+  /// **'  All mods ({count}):     ~{size}'**
+  String chatbotVramAllMods(Object count, Object size);
+
+  /// No description provided for @chatbotVramLastScanned.
+  ///
+  /// In en, this message translates to:
+  /// **'  Last scanned: {time}'**
+  String chatbotVramLastScanned(Object time);
+
+  /// No description provided for @chatbotVramNote.
+  ///
+  /// In en, this message translates to:
+  /// **'\nNote: This is an estimate based on texture sizes.\nAsk \"high vram mods\" to see the biggest consumers.'**
+  String get chatbotVramNote;
+
+  /// No description provided for @chatbotRamAllocationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'RAM Allocation'**
+  String get chatbotRamAllocationTitle;
+
+  /// No description provided for @chatbotRamCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'  Current RAM: {ram} MB'**
+  String chatbotRamCurrent(Object ram);
+
+  /// No description provided for @chatbotRamManagedFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'  Managed vmparams files ({count}):'**
+  String chatbotRamManagedFiles(Object count);
+
+  /// No description provided for @chatbotRamFileEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'    - {path}{ram}'**
+  String chatbotRamFileEntry(Object path, Object ram);
+
+  /// No description provided for @chatbotRamMultipleFilesWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'\n  Warning: Multiple vmparams files have different RAM amounts.'**
+  String get chatbotRamMultipleFilesWarning;
+
+  /// No description provided for @chatbotRecentlyAddedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently Added Mods'**
+  String get chatbotRecentlyAddedTitle;
+
+  /// No description provided for @chatbotRecentlyAddedEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'  {name} {version} — added {age}'**
+  String chatbotRecentlyAddedEntry(Object age, Object name, Object version);
+
+  /// No description provided for @chatbotAgoYear.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} year ago'**
+  String chatbotAgoYear(Object count);
+
+  /// No description provided for @chatbotAgoYears.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} years ago'**
+  String chatbotAgoYears(Object count);
+
+  /// No description provided for @chatbotAgoMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} month ago'**
+  String chatbotAgoMonth(Object count);
+
+  /// No description provided for @chatbotAgoMonths.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} months ago'**
+  String chatbotAgoMonths(Object count);
+
+  /// No description provided for @chatbotAgoDay.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} day ago'**
+  String chatbotAgoDay(Object count);
+
+  /// No description provided for @chatbotAgoDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String chatbotAgoDays(Object count);
+
+  /// No description provided for @chatbotAgoHour.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hour ago'**
+  String chatbotAgoHour(Object count);
+
+  /// No description provided for @chatbotAgoHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hours ago'**
+  String chatbotAgoHours(Object count);
+
+  /// No description provided for @chatbotAgoJustNow.
+  ///
+  /// In en, this message translates to:
+  /// **'just now'**
+  String get chatbotAgoJustNow;
+
+  /// No description provided for @chatbotLogErrorsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Found {count} error line(s) in the log.\n'**
+  String chatbotLogErrorsFound(Object count);
+
+  /// No description provided for @chatbotLogErrorLine.
+  ///
+  /// In en, this message translates to:
+  /// **'  Line {line}: {text}'**
+  String chatbotLogErrorLine(Object line, Object text);
+
+  /// No description provided for @chatbotLogMoreErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'\n...and {count} more. Open the Log Viewer (Chipper) for the full list.'**
+  String chatbotLogMoreErrors(Object count);
+
+  /// No description provided for @chatbotLogModsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} mod(s) found in the log:'**
+  String chatbotLogModsFound(Object count);
+
+  /// No description provided for @chatbotLogModsApproximate.
+  ///
+  /// In en, this message translates to:
+  /// **' (approximate — parsed from CSV loading lines)'**
+  String get chatbotLogModsApproximate;
+
+  /// No description provided for @chatbotModlistReviewHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Modlist Review ({count} mods enabled)\n\n'**
+  String chatbotModlistReviewHeader(Object count);
+
+  /// No description provided for @chatbotAndNMoreOpinions.
+  ///
+  /// In en, this message translates to:
+  /// **'...and {count} more mods I have opinions about'**
+  String chatbotAndNMoreOpinions(Object count);
+
+  /// No description provided for @chatbotUnknownModLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} — never heard of it. You\'re on your own.'**
+  String chatbotUnknownModLine(Object name);
+
+  /// No description provided for @chatbotPlusUnrecognized.
+  ///
+  /// In en, this message translates to:
+  /// **'...plus {count} mods I don\'t recognize.'**
+  String chatbotPlusUnrecognized(Object count);
+
+  /// No description provided for @chatbotComboGraphicsLib.
+  ///
+  /// In en, this message translates to:
+  /// **'GraphicsLib and {count} faction mods?'**
+  String chatbotComboGraphicsLib(Object count);
+
+  /// No description provided for @chatbotComboNexFactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Nex + {count} factions. Hope you brought a book for those load times.'**
+  String chatbotComboNexFactions(Object count);
+
+  /// No description provided for @chatbotComboNexerelinExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'You know, most people would be using Nexerelin with that many factions.'**
+  String get chatbotComboNexerelinExpected;
+
+  /// No description provided for @chatbotComboNoNex.
+  ///
+  /// In en, this message translates to:
+  /// **'No Nex?'**
+  String get chatbotComboNoNex;
+
+  /// No description provided for @chatbotComboConsoleNex.
+  ///
+  /// In en, this message translates to:
+  /// **'Console Commands + Nexerelin. \"Totally legit conquest playthrough.\"'**
+  String get chatbotComboConsoleNex;
+
+  /// No description provided for @chatbotComboLibraryOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Nice library collection. Where are the actual mods?'**
+  String get chatbotComboLibraryOnly;
+
+  /// No description provided for @chatbotVerdict10.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re not really playing Starsector at this point.'**
+  String get chatbotVerdict10;
+
+  /// No description provided for @chatbotVerdict9.
+  ///
+  /// In en, this message translates to:
+  /// **'Genuinely solid modlist. You know what you\'re doing.'**
+  String get chatbotVerdict9;
+
+  /// No description provided for @chatbotVerdict8.
+  ///
+  /// In en, this message translates to:
+  /// **'Good taste. Your PC might not agree but I do.'**
+  String get chatbotVerdict8;
+
+  /// No description provided for @chatbotVerdict7.
+  ///
+  /// In en, this message translates to:
+  /// **'Pretty solid. A few questionable choices but overall not bad.'**
+  String get chatbotVerdict7;
+
+  /// No description provided for @chatbotVerdict6.
+  ///
+  /// In en, this message translates to:
+  /// **'Decent. Could be better, could be way worse.'**
+  String get chatbotVerdict6;
+
+  /// No description provided for @chatbotVerdict5.
+  ///
+  /// In en, this message translates to:
+  /// **'Mid. Like, aggressively average. Add some faction mods or something.'**
+  String get chatbotVerdict5;
+
+  /// No description provided for @chatbotVerdict4.
+  ///
+  /// In en, this message translates to:
+  /// **'This modlist needs work. I\'ve seen better from first-time modders.'**
+  String get chatbotVerdict4;
+
+  /// No description provided for @chatbotVerdict3.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you even trying? This is barely modded.'**
+  String get chatbotVerdict3;
+
+  /// No description provided for @chatbotVerdict2.
+  ///
+  /// In en, this message translates to:
+  /// **'This is sad. Install Nexerelin at minimum.'**
+  String get chatbotVerdict2;
+
+  /// No description provided for @chatbotVerdict1.
+  ///
+  /// In en, this message translates to:
+  /// **'One mod? Really? That\'s not a modlist, that\'s a suggestion.'**
+  String get chatbotVerdict1;
+
+  /// No description provided for @chatbotVerdictLine.
+  ///
+  /// In en, this message translates to:
+  /// **'  Verdict: {score}/10 — {verdict}'**
+  String chatbotVerdictLine(Object score, Object verdict);
+
+  /// No description provided for @chatbotOpinionLazyLib.
+  ///
+  /// In en, this message translates to:
+  /// **'LazyLib — you literally can\'t run anything without this. Welcome to modding.'**
+  String get chatbotOpinionLazyLib;
+
+  /// No description provided for @chatbotOpinionMagicLib.
+  ///
+  /// In en, this message translates to:
+  /// **'MagicLib — the other tax you pay to mod this game.'**
+  String get chatbotOpinionMagicLib;
+
+  /// No description provided for @chatbotOpinionGraphicsLib.
+  ///
+  /// In en, this message translates to:
+  /// **'GraphicsLib — hope you like your GPU running at surface-of-the-sun temps.'**
+  String get chatbotOpinionGraphicsLib;
+
+  /// No description provided for @chatbotOpinionLunaLib.
+  ///
+  /// In en, this message translates to:
+  /// **'LunaLib — another library. At this point your mod folder is 50% libraries.'**
+  String get chatbotOpinionLunaLib;
+
+  /// No description provided for @chatbotOpinionNexerelin.
+  ///
+  /// In en, this message translates to:
+  /// **'Nexerelin — oh you wanted a 4X grand strategy game? Say goodbye to your free time.'**
+  String get chatbotOpinionNexerelin;
+
+  /// No description provided for @chatbotOpinionIndEvo.
+  ///
+  /// In en, this message translates to:
+  /// **'Industrial Evolution — for when vanilla colonies aren\'t enough of a spreadsheet simulator.'**
+  String get chatbotOpinionIndEvo;
+
+  /// No description provided for @chatbotOpinionStarshipLegends.
+  ///
+  /// In en, this message translates to:
+  /// **'Starship Legends — your ships have feelings now. Great, more emotional baggage.'**
+  String get chatbotOpinionStarshipLegends;
+
+  /// No description provided for @chatbotOpinionSecondInCommand.
+  ///
+  /// In en, this message translates to:
+  /// **'Second-in-Command — finally, someone else to blame when things go wrong.'**
+  String get chatbotOpinionSecondInCommand;
+
+  /// No description provided for @chatbotOpinionOfficerExtension.
+  ///
+  /// In en, this message translates to:
+  /// **'Officer Extension — because the vanilla officer cap was clearly a personal insult.'**
+  String get chatbotOpinionOfficerExtension;
+
+  /// No description provided for @chatbotOpinionKnightsOfLudd.
+  ///
+  /// In en, this message translates to:
+  /// **'Knights of Ludd — the Luddic Path got a glow-up and honestly they didn\'t deserve it.'**
+  String get chatbotOpinionKnightsOfLudd;
+
+  /// No description provided for @chatbotOpinionRealisticCombat.
+  ///
+  /// In en, this message translates to:
+  /// **'Realistic Combat — for people who thought Starsector was too forgiving.'**
+  String get chatbotOpinionRealisticCombat;
+
+  /// No description provided for @chatbotOpinionRaot.
+  ///
+  /// In en, this message translates to:
+  /// **'Random Assortment of Things — the mod equivalent of a mystery box. Somehow it works.'**
+  String get chatbotOpinionRaot;
+
+  /// No description provided for @chatbotOpinionDiableAvionics.
+  ///
+  /// In en, this message translates to:
+  /// **'Diable Avionics — anime mechs in space. We all know why you installed this.'**
+  String get chatbotOpinionDiableAvionics;
+
+  /// No description provided for @chatbotOpinionBlackrock.
+  ///
+  /// In en, this message translates to:
+  /// **'Blackrock Drive Yards — the faction for people who think the Hegemony isn\'t oppressive enough.'**
+  String get chatbotOpinionBlackrock;
+
+  /// No description provided for @chatbotOpinionScy.
+  ///
+  /// In en, this message translates to:
+  /// **'Scy Nation — gotta go fast. Until you get caught and die instantly.'**
+  String get chatbotOpinionScy;
+
+  /// No description provided for @chatbotOpinionShadowyards.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadowyards — stealth faction for people who think cloaking is a personality trait.'**
+  String get chatbotOpinionShadowyards;
+
+  /// No description provided for @chatbotOpinionTahlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Tahlan Shipworks — Great Houses aesthetic goes hard ngl.'**
+  String get chatbotOpinionTahlan;
+
+  /// No description provided for @chatbotOpinionArkgneisis.
+  ///
+  /// In en, this message translates to:
+  /// **'Legacy of Arkgneisis — flying garbage cans held together with spite and duct tape.'**
+  String get chatbotOpinionArkgneisis;
+
+  /// No description provided for @chatbotOpinionOra.
+  ///
+  /// In en, this message translates to:
+  /// **'Outer Rim Alliance — broadsides only. For people who think flanking is for cowards.'**
+  String get chatbotOpinionOra;
+
+  /// No description provided for @chatbotOpinionAlRuk.
+  ///
+  /// In en, this message translates to:
+  /// **'Al-Ruk Ascendancy — what if we made a faction and just cranked everything to 11?'**
+  String get chatbotOpinionAlRuk;
+
+  /// No description provided for @chatbotOpinionMayorate.
+  ///
+  /// In en, this message translates to:
+  /// **'Mayorate — corporate dystopia faction. So just regular Starsector but more honest about it.'**
+  String get chatbotOpinionMayorate;
+
+  /// No description provided for @chatbotOpinionKadur.
+  ///
+  /// In en, this message translates to:
+  /// **'Kadur Remnant — space vikings. That\'s it. That\'s the pitch. And it works.'**
+  String get chatbotOpinionKadur;
+
+  /// No description provided for @chatbotOpinionDassaultMikoyan.
+  ///
+  /// In en, this message translates to:
+  /// **'Dassault-Mikoyan — fighter spam: the faction. Your framerate weeps.'**
+  String get chatbotOpinionDassaultMikoyan;
+
+  /// No description provided for @chatbotOpinionPersean.
+  ///
+  /// In en, this message translates to:
+  /// **'Persean Chronicles — someone actually wrote lore for this game. Like, a lot of it.'**
+  String get chatbotOpinionPersean;
+
+  /// No description provided for @chatbotOpinionVayra.
+  ///
+  /// In en, this message translates to:
+  /// **'Vayra\'s Sector — more factions, more bounties, more everything. Quantity is a quality of its own.'**
+  String get chatbotOpinionVayra;
+
+  /// No description provided for @chatbotOpinionTorchships.
+  ///
+  /// In en, this message translates to:
+  /// **'Torchships — hard sci-fi in my Starsector? It\'s more likely than you think.'**
+  String get chatbotOpinionTorchships;
+
+  /// No description provided for @chatbotOpinionRoider.
+  ///
+  /// In en, this message translates to:
+  /// **'Roider Union — space rednecks with welding torches. Surprisingly endearing.'**
+  String get chatbotOpinionRoider;
+
+  /// No description provided for @chatbotOpinionApexDesign.
+  ///
+  /// In en, this message translates to:
+  /// **'Apex Design Collective — these ships look like someone\'s thesis project and I mean that as a compliment.'**
+  String get chatbotOpinionApexDesign;
+
+  /// No description provided for @chatbotOpinionEis.
+  ///
+  /// In en, this message translates to:
+  /// **'Enigma Industries — another faction mod. Sure. Why not. Throw it on the pile.'**
+  String get chatbotOpinionEis;
+
+  /// No description provided for @chatbotOpinionSwp.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship/Weapon Pack — basically vanilla+ but actually good.'**
+  String get chatbotOpinionSwp;
+
+  /// No description provided for @chatbotOpinionDmods.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing Ships — filling gaps you didn\'t know existed. Solid pick.'**
+  String get chatbotOpinionDmods;
+
+  /// No description provided for @chatbotOpinionArsenalExpansion.
+  ///
+  /// In en, this message translates to:
+  /// **'Arsenal Expansion — more guns, more ships, can\'t go wrong. Or can you.'**
+  String get chatbotOpinionArsenalExpansion;
+
+  /// No description provided for @chatbotOpinionArmaa.
+  ///
+  /// In en, this message translates to:
+  /// **'Arma Armatura — giant robots in Starsector. The Gundam fans found us.'**
+  String get chatbotOpinionArmaa;
+
+  /// No description provided for @chatbotOpinionUnknownSkies.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Skies — 30 new planets to colonize. As if you needed more territory to mismanage.'**
+  String get chatbotOpinionUnknownSkies;
+
+  /// No description provided for @chatbotOpinionMorePortraits.
+  ///
+  /// In en, this message translates to:
+  /// **'More Character Portraits — because staring at the same 20 faces gets old fast.'**
+  String get chatbotOpinionMorePortraits;
+
+  /// No description provided for @chatbotOpinionConsoleCommands.
+  ///
+  /// In en, this message translates to:
+  /// **'Console Commands — \"I\'m just using it for testing\" sure buddy.'**
+  String get chatbotOpinionConsoleCommands;
+
+  /// No description provided for @chatbotOpinionAutosave.
+  ///
+  /// In en, this message translates to:
+  /// **'Autosave — the fact this isn\'t in vanilla is a war crime.'**
+  String get chatbotOpinionAutosave;
+
+  /// No description provided for @chatbotOpinionCommonRadar.
+  ///
+  /// In en, this message translates to:
+  /// **'Common Radar — how did you play without this?'**
+  String get chatbotOpinionCommonRadar;
+
+  /// No description provided for @chatbotOpinionVersionChecker.
+  ///
+  /// In en, this message translates to:
+  /// **'Version Checker — responsible modding. Boring but necessary.'**
+  String get chatbotOpinionVersionChecker;
+
+  /// No description provided for @chatbotOpinionMoreShipNames.
+  ///
+  /// In en, this message translates to:
+  /// **'More Ship Names — 7500 new names and somehow still no HMS Boaty McBoatface.'**
+  String get chatbotOpinionMoreShipNames;
+
+  /// No description provided for @chatbotOpinionSpeedUp.
+  ///
+  /// In en, this message translates to:
+  /// **'SpeedUp — because vanilla game speed is for people with infinite patience.'**
+  String get chatbotOpinionSpeedUp;
+
+  /// No description provided for @chatbotOpinionTransponderOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Transponder Off — running dark without consequences. Living the pirate dream.'**
+  String get chatbotOpinionTransponderOff;
+
+  /// No description provided for @chatbotOpinionDetailedCombatResults.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed Combat Results — for when you need to know exactly which frigate let you down.'**
+  String get chatbotOpinionDetailedCombatResults;
+
+  /// No description provided for @chatbotOpinionLeadingPip.
+  ///
+  /// In en, this message translates to:
+  /// **'Leading Pip — aim assist for people who can\'t lead shots. No shame. Ok maybe a little.'**
+  String get chatbotOpinionLeadingPip;
+
+  /// No description provided for @chatbotOpinionWarDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'War Dashboard — spreadsheet simulator for your war simulator. We\'ve gone full circle.'**
+  String get chatbotOpinionWarDashboard;
+
+  /// No description provided for @chatbotOpinionStarWars.
+  ///
+  /// In en, this message translates to:
+  /// **'Star Wars mod — because no space game is safe from Star Wars.'**
+  String get chatbotOpinionStarWars;
+
+  /// No description provided for @chatbotOpinionVramVore.
+  ///
+  /// In en, this message translates to:
+  /// **'VRAM Vore — it\'s literally named VRAM Vore. You know what you signed up for.'**
+  String get chatbotOpinionVramVore;
+
+  /// No description provided for @catalogSortName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get catalogSortName;
+
+  /// No description provided for @catalogSortNewest.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest'**
+  String get catalogSortNewest;
+
+  /// No description provided for @catalogSortGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Version'**
+  String get catalogSortGameVersion;
+
+  /// No description provided for @catalogSortPopular.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular'**
+  String get catalogSortPopular;
+
+  /// No description provided for @catalogSortMostDiscussed.
+  ///
+  /// In en, this message translates to:
+  /// **'Most Discussed'**
+  String get catalogSortMostDiscussed;
+
+  /// No description provided for @catalogSortRecentlyActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently Active'**
+  String get catalogSortRecentlyActive;
+
+  /// No description provided for @userThemeFileUnreadable.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t read {fileName}. It isn\'t valid JSON.'**
+  String userThemeFileUnreadable(Object fileName);
+
+  /// No description provided for @userThemeNoThemesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'{fileName} has no \"themes\" section.'**
+  String userThemeNoThemesSection(Object fileName);
+
+  /// No description provided for @userThemeMissingField.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load \"{key}\": {fields} is missing.'**
+  String userThemeMissingField(Object fields, Object key);
+
+  /// No description provided for @userThemeMissingFields.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load \"{key}\": {fields} are missing.'**
+  String userThemeMissingFields(Object fields, Object key);
+
+  /// No description provided for @userThemeLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load \"{key}\": {error}'**
+  String userThemeLoadError(Object error, Object key);
+
+  /// No description provided for @themeFontSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeFontSystem;
+
+  /// No description provided for @themeGlitterSidebar.
+  ///
+  /// In en, this message translates to:
+  /// **'Sidebar'**
+  String get themeGlitterSidebar;
+
+  /// No description provided for @themeGlitterToolbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Toolbar'**
+  String get themeGlitterToolbar;
+
+  /// No description provided for @themeGlitterTooltips.
+  ///
+  /// In en, this message translates to:
+  /// **'Tooltips'**
+  String get themeGlitterTooltips;
+
+  /// No description provided for @themeBackgroundMotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Motes'**
+  String get themeBackgroundMotes;
+
+  /// No description provided for @themeBackgroundStarfield.
+  ///
+  /// In en, this message translates to:
+  /// **'Starfield'**
+  String get themeBackgroundStarfield;
+
+  /// No description provided for @themeBackgroundNebula.
+  ///
+  /// In en, this message translates to:
+  /// **'Nebula'**
+  String get themeBackgroundNebula;
+
+  /// No description provided for @themeBackgroundConstellation.
+  ///
+  /// In en, this message translates to:
+  /// **'Constellation'**
+  String get themeBackgroundConstellation;
+
+  /// No description provided for @themeBackgroundEmbers.
+  ///
+  /// In en, this message translates to:
+  /// **'Embers'**
+  String get themeBackgroundEmbers;
+
+  /// No description provided for @themeBackgroundAurora.
+  ///
+  /// In en, this message translates to:
+  /// **'Aurora'**
+  String get themeBackgroundAurora;
+
+  /// No description provided for @themeBackgroundRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain'**
+  String get themeBackgroundRain;
+
+  /// No description provided for @themeBackgroundRadar.
+  ///
+  /// In en, this message translates to:
+  /// **'Radar'**
+  String get themeBackgroundRadar;
+
+  /// No description provided for @themeBackgroundCircuitry.
+  ///
+  /// In en, this message translates to:
+  /// **'Circuitry'**
+  String get themeBackgroundCircuitry;
+
+  /// No description provided for @themePalette.
+  ///
+  /// In en, this message translates to:
+  /// **'Palette'**
+  String get themePalette;
+
+  /// No description provided for @sentryFeedbackNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Username (not required)'**
+  String get sentryFeedbackNameLabel;
+
+  /// No description provided for @sentryFeedbackEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email (definitely not required!)'**
+  String get sentryFeedbackEmailLabel;
+
+  /// No description provided for @sentryFeedbackMessageLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get sentryFeedbackMessageLabel;
+
+  /// No description provided for @sentryFeedbackRequiredLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'(required)'**
+  String get sentryFeedbackRequiredLabel;
+
+  /// No description provided for @sentryFeedbackMessagePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Please describe the issue you are experiencing with {appName}.\n\n{appName} is not affiliated with Fractal Softworks and cannot help with issues with the game, payments, license keys, or mods.'**
+  String sentryFeedbackMessagePlaceholder(Object appName);
+
+  /// No description provided for @onboardingSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Setup'**
+  String get onboardingSetup;
+
+  /// No description provided for @onboardingWhereIsStarsectorLocated.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Where is Starsector located?'**
+  String get onboardingWhereIsStarsectorLocated;
+
+  /// No description provided for @onboardingGameLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Location'**
+  String get onboardingGameLocation;
+
+  /// No description provided for @onboardingSelectYourGameDirectory.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your game directory'**
+  String get onboardingSelectYourGameDirectory;
+
+  /// No description provided for @onboardingGameNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Game not found'**
+  String get onboardingGameNotFound;
+
+  /// No description provided for @onboardingHowDoYouWant.
+  ///
+  /// In en, this message translates to:
+  /// **'2. How do you want to handle mod updates?'**
+  String get onboardingHowDoYouWant;
+
+  /// No description provided for @onboardingThisWillOnlyAffect.
+  ///
+  /// In en, this message translates to:
+  /// **'This will only affect your mods when you update them.'**
+  String get onboardingThisWillOnlyAffect;
+
+  /// No description provided for @onboardingNoModsWillBe.
+  ///
+  /// In en, this message translates to:
+  /// **'No mods will be affected immediately.'**
+  String get onboardingNoModsWillBe;
+
+  /// No description provided for @onboardingReplacePreviousVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing or updating a mod will replace the previous version of it.'**
+  String get onboardingReplacePreviousVersion;
+
+  /// No description provided for @onboardingTriosWillNeverAutomatically.
+  ///
+  /// In en, this message translates to:
+  /// **'TriOS will never automatically remove mod versions.'**
+  String get onboardingTriosWillNeverAutomatically;
+
+  /// No description provided for @onboardingRemoveAllButLastN.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing or updating a mod will remove all but the last {count} highest versions.'**
+  String onboardingRemoveAllButLastN(Object count);
+
+  /// No description provided for @onboardingBugReporting.
+  ///
+  /// In en, this message translates to:
+  /// **'3: Bug Reporting'**
+  String get onboardingBugReporting;
+
+  /// No description provided for @onboardingBugReportingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} can send crash/error reports to help me find and fix issues (it does actually help!).\nExample of a report: https://i.imgur.com/k9E6zxO.png.\n\nNothing identifiable or personal is ever sent.\n\nSent: app version, mod list, basic PC info (screen resolution, OS, RAM...), randomly generated user ID, and crash details.\nNot sent: IP address, language, region, zip code, PC name, PC username, anything about other apps, etc.'**
+  String onboardingBugReportingBody(Object appName);
+
+  /// No description provided for @onboardingOneClickModInstall.
+  ///
+  /// In en, this message translates to:
+  /// **'4: One-Click Mod Install'**
+  String get onboardingOneClickModInstall;
+
+  /// No description provided for @onboardingOneClickBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} can handle \'Install with TriOS\' links, allowing you to install mods with a single click from websites.'**
+  String onboardingOneClickBody(Object appName);
+
+  /// No description provided for @onboardingYouWillBeAsked.
+  ///
+  /// In en, this message translates to:
+  /// **'You will be asked to confirm before any mod is downloaded.'**
+  String get onboardingYouWillBeAsked;
+
+  /// No description provided for @onboardingYouCanAlwaysChange.
+  ///
+  /// In en, this message translates to:
+  /// **'You can always change these on the Settings page later'**
+  String get onboardingYouCanAlwaysChange;
+
+  /// No description provided for @onboardingFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get onboardingFinish;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboardingNext;
+
+  /// No description provided for @launch_with_settingsSkipLauncher.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip Launcher'**
+  String get launch_with_settingsSkipLauncher;
+
+  /// No description provided for @launch_with_settingsExperimentalTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'EXPERIMENTAL\nIf you encounter strange issues in-game, disable this.\nPossible issues include: invisible ships, zoomed-in combat, no Windows title bar, probably more.'**
+  String get launch_with_settingsExperimentalTooltip;
+
+  /// No description provided for @launch_with_settingsNoGameExe.
+  ///
+  /// In en, this message translates to:
+  /// **'No game exe'**
+  String get launch_with_settingsNoGameExe;
+
+  /// No description provided for @launch_with_settingsStarsectorVersionUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Starsector version unknown'**
+  String get launch_with_settingsStarsectorVersionUnknown;
+
+  /// No description provided for @launch_with_settingsNoModsFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'No mods folder!'**
+  String get launch_with_settingsNoModsFolder;
+
+  /// No description provided for @launch_with_settingsWidth.
+  ///
+  /// In en, this message translates to:
+  /// **'Width'**
+  String get launch_with_settingsWidth;
+
+  /// No description provided for @launch_with_settingsHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Height'**
+  String get launch_with_settingsHeight;
+
+  /// No description provided for @launch_with_settingsUseVanillaLauncherSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your non-TriOS launcher settings instead'**
+  String get launch_with_settingsUseVanillaLauncherSettings;
+
+  /// No description provided for @launch_with_settingsNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: These settings are separate from the normal launcher\'s settings.'**
+  String get launch_with_settingsNote;
+
+  /// No description provided for @launch_with_settingsDisableSkipLauncherWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'If you encounter strange issues in-game, disable Skip Launcher.'**
+  String get launch_with_settingsDisableSkipLauncherWarning;
+
+  /// No description provided for @launch_with_settingsPossibleIssues.
+  ///
+  /// In en, this message translates to:
+  /// **'Possible issues include: invisible ships, zoomed-in combat, no Windows title bar, probably more.'**
+  String get launch_with_settingsPossibleIssues;
+
+  /// No description provided for @game_performanceRam.
+  ///
+  /// In en, this message translates to:
+  /// **'RAM'**
+  String get game_performanceRam;
+
+  /// No description provided for @game_performanceVmparamsFilesTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'vmparams files:\n{files}'**
+  String game_performanceVmparamsFilesTooltip(Object files);
+
+  /// No description provided for @game_performanceNoVmparamsFileFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No vmparams file found.'**
+  String get game_performanceNoVmparamsFileFound;
+
+  /// No description provided for @game_performanceNotAllSameRamWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'<b>Warning</b>: Not all vmparams files\nare set to use the same amount of RAM.\nPick one RAM option below to set all\nto the same value.'**
+  String get game_performanceNotAllSameRamWarning;
+
+  /// No description provided for @game_performanceAssignedRam.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned: <b>{ramAmount} MB</b> in <b>{fileCount}</b> files'**
+  String game_performanceAssignedRam(Object fileCount, Object ramAmount);
+
+  /// No description provided for @game_performanceMoreRamNote.
+  ///
+  /// In en, this message translates to:
+  /// **'More RAM is not always better.\n6 or 8 GB is enough for almost any game.\n\nUse the Console Commands mod to view RAM use in the top-left of the console.'**
+  String get game_performanceMoreRamNote;
+
+  /// No description provided for @game_performanceGameSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Settings'**
+  String get game_performanceGameSettings;
+
+  /// No description provided for @game_performanceOpenConfigJsonTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Open config.json in your default text editor'**
+  String get game_performanceOpenConfigJsonTooltip;
+
+  /// No description provided for @game_performanceFpsLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'FPS Limit'**
+  String get game_performanceFpsLimit;
+
+  /// No description provided for @game_performanceRecommendedMaxFps.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended: Set your max FPS to your monitor\'s refresh rate or lower.'**
+  String get game_performanceRecommendedMaxFps;
+
+  /// No description provided for @game_performanceUnableToReadFps.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to read FPS Limit from settings.json'**
+  String get game_performanceUnableToReadFps;
+
+  /// No description provided for @game_performanceUnableToReadVsync.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to read Vsync from settings.json'**
+  String get game_performanceUnableToReadVsync;
+
+  /// No description provided for @game_performanceVsyncTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Vsync reduces screen tearing but introduces a tiny input delay.'**
+  String get game_performanceVsyncTooltip;
+
+  /// No description provided for @dashboardRamSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{ram} MB'**
+  String dashboardRamSubtitle(Object ram);
+
+  /// No description provided for @dashboardUnknownRam.
+  ///
+  /// In en, this message translates to:
+  /// **'(unknown RAM)'**
+  String get dashboardUnknownRam;
+
+  /// No description provided for @dashboardErrorsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Errors are normal. You can ignore them unless Starsector is misbehaving.\n\nIf there is a crash, look at the bottom of the log for a bunch of lines starting with \'at\'. Hopefully, one of them will mention the problematic mod\'s id, name, or prefix.\nFor example, \'at data.scripts.campaign.II_IGFleetInflater.inflate(II_IGFleetInflater.java:59)\' shows \'II_\', which is Interstellar Imperium.\n\nMake sure your mods are up to date and report bugs to the mod makers!'**
+  String get dashboardErrorsTooltip;
+
+  /// No description provided for @dashboardStarsectorLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Starsector Log'**
+  String get dashboardStarsectorLog;
+
+  /// No description provided for @dashboardLogLastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'{logName} •   last updated {time}'**
+  String dashboardLogLastUpdated(Object logName, Object time);
+
+  /// No description provided for @dashboardLastUpdatedUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown'**
+  String get dashboardLastUpdatedUnknown;
+
+  /// No description provided for @dashboardErrorsAreNormalCrash.
+  ///
+  /// In en, this message translates to:
+  /// **'Errors are normal. If the game crashes, check here for fatal errors.'**
+  String get dashboardErrorsAreNormalCrash;
+
+  /// No description provided for @mod_list_basicMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Mods'**
+  String get mod_list_basicMods;
+
+  /// No description provided for @mod_list_basicEnabledCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{enabled} of {total} enabled'**
+  String mod_list_basicEnabledCount(Object enabled, Object total);
+
+  /// No description provided for @mod_list_basicCopyModListTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy mod list to clipboard\n\nRight-click to include disabled mods'**
+  String get mod_list_basicCopyModListTooltip;
+
+  /// No description provided for @mod_list_basicShowingEnabledModsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing enabled mods only'**
+  String get mod_list_basicShowingEnabledModsOnly;
+
+  /// No description provided for @mod_list_basicShowingDisabledModsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing disabled mods only'**
+  String get mod_list_basicShowingDisabledModsOnly;
+
+  /// No description provided for @mod_list_basicShowingAllMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing all mods'**
+  String get mod_list_basicShowingAllMods;
+
+  /// No description provided for @mod_list_basicEnabledOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled Only'**
+  String get mod_list_basicEnabledOnly;
+
+  /// No description provided for @mod_list_basicDisabledOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled Only'**
+  String get mod_list_basicDisabledOnly;
+
+  /// No description provided for @mod_list_basicShowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Show All'**
+  String get mod_list_basicShowAll;
+
+  /// No description provided for @mod_list_basicSortByLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by {label}'**
+  String mod_list_basicSortByLabel(Object label);
+
+  /// No description provided for @mod_list_basicSortLoadOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Load Order'**
+  String get mod_list_basicSortLoadOrder;
+
+  /// No description provided for @mod_list_basicSortName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get mod_list_basicSortName;
+
+  /// No description provided for @mod_list_basicSortAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'Author'**
+  String get mod_list_basicSortAuthor;
+
+  /// No description provided for @mod_list_basicSortVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get mod_list_basicSortVersion;
+
+  /// No description provided for @mod_list_basicSortVram.
+  ///
+  /// In en, this message translates to:
+  /// **'VRAM Impact'**
+  String get mod_list_basicSortVram;
+
+  /// No description provided for @mod_list_basicSortGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Version'**
+  String get mod_list_basicSortGameVersion;
+
+  /// No description provided for @mod_list_basicSortEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get mod_list_basicSortEnabled;
+
+  /// No description provided for @mod_list_basicDownloadUpdateTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Download {count} update'**
+  String mod_list_basicDownloadUpdateTooltip(Object count);
+
+  /// No description provided for @mod_list_basicDownloadAllUpdatesTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Download all {count} updates'**
+  String mod_list_basicDownloadAllUpdatesTooltip(Object count);
+
+  /// No description provided for @mod_list_basicUpdateAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Update All'**
+  String get mod_list_basicUpdateAll;
+
+  /// No description provided for @mod_list_basicAllMods.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL MODS'**
+  String get mod_list_basicAllMods;
+
+  /// No description provided for @mod_list_basicFilterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter...'**
+  String get mod_list_basicFilterHint;
+
+  /// No description provided for @mod_list_basicShowingAllUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing all updates'**
+  String get mod_list_basicShowingAllUpdates;
+
+  /// No description provided for @mod_list_basicShowingUnmutedUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing unmuted updates'**
+  String get mod_list_basicShowingUnmutedUpdates;
+
+  /// No description provided for @mod_list_basicUpdatesHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates hidden'**
+  String get mod_list_basicUpdatesHidden;
+
+  /// No description provided for @mod_list_basicAllUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL UPDATES ({count})'**
+  String mod_list_basicAllUpdates(Object count);
+
+  /// No description provided for @mod_list_basicUpdatesHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'UPDATES ({count}'**
+  String mod_list_basicUpdatesHeader(Object count);
+
+  /// No description provided for @mod_list_basicPlusMuted.
+  ///
+  /// In en, this message translates to:
+  /// **' + {count} '**
+  String mod_list_basicPlusMuted(Object count);
+
+  /// No description provided for @mod_list_basicHiddenUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hidden updates'**
+  String mod_list_basicHiddenUpdates(Object count);
+
+  /// No description provided for @mod_list_basicPlusMutedParens.
+  ///
+  /// In en, this message translates to:
+  /// **' (+ {count} '**
+  String mod_list_basicPlusMutedParens(Object count);
+
+  /// No description provided for @mod_list_basicDownloadUpdatesForMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Download updates for {count} mods?'**
+  String mod_list_basicDownloadUpdatesForMods(Object count);
+
+  /// No description provided for @mod_list_basicSwapOnUpdateTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'When checked, updating an enabled mod switches to the new version.'**
+  String get mod_list_basicSwapOnUpdateTooltip;
+
+  /// No description provided for @mod_list_basicColorModListRowsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Color mod list rows using each mod\'s icon palette.'**
+  String get mod_list_basicColorModListRowsTooltip;
+
+  /// No description provided for @modListLoadOrderExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Starsector loads mods in order by their name.\nIt sorts with whitespace at the top, then uppercase, then lowercase (\'  x\', \'Z\', \'a\'),\nas opposed to a more intuitive sort (\'a\', \'  x\', \'Z\').\n\nMods loaded last will (usually) override values from mods loaded earlier.'**
+  String get modListLoadOrderExplanation;
+
+  /// No description provided for @mod_list_basic_entryRightClickForMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Right-click for more.'**
+  String get mod_list_basic_entryRightClickForMore;
+
+  /// No description provided for @mod_list_basic_entryMissingDependencies.
+  ///
+  /// In en, this message translates to:
+  /// **'\'{modName}\' is missing \'{dependencies}\'.'**
+  String mod_list_basic_entryMissingDependencies(
+    Object dependencies,
+    Object modName,
+  );
+
+  /// No description provided for @versionCheckDownloadInstallUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Download & Install Update'**
+  String get versionCheckDownloadInstallUpdate;
+
+  /// No description provided for @versionCheckClickToOpenDownloadPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to Open Download Page'**
+  String get versionCheckClickToOpenDownloadPage;
+
+  /// No description provided for @versionCheckRequiresManualDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod requires a manual download.'**
+  String get versionCheckRequiresManualDownload;
+
+  /// No description provided for @versionCheckRequiresManualDownloadClick.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod requires a manual download.\nClick to open the download page.'**
+  String get versionCheckRequiresManualDownloadClick;
+
+  /// No description provided for @versionCheckSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source: {url}'**
+  String versionCheckSource(Object url);
+
+  /// No description provided for @versionCheckRightClickToExpand.
+  ///
+  /// In en, this message translates to:
+  /// **'Right-click to expand this tooltip.'**
+  String get versionCheckRightClickToExpand;
+
+  /// No description provided for @versionCheckInfoFromAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'Update information is provided by the mod author, not {appName}.'**
+  String versionCheckInfoFromAuthor(Object appName);
+
+  /// No description provided for @versionCheckUpToDate.
+  ///
+  /// In en, this message translates to:
+  /// **'You are up to date.'**
+  String get versionCheckUpToDate;
+
+  /// No description provided for @versionCheckCurrentVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Current version: {version}'**
+  String versionCheckCurrentVersion(Object version);
+
+  /// No description provided for @versionCheckRemoteVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Remote version: {version}'**
+  String versionCheckRemoteVersion(Object version);
+
+  /// No description provided for @versionCheckerUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Version Checker url:\n{url}'**
+  String versionCheckerUrl(Object url);
+
+  /// No description provided for @versionCheckErrorCheckingForUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Error checking for updates.'**
+  String get versionCheckErrorCheckingForUpdates;
+
+  /// No description provided for @versionCheckErrorUsuallyCaused.
+  ///
+  /// In en, this message translates to:
+  /// **'This is usually caused by the mod author or a network error. Please visit the mod page to manually find updates.'**
+  String get versionCheckErrorUsuallyCaused;
+
+  /// No description provided for @versionCheckReportBug.
+  ///
+  /// In en, this message translates to:
+  /// **'If the in-game Version Checker is working for this specific mod, please report a TriOS bug.'**
+  String get versionCheckReportBug;
+
+  /// No description provided for @versionCheckMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get versionCheckMessage;
+
+  /// No description provided for @versionCheckMayNotSupportVersionChecker.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod may not support Version Checker.\nPlease visit the mod page to manually find updates.'**
+  String get versionCheckMayNotSupportVersionChecker;
+
+  /// No description provided for @modSummaryNoName.
+  ///
+  /// In en, this message translates to:
+  /// **'(no name)'**
+  String get modSummaryNoName;
+
+  /// No description provided for @modSummaryIdVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'{id} • {version}'**
+  String modSummaryIdVersion(Object id, Object version);
+
+  /// No description provided for @modSummaryNewVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'New version:      {version}'**
+  String modSummaryNewVersion(Object version);
+
+  /// No description provided for @modSummaryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get modSummaryDescription;
+
+  /// No description provided for @modSummaryTipAddIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip: Add a LunaSettings icon or add an icon.png file to the mod folder to get an icon.'**
+  String get modSummaryTipAddIcon;
+
+  /// No description provided for @mod_dependenciesRequiredGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Required game version'**
+  String get mod_dependenciesRequiredGameVersion;
+
+  /// No description provided for @mod_dependenciesOriginalGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Original game version'**
+  String get mod_dependenciesOriginalGameVersion;
+
+  /// No description provided for @mod_dependenciesGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Game version'**
+  String get mod_dependenciesGameVersion;
+
+  /// No description provided for @mod_dependenciesErrorThisModRequires.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: this mod requires a different version of the game.'**
+  String get mod_dependenciesErrorThisModRequires;
+
+  /// No description provided for @mod_dependenciesWarningThisModRequires.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning: this mod requires a different version of a mod that you have installed, but might run with this one.'**
+  String get mod_dependenciesWarningThisModRequires;
+
+  /// No description provided for @mod_dependenciesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'(found {version})'**
+  String mod_dependenciesFound(Object version);
+
+  /// No description provided for @mod_dependenciesMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'(missing)'**
+  String get mod_dependenciesMissing;
+
+  /// No description provided for @mod_dependenciesDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'(disabled: {version})'**
+  String mod_dependenciesDisabled(Object version);
+
+  /// No description provided for @mod_dependenciesWrongVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'(wrong version: {version})'**
+  String mod_dependenciesWrongVersion(Object version);
+
+  /// No description provided for @mod_dependenciesFoundWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'(found: {version})'**
+  String mod_dependenciesFoundWarning(Object version);
+
+  /// No description provided for @commonNone.
+  ///
+  /// In en, this message translates to:
+  /// **'(none)'**
+  String get commonNone;
+
+  /// No description provided for @commonUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get commonUnknown;
+
+  /// No description provided for @version_check_iconUpdateIsMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Update {version} is muted. You\'ll be notified for the next version.'**
+  String version_check_iconUpdateIsMuted(Object version);
+
+  /// No description provided for @version_check_iconUpdatesMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates muted'**
+  String get version_check_iconUpdatesMuted;
+
+  /// No description provided for @merge_mod_sourcesMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod'**
+  String get merge_mod_sourcesMod;
+
+  /// No description provided for @merge_mod_sourcesStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Stats'**
+  String get merge_mod_sourcesStats;
+
+  /// No description provided for @merge_mod_sourcesIgnoredCount.
+  ///
+  /// In en, this message translates to:
+  /// **'(+{count} ignored)'**
+  String merge_mod_sourcesIgnoredCount(Object count);
+
+  /// No description provided for @merge_mod_sourcesOtherModCount.
+  ///
+  /// In en, this message translates to:
+  /// **'(+{count} other mod)'**
+  String merge_mod_sourcesOtherModCount(Object count);
+
+  /// No description provided for @merge_mod_sourcesOtherModsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'(+{count} other mods)'**
+  String merge_mod_sourcesOtherModsCount(Object count);
+
+  /// No description provided for @merge_mod_sourcesStatsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Only {winner}\'s stats are used.\nOverridden (no effect): {ignored}'**
+  String merge_mod_sourcesStatsTooltip(Object ignored, Object winner);
+
+  /// No description provided for @merge_mod_sourcesFileTooltipHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'{fileLabel}: what each mod changes'**
+  String merge_mod_sourcesFileTooltipHeader(Object fileLabel);
+
+  /// No description provided for @merge_mod_sourcesUsedForMost.
+  ///
+  /// In en, this message translates to:
+  /// **'(used for most)'**
+  String get merge_mod_sourcesUsedForMost;
+
+  /// No description provided for @merge_mod_sourcesBase.
+  ///
+  /// In en, this message translates to:
+  /// **'(base)'**
+  String get merge_mod_sourcesBase;
+
+  /// No description provided for @filterIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Included'**
+  String get filterIncluded;
+
+  /// No description provided for @filterExcluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Excluded'**
+  String get filterExcluded;
+
+  /// No description provided for @filterIncludedValuesTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Included:\n{values}'**
+  String filterIncludedValuesTooltip(Object values);
+
+  /// No description provided for @filterExcludedValuesTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Excluded:\n{values}'**
+  String filterExcludedValuesTooltip(Object values);
+
+  /// No description provided for @viewerToolbarTotalCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} {entityName}'**
+  String viewerToolbarTotalCount(Object count, Object entityName);
+
+  /// No description provided for @file_cardCalculating.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculating...'**
+  String get file_cardCalculating;
+
+  /// No description provided for @mod_download_statusStarting.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting…'**
+  String get mod_download_statusStarting;
+
+  /// No description provided for @mod_download_statusDownloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading…'**
+  String get mod_download_statusDownloading;
+
+  /// No description provided for @mod_download_statusInstalling.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing…'**
+  String get mod_download_statusInstalling;
+
+  /// No description provided for @mod_type_iconTotalConversionModsShould.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Conversion mods should not be run with other mods unless explicitly stated to be compatible.'**
+  String get mod_type_iconTotalConversionModsShould;
+
+  /// No description provided for @mod_type_iconThisModDeclaresThat.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod declares that it may be added to or removed from a save at will.'**
+  String get mod_type_iconThisModDeclaresThat;
+
+  /// No description provided for @mod_data_fileUsedForMostValues.
+  ///
+  /// In en, this message translates to:
+  /// **'used for most values'**
+  String get mod_data_fileUsedForMostValues;
+
+  /// No description provided for @mod_data_fileAlsoApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'also applied'**
+  String get mod_data_fileAlsoApplied;
+
+  /// No description provided for @mod_data_fileInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'in use'**
+  String get mod_data_fileInUse;
+
+  /// No description provided for @mod_data_fileOverridden.
+  ///
+  /// In en, this message translates to:
+  /// **'overridden'**
+  String get mod_data_fileOverridden;
+
+  /// No description provided for @smartSearchSyntaxExclude.
+  ///
+  /// In en, this message translates to:
+  /// **'-field:value (exclude)'**
+  String get smartSearchSyntaxExclude;
+
+  /// No description provided for @smartSearchSyntaxNumericOperators.
+  ///
+  /// In en, this message translates to:
+  /// **'{description}; supports numeric operators'**
+  String smartSearchSyntaxNumericOperators(Object description);
+
+  /// No description provided for @profileModProfilesDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod profiles are a way to quickly switch between different mods, including specific versions.\nWhen one is enabled, any mods you change will update the profile as well.\n\n\nYou can also generate profiles from your saves.'**
+  String get profileModProfilesDescription;
+
+  /// No description provided for @profileSaveGames.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Games'**
+  String get profileSaveGames;
+
+  /// No description provided for @profileNoValidProfileOnClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'No valid mod profile was found on your clipboard.'**
+  String get profileNoValidProfileOnClipboard;
+
+  /// No description provided for @profileExportStep1.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Export a profile by clicking the'**
+  String get profileExportStep1;
+
+  /// No description provided for @profilePasteStep2.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Paste the text to another TriOS user.'**
+  String get profilePasteStep2;
+
+  /// No description provided for @profileImportToUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Import Profile to use your profile.'**
+  String get profileImportToUse;
+
+  /// No description provided for @profileCreateNewProfileTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Creates a new profile using your current mods.\nDoes not set it to active.'**
+  String get profileCreateNewProfileTooltip;
+
+  /// No description provided for @profileSharedModListName.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared Mod List'**
+  String get profileSharedModListName;
+
+  /// No description provided for @profileDefaultImportedName.
+  ///
+  /// In en, this message translates to:
+  /// **'Imported Profile'**
+  String get profileDefaultImportedName;
+
+  /// No description provided for @profileDiffHeaderMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod'**
+  String get profileDiffHeaderMod;
+
+  /// No description provided for @mod_profilesExisting.
+  ///
+  /// In en, this message translates to:
+  /// **'Existing'**
+  String get mod_profilesExisting;
+
+  /// No description provided for @mod_profilesImported.
+  ///
+  /// In en, this message translates to:
+  /// **'Imported'**
+  String get mod_profilesImported;
+
+  /// No description provided for @profileSuccessfullyOverwritten.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully overwritten profile: {name}'**
+  String profileSuccessfullyOverwritten(Object name);
+
+  /// No description provided for @profileCopySuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} (Copy)'**
+  String profileCopySuffix(Object name);
+
+  /// No description provided for @profileCopySuffixCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} (Copy {count})'**
+  String profileCopySuffixCount(Object count, Object name);
+
+  /// No description provided for @profileCardLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level}'**
+  String profileCardLevel(Object level);
+
+  /// No description provided for @profileCardCreatedModified.
+  ///
+  /// In en, this message translates to:
+  /// **'Created: {created}\nLast modified: {modified}'**
+  String profileCardCreatedModified(Object created, Object modified);
+
+  /// No description provided for @mod_profile_cardDateMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'(date missing)'**
+  String get mod_profile_cardDateMissing;
+
+  /// No description provided for @profileDeleteProfileBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete profile \'{name}\'?'**
+  String profileDeleteProfileBody(Object name);
+
+  /// No description provided for @profileCardEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get profileCardEnabled;
+
+  /// No description provided for @profileCardEnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable'**
+  String get profileCardEnable;
+
+  /// No description provided for @mod_profile_cardCreatesAProfileBased.
+  ///
+  /// In en, this message translates to:
+  /// **'Creates a profile based on this save\'s last-used mods.'**
+  String get mod_profile_cardCreatesAProfileBased;
+
+  /// No description provided for @mod_profile_cardModNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod not found'**
+  String get mod_profile_cardModNotFound;
+
+  /// No description provided for @mod_profile_cardVersionNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} not found for {modName}. You have {installedVersion} installed.'**
+  String mod_profile_cardVersionNotFound(
+    Object installedVersion,
+    Object modName,
+    Object version,
+  );
+
+  /// No description provided for @mod_profile_cardUnimplemented.
+  ///
+  /// In en, this message translates to:
+  /// **'Unimplemented'**
+  String get mod_profile_cardUnimplemented;
+
+  /// No description provided for @mod_profile_cardCopyModEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} - Version: {version}'**
+  String mod_profile_cardCopyModEntry(Object name, Object version);
+
+  /// No description provided for @mod_profiles_managerTheNewProfileWill.
+  ///
+  /// In en, this message translates to:
+  /// **'The new profile will be activated and is identical to your current profile.'**
+  String get mod_profiles_managerTheNewProfileWill;
+
+  /// No description provided for @mod_profiles_managerModsBeingEnabledDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Mods Being Enabled, Disabled, or Changing Version'**
+  String get mod_profiles_managerModsBeingEnabledDisabled;
+
+  /// No description provided for @mod_profiles_managerEnablingMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabling mod'**
+  String get mod_profiles_managerEnablingMod;
+
+  /// No description provided for @mod_profiles_managerDisablingMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabling mod'**
+  String get mod_profiles_managerDisablingMod;
+
+  /// No description provided for @mod_profiles_managerSwappingVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Swapping version'**
+  String get mod_profiles_managerSwappingVersion;
+
+  /// No description provided for @mod_profiles_managerActivateIgnoreMissingMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate (ignore missing mods)'**
+  String get mod_profiles_managerActivateIgnoreMissingMods;
+
+  /// No description provided for @mod_profiles_managerActivate.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate'**
+  String get mod_profiles_managerActivate;
+
+  /// No description provided for @mod_profiles_managerUnknownMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Mod ({modId})'**
+  String mod_profiles_managerUnknownMod(Object modId);
+
+  /// No description provided for @mod_profiles_managerVersionSwapDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'{modName} {fromVersion} → {toVersion}'**
+  String mod_profiles_managerVersionSwapDescription(
+    Object fromVersion,
+    Object modName,
+    Object toVersion,
+  );
+
+  /// No description provided for @mod_profiles_managerModIsMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod \"{modId}\" is missing.'**
+  String mod_profiles_managerModIsMissing(Object modId);
+
+  /// No description provided for @mod_profiles_managerMissingMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing Mod'**
+  String get mod_profiles_managerMissingMod;
+
+  /// No description provided for @mod_profiles_managerVersionSubstitutedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} of \"{modName}\" is not available, so {bestVersion} will be used instead.'**
+  String mod_profiles_managerVersionSubstitutedBody(
+    Object bestVersion,
+    Object modName,
+    Object version,
+  );
+
+  /// No description provided for @mod_profiles_managerVersionNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Version {version} of \"{modName}\" is not available.'**
+  String mod_profiles_managerVersionNotAvailable(
+    Object modName,
+    Object version,
+  );
+
+  /// No description provided for @mod_profiles_managerVersionMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Version missing'**
+  String get mod_profiles_managerVersionMissing;
+
+  /// No description provided for @mod_profiles_managerVersionSubstituted.
+  ///
+  /// In en, this message translates to:
+  /// **'Version substituted'**
+  String get mod_profiles_managerVersionSubstituted;
+
+  /// No description provided for @mod_profiles_managerMissingModsWillBe.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing mods will be discarded from your profile after activating.'**
+  String get mod_profiles_managerMissingModsWillBe;
+
+  /// No description provided for @recordNoSourceRecordYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No source record exists for this mod yet.\nRecords are created automatically when TriOS processes installed mods.'**
+  String get recordNoSourceRecordYet;
+
+  /// No description provided for @recordNotInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'(not installed)'**
+  String get recordNotInstalled;
+
+  /// No description provided for @recordUnknownValue.
+  ///
+  /// In en, this message translates to:
+  /// **'(unknown)'**
+  String get recordUnknownValue;
+
+  /// No description provided for @recordNoVersionCheckerData.
+  ///
+  /// In en, this message translates to:
+  /// **'(no version checker data)'**
+  String get recordNoVersionCheckerData;
+
+  /// No description provided for @recordNotFoundInCatalog.
+  ///
+  /// In en, this message translates to:
+  /// **'(not found in catalog)'**
+  String get recordNotFoundInCatalog;
+
+  /// No description provided for @recordNoDownloadsRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'(no downloads recorded)'**
+  String get recordNoDownloadsRecorded;
+
+  /// No description provided for @category_managerLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Library'**
+  String get category_managerLibrary;
+
+  /// No description provided for @category_managerUtility.
+  ///
+  /// In en, this message translates to:
+  /// **'Utility'**
+  String get category_managerUtility;
+
+  /// No description provided for @category_managerQualityOfLife.
+  ///
+  /// In en, this message translates to:
+  /// **'Quality of Life'**
+  String get category_managerQualityOfLife;
+
+  /// No description provided for @category_managerMegamod.
+  ///
+  /// In en, this message translates to:
+  /// **'Megamod'**
+  String get category_managerMegamod;
+
+  /// No description provided for @category_managerFaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Faction'**
+  String get category_managerFaction;
+
+  /// No description provided for @category_managerShipPack.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship Pack'**
+  String get category_managerShipPack;
+
+  /// No description provided for @category_managerWeaponFighterPack.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon/Fighter Pack'**
+  String get category_managerWeaponFighterPack;
+
+  /// No description provided for @category_managerGraphics.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphics'**
+  String get category_managerGraphics;
+
+  /// No description provided for @category_managerColonies.
+  ///
+  /// In en, this message translates to:
+  /// **'Colonies'**
+  String get category_managerColonies;
+
+  /// No description provided for @category_managerQuestsBars.
+  ///
+  /// In en, this message translates to:
+  /// **'Quests & Bars'**
+  String get category_managerQuestsBars;
+
+  /// No description provided for @category_managerExploration.
+  ///
+  /// In en, this message translates to:
+  /// **'Exploration'**
+  String get category_managerExploration;
+
+  /// No description provided for @category_managerOfficers.
+  ///
+  /// In en, this message translates to:
+  /// **'Officers'**
+  String get category_managerOfficers;
+
+  /// No description provided for @category_managerSkillsAbilities.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills & Abilities'**
+  String get category_managerSkillsAbilities;
+
+  /// No description provided for @category_managerAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio'**
+  String get category_managerAudio;
+
+  /// No description provided for @category_managerPortraitPack.
+  ///
+  /// In en, this message translates to:
+  /// **'Portrait Pack'**
+  String get category_managerPortraitPack;
+
+  /// No description provided for @category_managerFlagPack.
+  ///
+  /// In en, this message translates to:
+  /// **'Flag Pack'**
+  String get category_managerFlagPack;
+
+  /// No description provided for @category_managerTotalConversion.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Conversion'**
+  String get category_managerTotalConversion;
+
+  /// No description provided for @category_managerMiscCampaignMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Misc. Campaign Mod'**
+  String get category_managerMiscCampaignMod;
+
+  /// No description provided for @tipsHiddenTipsExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden tips are tips that have a freq of 0, so they don\'t appear ingame.'**
+  String get tipsHiddenTipsExplanation;
+
+  /// No description provided for @tipsAboutBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows all loading screen tips, which mod adds them, and how often they appear (freq).\nYou may hide a tip to stop it from showing ingame. TriOS will automatically re-apply your changes if a mod is updated.'**
+  String get tipsAboutBody;
+
+  /// No description provided for @tipsHideSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide Selected'**
+  String get tipsHideSelected;
+
+  /// No description provided for @tipsUnhideSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Unhide Selected'**
+  String get tipsUnhideSelected;
+
+  /// No description provided for @tipsUnknownModName.
+  ///
+  /// In en, this message translates to:
+  /// **'(unknown mod name)'**
+  String get tipsUnknownModName;
+
+  /// No description provided for @tipsHide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide'**
+  String get tipsHide;
+
+  /// No description provided for @tipsUnhide.
+  ///
+  /// In en, this message translates to:
+  /// **'Unhide'**
+  String get tipsUnhide;
+
+  /// No description provided for @tipsNoTipText.
+  ///
+  /// In en, this message translates to:
+  /// **'(No tip text)'**
+  String get tipsNoTipText;
+
+  /// No description provided for @tipsHowLikelyThisTip.
+  ///
+  /// In en, this message translates to:
+  /// **'How likely this tip is to be shown. 1 is normal. Higher is more likely. 0 is never.'**
+  String get tipsHowLikelyThisTip;
+
+  /// No description provided for @tipsFreqLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Freq: {freq}'**
+  String tipsFreqLabel(Object freq);
+
+  /// No description provided for @tipsHiddenLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'(hidden)'**
+  String get tipsHiddenLabel;
+
+  /// No description provided for @tipsTipAddedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Tip added by {modName},\nversion(s): {versions}'**
+  String tipsTipAddedBy(Object modName, Object versions);
+
+  /// No description provided for @chipperNothingUploaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing is ever uploaded. All processing is done on your computer.'**
+  String get chipperNothingUploaded;
+
+  /// No description provided for @modsGridFilterModName.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod name'**
+  String get modsGridFilterModName;
+
+  /// No description provided for @modsGridFilterModId.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod ID'**
+  String get modsGridFilterModId;
+
+  /// No description provided for @modsGridFilterAuthorNameIncludesAliases.
+  ///
+  /// In en, this message translates to:
+  /// **'Author name (includes aliases)'**
+  String get modsGridFilterAuthorNameIncludesAliases;
+
+  /// No description provided for @modsGridFilterModVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod version'**
+  String get modsGridFilterModVersion;
+
+  /// No description provided for @modsGridFilterGameVersionCompatibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Game version compatibility'**
+  String get modsGridFilterGameVersionCompatibility;
+
+  /// No description provided for @modsGridFilterDependencyNameOrId.
+  ///
+  /// In en, this message translates to:
+  /// **'Name or ID of a mod it requires'**
+  String get modsGridFilterDependencyNameOrId;
+
+  /// No description provided for @modsGridFilterEnabledDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Whether the mod is enabled (true/false)'**
+  String get modsGridFilterEnabledDescription;
+
+  /// No description provided for @modsGridUpdatesAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates Available'**
+  String get modsGridUpdatesAvailable;
+
+  /// No description provided for @modsGridFavorite.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite'**
+  String get modsGridFavorite;
+
+  /// No description provided for @modsGridVersionSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Version Select'**
+  String get modsGridVersionSelect;
+
+  /// No description provided for @modsGridModIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Icon'**
+  String get modsGridModIcon;
+
+  /// No description provided for @modsGridModTypeIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Type Icon'**
+  String get modsGridModTypeIcon;
+
+  /// No description provided for @modsGridLastEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Enabled'**
+  String get modsGridLastEnabled;
+
+  /// No description provided for @modsGridLastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Updated'**
+  String get modsGridLastUpdated;
+
+  /// No description provided for @modSummaryNoAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'(no author)'**
+  String get modSummaryNoAuthor;
+
+  /// No description provided for @modSummaryNoDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'(no description)'**
+  String get modSummaryNoDescription;
+
+  /// No description provided for @modsGridOriginalGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Original game version: {version}'**
+  String modsGridOriginalGameVersion(Object version);
+
+  /// No description provided for @modsGridNoGameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'(no game version)'**
+  String get modsGridNoGameVersion;
+
+  /// No description provided for @modsGridThisWillScanAll.
+  ///
+  /// In en, this message translates to:
+  /// **'This will scan all enabled mods and estimate the total VRAM usage.'**
+  String get modsGridThisWillScanAll;
+
+  /// No description provided for @modsGridThisMayTakeALag.
+  ///
+  /// In en, this message translates to:
+  /// **'This may take a few minutes and cause your computer to lag!'**
+  String get modsGridThisMayTakeALag;
+
+  /// No description provided for @modsGridCancelScan.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel Scan'**
+  String get modsGridCancelScan;
+
+  /// No description provided for @modsGridEstVram.
+  ///
+  /// In en, this message translates to:
+  /// **'Est. VRAM'**
+  String get modsGridEstVram;
+
+  /// No description provided for @modsGridSwapBetweenModLoadouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Swap between mod loadouts. Manage them in the Profiles tab.'**
+  String get modsGridSwapBetweenModLoadouts;
+
+  /// No description provided for @modsGridModProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Profile'**
+  String get modsGridModProfile;
+
+  /// No description provided for @modsGridIfAModHasIconUseColors.
+  ///
+  /// In en, this message translates to:
+  /// **'If a mod has an icon, use its colors to style the mod row.'**
+  String get modsGridIfAModHasIconUseColors;
+
+  /// No description provided for @modsGridShowAWarningIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Show a warning icon next to mods whose data has a problem, like a mod whose .version file and mod_info.json don\'t agree on the version.'**
+  String get modsGridShowAWarningIcon;
+
+  /// No description provided for @modsGridIfAModIsInMultipleCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'If a mod is in multiple categories, show the mod in each category rather than only in its primary category.'**
+  String get modsGridIfAModIsInMultipleCategories;
+
+  /// No description provided for @modsGridWhetherToShowUpdatesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Whether to show a section at the top of the page containing only mods with updates.'**
+  String get modsGridWhetherToShowUpdatesSection;
+
+  /// No description provided for @modsGridShowingUpdatesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing Updates section'**
+  String get modsGridShowingUpdatesSection;
+
+  /// No description provided for @modsGridShowingUpdatesSectionInclMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing Updates section (incl. muted)'**
+  String get modsGridShowingUpdatesSectionInclMuted;
+
+  /// No description provided for @modsGridNotShowingUpdateSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Not showing Update section'**
+  String get modsGridNotShowingUpdateSection;
+
+  /// No description provided for @modsGridEnableAllConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to enable all {count} mods?'**
+  String modsGridEnableAllConfirm(Object count);
+
+  /// No description provided for @modsGridThisWillEnableLatest.
+  ///
+  /// In en, this message translates to:
+  /// **'This will enable the latest version of all disabled mods.\nMods that are already enabled won\'t be changed.'**
+  String get modsGridThisWillEnableLatest;
+
+  /// No description provided for @modsGridDisableAllConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to disable all {count} mods?'**
+  String modsGridDisableAllConfirm(Object count);
+
+  /// No description provided for @modsGridVramEstimateTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'An *estimate* of how much VRAM is used based on the images in the mod folder.\nThis may be inaccurate.'**
+  String get modsGridVramEstimateTooltip;
+
+  /// No description provided for @modsGridVramEstimate.
+  ///
+  /// In en, this message translates to:
+  /// **'VRAM Estimate'**
+  String get modsGridVramEstimate;
+
+  /// No description provided for @modsGridFromModImages.
+  ///
+  /// In en, this message translates to:
+  /// **'{bytes} from mod ({count} images)'**
+  String modsGridFromModImages(Object bytes, Object count);
+
+  /// No description provided for @modsGridIllustratedEntitiesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'\n\nNOTE\nIllustrated Entities dynamically loads and unloads images from VRAM.'**
+  String get modsGridIllustratedEntitiesNote;
+
+  /// No description provided for @modsGridClickHornToSeeFullChangelog.
+  ///
+  /// In en, this message translates to:
+  /// **'Click horn to see full changelog'**
+  String get modsGridClickHornToSeeFullChangelog;
+
+  /// No description provided for @modsGridUpdateVersionIsMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Update {version} is muted. You\'ll be notified for the next version.'**
+  String modsGridUpdateVersionIsMuted(Object version);
+
+  /// No description provided for @modsGridUpdatesMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates muted'**
+  String get modsGridUpdatesMuted;
+
+  /// No description provided for @modsGridModRequires.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} requires {dependency}'**
+  String modsGridModRequires(Object dependency, Object name);
+
+  /// No description provided for @modsGridEnableDependencyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable {name}'**
+  String modsGridEnableDependencyName(Object name);
+
+  /// No description provided for @modsGridCouldnTOpenBrowser.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open browser. Google recommends Chrome for a faster experience!'**
+  String get modsGridCouldnTOpenBrowser;
+
+  /// No description provided for @modsGridYouHaveInstalledNeeds.
+  ///
+  /// In en, this message translates to:
+  /// **'You have {installedVersion}. This mod needs {requiredVersion} or newer.'**
+  String modsGridYouHaveInstalledNeeds(
+    Object installedVersion,
+    Object requiredVersion,
+  );
+
+  /// No description provided for @modsGridUpdateDependencyVersionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Update {name} ({requiredVersion} required)'**
+  String modsGridUpdateDependencyVersionRequired(
+    Object name,
+    Object requiredVersion,
+  );
+
+  /// No description provided for @modsGridClickToDownloadLatest.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to download the latest version.'**
+  String get modsGridClickToDownloadLatest;
+
+  /// No description provided for @modsGridClickToOpenDownloadPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to open the download page.'**
+  String get modsGridClickToOpenDownloadPage;
+
+  /// No description provided for @modsGridSearchForNewerDependency.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for newer {name}'**
+  String modsGridSearchForNewerDependency(Object name);
+
+  /// No description provided for @modsGridInstallDependency.
+  ///
+  /// In en, this message translates to:
+  /// **'Install {name}'**
+  String modsGridInstallDependency(Object name);
+
+  /// No description provided for @modsGridDownloadAndInstallDependency.
+  ///
+  /// In en, this message translates to:
+  /// **'Download and install {name} with {appName}'**
+  String modsGridDownloadAndInstallDependency(Object appName, Object name);
+
+  /// No description provided for @modsGridSearchDependency.
+  ///
+  /// In en, this message translates to:
+  /// **'Search {name}'**
+  String modsGridSearchDependency(Object name);
+
+  /// No description provided for @modDataIssuesVersionCheckerMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod\'s Version Checker says {versionCheckerVersion} but its mod_info.json says {modInfoVersion}'**
+  String modDataIssuesVersionCheckerMismatch(
+    Object modInfoVersion,
+    Object versionCheckerVersion,
+  );
+
+  /// No description provided for @modDataIssuesVersionMismatchDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'The mod\'s .version file and its mod_info.json list different versions. This is a mistake by the mod author. TriOS uses the Version Checker version ({versionCheckerVersion}) when comparing versions.'**
+  String modDataIssuesVersionMismatchDetail(Object versionCheckerVersion);
+
+  /// No description provided for @modManagerDependencyFound.
+  ///
+  /// In en, this message translates to:
+  /// **'(found {version})'**
+  String modManagerDependencyFound(Object version);
+
+  /// No description provided for @modManagerDependencyMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'(missing)'**
+  String get modManagerDependencyMissing;
+
+  /// No description provided for @modManagerDependencyDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'(disabled: {version})'**
+  String modManagerDependencyDisabled(Object version);
+
+  /// No description provided for @modManagerDependencyWrongVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'(wrong version: {version})'**
+  String modManagerDependencyWrongVersion(Object version);
+
+  /// No description provided for @modManagerDependencyFoundVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'(found: {version})'**
+  String modManagerDependencyFoundVersion(Object version);
+
+  /// No description provided for @modInfoDialogUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'(unknown)'**
+  String get modInfoDialogUnknown;
+
+  /// No description provided for @modInfoDialogTotalConversion.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Conversion'**
+  String get modInfoDialogTotalConversion;
+
+  /// No description provided for @modInfoDialogUtilityMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Utility Mod'**
+  String get modInfoDialogUtilityMod;
+
+  /// No description provided for @modInfoDialogDownloadedFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded from'**
+  String get modInfoDialogDownloadedFrom;
+
+  /// No description provided for @modInfoDialogInstalledVersions.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed Versions'**
+  String get modInfoDialogInstalledVersions;
+
+  /// No description provided for @modInfoDialogInstalledVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed Version'**
+  String get modInfoDialogInstalledVersion;
+
+  /// No description provided for @modInfoDialogAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get modInfoDialogAvailable;
+
+  /// No description provided for @modInfoDialogUpToDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to date'**
+  String get modInfoDialogUpToDate;
+
+  /// No description provided for @modInfoDialogEnabledList.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled: {names}'**
+  String modInfoDialogEnabledList(Object names);
+
+  /// No description provided for @modInfoDialogDisabledList.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled: {names}'**
+  String modInfoDialogDisabledList(Object names);
+
+  /// No description provided for @modInfoDialogMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Muted'**
+  String get modInfoDialogMuted;
+
+  /// No description provided for @modInfoDialogVersionMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'{version} muted'**
+  String modInfoDialogVersionMuted(Object version);
+
+  /// No description provided for @modInfoDialogUnmuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmuted'**
+  String get modInfoDialogUnmuted;
+
+  /// No description provided for @modInfoDialogFirstSeenDate.
+  ///
+  /// In en, this message translates to:
+  /// **'First seen: {date}'**
+  String modInfoDialogFirstSeenDate(Object date);
+
+  /// No description provided for @modInfoDialogLastEnabledDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Last enabled: {date}'**
+  String modInfoDialogLastEnabledDate(Object date);
+
+  /// No description provided for @modInfoDialogViews.
+  ///
+  /// In en, this message translates to:
+  /// **'Views'**
+  String get modInfoDialogViews;
+
+  /// No description provided for @modInfoDialogReplies.
+  ///
+  /// In en, this message translates to:
+  /// **'Replies'**
+  String get modInfoDialogReplies;
+
+  /// No description provided for @modInfoDialogLastPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Post'**
+  String get modInfoDialogLastPost;
+
+  /// No description provided for @modInfoDialogCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Created'**
+  String get modInfoDialogCreated;
+
+  /// No description provided for @modInfoDialogBoard.
+  ///
+  /// In en, this message translates to:
+  /// **'Board'**
+  String get modInfoDialogBoard;
+
+  /// No description provided for @modInfoDialogYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get modInfoDialogYes;
+
+  /// No description provided for @modInfoDialogNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get modInfoDialogNo;
+
+  /// No description provided for @modInfoDialogDisableThisMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable this mod'**
+  String get modInfoDialogDisableThisMod;
+
+  /// No description provided for @modInfoDialogEnableAVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable a version'**
+  String get modInfoDialogEnableAVersion;
+
+  /// No description provided for @modInfoDialogDeleteThisMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this mod'**
+  String get modInfoDialogDeleteThisMod;
+
+  /// No description provided for @catalogUpdateAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Update available'**
+  String get catalogUpdateAvailable;
+
+  /// No description provided for @modSummaryLastEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Last enabled: '**
+  String get modSummaryLastEnabled;
+
+  /// No description provided for @modSummaryNoModsDependOn.
+  ///
+  /// In en, this message translates to:
+  /// **'No mods depend on {name}'**
+  String modSummaryNoModsDependOn(Object name);
+
+  /// No description provided for @modSummaryDisabledDependents.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled Dependents'**
+  String get modSummaryDisabledDependents;
+
+  /// No description provided for @modSummaryWantsVersion.
+  ///
+  /// In en, this message translates to:
+  /// **' (wants {version})'**
+  String modSummaryWantsVersion(Object version);
+
+  /// No description provided for @auditActionEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get auditActionEnabled;
+
+  /// No description provided for @auditActionDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get auditActionDisabled;
+
+  /// No description provided for @auditActionDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleted'**
+  String get auditActionDeleted;
+
+  /// No description provided for @auditActionWithTimestamp.
+  ///
+  /// In en, this message translates to:
+  /// **'{action} {date}\nReason: {reason}'**
+  String auditActionWithTimestamp(Object action, Object date, Object reason);
+
+  /// No description provided for @modContextMenuRed.
+  ///
+  /// In en, this message translates to:
+  /// **'Red'**
+  String get modContextMenuRed;
+
+  /// No description provided for @modContextMenuCoral.
+  ///
+  /// In en, this message translates to:
+  /// **'Coral'**
+  String get modContextMenuCoral;
+
+  /// No description provided for @modContextMenuAmber.
+  ///
+  /// In en, this message translates to:
+  /// **'Amber'**
+  String get modContextMenuAmber;
+
+  /// No description provided for @modContextMenuChartreuse.
+  ///
+  /// In en, this message translates to:
+  /// **'Chartreuse'**
+  String get modContextMenuChartreuse;
+
+  /// No description provided for @modContextMenuEmerald.
+  ///
+  /// In en, this message translates to:
+  /// **'Emerald'**
+  String get modContextMenuEmerald;
+
+  /// No description provided for @modContextMenuSky.
+  ///
+  /// In en, this message translates to:
+  /// **'Sky'**
+  String get modContextMenuSky;
+
+  /// No description provided for @modContextMenuViolet.
+  ///
+  /// In en, this message translates to:
+  /// **'Violet'**
+  String get modContextMenuViolet;
+
+  /// No description provided for @modContextMenuRose.
+  ///
+  /// In en, this message translates to:
+  /// **'Rose'**
+  String get modContextMenuRose;
+
+  /// No description provided for @categoryContextMenuManageCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage: {category}'**
+  String categoryContextMenuManageCategory(Object category);
+
+  /// No description provided for @categoryContextMenuPleaseSelectAPrimary.
+  ///
+  /// In en, this message translates to:
+  /// **'(please select a primary category)'**
+  String get categoryContextMenuPleaseSelectAPrimary;
+
+  /// No description provided for @categoryNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Category name'**
+  String get categoryNameLabel;
+
+  /// No description provided for @categoryManagementPopupCategoryAssignedTo.
+  ///
+  /// In en, this message translates to:
+  /// **'This category is assigned to {count} mod(s). They will become uncategorized.'**
+  String categoryManagementPopupCategoryAssignedTo(Object count);
+
+  /// No description provided for @categoryManagementPopupAddCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Add category...'**
+  String get categoryManagementPopupAddCategory;
+
+  /// No description provided for @categoryManagementPopupCreateCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Create category'**
+  String get categoryManagementPopupCreateCategory;
+
+  /// No description provided for @categoryIconPickerDialogSearchIcons.
+  ///
+  /// In en, this message translates to:
+  /// **'Search icons...'**
+  String get categoryIconPickerDialogSearchIcons;
+
+  /// No description provided for @modInstallSelectionDialogCouldnTInstallThis.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t install this file'**
+  String get modInstallSelectionDialogCouldnTInstallThis;
+
+  /// No description provided for @modInstallSelectionDialogCouldnTInstallThese.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t install these files'**
+  String get modInstallSelectionDialogCouldnTInstallThese;
+
+  /// No description provided for @modInstallSelectionDialogInstallCountOfMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Install {selected} of {total} mods'**
+  String modInstallSelectionDialogInstallCountOfMods(
+    Object selected,
+    Object total,
+  );
+
+  /// No description provided for @modInstallSelectionDialogCouldnTBeInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t be installed:'**
+  String get modInstallSelectionDialogCouldnTBeInstalled;
+
+  /// No description provided for @modInstallSelectionDialogCouldnTBeInstalledCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t be installed ({count}):'**
+  String modInstallSelectionDialogCouldnTBeInstalledCount(Object count);
+
+  /// No description provided for @modInstallSelectionDialogToggleWhetherAlreadyInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle whether already-installed mods are replaced by the versions being installed.'**
+  String get modInstallSelectionDialogToggleWhetherAlreadyInstalled;
+
+  /// No description provided for @modInstallSelectionDialogNoModsSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'No mods selected'**
+  String get modInstallSelectionDialogNoModsSelected;
+
+  /// No description provided for @modInstallSelectionDialogInstallCountMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Install {count} mods'**
+  String modInstallSelectionDialogInstallCountMods(Object count);
+
+  /// No description provided for @modInstallSelectionDialogTheseModsAllHave.
+  ///
+  /// In en, this message translates to:
+  /// **'These mods all have the same id and version, so only one may be selected.'**
+  String get modInstallSelectionDialogTheseModsAllHave;
+
+  /// No description provided for @modInstallSelectionDialogExistingModWillBe.
+  ///
+  /// In en, this message translates to:
+  /// **'(existing mod will be replaced)'**
+  String get modInstallSelectionDialogExistingModWillBe;
+
+  /// No description provided for @modInstallSelectionDialogAlreadyInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'(already installed{version})'**
+  String modInstallSelectionDialogAlreadyInstalled(Object version);
+
+  /// No description provided for @modInstallationErrorDialogThereWasAnError.
+  ///
+  /// In en, this message translates to:
+  /// **'There was an error while installing.\nPlease install the mod manually.'**
+  String get modInstallationErrorDialogThereWasAnError;
+
+  /// No description provided for @modInstallationErrorDialogThereWereErrorsWhile.
+  ///
+  /// In en, this message translates to:
+  /// **'There were errors while installing.\nPlease install the mods manually.\n'**
+  String get modInstallationErrorDialogThereWereErrorsWhile;
+
+  /// No description provided for @modInstallationErrorDialogCheckLogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Check the {appName} logs for more information.\n\n'**
+  String modInstallationErrorDialogCheckLogs(Object appName);
+
+  /// No description provided for @modVersionSelectionDropdownThisModRequiresA.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod requires a different version of the game'**
+  String get modVersionSelectionDropdownThisModRequiresA;
+
+  /// No description provided for @modVersionSelectionDropdownMultipleEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning\nYou have two or more enabled mod folders for {name}. The game will pick one at \'random\'.\nSelect one version from the dropdown.'**
+  String modVersionSelectionDropdownMultipleEnabled(Object name);
+
+  /// No description provided for @modVersionSelectionDropdownRequires.
+  ///
+  /// In en, this message translates to:
+  /// **'Requires {dependencies}'**
+  String modVersionSelectionDropdownRequires(Object dependencies);
+
+  /// No description provided for @modVersionSelectionDropdownMultipleSameVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning\nYou have two or more of the same version ({versions}) of this mod in your mods folder. {appName} may not handle this correctly.\nPlease remove one manually.'**
+  String modVersionSelectionDropdownMultipleSameVersion(
+    Object appName,
+    Object versions,
+  );
+
+  /// No description provided for @modVersionSelectionDropdownClickToDisable.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to disable'**
+  String get modVersionSelectionDropdownClickToDisable;
+
+  /// No description provided for @modVersionSelectionDropdownClickToUseNewerVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to use newer version {version}'**
+  String modVersionSelectionDropdownClickToUseNewerVersion(Object version);
+
+  /// No description provided for @modDataWarningIconWarningsHidden.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod data warnings are hidden. Turn them back on in the Mods page menu.'**
+  String get modDataWarningIconWarningsHidden;
+
+  /// No description provided for @modListExporterCopiedImportViaProfiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied mod list to clipboard. Import via Mod Profiles page.'**
+  String get modListExporterCopiedImportViaProfiles;
+
+  /// No description provided for @batchInstallationNotifierFinalizing.
+  ///
+  /// In en, this message translates to:
+  /// **'Finalizing...'**
+  String get batchInstallationNotifierFinalizing;
+
+  /// No description provided for @batchPreScannerSourceDoesNotExist.
+  ///
+  /// In en, this message translates to:
+  /// **'Source does not exist'**
+  String get batchPreScannerSourceDoesNotExist;
+
+  /// No description provided for @batchPreScannerNotASupportedArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Not a supported archive format'**
+  String get batchPreScannerNotASupportedArchive;
+
+  /// No description provided for @batchPreScannerNoModInfoJson.
+  ///
+  /// In en, this message translates to:
+  /// **'No mod_info.json found in source'**
+  String get batchPreScannerNoModInfoJson;
+
+  /// No description provided for @batchPreScannerCouldNotParseAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not parse any mod_info.json in source'**
+  String get batchPreScannerCouldNotParseAny;
+
+  /// No description provided for @batchInstallationFilesProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} / {total} files'**
+  String batchInstallationFilesProgress(Object count, Object total);
+
+  /// No description provided for @wispgridGroupItemsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} items'**
+  String wispgridGroupItemsCount(Object count);
+
+  /// No description provided for @wispgridGroupAllMods.
+  ///
+  /// In en, this message translates to:
+  /// **'All Mods'**
+  String get wispgridGroupAllMods;
+
+  /// No description provided for @wispgridGroupMoveItemsTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Move {count} items to…'**
+  String wispgridGroupMoveItemsTo(Object count);
+
+  /// No description provided for @wispgridGroupMoveTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to…'**
+  String get wispgridGroupMoveTo;
+
+  /// No description provided for @wispgridGroupMoveItemsToGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Move {count} items to {group}'**
+  String wispgridGroupMoveItemsToGroup(Object count, Object group);
+
+  /// No description provided for @wispgridGroupMoveToGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to {group}'**
+  String wispgridGroupMoveToGroup(Object group);
+
+  /// No description provided for @wispgridGroupUncategorized.
+  ///
+  /// In en, this message translates to:
+  /// **'Uncategorized'**
+  String get wispgridGroupUncategorized;
+
+  /// No description provided for @wispgridGroupNoAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'No Author'**
+  String get wispgridGroupNoAuthor;
+
+  /// No description provided for @wispgridGroupModType.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Type'**
+  String get wispgridGroupModType;
+
+  /// No description provided for @wispgridGroupUtility.
+  ///
+  /// In en, this message translates to:
+  /// **'Utility'**
+  String get wispgridGroupUtility;
+
+  /// No description provided for @wispgridGroupOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get wispgridGroupOther;
+
+  /// No description provided for @wispgridGroupUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get wispgridGroupUnknown;
+
+  /// No description provided for @wispgridGroupPinned.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned'**
+  String get wispgridGroupPinned;
+
+  /// No description provided for @wispgridGroupEstimatedVramUseBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated VRAM use by {group}\n'**
+  String wispgridGroupEstimatedVramUseBy(Object group);
+
+  /// No description provided for @wispgridGroupEstimateVramUsageFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimate VRAM usage for {count} unscanned mods'**
+  String wispgridGroupEstimateVramUsageFor(Object count);
+
+  /// No description provided for @wispgridHeaderRowClickToSortTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to sort. Drag the edges to resize.\nRight-click for grouping and column options.'**
+  String get wispgridHeaderRowClickToSortTooltip;
+
+  /// No description provided for @wispgridHeaderRowFreezeThisColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Freeze this column'**
+  String get wispgridHeaderRowFreezeThisColumn;
+
+  /// No description provided for @wispgridHeaderRowUnfreezeThisColumn.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfreeze this column'**
+  String get wispgridHeaderRowUnfreezeThisColumn;
+
+  /// No description provided for @catalogHasDownloadLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Has Download Link'**
+  String get catalogHasDownloadLink;
+
+  /// No description provided for @catalogHasSourceCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Has Source Code'**
+  String get catalogHasSourceCode;
+
+  /// No description provided for @catalogDiscord.
+  ///
+  /// In en, this message translates to:
+  /// **'Discord'**
+  String get catalogDiscord;
+
+  /// No description provided for @catalogForum.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum'**
+  String get catalogForum;
+
+  /// No description provided for @catalogArchived.
+  ///
+  /// In en, this message translates to:
+  /// **'Archived'**
+  String get catalogArchived;
+
+  /// No description provided for @catalogStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get catalogStatus;
+
+  /// No description provided for @catalogBothInstalledAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Both Installed & Available'**
+  String get catalogBothInstalledAvailable;
+
+  /// No description provided for @catalogOnlyInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Only Installed'**
+  String get catalogOnlyInstalled;
+
+  /// No description provided for @catalogNotInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Installed'**
+  String get catalogNotInstalled;
+
+  /// No description provided for @catalogAllVersions.
+  ///
+  /// In en, this message translates to:
+  /// **'All Versions'**
+  String get catalogAllVersions;
+
+  /// No description provided for @catalogModCatalog.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Catalog'**
+  String get catalogModCatalog;
+
+  /// No description provided for @catalogModsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Mods'**
+  String catalogModsCount(Object count);
+
+  /// No description provided for @catalogUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'URL'**
+  String get catalogUrl;
+
+  /// No description provided for @catalogForumDarkThemeInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum Dark Theme Instructions'**
+  String get catalogForumDarkThemeInstructions;
+
+  /// No description provided for @catalogForumDarkThemeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the whole thing first!\n\n1. Log in to the forum, then reopen this dialog.\n2. Click the button below to navigate to the theme settings.\n3. Next to \'Current Theme\', click (change) and select \'Back n Black\'.'**
+  String get catalogForumDarkThemeBody;
+
+  /// No description provided for @catalogForumProfilePrefs.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum Profile Prefs'**
+  String get catalogForumProfilePrefs;
+
+  /// No description provided for @catalogCheckingForWebviewSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for webview support...'**
+  String get catalogCheckingForWebviewSupport;
+
+  /// No description provided for @catalogBrowserDisabledByDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'The web browser is disabled by default\nto prevent crash looping on some systems.\n\nClick Load Once, and, if it works, click Always Load next time.'**
+  String get catalogBrowserDisabledByDefault;
+
+  /// No description provided for @catalogAppQuitUnexpectedly.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} quit unexpectedly.\nThe browser has been disabled as a precaution.'**
+  String catalogAppQuitUnexpectedly(Object appName);
+
+  /// No description provided for @catalogBrowserLoadedUntilExit.
+  ///
+  /// In en, this message translates to:
+  /// **'Browser will be loaded until {appName} exits.'**
+  String catalogBrowserLoadedUntilExit(Object appName);
+
+  /// No description provided for @catalogBrowserAlwaysLoad.
+  ///
+  /// In en, this message translates to:
+  /// **'Browser will always load (unless {appName} crashes).'**
+  String catalogBrowserAlwaysLoad(Object appName);
+
+  /// No description provided for @catalogCatalogMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Catalog mod'**
+  String get catalogCatalogMod;
+
+  /// No description provided for @catalogUnableToDisplayWeb.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to display web browser'**
+  String get catalogUnableToDisplayWeb;
+
+  /// No description provided for @catalogWebviewIsRequiredBut.
+  ///
+  /// In en, this message translates to:
+  /// **'WebView2 is required but not installed.'**
+  String get catalogWebviewIsRequiredBut;
+
+  /// No description provided for @catalogPleaseInstallItFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Please install it from https://developer.microsoft.com/en-us/microsoft-edge/webview2/'**
+  String get catalogPleaseInstallItFrom;
+
+  /// No description provided for @catalogLinuxIsNotSupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Linux is not supported'**
+  String get catalogLinuxIsNotSupported;
+
+  /// No description provided for @catalogUseAStandaloneBrowser.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a standalone browser to find mods (maybe at https://starmodder.pages.dev ?) instead.'**
+  String get catalogUseAStandaloneBrowser;
+
+  /// No description provided for @catalogNotSupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Not supported'**
+  String get catalogNotSupported;
+
+  /// No description provided for @catalogShowAiModSummaries.
+  ///
+  /// In en, this message translates to:
+  /// **'Show AI mod summaries'**
+  String get catalogShowAiModSummaries;
+
+  /// No description provided for @catalogTurnOnAiFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on AI features in Settings to use this.'**
+  String get catalogTurnOnAiFeatures;
+
+  /// No description provided for @catalogPartOfThreadTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Part of the \"{threadTitle}\" forum thread.'**
+  String catalogPartOfThreadTooltip(Object threadTitle);
+
+  /// No description provided for @catalogPartOfThread.
+  ///
+  /// In en, this message translates to:
+  /// **'part of {threadTitle}'**
+  String catalogPartOfThread(Object threadTitle);
+
+  /// No description provided for @catalogInstalledDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed, disabled'**
+  String get catalogInstalledDisabled;
+
+  /// No description provided for @catalogNoDescriptionYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No description...yet!'**
+  String get catalogNoDescriptionYet;
+
+  /// No description provided for @catalogLlmModThisCard.
+  ///
+  /// In en, this message translates to:
+  /// **'LLM mod (this card)'**
+  String get catalogLlmModThisCard;
+
+  /// No description provided for @catalogResolvedDownloadCandidates.
+  ///
+  /// In en, this message translates to:
+  /// **'Resolved download candidates'**
+  String get catalogResolvedDownloadCandidates;
+
+  /// No description provided for @catalogUpdateAvailableSupportsInstall.
+  ///
+  /// In en, this message translates to:
+  /// **'Update available.\n\nThis mod supports Install with TriOS'**
+  String get catalogUpdateAvailableSupportsInstall;
+
+  /// No description provided for @catalogUpdateAvailableOpenDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Update available.\nOpen download page'**
+  String get catalogUpdateAvailableOpenDownload;
+
+  /// No description provided for @catalogInstalledAndEnabledHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed and enabled.\nRight-click the card to disable.'**
+  String get catalogInstalledAndEnabledHint;
+
+  /// No description provided for @catalogInstalledButDisabledHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed but disabled.\nRight-click the card to enable.'**
+  String get catalogInstalledButDisabledHint;
+
+  /// No description provided for @catalogInstall.
+  ///
+  /// In en, this message translates to:
+  /// **'Install'**
+  String get catalogInstall;
+
+  /// No description provided for @catalogDownloadSupportsInstall.
+  ///
+  /// In en, this message translates to:
+  /// **'Download {modName}.\n\nThis mod supports Install with TriOS.'**
+  String catalogDownloadSupportsInstall(Object modName);
+
+  /// No description provided for @catalogDownloadName.
+  ///
+  /// In en, this message translates to:
+  /// **'Download {modName}'**
+  String catalogDownloadName(Object modName);
+
+  /// No description provided for @catalogGet.
+  ///
+  /// In en, this message translates to:
+  /// **'Get'**
+  String get catalogGet;
+
+  /// No description provided for @catalogOpenTheDownloadPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the download page'**
+  String get catalogOpenTheDownloadPage;
+
+  /// No description provided for @catalogNoDownloadAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No download available'**
+  String get catalogNoDownloadAvailable;
+
+  /// No description provided for @catalogSeveralDownloadsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Several downloads available.\nClick to choose'**
+  String get catalogSeveralDownloadsAvailable;
+
+  /// No description provided for @catalogModdingSubforum.
+  ///
+  /// In en, this message translates to:
+  /// **'Modding Subforum'**
+  String get catalogModdingSubforum;
+
+  /// No description provided for @catalogForumViewsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} forum views'**
+  String catalogForumViewsCount(Object count);
+
+  /// No description provided for @catalogForumRepliesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} forum replies'**
+  String catalogForumRepliesCount(Object count);
+
+  /// No description provided for @catalogLastForumPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Last forum post: {date}'**
+  String catalogLastForumPost(Object date);
+
+  /// No description provided for @catalogSourceCodeOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Source code on {host}'**
+  String catalogSourceCodeOn(Object host);
+
+  /// No description provided for @catalogClickToOpenInBrowser.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to open in your browser'**
+  String get catalogClickToOpenInBrowser;
+
+  /// No description provided for @catalogClickToReadFullLicense.
+  ///
+  /// In en, this message translates to:
+  /// **'Click to read the full license.'**
+  String get catalogClickToReadFullLicense;
+
+  /// No description provided for @catalogItemNounMods.
+  ///
+  /// In en, this message translates to:
+  /// **'mods'**
+  String get catalogItemNounMods;
+
+  /// No description provided for @catalogItemNounThreads.
+  ///
+  /// In en, this message translates to:
+  /// **'threads'**
+  String get catalogItemNounThreads;
+
+  /// No description provided for @catalogForumIndexSubforumsPostsStats.
+  ///
+  /// In en, this message translates to:
+  /// **'forum index, subforums, individual posts and stats'**
+  String get catalogForumIndexSubforumsPostsStats;
+
+  /// No description provided for @catalogSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get catalogSource;
+
+  /// No description provided for @catalogDataSourcesDialogPath.
+  ///
+  /// In en, this message translates to:
+  /// **'Path'**
+  String get catalogDataSourcesDialogPath;
+
+  /// No description provided for @catalogRefreshDisabledWhileLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh disabled while loading'**
+  String get catalogRefreshDisabledWhileLoading;
+
+  /// No description provided for @catalogFetchFreshData.
+  ///
+  /// In en, this message translates to:
+  /// **'Fetch fresh data, bypassing the cache'**
+  String get catalogFetchFreshData;
+
+  /// No description provided for @catalogDeleteCachedFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete the cached files from disk'**
+  String get catalogDeleteCachedFiles;
+
+  /// No description provided for @catalogNothingCachedToClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing cached to clear'**
+  String get catalogNothingCachedToClear;
+
+  /// No description provided for @catalogDataSourcesDialogNotCached.
+  ///
+  /// In en, this message translates to:
+  /// **'Not cached'**
+  String get catalogDataSourcesDialogNotCached;
+
+  /// No description provided for @catalogDataSourcesDialogLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading…'**
+  String get catalogDataSourcesDialogLoading;
+
+  /// No description provided for @catalogDataSourcesDialogLoaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Loaded'**
+  String get catalogDataSourcesDialogLoaded;
+
+  /// No description provided for @catalogCachedAgeAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Cached {age} ago (TTL {ttl})'**
+  String catalogCachedAgeAgo(Object age, Object ttl);
+
+  /// No description provided for @catalogNotCachedWithTtl.
+  ///
+  /// In en, this message translates to:
+  /// **'Not cached (TTL {ttl})'**
+  String catalogNotCachedWithTtl(Object ttl);
+
+  /// No description provided for @forumPostHeaderHideTheModSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide the mod summary'**
+  String get forumPostHeaderHideTheModSummary;
+
+  /// No description provided for @forumPostHeaderShowTheModSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the mod summary'**
+  String get forumPostHeaderShowTheModSummary;
+
+  /// No description provided for @forumPostHeaderExitFullScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit full screen'**
+  String get forumPostHeaderExitFullScreen;
+
+  /// No description provided for @forumPostHeaderFullScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Full screen'**
+  String get forumPostHeaderFullScreen;
+
+  /// No description provided for @forumPostHeaderAlreadyInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Already installed'**
+  String get forumPostHeaderAlreadyInstalled;
+
+  /// No description provided for @forumPostHeaderNotInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Not installed'**
+  String get forumPostHeaderNotInstalled;
+
+  /// No description provided for @forumPostHeaderOpenDownloadPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open download page'**
+  String get forumPostHeaderOpenDownloadPage;
+
+  /// No description provided for @catalogSpoiler.
+  ///
+  /// In en, this message translates to:
+  /// **'Spoiler'**
+  String get catalogSpoiler;
+
+  /// No description provided for @catalogEmbeddedVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Embedded video · {label}'**
+  String catalogEmbeddedVideo(Object label);
+
+  /// No description provided for @catalogPostCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} posts'**
+  String catalogPostCount(Object count);
+
+  /// No description provided for @catalogOpenAuthorProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Open {authors}\'s forum profile in your browser'**
+  String catalogOpenAuthorProfile(Object authors);
+
+  /// No description provided for @catalogSummaryFromSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary from {place}.'**
+  String catalogSummaryFromSources(Object place);
+
+  /// No description provided for @modSummarySummaryFromModInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary from mod_info.json.'**
+  String get modSummarySummaryFromModInfo;
+
+  /// No description provided for @catalogSummaryGeneratedByAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary generated by AI. See the {appName} About page for AI Disclosure.'**
+  String catalogSummaryGeneratedByAi(Object appName);
+
+  /// No description provided for @modSummaryWhatHappensToYour.
+  ///
+  /// In en, this message translates to:
+  /// **'What happens to your existing saved games when you update this mod'**
+  String get modSummaryWhatHappensToYour;
+
+  /// No description provided for @catalogAiSummaryAlways.
+  ///
+  /// In en, this message translates to:
+  /// **'Always'**
+  String get catalogAiSummaryAlways;
+
+  /// No description provided for @catalogAiSummaryOnlyIfMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Only if missing'**
+  String get catalogAiSummaryOnlyIfMissing;
+
+  /// No description provided for @catalogAiSummaryNever.
+  ///
+  /// In en, this message translates to:
+  /// **'Never'**
+  String get catalogAiSummaryNever;
+
+  /// No description provided for @catalogClickActionForumDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum dialog'**
+  String get catalogClickActionForumDialog;
+
+  /// No description provided for @catalogClickActionEmbeddedBrowser.
+  ///
+  /// In en, this message translates to:
+  /// **'Embedded browser'**
+  String get catalogClickActionEmbeddedBrowser;
+
+  /// No description provided for @catalogClickActionSystemBrowser.
+  ///
+  /// In en, this message translates to:
+  /// **'System browser'**
+  String get catalogClickActionSystemBrowser;
+
+  /// No description provided for @catalogSideRailHide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide {panel}'**
+  String catalogSideRailHide(Object panel);
+
+  /// No description provided for @catalogSideRailShow.
+  ///
+  /// In en, this message translates to:
+  /// **'Show {panel}'**
+  String catalogSideRailShow(Object panel);
+
+  /// No description provided for @catalogVersionChecker.
+  ///
+  /// In en, this message translates to:
+  /// **'Version checker'**
+  String get catalogVersionChecker;
+
+  /// No description provided for @catalogVersionCheckerWithVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Version checker ({version})'**
+  String catalogVersionCheckerWithVersion(Object version);
+
+  /// No description provided for @catalogInstallWithAppName.
+  ///
+  /// In en, this message translates to:
+  /// **'Install with {appName}'**
+  String catalogInstallWithAppName(Object appName);
+
+  /// No description provided for @catalogMirror.
+  ///
+  /// In en, this message translates to:
+  /// **'Mirror'**
+  String get catalogMirror;
+
+  /// No description provided for @app_action_buttonsYouMustEnableAllowReporting.
+  ///
+  /// In en, this message translates to:
+  /// **'You must enable \'Allow Crash Reporting\' in Settings to report bugs.\nThis icon may be hidden on the Settings page.'**
+  String get app_action_buttonsYouMustEnableAllowReporting;
+
+  /// No description provided for @app_action_buttonsContinuingWillSendA.
+  ///
+  /// In en, this message translates to:
+  /// **'Continuing will send a bug report. You will be able to enter additional details about the issue on the next page.'**
+  String get app_action_buttonsContinuingWillSendA;
+
+  /// No description provided for @app_action_buttonsIWantToReportA.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to report a {appName} bug'**
+  String app_action_buttonsIWantToReportA(Object appName);
+
+  /// No description provided for @app_action_buttonsSwitchToSidebarLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to sidebar layout'**
+  String get app_action_buttonsSwitchToSidebarLayout;
+
+  /// No description provided for @app_action_buttonsSwitchToTopToolbarLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to top toolbar layout'**
+  String get app_action_buttonsSwitchToTopToolbarLayout;
+
+  /// No description provided for @app_action_buttonsWhenEnabledModifyingA.
+  ///
+  /// In en, this message translates to:
+  /// **'When enabled, modifying a mod\'s rules.csv will\nreload in-game rules as long as dev mode is enabled.'**
+  String get app_action_buttonsWhenEnabledModifyingA;
+
+  /// No description provided for @app_action_buttonsRulesHotReloadIs.
+  ///
+  /// In en, this message translates to:
+  /// **'\n\nrules.csv hot reload is {state}.'**
+  String app_action_buttonsRulesHotReloadIs(Object state);
+
+  /// No description provided for @app_action_buttonsClickTo.
+  ///
+  /// In en, this message translates to:
+  /// **'\nClick to {action}.'**
+  String app_action_buttonsClickTo(Object action);
+
+  /// No description provided for @app_action_buttonsGameDetection.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Detection'**
+  String get app_action_buttonsGameDetection;
+
+  /// No description provided for @app_action_buttonsRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Running'**
+  String get app_action_buttonsRunning;
+
+  /// No description provided for @app_action_buttonsNotRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Not running'**
+  String get app_action_buttonsNotRunning;
+
+  /// No description provided for @app_action_buttonsMatchedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Matched by'**
+  String get app_action_buttonsMatchedBy;
+
+  /// No description provided for @app_action_buttonsDetectors.
+  ///
+  /// In en, this message translates to:
+  /// **'Detectors'**
+  String get app_action_buttonsDetectors;
+
+  /// No description provided for @app_action_buttonsCheckDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Check Duration'**
+  String get app_action_buttonsCheckDuration;
+
+  /// No description provided for @app_action_buttonsPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'Period'**
+  String get app_action_buttonsPeriod;
+
+  /// No description provided for @app_action_buttonsErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'Errors'**
+  String get app_action_buttonsErrors;
+
+  /// No description provided for @app_sidebarExpandSidebar.
+  ///
+  /// In en, this message translates to:
+  /// **'Expand sidebar'**
+  String get app_sidebarExpandSidebar;
+
+  /// No description provided for @app_sidebarCollapseSidebar.
+  ///
+  /// In en, this message translates to:
+  /// **'Collapse sidebar'**
+  String get app_sidebarCollapseSidebar;
+
+  /// No description provided for @app_sidebarSwitchToTopToolbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to top toolbar'**
+  String get app_sidebarSwitchToTopToolbar;
+
+  /// No description provided for @app_right_toolbarUnableToFindOr.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to find or modify file(s).'**
+  String get app_right_toolbarUnableToFindOr;
+
+  /// No description provided for @app_right_toolbarRightClickTriosExe.
+  ///
+  /// In en, this message translates to:
+  /// **'Right-click TriOS.exe and select \'Run as Administrator\'.'**
+  String get app_right_toolbarRightClickTriosExe;
+
+  /// No description provided for @app_right_toolbarEnsureTheyExist.
+  ///
+  /// In en, this message translates to:
+  /// **'\nEnsure that they exist and are not read-only.\n'**
+  String get app_right_toolbarEnsureTheyExist;
+
+  /// No description provided for @app_right_toolbarTriosMayNotBeAble.
+  ///
+  /// In en, this message translates to:
+  /// **'\nTriOS may not be able to modify game files, otherwise.\n'**
+  String get app_right_toolbarTriosMayNotBeAble;
+
+  /// No description provided for @app_right_toolbarUnableToEditFile.
+  ///
+  /// In en, this message translates to:
+  /// **'❌ Unable to edit {description}.\n    ({path}).'**
+  String app_right_toolbarUnableToEditFile(Object description, Object path);
+
+  /// No description provided for @app_right_toolbarUnknownPath.
+  ///
+  /// In en, this message translates to:
+  /// **'unknown path'**
+  String get app_right_toolbarUnknownPath;
+
+  /// No description provided for @warningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get warningTitle;
+
+  /// No description provided for @app_right_toolbarMustRunAsAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'Must Run as Admin'**
+  String get app_right_toolbarMustRunAsAdmin;
+
+  /// No description provided for @app_right_toolbarRunningAsAdministratorNdrag.
+  ///
+  /// In en, this message translates to:
+  /// **'Running as Administrator.\nDrag\'n\'drop will not work due to Windows security limits.'**
+  String get app_right_toolbarRunningAsAdministratorNdrag;
+
+  /// No description provided for @app_right_toolbarTriosLikeSmolBefore.
+  ///
+  /// In en, this message translates to:
+  /// **'TriOS, like SMOL before it, is a hobby that I do because I enjoy it, and because I enjoy giving to Starsector.'**
+  String get app_right_toolbarTriosLikeSmolBefore;
+
+  /// No description provided for @app_right_toolbarNtheyReTheResult.
+  ///
+  /// In en, this message translates to:
+  /// **'\nThey\'re the result of many hundreds of hours of coding, and I hope they have been useful (and even enjoyable) for you.'**
+  String get app_right_toolbarNtheyReTheResult;
+
+  /// No description provided for @app_right_toolbarNifYouFeelLike.
+  ///
+  /// In en, this message translates to:
+  /// **'\nIf you feel like donating, thank you. If you can\'t donate but wish you were rich enough to just give money away, thank you anyway :)'**
+  String get app_right_toolbarNifYouFeelLike;
+
+  /// No description provided for @app_right_toolbarNtakeCareOfYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'\nTake care of yourself,'**
+  String get app_right_toolbarNtakeCareOfYourself;
+
+  /// No description provided for @activityIconDownloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading...'**
+  String get activityIconDownloading;
+
+  /// No description provided for @activityIconInstalling.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing...'**
+  String get activityIconInstalling;
+
+  /// No description provided for @activityIconModInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod installed'**
+  String get activityIconModInstalled;
+
+  /// No description provided for @activityIconModsInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Mods installed'**
+  String get activityIconModsInstalled;
+
+  /// No description provided for @nav_reorder_menuThisRestoresTheDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'This restores the default order of the navigation icons.'**
+  String get nav_reorder_menuThisRestoresTheDefault;
+
+  /// No description provided for @settingsGroupStarsector.
+  ///
+  /// In en, this message translates to:
+  /// **'Starsector'**
+  String get settingsGroupStarsector;
+
+  /// No description provided for @settingsGroupTriosUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} Updates'**
+  String settingsGroupTriosUpdates(String appName);
+
+  /// No description provided for @settingsSelfUpdateUnavailableMac.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-update is not available on macOS. Please download new versions from the Releases page.'**
+  String get settingsSelfUpdateUnavailableMac;
+
+  /// No description provided for @settingsPrereleasesTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Play with fire.\nEnabling this will include Previews when checking for updates.\nPreviews are *usually* stable, but no guarantees. They contain bugfixes and often add a feature or two that may not be totally finished.'**
+  String get settingsPrereleasesTooltip;
+
+  /// No description provided for @settingsEnableTriosPreviewReleases.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable {appName} preview releases'**
+  String settingsEnableTriosPreviewReleases(String appName);
+
+  /// No description provided for @settingsInterface.
+  ///
+  /// In en, this message translates to:
+  /// **'Interface'**
+  String get settingsInterface;
+
+  /// No description provided for @settingsWindowScaleTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Makes the UI larger or smaller.\nMin 25%, max 300%.'**
+  String get settingsWindowScaleTooltip;
+
+  /// No description provided for @settingsTriosScale.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} scale'**
+  String settingsTriosScale(String appName);
+
+  /// No description provided for @settingsScaleCautionTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Make small changes at a time.\nTri-Tachyon is not responsible if you set it to 300% and it\'s so big you can\'t get to the setting to fix it.'**
+  String get settingsScaleCautionTooltip;
+
+  /// No description provided for @settingsModOrganization.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Organization'**
+  String get settingsModOrganization;
+
+  /// No description provided for @settingsFolderNamingTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'If enabled, TriOS will always add the version number to the folder name when installing a mod.\nFor example; LazyLib-1.8b, LazyLib-1.8, LazyLib-1.7.\n\nIf disabled, the latest mod won\'t change folder name, even when you update the mod.\nOlder versions of a mod will still include the version number in order to tell them apart.\nFor example; LazyLib, LazyLib-1.8, LazyLib-1.7.'**
+  String get settingsFolderNamingTooltip;
+
+  /// No description provided for @settingsManualNamingTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual mode. TriOS will not rename folders.\nThis may result in TriOS overwriting mods when updating or installing new versions, if the folder already exists.\nFor example, if you have folder `LazyLib` and install a new version where the folder name is also `LazyLib`, the older one will be overwritten.\n\nTODO: clean up this UI and use a dropdown or something :)'**
+  String get settingsManualNamingTooltip;
+
+  /// No description provided for @settingsOldModVersions.
+  ///
+  /// In en, this message translates to:
+  /// **'Old mod versions'**
+  String get settingsOldModVersions;
+
+  /// No description provided for @settingsKeepOnlyOneModVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep only one mod version'**
+  String get settingsKeepOnlyOneModVersion;
+
+  /// No description provided for @settingsKeepAllModVersions.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep all mod versions'**
+  String get settingsKeepAllModVersions;
+
+  /// No description provided for @settingsKeepVersionsNeverRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'TriOS will never automatically remove mod versions.'**
+  String get settingsKeepVersionsNeverRemove;
+
+  /// No description provided for @settingsKeepVersionsReplaceMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing or updating a mod will replace the mod.'**
+  String get settingsKeepVersionsReplaceMod;
+
+  /// No description provided for @settingsKeepVersionsKeepLastN.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing or updating a mod will remove all but the last {count} highest versions.'**
+  String settingsKeepVersionsKeepLastN(num count);
+
+  /// No description provided for @settingsRemoveAllButNewest.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove all but the newest version of each mod.'**
+  String get settingsRemoveAllButNewest;
+
+  /// No description provided for @settingsRemoveAllButNewestCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove all but the newest {count} versions of each mod.'**
+  String settingsRemoveAllButNewestCount(num count);
+
+  /// No description provided for @settingsCleanUpPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Prompts for confirmation before deleting anything.'**
+  String get settingsCleanUpPrompt;
+
+  /// No description provided for @settingsConcurrentExtractionsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of mod archives to extract at the same time during batch installation.\nHigher values install faster but use more CPU and disk I/O.'**
+  String get settingsConcurrentExtractionsTooltip;
+
+  /// No description provided for @settingsCompanionMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Companion Mod'**
+  String get settingsCompanionMod;
+
+  /// No description provided for @settingsCompanionModDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The {appName} Companion Mod is required to replace portraits without touching the actual mods (see Portraits tab).\nIt does nothing else and has effectively no impact on loading or performance.'**
+  String settingsCompanionModDescription(String appName);
+
+  /// No description provided for @settingsCompanionModNotInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'The Companion Mod is not installed.'**
+  String get settingsCompanionModNotInstalled;
+
+  /// No description provided for @settingsCompanionModSetUpCorrectly.
+  ///
+  /// In en, this message translates to:
+  /// **'The Companion Mod is set up correctly.'**
+  String get settingsCompanionModSetUpCorrectly;
+
+  /// No description provided for @settingsCompanionModNotEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'The Companion Mod is installed but not enabled.'**
+  String get settingsCompanionModNotEnabled;
+
+  /// No description provided for @settingsReinstallCompanionTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'If the Companion Mod already exists, it\'ll be replaced with a fresh version.\nPortrait replacements that show in {appName} will NOT be lost.'**
+  String settingsReinstallCompanionTooltip(String appName);
+
+  /// No description provided for @settingsReinstallCompanionMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Reinstall Companion Mod'**
+  String get settingsReinstallCompanionMod;
+
+  /// No description provided for @settingsInstallCompanionMod.
+  ///
+  /// In en, this message translates to:
+  /// **'Install Companion Mod'**
+  String get settingsInstallCompanionMod;
+
+  /// No description provided for @settingsOpenCompanionModFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Companion Mod Folder'**
+  String get settingsOpenCompanionModFolder;
+
+  /// No description provided for @settingsMisc.
+  ///
+  /// In en, this message translates to:
+  /// **'Misc'**
+  String get settingsMisc;
+
+  /// No description provided for @settingsRescanTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'This sets how often we check if there are new or changed mods in your folder.\nA shorter time means more frequent checks.\nDoes not scan when {appName} is in the background.'**
+  String settingsRescanTooltip(String appName);
+
+  /// No description provided for @settingsRescanEvery.
+  ///
+  /// In en, this message translates to:
+  /// **'Rescan mod folder every: {count} seconds'**
+  String settingsRescanEvery(num count);
+
+  /// No description provided for @settingsNotificationDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification duration: {count} seconds'**
+  String settingsNotificationDuration(num count);
+
+  /// No description provided for @settingsMaxHttpRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Max HTTP requests at once: {count}'**
+  String settingsMaxHttpRequests(num count);
+
+  /// No description provided for @settingsErrorReportingTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'This allows {appName} to send crash/error reports to get fixed.\nNo personal/identifiable data is sent.\nWill soft-restart {appName} to apply.'**
+  String settingsErrorReportingTooltip(String appName);
+
+  /// No description provided for @settingsRestartToApply.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} must be restarted to apply this change.'**
+  String settingsRestartToApply(String appName);
+
+  /// No description provided for @settingsErrorReportingDialogContent.
+  ///
+  /// In en, this message translates to:
+  /// **'If allowed, {appName} uses Sentry.io to collect error reports.\nIf not allowed, the Sentry SDK will be completely disabled; it will not be initialized on startup, which is why the soft restart is required to toggle this setting and why \'Report A Bug\' is not available if it is disabled.\n\nIf error reporting is enabled, care is taken to avoid sending any personal/identifiable data such as IP addresses, usernames (even in file paths), device names, location, etc.\nMod names, device info (OS, CPU count, RAM, etc) is sent.'**
+  String settingsErrorReportingDialogContent(String appName);
+
+  /// No description provided for @settingsLaunchPrecheckTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Whether to check for mod dependencies and prevent launching if they aren\'t met.\nDisable if {appName} is getting them wrong, or you\'d just like to use vanilla dependency check behavior.'**
+  String settingsLaunchPrecheckTooltip(String appName);
+
+  /// No description provided for @settingsCheckGameRunningTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Whether to check if the game is running and lock parts of {appName}.\nDisable if {appName} is detecting incorrectly.'**
+  String settingsCheckGameRunningTooltip(String appName);
+
+  /// No description provided for @settingsGameRunningCheckError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error checking if game is running!'**
+  String get settingsGameRunningCheckError;
+
+  /// No description provided for @settingsAccessibilitySemanticsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'The Flutter framework (what {appName} uses) has a bug that causes freezes related to text fields on some Linux distros.\nDisabling accessibility semantics fixes those freezes.\nYou may need to fully restart {appName} to apply the changes.'**
+  String settingsAccessibilitySemanticsTooltip(String appName);
+
+  /// No description provided for @settingsAiFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Features'**
+  String get settingsAiFeatures;
+
+  /// No description provided for @settingsDisableAiTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'When checked, {appName} never shows anything AI-related:\n- Generated mod summaries on the Catalog page'**
+  String settingsDisableAiTooltip(String appName);
+
+  /// No description provided for @settingsJunkDrawerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Junk drawer of developer actions and info'**
+  String get settingsJunkDrawerSubtitle;
+
+  /// No description provided for @settingsAlreadyLatestVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'You are already on the latest version (current: {current}, found: {found}{prerelease})'**
+  String settingsAlreadyLatestVersion(
+    String current,
+    String found,
+    String prerelease,
+  );
+
+  /// No description provided for @settingsDeepLinkTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Registers or unregisters {appName} as the handler for \'Install with {appName}\' links,\nwhich lets you install mods with one click from websites.'**
+  String settingsDeepLinkTooltip(String appName);
+
+  /// No description provided for @settingsDisableOpenWithTrios.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable \'Open with TriOS\''**
+  String get settingsDisableOpenWithTrios;
+
+  /// No description provided for @settingsEnableOpenWithTrios.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable \'Open with TriOS\''**
+  String get settingsEnableOpenWithTrios;
+
+  /// No description provided for @settingsYourThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Your themes'**
+  String get settingsYourThemes;
+
+  /// No description provided for @settingsBuiltIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Built-in'**
+  String get settingsBuiltIn;
+
+  /// No description provided for @settingsThemeTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Change up the colors.\nNote: only the default theme (StarsectorTriOSTheme) is regularly tested.'**
+  String get settingsThemeTooltip;
+
+  /// No description provided for @settingsCopyThemeTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy theme as JSON\nPuts the selected theme on the clipboard, ready to paste into your own themes file.'**
+  String get settingsCopyThemeTooltip;
+
+  /// No description provided for @settingsThemeCopiedSnackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{name}\" copied. Paste it into your themes file.'**
+  String settingsThemeCopiedSnackbar(String name);
+
+  /// No description provided for @settingsOpenThemesFileTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Open my themes file\n{path}'**
+  String settingsOpenThemesFileTooltip(String path);
+
+  /// No description provided for @settingsFontTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'The font all of TriOS\'s text is drawn in.\nSystem uses whatever font your operating system provides.'**
+  String get settingsFontTooltip;
+
+  /// No description provided for @debugSectionShowDiagnosticsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows internal diagnostics in the toolbar, including\nprocess detection status and cache statistics.'**
+  String get debugSectionShowDiagnosticsTooltip;
+
+  /// No description provided for @debugSectionEngineTrailsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Draws the trail of smoke or glow behind a ship\'s lit engines\nin the ship viewer. Still being worked on.'**
+  String get debugSectionEngineTrailsTooltip;
+
+  /// No description provided for @debugSectionRestoreWarningTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'CAUTION: May mess up TriOS\'s settings (not mods).\nGoing back in time is not tested. Recommend backing up your settings first (click Log File button to open folder).'**
+  String get debugSectionRestoreWarningTooltip;
+
+  /// No description provided for @debugSectionSelectARelease.
+  ///
+  /// In en, this message translates to:
+  /// **'← Select a release'**
+  String get debugSectionSelectARelease;
+
+  /// No description provided for @debugSectionConsoleLogLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'← Select {appName} console logging level (resets at restart)'**
+  String debugSectionConsoleLogLevel(String appName);
+
+  /// No description provided for @debugSectionFileLogLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'← Select {appName} file logging level (resets at restart)'**
+  String debugSectionFileLogLevel(String appName);
+
+  /// No description provided for @debugSectionResetCategoriesDialog.
+  ///
+  /// In en, this message translates to:
+  /// **'This will reset categories to defaults, removing any user-created categories.\nMod assignments to default categories will be kept.'**
+  String get debugSectionResetCategoriesDialog;
+
+  /// No description provided for @debugSectionTestError.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a test error'**
+  String get debugSectionTestError;
+
+  /// No description provided for @debugSectionDetectedFiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Detected ({count}):'**
+  String debugSectionDetectedFiles(num count);
+
+  /// No description provided for @debugSectionCacheAgeHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours}h ago'**
+  String debugSectionCacheAgeHours(num hours);
+
+  /// No description provided for @debugSectionCacheAgeMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes}m ago'**
+  String debugSectionCacheAgeMinutes(num minutes);
+
+  /// No description provided for @debugSectionCachedWithCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Cached {age}, {count} entries'**
+  String debugSectionCachedWithCount(String age, num count);
+
+  /// No description provided for @debugSectionCached.
+  ///
+  /// In en, this message translates to:
+  /// **'Cached {age}'**
+  String debugSectionCached(String age);
+
+  /// No description provided for @debugSectionNotCached.
+  ///
+  /// In en, this message translates to:
+  /// **'Not cached'**
+  String get debugSectionNotCached;
+
+  /// No description provided for @debugSectionForumDataRefreshed.
+  ///
+  /// In en, this message translates to:
+  /// **'Forum data refreshed.'**
+  String get debugSectionForumDataRefreshed;
+
+  /// No description provided for @debugSectionForumUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated: {time}'**
+  String debugSectionForumUpdated(String time);
+
+  /// No description provided for @debugSectionForumTotalEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'Total entries: {count}'**
+  String debugSectionForumTotalEntries(num count);
+
+  /// No description provided for @debugSectionForumMatchedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Matched to ModRecords: {count}'**
+  String debugSectionForumMatchedCount(num count);
+
+  /// No description provided for @debugSectionForumEntryLine.
+  ///
+  /// In en, this message translates to:
+  /// **'#{topicId}  {title}  ({views} views, {replies} replies)'**
+  String debugSectionForumEntryLine(
+    String topicId,
+    String title,
+    num views,
+    num replies,
+  );
+
+  /// No description provided for @debugSectionNotCollectedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: the below information is not collected by TriOS.\nThis is here in case TriOS is misbehaving, to hopefully see if anything looks wrong.'**
+  String get debugSectionNotCollectedNote;
+
+  /// No description provided for @debugSectionCurrentDirectoryEnv.
+  ///
+  /// In en, this message translates to:
+  /// **'Current directory (env variable): {path}'**
+  String debugSectionCurrentDirectoryEnv(String path);
+
+  /// No description provided for @debugSectionCurrentDirectoryExecutable.
+  ///
+  /// In en, this message translates to:
+  /// **'Current directory based on executable: {path}'**
+  String debugSectionCurrentDirectoryExecutable(String path);
+
+  /// No description provided for @debugSectionLocaleIntl.
+  ///
+  /// In en, this message translates to:
+  /// **'Locale (using Intl package): {locale}'**
+  String debugSectionLocaleIntl(String locale);
+
+  /// No description provided for @debugSectionRamUsage.
+  ///
+  /// In en, this message translates to:
+  /// **'RAM usage: {amount}'**
+  String debugSectionRamUsage(String amount);
+
+  /// No description provided for @debugSectionMaxRamUsage.
+  ///
+  /// In en, this message translates to:
+  /// **'Max RAM usage: {amount}'**
+  String debugSectionMaxRamUsage(String amount);
+
+  /// No description provided for @debugSectionTriosVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'TriOS version: {version}'**
+  String debugSectionTriosVersion(String version);
+
+  /// No description provided for @debugSectionDartVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Dart version: {version}'**
+  String debugSectionDartVersion(String version);
+
+  /// No description provided for @debugSectionOs.
+  ///
+  /// In en, this message translates to:
+  /// **'OS: {os} {version}'**
+  String debugSectionOs(String os, String version);
+
+  /// No description provided for @debugSectionProcessors.
+  ///
+  /// In en, this message translates to:
+  /// **'Processors: {count}'**
+  String debugSectionProcessors(num count);
+
+  /// No description provided for @debugSectionFilterByVariantId.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by variant id'**
+  String get debugSectionFilterByVariantId;
+
+  /// No description provided for @debugSectionNoSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'(no search)'**
+  String get debugSectionNoSearch;
+
+  /// No description provided for @debugSectionIdNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'(id not found)'**
+  String get debugSectionIdNotFound;
+
+  /// No description provided for @debugSectionAllMods.
+  ///
+  /// In en, this message translates to:
+  /// **'ALL Mods'**
+  String get debugSectionAllMods;
+
+  /// No description provided for @navLabelDash.
+  ///
+  /// In en, this message translates to:
+  /// **'Dash'**
+  String get navLabelDash;
+
+  /// No description provided for @navLabelMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Mods'**
+  String get navLabelMods;
+
+  /// No description provided for @navLabelProfiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Profiles'**
+  String get navLabelProfiles;
+
+  /// No description provided for @navLabelCatalog.
+  ///
+  /// In en, this message translates to:
+  /// **'Catalog'**
+  String get navLabelCatalog;
+
+  /// No description provided for @navLabelLogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Logs'**
+  String get navLabelLogs;
+
+  /// No description provided for @navLabelVramEstimator.
+  ///
+  /// In en, this message translates to:
+  /// **'VRAM Estimator'**
+  String get navLabelVramEstimator;
+
+  /// No description provided for @navLabelCodex.
+  ///
+  /// In en, this message translates to:
+  /// **'Codex'**
+  String get navLabelCodex;
+
+  /// No description provided for @navLabelShips.
+  ///
+  /// In en, this message translates to:
+  /// **'Ships'**
+  String get navLabelShips;
+
+  /// No description provided for @navLabelWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapons'**
+  String get navLabelWeapons;
+
+  /// No description provided for @navLabelHullmods.
+  ///
+  /// In en, this message translates to:
+  /// **'Hullmods'**
+  String get navLabelHullmods;
+
+  /// No description provided for @navLabelFactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Factions'**
+  String get navLabelFactions;
+
+  /// No description provided for @navLabelPortraits.
+  ///
+  /// In en, this message translates to:
+  /// **'Portraits'**
+  String get navLabelPortraits;
+
+  /// No description provided for @navLabelSector.
+  ///
+  /// In en, this message translates to:
+  /// **'Sector'**
+  String get navLabelSector;
+
+  /// No description provided for @navLabelTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Tips'**
+  String get navLabelTips;
+
+  /// No description provided for @navLabelSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get navLabelSettings;
+
+  /// No description provided for @navTooltipDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get navTooltipDashboard;
+
+  /// No description provided for @navTooltipModManager.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Manager'**
+  String get navTooltipModManager;
+
+  /// No description provided for @navTooltipModProfiles.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Profiles'**
+  String get navTooltipModProfiles;
+
+  /// No description provided for @navTooltipModCatalog.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod Catalog'**
+  String get navTooltipModCatalog;
+
+  /// No description provided for @navTooltipLogViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Viewer'**
+  String get navTooltipLogViewer;
+
+  /// No description provided for @navTooltipVramEstimator.
+  ///
+  /// In en, this message translates to:
+  /// **'VRAM Estimator'**
+  String get navTooltipVramEstimator;
+
+  /// No description provided for @navTooltipCodex.
+  ///
+  /// In en, this message translates to:
+  /// **'Codex'**
+  String get navTooltipCodex;
+
+  /// No description provided for @navTooltipShipViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship Viewer'**
+  String get navTooltipShipViewer;
+
+  /// No description provided for @navTooltipWeaponViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon Viewer'**
+  String get navTooltipWeaponViewer;
+
+  /// No description provided for @navTooltipHullmodViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Hullmod Viewer'**
+  String get navTooltipHullmodViewer;
+
+  /// No description provided for @navTooltipFactionViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Faction Viewer'**
+  String get navTooltipFactionViewer;
+
+  /// No description provided for @navTooltipPortraitViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Portrait Viewer & Replacer'**
+  String get navTooltipPortraitViewer;
+
+  /// No description provided for @navTooltipSectorMap.
+  ///
+  /// In en, this message translates to:
+  /// **'Sector Map'**
+  String get navTooltipSectorMap;
+
+  /// No description provided for @navTooltipTipsManager.
+  ///
+  /// In en, this message translates to:
+  /// **'Tips Manager'**
+  String get navTooltipTipsManager;
+
+  /// No description provided for @navTooltipSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get navTooltipSettings;
+
+  /// No description provided for @downloadStatusQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get downloadStatusQueued;
+
+  /// No description provided for @downloadStatusRetrievingFileInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Retrieving File Info'**
+  String get downloadStatusRetrievingFileInfo;
+
+  /// No description provided for @downloadStatusDownloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading'**
+  String get downloadStatusDownloading;
+
+  /// No description provided for @downloadStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get downloadStatusCompleted;
+
+  /// No description provided for @downloadStatusFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get downloadStatusFailed;
+
+  /// No description provided for @downloadStatusPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get downloadStatusPaused;
+
+  /// No description provided for @downloadStatusCanceled.
+  ///
+  /// In en, this message translates to:
+  /// **'Canceled'**
+  String get downloadStatusCanceled;
+
+  /// No description provided for @toastGroupAllModsInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'All mods installed'**
+  String get toastGroupAllModsInstalled;
+
+  /// No description provided for @toastGroupInstallingMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing mods'**
+  String get toastGroupInstallingMods;
+
+  /// No description provided for @toastGroupDownloadingMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading mods'**
+  String get toastGroupDownloadingMods;
+
+  /// No description provided for @toastGroupInstalledOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed {count} mod'**
+  String toastGroupInstalledOne(num count);
+
+  /// No description provided for @toastGroupInstalledMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed {count} mods'**
+  String toastGroupInstalledMany(num count);
+
+  /// No description provided for @toastGroupInstallingOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing {count} mod'**
+  String toastGroupInstallingOne(num count);
+
+  /// No description provided for @toastGroupInstallingMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing {count} mods'**
+  String toastGroupInstallingMany(num count);
+
+  /// No description provided for @toastGroupDownloadingOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading {count} mod'**
+  String toastGroupDownloadingOne(num count);
+
+  /// No description provided for @toastGroupDownloadingMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading {count} mods'**
+  String toastGroupDownloadingMany(num count);
+
+  /// No description provided for @toastGroupSuccessFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'{successCount} successful, {failedCount} failed'**
+  String toastGroupSuccessFailed(num successCount, num failedCount);
+
+  /// No description provided for @toastGroupComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'{completed} of {total} complete'**
+  String toastGroupComplete(num completed, num total);
+
+  /// No description provided for @toastGroupMoreCount.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} more'**
+  String toastGroupMoreCount(num count);
+
+  /// No description provided for @toastGroupRemoveFromGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from group'**
+  String get toastGroupRemoveFromGroup;
+
+  /// No description provided for @commonInstalling.
+  ///
+  /// In en, this message translates to:
+  /// **'Installing...'**
+  String get commonInstalling;
+
+  /// No description provided for @commonDownloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading...'**
+  String get commonDownloading;
+
+  /// No description provided for @commonCollapse.
+  ///
+  /// In en, this message translates to:
+  /// **'Collapse'**
+  String get commonCollapse;
+
+  /// No description provided for @commonExpand.
+  ///
+  /// In en, this message translates to:
+  /// **'Expand'**
+  String get commonExpand;
+
+  /// No description provided for @toastInstallationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Installation failed'**
+  String get toastInstallationFailed;
+
+  /// No description provided for @toastDownloadedArchiveSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded archive size'**
+  String get toastDownloadedArchiveSize;
+
+  /// No description provided for @toastInstalledSizeOnDisk.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed size on disk'**
+  String get toastInstalledSizeOnDisk;
+
+  /// No description provided for @toastPreviouslyEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Previously enabled: {version}'**
+  String toastPreviouslyEnabled(String version);
+
+  /// No description provided for @toastUpdatedToVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} was updated to {version}!'**
+  String toastUpdatedToVersion(String appName, String version);
+
+  /// No description provided for @toastVersionNowAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'{version} is now available!'**
+  String toastVersionNowAvailable(String version);
+
+  /// No description provided for @updateToVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Update to {version}'**
+  String updateToVersion(String version);
+
+  /// No description provided for @aprilFoolsActuallyJoke.
+  ///
+  /// In en, this message translates to:
+  /// **'Ok, it\'s actually an April Fool\'s joke. It\'s completely offline and harmless, promise.'**
+  String get aprilFoolsActuallyJoke;
+
+  /// No description provided for @aprilFoolsChatbotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'New! {chatbotName} is now available in TriOS.'**
+  String aprilFoolsChatbotAvailable(String chatbotName);
+
+  /// No description provided for @contextMenuOpenForumPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Forum Page'**
+  String get contextMenuOpenForumPage;
+
+  /// No description provided for @contextMenuOpenNexusPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Nexus Page'**
+  String get contextMenuOpenNexusPage;
+
+  /// No description provided for @contextMenuOpenForumPageUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Forum Page (unavailable)'**
+  String get contextMenuOpenForumPageUnavailable;
+
+  /// No description provided for @contextMenuNoVersionCheckerForumId.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod has not set up Version Checker, or it does not contain a forum thread id.'**
+  String get contextMenuNoVersionCheckerForumId;
+
+  /// No description provided for @contextMenuCopyInstallLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy install link'**
+  String get contextMenuCopyInstallLink;
+
+  /// No description provided for @contextMenuCopyInstallLinkUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy install link (unavailable)'**
+  String get contextMenuCopyInstallLinkUnavailable;
+
+  /// No description provided for @contextMenuNoInstallLinkSource.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod has no Version Checker URL or direct download link to build an install link from.'**
+  String get contextMenuNoInstallLinkSource;
+
+  /// No description provided for @contextMenuRedownloadReinstall.
+  ///
+  /// In en, this message translates to:
+  /// **'Redownload & Reinstall'**
+  String get contextMenuRedownloadReinstall;
+
+  /// No description provided for @contextMenuRedownloadUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Redownload unavailable'**
+  String get contextMenuRedownloadUnavailable;
+
+  /// No description provided for @contextMenuNoDirectDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod does not support direct download. Please manually redownload/reinstall.'**
+  String get contextMenuNoDirectDownload;
+
+  /// No description provided for @contextMenuViewChangelogUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'View Changelog (unavailable)'**
+  String get contextMenuViewChangelogUnavailable;
+
+  /// No description provided for @contextMenuNoChangelog.
+  ///
+  /// In en, this message translates to:
+  /// **'This mod has no changelog. It needs Version Checker with a changelog link.'**
+  String get contextMenuNoChangelog;
+
+  /// No description provided for @contextMenuMuteThisUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute this update ({version})'**
+  String contextMenuMuteThisUpdate(String version);
+
+  /// No description provided for @contextMenuUnmuteThisUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute this update ({version})'**
+  String contextMenuUnmuteThisUpdate(String version);
+
+  /// No description provided for @deepLinkAlreadyInstalled.
+  ///
+  /// In en, this message translates to:
+  /// **'Already installed'**
+  String get deepLinkAlreadyInstalled;
+
+  /// No description provided for @deepLinkInstallModFromLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Install Mod from Link'**
+  String get deepLinkInstallModFromLink;
+
+  /// No description provided for @deepLinkInstallModsFromLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Install Mods from Link'**
+  String get deepLinkInstallModsFromLink;
+
+  /// No description provided for @deepLinkDependencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Dependencies ({count})'**
+  String deepLinkDependencies(num count);
+
+  /// No description provided for @deepLinkNoModsSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'No mods selected'**
+  String get deepLinkNoModsSelected;
+
+  /// No description provided for @deepLinkDownloadAndInstall.
+  ///
+  /// In en, this message translates to:
+  /// **'Download & Install ({count})'**
+  String deepLinkDownloadAndInstall(num count);
+
+  /// No description provided for @deepLinkRequiresVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Requires ≥ {version}'**
+  String deepLinkRequiresVersion(String version);
+
+  /// No description provided for @deepLinkVersionFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Version file'**
+  String get deepLinkVersionFile;
+
+  /// No description provided for @deepLinkCannotInstallWhileGameRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot install mods while Starsector is running.'**
+  String get deepLinkCannotInstallWhileGameRunning;
+
+  /// No description provided for @deepLinkConfigureGameDirectory.
+  ///
+  /// In en, this message translates to:
+  /// **'Please configure your Starsector game directory before installing mods via links.'**
+  String get deepLinkConfigureGameDirectory;
+
+  /// No description provided for @deepLinkVersionFileNoDownloadLink.
+  ///
+  /// In en, this message translates to:
+  /// **'The mod\'s version file has no download link and cannot be automatically installed.'**
+  String get deepLinkVersionFileNoDownloadLink;
+
+  /// No description provided for @deepLinkInvalidDownloadUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'The mod\'s download link isn\'t a valid http/https URL.'**
+  String get deepLinkInvalidDownloadUrl;
+
+  /// No description provided for @deepLinkVersionFileFetchFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t fetch the mod\'s version file (HTTP {statusCode}).'**
+  String deepLinkVersionFileFetchFailed(String statusCode);
+
+  /// No description provided for @deepLinkVersionFileReadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t read the mod\'s version file.'**
+  String get deepLinkVersionFileReadFailed;
+
+  /// No description provided for @dragDropWebLinkDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Web link download'**
+  String get dragDropWebLinkDownload;
+
+  /// No description provided for @dragDropGameRunningClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Game is running. Close to install mods.'**
+  String get dragDropGameRunningClose;
+
+  /// No description provided for @activityToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get activityToday;
+
+  /// No description provided for @activityYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get activityYesterday;
+
+  /// No description provided for @activityClearHistoryWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'This permanently clears the installation activity history. This action cannot be undone.'**
+  String get activityClearHistoryWarning;
+
+  /// No description provided for @activityUnpinOverlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpin (overlay)'**
+  String get activityUnpinOverlay;
+
+  /// No description provided for @activityPinSidePanel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin (side panel)'**
+  String get activityPinSidePanel;
+
+  /// No description provided for @activityNoActivityYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No activity yet'**
+  String get activityNoActivityYet;
+
+  /// No description provided for @activityInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get activityInProgress;
+
+  /// No description provided for @activityScanning.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanning...'**
+  String get activityScanning;
+
+  /// No description provided for @activityDownloadedFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded from\n{source}'**
+  String activityDownloadedFrom(String source);
+
+  /// No description provided for @activityInstalledFromArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Installed from archive'**
+  String get activityInstalledFromArchive;
+
+  /// No description provided for @downloadManagerFailedToInstall.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to install {name}.'**
+  String downloadManagerFailedToInstall(String name);
+
+  /// No description provided for @downloadManagerDownloadUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Download URL: {url}'**
+  String downloadManagerDownloadUrl(String url);
+
+  /// No description provided for @shipsEntityName.
+  ///
+  /// In en, this message translates to:
+  /// **'Ships'**
+  String get shipsEntityName;
+
+  /// No description provided for @shipsGroupAllShips.
+  ///
+  /// In en, this message translates to:
+  /// **'All Ships'**
+  String get shipsGroupAllShips;
+
+  /// No description provided for @shipsColumnId.
+  ///
+  /// In en, this message translates to:
+  /// **'ID'**
+  String get shipsColumnId;
+
+  /// No description provided for @shipsColumnHull.
+  ///
+  /// In en, this message translates to:
+  /// **'Hull'**
+  String get shipsColumnHull;
+
+  /// No description provided for @shipsColumnWpns.
+  ///
+  /// In en, this message translates to:
+  /// **'Wpns'**
+  String get shipsColumnWpns;
+
+  /// No description provided for @shipsColumnBuiltInWpns.
+  ///
+  /// In en, this message translates to:
+  /// **'Built-in Wpns'**
+  String get shipsColumnBuiltInWpns;
+
+  /// No description provided for @shipsColumnBuiltInMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Built-in Mods'**
+  String get shipsColumnBuiltInMods;
+
+  /// No description provided for @shipsColumnBuiltInWings.
+  ///
+  /// In en, this message translates to:
+  /// **'Built-in Wings'**
+  String get shipsColumnBuiltInWings;
+
+  /// No description provided for @shipsColumnTech.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech'**
+  String get shipsColumnTech;
+
+  /// No description provided for @shipsColumnDesignation.
+  ///
+  /// In en, this message translates to:
+  /// **'Designation'**
+  String get shipsColumnDesignation;
+
+  /// No description provided for @shipsColumnSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get shipsColumnSystem;
+
+  /// No description provided for @shipsColumnDp.
+  ///
+  /// In en, this message translates to:
+  /// **'DP'**
+  String get shipsColumnDp;
+
+  /// No description provided for @shipsColumnFleetPts.
+  ///
+  /// In en, this message translates to:
+  /// **'Fleet Pts'**
+  String get shipsColumnFleetPts;
+
+  /// No description provided for @shipsColumnHitpoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Hitpoints'**
+  String get shipsColumnHitpoints;
+
+  /// No description provided for @shipsColumnArmor.
+  ///
+  /// In en, this message translates to:
+  /// **'Armor'**
+  String get shipsColumnArmor;
+
+  /// No description provided for @shipsColumnMaxFlux.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Flux'**
+  String get shipsColumnMaxFlux;
+
+  /// No description provided for @shipsColumnFluxDiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux Diss'**
+  String get shipsColumnFluxDiss;
+
+  /// No description provided for @shipsColumnOrdnance.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance'**
+  String get shipsColumnOrdnance;
+
+  /// No description provided for @shipsColumnFighterBays.
+  ///
+  /// In en, this message translates to:
+  /// **'Fighter Bays'**
+  String get shipsColumnFighterBays;
+
+  /// No description provided for @shipsColumnMaxSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Speed'**
+  String get shipsColumnMaxSpeed;
+
+  /// No description provided for @shipsColumnAccel.
+  ///
+  /// In en, this message translates to:
+  /// **'Accel'**
+  String get shipsColumnAccel;
+
+  /// No description provided for @shipsColumnDecel.
+  ///
+  /// In en, this message translates to:
+  /// **'Decel'**
+  String get shipsColumnDecel;
+
+  /// No description provided for @shipsColumnTurnRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn Rate'**
+  String get shipsColumnTurnRate;
+
+  /// No description provided for @shipsColumnTurnAccel.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn Accel'**
+  String get shipsColumnTurnAccel;
+
+  /// No description provided for @shipsColumnMass.
+  ///
+  /// In en, this message translates to:
+  /// **'Mass'**
+  String get shipsColumnMass;
+
+  /// No description provided for @shipsColumnShield.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield'**
+  String get shipsColumnShield;
+
+  /// No description provided for @shipsColumnDefenseId.
+  ///
+  /// In en, this message translates to:
+  /// **'Defense ID'**
+  String get shipsColumnDefenseId;
+
+  /// No description provided for @shipsColumnShieldArc.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield Arc'**
+  String get shipsColumnShieldArc;
+
+  /// No description provided for @shipsColumnShieldUpkeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield Upkeep'**
+  String get shipsColumnShieldUpkeep;
+
+  /// No description provided for @shipsColumnShieldEff.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield Eff.'**
+  String get shipsColumnShieldEff;
+
+  /// No description provided for @shipsColumnPhaseCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase Cost'**
+  String get shipsColumnPhaseCost;
+
+  /// No description provided for @shipsColumnPhaseUpkeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase Upkeep'**
+  String get shipsColumnPhaseUpkeep;
+
+  /// No description provided for @shipsColumnMinCrew.
+  ///
+  /// In en, this message translates to:
+  /// **'Min Crew'**
+  String get shipsColumnMinCrew;
+
+  /// No description provided for @shipsColumnMaxCrew.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Crew'**
+  String get shipsColumnMaxCrew;
+
+  /// No description provided for @shipsColumnCargo.
+  ///
+  /// In en, this message translates to:
+  /// **'Cargo'**
+  String get shipsColumnCargo;
+
+  /// No description provided for @shipsColumnFuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel'**
+  String get shipsColumnFuel;
+
+  /// No description provided for @shipsColumnFuelLy.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel/LY'**
+  String get shipsColumnFuelLy;
+
+  /// No description provided for @shipsColumnRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Range'**
+  String get shipsColumnRange;
+
+  /// No description provided for @shipsColumnMaxBurn.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Burn'**
+  String get shipsColumnMaxBurn;
+
+  /// No description provided for @shipsColumnSensorProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor Profile'**
+  String get shipsColumnSensorProfile;
+
+  /// No description provided for @shipsColumnSensorStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor Strength'**
+  String get shipsColumnSensorStrength;
+
+  /// No description provided for @shipsColumnCreditsBase.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits (base)'**
+  String get shipsColumnCreditsBase;
+
+  /// No description provided for @shipsColumnCrPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'CR%/Day'**
+  String get shipsColumnCrPerDay;
+
+  /// No description provided for @shipsColumnCrToDeploy.
+  ///
+  /// In en, this message translates to:
+  /// **'CR to Deploy'**
+  String get shipsColumnCrToDeploy;
+
+  /// No description provided for @shipsColumnPpt.
+  ///
+  /// In en, this message translates to:
+  /// **'PPT'**
+  String get shipsColumnPpt;
+
+  /// No description provided for @shipsColumnCrLossSec.
+  ///
+  /// In en, this message translates to:
+  /// **'CR Loss/Sec'**
+  String get shipsColumnCrLossSec;
+
+  /// No description provided for @shipsColumnSuppliesMon.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplies/Mon'**
+  String get shipsColumnSuppliesMon;
+
+  /// No description provided for @shipsColumnRarity.
+  ///
+  /// In en, this message translates to:
+  /// **'Rarity'**
+  String get shipsColumnRarity;
+
+  /// No description provided for @shipsColumnBreakProb.
+  ///
+  /// In en, this message translates to:
+  /// **'Break Prob'**
+  String get shipsColumnBreakProb;
+
+  /// No description provided for @shipsColumnMinPieces.
+  ///
+  /// In en, this message translates to:
+  /// **'Min Pieces'**
+  String get shipsColumnMinPieces;
+
+  /// No description provided for @shipsColumnMaxPieces.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Pieces'**
+  String get shipsColumnMaxPieces;
+
+  /// No description provided for @shipsColumnTravelDrive.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel Drive'**
+  String get shipsColumnTravelDrive;
+
+  /// No description provided for @shipsColumnStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Style'**
+  String get shipsColumnStyle;
+
+  /// No description provided for @shipsFilterGroupType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get shipsFilterGroupType;
+
+  /// No description provided for @shipsFilterValueSkin.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin'**
+  String get shipsFilterValueSkin;
+
+  /// No description provided for @shipsFilterValueBaseHull.
+  ///
+  /// In en, this message translates to:
+  /// **'Base Hull'**
+  String get shipsFilterValueBaseHull;
+
+  /// No description provided for @shipsFilterHullSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Hull Size'**
+  String get shipsFilterHullSize;
+
+  /// No description provided for @shipsFilterWeaponSlotType.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon Slot Type'**
+  String get shipsFilterWeaponSlotType;
+
+  /// No description provided for @shipsFilterWeaponSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon Size'**
+  String get shipsFilterWeaponSize;
+
+  /// No description provided for @shipsFilterMountType.
+  ///
+  /// In en, this message translates to:
+  /// **'Mount Type'**
+  String get shipsFilterMountType;
+
+  /// No description provided for @shipsFilterShieldType.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield Type'**
+  String get shipsFilterShieldType;
+
+  /// No description provided for @shipsFilterTechManufacturer.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech/Manufacturer'**
+  String get shipsFilterTechManufacturer;
+
+  /// No description provided for @shipsFilterDesignation.
+  ///
+  /// In en, this message translates to:
+  /// **'Designation'**
+  String get shipsFilterDesignation;
+
+  /// No description provided for @shipsFilterDeploymentPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Deployment Points'**
+  String get shipsFilterDeploymentPoints;
+
+  /// No description provided for @shipsFilterOrdnancePoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance Points'**
+  String get shipsFilterOrdnancePoints;
+
+  /// No description provided for @shipsFilterFluxDissipation.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux Dissipation'**
+  String get shipsFilterFluxDissipation;
+
+  /// No description provided for @shipsFilterFluxCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux Capacity'**
+  String get shipsFilterFluxCapacity;
+
+  /// No description provided for @shipsFilterFuelCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel Capacity'**
+  String get shipsFilterFuelCapacity;
+
+  /// No description provided for @shipsFilterCargoCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Cargo Capacity'**
+  String get shipsFilterCargoCapacity;
+
+  /// No description provided for @shipsFilterCrewCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Crew Capacity'**
+  String get shipsFilterCrewCapacity;
+
+  /// No description provided for @shipsLabelOrdnancePoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance points'**
+  String get shipsLabelOrdnancePoints;
+
+  /// No description provided for @shipsLabelCargoCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Cargo capacity'**
+  String get shipsLabelCargoCapacity;
+
+  /// No description provided for @shipsLabelMaximumCrew.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum crew'**
+  String get shipsLabelMaximumCrew;
+
+  /// No description provided for @shipsLabelFuelCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel capacity'**
+  String get shipsLabelFuelCapacity;
+
+  /// No description provided for @shipsLabelArmorRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Armor rating'**
+  String get shipsLabelArmorRating;
+
+  /// No description provided for @shipsLabelSensorProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor profile'**
+  String get shipsLabelSensorProfile;
+
+  /// No description provided for @shipsLabelSensorStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor strength'**
+  String get shipsLabelSensorStrength;
+
+  /// No description provided for @shipsSearchHullSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Hull size (frigate, destroyer, cruiser, capital_ship)'**
+  String get shipsSearchHullSize;
+
+  /// No description provided for @shipsSearchShieldType.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield type (FRONT, OMNI, PHASE, NONE)'**
+  String get shipsSearchShieldType;
+
+  /// No description provided for @shipsSearchSystemId.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship system ID'**
+  String get shipsSearchSystemId;
+
+  /// No description provided for @shipsSearchDefenseId.
+  ///
+  /// In en, this message translates to:
+  /// **'Defense system ID'**
+  String get shipsSearchDefenseId;
+
+  /// No description provided for @shipsSearchTechManufacturer.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech/manufacturer'**
+  String get shipsSearchTechManufacturer;
+
+  /// No description provided for @shipsSearchDesignation.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship designation'**
+  String get shipsSearchDesignation;
+
+  /// No description provided for @shipsSearchStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Visual style'**
+  String get shipsSearchStyle;
+
+  /// No description provided for @shipsSearchModSubstring.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod name substring match'**
+  String get shipsSearchModSubstring;
+
+  /// No description provided for @shipsSearchBuiltInHullmod.
+  ///
+  /// In en, this message translates to:
+  /// **'Built-in hullmod, by name or ID'**
+  String get shipsSearchBuiltInHullmod;
+
+  /// No description provided for @shipsSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship hint; matches any hint in a multi-value set'**
+  String get shipsSearchHint;
+
+  /// No description provided for @shipsSearchTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship CSV tag; matches any tag in a multi-value set'**
+  String get shipsSearchTag;
+
+  /// No description provided for @shipsSearchHitpoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Hull hitpoints'**
+  String get shipsSearchHitpoints;
+
+  /// No description provided for @shipsSearchArmorRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Armor rating'**
+  String get shipsSearchArmorRating;
+
+  /// No description provided for @shipsSearchMaxFlux.
+  ///
+  /// In en, this message translates to:
+  /// **'Max flux capacity'**
+  String get shipsSearchMaxFlux;
+
+  /// No description provided for @shipsSearchFluxDissipation.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux dissipation'**
+  String get shipsSearchFluxDissipation;
+
+  /// No description provided for @shipsSearchOrdnancePoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance points'**
+  String get shipsSearchOrdnancePoints;
+
+  /// No description provided for @shipsSearchMaxSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Max speed'**
+  String get shipsSearchMaxSpeed;
+
+  /// No description provided for @shipsSearchAcceleration.
+  ///
+  /// In en, this message translates to:
+  /// **'Acceleration'**
+  String get shipsSearchAcceleration;
+
+  /// No description provided for @shipsSearchDeceleration.
+  ///
+  /// In en, this message translates to:
+  /// **'Deceleration'**
+  String get shipsSearchDeceleration;
+
+  /// No description provided for @shipsSearchMaxTurnRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Max turn rate'**
+  String get shipsSearchMaxTurnRate;
+
+  /// No description provided for @shipsSearchTurnAcceleration.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn acceleration'**
+  String get shipsSearchTurnAcceleration;
+
+  /// No description provided for @shipsSearchFighterBays.
+  ///
+  /// In en, this message translates to:
+  /// **'Fighter bays'**
+  String get shipsSearchFighterBays;
+
+  /// No description provided for @shipsSearchShieldArc.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield arc'**
+  String get shipsSearchShieldArc;
+
+  /// No description provided for @shipsSearchShieldEfficiency.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield efficiency'**
+  String get shipsSearchShieldEfficiency;
+
+  /// No description provided for @shipsSearchShieldUpkeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield upkeep'**
+  String get shipsSearchShieldUpkeep;
+
+  /// No description provided for @shipsSearchPhaseCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase cost'**
+  String get shipsSearchPhaseCost;
+
+  /// No description provided for @shipsSearchPhaseUpkeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase upkeep'**
+  String get shipsSearchPhaseUpkeep;
+
+  /// No description provided for @shipsSearchMinCrew.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum crew'**
+  String get shipsSearchMinCrew;
+
+  /// No description provided for @shipsSearchMaxCrew.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum crew'**
+  String get shipsSearchMaxCrew;
+
+  /// No description provided for @shipsSearchCargoCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Cargo capacity'**
+  String get shipsSearchCargoCapacity;
+
+  /// No description provided for @shipsSearchFuelCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel capacity'**
+  String get shipsSearchFuelCapacity;
+
+  /// No description provided for @shipsSearchFuelPerLy.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel used per light year'**
+  String get shipsSearchFuelPerLy;
+
+  /// No description provided for @shipsSearchRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Range'**
+  String get shipsSearchRange;
+
+  /// No description provided for @shipsSearchMaxBurn.
+  ///
+  /// In en, this message translates to:
+  /// **'Max burn'**
+  String get shipsSearchMaxBurn;
+
+  /// No description provided for @shipsSearchMass.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship mass'**
+  String get shipsSearchMass;
+
+  /// No description provided for @shipsSearchDeploymentPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Deployment points'**
+  String get shipsSearchDeploymentPoints;
+
+  /// No description provided for @shipsSearchFleetPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Fleet points'**
+  String get shipsSearchFleetPoints;
+
+  /// No description provided for @shipsSearchBaseValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Base credit value'**
+  String get shipsSearchBaseValue;
+
+  /// No description provided for @shipsSearchWeaponSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon slots'**
+  String get shipsSearchWeaponSlots;
+
+  /// No description provided for @shipsSearchPeakCr.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak CR seconds'**
+  String get shipsSearchPeakCr;
+
+  /// No description provided for @shipsSearchCrPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'CR recovered per day'**
+  String get shipsSearchCrPerDay;
+
+  /// No description provided for @shipsSearchCrToDeploy.
+  ///
+  /// In en, this message translates to:
+  /// **'CR cost to deploy'**
+  String get shipsSearchCrToDeploy;
+
+  /// No description provided for @shipsSearchCrLoss.
+  ///
+  /// In en, this message translates to:
+  /// **'CR lost per second past peak'**
+  String get shipsSearchCrLoss;
+
+  /// No description provided for @shipsSearchSuppliesPerMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplies per month'**
+  String get shipsSearchSuppliesPerMonth;
+
+  /// No description provided for @shipsSearchSensorProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor profile'**
+  String get shipsSearchSensorProfile;
+
+  /// No description provided for @shipsSearchSensorStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensor strength'**
+  String get shipsSearchSensorStrength;
+
+  /// No description provided for @shipsSearchMinPieces.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum debris pieces'**
+  String get shipsSearchMinPieces;
+
+  /// No description provided for @shipsSearchMaxPieces.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum debris pieces'**
+  String get shipsSearchMaxPieces;
+
+  /// No description provided for @shipsSearchBuiltInWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of built-in weapons'**
+  String get shipsSearchBuiltInWeapons;
+
+  /// No description provided for @shipsSearchBuiltInHullmods.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of built-in hullmods'**
+  String get shipsSearchBuiltInHullmods;
+
+  /// No description provided for @shipsSearchBuiltInWings.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of built-in fighter wings'**
+  String get shipsSearchBuiltInWings;
+
+  /// No description provided for @shipsSearchSizeSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'{size} slots'**
+  String shipsSearchSizeSlots(Object size);
+
+  /// No description provided for @shipsSearchTypeSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'{type} mountable slots'**
+  String shipsSearchTypeSlots(Object type);
+
+  /// No description provided for @shipsSearchSizeTypeSlots.
+  ///
+  /// In en, this message translates to:
+  /// **'{size} {type} slots'**
+  String shipsSearchSizeTypeSlots(Object size, Object type);
+
+  /// No description provided for @shipsSkinBadgeTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'This ship comes from a .skin file.\nSkins are variations of standard hulls. For example, the Falcon (P) is a skin of the Falcon.'**
+  String get shipsSkinBadgeTooltip;
+
+  /// No description provided for @shipCodexPhaseCloak.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase cloak'**
+  String get shipCodexPhaseCloak;
+
+  /// No description provided for @shipCodexShieldType.
+  ///
+  /// In en, this message translates to:
+  /// **'{shieldType} shield'**
+  String shipCodexShieldType(Object shieldType);
+
+  /// No description provided for @shipCodexLabelSpecial.
+  ///
+  /// In en, this message translates to:
+  /// **'Special'**
+  String get shipCodexLabelSpecial;
+
+  /// No description provided for @shipCodexLabelDefense.
+  ///
+  /// In en, this message translates to:
+  /// **'Defense'**
+  String get shipCodexLabelDefense;
+
+  /// No description provided for @shipCodexSectionLogistical.
+  ///
+  /// In en, this message translates to:
+  /// **'Logistical data'**
+  String get shipCodexSectionLogistical;
+
+  /// No description provided for @shipCodexCrPerDeployment.
+  ///
+  /// In en, this message translates to:
+  /// **'CR per deployment'**
+  String get shipCodexCrPerDeployment;
+
+  /// No description provided for @shipCodexRecoveryPerDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery (/day)'**
+  String get shipCodexRecoveryPerDay;
+
+  /// No description provided for @shipCodexRecoverySupplies.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovery (supplies)'**
+  String get shipCodexRecoverySupplies;
+
+  /// No description provided for @shipCodexDeploymentPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Deployment points'**
+  String get shipCodexDeploymentPoints;
+
+  /// No description provided for @shipCodexPeakPerformance.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak performance (sec)'**
+  String get shipCodexPeakPerformance;
+
+  /// No description provided for @shipCodexHullSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Hull size'**
+  String get shipCodexHullSize;
+
+  /// No description provided for @shipCodexMaintenanceShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance (sup/mo)'**
+  String get shipCodexMaintenanceShort;
+
+  /// No description provided for @shipCodexMaintenanceFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintenance (supplies/month)'**
+  String get shipCodexMaintenanceFull;
+
+  /// No description provided for @shipCodexSkeletonCrew.
+  ///
+  /// In en, this message translates to:
+  /// **'Skeleton crew'**
+  String get shipCodexSkeletonCrew;
+
+  /// No description provided for @shipCodexMaximumBurn.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum burn'**
+  String get shipCodexMaximumBurn;
+
+  /// No description provided for @shipCodexFuelLyJumpCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Fuel/ly, jump cost'**
+  String get shipCodexFuelLyJumpCost;
+
+  /// No description provided for @shipCodexSectionCombat.
+  ///
+  /// In en, this message translates to:
+  /// **'Combat performance'**
+  String get shipCodexSectionCombat;
+
+  /// No description provided for @shipCodexHullIntegrity.
+  ///
+  /// In en, this message translates to:
+  /// **'Hull integrity'**
+  String get shipCodexHullIntegrity;
+
+  /// No description provided for @shipCodexShieldArc.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield arc'**
+  String get shipCodexShieldArc;
+
+  /// No description provided for @shipCodexShieldUpkeepSec.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield upkeep/sec'**
+  String get shipCodexShieldUpkeepSec;
+
+  /// No description provided for @shipCodexShieldFluxDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield flux/damage'**
+  String get shipCodexShieldFluxDamage;
+
+  /// No description provided for @shipCodexCloakActivationCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloak activation cost'**
+  String get shipCodexCloakActivationCost;
+
+  /// No description provided for @shipCodexCloakUpkeepSec.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloak upkeep/sec'**
+  String get shipCodexCloakUpkeepSec;
+
+  /// No description provided for @shipCodexFluxCapacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux capacity'**
+  String get shipCodexFluxCapacity;
+
+  /// No description provided for @shipCodexFluxDissipation.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux dissipation'**
+  String get shipCodexFluxDissipation;
+
+  /// No description provided for @shipCodexTopSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Top speed'**
+  String get shipCodexTopSpeed;
+
+  /// No description provided for @shipCodexLabelSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System:'**
+  String get shipCodexLabelSystem;
+
+  /// No description provided for @shipCodexLabelMounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Mounts:'**
+  String get shipCodexLabelMounts;
+
+  /// No description provided for @shipCodexLabelArmaments.
+  ///
+  /// In en, this message translates to:
+  /// **'Armaments:'**
+  String get shipCodexLabelArmaments;
+
+  /// No description provided for @shipCodexLabelHullMods.
+  ///
+  /// In en, this message translates to:
+  /// **'Hull Mods:'**
+  String get shipCodexLabelHullMods;
+
+  /// No description provided for @shipDetailsLabelDefense.
+  ///
+  /// In en, this message translates to:
+  /// **'Defense'**
+  String get shipDetailsLabelDefense;
+
+  /// No description provided for @shipDetailsSectionCombat.
+  ///
+  /// In en, this message translates to:
+  /// **'Combat'**
+  String get shipDetailsSectionCombat;
+
+  /// No description provided for @shipDetailsOrdnancePts.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance Pts'**
+  String get shipDetailsOrdnancePts;
+
+  /// No description provided for @shipDetailsWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapons'**
+  String get shipDetailsWeapons;
+
+  /// No description provided for @shipDetailsSectionShieldPhase.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield / Phase'**
+  String get shipDetailsSectionShieldPhase;
+
+  /// No description provided for @shipDetailsShieldEfficiency.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield Efficiency'**
+  String get shipDetailsShieldEfficiency;
+
+  /// No description provided for @shipDetailsSectionMobility.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobility'**
+  String get shipDetailsSectionMobility;
+
+  /// No description provided for @shipDetailsSectionCrewLogistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Crew & Logistics'**
+  String get shipDetailsSectionCrewLogistics;
+
+  /// No description provided for @shipDetailsSectionEconomicsCr.
+  ///
+  /// In en, this message translates to:
+  /// **'Economics & CR'**
+  String get shipDetailsSectionEconomicsCr;
+
+  /// No description provided for @shipDetailsBaseValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Base Value'**
+  String get shipDetailsBaseValue;
+
+  /// No description provided for @shipDetailsPptSec.
+  ///
+  /// In en, this message translates to:
+  /// **'PPT (s)'**
+  String get shipDetailsPptSec;
+
+  /// No description provided for @shipDetailsSuppliesMo.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplies/Mo'**
+  String get shipDetailsSuppliesMo;
+
+  /// No description provided for @shipDetailsSectionMisc.
+  ///
+  /// In en, this message translates to:
+  /// **'Misc'**
+  String get shipDetailsSectionMisc;
+
+  /// No description provided for @shipDetailsCollisionRadius.
+  ///
+  /// In en, this message translates to:
+  /// **'Collision Radius'**
+  String get shipDetailsCollisionRadius;
+
+  /// No description provided for @shipDetailsHints.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints'**
+  String get shipDetailsHints;
+
+  /// No description provided for @shipDetailsTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get shipDetailsTags;
+
+  /// No description provided for @shipDetailsBuiltInWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Built-in Weapons'**
+  String get shipDetailsBuiltInWeapons;
+
+  /// No description provided for @shipBlueprintResetZoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset zoom'**
+  String get shipBlueprintResetZoom;
+
+  /// No description provided for @shipBlueprintShowBounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Show bounds'**
+  String get shipBlueprintShowBounds;
+
+  /// No description provided for @shipBlueprintShowModules.
+  ///
+  /// In en, this message translates to:
+  /// **'Show modules'**
+  String get shipBlueprintShowModules;
+
+  /// No description provided for @shipBlueprintShowMounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Show mounts'**
+  String get shipBlueprintShowMounts;
+
+  /// No description provided for @shipBlueprintShowArcs.
+  ///
+  /// In en, this message translates to:
+  /// **'Show arcs'**
+  String get shipBlueprintShowArcs;
+
+  /// No description provided for @shipBlueprintShowBuiltInWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Show built-in weapons'**
+  String get shipBlueprintShowBuiltInWeapons;
+
+  /// No description provided for @shipBlueprintShowDecorativeWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Show decorative weapons'**
+  String get shipBlueprintShowDecorativeWeapons;
+
+  /// No description provided for @shipBlueprintShowEngineGlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Show engine glow'**
+  String get shipBlueprintShowEngineGlow;
+
+  /// No description provided for @shipBlueprintShowShields.
+  ///
+  /// In en, this message translates to:
+  /// **'Show shields'**
+  String get shipBlueprintShowShields;
+
+  /// No description provided for @shipBlueprintBackgroundTransparent.
+  ///
+  /// In en, this message translates to:
+  /// **'Transparent'**
+  String get shipBlueprintBackgroundTransparent;
+
+  /// No description provided for @shipBlueprintBackgroundBlack.
+  ///
+  /// In en, this message translates to:
+  /// **'Black'**
+  String get shipBlueprintBackgroundBlack;
+
+  /// No description provided for @shipBlueprintBackgroundDarkGrey.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark grey'**
+  String get shipBlueprintBackgroundDarkGrey;
+
+  /// No description provided for @shipBlueprintBackgroundLightGrey.
+  ///
+  /// In en, this message translates to:
+  /// **'Light grey'**
+  String get shipBlueprintBackgroundLightGrey;
+
+  /// No description provided for @shipBlueprintBackgroundWhite.
+  ///
+  /// In en, this message translates to:
+  /// **'White'**
+  String get shipBlueprintBackgroundWhite;
+
+  /// No description provided for @shipBlueprintBackgroundDarkBlue.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark blue'**
+  String get shipBlueprintBackgroundDarkBlue;
+
+  /// No description provided for @shipBlueprintBackgroundDarkRed.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark red'**
+  String get shipBlueprintBackgroundDarkRed;
+
+  /// No description provided for @shipBlueprintBackgroundSpace1.
+  ///
+  /// In en, this message translates to:
+  /// **'Space 1'**
+  String get shipBlueprintBackgroundSpace1;
+
+  /// No description provided for @shipBlueprintBackgroundSpace2.
+  ///
+  /// In en, this message translates to:
+  /// **'Space 2'**
+  String get shipBlueprintBackgroundSpace2;
+
+  /// No description provided for @shipBlueprintBackgroundSpace3.
+  ///
+  /// In en, this message translates to:
+  /// **'Space 3'**
+  String get shipBlueprintBackgroundSpace3;
+
+  /// No description provided for @shipBlueprintBackgroundSpace4.
+  ///
+  /// In en, this message translates to:
+  /// **'Space 4'**
+  String get shipBlueprintBackgroundSpace4;
+
+  /// No description provided for @shipBlueprintBackgroundSpace5.
+  ///
+  /// In en, this message translates to:
+  /// **'Space 5'**
+  String get shipBlueprintBackgroundSpace5;
+
+  /// No description provided for @shipBlueprintBackgroundSpace6.
+  ///
+  /// In en, this message translates to:
+  /// **'Space 6'**
+  String get shipBlueprintBackgroundSpace6;
+
+  /// No description provided for @shipBlueprintBackgroundGalatia.
+  ///
+  /// In en, this message translates to:
+  /// **'Galatia'**
+  String get shipBlueprintBackgroundGalatia;
+
+  /// No description provided for @shipBlueprintBackgroundHyperspace.
+  ///
+  /// In en, this message translates to:
+  /// **'Hyperspace'**
+  String get shipBlueprintBackgroundHyperspace;
+
+  /// No description provided for @shipBlueprintBackgroundHyperspaceCool.
+  ///
+  /// In en, this message translates to:
+  /// **'Hyperspace (cool)'**
+  String get shipBlueprintBackgroundHyperspaceCool;
+
+  /// No description provided for @weaponsEntityName.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapons'**
+  String get weaponsEntityName;
+
+  /// No description provided for @weaponsGroupAllWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'All Weapons'**
+  String get weaponsGroupAllWeapons;
+
+  /// No description provided for @weaponsColumnId.
+  ///
+  /// In en, this message translates to:
+  /// **'ID'**
+  String get weaponsColumnId;
+
+  /// No description provided for @weaponsColumnWeaponType.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon Type'**
+  String get weaponsColumnWeaponType;
+
+  /// No description provided for @weaponsColumnSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get weaponsColumnSize;
+
+  /// No description provided for @weaponsColumnDmgType.
+  ///
+  /// In en, this message translates to:
+  /// **'Dmg Type'**
+  String get weaponsColumnDmgType;
+
+  /// No description provided for @weaponsColumnTechManufacturer.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech/Manufacturer'**
+  String get weaponsColumnTechManufacturer;
+
+  /// No description provided for @weaponsColumnSpecClass.
+  ///
+  /// In en, this message translates to:
+  /// **'Spec Class'**
+  String get weaponsColumnSpecClass;
+
+  /// No description provided for @weaponsColumnRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get weaponsColumnRole;
+
+  /// No description provided for @weaponsColumnAccuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Accuracy'**
+  String get weaponsColumnAccuracy;
+
+  /// No description provided for @weaponsColumnTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracking'**
+  String get weaponsColumnTracking;
+
+  /// No description provided for @weaponsColumnSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Speed'**
+  String get weaponsColumnSpeed;
+
+  /// No description provided for @weaponsColumnTurnRateText.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn Rate (text)'**
+  String get weaponsColumnTurnRateText;
+
+  /// No description provided for @weaponsColumnDmgShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Dmg/Shot'**
+  String get weaponsColumnDmgShot;
+
+  /// No description provided for @weaponsColumnImpact.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact'**
+  String get weaponsColumnImpact;
+
+  /// No description provided for @weaponsColumnOp.
+  ///
+  /// In en, this message translates to:
+  /// **'OP'**
+  String get weaponsColumnOp;
+
+  /// No description provided for @weaponsColumnCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost'**
+  String get weaponsColumnCost;
+
+  /// No description provided for @weaponsColumnFluxShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux/Shot'**
+  String get weaponsColumnFluxShot;
+
+  /// No description provided for @weaponsColumnFluxSec.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux/Sec'**
+  String get weaponsColumnFluxSec;
+
+  /// No description provided for @weaponsColumnRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Range'**
+  String get weaponsColumnRange;
+
+  /// No description provided for @weaponsColumnDmgSec.
+  ///
+  /// In en, this message translates to:
+  /// **'Dmg/Sec'**
+  String get weaponsColumnDmgSec;
+
+  /// No description provided for @weaponsColumnAmmo.
+  ///
+  /// In en, this message translates to:
+  /// **'Ammo'**
+  String get weaponsColumnAmmo;
+
+  /// No description provided for @weaponsColumnAmmoSec.
+  ///
+  /// In en, this message translates to:
+  /// **'Ammo/Sec'**
+  String get weaponsColumnAmmoSec;
+
+  /// No description provided for @weaponsColumnReloadSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Reload Size'**
+  String get weaponsColumnReloadSize;
+
+  /// No description provided for @weaponsColumnEmp.
+  ///
+  /// In en, this message translates to:
+  /// **'EMP'**
+  String get weaponsColumnEmp;
+
+  /// No description provided for @weaponsColumnChargeup.
+  ///
+  /// In en, this message translates to:
+  /// **'Chargeup'**
+  String get weaponsColumnChargeup;
+
+  /// No description provided for @weaponsColumnChargedown.
+  ///
+  /// In en, this message translates to:
+  /// **'Chargedown'**
+  String get weaponsColumnChargedown;
+
+  /// No description provided for @weaponsColumnBurstSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Burst Size'**
+  String get weaponsColumnBurstSize;
+
+  /// No description provided for @weaponsColumnBurstDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Burst Delay'**
+  String get weaponsColumnBurstDelay;
+
+  /// No description provided for @weaponsColumnMinSpread.
+  ///
+  /// In en, this message translates to:
+  /// **'Min Spread'**
+  String get weaponsColumnMinSpread;
+
+  /// No description provided for @weaponsColumnMaxSpread.
+  ///
+  /// In en, this message translates to:
+  /// **'Max Spread'**
+  String get weaponsColumnMaxSpread;
+
+  /// No description provided for @weaponsColumnSpreadShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Spread/Shot'**
+  String get weaponsColumnSpreadShot;
+
+  /// No description provided for @weaponsColumnSpreadDecay.
+  ///
+  /// In en, this message translates to:
+  /// **'Spread Decay'**
+  String get weaponsColumnSpreadDecay;
+
+  /// No description provided for @weaponsColumnAfAccBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'AF Acc Bonus'**
+  String get weaponsColumnAfAccBonus;
+
+  /// No description provided for @weaponsColumnProjSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Proj Speed'**
+  String get weaponsColumnProjSpeed;
+
+  /// No description provided for @weaponsColumnBeamSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Beam Speed'**
+  String get weaponsColumnBeamSpeed;
+
+  /// No description provided for @weaponsColumnLaunchSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Launch Speed'**
+  String get weaponsColumnLaunchSpeed;
+
+  /// No description provided for @weaponsColumnFlightTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Flight Time'**
+  String get weaponsColumnFlightTime;
+
+  /// No description provided for @weaponsColumnProjHp.
+  ///
+  /// In en, this message translates to:
+  /// **'Proj HP'**
+  String get weaponsColumnProjHp;
+
+  /// No description provided for @weaponsColumnTurnRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn Rate'**
+  String get weaponsColumnTurnRate;
+
+  /// No description provided for @weaponsColumnTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Tier'**
+  String get weaponsColumnTier;
+
+  /// No description provided for @weaponsColumnRarity.
+  ///
+  /// In en, this message translates to:
+  /// **'Rarity'**
+  String get weaponsColumnRarity;
+
+  /// No description provided for @weaponsColumnHints.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints'**
+  String get weaponsColumnHints;
+
+  /// No description provided for @weaponsColumnTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get weaponsColumnTags;
+
+  /// No description provided for @weaponsColumnGroupTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Group Tag'**
+  String get weaponsColumnGroupTag;
+
+  /// No description provided for @weaponsFilterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hint'**
+  String get weaponsFilterHint;
+
+  /// No description provided for @weaponsFilterDamagePerShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage per Shot'**
+  String get weaponsFilterDamagePerShot;
+
+  /// No description provided for @weaponsFilterDamagePerSecond.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage per Second'**
+  String get weaponsFilterDamagePerSecond;
+
+  /// No description provided for @weaponsFilterFluxPerSecond.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux per Second'**
+  String get weaponsFilterFluxPerSecond;
+
+  /// No description provided for @weaponsSearchTrackingQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracking quality (excellent, good, poor, none)'**
+  String get weaponsSearchTrackingQuality;
+
+  /// No description provided for @weaponsSearchAmmoCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Ammo count (none = unlimited); supports numeric operators'**
+  String get weaponsSearchAmmoCount;
+
+  /// No description provided for @weaponsSearchWeaponType.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon type (missile, energy, ballistic, hybrid)'**
+  String get weaponsSearchWeaponType;
+
+  /// No description provided for @weaponsSearchMountSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Mount size (small, medium, large)'**
+  String get weaponsSearchMountSize;
+
+  /// No description provided for @weaponsSearchDamageType.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage type (kinetic, he, energy, fragmentation)'**
+  String get weaponsSearchDamageType;
+
+  /// No description provided for @weaponsSearchWeaponRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon range'**
+  String get weaponsSearchWeaponRange;
+
+  /// No description provided for @weaponsSearchOpCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance points cost'**
+  String get weaponsSearchOpCost;
+
+  /// No description provided for @weaponsSearchDps.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage per second'**
+  String get weaponsSearchDps;
+
+  /// No description provided for @weaponsSearchHintTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon hint tag; matches any hint in a multi-value set'**
+  String get weaponsSearchHintTag;
+
+  /// No description provided for @weaponsSearchTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon CSV tag; matches any tag in a multi-value set'**
+  String get weaponsSearchTag;
+
+  /// No description provided for @weaponsSearchDamagePerShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage per shot'**
+  String get weaponsSearchDamagePerShot;
+
+  /// No description provided for @weaponsSearchEmpDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'EMP damage'**
+  String get weaponsSearchEmpDamage;
+
+  /// No description provided for @weaponsSearchFluxPerShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux per shot'**
+  String get weaponsSearchFluxPerShot;
+
+  /// No description provided for @weaponsSearchFluxPerSecond.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux per second'**
+  String get weaponsSearchFluxPerSecond;
+
+  /// No description provided for @weaponsSearchChargeUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Charge-up time in seconds'**
+  String get weaponsSearchChargeUp;
+
+  /// No description provided for @weaponsSearchChargeDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Charge-down time in seconds'**
+  String get weaponsSearchChargeDown;
+
+  /// No description provided for @weaponsSearchBurstSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Burst size (number of shots)'**
+  String get weaponsSearchBurstSize;
+
+  /// No description provided for @weaponsSearchBurstDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Delay between burst shots'**
+  String get weaponsSearchBurstDelay;
+
+  /// No description provided for @weaponsSearchBarrelsTogether.
+  ///
+  /// In en, this message translates to:
+  /// **'Barrels fired together per shot (LINKED and DUAL barrel modes)'**
+  String get weaponsSearchBarrelsTogether;
+
+  /// No description provided for @weaponsSearchTurnRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Projectile/beam turn rate'**
+  String get weaponsSearchTurnRate;
+
+  /// No description provided for @weaponsSearchProjectileSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Projectile speed'**
+  String get weaponsSearchProjectileSpeed;
+
+  /// No description provided for @weaponsSearchBeamSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Beam speed'**
+  String get weaponsSearchBeamSpeed;
+
+  /// No description provided for @weaponsSearchLaunchSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Missile launch speed'**
+  String get weaponsSearchLaunchSpeed;
+
+  /// No description provided for @weaponsSearchFlightTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Projectile flight time'**
+  String get weaponsSearchFlightTime;
+
+  /// No description provided for @weaponsSearchProjectileHitpoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Projectile hitpoints'**
+  String get weaponsSearchProjectileHitpoints;
+
+  /// No description provided for @weaponsSearchAmmoRegen.
+  ///
+  /// In en, this message translates to:
+  /// **'Ammo regeneration per second'**
+  String get weaponsSearchAmmoRegen;
+
+  /// No description provided for @weaponsSearchReloadSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Reload size'**
+  String get weaponsSearchReloadSize;
+
+  /// No description provided for @weaponsSearchImpact.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact/force value'**
+  String get weaponsSearchImpact;
+
+  /// No description provided for @weaponsSearchAutofireBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'Autofire accuracy bonus'**
+  String get weaponsSearchAutofireBonus;
+
+  /// No description provided for @weaponsSearchMaxSpread.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum spread'**
+  String get weaponsSearchMaxSpread;
+
+  /// No description provided for @weaponsSearchMinSpread.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum spread'**
+  String get weaponsSearchMinSpread;
+
+  /// No description provided for @weaponsSearchSpreadPerShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Spread added per shot'**
+  String get weaponsSearchSpreadPerShot;
+
+  /// No description provided for @weaponsSearchEffectiveDps.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage per second, allowing for charge-up and bursts'**
+  String get weaponsSearchEffectiveDps;
+
+  /// No description provided for @weaponsSearchSustainedDps.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage per second once ammo regeneration is the limit'**
+  String get weaponsSearchSustainedDps;
+
+  /// No description provided for @weaponsSearchBurstDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage dealt by one burst (burst beams only)'**
+  String get weaponsSearchBurstDamage;
+
+  /// No description provided for @weaponsSearchRefireDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds between shots or bursts'**
+  String get weaponsSearchRefireDelay;
+
+  /// No description provided for @weaponsSearchFluxPerDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux spent per point of damage; lower is more efficient'**
+  String get weaponsSearchFluxPerDamage;
+
+  /// No description provided for @weaponsSearchFluxPerSecFiring.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux spent per second while firing'**
+  String get weaponsSearchFluxPerSecFiring;
+
+  /// No description provided for @weaponsSearchSustainedFlux.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux spent per second at the sustained rate of fire'**
+  String get weaponsSearchSustainedFlux;
+
+  /// No description provided for @weaponsSearchEmpPerActivation.
+  ///
+  /// In en, this message translates to:
+  /// **'EMP damage per activation'**
+  String get weaponsSearchEmpPerActivation;
+
+  /// No description provided for @weaponsSearchSpecClass.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon spec class (beam, projectile, missile, etc.)'**
+  String get weaponsSearchSpecClass;
+
+  /// No description provided for @weaponsSearchMountType.
+  ///
+  /// In en, this message translates to:
+  /// **'Effective mount type (TURRET, HARDPOINT, HIDDEN)'**
+  String get weaponsSearchMountType;
+
+  /// No description provided for @weaponsSearchPrimaryRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary role description'**
+  String get weaponsSearchPrimaryRole;
+
+  /// No description provided for @weaponsSearchGroupTag.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon group tag'**
+  String get weaponsSearchGroupTag;
+
+  /// No description provided for @weaponsSearchTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapon tier'**
+  String get weaponsSearchTier;
+
+  /// No description provided for @weaponsSearchRarityValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Rarity value'**
+  String get weaponsSearchRarityValue;
+
+  /// No description provided for @weaponCodexSectionPrimary.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary data'**
+  String get weaponCodexSectionPrimary;
+
+  /// No description provided for @weaponCodexPrimaryRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary role'**
+  String get weaponCodexPrimaryRole;
+
+  /// No description provided for @weaponCodexMountType.
+  ///
+  /// In en, this message translates to:
+  /// **'Mount type'**
+  String get weaponCodexMountType;
+
+  /// No description provided for @weaponCodexCountsAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Counts as {type} for stat modifiers'**
+  String weaponCodexCountsAs(Object type);
+
+  /// No description provided for @weaponCodexDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage'**
+  String get weaponCodexDamage;
+
+  /// No description provided for @weaponCodexDps.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage / second'**
+  String get weaponCodexDps;
+
+  /// No description provided for @weaponCodexDpsSustained.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage / second (sustained)'**
+  String get weaponCodexDpsSustained;
+
+  /// No description provided for @weaponCodexEmpDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'EMP damage'**
+  String get weaponCodexEmpDamage;
+
+  /// No description provided for @weaponCodexEmpDps.
+  ///
+  /// In en, this message translates to:
+  /// **'EMP DPS'**
+  String get weaponCodexEmpDps;
+
+  /// No description provided for @weaponCodexFluxSec.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux / second'**
+  String get weaponCodexFluxSec;
+
+  /// No description provided for @weaponCodexFluxSecSustained.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux / second (sustained)'**
+  String get weaponCodexFluxSecSustained;
+
+  /// No description provided for @weaponCodexFluxShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux / shot'**
+  String get weaponCodexFluxShot;
+
+  /// No description provided for @weaponCodexFluxPerDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux / damage'**
+  String get weaponCodexFluxPerDamage;
+
+  /// No description provided for @weaponCodexFluxPerNonEmpDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux / non-EMP damage'**
+  String get weaponCodexFluxPerNonEmpDamage;
+
+  /// No description provided for @weaponCodexLimitedCharges.
+  ///
+  /// In en, this message translates to:
+  /// **'Limited charges ({count})'**
+  String weaponCodexLimitedCharges(Object count);
+
+  /// No description provided for @weaponCodexLimitedAmmo.
+  ///
+  /// In en, this message translates to:
+  /// **'Limited ammo ({count})'**
+  String weaponCodexLimitedAmmo(Object count);
+
+  /// No description provided for @weaponCodexNoFluxLimitedCharges.
+  ///
+  /// In en, this message translates to:
+  /// **'No flux cost to fire, limited charges ({count})'**
+  String weaponCodexNoFluxLimitedCharges(Object count);
+
+  /// No description provided for @weaponCodexNoFluxLimitedAmmo.
+  ///
+  /// In en, this message translates to:
+  /// **'No flux cost to fire, limited ammo ({count})'**
+  String weaponCodexNoFluxLimitedAmmo(Object count);
+
+  /// No description provided for @weaponCodexNoFluxCost.
+  ///
+  /// In en, this message translates to:
+  /// **'No flux cost to fire'**
+  String get weaponCodexNoFluxCost;
+
+  /// No description provided for @weaponCodexSectionAncillary.
+  ///
+  /// In en, this message translates to:
+  /// **'Ancillary data'**
+  String get weaponCodexSectionAncillary;
+
+  /// No description provided for @weaponCodexDamageType.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage type'**
+  String get weaponCodexDamageType;
+
+  /// No description provided for @weaponCodexHitpoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Hitpoints'**
+  String get weaponCodexHitpoints;
+
+  /// No description provided for @weaponCodexTurnRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn rate'**
+  String get weaponCodexTurnRate;
+
+  /// No description provided for @weaponCodexMaxCharges.
+  ///
+  /// In en, this message translates to:
+  /// **'Max charges'**
+  String get weaponCodexMaxCharges;
+
+  /// No description provided for @weaponCodexMaxAmmo.
+  ///
+  /// In en, this message translates to:
+  /// **'Max ammo'**
+  String get weaponCodexMaxAmmo;
+
+  /// No description provided for @weaponCodexSecondsRecharge.
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds / recharge'**
+  String get weaponCodexSecondsRecharge;
+
+  /// No description provided for @weaponCodexSecondsReload.
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds / reload'**
+  String get weaponCodexSecondsReload;
+
+  /// No description provided for @weaponCodexChargesGained.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges gained'**
+  String get weaponCodexChargesGained;
+
+  /// No description provided for @weaponCodexReloadSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Reload size'**
+  String get weaponCodexReloadSize;
+
+  /// No description provided for @weaponCodexBurstSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Burst size'**
+  String get weaponCodexBurstSize;
+
+  /// No description provided for @weaponCodexRefireDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Refire delay (seconds)'**
+  String get weaponCodexRefireDelay;
+
+  /// No description provided for @weaponCodexDamageKinetic.
+  ///
+  /// In en, this message translates to:
+  /// **'Kinetic'**
+  String get weaponCodexDamageKinetic;
+
+  /// No description provided for @weaponCodexDamageHighExplosive.
+  ///
+  /// In en, this message translates to:
+  /// **'High Explosive'**
+  String get weaponCodexDamageHighExplosive;
+
+  /// No description provided for @weaponCodexDamageFragmentation.
+  ///
+  /// In en, this message translates to:
+  /// **'Fragmentation'**
+  String get weaponCodexDamageFragmentation;
+
+  /// No description provided for @weaponCodexDamageEnergy.
+  ///
+  /// In en, this message translates to:
+  /// **'Energy'**
+  String get weaponCodexDamageEnergy;
+
+  /// No description provided for @weaponCodexDamageOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get weaponCodexDamageOther;
+
+  /// No description provided for @weaponCodexDamageTypeBeam.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} (Beam)'**
+  String weaponCodexDamageTypeBeam(Object name);
+
+  /// No description provided for @weaponCodexDescKinetic.
+  ///
+  /// In en, this message translates to:
+  /// **'200% vs shields, 50% vs armor'**
+  String get weaponCodexDescKinetic;
+
+  /// No description provided for @weaponCodexDescHighExplosive.
+  ///
+  /// In en, this message translates to:
+  /// **'200% vs armor, 50% vs shields'**
+  String get weaponCodexDescHighExplosive;
+
+  /// No description provided for @weaponCodexDescFragmentation.
+  ///
+  /// In en, this message translates to:
+  /// **'25% vs shields and armor, 100% vs hull'**
+  String get weaponCodexDescFragmentation;
+
+  /// No description provided for @weaponCodexDescEnergy.
+  ///
+  /// In en, this message translates to:
+  /// **'100% vs shields, armor, and hull'**
+  String get weaponCodexDescEnergy;
+
+  /// No description provided for @weaponCodexNoHardFlux.
+  ///
+  /// In en, this message translates to:
+  /// **'{desc} (no hard flux)'**
+  String weaponCodexNoHardFlux(Object desc);
+
+  /// No description provided for @weaponCodexRequiresBallisticEnergyHybrid.
+  ///
+  /// In en, this message translates to:
+  /// **'Requires a Ballistic, Energy, or Hybrid slot'**
+  String get weaponCodexRequiresBallisticEnergyHybrid;
+
+  /// No description provided for @weaponCodexRequiresEnergyMissileSynergy.
+  ///
+  /// In en, this message translates to:
+  /// **'Requires an Energy, Missile, or Synergy slot'**
+  String get weaponCodexRequiresEnergyMissileSynergy;
+
+  /// No description provided for @weaponCodexRequiresBallisticMissileComposite.
+  ///
+  /// In en, this message translates to:
+  /// **'Requires a Ballistic, Missile, or Composite slot'**
+  String get weaponCodexRequiresBallisticMissileComposite;
+
+  /// No description provided for @weaponCodexUniversalSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Can be installed in any type of slot'**
+  String get weaponCodexUniversalSlot;
+
+  /// No description provided for @weaponCodexQualityPerfect.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect'**
+  String get weaponCodexQualityPerfect;
+
+  /// No description provided for @weaponCodexQualityExcellent.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent'**
+  String get weaponCodexQualityExcellent;
+
+  /// No description provided for @weaponCodexQualityGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get weaponCodexQualityGood;
+
+  /// No description provided for @weaponCodexQualityMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get weaponCodexQualityMedium;
+
+  /// No description provided for @weaponCodexQualityPoor.
+  ///
+  /// In en, this message translates to:
+  /// **'Poor'**
+  String get weaponCodexQualityPoor;
+
+  /// No description provided for @weaponCodexQualityVeryPoor.
+  ///
+  /// In en, this message translates to:
+  /// **'Very Poor'**
+  String get weaponCodexQualityVeryPoor;
+
+  /// No description provided for @weaponCodexQualityTerrible.
+  ///
+  /// In en, this message translates to:
+  /// **'Terrible'**
+  String get weaponCodexQualityTerrible;
+
+  /// No description provided for @weaponCodexCantTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'Can\'t turn'**
+  String get weaponCodexCantTurn;
+
+  /// No description provided for @weaponCodexQualityVerySlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Very Slow'**
+  String get weaponCodexQualityVerySlow;
+
+  /// No description provided for @weaponCodexQualitySlow.
+  ///
+  /// In en, this message translates to:
+  /// **'Slow'**
+  String get weaponCodexQualitySlow;
+
+  /// No description provided for @weaponCodexQualityFast.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast'**
+  String get weaponCodexQualityFast;
+
+  /// No description provided for @weaponCodexQualityVeryFast.
+  ///
+  /// In en, this message translates to:
+  /// **'Very Fast'**
+  String get weaponCodexQualityVeryFast;
+
+  /// No description provided for @weaponDetailsLabelType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get weaponDetailsLabelType;
+
+  /// No description provided for @weaponDetailsRawType.
+  ///
+  /// In en, this message translates to:
+  /// **'Raw Type'**
+  String get weaponDetailsRawType;
+
+  /// No description provided for @weaponDetailsSectionCombat.
+  ///
+  /// In en, this message translates to:
+  /// **'Combat'**
+  String get weaponDetailsSectionCombat;
+
+  /// No description provided for @weaponDetailsSectionFireMechanics.
+  ///
+  /// In en, this message translates to:
+  /// **'Fire Mechanics'**
+  String get weaponDetailsSectionFireMechanics;
+
+  /// No description provided for @weaponDetailsSectionAccuracySpread.
+  ///
+  /// In en, this message translates to:
+  /// **'Accuracy & Spread'**
+  String get weaponDetailsSectionAccuracySpread;
+
+  /// No description provided for @weaponDetailsSectionProjectile.
+  ///
+  /// In en, this message translates to:
+  /// **'Projectile'**
+  String get weaponDetailsSectionProjectile;
+
+  /// No description provided for @weaponDetailsSectionMisc.
+  ///
+  /// In en, this message translates to:
+  /// **'Misc'**
+  String get weaponDetailsSectionMisc;
+
+  /// No description provided for @weaponDetailsEnergyShot.
+  ///
+  /// In en, this message translates to:
+  /// **'Energy/Shot'**
+  String get weaponDetailsEnergyShot;
+
+  /// No description provided for @weaponDetailsEnergySec.
+  ///
+  /// In en, this message translates to:
+  /// **'Energy/Sec'**
+  String get weaponDetailsEnergySec;
+
+  /// No description provided for @weaponDetailsSpreadDecaySec.
+  ///
+  /// In en, this message translates to:
+  /// **'Spread Decay/Sec'**
+  String get weaponDetailsSpreadDecaySec;
+
+  /// No description provided for @weaponDetailsExtraArcAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra Arc (AI)'**
+  String get weaponDetailsExtraArcAi;
+
+  /// No description provided for @weaponDetailsNoDpsInTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'No DPS In Tooltip'**
+  String get weaponDetailsNoDpsInTooltip;
+
+  /// No description provided for @weaponDetailsYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get weaponDetailsYes;
+
+  /// No description provided for @weaponDetailsHints.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints'**
+  String get weaponDetailsHints;
+
+  /// No description provided for @weaponDetailsTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get weaponDetailsTags;
+
+  /// No description provided for @weaponDetailsForWeaponTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'For Weapon Tooltip'**
+  String get weaponDetailsForWeaponTooltip;
+
+  /// No description provided for @weaponDetailsPrimaryRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary Role'**
+  String get weaponDetailsPrimaryRole;
+
+  /// No description provided for @weaponDetailsTurnRateTxt.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn Rate (txt)'**
+  String get weaponDetailsTurnRateTxt;
+
+  /// No description provided for @vramNoImages.
+  ///
+  /// In en, this message translates to:
+  /// **'No images.'**
+  String get vramNoImages;
+
+  /// No description provided for @vramTopImagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Images Estimated to Use the Most VRAM'**
+  String get vramTopImagesTitle;
+
+  /// No description provided for @vramTopImagesNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: Image dimensions in VRAM are usually bigger than actual.'**
+  String get vramTopImagesNote;
+
+  /// No description provided for @vramScanFileProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{scanned} / {total} ({percent})'**
+  String vramScanFileProgress(Object percent, Object scanned, Object total);
+
+  /// No description provided for @vramDurationMinSec.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes}m {seconds}s'**
+  String vramDurationMinSec(Object minutes, Object seconds);
+
+  /// No description provided for @vramDurationSec.
+  ///
+  /// In en, this message translates to:
+  /// **'{seconds}s'**
+  String vramDurationSec(Object seconds);
+
+  /// No description provided for @vramSelectorScanAllDeprecated.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan All (deprecated)'**
+  String get vramSelectorScanAllDeprecated;
+
+  /// No description provided for @vramSelectorFolderScanDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Counts every image in mod folders, even unused ones. Overestimates VRAM use.'**
+  String get vramSelectorFolderScanDesc;
+
+  /// No description provided for @vramSelectorReferencedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Searches the mod\'s text files and code for image paths. More accurate than folder scan, but takes longer.'**
+  String get vramSelectorReferencedDesc;
+
+  /// No description provided for @vramRefShips.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship hulls (.ship + ship_data.csv)'**
+  String get vramRefShips;
+
+  /// No description provided for @vramRefShipsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Sprite paths referenced by .ship JSON files and ship_data.csv.'**
+  String get vramRefShipsDesc;
+
+  /// No description provided for @vramRefWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Weapons (.wpn + .proj + weapon_data.csv)'**
+  String get vramRefWeapons;
+
+  /// No description provided for @vramRefWeaponsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Sprite paths referenced by weapon JSON files, projectile JSON files, and weapon_data.csv.'**
+  String get vramRefWeaponsDesc;
+
+  /// No description provided for @vramRefFactions.
+  ///
+  /// In en, this message translates to:
+  /// **'Factions (.faction)'**
+  String get vramRefFactions;
+
+  /// No description provided for @vramRefFactionsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Logo, crest, and portrait paths referenced by .faction JSON files.'**
+  String get vramRefFactionsDesc;
+
+  /// No description provided for @vramRefPortraits.
+  ///
+  /// In en, this message translates to:
+  /// **'Portraits (portraits.csv)'**
+  String get vramRefPortraits;
+
+  /// No description provided for @vramRefPortraitsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Portrait paths listed in data/characters/portraits/portraits.csv.'**
+  String get vramRefPortraitsDesc;
+
+  /// No description provided for @vramRefSettingsGraphics.
+  ///
+  /// In en, this message translates to:
+  /// **'settings.json graphics block'**
+  String get vramRefSettingsGraphics;
+
+  /// No description provided for @vramRefSettingsGraphicsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Paths declared in data/config/settings.json under the graphics block.'**
+  String get vramRefSettingsGraphicsDesc;
+
+  /// No description provided for @vramRefDataConfigJson.
+  ///
+  /// In en, this message translates to:
+  /// **'data/config JSON files'**
+  String get vramRefDataConfigJson;
+
+  /// No description provided for @vramRefDataConfigJsonDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Image paths found in JSON files under data/config/ (beyond settings.json).'**
+  String get vramRefDataConfigJsonDesc;
+
+  /// No description provided for @vramRefDataCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'data/ CSV files'**
+  String get vramRefDataCsv;
+
+  /// No description provided for @vramRefDataCsvDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Image paths found in any CSV under data/ beyond the hull, weapon, and portrait tables (e.g. mod-defined campaign / world tables).'**
+  String get vramRefDataCsvDesc;
+
+  /// No description provided for @vramRefGraphicsLibMaps.
+  ///
+  /// In en, this message translates to:
+  /// **'GraphicsLib maps (CSV + cache folder)'**
+  String get vramRefGraphicsLibMaps;
+
+  /// No description provided for @vramRefGraphicsLibMapsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Map paths declared in the mod\'s GraphicsLib CSV, plus GraphicsLib mod\'s own cache/ folder. Kept independently of base-sprite references.'**
+  String get vramRefGraphicsLibMapsDesc;
+
+  /// No description provided for @vramRefJarStrings.
+  ///
+  /// In en, this message translates to:
+  /// **'JAR string literals'**
+  String get vramRefJarStrings;
+
+  /// No description provided for @vramRefJarStringsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Path-like string literals in compiled classes of every .jar in the mod.'**
+  String get vramRefJarStringsDesc;
+
+  /// No description provided for @vramRefJavaSources.
+  ///
+  /// In en, this message translates to:
+  /// **'Loose .java sources'**
+  String get vramRefJavaSources;
+
+  /// No description provided for @vramRefJavaSourcesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Path-like string literals in any .java source file in the mod.'**
+  String get vramRefJavaSourcesDesc;
+
+  /// No description provided for @vramRefFrameAnimations.
+  ///
+  /// In en, this message translates to:
+  /// **'Frame animations'**
+  String get vramRefFrameAnimations;
+
+  /// No description provided for @vramRefFrameAnimationsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Finds auto-loaded frame siblings of referenced sprites. When a weapon/effect references e.g. foo_00.png, Starsector\'s engine also loads foo_01.png, foo_02.png, ... from the same folder.'**
+  String get vramRefFrameAnimationsDesc;
+
+  /// No description provided for @vramRefPhaseGlows.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase glows'**
+  String get vramRefPhaseGlows;
+
+  /// No description provided for @vramRefPhaseGlowsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Finds ship phase-glow siblings (e.g. foo_glow.png, foo_glow1.png) of referenced sprites. Starsector auto-loads these from the same folder when the base ship sprite is referenced.'**
+  String get vramRefPhaseGlowsDesc;
+
+  /// No description provided for @commonYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get commonYes;
+
+  /// No description provided for @commonId.
+  ///
+  /// In en, this message translates to:
+  /// **'ID'**
+  String get commonId;
+
+  /// No description provided for @commonTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get commonTags;
+
+  /// No description provided for @commonTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Tier'**
+  String get commonTier;
+
+  /// No description provided for @commonTechManufacturer.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech/manufacturer'**
+  String get commonTechManufacturer;
+
+  /// No description provided for @commonLabelCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} ({count})'**
+  String commonLabelCount(Object count, Object label);
+
+  /// No description provided for @commonLabelValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{label}: {value}'**
+  String commonLabelValue(Object label, Object value);
+
+  /// No description provided for @shipSizeFrigate.
+  ///
+  /// In en, this message translates to:
+  /// **'Frigate'**
+  String get shipSizeFrigate;
+
+  /// No description provided for @shipSizeDestroyer.
+  ///
+  /// In en, this message translates to:
+  /// **'Destroyer'**
+  String get shipSizeDestroyer;
+
+  /// No description provided for @shipSizeCruiser.
+  ///
+  /// In en, this message translates to:
+  /// **'Cruiser'**
+  String get shipSizeCruiser;
+
+  /// No description provided for @shipSizeCapital.
+  ///
+  /// In en, this message translates to:
+  /// **'Capital'**
+  String get shipSizeCapital;
+
+  /// No description provided for @shipSizeFighter.
+  ///
+  /// In en, this message translates to:
+  /// **'Fighter'**
+  String get shipSizeFighter;
+
+  /// No description provided for @factionViewerVanillaPercent.
+  ///
+  /// In en, this message translates to:
+  /// **'Vanilla %'**
+  String get factionViewerVanillaPercent;
+
+  /// No description provided for @factionViewerAddedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Added by'**
+  String get factionViewerAddedBy;
+
+  /// No description provided for @factionViewerAllFactions.
+  ///
+  /// In en, this message translates to:
+  /// **'All Factions'**
+  String get factionViewerAllFactions;
+
+  /// No description provided for @factionViewerModifiedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Modified by: {names}'**
+  String factionViewerModifiedBy(Object names);
+
+  /// No description provided for @factionViewerSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get factionViewerSource;
+
+  /// No description provided for @factionViewerVisibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Visibility'**
+  String get factionViewerVisibility;
+
+  /// No description provided for @factionViewerSearchFactionId.
+  ///
+  /// In en, this message translates to:
+  /// **'Faction ID'**
+  String get factionViewerSearchFactionId;
+
+  /// No description provided for @factionViewerSearchFactionDisplayName.
+  ///
+  /// In en, this message translates to:
+  /// **'Faction display name'**
+  String get factionViewerSearchFactionDisplayName;
+
+  /// No description provided for @factionViewerSearchSourceModOrVanilla.
+  ///
+  /// In en, this message translates to:
+  /// **'Source mod or vanilla'**
+  String get factionViewerSearchSourceModOrVanilla;
+
+  /// No description provided for @factionViewerSearchKnownShips.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of known ships'**
+  String get factionViewerSearchKnownShips;
+
+  /// No description provided for @factionViewerSearchKnownWeapons.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of known weapons'**
+  String get factionViewerSearchKnownWeapons;
+
+  /// No description provided for @factionViewerSearchKnownFighters.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of known fighters'**
+  String get factionViewerSearchKnownFighters;
+
+  /// No description provided for @factionViewerSearchHiddenFromIntel.
+  ///
+  /// In en, this message translates to:
+  /// **'Whether faction is hidden from intel tab (true/false)'**
+  String get factionViewerSearchHiddenFromIntel;
+
+  /// No description provided for @factionViewerSearchDoctrineAggressionLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctrine aggression level'**
+  String get factionViewerSearchDoctrineAggressionLevel;
+
+  /// No description provided for @factionViewerSearchDoctrineWarshipWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctrine warship weight'**
+  String get factionViewerSearchDoctrineWarshipWeight;
+
+  /// No description provided for @factionViewerSearchDoctrineCarrierWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctrine carrier weight'**
+  String get factionViewerSearchDoctrineCarrierWeight;
+
+  /// No description provided for @factionViewerSearchDoctrinePhaseShipWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctrine phase ship weight'**
+  String get factionViewerSearchDoctrinePhaseShipWeight;
+
+  /// No description provided for @factionViewerSearchDoctrineFleetSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctrine fleet size (number of ships)'**
+  String get factionViewerSearchDoctrineFleetSize;
+
+  /// No description provided for @factionViewerSearchDoctrineShipSizePreference.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctrine ship size preference'**
+  String get factionViewerSearchDoctrineShipSizePreference;
+
+  /// No description provided for @factionViewerSearchDoctrineOfficerQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctrine officer quality'**
+  String get factionViewerSearchDoctrineOfficerQuality;
+
+  /// No description provided for @factionViewerSearchDoctrineShipQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctrine ship quality'**
+  String get factionViewerSearchDoctrineShipQuality;
+
+  /// No description provided for @factionProfileDialogFileSourceSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **' ({modName})'**
+  String factionProfileDialogFileSourceSuffix(Object modName);
+
+  /// No description provided for @finderPresetColonyHunter.
+  ///
+  /// In en, this message translates to:
+  /// **'Colony Hunter'**
+  String get finderPresetColonyHunter;
+
+  /// No description provided for @finderPresetResourceBaron.
+  ///
+  /// In en, this message translates to:
+  /// **'Resource Baron'**
+  String get finderPresetResourceBaron;
+
+  /// No description provided for @finderPresetCryosleeperNearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Cryosleeper Nearby'**
+  String get finderPresetCryosleeperNearby;
+
+  /// No description provided for @finderPresetSelfSufficient.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-Sufficient'**
+  String get finderPresetSelfSufficient;
+
+  /// No description provided for @finderNearbyRangeLyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{ly} LY'**
+  String finderNearbyRangeLyLabel(Object ly);
+
+  /// No description provided for @finderBottleneckHabitable.
+  ///
+  /// In en, this message translates to:
+  /// **'Habitable'**
+  String get finderBottleneckHabitable;
+
+  /// No description provided for @finderBottleneckGasGiant.
+  ///
+  /// In en, this message translates to:
+  /// **'Gas giant'**
+  String get finderBottleneckGasGiant;
+
+  /// No description provided for @finderBottleneckUnclaimedOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Unclaimed only'**
+  String get finderBottleneckUnclaimedOnly;
+
+  /// No description provided for @finderBottleneckStableLocations.
+  ///
+  /// In en, this message translates to:
+  /// **'Stable locations'**
+  String get finderBottleneckStableLocations;
+
+  /// No description provided for @finderBottleneckDistanceFromCore.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance from core'**
+  String get finderBottleneckDistanceFromCore;
+
+  /// No description provided for @finderBottleneckResourceFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'{resource} floor'**
+  String finderBottleneckResourceFloor(Object resource);
+
+  /// No description provided for @finderBottleneckNearLandmark.
+  ///
+  /// In en, this message translates to:
+  /// **'Near {landmark}'**
+  String finderBottleneckNearLandmark(Object landmark);
+
+  /// No description provided for @sectorMapUninhabited.
+  ///
+  /// In en, this message translates to:
+  /// **'Uninhabited'**
+  String get sectorMapUninhabited;
+
+  /// No description provided for @sectorMapSizeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'size {size}'**
+  String sectorMapSizeLabel(Object size);
+
+  /// No description provided for @portraitsViewerReplacerTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Portrait Viewer: View and search portraits from your mods.\nPortrait Replacer: Drag and drop portraits from the right pane to replace portraits on the left pane.'**
+  String get portraitsViewerReplacerTooltip;
+
+  /// No description provided for @portraitsViewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewer'**
+  String get portraitsViewer;
+
+  /// No description provided for @portraitsReplacer.
+  ///
+  /// In en, this message translates to:
+  /// **'Replacer'**
+  String get portraitsReplacer;
+
+  /// No description provided for @portraitsViewerInfoTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Displays images that are *likely* to be portraits from the highest version of each mod.\n\nBecause mods may use any image as a portrait and load images dynamically in code, this is not an exact science, but best guesses.\nPortraits must be:\n- Square\n- Between 128x128 and 256x256\n- An image file'**
+  String get portraitsViewerInfoTooltip;
+
+  /// No description provided for @portraitsTutorial.
+  ///
+  /// In en, this message translates to:
+  /// **'Tutorial'**
+  String get portraitsTutorial;
+
+  /// No description provided for @portraitsHowToUse.
+  ///
+  /// In en, this message translates to:
+  /// **'How To Use'**
+  String get portraitsHowToUse;
+
+  /// No description provided for @portraitsHowToUseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'On the left side are the portraits that you will see in-game.\nOn the right side is the {pool} - your options for replacing images on the left.\n\nGrab portraits from the right side and move them to the left side to replace what you see in-game.'**
+  String portraitsHowToUseBody(Object pool);
+
+  /// No description provided for @portraitsPortraitPool.
+  ///
+  /// In en, this message translates to:
+  /// **'Portrait Pool'**
+  String get portraitsPortraitPool;
+
+  /// No description provided for @portraitsUnderTheHoodBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A list of portraits to replace is saved as a json file (in the {appName} data folder, which is synced one-way to the Companion Mod).\nThe {appName} Companion Mod reads that file when you load your game, then swaps the portraits for that game session only.\nIt does not change any mod files - replacement is all done in-memory, in-game.'**
+  String portraitsUnderTheHoodBody(Object appName);
+
+  /// No description provided for @portraitsImagesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{total} images'**
+  String portraitsImagesCount(Object total);
+
+  /// No description provided for @portraitsImagesCountWithShown.
+  ///
+  /// In en, this message translates to:
+  /// **'{total} images ({visible} shown)'**
+  String portraitsImagesCountWithShown(num total, num visible);
+
+  /// No description provided for @portraitsCompanionModNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} Companion mod not found!\nPortrait Replacement will not work.\n\nClick to install it.'**
+  String portraitsCompanionModNotFound(Object appName);
+
+  /// No description provided for @portraitsCompanionModNotEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} Companion mod is not enabled. Portrait replacements will not work.\n\nClick to enable it.'**
+  String portraitsCompanionModNotEnabled(Object appName);
+
+  /// No description provided for @portraitsCompanionModInstallFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} Companion Mod not found. Please install it first from Settings.'**
+  String portraitsCompanionModInstallFirst(Object appName);
+
+  /// No description provided for @portraitsImportCustomImages.
+  ///
+  /// In en, this message translates to:
+  /// **'Import custom images to use as portrait replacements'**
+  String get portraitsImportCustomImages;
+
+  /// No description provided for @portraitsErrorLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading portraits: {error}'**
+  String portraitsErrorLoading(Object error);
+
+  /// No description provided for @portraitsReplacementAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Replacement added: {original} -> {replacement}'**
+  String portraitsReplacementAdded(Object original, Object replacement);
+
+  /// No description provided for @portraitsOriginalFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Original: {file}'**
+  String portraitsOriginalFile(Object file);
+
+  /// No description provided for @portraitsOriginalFileNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Original file not found'**
+  String get portraitsOriginalFileNotFound;
+
+  /// No description provided for @portraitsReplacementFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Replacement: {file}'**
+  String portraitsReplacementFile(Object file);
+
+  /// No description provided for @portraitsReplacementFileNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Replacement file not found'**
+  String get portraitsReplacementFileNotFound;
+
+  /// No description provided for @portraitsReplacementModLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Replacement Mod: {mod}'**
+  String portraitsReplacementModLabel(Object mod);
+
+  /// No description provided for @portraitsOpenOriginalImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open original image'**
+  String get portraitsOpenOriginalImage;
+
+  /// No description provided for @portraitsOpenReplacementImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Open replacement image'**
+  String get portraitsOpenReplacementImage;
+
+  /// No description provided for @portraitsOpenFolder.
+  ///
+  /// In en, this message translates to:
+  /// **'Open folder'**
+  String get portraitsOpenFolder;
+
+  /// No description provided for @portraitsRemoveReplacement.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove replacement'**
+  String get portraitsRemoveReplacement;
+
+  /// No description provided for @portraitsFactionsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Factions: {factions}'**
+  String portraitsFactionsLabel(Object factions);
+
+  /// No description provided for @portraitsDimensionsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Dimensions: {width} x {height}'**
+  String portraitsDimensionsLabel(Object height, Object width);
+
+  /// No description provided for @portraitsModLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod: {mod}'**
+  String portraitsModLabel(Object mod);
+
+  /// No description provided for @portraitsFilterConfirmedTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Only show images that are confirmed portraits.\n\nPortraits defined in .faction files have genders.\nPortraits from settings.json files do not.'**
+  String get portraitsFilterConfirmedTooltip;
+
+  /// No description provided for @portraitsFilterReplacedTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Only show images that have replacements.'**
+  String get portraitsFilterReplacedTooltip;
+
+  /// No description provided for @portraitsFilterEnabledModsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Only show images from enabled mods.'**
+  String get portraitsFilterEnabledModsTooltip;
+
+  /// No description provided for @portraitsFilterGender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get portraitsFilterGender;
+
+  /// No description provided for @portraitsFilePathNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'File path not available'**
+  String get portraitsFilePathNotAvailable;
+
+  /// No description provided for @portraitsFailedToCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to copy: {error}'**
+  String portraitsFailedToCopy(Object error);
+
+  /// No description provided for @portraitsFailedToReadImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to read image: {error}'**
+  String portraitsFailedToReadImage(Object error);
+
+  /// No description provided for @portraitsImageMustBeSquare.
+  ///
+  /// In en, this message translates to:
+  /// **'Image must be square ({size} is not square)'**
+  String portraitsImageMustBeSquare(Object size);
+
+  /// No description provided for @portraitsImageSizeRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Image must be between {min}x{min} and {max}x{max} (got {size})'**
+  String portraitsImageSizeRange(Object max, Object min, Object size);
+
+  /// No description provided for @portraitsImportSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{imported} imported successfully, {failed} failed'**
+  String portraitsImportSummary(Object failed, Object imported);
+
+  /// No description provided for @portraitsValidPortraitSingular.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} valid portrait'**
+  String portraitsValidPortraitSingular(Object count);
+
+  /// No description provided for @portraitsValidPortraitsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} valid portraits'**
+  String portraitsValidPortraitsCount(Object count);
+
+  /// No description provided for @portraitsFailedValidationSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **', {count} failed validation'**
+  String portraitsFailedValidationSuffix(Object count);
+
+  /// No description provided for @portraitsSelectGenderHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select male or female for each portrait.\nPortraits in .faction files only support male and female.'**
+  String get portraitsSelectGenderHint;
+
+  /// No description provided for @portraitsAllMale.
+  ///
+  /// In en, this message translates to:
+  /// **'All Male'**
+  String get portraitsAllMale;
+
+  /// No description provided for @portraitsAllFemale.
+  ///
+  /// In en, this message translates to:
+  /// **'All Female'**
+  String get portraitsAllFemale;
+
+  /// No description provided for @hullmodsTechManufacturer.
+  ///
+  /// In en, this message translates to:
+  /// **'Tech/Manufacturer'**
+  String get hullmodsTechManufacturer;
+
+  /// No description provided for @hullmodsUiTags.
+  ///
+  /// In en, this message translates to:
+  /// **'UI Tags'**
+  String get hullmodsUiTags;
+
+  /// No description provided for @hullmodsShortDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Short Desc.'**
+  String get hullmodsShortDesc;
+
+  /// No description provided for @hullmodsOpFrigate.
+  ///
+  /// In en, this message translates to:
+  /// **'OP (Frig)'**
+  String get hullmodsOpFrigate;
+
+  /// No description provided for @hullmodsOpDestroyer.
+  ///
+  /// In en, this message translates to:
+  /// **'OP (Dest)'**
+  String get hullmodsOpDestroyer;
+
+  /// No description provided for @hullmodsOpCruiser.
+  ///
+  /// In en, this message translates to:
+  /// **'OP (Cru)'**
+  String get hullmodsOpCruiser;
+
+  /// No description provided for @hullmodsOpCapital.
+  ///
+  /// In en, this message translates to:
+  /// **'OP (Cap)'**
+  String get hullmodsOpCapital;
+
+  /// No description provided for @hullmodsAllHullmods.
+  ///
+  /// In en, this message translates to:
+  /// **'All Hullmods'**
+  String get hullmodsAllHullmods;
+
+  /// No description provided for @hullmodsSearchTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Hullmod tier (1, 2, 3)'**
+  String get hullmodsSearchTier;
+
+  /// No description provided for @hullmodsSearchModNameSubstring.
+  ///
+  /// In en, this message translates to:
+  /// **'Mod name substring match'**
+  String get hullmodsSearchModNameSubstring;
+
+  /// No description provided for @hullmodsSearchCsvTagMatchesAny.
+  ///
+  /// In en, this message translates to:
+  /// **'CSV tag; matches any tag'**
+  String get hullmodsSearchCsvTagMatchesAny;
+
+  /// No description provided for @hullmodsSearchUiTagMatchesAny.
+  ///
+  /// In en, this message translates to:
+  /// **'UI tag; matches any UI tag'**
+  String get hullmodsSearchUiTagMatchesAny;
+
+  /// No description provided for @hullmodsSearchRarityValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Rarity value'**
+  String get hullmodsSearchRarityValue;
+
+  /// No description provided for @hullmodsSearchBaseCreditValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Base credit value'**
+  String get hullmodsSearchBaseCreditValue;
+
+  /// No description provided for @hullmodsSearchOpCostFrigates.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance points cost for frigates'**
+  String get hullmodsSearchOpCostFrigates;
+
+  /// No description provided for @hullmodsSearchOpCostDestroyers.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance points cost for destroyers'**
+  String get hullmodsSearchOpCostDestroyers;
+
+  /// No description provided for @hullmodsSearchOpCostCruisers.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance points cost for cruisers'**
+  String get hullmodsSearchOpCostCruisers;
+
+  /// No description provided for @hullmodsSearchOpCostCapitalShips.
+  ///
+  /// In en, this message translates to:
+  /// **'Ordnance points cost for capital ships'**
+  String get hullmodsSearchOpCostCapitalShips;
+
+  /// No description provided for @hullmodCodexCardData.
+  ///
+  /// In en, this message translates to:
+  /// **'Hullmod data'**
+  String get hullmodCodexCardData;
+
+  /// No description provided for @hullmodCodexCardOpCost.
+  ///
+  /// In en, this message translates to:
+  /// **'OP cost'**
+  String get hullmodCodexCardOpCost;
+
+  /// No description provided for @hullmodCodexCardOpCostFrigate.
+  ///
+  /// In en, this message translates to:
+  /// **'OP cost (Frigate)'**
+  String get hullmodCodexCardOpCostFrigate;
+
+  /// No description provided for @hullmodCodexCardOpCostDestroyer.
+  ///
+  /// In en, this message translates to:
+  /// **'OP cost (Destroyer)'**
+  String get hullmodCodexCardOpCostDestroyer;
+
+  /// No description provided for @hullmodCodexCardOpCostCruiser.
+  ///
+  /// In en, this message translates to:
+  /// **'OP cost (Cruiser)'**
+  String get hullmodCodexCardOpCostCruiser;
+
+  /// No description provided for @hullmodCodexCardOpCostCapital.
+  ///
+  /// In en, this message translates to:
+  /// **'OP cost (Capital)'**
+  String get hullmodCodexCardOpCostCapital;
+
+  /// No description provided for @hullmodCodexCardTags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags: {tags}'**
+  String hullmodCodexCardTags(Object tags);
+
+  /// No description provided for @hullmodCodexCardSModBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'S-Mod bonus'**
+  String get hullmodCodexCardSModBonus;
+
+  /// No description provided for @codexFacetType.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get codexFacetType;
+
+  /// No description provided for @codexFacetMountType.
+  ///
+  /// In en, this message translates to:
+  /// **'Mount type'**
+  String get codexFacetMountType;
+
+  /// No description provided for @codexFacetDamageType.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage type'**
+  String get codexFacetDamageType;
+
+  /// No description provided for @codexFacetTypeSpecial.
+  ///
+  /// In en, this message translates to:
+  /// **'Special'**
+  String get codexFacetTypeSpecial;
+
+  /// No description provided for @codexShipTypeCarrier.
+  ///
+  /// In en, this message translates to:
+  /// **'Carrier'**
+  String get codexShipTypeCarrier;
+
+  /// No description provided for @codexShipTypeCivilian.
+  ///
+  /// In en, this message translates to:
+  /// **'Civilian'**
+  String get codexShipTypeCivilian;
+
+  /// No description provided for @codexShipTypePhase.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase'**
+  String get codexShipTypePhase;
+
+  /// No description provided for @codexShipTypeWarship.
+  ///
+  /// In en, this message translates to:
+  /// **'Warship'**
+  String get codexShipTypeWarship;
+
+  /// No description provided for @codexLabelStations.
+  ///
+  /// In en, this message translates to:
+  /// **'Stations'**
+  String get codexLabelStations;
+
+  /// No description provided for @codexLabelShipSystems.
+  ///
+  /// In en, this message translates to:
+  /// **'Ship Systems'**
+  String get codexLabelShipSystems;
+
+  /// No description provided for @codexLabelFighters.
+  ///
+  /// In en, this message translates to:
+  /// **'Fighters'**
+  String get codexLabelFighters;
+
+  /// No description provided for @codexGroupingOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get codexGroupingOther;
+
+  /// No description provided for @codexWeaponSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{size} {type} weapon'**
+  String codexWeaponSubtitle(Object size, Object type);
+
+  /// No description provided for @shipSystemCodexCardSystemData.
+  ///
+  /// In en, this message translates to:
+  /// **'System data'**
+  String get shipSystemCodexCardSystemData;
+
+  /// No description provided for @shipSystemCodexCardFluxPerUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux per use'**
+  String get shipSystemCodexCardFluxPerUse;
+
+  /// No description provided for @shipSystemCodexCardFluxPerSecond.
+  ///
+  /// In en, this message translates to:
+  /// **'Flux per second'**
+  String get shipSystemCodexCardFluxPerSecond;
+
+  /// No description provided for @shipSystemCodexCardMaxUses.
+  ///
+  /// In en, this message translates to:
+  /// **'Max uses'**
+  String get shipSystemCodexCardMaxUses;
+
+  /// No description provided for @shipSystemCodexCardRegen.
+  ///
+  /// In en, this message translates to:
+  /// **'Regen'**
+  String get shipSystemCodexCardRegen;
+
+  /// No description provided for @shipSystemCodexCardCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Cooldown'**
+  String get shipSystemCodexCardCooldown;
+
+  /// No description provided for @shipSystemCodexCardToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle'**
+  String get shipSystemCodexCardToggle;
+
+  /// No description provided for @shipSystemCodexCardPhaseCloak.
+  ///
+  /// In en, this message translates to:
+  /// **'Phase cloak'**
+  String get shipSystemCodexCardPhaseCloak;
+
+  /// No description provided for @app_action_buttonsReportABug.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a bug'**
+  String get app_action_buttonsReportABug;
 }
 
 class _AppLocalizationsDelegate

@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/download_manager/download_manager.dart';
 import 'package:trios/trios/download_manager/download_status.dart';
 import 'package:trios/trios/download_manager/download_target.dart';
@@ -36,9 +37,12 @@ class ModDownloadStatus {
   /// What to tell the user while this is running, or null when idle.
   String? get message => switch (phase) {
     ModDownloadPhase.idle => null,
-    ModDownloadPhase.starting => 'Starting…',
-    ModDownloadPhase.downloading => 'Downloading…',
-    ModDownloadPhase.installing => 'Installing…',
+    ModDownloadPhase.starting =>
+      AppLocalizationsSync.instance.mod_download_statusStarting,
+    ModDownloadPhase.downloading =>
+      AppLocalizationsSync.instance.mod_download_statusDownloading,
+    ModDownloadPhase.installing =>
+      AppLocalizationsSync.instance.mod_download_statusInstalling,
   };
 }
 

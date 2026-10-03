@@ -108,7 +108,7 @@ class _CategoryIconPickerDialogState
               controller: _searchController,
               onChanged: _onSearchChanged,
               decoration: InputDecoration(
-                hintText: 'Search icons...',
+                hintText: loc.categoryIconPickerDialogSearchIcons,
                 prefixIcon: const Icon(Icons.search, size: 20),
                 suffixIcon: _query.isNotEmpty
                     ? IconButton(

@@ -337,7 +337,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
     final groups = <FilterGroup<Ship>>[
       CompositeFilterGroup<Ship>(
         id: 'general',
-        name: 'General',
+        name: loc.codexGeneral,
         fields: [
           BoolField<Ship>(
             id: 'showEnabled',
@@ -397,19 +397,22 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       ChipFilterGroup<Ship>(
         id: 'type',
-        name: 'Type',
-        valueGetter: (ship) => ship.isSkin ? 'Skin' : 'Base Hull',
+        name: loc.shipsFilterGroupType,
+        valueGetter: (ship) =>
+            ship.isSkin
+            ? loc.shipsFilterValueSkin
+            : loc.shipsFilterValueBaseHull,
       ),
       ChipFilterGroup<Ship>(
         id: 'hullSize',
-        name: 'Hull Size',
+        name: loc.shipsFilterHullSize,
         valueGetter: (ship) =>
             ship.isStation ? 'Station' : ship.hullSizeForDisplay(),
         useDefaultSort: true,
       ),
       ChipFilterGroup<Ship>(
         id: 'weaponSlotType',
-        name: 'Weapon Slot Type',
+        name: loc.shipsFilterWeaponSlotType,
         valueGetter: (ship) => '',
         valuesGetter: (ship) =>
             ship.weaponSlots
@@ -422,7 +425,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       ChipFilterGroup<Ship>(
         id: 'weaponSize',
-        name: 'Weapon Size',
+        name: loc.shipsFilterWeaponSize,
         valueGetter: (ship) => '',
         valuesGetter: (ship) =>
             ship.weaponSlots
@@ -439,7 +442,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       ChipFilterGroup<Ship>(
         id: 'mountType',
-        name: 'Mount Type',
+        name: loc.shipsFilterMountType,
         valueGetter: (ship) => '',
         valuesGetter: (ship) =>
             ship.weaponSlots
@@ -452,13 +455,13 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       ChipFilterGroup<Ship>(
         id: 'shieldType',
-        name: 'Shield Type',
+        name: loc.shipsFilterShieldType,
         valueGetter: (ship) => ship.shieldType ?? '',
         displayNameGetter: (value) => value.toTitleCase(),
       ),
       ChipFilterGroup<Ship>(
         id: 'mod',
-        name: 'Mod',
+        name: loc.codexMod,
         collapsedByDefault: true,
         valueGetter: (ship) => ship.modVariant?.modInfo.nameOrId ?? vanillaName,
         sortComparator: (a, b) => a == vanillaName
@@ -466,10 +469,15 @@ class ShipsPageController extends Notifier<ShipsPageState>
             : b == vanillaName
             ? 1
             : a.compareTo(b),
+        // The chip label is localized; the stored value stays the stable
+        // English "Vanilla" so persisted selections survive locale changes.
+        displayNameGetter: (value) => value == vanillaName
+            ? loc.vanillaShareBarVanilla
+            : value,
       ),
       ChipFilterGroup<Ship>(
         id: 'system',
-        name: 'System',
+        name: loc.shipsColumnSystem,
         collapsedByDefault: true,
         valueGetter: (ship) => ship.systemId ?? '',
         displayNameGetter: (value) =>
@@ -477,7 +485,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       ChipFilterGroup<Ship>(
         id: 'defenseId',
-        name: 'Defense Id',
+        name: loc.shipsColumnDefenseId,
         collapsedByDefault: true,
         valueGetter: (ship) => ship.defenseId ?? '',
         displayNameGetter: (value) =>
@@ -485,7 +493,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       ChipFilterGroup<Ship>(
         id: 'techManufacturer',
-        name: 'Tech/Manufacturer',
+        name: loc.shipsFilterTechManufacturer,
         collapsedByDefault: true,
         // Group ignoring capitalization so a mod that wrote "High tech" lands
         // in the same category as vanilla's "High Tech". The chip label uses
@@ -495,64 +503,64 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       ChipFilterGroup<Ship>(
         id: 'designation',
-        name: 'Designation',
+        name: loc.shipsFilterDesignation,
         collapsedByDefault: true,
         valueGetter: (ship) => ship.designation ?? '',
       ),
       // Number sliders (advanced mode only).
       RangeFilterGroup<Ship>(
         id: 'rangeDeploymentPoints',
-        name: 'Deployment Points',
+        name: loc.shipsFilterDeploymentPoints,
         valueGetter: (ship) => ship.deploymentPoints,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeSpeed',
-        name: 'Max Speed',
+        name: loc.shipsColumnMaxSpeed,
         valueGetter: (ship) => ship.maxSpeed,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeOrdnancePoints',
-        name: 'Ordnance Points',
+        name: loc.shipsFilterOrdnancePoints,
         valueGetter: (ship) => ship.ordnancePoints,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeArmor',
-        name: 'Armor',
+        name: loc.shipsColumnArmor,
         valueGetter: (ship) => ship.armorRating,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeHull',
-        name: 'Hull',
+        name: loc.shipsColumnHull,
         valueGetter: (ship) => ship.hitpoints,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeFluxDissipation',
-        name: 'Flux Dissipation',
+        name: loc.shipsFilterFluxDissipation,
         valueGetter: (ship) => ship.fluxDissipation,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeFluxCapacity',
-        name: 'Flux Capacity',
+        name: loc.shipsFilterFluxCapacity,
         valueGetter: (ship) => ship.maxFlux,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeMaxBurn',
-        name: 'Max Burn',
+        name: loc.shipsColumnMaxBurn,
         valueGetter: (ship) => ship.maxBurn,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeFuel',
-        name: 'Fuel Capacity',
+        name: loc.shipsFilterFuelCapacity,
         valueGetter: (ship) => ship.fuel,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeCargo',
-        name: 'Cargo Capacity',
+        name: loc.shipsFilterCargoCapacity,
         valueGetter: (ship) => ship.cargo,
       ),
       RangeFilterGroup<Ship>(
         id: 'rangeCrew',
-        name: 'Crew Capacity',
+        name: loc.shipsFilterCrewCapacity,
         valueGetter: (ship) => ship.maxCrew,
       ),
     ];
@@ -795,34 +803,39 @@ class ShipsPageController extends Notifier<ShipsPageState>
   }
 
   List<SearchField<Ship>> _buildSearchFields() {
+    final loc = AppLocalizationsSync.instance;
     return [
       // String fields
       SearchField.string(
         'size',
-        'Hull size (frigate, destroyer, cruiser, capital_ship)',
+        loc.shipsSearchHullSize,
         (s) => s.hullSize,
       ),
       SearchField.string(
         'shield',
-        'Shield type (FRONT, OMNI, PHASE, NONE)',
+        loc.shipsSearchShieldType,
         (s) => s.shieldType,
       ),
-      SearchField.string('system', 'Ship system ID', (s) => s.systemId),
-      SearchField.string('defense', 'Defense system ID', (s) => s.defenseId),
+      SearchField.string('system', loc.shipsSearchSystemId, (s) => s.systemId),
+      SearchField.string(
+        'defense',
+        loc.shipsSearchDefenseId,
+        (s) => s.defenseId,
+      ),
       SearchField.string(
         'manufacturer',
-        'Tech/manufacturer',
+        loc.shipsSearchTechManufacturer,
         (s) => s.techManufacturer,
       ),
       SearchField.string(
         'designation',
-        'Ship designation',
+        loc.shipsSearchDesignation,
         (s) => s.designation,
       ),
-      SearchField.string('style', 'Visual style', (s) => s.style),
+      SearchField.string('style', loc.shipsSearchStyle, (s) => s.style),
       SearchField<Ship>(
         key: 'mod',
-        description: 'Mod name substring match',
+        description: loc.shipsSearchModSubstring,
         valueSuggestions: (ships) =>
             ships
                 .map((s) => s.modVariant?.modInfo.nameOrId)
@@ -838,7 +851,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       SearchField<Ship>(
         key: 'hullmod',
-        description: 'Built-in hullmod, by name or ID',
+        description: loc.shipsSearchBuiltInHullmod,
         valueSuggestions: (ships) =>
             ships
                 .expand((s) => s.builtInMods ?? const <String>[])
@@ -859,124 +872,124 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ),
       SearchField.multiValue(
         'hint',
-        'Ship hint; matches any hint in a multi-value set',
+        loc.shipsSearchHint,
         (s) => s.hints,
       ),
       SearchField.multiValue(
         'tag',
-        'Ship CSV tag; matches any tag in a multi-value set',
+        loc.shipsSearchTag,
         (s) => s.tags,
       ),
       // Numeric fields
-      SearchField.numeric('hp', 'Hull hitpoints', (s) => s.hitpoints),
-      SearchField.numeric('armor', 'Armor rating', (s) => s.armorRating),
-      SearchField.numeric('flux', 'Max flux capacity', (s) => s.maxFlux),
+      SearchField.numeric('hp', loc.shipsSearchHitpoints, (s) => s.hitpoints),
+      SearchField.numeric('armor', loc.shipsSearchArmorRating, (s) => s.armorRating),
+      SearchField.numeric('flux', loc.shipsSearchMaxFlux, (s) => s.maxFlux),
       SearchField.numeric(
         'dissipation',
-        'Flux dissipation',
+        loc.shipsSearchFluxDissipation,
         (s) => s.fluxDissipation,
       ),
-      SearchField.numeric('op', 'Ordnance points', (s) => s.ordnancePoints),
-      SearchField.numeric('speed', 'Max speed', (s) => s.maxSpeed),
-      SearchField.numeric('accel', 'Acceleration', (s) => s.acceleration),
-      SearchField.numeric('decel', 'Deceleration', (s) => s.deceleration),
-      SearchField.numeric('turnrate', 'Max turn rate', (s) => s.maxTurnRate),
+      SearchField.numeric('op', loc.shipsSearchOrdnancePoints, (s) => s.ordnancePoints),
+      SearchField.numeric('speed', loc.shipsSearchMaxSpeed, (s) => s.maxSpeed),
+      SearchField.numeric('accel', loc.shipsSearchAcceleration, (s) => s.acceleration),
+      SearchField.numeric('decel', loc.shipsSearchDeceleration, (s) => s.deceleration),
+      SearchField.numeric('turnrate', loc.shipsSearchMaxTurnRate, (s) => s.maxTurnRate),
       SearchField.numeric(
         'turnaccel',
-        'Turn acceleration',
+        loc.shipsSearchTurnAcceleration,
         (s) => s.turnAcceleration,
       ),
-      SearchField.numeric('bays', 'Fighter bays', (s) => s.fighterBays),
-      SearchField.numeric('shieldarc', 'Shield arc', (s) => s.shieldArc),
+      SearchField.numeric('bays', loc.shipsSearchFighterBays, (s) => s.fighterBays),
+      SearchField.numeric('shieldarc', loc.shipsSearchShieldArc, (s) => s.shieldArc),
       SearchField.numeric(
         'shieldeff',
-        'Shield efficiency',
+        loc.shipsSearchShieldEfficiency,
         (s) => s.shieldEfficiency,
       ),
       SearchField.numeric(
         'shieldupkeep',
-        'Shield upkeep',
+        loc.shipsSearchShieldUpkeep,
         (s) => s.shieldUpkeep,
       ),
-      SearchField.numeric('phasecost', 'Phase cost', (s) => s.phaseCost),
-      SearchField.numeric('phaseupkeep', 'Phase upkeep', (s) => s.phaseUpkeep),
-      SearchField.numeric('mincrew', 'Minimum crew', (s) => s.minCrew),
-      SearchField.numeric('maxcrew', 'Maximum crew', (s) => s.maxCrew),
-      SearchField.numeric('cargo', 'Cargo capacity', (s) => s.cargo),
-      SearchField.numeric('fuel', 'Fuel capacity', (s) => s.fuel),
+      SearchField.numeric('phasecost', loc.shipsSearchPhaseCost, (s) => s.phaseCost),
+      SearchField.numeric('phaseupkeep', loc.shipsSearchPhaseUpkeep, (s) => s.phaseUpkeep),
+      SearchField.numeric('mincrew', loc.shipsSearchMinCrew, (s) => s.minCrew),
+      SearchField.numeric('maxcrew', loc.shipsSearchMaxCrew, (s) => s.maxCrew),
+      SearchField.numeric('cargo', loc.shipsSearchCargoCapacity, (s) => s.cargo),
+      SearchField.numeric('fuel', loc.shipsSearchFuelCapacity, (s) => s.fuel),
       SearchField.numeric(
         'fuelperly',
-        'Fuel used per light year',
+        loc.shipsSearchFuelPerLy,
         (s) => s.fuelPerLY,
       ),
-      SearchField.numeric('range', 'Range', (s) => s.range),
-      SearchField.numeric('burn', 'Max burn', (s) => s.maxBurn),
-      SearchField.numeric('mass', 'Ship mass', (s) => s.mass),
-      SearchField.numeric('dp', 'Deployment points', (s) => s.deploymentPoints),
-      SearchField.numeric('fleetpts', 'Fleet points', (s) => s.fleetPts),
-      SearchField.numeric('cost', 'Base credit value', (s) => s.baseValue),
+      SearchField.numeric('range', loc.shipsSearchRange, (s) => s.range),
+      SearchField.numeric('burn', loc.shipsSearchMaxBurn, (s) => s.maxBurn),
+      SearchField.numeric('mass', loc.shipsSearchMass, (s) => s.mass),
+      SearchField.numeric('dp', loc.shipsSearchDeploymentPoints, (s) => s.deploymentPoints),
+      SearchField.numeric('fleetpts', loc.shipsSearchFleetPoints, (s) => s.fleetPts),
+      SearchField.numeric('cost', loc.shipsSearchBaseValue, (s) => s.baseValue),
       SearchField.numeric(
         'slots',
-        'Weapon slots',
+        loc.shipsSearchWeaponSlots,
         (s) => s.mountableWeaponSlotCount,
       ),
-      SearchField.numeric('peak', 'Peak CR seconds', (s) => s.peakCrSec),
+      SearchField.numeric('peak', loc.shipsSearchPeakCr, (s) => s.peakCrSec),
       SearchField.numeric(
         'crday',
-        'CR recovered per day',
+        loc.shipsSearchCrPerDay,
         (s) => s.crPercentPerDay,
       ),
-      SearchField.numeric('crdeploy', 'CR cost to deploy', (s) => s.crToDeploy),
+      SearchField.numeric('crdeploy', loc.shipsSearchCrToDeploy, (s) => s.crToDeploy),
       SearchField.numeric(
         'crloss',
-        'CR lost per second past peak',
+        loc.shipsSearchCrLoss,
         (s) => s.crLossPerSec,
       ),
       SearchField.numeric(
         'supplies',
-        'Supplies per month',
+        loc.shipsSearchSuppliesPerMonth,
         (s) => s.suppliesMo,
       ),
       SearchField.numeric(
         'sensorprofile',
-        'Sensor profile',
+        loc.shipsSearchSensorProfile,
         (s) => s.sensorProfile,
       ),
       SearchField.numeric(
         'sensorstrength',
-        'Sensor strength',
+        loc.shipsSearchSensorStrength,
         (s) => s.sensorStrength,
       ),
       SearchField.numeric(
         'minpieces',
-        'Minimum debris pieces',
+        loc.shipsSearchMinPieces,
         (s) => s.minPieces,
       ),
       SearchField.numeric(
         'maxpieces',
-        'Maximum debris pieces',
+        loc.shipsSearchMaxPieces,
         (s) => s.maxPieces,
       ),
       SearchField.numeric(
         'builtinweapons',
-        'Number of built-in weapons',
+        loc.shipsSearchBuiltInWeapons,
         (s) => s.builtInWeapons?.length ?? 0,
       ),
       SearchField.numeric(
         'builtinmods',
-        'Number of built-in hullmods',
+        loc.shipsSearchBuiltInHullmods,
         (s) => s.builtInMods?.length ?? 0,
       ),
       SearchField.numeric(
         'builtinwings',
-        'Number of built-in fighter wings',
+        loc.shipsSearchBuiltInWings,
         (s) => s.builtInWings?.length ?? 0,
       ),
       // Weapon slot fields by size, type, and size+type combination
       for (final size in const ['SMALL', 'MEDIUM', 'LARGE'])
         SearchField.numeric<Ship>(
           '${size.toLowerCase()}Slots',
-          '${size.toLowerCase().toTitleCase()} slots',
+          loc.shipsSearchSizeSlots(size.toLowerCase().toTitleCase()),
           (s) => s.countMountableSlots(size: size),
         ),
       for (final type in const [
@@ -990,7 +1003,7 @@ class ShipsPageController extends Notifier<ShipsPageState>
       ])
         SearchField.numeric<Ship>(
           '${type.toLowerCase()}Slots',
-          '${type.toLowerCase().toTitleCase()} mountable slots',
+          loc.shipsSearchTypeSlots(type.toLowerCase().toTitleCase()),
           (s) => s.countMountableSlots(type: type),
         ),
       for (final size in const ['SMALL', 'MEDIUM', 'LARGE'])
@@ -1005,7 +1018,10 @@ class ShipsPageController extends Notifier<ShipsPageState>
         ])
           SearchField.numeric<Ship>(
             '${size.toLowerCase()}${type.toLowerCase().toTitleCase()}',
-            '${size.toLowerCase().toTitleCase()} ${type.toLowerCase()} slots',
+            loc.shipsSearchSizeTypeSlots(
+              size.toLowerCase().toTitleCase(),
+              type.toLowerCase(),
+            ),
             (s) => s.countMountableSlots(type: type, size: size),
           ),
     ];

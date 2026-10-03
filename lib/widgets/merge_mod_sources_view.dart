@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/game_data_merge.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
@@ -12,8 +13,9 @@ Widget mergeModSourcesView(
   required String fileLabel,
   required String fallbackName,
 }) {
+  final loc = AppLocalizationsSync.instance;
   final sources = modSources;
-  if (sources == null) return _line(theme, 'Mod', fallbackName);
+  if (sources == null) return _line(theme, loc.merge_mod_sourcesMod, fallbackName);
 
   final otherFileMods = sources.fileSources
       .where((s) => !s.isWinner && !s.isVanilla)
@@ -33,7 +35,11 @@ Widget mergeModSourcesView(
         ? sources.statsWinner
         : (fileWinner ?? fallbackName);
     // Match the old line: no "Mod:" prefix for the game core.
-    return _line(theme, name == kVanillaSourceName ? null : 'Mod', name);
+    return _line(
+      theme,
+      name == kVanillaSourceName ? null : loc.merge_mod_sourcesMod,
+      name,
+    );
   }
 
   return Column(
@@ -43,11 +49,11 @@ Widget mergeModSourcesView(
       if (sources.hasStatsRow)
         _line(
           theme,
-          'Stats',
+          loc.merge_mod_sourcesStats,
           sources.statsWinner,
           suffix: sources.statsIgnored.isEmpty
               ? null
-              : '(+${sources.statsIgnored.length} ignored)',
+              : loc.merge_mod_sourcesIgnoredCount(sources.statsIgnored.length),
           tooltip: sources.statsIgnored.isEmpty ? null : _statsTooltip(sources),
         ),
       if (fileWinner != null)
@@ -57,8 +63,9 @@ Widget mergeModSourcesView(
           fileWinner,
           suffix: otherFileMods.isEmpty
               ? null
-              : '(+${otherFileMods.length} other '
-                    'mod${otherFileMods.length == 1 ? '' : 's'})',
+              : otherFileMods.length == 1
+              ? loc.merge_mod_sourcesOtherModCount(otherFileMods.length)
+              : loc.merge_mod_sourcesOtherModsCount(otherFileMods.length),
           tooltip: otherFileMods.isEmpty
               ? null
               : _fileTooltip(sources, fileLabel),
@@ -112,18 +119,25 @@ Widget _line(
   );
 }
 
-String _statsTooltip(ItemModSources sources) =>
-    "Only ${sources.statsWinner}'s stats are used.\n"
-    'Overridden (no effect): ${sources.statsIgnored.join(', ')}';
+String _statsTooltip(ItemModSources sources) {
+  final loc = AppLocalizationsSync.instance;
+  return loc.merge_mod_sourcesStatsTooltip(
+    sources.statsWinner,
+    sources.statsIgnored.join(', '),
+  );
+}
 
 String _fileTooltip(ItemModSources sources, String fileLabel) {
-  final buffer = StringBuffer('$fileLabel: what each mod changes');
+  final loc = AppLocalizationsSync.instance;
+  final buffer = StringBuffer(
+    loc.merge_mod_sourcesFileTooltipHeader(fileLabel),
+  );
   for (final s in sources.fileSources) {
     buffer.write('\n\n${s.sourceName}');
     if (s.isWinner) {
-      buffer.write('  (used for most)');
+      buffer.write('  ${loc.merge_mod_sourcesUsedForMost}');
     } else if (s.isVanilla) {
-      buffer.write('  (base)');
+      buffer.write('  ${loc.merge_mod_sourcesBase}');
     }
     if (s.areas.isNotEmpty) {
       final shown = s.areas.take(5).join(' · ');

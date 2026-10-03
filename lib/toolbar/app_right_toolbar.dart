@@ -29,6 +29,7 @@ class _FilePermissionShieldState extends ConsumerState<FilePermissionShield> {
 
   @override
   Widget build(BuildContext context) {
+    final loc = AppLocalizations.of(context);
     ref.listen(vmparamsManagerProvider, (prev, next) async {
       final newState = next.value;
       if (newState != null && prev?.value != newState) {
@@ -57,19 +58,18 @@ class _FilePermissionShieldState extends ConsumerState<FilePermissionShield> {
           children: [
             TextSpan(
               text: isAlreadyAdmin
-                  ? "Unable to find or modify file(s)."
-                  : "Right-click TriOS.exe and select 'Run as Administrator'.",
+                  ? loc.app_right_toolbarUnableToFindOr
+                  : loc.app_right_toolbarRightClickTriosExe,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             TextSpan(
               text: isAlreadyAdmin
-                  ? "\nEnsure that they exist and are not read-only.\n"
-                  : "\nTriOS may not be able to modify game files, otherwise.\n",
+                  ? loc.app_right_toolbarEnsureTheyExist
+                  : loc.app_right_toolbarTriosMayNotBeAble,
             ),
             TextSpan(
               text:
-                  "\n${paths.joinToString(separator: "\n", transform: (path) => "❌ Unable to edit ${path.description}."
-                      "\n    (${path.path ?? 'unknown path'}).")}",
+                  "\n${paths.joinToString(separator: "\n", transform: (path) => loc.app_right_toolbarUnableToEditFile(path.description, path.path ?? loc.app_right_toolbarUnknownPath))}",
             ),
           ],
         ),
@@ -82,7 +82,9 @@ class _FilePermissionShieldState extends ConsumerState<FilePermissionShield> {
             color: TriOSThemeConstants.vanillaWarningColor,
           ),
           Text(
-            isAlreadyAdmin ? "Warning" : "Must Run as Admin",
+            isAlreadyAdmin
+                ? loc.warningTitle
+                : loc.app_right_toolbarMustRunAsAdmin,
             style: TextStyle(
               color: TriOSThemeConstants.vanillaWarningColor,
               fontSize: 12,
@@ -120,8 +122,9 @@ class AdminPermissionShield extends StatelessWidget {
     }
 
     return MovingTooltipWidget.text(
-      message:
-          "Running as Administrator.\nDrag'n'drop will not work due to Windows security limits.",
+      message: AppLocalizations.of(
+        context,
+      ).app_right_toolbarRunningAsAdministratorNdrag,
       child: SvgImageIcon(
         "assets/images/icon-admin-shield-half.svg",
         color: Theme.of(context).iconTheme.color,
@@ -144,11 +147,11 @@ class DonateView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SelectableText(
-            "TriOS, like SMOL before it, is a hobby that I do because I enjoy it, and because I enjoy giving to Starsector."
-            "\nThey're the result of many hundreds of hours of coding, and I hope they have been useful (and even enjoyable) for you."
+            "${loc.app_right_toolbarTriosLikeSmolBefore}"
+            "${loc.app_right_toolbarNtheyReTheResult}"
             "\n"
-            "\nIf you feel like donating, thank you. If you can't donate but wish you were rich enough to just give money away, thank you anyway :)"
-            "\nTake care of yourself,"
+            "${loc.app_right_toolbarNifYouFeelLike}"
+            "${loc.app_right_toolbarNtakeCareOfYourself}"
             "\n- Wisp",
             style: Theme.of(
               context,

@@ -55,12 +55,13 @@ MenuItem<dynamic> buildMenuItemOpenForumPage(
   final hasThread = modVariant.versionCheckerInfo?.modThreadId != null;
   final hasNexusPage = modVariant.versionCheckerInfo?.modNexusId != null;
   final hasPage = hasThread || hasNexusPage;
+  final loc = AppLocalizationsSync.instance;
   return MenuItem(
     label: hasThread
-        ? 'Open Forum Page'
+        ? loc.contextMenuOpenForumPage
         : hasNexusPage
-        ? 'Open Nexus Page'
-        : 'Open Forum Page (unavailable)',
+        ? loc.contextMenuOpenNexusPage
+        : loc.contextMenuOpenForumPageUnavailable,
     icon: Icons.open_in_browser,
     iconOpacity: hasPage ? 1 : 0.5,
     onSelected: () {
@@ -78,9 +79,9 @@ MenuItem<dynamic> buildMenuItemOpenForumPage(
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text(
-              "Mod has not set up Version Checker, or it does not contain a forum thread id.",
+              loc.contextMenuNoVersionCheckerForumId,
             ),
           ),
         );
@@ -108,7 +109,9 @@ MenuItem<dynamic> buildMenuItemCopyInstallLink(
   final hasUrl = url != null && url.isNotEmpty;
   final loc = AppLocalizationsSync.instance;
   return MenuItem(
-    label: hasUrl ? 'Copy install link' : 'Copy install link (unavailable)',
+    label: hasUrl
+        ? loc.contextMenuCopyInstallLink
+        : loc.contextMenuCopyInstallLinkUnavailable,
     icon: Icons.link,
     iconOpacity: hasUrl ? 1 : 0.5,
     onSelected: () {
@@ -116,8 +119,8 @@ MenuItem<dynamic> buildMenuItemCopyInstallLink(
         showSnackBar(
           context: context,
           type: SnackBarType.warn,
-          content: const Text(
-            "This mod has no Version Checker URL or direct download link to build an install link from.",
+          content: Text(
+            loc.contextMenuNoInstallLinkSource,
           ),
         );
         return;
@@ -409,8 +412,8 @@ MenuItem buildMenuItemDebugging(
       if (!isGameRunning)
         MenuItem(
           label: (redownloadEnabled)
-              ? "Redownload & Reinstall"
-              : "Redownload unavailable",
+              ? loc.contextMenuRedownloadReinstall
+              : loc.contextMenuRedownloadUnavailable,
           icon: redownloadEnabled ? Icons.downloading : null,
           onSelected: () {
             if (redownloadUrl != null && redownloadVariant != null) {
@@ -425,9 +428,9 @@ MenuItem buildMenuItemDebugging(
                   );
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
+                SnackBar(
                   content: Text(
-                    "This mod does not support direct download. Please manually redownload/reinstall.",
+                    loc.contextMenuNoDirectDownload,
                   ),
                 ),
               );
@@ -454,7 +457,9 @@ MenuItem buildMenuItemViewChangelog(
   final loc = AppLocalizationsSync.instance;
 
   return MenuItem(
-    label: hasChangelog ? loc.triosViewChangelog : 'View Changelog (unavailable)',
+    label: hasChangelog
+        ? loc.triosViewChangelog
+        : loc.contextMenuViewChangelogUnavailable,
     icon: Icons.history,
     iconOpacity: hasChangelog ? 1 : 0.5,
     onSelected: () {
@@ -462,8 +467,8 @@ MenuItem buildMenuItemViewChangelog(
         showSnackBar(
           context: context,
           type: SnackBarType.warn,
-          content: const Text(
-            "This mod has no changelog. It needs Version Checker with a changelog link.",
+          content: Text(
+            loc.contextMenuNoChangelog,
           ),
         );
         return;
@@ -583,8 +588,8 @@ MenuItem buildMenuItemToggleMuteUpdates(Mod mod, WidgetRef ref) {
   }
 
   final thisUpdateLabel = isVersionMuted
-      ? 'Unmute this update ($remoteVersion)'
-      : 'Mute this update ($remoteVersion)';
+      ? AppLocalizationsSync.instance.contextMenuUnmuteThisUpdate(remoteVersion)
+      : AppLocalizationsSync.instance.contextMenuMuteThisUpdate(remoteVersion);
   final thisUpdateIcon = isVersionMuted
       ? Icons.notifications
       : Icons.notifications_paused;

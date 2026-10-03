@@ -255,12 +255,9 @@ class _ModRecordSourcesDialogState
         constraints: const BoxConstraints(maxWidth: 600),
         child: SingleChildScrollView(
           child: record == null
-              ? const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    "No source record exists for this mod yet.\n"
-                    "Records are created automatically when TriOS processes installed mods.",
-                  ),
+              ? Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(loc.recordNoSourceRecordYet),
                 )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,26 +350,26 @@ class _ModRecordSourcesDialogState
             children: source == null
                 ? [
                     Text(
-                      "(not installed)",
+                      loc.recordNotInstalled,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ]
                 : [
                     SimpleDataRow(
                       label: loc.recordNameLabel,
-                      value: source.name ?? "(unknown)",
+                      value: source.name ?? loc.recordUnknownValue,
                     ),
                     SimpleDataRow(
                       label: loc.recordAuthorLabel,
-                      value: source.author ?? "(unknown)",
+                      value: source.author ?? loc.recordUnknownValue,
                     ),
                     SimpleDataRow(
                       label: loc.recordPathLabel,
-                      value: source.installPath ?? "(unknown)",
+                      value: source.installPath ?? loc.recordUnknownValue,
                     ),
                     SimpleDataRow(
                       label: loc.recordVersionLabel,
-                      value: source.version ?? "(unknown)",
+                      value: source.version ?? loc.recordUnknownValue,
                     ),
                     if (source.lastSeen != null)
                       SimpleDataRow(
@@ -405,7 +402,7 @@ class _ModRecordSourcesDialogState
             children: [
               if (source == null)
                 Text(
-                  "(no version checker data)",
+                  loc.recordNoVersionCheckerData,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               InlineEditText(
@@ -464,7 +461,7 @@ class _ModRecordSourcesDialogState
             children: [
               if (source == null)
                 Text(
-                  "(not found in catalog)",
+                  loc.recordNotFoundInCatalog,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               if (source?.name != null)
@@ -540,7 +537,7 @@ class _ModRecordSourcesDialogState
             children: [
               if (source == null)
                 Text(
-                  "(no downloads recorded)",
+                  loc.recordNoDownloadsRecorded,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               InlineEditText(

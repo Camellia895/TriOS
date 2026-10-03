@@ -4,6 +4,7 @@ import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
 import 'settings_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows the configured game, mods, and saves folder paths.
 class GameFolderInfoIntent extends ChatIntent with SettingsAwareIntent {
@@ -63,14 +64,16 @@ class GameFolderInfoIntent extends ChatIntent with SettingsAwareIntent {
     final mods = modsFolder?.path;
     final saves = savesFolder?.path;
 
-    final buf = StringBuffer('Folder Paths\n');
-    buf.writeln('  Game:  ${game ?? "Not configured"}');
-    buf.writeln('  Mods:  ${mods ?? "Not configured"}');
-    buf.writeln('  Saves: ${saves ?? "Not configured"}');
+    final loc = AppLocalizationsSync.instance;
+    final notConfigured = loc.chatbotValueNotSet;
+    final buf = StringBuffer(loc.chatbotFolderPathsTitle + '\n');
+    buf.writeln(loc.chatbotFolderPathsGame(game ?? notConfigured));
+    buf.writeln(loc.chatbotFolderPathsMods(mods ?? notConfigured));
+    buf.writeln(loc.chatbotFolderPathsSaves(saves ?? notConfigured));
 
     if (game == null) {
       buf.writeln(
-        '\nSet your game folder in Settings to get started.',
+        loc.chatbotSetGameFolderFirst,
       );
     }
 

@@ -4,6 +4,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/catalog/catalog_mod_card.dart';
 import 'package:trios/catalog/catalog_page_controller.dart';
 import 'package:trios/catalog/models/ai_summary_mode.dart';
@@ -258,7 +259,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                             children: [
                               const SizedBox(width: 4),
                               Text(
-                                'Mod Catalog',
+                                loc.catalogModCatalog,
                                 style: theme.textTheme.headlineSmall?.copyWith(
                                   fontSize: 20,
                                 ),
@@ -287,8 +288,8 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                               ),
                               MovingTooltipWidget.text(
                                 message: catalogState.sortAscending
-                                    ? 'Ascending'
-                                    : 'Descending',
+                                    ? loc.factionViewerAscending
+                                    : loc.factionViewerDescending,
                                 child: IconButton(
                                   icon: Icon(
                                     catalogState.sortAscending
@@ -319,7 +320,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                     Opacity(
                       opacity: 0.8,
                       child: Text(
-                        '$totalCount Mods${totalCount != displayedMods.length ? " (${displayedMods.length} shown)" : ""}',
+                        "${loc.catalogModsCount(totalCount)}${totalCount != displayedMods.length ? " ${loc.viewerToolbarShownCount(displayedMods.length)}" : ""}",
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
                     ),
@@ -582,11 +583,11 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                             );
                                             setState(() {});
                                           },
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             isDense: true,
                                             contentPadding: EdgeInsets.all(8),
                                             border: InputBorder.none,
-                                            hintText: 'URL',
+                                            hintText: loc.catalogUrl,
                                           ),
                                         );
                                       },
@@ -608,15 +609,12 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                           )!,
                                           builder: (context) {
                                             return AlertDialog(
-                                              title: const Text(
-                                                "Forum Dark Theme Instructions",
+                                              title: Text(
+                                                loc
+                                                    .catalogForumDarkThemeInstructions,
                                               ),
-                                              content: const Text(
-                                                ""
-                                                "Read the whole thing first!\n"
-                                                "\n1. Log in to the forum, then reopen this dialog."
-                                                "\n2. Click the button below to navigate to the theme settings."
-                                                "\n3. Next to 'Current Theme', click (change) and select 'Back n Black'.",
+                                              content: Text(
+                                                loc.catalogForumDarkThemeBody,
                                               ),
                                               actions: [
                                                 TextButton(
@@ -631,8 +629,8 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                                     Navigator.of(context).pop();
                                                     setState(() {});
                                                   },
-                                                  child: const Text(
-                                                    "Forum Profile Prefs",
+                                                  child: Text(
+                                                    loc.catalogForumProfilePrefs,
                                                   ),
                                                 ),
                                                 TextButton(
@@ -652,14 +650,15 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                       return hasHiddenDarkModeTip != true
                                           ? OutlinedButton.icon(
                                               onPressed: onPressedDarkTheme,
-                                              label: const Text(
-                                                "Forum Dark Theme Instructions",
+                                              label: Text(
+                                                loc
+                                                    .catalogForumDarkThemeInstructions,
                                               ),
                                               icon: const Icon(Icons.dark_mode),
                                             )
                                           : MovingTooltipWidget.text(
-                                              message:
-                                                  "Forum Dark Theme Instructions",
+                                              message: loc
+                                                  .catalogForumDarkThemeInstructions,
                                               child: IconButton(
                                                 onPressed: onPressedDarkTheme,
                                                 icon: const Icon(
@@ -680,9 +679,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                         child: IgnoreDropMouseRegion(
                           child: switch (_webViewStatus) {
                             WebViewStatus.loading => Center(
-                              child: const Text(
-                                "Checking for webview support...",
-                              ),
+                              child: Text(loc.catalogCheckingForWebviewSupport),
                             ),
                             WebViewStatus.optInRequired => Center(
                               child: Padding(
@@ -704,10 +701,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                     // const SizedBox(height: 8),
                                     if (!didPreviousSessionCrash)
                                       Text(
-                                        "The web browser is disabled by default"
-                                        "\nto prevent crash looping on some systems."
-                                        "\n"
-                                        "\nClick Load Once, and, if it works, click Always Load next time.",
+                                        loc.catalogBrowserDisabledByDefault,
                                         textAlign: TextAlign.center,
                                         style: theme.textTheme.bodyMedium
                                             ?.copyWith(
@@ -733,8 +727,9 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                               const SizedBox(width: 16),
                                               Flexible(
                                                 child: Text(
-                                                  "${context.appName} quit unexpectedly.\n"
-                                                  "The browser has been disabled as a precaution.",
+                                                  loc.catalogAppQuitUnexpectedly(
+                                                    context.appName,
+                                                  ),
                                                   style: TextStyle(
                                                     color: theme
                                                         .colorScheme
@@ -751,8 +746,10 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                     Wrap(
                                       children: [
                                         MovingTooltipWidget.text(
-                                          message:
-                                              "Browser will be loaded until ${context.appName} exits.",
+                                          message: loc
+                                              .catalogBrowserLoadedUntilExit(
+                                                context.appName,
+                                              ),
                                           child: OutlinedButton.icon(
                                             onPressed: _loadWebViewOnce,
                                             icon: Icon(Icons.web),
@@ -761,8 +758,10 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                         ),
                                         const SizedBox(width: 12),
                                         MovingTooltipWidget.text(
-                                          message:
-                                              "Browser will always load (unless ${context.appName} crashes).",
+                                          message: loc
+                                              .catalogBrowserAlwaysLoad(
+                                                context.appName,
+                                            ),
                                           child: OutlinedButton.icon(
                                             onPressed: _loadWebViewAlways,
                                             icon: const Icon(Icons.web),
@@ -834,7 +833,9 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                                                     )
                                                     .downloadAndInstallMod(
                                                       selectedModName ??
-                                                          "Catalog Mod",
+                                                          AppLocalizationsSync
+                                                              .instance
+                                                              .catalogCatalogMod,
                                                       url.toString(),
                                                       activateVariantOnComplete:
                                                           false,
@@ -895,16 +896,15 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Unable to display web browser",
+                                  loc.catalogUnableToDisplayWeb,
                                   style: theme.textTheme.headlineSmall,
                                 ),
                                 const SizedBox(height: 16),
-                                const Text(
-                                  "WebView2 is required but not installed.",
+                                Text(
+                                  loc.catalogWebviewIsRequiredBut,
                                 ),
                                 Linkify(
-                                  text:
-                                      "Please install it from https://developer.microsoft.com/en-us/microsoft-edge/webview2/",
+                                  text: loc.catalogPleaseInstallItFrom,
                                   onOpen: (link) => OpenFilex.open(link.url),
                                 ),
                                 Text(loc.catalogRestart(context.appName)),
@@ -914,13 +914,12 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Linux is not supported",
+                                  loc.catalogLinuxIsNotSupported,
                                   style: theme.textTheme.headlineSmall,
                                 ),
                                 const SizedBox(height: 16),
                                 Linkify(
-                                  text:
-                                      "Use a standalone browser to find mods (maybe at https://starmodder.pages.dev ?) instead.",
+                                  text: loc.catalogUseAStandaloneBrowser,
                                   onOpen: (link) => OpenFilex.open(link.url),
                                 ),
                               ],
@@ -929,13 +928,12 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Not supported",
+                                  loc.catalogNotSupported,
                                   style: theme.textTheme.headlineSmall,
                                 ),
                                 const SizedBox(height: 16),
                                 Linkify(
-                                  text:
-                                      "Use a standalone browser to find mods (maybe at https://starmodder.pages.dev ?) instead.",
+                                  text: loc.catalogUseAStandaloneBrowser,
                                   onOpen: (link) => OpenFilex.open(link.url),
                                 ),
                               ],
@@ -1021,7 +1019,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
           enabled: false,
           height: 28,
           child: Text(
-            'Show AI mod summaries',
+            loc.catalogShowAiModSummaries,
             style: theme.textTheme.labelMedium?.copyWith(
               color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
             ),
@@ -1035,7 +1033,7 @@ class _CatalogPageState extends ConsumerState<CatalogPage>
             enabled: aiEnabled,
             tooltip: aiEnabled
                 ? null
-                : 'Turn on AI features in Settings to use this.',
+                : loc.catalogTurnOnAiFeatures,
             onTap: () {
               ref
                   .read(appSettings.notifier)

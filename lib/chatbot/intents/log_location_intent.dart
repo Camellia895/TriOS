@@ -66,7 +66,7 @@ class LogLocationIntent extends ChatIntent with LogAwareIntent {
       );
     }
 
-    return const ChatResponse(
+    return ChatResponse(
       text: LogAwareIntent.noLogMessage,
     );
   }

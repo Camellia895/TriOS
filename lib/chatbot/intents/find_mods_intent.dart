@@ -1,6 +1,7 @@
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Directs users to the Catalog page to find and download mods.
 class FindModsIntent extends ChatIntent {
@@ -61,20 +62,8 @@ class FindModsIntent extends ChatIntent {
 
   @override
   ChatResponse respond(String input, ConversationContext context) {
-    return const ChatResponse(text: _response);
+    return ChatResponse(
+      text: AppLocalizationsSync.instance.chatbotFindModsGuide,
+    );
   }
-
-  static const _response = 'Finding New Mods\n'
-      '\n'
-      'TriOS has a built-in Catalog page! Click "Catalog" in the sidebar\n'
-      'to browse, search, and install mods directly.\n'
-      '\n'
-      'The Catalog lets you:\n'
-      '  Browse all available mods\n'
-      '  Filter by category and game version\n'
-      '  Download and install with one click\n'
-      '\n'
-      'You can also find mods at:\n'
-      '  Starsector Forums — fractalsoftworks.com/forum\n'
-      '  Unofficial Starsector Discord — has mod channels';
 }

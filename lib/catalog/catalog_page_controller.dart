@@ -45,15 +45,20 @@ const List<String> _kAttributeOrder = [
   kAttrArchived,
 ];
 
-const Map<String, String> _kAttributeLabels = {
-  kAttrDownload: 'Has Download Link',
-  kAttrSourceCode: 'Has Source Code',
-  kAttrDiscord: 'Discord',
-  kAttrIndex: 'Index',
-  kAttrForum: 'Forum',
-  kAttrWip: 'WIP',
-  kAttrArchived: 'Archived',
-};
+/// Localized display names for the Catalog "Attributes" filter chips.
+String _attributeLabel(String v) {
+  final loc = AppLocalizationsSync.instance;
+  return switch (v) {
+    kAttrDownload => loc.catalogHasDownloadLink,
+    kAttrSourceCode => loc.catalogHasSourceCode,
+    kAttrDiscord => loc.catalogDiscord,
+    kAttrIndex => loc.catalogIndex,
+    kAttrForum => loc.catalogForum,
+    kAttrWip => loc.profileWip,
+    kAttrArchived => loc.catalogArchived,
+    _ => v,
+  };
+}
 
 @MappableClass()
 class CatalogPageStatePersisted with CatalogPageStatePersistedMappable {
@@ -227,15 +232,16 @@ class CatalogPageController extends Notifier<CatalogPageState>
     final groups = <FilterGroup<CatalogMod>>[
       CompositeFilterGroup<CatalogMod>(
         id: 'status',
-        name: 'Status',
+        name: AppLocalizationsSync.instance.catalogStatus,
         fields: [
           StringChoiceField<CatalogMod>(
             id: 'installed',
             label: AppLocalizationsSync.instance.catalogInstalled,
-            allLabel: 'Both Installed & Available',
+            allLabel: AppLocalizationsSync.instance.catalogBothInstalledAvailable,
             options: const ['installed', 'available'],
-            optionLabel: (v) =>
-                v == 'installed' ? 'Only Installed' : 'Not Installed',
+            optionLabel: (v) => v == 'installed'
+                ? AppLocalizationsSync.instance.catalogOnlyInstalled
+                : AppLocalizationsSync.instance.catalogNotInstalled,
             predicate: (mod, selected) {
               if (selected == null) return true;
               final isInstalled = mod.installedMod != null;
@@ -262,7 +268,7 @@ class CatalogPageController extends Notifier<CatalogPageState>
         name: 'Attributes',
         valueGetter: (_) => '',
         valuesGetter: (mod) => mod.attributeKeys,
-        displayNameGetter: (v) => _kAttributeLabels[v] ?? v,
+        displayNameGetter: (v) => _attributeLabel(v),
         sortComparator: (a, b) =>
             declaredAttrIndex(a).compareTo(declaredAttrIndex(b)),
       ),
@@ -274,7 +280,7 @@ class CatalogPageController extends Notifier<CatalogPageState>
             id: 'versionBucket',
             label: AppLocalizationsSync.instance.catalogGameVersion,
             options: _versionGroupOptions.keys.toList(),
-            allLabel: 'All Versions',
+            allLabel: AppLocalizationsSync.instance.catalogAllVersions,
             predicate: (mod, selected) {
               if (selected == null) return true;
               final bucket = _versionGroupOptions[selected];
@@ -287,7 +293,7 @@ class CatalogPageController extends Notifier<CatalogPageState>
       ),
       ChipFilterGroup<CatalogMod>(
         id: 'category',
-        name: 'Category',
+        name: AppLocalizationsSync.instance.modsGridCategory,
         collapsedByDefault: false,
         valueGetter: (_) => '',
         valuesGetter: (m) => m.entry.categories ?? const <String>[],

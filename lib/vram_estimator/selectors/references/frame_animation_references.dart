@@ -1,3 +1,4 @@
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
 import 'package:trios/vram_estimator/selectors/references/reference_parser.dart';
@@ -24,13 +25,12 @@ class FrameAnimationReferences extends ReferenceParser {
   String get id => parserId;
 
   @override
-  String get displayName => 'Frame animations';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefFrameAnimations;
 
   @override
   String get description =>
-      "Finds auto-loaded frame siblings of referenced sprites. When a "
-      "weapon/effect references e.g. foo_00.png, Starsector's engine also "
-      "loads foo_01.png, foo_02.png, ... from the same folder.";
+      AppLocalizationsSync.instance.vramRefFrameAnimationsDesc;
 
   @override
   Future<Map<String, Set<String>>> collect(

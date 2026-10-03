@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/generic_settings_manager.dart';
 import 'package:trios/utils/generic_settings_notifier.dart';
 
@@ -425,133 +426,136 @@ class CategoryManagerNotifier
 
   // --- Default categories ---
 
-  static const List<Category> defaultCategories = [
-    Category(
-      id: 'cat-library',
-      name: 'Library',
-      isUserCreated: false,
-      sortOrder: 0,
-      color: Color(0xFF607D8B),
-    ),
-    Category(
-      id: 'cat-utility',
-      name: 'Utility',
-      isUserCreated: false,
-      sortOrder: 1,
-      color: Color(0xFF4CAF50),
-    ),
-    Category(
-      id: 'cat-qol',
-      name: 'Quality of Life',
-      isUserCreated: false,
-      sortOrder: 2,
-      color: Color(0xFF009688),
-    ),
-    Category(
-      id: 'cat-megamod',
-      name: 'Megamod',
-      isUserCreated: false,
-      sortOrder: 3,
-      color: Color(0xFF9C27B0),
-    ),
-    Category(
-      id: 'cat-faction',
-      name: 'Faction',
-      isUserCreated: false,
-      sortOrder: 4,
-      color: Color(0xFF2196F3),
-    ),
-    Category(
-      id: 'cat-ship-pack',
-      name: 'Ship Pack',
-      isUserCreated: false,
-      sortOrder: 5,
-      color: Color(0xFFFF9800),
-    ),
-    Category(
-      id: 'cat-weapon-fighter-pack',
-      name: 'Weapon/Fighter Pack',
-      isUserCreated: false,
-      sortOrder: 6,
-      color: Color(0xFFFF5722),
-    ),
-    Category(
-      id: 'cat-graphics',
-      name: 'Graphics',
-      isUserCreated: false,
-      sortOrder: 7,
-      color: Color(0xFFE91E63),
-    ),
-    Category(
-      id: 'cat-colonies',
-      name: 'Colonies',
-      isUserCreated: false,
-      sortOrder: 8,
-      color: Color(0xFF8BC34A),
-    ),
-    Category(
-      id: 'cat-quests-bars',
-      name: 'Quests & Bars',
-      isUserCreated: false,
-      sortOrder: 9,
-      color: Color(0xFFFFC107),
-    ),
-    Category(
-      id: 'cat-exploration',
-      name: 'Exploration',
-      isUserCreated: false,
-      sortOrder: 10,
-      color: Color(0xFF00BCD4),
-    ),
-    Category(
-      id: 'cat-officers',
-      name: 'Officers',
-      isUserCreated: false,
-      sortOrder: 11,
-      color: Color(0xFF3F51B5),
-    ),
-    Category(
-      id: 'cat-skills-abilities',
-      name: 'Skills & Abilities',
-      isUserCreated: false,
-      sortOrder: 12,
-      color: Color(0xFF673AB7),
-    ),
-    Category(
-      id: 'cat-audio',
-      name: 'Audio',
-      isUserCreated: false,
-      sortOrder: 13,
-      color: Color(0xFFE040FB),
-    ),
-    Category(
-      id: 'cat-portrait-pack',
-      name: 'Portrait Pack',
-      isUserCreated: false,
-      sortOrder: 14,
-      color: Color(0xFF795548),
-    ),
-    Category(
-      id: 'cat-flag-pack',
-      name: 'Flag Pack',
-      isUserCreated: false,
-      sortOrder: 15,
-      color: Color(0xFFCDDC39),
-    ),
-    Category(
-      id: 'cat-total-conversion',
-      name: 'Total Conversion',
-      isUserCreated: false,
-      sortOrder: 16,
-      color: Color(0xFFF44336),
-      icon: SvgCategoryIcon("assets/images/icon-death-star.svg"),
-    ),
-    Category(
-      id: 'cat-misc-campaign',
-      name: 'Misc. Campaign Mod',
-      isUserCreated: false,
-      sortOrder: 17,
-      color: Color(0xFF9E9E9E),
-    ),
-  ];
+  static List<Category> get defaultCategories {
+    final loc = AppLocalizationsSync.instance;
+    return [
+      Category(
+        id: 'cat-library',
+        name: loc.category_managerLibrary,
+        isUserCreated: false,
+        sortOrder: 0,
+        color: Color(0xFF607D8B),
+      ),
+      Category(
+        id: 'cat-utility',
+        name: loc.category_managerUtility,
+        isUserCreated: false,
+        sortOrder: 1,
+        color: Color(0xFF4CAF50),
+      ),
+      Category(
+        id: 'cat-qol',
+        name: loc.category_managerQualityOfLife,
+        isUserCreated: false,
+        sortOrder: 2,
+        color: Color(0xFF009688),
+      ),
+      Category(
+        id: 'cat-megamod',
+        name: loc.category_managerMegamod,
+        isUserCreated: false,
+        sortOrder: 3,
+        color: Color(0xFF9C27B0),
+      ),
+      Category(
+        id: 'cat-faction',
+        name: loc.category_managerFaction,
+        isUserCreated: false,
+        sortOrder: 4,
+        color: Color(0xFF2196F3),
+      ),
+      Category(
+        id: 'cat-ship-pack',
+        name: loc.category_managerShipPack,
+        isUserCreated: false,
+        sortOrder: 5,
+        color: Color(0xFFFF9800),
+      ),
+      Category(
+        id: 'cat-weapon-fighter-pack',
+        name: loc.category_managerWeaponFighterPack,
+        isUserCreated: false,
+        sortOrder: 6,
+        color: Color(0xFFFF5722),
+      ),
+      Category(
+        id: 'cat-graphics',
+        name: loc.category_managerGraphics,
+        isUserCreated: false,
+        sortOrder: 7,
+        color: Color(0xFFE91E63),
+      ),
+      Category(
+        id: 'cat-colonies',
+        name: loc.category_managerColonies,
+        isUserCreated: false,
+        sortOrder: 8,
+        color: Color(0xFF8BC34A),
+      ),
+      Category(
+        id: 'cat-quests-bars',
+        name: loc.category_managerQuestsBars,
+        isUserCreated: false,
+        sortOrder: 9,
+        color: Color(0xFFFFC107),
+      ),
+      Category(
+        id: 'cat-exploration',
+        name: loc.category_managerExploration,
+        isUserCreated: false,
+        sortOrder: 10,
+        color: Color(0xFF00BCD4),
+      ),
+      Category(
+        id: 'cat-officers',
+        name: loc.category_managerOfficers,
+        isUserCreated: false,
+        sortOrder: 11,
+        color: Color(0xFF3F51B5),
+      ),
+      Category(
+        id: 'cat-skills-abilities',
+        name: loc.category_managerSkillsAbilities,
+        isUserCreated: false,
+        sortOrder: 12,
+        color: Color(0xFF673AB7),
+      ),
+      Category(
+        id: 'cat-audio',
+        name: loc.category_managerAudio,
+        isUserCreated: false,
+        sortOrder: 13,
+        color: Color(0xFFE040FB),
+      ),
+      Category(
+        id: 'cat-portrait-pack',
+        name: loc.category_managerPortraitPack,
+        isUserCreated: false,
+        sortOrder: 14,
+        color: Color(0xFF795548),
+      ),
+      Category(
+        id: 'cat-flag-pack',
+        name: loc.category_managerFlagPack,
+        isUserCreated: false,
+        sortOrder: 15,
+        color: Color(0xFFCDDC39),
+      ),
+      Category(
+        id: 'cat-total-conversion',
+        name: loc.category_managerTotalConversion,
+        isUserCreated: false,
+        sortOrder: 16,
+        color: Color(0xFFF44336),
+        icon: SvgCategoryIcon("assets/images/icon-death-star.svg"),
+      ),
+      Category(
+        id: 'cat-misc-campaign',
+        name: loc.category_managerMiscCampaignMod,
+        isUserCreated: false,
+        sortOrder: 17,
+        color: Color(0xFF9E9E9E),
+      ),
+    ];
+  }
 }

@@ -83,9 +83,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
       spacing: 8,
       children: [
         MovingTooltipWidget.text(
-          message:
-          "Shows internal diagnostics in the toolbar, including"
-              "\nprocess detection status and cache statistics.",
+          message: loc.debugSectionShowDiagnosticsTooltip,
           child: CheckboxWithLabel(
             value: ref.watch(
               appSettings.select((value) => value.debugMode),
@@ -114,9 +112,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
           ),
         ),
         MovingTooltipWidget.text(
-          message:
-              "Draws the trail of smoke or glow behind a ship's lit engines"
-              "\nin the ship viewer. Still being worked on.",
+          message: loc.debugSectionEngineTrailsTooltip,
           child: CheckboxWithLabel(
             value: ref.watch(appSettings.select((s) => s.showEngineTrails)),
             onChanged: (value) {
@@ -151,9 +147,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                 },
               ),
               MovingTooltipWidget.text(
-                message:
-                    "CAUTION: May mess up TriOS's settings (not mods)."
-                    "\nGoing back in time is not tested. Recommend backing up your settings first (click Log File button to open folder).",
+                message: loc.debugSectionRestoreWarningTooltip,
                 warningLevel: TooltipWarningLevel.error,
                 child: ElevatedButton.icon(
                   icon: _selectedRelease != null
@@ -168,8 +162,8 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   },
                   label: Text(
                     _selectedRelease == null
-                        ? "← Select a release"
-                        : 'Update to ${_selectedRelease?.tagName}',
+                        ? loc.debugSectionSelectARelease
+                        : loc.updateToVersion(_selectedRelease?.tagName ?? ""),
                   ),
                 ),
               ),
@@ -239,7 +233,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               message: "",
               warningLevel: TooltipWarningLevel.error,
               child: Text(
-                "← Select ${Constants.appName} console logging level (resets at restart)",
+                loc.debugSectionConsoleLogLevel(Constants.appName),
                 style: Theme.of(context).textTheme.labelLarge,
               ),
             ),
@@ -277,7 +271,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               message: "",
               warningLevel: TooltipWarningLevel.error,
               child: Text(
-                "← Select ${Constants.appName} file logging level (resets at restart)",
+                loc.debugSectionFileLogLevel(Constants.appName),
                 style: Theme.of(context).textTheme.labelLarge,
               ),
             ),
@@ -471,9 +465,8 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               builder: (context) {
                 return AlertDialog(
                   title: Text(loc.debugSectionResetCategories),
-                  content: const Text(
-                    "This will reset categories to defaults, removing any user-created categories."
-                    "\nMod assignments to default categories will be kept.",
+                  content: Text(
+                    loc.debugSectionResetCategoriesDialog,
                   ),
                   actions: [
                     TextButton(
@@ -499,7 +492,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
         ElevatedButton.icon(
           icon: const Icon(Icons.nearby_error),
           onPressed: () {
-            throw Exception("This is a test error");
+            throw Exception(loc.debugSectionTestError);
           },
           label: Text(loc.debugSectionThrowError),
         ),
@@ -632,7 +625,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
               final detected = vmState?.detectedVmparamsFiles ?? [];
               final selected = vmState?.selectedVmparamsFiles ?? [];
               final buf = StringBuffer();
-              buf.writeln("Detected (${detected.length}):");
+              buf.writeln(loc.debugSectionDetectedFiles(detected.length));
               for (final f in detected) {
                 final isSelected = selected.any((s) => s.path == f.path);
                 buf.writeln("  ${isSelected ? '✓' : '○'} ${f.path}");
@@ -665,13 +658,13 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   if (cacheTime != null) {
                     final age = DateTime.now().difference(cacheTime);
                     final ageStr = age.inHours > 0
-                        ? '${age.inHours}h ago'
-                        : '${age.inMinutes}m ago';
+                        ? loc.debugSectionCacheAgeHours(age.inHours)
+                        : loc.debugSectionCacheAgeMinutes(age.inMinutes);
                     status = entryCount != null
-                        ? 'Cached $ageStr, $entryCount entries'
-                        : 'Cached $ageStr';
+                        ? loc.debugSectionCachedWithCount(ageStr, entryCount)
+                        : loc.debugSectionCached(ageStr);
                   } else {
-                    status = 'Not cached';
+                    status = loc.debugSectionNotCached;
                   }
                   return Text(status,
                       style: Theme.of(context).textTheme.bodySmall);
@@ -690,8 +683,8 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                         if (context.mounted) {
                           showSnackBar(
                             context: context,
-                            content: const Text(
-                              'Forum data refreshed.',
+                            content: Text(
+                              loc.debugSectionForumDataRefreshed,
                             ),
                           );
                         }
@@ -747,13 +740,19 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Updated: ${bundle.updatedAt.toIso8601String()}',
+                                        loc.debugSectionForumUpdated(
+                                          bundle.updatedAt.toIso8601String(),
+                                        ),
                                       ),
                                       Text(
-                                        'Total entries: ${bundle.index.length}',
+                                        loc.debugSectionForumTotalEntries(
+                                          bundle.index.length,
+                                        ),
                                       ),
                                       Text(
-                                        'Matched to ModRecords: $matchedCount',
+                                        loc.debugSectionForumMatchedCount(
+                                          matchedCount,
+                                        ),
                                       ),
                                       const SizedBox(height: 8),
                                       Expanded(
@@ -768,10 +767,12 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                                                 vertical: 1,
                                               ),
                                               child: SelectableText(
-                                                '#${entry.topicId}  '
-                                                '${entry.title}  '
-                                                '(${entry.views} views, '
-                                                '${entry.replies} replies)',
+                                                loc.debugSectionForumEntryLine(
+                                                  '${entry.topicId}',
+                                                  entry.title,
+                                                  entry.views,
+                                                  entry.replies,
+                                                ),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodySmall,
@@ -809,7 +810,7 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   Padding(
                     padding: const EdgeInsets.all(4),
                     child: Text(
-                      "Note: the below information is not collected by TriOS.\nThis is here in case TriOS is misbehaving, to hopefully see if anything looks wrong.",
+                      loc.debugSectionNotCollectedNote,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 13,
@@ -818,11 +819,13 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "Current directory (env variable): ${Directory.current.path}",
+                    loc.debugSectionCurrentDirectoryEnv(Directory.current.path),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "Current directory based on executable: ${Platform.resolvedExecutable.toFile().parent}",
+                    loc.debugSectionCurrentDirectoryExecutable(
+                      Platform.resolvedExecutable.toFile().parent.path,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(loc.debugSectionCurrentExecutable(Platform.resolvedExecutable)),
@@ -832,31 +835,34 @@ class _SettingsDebugSectionState extends ConsumerState<SettingsDebugSection> {
                   Text(loc.debugSectionLocale(Platform.localeName)),
                   const SizedBox(height: 8),
                   Text(
-                    "Locale (using Intl package): ${Intl.getCurrentLocale()}",
+                    loc.debugSectionLocaleIntl(Intl.getCurrentLocale()),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "RAM usage: ${ProcessInfo.currentRss.bytesAsReadableMB()}",
+                    loc.debugSectionRamUsage(ProcessInfo.currentRss.bytesAsReadableMB()),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "Max RAM usage: ${ProcessInfo.maxRss.bytesAsReadableMB()}",
+                    loc.debugSectionMaxRamUsage(ProcessInfo.maxRss.bytesAsReadableMB()),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "TriOS version: ${Constants.version}",
+                    loc.debugSectionTriosVersion(Constants.version),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "Dart version: ${Platform.version}",
+                    loc.debugSectionDartVersion(Platform.version),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "OS: ${Platform.operatingSystem} ${Platform.operatingSystemVersion}",
+                    loc.debugSectionOs(
+                      Platform.operatingSystem,
+                      Platform.operatingSystemVersion,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    "Processors: ${Platform.numberOfProcessors}",
+                    loc.debugSectionProcessors(Platform.numberOfProcessors),
                   ),
                   const SizedBox(height: 8),
                   ElevatedButton.icon(
@@ -1031,7 +1037,7 @@ class _ModCompatibilityFilterWidgetState
                 return SearchBar(
                   controller: controller,
                   leading: const Icon(Icons.search),
-                  hintText: "Filter by variant id",
+                  hintText: loc.debugSectionFilterByVariantId,
                   backgroundColor: WidgetStateProperty.all(
                     Theme.of(context).colorScheme.surfaceContainer,
                   ),
@@ -1061,11 +1067,11 @@ class _ModCompatibilityFilterWidgetState
                   },
             ),
             SelectableText(
-              "${_searchController.text.ifBlank("(no search)")}:\n${ref.watch(AppState.modCompatibility)[_searchController.text]?.toString() ?? "(id not found)"}",
+              "${_searchController.text.ifBlank(loc.debugSectionNoSearch)}:\n${ref.watch(AppState.modCompatibility)[_searchController.text]?.toString() ?? loc.debugSectionIdNotFound}",
             ),
             const SizedBox(height: 24),
             Text(
-              "ALL Mods",
+              loc.debugSectionAllMods,
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

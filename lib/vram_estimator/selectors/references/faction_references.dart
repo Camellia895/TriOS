@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
@@ -14,11 +15,12 @@ class FactionReferences extends ReferenceParser {
   String get id => 'factions';
 
   @override
-  String get displayName => 'Factions (.faction)';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefFactions;
 
   @override
   String get description =>
-      'Logo, crest, and portrait paths referenced by .faction JSON files.';
+      AppLocalizationsSync.instance.vramRefFactionsDesc;
 
   @override
   Future<Map<String, Set<String>>> collect(

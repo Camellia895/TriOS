@@ -643,7 +643,14 @@ class TriOSAppState extends ConsumerState<TriOSApp> with WindowListener {
       navigatorKey: rootNavigatorKey,
       locale: locale,
       supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: const [SyncAppLocalizationsDelegate()],
+      // SyncAppLocalizationsDelegate serves our own strings; material_ui's
+      // GlobalMaterialLocalizations.delegates serve Material/Cupertino/Widgets
+      // text. (Their Default*Localizations delegates are English-only and
+      // refuse to load for any non-English locale, crashing every AppBar.)
+      localizationsDelegates: const [
+        SyncAppLocalizationsDelegate(),
+        ...GlobalMaterialLocalizations.delegates,
+      ],
       title:
           "${context.appNameWithModifiers(ref.watch(appSettings.select((s) => s.themeModifiers)))}v${Constants.version}",
       theme: currentTheme.themeData,

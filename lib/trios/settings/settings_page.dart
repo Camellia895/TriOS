@@ -132,17 +132,17 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SettingsGroup(
-                  name: "Starsector",
+                  name: loc.settingsGroupStarsector,
                   children: [GamePathsWidget()],
                 ),
                 SettingsGroup(
-                  name: "${Constants.appName} Updates",
+                  name: loc.settingsGroupTriosUpdates(Constants.appName),
                   children: [
                     if (Platform.isMacOS) ...[
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
                         child: Text(
-                          "Self-update is not available on macOS. Please download new versions from the Releases page.",
+                          loc.settingsSelfUpdateUnavailableMac,
                           style: theme.textTheme.bodyMedium,
                         ),
                       ),
@@ -173,11 +173,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
                         child: MovingTooltipWidget.text(
-                          message:
-                              "Play with fire."
-                              "\n"
-                              "\nEnabling this will include Previews when checking for updates."
-                              "\nPreviews are *usually* stable, but no guarantees. They contain bugfixes and often add a feature or two that may not be totally finished.",
+                          message: loc.settingsPrereleasesTooltip,
                           child: CheckboxWithLabel(
                             value: ref.watch(
                               appSettings.select(
@@ -194,8 +190,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                   );
                             },
                             labelWidget: TextWithIcon(
-                              text:
-                                  "Enable ${Constants.appName} preview releases",
+                              text: loc.settingsEnableTriosPreviewReleases(
+                                Constants.appName,
+                              ),
                               trailing: Transform.rotate(
                                 angle: 0.8,
                                 child: SvgImageIcon(
@@ -220,7 +217,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   ],
                 ),
                 SettingsGroup(
-                  name: "Interface",
+                  name: loc.settingsInterface,
                   children: [
                     const _ThemeDropdownRow(),
                     const SizedBox(height: 8),
@@ -331,9 +328,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           MovingTooltipWidget.text(
-                            message:
-                                "Makes the UI larger or smaller."
-                                "\nMin 25%, max 300%.",
+                            message: loc.settingsWindowScaleTooltip,
                             child: SizedBox(
                               width: 90,
                               child: TextField(
@@ -341,7 +336,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                 decoration: InputDecoration(
                                   border: const OutlineInputBorder(),
                                   isDense: true,
-                                  labelText: "${Constants.appName} scale",
+                                  labelText: loc.settingsTriosScale(
+                                    Constants.appName,
+                                  ),
                                   hintStyle: Theme.of(context)
                                       .textTheme
                                       .labelLarge,
@@ -362,9 +359,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                           const SizedBox(width: 8),
                           MovingTooltipWidget.text(
                             warningLevel: TooltipWarningLevel.warning,
-                            message:
-                                "Make small changes at a time."
-                                "\nTri-Tachyon is not responsible if you set it to 300% and it's so big you can't get to the setting to fix it.",
+                            message: loc.settingsScaleCautionTooltip,
                             child: ElevatedButton(
                               onPressed: () {
                                 if (newWindowScaleDouble >= 0.50 &&
@@ -397,15 +392,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         ?.coerceAtLeast(1);
                     final enableMultipleVersions = lastNVersionsSetting != 1;
                     return SettingsGroup(
-                      name: "Mod Organization",
+                      name: loc.settingsModOrganization,
                       children: [
                         MovingTooltipWidget.text(
-                          message:
-                              "If enabled, TriOS will always add the version number to the folder name when installing a mod."
-                              "\nFor example; LazyLib-1.8b, LazyLib-1.8, LazyLib-1.7."
-                              "\n\nIf disabled, the latest mod won't change folder name, even when you update the mod."
-                              "\nOlder versions of a mod will still include the version number in order to tell them apart."
-                              "\nFor example; LazyLib, LazyLib-1.8, LazyLib-1.7.",
+                          message: loc.settingsFolderNamingTooltip,
                           child: CheckboxWithLabel(
                             value:
                                 ref.watch(
@@ -433,11 +423,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 16),
                           child: MovingTooltipWidget.text(
-                            message:
-                                "Manual mode. TriOS will not rename folders."
-                                "\nThis may result in TriOS overwriting mods when updating or installing new versions, if the folder already exists."
-                                "\nFor example, if you have folder `LazyLib` and install a new version where the folder name is also `LazyLib`, the older one will be overwritten."
-                                "\n\nTODO: clean up this UI and use a dropdown or something :)",
+                            message: loc.settingsManualNamingTooltip,
                             warningLevel: TooltipWarningLevel.error,
                             child: CheckboxWithLabel(
                               value:
@@ -504,15 +490,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         ),
                         const SizedBox(height: 8),
                         SettingsGroup.subsection(
-                          name: "Old mod versions",
+                          name: loc.settingsOldModVersions,
                           children: [
                             MovingTooltipWidget.text(
                               message: loc.settingsInstallingOrUpdatingA,
                               child: IntrinsicWidth(
                                 child: RadioListTile(
-                                  title: const Text(
-                                    "Keep only one mod version",
-                                  ),
+                                  title: Text(loc.settingsKeepOnlyOneModVersion),
                                   value: false,
                                   contentPadding: const EdgeInsets.all(0),
                                   groupValue: enableMultipleVersions,
@@ -531,14 +515,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                 IntrinsicWidth(
                                   child: MovingTooltipWidget.text(
                                     message: switch (lastNVersionsSetting) {
-                                      null => "TriOS will never automatically remove mod versions.",
-                                      1 => "Installing or updating a mod will replace the mod.",
+                                      null => loc.settingsKeepVersionsNeverRemove,
+                                      1 => loc.settingsKeepVersionsReplaceMod,
                                       _ =>
-                                        "Installing or updating a mod will remove all but the last $lastNVersionsSetting highest versions.",
+                                        loc.settingsKeepVersionsKeepLastN(
+                                          lastNVersionsSetting,
+                                        ),
                                     },
                                     child: RadioListTile(
-                                      title: const Text(
-                                        "Keep all mod versions",
+                                      title: Text(
+                                        loc.settingsKeepAllModVersions,
                                       ),
                                       value: true,
                                       contentPadding: const EdgeInsets.all(0),
@@ -599,12 +585,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 16),
                                 child: MovingTooltipWidget.text(
-                                  message:
-                                      "${switch (lastNVersionsSetting) {
-                                        null => "",
-                                        1 => "Remove all but the newest version of each mod.",
-                                        _ => "Remove all but the newest $lastNVersionsSetting versions of each mod.",
-                                      }}\nPrompts for confirmation before deleting anything.",
+                                  message: switch (lastNVersionsSetting) {
+                                    null => "\n${loc.settingsCleanUpPrompt}",
+                                    1 =>
+                                      "${loc.settingsRemoveAllButNewest}\n${loc.settingsCleanUpPrompt}",
+                                    _ =>
+                                      "${loc.settingsRemoveAllButNewestCount(lastNVersionsSetting)}\n${loc.settingsCleanUpPrompt}",
+                                  },
                                   child: ElevatedButton.icon(
                                     icon: const SvgImageIcon(
                                       "assets/images/icon-shredder.svg",
@@ -639,9 +626,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                               ),
                             );
                             return MovingTooltipWidget.text(
-                              message:
-                                  "Number of mod archives to extract at the same time during batch installation.\n"
-                                  "Higher values install faster but use more CPU and disk I/O.",
+                              message: loc.settingsConcurrentExtractionsTooltip,
                               child: Row(
                                 children: [
                                   Text(loc.settingsConcurrentExtractions),
@@ -682,7 +667,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   },
                 ),
                 SettingsGroup(
-                  name: "Companion Mod",
+                  name: loc.settingsCompanionMod,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
@@ -704,8 +689,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "The ${Constants.appName} Companion Mod is required to replace portraits without touching the actual mods (see Portraits tab)."
-                                "\nIt does nothing else and has effectively no impact on loading or performance.",
+                                loc.settingsCompanionModDescription(
+                                  Constants.appName,
+                                ),
                                 style: theme.textTheme.labelLarge?.copyWith(
                                   fontStyle: FontStyle.italic,
                                   color: theme.textTheme.labelLarge?.color
@@ -715,10 +701,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                               const SizedBox(height: 8),
                               TextWithIcon(
                                 text: companionMod == null
-                                    ? "The Companion Mod is not installed."
+                                    ? loc.settingsCompanionModNotInstalled
                                     : isCompanionModEnabled
-                                    ? "The Companion Mod is set up correctly."
-                                    : "The Companion Mod is installed but not enabled.",
+                                    ? loc.settingsCompanionModSetUpCorrectly
+                                    : loc.settingsCompanionModNotEnabled,
                                 trailing: companionMod == null
                                     ? const Icon(Icons.error)
                                     : isCompanionModEnabled
@@ -731,15 +717,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                               Row(
                                 children: [
                                   MovingTooltipWidget.text(
-                                    message:
-                                        "If the Companion Mod already exists, it'll be replaced with a fresh version."
-                                        "\nPortrait replacements that show in ${Constants.appName} will NOT be lost.",
+                                    message: loc.settingsReinstallCompanionTooltip(
+                                      Constants.appName,
+                                    ),
                                     child: ElevatedButton.icon(
                                       icon: Icon(Icons.install_desktop),
                                       label: Text(
                                         companionMod != null
-                                            ? "Reinstall Companion Mod"
-                                            : "Install Companion Mod",
+                                            ? loc.settingsReinstallCompanionMod
+                                            : loc.settingsInstallCompanionMod,
                                       ),
                                       onPressed: () async {
                                         setState(() {
@@ -780,8 +766,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                 isEnabled: companionMod != null,
                                 child: ElevatedButton.icon(
                                   icon: Icon(Icons.folder_open),
-                                  label: const Text(
-                                    "Open Companion Mod Folder",
+                                  label: Text(
+                                    loc.settingsOpenCompanionModFolder,
                                   ),
                                   onPressed: () async {
                                     try {
@@ -806,14 +792,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   ],
                 ),
                 SettingsGroup(
-                  name: "Misc",
+                  name: loc.settingsMisc,
                   children: [
                     // Slider for number of seconds between mod info update checks (secondsBetweenModFolderChecks in mod_manager_logic.dart).
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 400),
                       child: MovingTooltipWidget.text(
-                        message:
-                            "This sets how often we check if there are new or changed mods in your folder.\nA shorter time means more frequent checks.\nDoes not scan when ${Constants.appName} is in the background.",
+                        message: loc.settingsRescanTooltip(Constants.appName),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -822,7 +807,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                 left: leftTextOptionPadding,
                               ),
                               child: Text(
-                                "Rescan mod folder every: ${ref.watch(appSettings.select((value) => value.secondsBetweenModFolderChecks))} seconds",
+                                loc.settingsRescanEvery(
+                                  ref.watch(
+                                    appSettings.select(
+                                      (value) => value.secondsBetweenModFolderChecks,
+                                    ),
+                                  ),
+                                ),
                                 style: theme.textTheme.bodyLarge,
                               ),
                             ),
@@ -870,7 +861,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Notification duration: ${ref.watch(appSettings.select((value) => value.toastDurationSeconds))} seconds",
+                                loc.settingsNotificationDuration(
+                                  ref.watch(
+                                    appSettings.select(
+                                      (value) => value.toastDurationSeconds,
+                                    ),
+                                  ),
+                                ),
                                 style: theme.textTheme.bodyLarge,
                               ),
                               Slider(
@@ -916,7 +913,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Max HTTP requests at once: ${ref.watch(appSettings.select((value) => value.maxHttpRequestsAtOnce))}",
+                                loc.settingsMaxHttpRequests(
+                                  ref.watch(
+                                    appSettings.select(
+                                      (value) => value.maxHttpRequestsAtOnce,
+                                    ),
+                                  ),
+                                ),
                                 style: theme.textTheme.bodyLarge,
                               ),
                               Slider(
@@ -957,8 +960,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           MovingTooltipWidget.text(
-                            message:
-                                "This allows ${Constants.appName} to send crash/error reports to get fixed.\nNo personal/identifiable data is sent.\nWill soft-restart ${Constants.appName} to apply.",
+                            message: loc.settingsErrorReportingTooltip(
+                              Constants.appName,
+                            ),
                             child: CheckboxWithLabel(
                               value: ref.watch(
                                 appSettings.select(
@@ -970,8 +974,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                 showAlertDialog(
                                   context,
                                   title: loc.settingsRestartRequired,
-                                  content:
-                                      "${Constants.appName} must be restarted to apply this change.",
+                                  content: loc.settingsRestartToApply(
+                                    Constants.appName,
+                                  ),
                                   actions: [
                                     TextButton(
                                       child: Text(loc.settingsRestartNow),
@@ -1006,13 +1011,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                               showAlertDialog(
                                 context,
                                 title: loc.settingsErrorReporting,
-                                content:
-                                    "If allowed, ${Constants.appName} uses Sentry.io to collect error reports."
-                                    "\nIf not allowed, the Sentry SDK will be completely disabled; it will not be initialized on startup, "
-                                    "which is why the soft restart is required to toggle this setting and why 'Report A Bug' is not available if it is disabled."
-                                    "\n"
-                                    "\nIf error reporting is enabled, care is taken to avoid sending any personal/identifiable data such as IP addresses, usernames (even in file paths), device names, location, etc."
-                                    "\nMod names, device info (OS, CPU count, RAM, etc) is sent.",
+                                content: loc.settingsErrorReportingDialogContent(
+                                  Constants.appName,
+                                ),
                               );
                             },
                           ),
@@ -1020,9 +1021,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       ),
                     ),
                     MovingTooltipWidget.text(
-                      message:
-                          "Whether to check for mod dependencies and prevent launching if they aren't met."
-                          "\nDisable if ${Constants.appName} is getting them wrong, or you'd just like to use vanilla dependency check behavior.",
+                      message: loc.settingsLaunchPrecheckTooltip(
+                        Constants.appName,
+                      ),
                       child: CheckboxWithLabel(
                         value: ref.watch(
                           appSettings.select(
@@ -1044,9 +1045,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     Row(
                       children: [
                         MovingTooltipWidget.text(
-                          message:
-                              "Whether to check if the game is running and lock parts of ${Constants.appName}."
-                              "\nDisable if ${Constants.appName} is detecting incorrectly.",
+                          message: loc.settingsCheckGameRunningTooltip(
+                            Constants.appName,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -1075,8 +1076,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 48),
                                   child: Text(
-                                    "Error checking if game is running!"
-                                    "\n${ref.watch(AppState.gameRunningCheckError).value?.join("\n")}",
+                                    "${loc.settingsGameRunningCheckError}\n${ref.watch(AppState.gameRunningCheckError).value?.join("\n")}",
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge
@@ -1136,10 +1136,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 16),
                         child: MovingTooltipWidget.text(
-                          message:
-                              "The Flutter framework (what ${Constants.appName} uses) has a bug that causes freezes related to text fields on some Linux distros."
-                              "\nDisabling accessibility semantics fixes those freezes."
-                              "\nYou may need to fully restart ${Constants.appName} to apply the changes.",
+                          message: loc.settingsAccessibilitySemanticsTooltip(
+                            Constants.appName,
+                          ),
                           child: CheckboxWithLabel(
                             value: ref.watch(
                               appSettings.select(
@@ -1166,12 +1165,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   ],
                 ),
                 SettingsGroup(
-                  name: "AI Features",
+                  name: loc.settingsAiFeatures,
                   children: [
                     MovingTooltipWidget.text(
-                      message:
-                          "When checked, ${Constants.appName} never shows anything AI-related:"
-                          "\n- Generated mod summaries on the Catalog page",
+                      message: loc.settingsDisableAiTooltip(Constants.appName),
                       child: CheckboxWithLabel(
                         value: !ref.watch(
                           appSettings.select((s) => s.enableAiFeatures),
@@ -1196,8 +1193,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   data: theme.copyWith(dividerColor: Colors.transparent),
                   child: TriOSExpansionTile(
                     title: Text(loc.settingsDebugging),
-                    subtitle: const Text(
-                      "Junk drawer of developer actions and info",
+                    subtitle: Text(
+                      loc.settingsJunkDrawerSubtitle,
                     ),
                     leading: Icon(
                       Icons.bug_report,
@@ -1263,7 +1260,11 @@ class _CheckForUpdatesButtonState extends ConsumerState<CheckForUpdatesButton> {
           showSnackBar(
             context: context,
             content: Text(
-              "You are already on the latest version (current: ${Constants.version}, found: ${release.tagName}${release.prerelease ? " (prerelease)" : ""})",
+              loc.settingsAlreadyLatestVersion(
+                Constants.version,
+                release.tagName,
+                release.prerelease ? " (prerelease)" : "",
+              ),
             ),
             action: SnackBarAction(
               label: loc.settingsIDonTBelieve,
@@ -1350,10 +1351,9 @@ class _DeepLinkRegistrationButtonState
   @override
   Widget build(BuildContext context) {
     final isRegistered = _isRegistered ?? false;
+    final loc = AppLocalizations.of(context);
     return MovingTooltipWidget.text(
-      message:
-          "Registers or unregisters ${Constants.appName} as the handler for 'Install with ${Constants.appName}' links,"
-          "\nwhich lets you install mods with one click from websites.",
+      message: loc.settingsDeepLinkTooltip(Constants.appName),
       child: ElevatedButton.icon(
         icon: _isWorking
             ? const SizedBox(
@@ -1364,8 +1364,8 @@ class _DeepLinkRegistrationButtonState
             : Icon(isRegistered ? Icons.link_off : Icons.link),
         label: Text(
           isRegistered
-              ? "Disable 'Open with TriOS'"
-              : "Enable 'Open with TriOS'",
+              ? loc.settingsDisableOpenWithTrios
+              : loc.settingsEnableOpenWithTrios,
         ),
         onPressed: (_isRegistered == null || _isWorking) ? null : _toggle,
       ),
@@ -1459,9 +1459,9 @@ class _ThemeDropdownRowState extends ConsumerState<_ThemeDropdownRow> {
     final entries = userThemes.isEmpty
         ? builtInThemes
         : [
-            header("Your themes"),
+            header(loc.settingsYourThemes),
             ...userThemes,
-            header("Built-in"),
+            header(loc.settingsBuiltIn),
             ...builtInThemes,
           ];
 
@@ -1472,9 +1472,7 @@ class _ThemeDropdownRowState extends ConsumerState<_ThemeDropdownRow> {
     return Row(
       children: [
         MovingTooltipWidget.text(
-          message:
-              "Change up the colors."
-              "\nNote: only the default theme (StarsectorTriOSTheme) is regularly tested.",
+          message: loc.settingsThemeTooltip,
           child: DropdownMenu<TriOSTheme?>(
             requestFocusOnTap: false,
             dropdownMenuEntries: entries,
@@ -1510,9 +1508,7 @@ class _ThemeDropdownRowState extends ConsumerState<_ThemeDropdownRow> {
           ),
         ),
         MovingTooltipWidget.text(
-          message:
-              "Copy theme as JSON"
-              "\nPuts the selected theme on the clipboard, ready to paste into your own themes file.",
+          message: loc.settingsCopyThemeTooltip,
           child: IconButton(
             onPressed: () async {
               final selected = ref
@@ -1526,7 +1522,7 @@ class _ThemeDropdownRowState extends ConsumerState<_ThemeDropdownRow> {
                 context: context,
                 type: SnackBarType.info,
                 content: Text(
-                  '"${selected.displayName}" copied. Paste it into your themes file.',
+                  loc.settingsThemeCopiedSnackbar(selected.displayName),
                 ),
               );
             },
@@ -1534,9 +1530,7 @@ class _ThemeDropdownRowState extends ConsumerState<_ThemeDropdownRow> {
           ),
         ),
         MovingTooltipWidget.text(
-          message:
-              "Open my themes file"
-              "\n${UserThemes.file.path}",
+          message: loc.settingsOpenThemesFileTooltip(UserThemes.file.path),
           child: IconButton(
             onPressed: () => UserThemes.file.showInExplorer(),
             icon: Icon(Icons.folder_open, color: theme.colorScheme.onSurface),
@@ -1600,9 +1594,7 @@ class _FontDropdownRow extends ConsumerWidget {
     final loc = AppLocalizations.of(context);
 
     return MovingTooltipWidget.text(
-      message:
-          "The font all of TriOS's text is drawn in."
-          "\nSystem uses whatever font your operating system provides.",
+      message: loc.settingsFontTooltip,
       child: Row(
         spacing: 8,
         children: [
@@ -1662,8 +1654,8 @@ class _LanguageDropdownRow extends ConsumerWidget {
           IntrinsicWidth(
             child: TriOSDropdownButton<String?>(
               value: selected,
-              items: const [
-                DropdownMenuItem(value: null, child: Text("System")),
+              items: [
+                DropdownMenuItem(value: null, child: Text(loc.chipperSystem)),
                 DropdownMenuItem(value: "en", child: Text("English")),
                 DropdownMenuItem(value: "zh", child: Text("简体中文")),
               ],

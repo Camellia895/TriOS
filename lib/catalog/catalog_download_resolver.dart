@@ -104,8 +104,10 @@ List<DownloadCandidate> resolveDownloadCandidates(
       DownloadCandidate(
         url: fixedUrl,
         label: version == null || version.isEmpty
-            ? 'Version checker'
-            : 'Version checker ($version)',
+            ? AppLocalizationsSync.instance.catalogVersionChecker
+            : AppLocalizationsSync.instance.catalogVersionCheckerWithVersion(
+                version,
+              ),
         kind: DownloadCandidateKind.versionChecker,
         sourceHost: _hostOf(fixedUrl),
       ),
@@ -247,9 +249,13 @@ String _forumLabel(ForumLlmDownload download, DownloadCandidateKind kind) {
   if (download.label.isNotEmpty) return download.label;
   if (download.fileName?.isNotEmpty == true) return download.fileName!;
   return switch (kind) {
-    DownloadCandidateKind.triosDeepLink => 'Install with ${Constants.appName}',
-    DownloadCandidateKind.forumMirror => 'Mirror',
-    _ => 'Download',
+    DownloadCandidateKind.triosDeepLink =>
+      AppLocalizationsSync.instance.catalogInstallWithAppName(
+        Constants.appName,
+      ),
+    DownloadCandidateKind.forumMirror =>
+      AppLocalizationsSync.instance.catalogMirror,
+    _ => AppLocalizationsSync.instance.catalogDownload,
   };
 }
 

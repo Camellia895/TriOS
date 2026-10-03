@@ -148,17 +148,17 @@ class ShipCodexCard {
     final hasPhase = shieldUpper == 'PHASE';
     final isTruePhaseShip = hasPhase && ship.defenseId == 'phasecloak';
     final defenseLabel = isTruePhaseShip
-        ? 'Phase cloak'
+        ? loc.shipCodexPhaseCloak
         : hasPhase
         ? shipSystemsMap[ship.defenseId ?? '']?.name ??
               ship.defenseId ??
-              'Phase cloak'
+              loc.shipCodexPhaseCloak
         : hasShield
-        ? '${ship.shieldType!.toTitleCase()} shield'
-        : 'None';
+        ? loc.shipCodexShieldType(ship.shieldType!.toTitleCase())
+        : loc.codexNone;
     final defenseRowLabel = hasPhase && !isTruePhaseShip
-        ? 'Special'
-        : 'Defense';
+        ? loc.shipCodexLabelSpecial
+        : loc.shipCodexLabelDefense;
     const crColor = Color(0xFFa4b6ab);
     const crewColor = Color(0xFF40ab80);
     const fuelColor = Color(0xFFf58630);
@@ -198,7 +198,7 @@ class ShipCodexCard {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             spacing: 4,
             children: [
-              tooltipSectionHeader('Logistical data', theme, highlightColor),
+              tooltipSectionHeader(loc.shipCodexSectionLogistical, theme, highlightColor),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 8,
@@ -208,34 +208,34 @@ class ShipCodexCard {
                     child: tooltipStatsGrid(theme, [
                       if (ship.crToDeploy != null)
                         tooltipRow(
-                          'CR per deployment',
+                          loc.shipCodexCrPerDeployment,
                           '${tooltipFmt(ship.crToDeploy)}%',
                           color: crColor,
                         ),
                       if (ship.crPercentPerDay != null)
                         tooltipRow(
-                          'Recovery (/day)',
+                          loc.shipCodexRecoveryPerDay,
                           '${tooltipFmt(ship.crPercentPerDay)}%',
                           color: crColor,
                           indentLevel: 1,
                         ),
                       if (ship.suppliesRec != null)
                         tooltipRow(
-                          'Recovery (supplies)',
+                          loc.shipCodexRecoverySupplies,
                           tooltipFmt(ship.suppliesRec),
                           color: crColor,
                           indentLevel: 1,
                         ),
                       if (ship.deploymentPoints != null)
                         tooltipRow(
-                          'Deployment points',
+                          loc.shipCodexDeploymentPoints,
                           tooltipFmt(ship.deploymentPoints),
                           color: dpColor,
                           indentLevel: 1,
                         ),
                       if (ship.peakCrSec != null)
                         tooltipRow(
-                          'Peak performance (sec)',
+                          loc.shipCodexPeakPerformance,
                           _peakTime(ship.peakCrSec!),
                           color: crColor,
                         ),
@@ -246,10 +246,10 @@ class ShipCodexCard {
                       //     color: crewColor,
                       //   ),
                       tooltipGap,
-                      tooltipRow('Hull size', ship.hullSizeForDisplay()),
+                      tooltipRow(loc.shipCodexHullSize, ship.hullSizeForDisplay()),
                       if (ship.ordnancePoints != null)
                         tooltipRow(
-                          'Ordnance points',
+                          loc.shipsLabelOrdnancePoints,
                           tooltipFmt(ship.ordnancePoints),
                         ),
                     ]),
@@ -260,50 +260,53 @@ class ShipCodexCard {
                       if (ship.suppliesMo != null)
                         tooltipRow(
                           useAbbreviations
-                              ? 'Maintenance (sup/mo)'
-                              : 'Maintenance (supplies/month)',
+                              ? loc.shipCodexMaintenanceShort
+                              : loc.shipCodexMaintenanceFull,
                           tooltipFmt(ship.suppliesMo),
                           color: crColor,
                         ),
                       if (ship.cargo != null)
                         tooltipRow(
-                          'Cargo capacity',
+                          loc.shipsLabelCargoCapacity,
                           tooltipFmt(ship.cargo),
                           color: cargoColor,
                         ),
                       if (ship.maxCrew != null)
                         tooltipRow(
-                          'Maximum crew',
+                          loc.shipsLabelMaximumCrew,
                           tooltipFmt(ship.maxCrew),
                           color: crewColor,
                         ),
                       if (ship.minCrew != null)
                         tooltipRow(
-                          'Skeleton crew',
+                          loc.shipCodexSkeletonCrew,
                           tooltipFmt(ship.minCrew),
                           color: crewColor,
                         ),
                       if (ship.fuel != null)
                         tooltipRow(
-                          'Fuel capacity',
+                          loc.shipsLabelFuelCapacity,
                           tooltipFmt(ship.fuel),
                           color: fuelColor,
                         ),
                       if (ship.maxBurn != null)
-                        tooltipRow('Maximum burn', tooltipFmt(ship.maxBurn)),
+                        tooltipRow(
+                          loc.shipCodexMaximumBurn,
+                          tooltipFmt(ship.maxBurn),
+                        ),
                       if (ship.fuelPerLY != null)
                         tooltipRow(
-                          'Fuel/ly, jump cost',
+                          loc.shipCodexFuelLyJumpCost,
                           tooltipFmt(ship.fuelPerLY),
                         ),
                       if (ship.sensorProfile != null)
                         tooltipRow(
-                          'Sensor profile',
+                          loc.shipsLabelSensorProfile,
                           tooltipFmt(ship.sensorProfile),
                         ),
                       if (ship.sensorStrength != null)
                         tooltipRow(
-                          'Sensor strength',
+                          loc.shipsLabelSensorStrength,
                           tooltipFmt(ship.sensorStrength),
                         ),
                     ]),
@@ -318,22 +321,25 @@ class ShipCodexCard {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             spacing: 4,
             children: [
-              tooltipSectionHeader('Combat performance', theme, highlightColor),
+              tooltipSectionHeader(loc.shipCodexSectionCombat, theme, highlightColor),
               tooltipStatsGrid(theme, [
                 if (ship.hitpoints != null)
-                  tooltipRow('Hull integrity', tooltipFmt(ship.hitpoints)),
+                  tooltipRow(loc.shipCodexHullIntegrity, tooltipFmt(ship.hitpoints)),
                 if (ship.armorRating != null)
-                  tooltipRow('Armor rating', tooltipFmt(ship.armorRating)),
+                  tooltipRow(
+                    loc.shipsLabelArmorRating,
+                    tooltipFmt(ship.armorRating),
+                  ),
                 tooltipRow(defenseRowLabel, defenseLabel),
                 if (hasShield) ...[
                   if (ship.shieldArc != null)
                     tooltipRow(
-                      'Shield arc',
+                      loc.shipCodexShieldArc,
                       '${tooltipFmt(ship.shieldArc)}\u00B0',
                     ),
                   if (ship.shieldUpkeep != null)
                     tooltipRow(
-                      'Shield upkeep/sec',
+                      loc.shipCodexShieldUpkeepSec,
                       tooltipFmt(
                         (ship.shieldUpkeep ?? 1.0) *
                             (ship.fluxDissipation ?? 1.0),
@@ -341,31 +347,31 @@ class ShipCodexCard {
                     ),
                   if (ship.shieldEfficiency != null)
                     tooltipRow(
-                      'Shield flux/damage',
+                      loc.shipCodexShieldFluxDamage,
                       tooltipFmt(ship.shieldEfficiency, forceDecimal: true),
                     ),
                 ],
                 if (isTruePhaseShip) ...[
                   if (ship.phaseCost != null)
                     tooltipRow(
-                      'Cloak activation cost',
+                      loc.shipCodexCloakActivationCost,
                       tooltipFmt(ship.phaseCost),
                     ),
                   if (ship.phaseUpkeep != null)
                     tooltipRow(
-                      'Cloak upkeep/sec',
+                      loc.shipCodexCloakUpkeepSec,
                       tooltipFmt(ship.phaseUpkeep),
                     ),
                 ],
                 if (ship.maxFlux != null)
-                  tooltipRow('Flux capacity', tooltipFmt(ship.maxFlux)),
+                  tooltipRow(loc.shipCodexFluxCapacity, tooltipFmt(ship.maxFlux)),
                 if (ship.fluxDissipation != null)
                   tooltipRow(
-                    'Flux dissipation',
+                    loc.shipCodexFluxDissipation,
                     tooltipFmt(ship.fluxDissipation),
                   ),
                 if (ship.maxSpeed != null)
-                  tooltipRow('Top speed', tooltipFmt(ship.maxSpeed)),
+                  tooltipRow(loc.shipCodexTopSpeed, tooltipFmt(ship.maxSpeed)),
               ]),
             ],
           ),
@@ -395,7 +401,7 @@ class ShipCodexCard {
                         SizedBox(
                           width: labelWidth,
                           child: Text(
-                            'System:',
+                            loc.shipCodexLabelSystem,
                             style: theme.textTheme.bodySmall,
                           ),
                         ),
@@ -445,7 +451,7 @@ class ShipCodexCard {
                         SizedBox(
                           width: labelWidth,
                           child: Text(
-                            'Mounts:',
+                            loc.shipCodexLabelMounts,
                             style: theme.textTheme.bodySmall,
                           ),
                         ),
@@ -467,7 +473,7 @@ class ShipCodexCard {
                         SizedBox(
                           width: labelWidth,
                           child: Text(
-                            'Armaments:',
+                            loc.shipCodexLabelArmaments,
                             style: theme.textTheme.bodySmall,
                           ),
                         ),
@@ -488,7 +494,7 @@ class ShipCodexCard {
                         SizedBox(
                           width: labelWidth,
                           child: Text(
-                            'Hull Mods:',
+                            loc.shipCodexLabelHullMods,
                             style: theme.textTheme.bodySmall,
                           ),
                         ),

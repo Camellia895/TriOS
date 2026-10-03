@@ -2,6 +2,7 @@ import 'dart:isolate';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
 import 'package:trios/vram_estimator/selectors/references/_scripting_filter.dart';
@@ -18,11 +19,12 @@ class JarStringReferences extends ReferenceParser {
   String get id => 'jar-strings';
 
   @override
-  String get displayName => 'JAR string literals';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefJarStrings;
 
   @override
   String get description =>
-      'Path-like string literals in compiled classes of every .jar in the mod.';
+      AppLocalizationsSync.instance.vramRefJarStringsDesc;
 
   @override
   Future<Map<String, Set<String>>> collect(

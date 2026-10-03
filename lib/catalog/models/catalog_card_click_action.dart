@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 part 'catalog_card_click_action.mapper.dart';
 
@@ -25,9 +26,12 @@ enum CatalogCardClickAction {
 
 extension CatalogCardClickActionDisplay on CatalogCardClickAction {
   String get label => switch (this) {
-    CatalogCardClickAction.forumDialog => 'Forum dialog',
-    CatalogCardClickAction.embeddedBrowser => 'Embedded browser',
-    CatalogCardClickAction.systemBrowser => 'System browser',
+    CatalogCardClickAction.forumDialog =>
+      AppLocalizationsSync.instance.catalogClickActionForumDialog,
+    CatalogCardClickAction.embeddedBrowser =>
+      AppLocalizationsSync.instance.catalogClickActionEmbeddedBrowser,
+    CatalogCardClickAction.systemBrowser =>
+      AppLocalizationsSync.instance.catalogClickActionSystemBrowser,
   };
 
   IconData get icon => switch (this) {

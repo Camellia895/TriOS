@@ -110,9 +110,7 @@ class _TipsPageState extends ConsumerState<TipsPage>
             ),
             const SizedBox(width: 8),
             MovingTooltipWidget.text(
-              message:
-                  "Hidden tips are tips that have a freq of 0, so they don't "
-                  "appear ingame.",
+              message: loc.tipsHiddenTipsExplanation,
               child: TriOSToolbarCheckboxButton(
                 onChanged: (_) => controller.toggleShowHidden(),
                 value: state.showHidden,
@@ -137,10 +135,7 @@ class _TipsPageState extends ConsumerState<TipsPage>
           iconColor: Theme.of(context).colorScheme.onSurface,
           content: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 900),
-            child: const Text(
-              "Shows all loading screen tips, which mod adds them, and how often they appear (freq)."
-              "\nYou may hide a tip to stop it from showing ingame. TriOS will automatically re-apply your changes if a mod is updated.",
-            ),
+            child: Text(loc.tipsAboutBody),
           ),
           actions: [
             TextButton(
@@ -176,7 +171,11 @@ class _TipsPageState extends ConsumerState<TipsPage>
             }
           },
           icon: Icon(showUnhide ? Icons.visibility : Icons.delete),
-          label: Text(showUnhide ? 'Unhide Selected' : 'Hide Selected'),
+          label: Text(
+            showUnhide
+                ? AppLocalizations.of(context).tipsUnhideSelected
+                : AppLocalizations.of(context).tipsHideSelected,
+          ),
           style: ButtonStyle(
             foregroundColor: WidgetStateProperty.all(
               Theme.of(context).colorScheme.onSurface,
@@ -393,12 +392,13 @@ class _TipCardViewState extends ConsumerState<TipCardView> {
     );
 
     final modName =
-        tip.variants.firstOrNull?.modInfo.name ?? '(unknown mod name)';
+        tip.variants.firstOrNull?.modInfo.name ??
+        AppLocalizations.of(context).tipsUnknownModName;
     return ContextMenuRegion(
       contextMenu: ContextMenu(
         entries: [
           MenuItem(
-            label: isHidden ? 'Unhide' : 'Hide',
+            label: isHidden ? loc.tipsUnhide : loc.tipsHide,
             onSelected: () {
               if (isHidden) {
                 widget.unhideTips();
@@ -486,7 +486,7 @@ class _TipCardViewState extends ConsumerState<TipCardView> {
                     children: [
                       Expanded(
                         child: Text(
-                          tip.tipObj.tip ?? '(No tip text)',
+                          tip.tipObj.tip ?? loc.tipsNoTipText,
                           style: TextStyle(fontSize: 13, color: textColor),
                         ),
                       ),
@@ -510,10 +510,13 @@ class _TipCardViewState extends ConsumerState<TipCardView> {
                   Row(
                     children: [
                       MovingTooltipWidget.text(
-                        message:
-                            'How likely this tip is to be shown. 1 is normal. Higher is more likely. 0 is never.',
+                        message: loc.tipsHowLikelyThisTip,
                         child: Text(
-                          'Freq: ${widget.isHidden ? "(hidden)" : tip.tipObj.freq ?? '1'}',
+                          loc.tipsFreqLabel(
+                            widget.isHidden
+                                ? loc.tipsHiddenLabel
+                                : (tip.tipObj.freq ?? '1'),
+                          ),
                           style: TextStyle(
                             fontSize: 12,
                             color: theme.colorScheme.onSurface.withOpacity(0.6),
@@ -522,10 +525,12 @@ class _TipCardViewState extends ConsumerState<TipCardView> {
                       ),
                       const Spacer(),
                       MovingTooltipWidget.text(
-                        message:
-                            'Tip added by ${tip.variants.firstOrNull?.modInfo.nameOrId},'
-                            '\nversion(s): '
-                            '${tip.variants.joinToString(transform: (v) => v.modInfo.version.toString())}',
+                        message: loc.tipsTipAddedBy(
+                          "${tip.variants.firstOrNull?.modInfo.nameOrId}",
+                          tip.variants.joinToString(
+                            transform: (v) => v.modInfo.version.toString(),
+                          ),
+                        ),
                         child: Icon(
                           Icons.info_outline,
                           size: 16,

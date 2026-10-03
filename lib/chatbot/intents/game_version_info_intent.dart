@@ -4,6 +4,7 @@ import 'package:trios/mod_manager/mod_manager_logic.dart';
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows the detected game version and mod compatibility summary.
 class GameVersionInfoIntent extends ChatIntent with ModAwareIntent {
@@ -51,7 +52,8 @@ class GameVersionInfoIntent extends ChatIntent with ModAwareIntent {
     final guard = guardModData();
     if (guard != null) return guard;
 
-    final gameVersion = starsectorVersion ?? 'unknown';
+    final loc = AppLocalizationsSync.instance;
+    final gameVersion = starsectorVersion ?? loc.chatbotValueUnknown;
     final compatibility = modCompatibility;
 
     var compatibleCount = 0;
@@ -76,13 +78,17 @@ class GameVersionInfoIntent extends ChatIntent with ModAwareIntent {
       }
     }
 
-    final buf = StringBuffer('Game Version: $gameVersion\n');
-    buf.writeln('  Compatible mods: $compatibleCount');
+    final buf = StringBuffer(
+      loc.chatbotGameVersionHeader(gameVersion) + '\n',
+    );
+    buf.writeln(loc.chatbotGameVersionCompatibleCount(compatibleCount));
     if (warningCount > 0) {
-      buf.writeln('  Mods with warnings: $warningCount');
+      buf.writeln(loc.chatbotGameVersionWarningsCount(warningCount));
     }
     if (incompatibleCount > 0) {
-      buf.writeln('  Incompatible mods: $incompatibleCount');
+      buf.writeln(
+        loc.chatbotGameVersionIncompatibleCount(incompatibleCount),
+      );
     }
 
     return ChatResponse(text: buf.toString().trimRight());

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trios/dashboard/mod_summary_widget.dart';
 import 'package:trios/dashboard/version_check_text_readout.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/models/mod_info.dart';
 import 'package:trios/models/version_checker_info.dart';
@@ -77,7 +78,9 @@ class ModListBasicEntry extends ConsumerStatefulWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
-                              "Right-click for more.",
+                              AppLocalizations.of(
+                                context,
+                              ).mod_list_basic_entryRightClickForMore,
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Theme.of(context).colorScheme.secondary,
@@ -402,11 +405,20 @@ class _ModListBasicEntryState extends ConsumerState<ModListBasicEntry>
                           (element) => element.satisfiedAmount is Missing,
                         );
                         if (missingDependencies.isNotEmpty) {
+                          final loc = AppLocalizations.of(context);
                           showSnackBar(
                             context: context,
                             type: SnackBarType.error,
                             content: Text(
-                              "'${modInfo.name}' is missing '${missingDependencies.joinToString(transform: (it) => it.dependency.name ?? it.dependency.id ?? "<unknown>")}'.",
+                              loc.mod_list_basic_entryMissingDependencies(
+                                "${modInfo.name}",
+                                missingDependencies.joinToString(
+                                  transform: (it) =>
+                                      it.dependency.name ??
+                                      it.dependency.id ??
+                                      "<unknown>",
+                                ),
+                              ),
                             ),
                           );
                           return;

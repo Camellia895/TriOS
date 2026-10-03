@@ -58,6 +58,7 @@ class ModChangelogIntent extends ChatIntent with ModAwareIntent {
     final guard = guardModData();
     if (guard != null) return guard;
 
+    final loc = AppLocalizationsSync.instance;
     final changelogs =
         ref.read(AppState.changelogsProvider).value;
 
@@ -82,16 +83,16 @@ class ModChangelogIntent extends ChatIntent with ModAwareIntent {
       }
       modNames.sort();
       final buf = StringBuffer(
-        '${changelogs.length} mods have changelogs:\n',
+        loc.chatbotModsHaveChangelogs(changelogs.length) + '\n',
       );
       for (final name in modNames.take(20)) {
         buf.writeln('  $name');
       }
       if (modNames.length > 20) {
-        buf.writeln('  ...and ${modNames.length - 20} more');
+        buf.writeln('  ' + loc.chatbotAndNMore(modNames.length - 20));
       }
       buf.writeln(
-        '\nAsk "changelog for <mod name>" to see a specific one.',
+        loc.chatbotAskChangelogFor,
       );
       return ChatResponse(text: buf.toString().trimRight());
     }
@@ -113,7 +114,7 @@ class ModChangelogIntent extends ChatIntent with ModAwareIntent {
             mod.id;
         var text = changelog.changelog;
         if (text.length > 500) {
-          text = '${text.substring(0, 500)}...\n(truncated)';
+          text = text.substring(0, 500) + loc.chatbotTruncatedSuffix;
         }
         return ChatResponse(
           text: AppLocalizationsSync.instance.chatbotChangelogFor(name, text),
@@ -122,8 +123,7 @@ class ModChangelogIntent extends ChatIntent with ModAwareIntent {
     }
 
     return ChatResponse(
-      text:
-          'No changelog available for "${results.first.id}".',
+      text: loc.chatbotNoChangelogFor(results.first.id),
     );
   }
 

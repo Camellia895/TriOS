@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 
 /// Renders an SMF forum spoiler block as a collapsible section.
 /// Starts collapsed when [initiallyCollapsed] is true (SMF's default when
@@ -52,7 +53,9 @@ class _SpoilerBlockState extends State<SpoilerBlock> {
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      widget.label.isNotEmpty ? widget.label : 'Spoiler',
+                      widget.label.isNotEmpty
+                          ? widget.label
+                          : AppLocalizations.of(context).catalogSpoiler,
                       style: theme.textTheme.labelLarge,
                     ),
                   ],

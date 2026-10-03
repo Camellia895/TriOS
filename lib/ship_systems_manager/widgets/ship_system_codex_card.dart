@@ -4,6 +4,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/descriptions/description_entry.dart';
 import 'package:trios/descriptions/descriptions_manager.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/ship_systems_manager/ship_system.dart';
 import 'package:trios/trios/constants_theme.dart';
 import 'package:trios/widgets/description_with_substitutions.dart';
@@ -47,6 +48,7 @@ class ShipSystemCodexCard {
     DescriptionEntry? description,
   }) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final highlightColor = TriOSThemeConstants.vanillaCyanColor;
 
     return Column(
@@ -67,31 +69,52 @@ class ShipSystemCodexCard {
           ),
         const SizedBox(height: 8),
 
-        tooltipSectionHeader('System data', theme, highlightColor),
+        tooltipSectionHeader(loc.shipSystemCodexCardSystemData, theme, highlightColor),
         const SizedBox(height: 4),
         _spriteRow(
           sprite: _systemSprite(system),
           child: tooltipStatsGrid(theme, [
             if (system.fluxUse != null)
-              tooltipRow('Flux per use', tooltipFmt(system.fluxUse)),
+              tooltipRow(
+                loc.shipSystemCodexCardFluxPerUse,
+                tooltipFmt(system.fluxUse),
+              ),
             if (system.fluxPerSecond != null)
-              tooltipRow('Flux per second', tooltipFmt(system.fluxPerSecond)),
+              tooltipRow(
+                loc.shipSystemCodexCardFluxPerSecond,
+                tooltipFmt(system.fluxPerSecond),
+              ),
             if (system.maxUses != null)
-              tooltipRow('Max uses', tooltipFmt(system.maxUses)),
+              tooltipRow(
+                loc.shipSystemCodexCardMaxUses,
+                tooltipFmt(system.maxUses),
+              ),
             if (system.regen != null)
-              tooltipRow('Regen', tooltipFmt(system.regen)),
+              tooltipRow(
+                loc.shipSystemCodexCardRegen,
+                tooltipFmt(system.regen),
+              ),
             if (system.cooldown != null)
-              tooltipRow('Cooldown', tooltipFmt(system.cooldown)),
-            if (system.toggle == true) tooltipRow('Type', 'Toggle'),
+              tooltipRow(
+                loc.shipSystemCodexCardCooldown,
+                tooltipFmt(system.cooldown),
+              ),
+            if (system.toggle == true)
+              tooltipRow(loc.codexFacetType, loc.shipSystemCodexCardToggle),
             if (system.isPhaseCloak == true)
-              tooltipRow('Phase cloak', 'Yes'),
+              tooltipRow(
+                loc.shipSystemCodexCardPhaseCloak,
+                loc.commonYes,
+              ),
           ]),
         ),
         if (system.modVariant != null)
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Text(
-              'Mod: ${system.modVariant?.modInfo.nameOrId ?? "Vanilla"}',
+              loc.portraitsModLabel(
+                system.modVariant?.modInfo.nameOrId ?? 'Vanilla',
+              ),
               style: theme.textTheme.bodySmall,
             ),
           ),

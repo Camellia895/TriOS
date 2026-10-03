@@ -52,7 +52,10 @@ class ViewerToolbar extends StatelessWidget {
               children: [
                 const SizedBox(width: 4),
                 Text(
-                  '$total $entityName${total != visible ? " ${loc.viewerToolbarShownCount(visible)}" : ""}',
+                  loc.viewerToolbarTotalCount(total, entityName) +
+                  (total != visible
+                      ? " ${loc.viewerToolbarShownCount(visible)}"
+                      : ""),
                   style: theme.textTheme.headlineSmall?.copyWith(fontSize: 20),
                 ),
                 const SizedBox(width: 4),

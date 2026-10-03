@@ -1,6 +1,7 @@
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Lists all question categories the chatbot can answer.
 class HelpIntent extends ChatIntent {
@@ -44,27 +45,8 @@ class HelpIntent extends ChatIntent {
 
   @override
   ChatResponse respond(String input, ConversationContext context) {
-    return const ChatResponse(text: _response);
+    return ChatResponse(
+      text: AppLocalizationsSync.instance.chatbotHelpGuide,
+    );
   }
-
-  static const _response =
-      "Hey! I'm the TriOS assistant. I can help you with a bunch of things "
-      "— just ask me naturally and I'll do my best to figure out what you need.\n"
-      '\n'
-      "Here are some of the things I know about:\n"
-      '\n'
-      '• Mods — finding mods, checking which are enabled, looking for '
-      'updates, compatibility issues, browsing by author or category, '
-      'context menu actions, color tags, and tips\n'
-      '• Game info — your Starsector version, content counts (ships, '
-      'weapons, hullmods), and portrait stats\n'
-      '• Configuration — RAM and VRAM, game folder paths, '
-      'your settings, and mod profiles\n'
-      '• Log analysis — summarizing your log file or pulling out errors\n'
-      '• Troubleshooting — common issues, fixes, and file permission problems\n'
-      '• Other — TriOS version, whether the game is running, '
-      'exporting data to CSV, and navigating to different pages\n'
-      '\n'
-      "You don't need to use exact commands — just describe what you're "
-      "looking for and I'll take it from there!";
 }

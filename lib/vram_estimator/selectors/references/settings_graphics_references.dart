@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
@@ -14,11 +15,12 @@ class SettingsGraphicsReferences extends ReferenceParser {
   String get id => 'settings-graphics';
 
   @override
-  String get displayName => 'settings.json graphics block';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefSettingsGraphics;
 
   @override
   String get description =>
-      'Paths declared in data/config/settings.json under the graphics block.';
+      AppLocalizationsSync.instance.vramRefSettingsGraphicsDesc;
 
   @override
   Future<Map<String, Set<String>>> collect(

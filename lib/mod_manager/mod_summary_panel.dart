@@ -183,7 +183,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                           Expanded(
                                             child: Text(
                                               variant.modInfo.name ??
-                                                  "(no name)",
+                                                  loc.modSummaryNoName,
                                               style: theme
                                                   .textTheme
                                                   .headlineSmall
@@ -261,9 +261,9 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                             const SizedBox(width: 8),
                                             Text(
                                               variant.modInfo.isTotalConversion
-                                                  ? "Total Conversion"
+                                                  ? loc.modInfoDialogTotalConversion
                                                   : variant.modInfo.isUtility
-                                                  ? "Utility Mod"
+                                                  ? loc.modInfoDialogUtilityMod
                                                   : "",
                                             ),
                                           ],
@@ -292,8 +292,8 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                                       context,
                                                     ).colorScheme.primary,
                                                   ),
-                                                  label: const Text(
-                                                    "Forum Thread",
+                                                  label: Text(
+                                                    loc.aboutForumThread,
                                                   ),
                                                   onPressed: () {
                                                     launchUrl(uri);
@@ -345,7 +345,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                         ),
                                         Text(
                                           variant.modInfo.author ??
-                                              "(no author)",
+                                              loc.modSummaryNoAuthor,
                                           style: bodyTextStyle,
                                         ),
                                       ],
@@ -358,7 +358,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                         child: Row(
                                           children: [
                                             Text(
-                                              "First Seen: ",
+                                              loc.recordFirstSeenLabel,
                                               style: labelTextStyle,
                                             ),
                                             Text(
@@ -382,7 +382,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                         child: Row(
                                           children: [
                                             Text(
-                                              "Last enabled: ",
+                                              loc.modSummaryLastEnabled,
                                               style: labelTextStyle,
                                             ),
                                             Text(
@@ -413,12 +413,12 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                       children: [
                                         const SizedBox(height: 16),
                                         Text(
-                                          "Description",
+                                          loc.modInfoDialogDescription,
                                           style: labelTextStyle,
                                         ),
                                         Text(
                                           variant.modInfo.description ??
-                                              "(no description)",
+                                              loc.modSummaryNoDescription,
                                           style: bodyTextStyle,
                                         ),
                                       ],
@@ -477,7 +477,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                               .dependencies
                                               .isEmpty)
                                             Text(
-                                              "None",
+                                              loc.codexNone,
                                               style: theme.textTheme.labelLarge,
                                             ),
                                         ],
@@ -503,7 +503,10 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                               style: bodyTextStyle,
                                             )
                                           : Text(
-                                              "No mods depend on ${variant.modInfo.name}",
+                                              loc.modSummaryNoModsDependOn(
+                                                variant.modInfo.name ??
+                                                    loc.modSummaryNoName,
+                                              ),
                                               style: bodyTextStyle,
                                             );
                                     },
@@ -524,7 +527,7 @@ class _ModSummaryPanelState extends ConsumerState<ModSummaryPanel>
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "Disabled Dependents",
+                                                    loc.modSummaryDisabledDependents,
                                                     style: theme
                                                         .textTheme
                                                         .labelLarge
@@ -627,8 +630,9 @@ class DependentsListWidget extends StatelessWidget {
                 .firstWhereOrNull((dep) => dep.id == selectedMod.id)
                 ?.version;
             final enabled = variant?.isEnabled(allMods) == true;
+            final loc = AppLocalizations.of(context);
             return Text(
-              "- ${variant?.modInfo.name}${dependencyVersion != null ? " (wants $dependencyVersion)" : ""}",
+              "- ${variant?.modInfo.name}${dependencyVersion != null ? loc.modSummaryWantsVersion(dependencyVersion.toString()) : ""}",
               style: style,
             );
           }).toList(),

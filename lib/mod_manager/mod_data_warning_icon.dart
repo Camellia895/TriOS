@@ -38,8 +38,8 @@ class ModDataWarningIcon extends ConsumerWidget {
                   .update((s) => s.copyWith(modsGridShowDataWarnings: false));
               showSnackBar(
                 context: context,
-                content: const Text(
-                  "Mod data warnings are hidden. Turn them back on in the Mods page menu.",
+                content: Text(
+                  loc.modDataWarningIconWarningsHidden,
                 ),
               );
             },

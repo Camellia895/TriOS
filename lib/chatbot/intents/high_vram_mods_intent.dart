@@ -85,18 +85,21 @@ class HighVramModsIntent extends ChatIntent with ModAwareIntent {
 
     final top = withBytes.take(10).toList();
 
+    final loc = AppLocalizationsSync.instance;
     final buf = StringBuffer(
-      'Top ${top.length} Mods by VRAM Usage\n',
+      loc.chatbotTopVramModsTitle(top.length) + '\n',
     );
     for (final entry in top) {
       final name = entry.mod.info.name ?? entry.mod.info.modId;
       final mb = (entry.bytes / (1024 * 1024)).toStringAsFixed(0);
-      final status = entry.mod.isEnabled ? 'ON' : 'OFF';
-      buf.writeln('  [$status] $name — ~$mb MB');
+      final status = entry.mod.isEnabled
+          ? loc.chatbotTagOn
+          : loc.chatbotTagOff;
+      buf.writeln(loc.chatbotVramModEntry(status, name, mb));
     }
 
     if (withBytes.length > 10) {
-      buf.writeln('  ...and ${withBytes.length - 10} more mods');
+      buf.writeln('  ' + loc.chatbotAndNMoreMods(withBytes.length - 10));
     }
 
     return ChatResponse(text: buf.toString().trimRight());

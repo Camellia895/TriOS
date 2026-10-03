@@ -85,8 +85,8 @@ class ForumPostHeader extends StatelessWidget {
                         if (onToggleSummary != null)
                           MovingTooltipWidget.text(
                             message: showSummary
-                                ? 'Hide the mod summary'
-                                : 'Show the mod summary',
+                                ? loc.forumPostHeaderHideTheModSummary
+                                : loc.forumPostHeaderShowTheModSummary,
                             child: IconButton(
                               icon: Icon(
                                 showSummary
@@ -115,8 +115,8 @@ class ForumPostHeader extends StatelessWidget {
                         if (onToggleFullScreen != null)
                           Tooltip(
                             message: isFullScreen
-                                ? 'Exit full screen'
-                                : 'Full screen',
+                                ? loc.forumPostHeaderExitFullScreen
+                                : loc.forumPostHeaderFullScreen,
                             child: IconButton(
                               icon: Icon(
                                 isFullScreen
@@ -369,7 +369,9 @@ class _DependencyLine extends StatelessWidget {
         Text(loc.catalogAlsoNeeds, style: style),
         for (final dep in group.dependencies)
           MovingTooltipWidget.text(
-            message: dep.installed ? 'Already installed' : 'Not installed',
+            message: dep.installed
+                ? loc.forumPostHeaderAlreadyInstalled
+                : loc.forumPostHeaderNotInstalled,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               spacing: 2,
@@ -418,7 +420,9 @@ class _DownloadSplitButton extends StatelessWidget {
     final primary = primaryCandidate(candidates);
     final mainCandidate = primary ?? candidates.first;
     // No one-click candidate: the best we can do is open the download page.
-    final label = primary != null ? 'Install' : 'Open download page';
+    final label = primary != null
+        ? loc.catalogInstall
+        : loc.forumPostHeaderOpenDownloadPage;
     final hasMenu = candidates.length > 1;
 
     // This row's downloads are named after its mod, whichever candidate the

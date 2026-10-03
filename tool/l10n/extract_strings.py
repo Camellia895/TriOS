@@ -35,18 +35,29 @@ ARB_EN = REPO / "lib" / "l10n" / "app_en.arb"
 
 # Call-site patterns: (param/context regex, capture group index is the quoted
 # literal inside). Each regex must contain one quoted-string group.
+Q = r"(r?'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\")"
 CALL_PATTERNS = [
     # Text('...'), Text.rich args, Text(text: ...)
-    re.compile(r"\bText\(\s*(?:text:\s*)?(r?'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\")"),
+    re.compile(rf"\bText\(\s*(?:text:\s*)?{Q}"),
     # MovingTooltipWidget.text(message: '...') / tooltip message params
-    re.compile(r"\bmessage:\s*(r?'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\")"),
-    # context menu items, buttons, dialogs
-    re.compile(r"\blabel:\s*(r?'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\")"),
-    re.compile(r"\btitle:\s*(r?'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\")"),
-    re.compile(r"\bsubtitle:\s*(r?'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\")"),
-    re.compile(r"\btext:\s*(r?'(?:[^'\\]|\\.)*'|\"(?:[^\"\\]|\\.)*\")"),
-    # showSnackBar(content: Text('...')) is covered by Text( above.
+    re.compile(rf"\bmessage:\s*{Q}"),
+    # context menu items, buttons, dialogs, section headers
+    re.compile(rf"\blabel:\s*{Q}"),
+    re.compile(rf"\btitle:\s*{Q}"),
+    re.compile(rf"\bsubtitle:\s*{Q}"),
+    re.compile(rf"\btext:\s*{Q}"),
+    # SettingsGroup(name: ...), filter groups, WispGrid column names
+    re.compile(rf"\bname:\s*{Q}"),
+    # field descriptions/hints (SearchFieldMeta.description, hintText, ...)
+    re.compile(rf"\bdescription:\s*{Q}"),
+    re.compile(rf"\bhintText:\s*{Q}"),
+    re.compile(rf"\bhint:\s*{Q}"),
 ]
+
+# Fallback: any quoted literal anywhere (catches multi-line message
+# continuations like "\n\nrules.csv hot reload is ..."). Same prose filter
+# applies, so identifiers/keys are excluded.
+FALLBACK_PATTERN = re.compile(Q)
 
 # Strings that look like logic keys / identifiers, not user-facing prose.
 LOOKS_LIKE_KEY = re.compile(r"^[A-Za-z0-9_\-.:/{}<> ]*$")
@@ -69,8 +80,9 @@ def is_user_facing(text: str) -> bool:
         return False
     if not LOOKS_LIKE_KEY.match(text):
         return True  # contains CJK or other punctuation → prose
-    if " " in text:
-        return True
+    if " " in text.strip():
+        # Multi-word: likely prose unless it's all-lowercase code-speak.
+        return not text.strip().islower()
     # Single word: keep only Capitalized words (UI labels like "Refresh").
     return bool(re.match(r"^[A-Z]", text)) and "_" not in text
 
@@ -130,6 +142,8 @@ def main() -> int:
             stripped = line.strip()
             if stripped.startswith("//"):
                 continue
+            if stripped.startswith("import ") or stripped.startswith("part "):
+                continue
             if any(fn in line for fn in ("Fimber.", "log(", "assert(")):
                 continue
             for pat in CALL_PATTERNS:
@@ -142,14 +156,34 @@ def main() -> int:
                         {"refs": [], "interpolated": "$" in source, "key": None},
                     )
                     entry["refs"].append(f"{rel}:{lineno}")
+            # Fallback for literals not matching a known call shape (multi-line
+            # continuations, custom widget params). Only when the line has no
+            # targeted match and the literal looks like prose.
+            if not any(pat.search(line) for pat in CALL_PATTERNS):
+                for m in FALLBACK_PATTERN.finditer(line):
+                    source = unquote(m.group(1))
+                    if not is_user_facing(source):
+                        continue
+                    # Skip import/const-file boilerplate heuristics: URLs, paths.
+                    if source.startswith(("package:", "assets/", "http")):
+                        continue
+                    entry = found.setdefault(
+                        source,
+                        {"refs": [], "interpolated": "$" in source, "key": None},
+                    )
+                    entry["refs"].append(f"{rel}:{lineno}")
 
     # Assign keys: existing ARB key first, then stable suggestions.
+    # Sources already translated in the template ARB are DONE — exclude them
+    # so the census shows only remaining work.
     used = set(en_arb.keys())
     rows = []
     for source in sorted(found):
         entry = found[source]
         key = en_by_value.get(source)
-        if key is None and not entry["interpolated"]:
+        if key is not None:
+            continue
+        if not entry["interpolated"]:
             key = suggest_key(entry["refs"][0], source, used)
             used.add(key)
         rows.append(

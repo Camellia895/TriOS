@@ -2,6 +2,7 @@ import 'package:trios/catalog/models/mod_repo_entry.dart';
 import 'package:trios/catalog/models/catalog_mod.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/thirdparty/dartx/map.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 // ===== Version Comparison (ported from Starmodder3) =====
 
@@ -259,16 +260,21 @@ Map<String, Set<String>> extractVersionGroups(List<CatalogMod> mods) {
 
 /// Sort keys for the catalog page.
 enum CatalogSortKey {
-  name('Name'),
-  date('Newest'),
-  version('Game Version'),
-  mostViewed('Popular'),
-  mostReplies('Most Discussed'),
-  lastActivity('Recently Active');
+  name,
+  date,
+  version,
+  mostViewed,
+  mostReplies,
+  lastActivity;
 
-  final String label;
-
-  const CatalogSortKey(this.label);
+  String get label => switch (this) {
+    CatalogSortKey.name => AppLocalizationsSync.instance.catalogSortName,
+    CatalogSortKey.date => AppLocalizationsSync.instance.catalogSortNewest,
+    CatalogSortKey.version => AppLocalizationsSync.instance.catalogSortGameVersion,
+    CatalogSortKey.mostViewed => AppLocalizationsSync.instance.catalogSortPopular,
+    CatalogSortKey.mostReplies => AppLocalizationsSync.instance.catalogSortMostDiscussed,
+    CatalogSortKey.lastActivity => AppLocalizationsSync.instance.catalogSortRecentlyActive,
+  };
 
   /// Whether ascending is the natural/default direction for this sort key.
   bool get defaultAscending => switch (this) {

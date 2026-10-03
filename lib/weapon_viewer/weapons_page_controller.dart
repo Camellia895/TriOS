@@ -190,7 +190,7 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
     final groups = <FilterGroup<Weapon>>[
       CompositeFilterGroup<Weapon>(
         id: 'general',
-        name: 'General',
+        name: loc.codexGeneral,
         fields: [
           BoolField<Weapon>(
             id: 'showEnabled',
@@ -228,26 +228,26 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
       ),
       ChipFilterGroup<Weapon>(
         id: 'weaponType',
-        name: 'Weapon Type',
+        name: loc.weaponsColumnWeaponType,
         valueGetter: (weapon) => weapon.weaponType ?? '',
         displayNameGetter: (name) => name.toTitleCase(),
       ),
       ChipFilterGroup<Weapon>(
         id: 'size',
-        name: 'Size',
+        name: loc.weaponsColumnSize,
         valueGetter: (weapon) => weapon.size ?? '',
         displayNameGetter: (name) => name.toTitleCase(),
       ),
       ChipFilterGroup<Weapon>(
         id: 'hint',
-        name: 'Hint',
+        name: loc.weaponsFilterHint,
         valueGetter: (weapon) => weapon.hints ?? "",
         valuesGetter: (weapon) => weapon.hintsAsSet.toList(),
         displayNameGetter: (hint) => hint.toTitleCase(),
       ),
       ChipFilterGroup<Weapon>(
         id: 'mod',
-        name: 'Mod',
+        name: loc.codexMod,
         collapsedByDefault: true,
         valueGetter: (weapon) =>
             weapon.modVariant?.modInfo.nameOrId ?? vanillaName,
@@ -256,47 +256,52 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
             : b == vanillaName
             ? 1
             : a.compareTo(b),
+        // The chip label is localized; the stored value stays the stable
+        // English "Vanilla" so persisted selections survive locale changes.
+        displayNameGetter: (value) => value == vanillaName
+            ? loc.vanillaShareBarVanilla
+            : value,
       ),
       ChipFilterGroup<Weapon>(
         id: 'techManufacturer',
-        name: 'Tech/Manufacturer',
+        name: loc.weaponsColumnTechManufacturer,
         collapsedByDefault: true,
         valueGetter: (weapon) => weapon.techManufacturer ?? '',
       ),
       // Number sliders (advanced mode only).
       RangeFilterGroup<Weapon>(
         id: 'rangeDamage',
-        name: 'Damage per Shot',
+        name: loc.weaponsFilterDamagePerShot,
         valueGetter: (weapon) => weapon.damagePerShot,
       ),
       RangeFilterGroup<Weapon>(
         id: 'rangeDps',
-        name: 'Damage per Second',
+        name: loc.weaponsFilterDamagePerSecond,
         valueGetter: (weapon) => weapon.damagePerSecond,
       ),
       RangeFilterGroup<Weapon>(
         id: 'rangeOps',
-        name: 'Ordnance Points',
+        name: loc.shipsFilterOrdnancePoints,
         valueGetter: (weapon) => weapon.ops,
       ),
       RangeFilterGroup<Weapon>(
         id: 'rangeRange',
-        name: 'Range',
+        name: loc.weaponsColumnRange,
         valueGetter: (weapon) => weapon.range,
       ),
       RangeFilterGroup<Weapon>(
         id: 'rangeFluxPerSecond',
-        name: 'Flux per Second',
+        name: loc.weaponsFilterFluxPerSecond,
         valueGetter: (weapon) => weapon.fluxPerSecond,
       ),
       RangeFilterGroup<Weapon>(
         id: 'rangeTurnRate',
-        name: 'Turn Rate',
+        name: loc.weaponsColumnTurnRate,
         valueGetter: (weapon) => weapon.turnRate,
       ),
       RangeFilterGroup<Weapon>(
         id: 'rangeAmmo',
-        name: 'Ammo',
+        name: loc.weaponsColumnAmmo,
         valueGetter: (weapon) => weapon.ammo,
       ),
     ];
@@ -493,16 +498,16 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
   }
 
   List<SearchField<Weapon>> _buildSearchFields() {
+    final loc = AppLocalizationsSync.instance;
     return [
       SearchField.string(
         'tracking',
-        'Tracking quality (excellent, good, poor, none)',
+        loc.weaponsSearchTrackingQuality,
         (w) => w.trackingStr,
       ),
       SearchField<Weapon>(
         key: 'ammo',
-        description:
-            'Ammo count (none = unlimited); supports numeric operators',
+        description: loc.weaponsSearchAmmoCount,
         supportsNumeric: true,
         valueSuggestions: (weapons) => ['none'],
         matches: (weapon, op, value) {
@@ -524,25 +529,25 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
       ),
       SearchField.string(
         'type',
-        'Weapon type (missile, energy, ballistic, hybrid)',
+        loc.weaponsSearchWeaponType,
         (w) => w.weaponType,
       ),
       SearchField.string(
         'size',
-        'Mount size (small, medium, large)',
+        loc.weaponsSearchMountSize,
         (w) => w.size,
       ),
       SearchField.string(
         'damage',
-        'Damage type (kinetic, he, energy, fragmentation)',
+        loc.weaponsSearchDamageType,
         (w) => w.damageType,
       ),
-      SearchField.numeric('range', 'Weapon range', (w) => w.range),
-      SearchField.numeric('op', 'Ordnance points cost', (w) => w.ops),
-      SearchField.numeric('dps', 'Damage per second', (w) => w.damagePerSecond),
+      SearchField.numeric('range', loc.weaponsSearchWeaponRange, (w) => w.range),
+      SearchField.numeric('op', loc.weaponsSearchOpCost, (w) => w.ops),
+      SearchField.numeric('dps', loc.weaponsSearchDps, (w) => w.damagePerSecond),
       SearchField<Weapon>(
         key: 'hint',
-        description: 'Weapon hint tag; matches any hint in a multi-value set',
+        description: loc.weaponsSearchHintTag,
         valueSuggestions: (weapons) =>
             weapons
                 .expand((w) => w.hintsAsSet)
@@ -557,7 +562,7 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
       ),
       SearchField<Weapon>(
         key: 'tag',
-        description: 'Weapon CSV tag; matches any tag in a multi-value set',
+        description: loc.weaponsSearchTag,
         valueSuggestions: (weapons) =>
             weapons
                 .expand((w) => w.tagsAsSet)
@@ -572,7 +577,7 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
       ),
       SearchField<Weapon>(
         key: 'mod',
-        description: 'Mod name substring match',
+        description: loc.shipsSearchModSubstring,
         valueSuggestions: (weapons) =>
             weapons
                 .map((w) => w.modVariant?.modInfo.nameOrId)
@@ -588,75 +593,75 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
         },
       ),
       // Combat stats (numeric)
-      SearchField.numeric('dpshot', 'Damage per shot', (w) => w.damagePerShot),
-      SearchField.numeric('emp', 'EMP damage', (w) => w.emp),
-      SearchField.numeric('energy', 'Flux per shot', (w) => w.energyPerShot),
-      SearchField.numeric('eps', 'Flux per second', (w) => w.energyPerSecond),
+      SearchField.numeric('dpshot', loc.weaponsSearchDamagePerShot, (w) => w.damagePerShot),
+      SearchField.numeric('emp', loc.weaponsSearchEmpDamage, (w) => w.emp),
+      SearchField.numeric('energy', loc.weaponsSearchFluxPerShot, (w) => w.energyPerShot),
+      SearchField.numeric('eps', loc.weaponsSearchFluxPerSecond, (w) => w.energyPerSecond),
       SearchField.numeric(
         'chargeup',
-        'Charge-up time in seconds',
+        loc.weaponsSearchChargeUp,
         (w) => w.chargeup,
       ),
       SearchField.numeric(
         'chargedown',
-        'Charge-down time in seconds',
+        loc.weaponsSearchChargeDown,
         (w) => w.chargedown,
       ),
       SearchField.numeric(
         'burst',
-        'Burst size (number of shots)',
+        loc.weaponsSearchBurstSize,
         (w) => w.burstSize,
       ),
       SearchField.numeric(
         'burstdelay',
-        'Delay between burst shots',
+        loc.weaponsSearchBurstDelay,
         (w) => w.burstDelay,
       ),
       SearchField.numeric(
         'barrels',
-        'Barrels fired together per shot (LINKED and DUAL barrel modes)',
+        loc.weaponsSearchBarrelsTogether,
         (w) => w.barrelCount,
       ),
       SearchField.numeric(
         'turnrate',
-        'Projectile/beam turn rate',
+        loc.weaponsSearchTurnRate,
         (w) => w.turnRate,
       ),
-      SearchField.numeric('speed', 'Projectile speed', (w) => w.projSpeed),
-      SearchField.numeric('beamspeed', 'Beam speed', (w) => w.beamSpeed),
+      SearchField.numeric('speed', loc.weaponsSearchProjectileSpeed, (w) => w.projSpeed),
+      SearchField.numeric('beamspeed', loc.weaponsSearchBeamSpeed, (w) => w.beamSpeed),
       SearchField.numeric(
         'launchspeed',
-        'Missile launch speed',
+        loc.weaponsSearchLaunchSpeed,
         (w) => w.launchSpeed,
       ),
       SearchField.numeric(
         'flighttime',
-        'Projectile flight time',
+        loc.weaponsSearchFlightTime,
         (w) => w.flightTime,
       ),
       SearchField.numeric(
         'projhp',
-        'Projectile hitpoints',
+        loc.weaponsSearchProjectileHitpoints,
         (w) => w.projHitpoints,
       ),
       SearchField.numeric(
         'ammosec',
-        'Ammo regeneration per second',
+        loc.weaponsSearchAmmoRegen,
         (w) => w.ammoPerSec,
       ),
-      SearchField.numeric('reload', 'Reload size', (w) => w.reloadSize),
-      SearchField.numeric('impact', 'Impact/force value', (w) => w.impact),
+      SearchField.numeric('reload', loc.weaponsSearchReloadSize, (w) => w.reloadSize),
+      SearchField.numeric('impact', loc.weaponsSearchImpact, (w) => w.impact),
       SearchField.numeric(
         'autofire',
-        'Autofire accuracy bonus',
+        loc.weaponsSearchAutofireBonus,
         (w) => w.autofireAccBonus,
       ),
       // Spread/accuracy (numeric)
-      SearchField.numeric('spread', 'Maximum spread', (w) => w.maxSpread),
-      SearchField.numeric('minspread', 'Minimum spread', (w) => w.minSpread),
+      SearchField.numeric('spread', loc.weaponsSearchMaxSpread, (w) => w.maxSpread),
+      SearchField.numeric('minspread', loc.weaponsSearchMinSpread, (w) => w.minSpread),
       SearchField.numeric(
         'spreadshot',
-        'Spread added per shot',
+        loc.weaponsSearchSpreadPerShot,
         (w) => w.spreadPerShot,
       ),
       // Stats TriOS works out itself, rather than reading from the CSV.
@@ -664,70 +669,70 @@ class WeaponsPageController extends Notifier<WeaponsPageState>
       // differ from the raw `dps` column for burst beams and multi-shot guns.
       SearchField.numeric(
         'effectivedps',
-        'Damage per second, allowing for charge-up and bursts',
+        loc.weaponsSearchEffectiveDps,
         (w) => w.effectiveDps,
       ),
       SearchField.numeric(
         'sustaineddps',
-        'Damage per second once ammo regeneration is the limit',
+        loc.weaponsSearchSustainedDps,
         (w) => w.sustainedDps,
       ),
       SearchField.numeric(
         'burstdamage',
-        'Damage dealt by one burst (burst beams only)',
+        loc.weaponsSearchBurstDamage,
         (w) => w.burstDamage,
       ),
       SearchField.numeric(
         'refire',
-        'Seconds between shots or bursts',
+        loc.weaponsSearchRefireDelay,
         (w) => w.refireDelay,
       ),
       SearchField.numeric(
         'fluxperdamage',
-        'Flux spent per point of damage; lower is more efficient',
+        loc.weaponsSearchFluxPerDamage,
         (w) => w.fluxPerDamage,
       ),
       SearchField.numeric(
         'fluxpersec',
-        'Flux spent per second while firing',
+        loc.weaponsSearchFluxPerSecFiring,
         (w) => w.fluxPerSecond,
       ),
       SearchField.numeric(
         'sustainedflux',
-        'Flux spent per second at the sustained rate of fire',
+        loc.weaponsSearchSustainedFlux,
         (w) => w.sustainedFluxPerSecond,
       ),
       SearchField.numeric(
         'empburst',
-        'EMP damage per activation',
+        loc.weaponsSearchEmpPerActivation,
         (w) => w.empPerActivation,
       ),
       // Weapon identity (string, with value suggestions)
       SearchField.string(
         'specclass',
-        'Weapon spec class (beam, projectile, missile, etc.)',
+        loc.weaponsSearchSpecClass,
         (w) => w.specClass,
       ),
       SearchField.string(
         'mount',
-        'Effective mount type (TURRET, HARDPOINT, HIDDEN)',
+        loc.weaponsSearchMountType,
         (w) => w.effectiveMountType,
       ),
       SearchField.string(
         'manufacturer',
-        'Tech/manufacturer',
+        loc.shipsSearchTechManufacturer,
         (w) => w.techManufacturer,
       ),
       SearchField.string(
         'role',
-        'Primary role description',
+        loc.weaponsSearchPrimaryRole,
         (w) => w.primaryRoleStr,
       ),
-      SearchField.string('group', 'Weapon group tag', (w) => w.groupTag),
+      SearchField.string('group', loc.weaponsSearchGroupTag, (w) => w.groupTag),
       // Metadata (numeric)
-      SearchField.numeric('tier', 'Weapon tier', (w) => w.tier),
-      SearchField.numeric('rarity', 'Rarity value', (w) => w.rarity),
-      SearchField.numeric('cost', 'Base credit value', (w) => w.baseValue),
+      SearchField.numeric('tier', loc.weaponsSearchTier, (w) => w.tier),
+      SearchField.numeric('rarity', loc.weaponsSearchRarityValue, (w) => w.rarity),
+      SearchField.numeric('cost', loc.shipsSearchBaseValue, (w) => w.baseValue),
     ];
   }
 

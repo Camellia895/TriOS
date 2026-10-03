@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/models/mod.dart';
 import 'package:trios/models/version_checker_info.dart';
 import 'package:trios/trios/constants.dart';
@@ -38,6 +39,7 @@ class _VersionCheckTextReadoutState
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final versionCheckComparison = widget.versionCheckComparison;
     final localVersionCheck = widget.localVersionCheck;
     final remoteVersionCheck = widget.remoteVersionCheck;
@@ -59,8 +61,8 @@ class _VersionCheckTextReadoutState
                   children: [
                     Text(
                       hasDirectDownload
-                          ? "Download & Install Update"
-                          : "Click to Open Download Page",
+                          ? loc.versionCheckDownloadInstallUpdate
+                          : loc.versionCheckClickToOpenDownloadPage,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: theme.colorScheme.primary,
@@ -115,8 +117,9 @@ class _VersionCheckTextReadoutState
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
-                  "This mod requires a manual download."
-                  "${widget.showRightClickToExpand ? "\nClick to open the download page." : ""}",
+                  widget.showRightClickToExpand
+                      ? loc.versionCheckRequiresManualDownloadClick
+                      : loc.versionCheckRequiresManualDownload,
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontStyle: FontStyle.italic,
                   ),
@@ -129,7 +132,9 @@ class _VersionCheckTextReadoutState
             ),
 
             Text(
-              "Source: ${remoteVersionCheck?.uri}",
+              loc.versionCheckSource(
+                "${remoteVersionCheck?.uri}",
+              ),
               style: theme.textTheme.labelLarge,
             ),
 
@@ -139,14 +144,14 @@ class _VersionCheckTextReadoutState
               Padding(
                 padding: const EdgeInsets.only(bottom: 4),
                 child: Text(
-                  "Right-click to expand this tooltip.",
+                  loc.versionCheckRightClickToExpand,
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontStyle: FontStyle.italic,
                   ),
                 ),
               ),
             Text(
-              "Update information is provided by the mod author, not ${context.appName}.",
+              loc.versionCheckInfoFromAuthor(context.appName),
               style: theme.textTheme.labelLarge?.copyWith(
                 fontStyle: FontStyle.italic,
               ),
@@ -163,24 +168,28 @@ class _VersionCheckTextReadoutState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "You are up to date.",
+                    loc.versionCheckUpToDate,
                     style: theme.textTheme.labelLarge,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
-                      "Current version: ${localVersionCheck.modVersion}",
+                      loc.versionCheckCurrentVersion(
+                        "${localVersionCheck.modVersion}",
+                      ),
                       style: theme.textTheme.labelLarge,
                     ),
                   ),
                   Text(
-                    "Remote version: ${remoteVersionCheck.remoteVersion?.modVersion}",
+                    loc.versionCheckRemoteVersion(
+                      "${remoteVersionCheck.remoteVersion?.modVersion}",
+                    ),
                     style: theme.textTheme.labelLarge,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
-                      "Version Checker url:\n${remoteVersionCheck.uri}",
+                      loc.versionCheckerUrl("${remoteVersionCheck.uri}"),
                       style: theme.textTheme.labelMedium?.copyWith(
                         fontFeatures: [const FontFeature.tabularFigures()],
                       ),
@@ -194,7 +203,7 @@ class _VersionCheckTextReadoutState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Error checking for updates.",
+                    loc.versionCheckErrorCheckingForUpdates,
                     style: theme.textTheme.labelLarge?.copyWith(
                       color: TriOSThemeConstants.vanillaErrorColor,
                       fontWeight: FontWeight.bold,
@@ -203,20 +212,20 @@ class _VersionCheckTextReadoutState
                   Padding(
                     padding: const EdgeInsets.only(top: 2),
                     child: Text(
-                      "This is usually caused by the mod author or a network error. Please visit the mod page to manually find updates.",
+                      loc.versionCheckErrorUsuallyCaused,
                       style: theme.textTheme.labelLarge?.copyWith(
                         color: TriOSThemeConstants.vanillaErrorColor,
                       ),
                     ),
                   ),
                   Text(
-                    "If the in-game Version Checker is working for this specific mod, please report a TriOS bug.",
+                    loc.versionCheckReportBug,
                     style: theme.textTheme.labelLarge,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
-                      "Version Checker url:\n${remoteVersionCheck?.uri}",
+                      loc.versionCheckerUrl("${remoteVersionCheck?.uri}"),
                       style: theme.textTheme.labelLarge?.copyWith(
                         fontFeatures: [const FontFeature.tabularFigures()],
                       ),
@@ -225,7 +234,7 @@ class _VersionCheckTextReadoutState
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
-                      "Message",
+                      loc.versionCheckMessage,
                       style: theme.textTheme.labelLarge?.copyWith(
                         color: TriOSThemeConstants.vanillaErrorColor,
                         fontWeight: FontWeight.bold,
@@ -246,7 +255,7 @@ class _VersionCheckTextReadoutState
               ),
             if (localVersionCheck == null)
               Text(
-                "This mod may not support Version Checker.\nPlease visit the mod page to manually find updates.",
+                loc.versionCheckMayNotSupportVersionChecker,
                 style: theme.textTheme.labelLarge,
               ),
           ],

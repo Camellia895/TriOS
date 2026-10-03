@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/mod.dart';
@@ -143,7 +144,7 @@ class ModProfileManagerNotifier
 
   void cloneModProfile(ModProfile profile) {
     createModProfile(
-      '${profile.name} (Copy)',
+      AppLocalizationsSync.instance.profileCopySuffix(profile.name),
       enabledModVariants: profile.enabledModVariants,
     );
   }
@@ -524,7 +525,7 @@ class ModProfileManagerNotifier
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "The new profile will be activated and is identical to your current profile.",
+                      loc.mod_profiles_managerTheNewProfileWill,
                     ),
                   ],
                 )
@@ -533,7 +534,7 @@ class ModProfileManagerNotifier
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Mods Being Enabled, Disabled, or Changing Version",
+                        loc.mod_profiles_managerModsBeingEnabledDisabled,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -542,7 +543,7 @@ class ModProfileManagerNotifier
                       // if (modsToEnable.isNotEmpty)
                       _buildChangeSection(
                         null,
-                        "Enabling mod",
+                        loc.mod_profiles_managerEnablingMod,
                         modsToEnable,
                         Icons.check,
                         iconColor,
@@ -553,7 +554,7 @@ class ModProfileManagerNotifier
                       const SizedBox(height: 8),
                       _buildChangeSection(
                         null,
-                        "Disabling mod",
+                        loc.mod_profiles_managerDisablingMod,
                         modsToDisable,
                         Icons.close,
                         iconColor,
@@ -564,7 +565,7 @@ class ModProfileManagerNotifier
                       const SizedBox(height: 8),
                       _buildChangeSection(
                         null,
-                        "Swapping version",
+                        loc.mod_profiles_managerSwappingVersion,
                         modsToSwap,
                         Icons.swap_horiz,
                         iconColor,
@@ -604,8 +605,8 @@ class ModProfileManagerNotifier
               icon: hasMissingModsOrVariants ? const Icon(Icons.warning) : null,
               label: Text(
                 hasMissingModsOrVariants
-                    ? 'Activate (ignore missing mods)'
-                    : 'Activate',
+                    ? loc.mod_profiles_managerActivateIgnoreMissingMods
+                    : loc.mod_profiles_managerActivate,
               ),
             ),
             if (hasMissingModsOrVariants)
@@ -636,6 +637,7 @@ class ModProfileManagerNotifier
     BuildContext context,
   ) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -652,7 +654,7 @@ class ModProfileManagerNotifier
         ...changes.map((change) {
           final modName =
               change.mod?.findFirstEnabledOrHighestVersion?.modInfo.nameOrId ??
-              'Unknown Mod (${change.modId})';
+              loc.mod_profiles_managerUnknownMod(change.modId);
           String description;
           switch (change.changeType) {
             case ModChangeType.enable:
@@ -665,10 +667,16 @@ class ModProfileManagerNotifier
               break;
             case ModChangeType.swap:
               final fromVersion =
-                  change.fromVariant?.modInfo.version?.toString() ?? 'Unknown';
+                  change.fromVariant?.modInfo.version?.toString() ??
+                  loc.commonUnknown;
               final toVersion =
-                  change.toVariant?.modInfo.version?.toString() ?? 'Unknown';
-              description = '$modName $fromVersion → $toVersion';
+                  change.toVariant?.modInfo.version?.toString() ??
+                  loc.commonUnknown;
+              description = loc.mod_profiles_managerVersionSwapDescription(
+                modName,
+                fromVersion,
+                toVersion,
+              );
               break;
             default:
               description = modName;
@@ -761,9 +769,9 @@ class ModProfileManagerNotifier
                 final modId = change.modId;
                 return buildRow(
                   change,
-                  'Mod "$modId" is missing.',
+                  loc.mod_profiles_managerModIsMissing(modId),
                   Icons.warning,
-                  "Missing Mod",
+                  loc.mod_profiles_managerMissingMod,
                 );
               }),
             ],
@@ -790,16 +798,27 @@ class ModProfileManagerNotifier
                         ?.findFirstEnabledOrHighestVersion
                         ?.modInfo
                         .nameOrId ??
-                    'Unknown Mod (${change.modId})';
+                    loc.mod_profiles_managerUnknownMod(change.modId);
                 final hasAlt = change.toVariantAlternate != null;
+                final version =
+                    "${change.variantAsShallowMod?.version}";
                 final text = hasAlt
-                    ? 'Version ${change.variantAsShallowMod?.version} of "$modName" is not available, so ${change.toVariantAlternate!.bestVersion} will be used instead.'
-                    : 'Version ${change.variantAsShallowMod?.version} of "$modName" is not available.';
+                    ? loc.mod_profiles_managerVersionSubstitutedBody(
+                        version,
+                        modName,
+                        "${change.toVariantAlternate!.bestVersion}",
+                      )
+                    : loc.mod_profiles_managerVersionNotAvailable(
+                        version,
+                        modName,
+                      );
                 return buildRow(
                   change,
                   text,
                   hasAlt ? Icons.upgrade : Icons.warning,
-                  hasAlt ? "Version substituted" : "Version missing",
+                  hasAlt
+                      ? loc.mod_profiles_managerVersionSubstituted
+                      : loc.mod_profiles_managerVersionMissing,
                 );
               }),
             ],
@@ -831,7 +850,7 @@ class ModProfileManagerNotifier
                 .where((vari) => vari.toVariantAlternate == null)
                 .isNotEmpty)
           Text(
-            "Missing mods will be discarded from your profile after activating.",
+            loc.mod_profiles_managerMissingModsWillBe,
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.bold,
             ),

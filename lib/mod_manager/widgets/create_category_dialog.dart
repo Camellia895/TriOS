@@ -69,7 +69,9 @@ class _CreateCategoryDialogState extends State<_CreateCategoryDialog> {
           TextField(
             controller: _nameController,
             autofocus: true,
-            decoration: const InputDecoration(labelText: 'Category name'),
+            decoration: InputDecoration(
+              labelText: loc.categoryNameLabel,
+            ),
             onSubmitted: (_) => _create(),
           ),
           const SizedBox(height: 16),

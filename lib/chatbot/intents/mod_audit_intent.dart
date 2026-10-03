@@ -63,9 +63,10 @@ class ModAuditIntent extends ChatIntent with ModAwareIntent {
       );
     }
 
+    final loc = AppLocalizationsSync.instance;
     final recent = entries.reversed.take(15).toList();
     final buf = StringBuffer(
-      'Recent Mod Changes (last ${recent.length})\n',
+      loc.chatbotRecentChangesTitle(recent.length) + '\n',
     );
 
     for (final entry in recent) {
@@ -81,9 +82,9 @@ class ModAuditIntent extends ChatIntent with ModAwareIntent {
           .where((v) => v.smolId == entry.smolId)
           .firstOrNull;
       final name = mod?.modInfo.nameOrId ?? entry.smolId;
-      buf.writeln('  [$action] $name  ($time)');
+      buf.writeln(loc.chatbotAuditEntry(action, name, time));
       if (entry.reason.isNotEmpty) {
-        buf.writeln('    Reason: ${entry.reason}');
+        buf.writeln(loc.chatbotAuditReason(entry.reason));
       }
     }
 

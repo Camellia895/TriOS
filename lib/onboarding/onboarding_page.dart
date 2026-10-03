@@ -104,9 +104,12 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
               Column(
                 children: [
                   TriOSAppIcon(),
-                  const Text(
-                    "Setup",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  Text(
+                    loc.onboardingSetup,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Expanded(
@@ -147,8 +150,8 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
               ),
             ),
             SizedBox(height: 8),
-            const Text(
-              "1. Where is Starsector located?",
+            Text(
+              loc.onboardingWhereIsStarsectorLocated,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 16),
@@ -165,13 +168,13 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
                 Expanded(
                   child: TextFormField(
                     controller: textEditingController,
-                    decoration: const InputDecoration(
-                      labelText: 'Game Location',
-                      hintText: 'Select your game directory',
+                    decoration: InputDecoration(
+                      labelText: loc.onboardingGameLocation,
+                      hintText: loc.onboardingSelectYourGameDirectory,
                     ),
                     validator: (value) =>
                         value == null || !validateGameRootFolderPath(value)
-                        ? 'Game not found'
+                        ? loc.onboardingGameNotFound
                         : null,
                     onChanged: (value) => setState(() {
                       gameDirPath = value;
@@ -194,7 +197,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
               ],
             ),
             const SizedBox(height: 8 * 7),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,15 +212,15 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "2. How do you want to handle mod updates?",
+                        loc.onboardingHowDoYouWant,
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "This will only affect your mods when you update them.",
+                        loc.onboardingThisWillOnlyAffect,
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
-                        "No mods will be affected immediately.",
+                        loc.onboardingNoModsWillBe,
                         style: TextStyle(fontSize: 12),
                       ),
                     ],
@@ -227,8 +230,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
             ),
             const SizedBox(height: 8),
             MovingTooltipWidget.text(
-              message:
-                  "Installing or updating a mod will replace the previous version of it.",
+              message: loc.onboardingReplacePreviousVersion,
               child: RadioListTile(
                 title: Text(loc.onboardingKeepOnlyOneMod),
                 value: false,
@@ -243,8 +245,8 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
                 IntrinsicWidth(
                   child: MovingTooltipWidget.text(
                     message: lastNVersionsSetting == null
-                        ? "TriOS will never automatically remove mod versions."
-                        : "Installing or updating a mod will remove all but the last $lastNVersionsSetting highest versions.",
+                        ? loc.onboardingTriosWillNeverAutomatically
+                        : loc.onboardingRemoveAllButLastN(lastNVersionsSetting!),
                     child: RadioListTile(
                       title: Text(loc.onboardingKeepAllModVersions),
                       value: true,
@@ -308,18 +310,13 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
             ),
           ),
           SizedBox(height: 8),
-          const Text(
-            "3: Bug Reporting",
+          Text(
+            loc.onboardingBugReporting,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           const SizedBox(height: 16),
           Linkify(
-            text:
-                "${Constants.appName} can send crash/error reports to help me find and fix issues (it does actually help!)."
-                "\nExample of a report: https://i.imgur.com/k9E6zxO.png."
-                "\n\nNothing identifiable or personal is ever sent."
-                "\n\nSent: app version, mod list, basic PC info (screen resolution, OS, RAM...), randomly generated user ID, and crash details."
-                "\nNot sent: IP address, language, region, zip code, PC name, PC username, anything about other apps, etc.",
+            text: loc.onboardingBugReportingBody(Constants.appName),
             onOpen: (link) => OpenFilex.open(link.url),
             style: const TextStyle(fontSize: 14),
           ),
@@ -370,20 +367,19 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
         children: [
           const Icon(Icons.link, size: 45),
           const SizedBox(height: 8),
-          const Text(
-            "4: One-Click Mod Install",
+          Text(
+            loc.onboardingOneClickModInstall,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           const SizedBox(height: 16),
           Text(
-            "${Constants.appName} can handle 'Install with TriOS' links, "
-            "allowing you to install mods with a single click from websites.",
+            loc.onboardingOneClickBody(Constants.appName),
             style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 8),
-          const Text(
-            "You will be asked to confirm before any mod is downloaded.",
-            style: TextStyle(fontSize: 14),
+          Text(
+            loc.onboardingYouWillBeAsked,
+            style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 16),
           TriOSRadioTile<bool>(
@@ -422,7 +418,7 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "You can always change these on the Settings page later",
+                  loc.onboardingYouCanAlwaysChange,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     fontStyle: FontStyle.italic,
                     color: Theme.of(
@@ -490,7 +486,9 @@ class _OnboardingCarouselState extends ConsumerState<OnboardingCarousel> {
                           await _saveSettings(context);
                         }
                       },
-                      label: Text(isLast ? "Finish" : "Next"),
+                      label: Text(
+                        isLast ? loc.onboardingFinish : loc.onboardingNext,
+                      ),
                     ),
                   ),
                 );

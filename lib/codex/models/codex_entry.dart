@@ -2,6 +2,7 @@ import 'package:trios/codex/codex_links.dart';
 import 'package:trios/faction_viewer/models/faction.dart';
 import 'package:trios/fighter_viewer/models/wing.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/ship_systems_manager/ship_system.dart';
 import 'package:trios/ship_viewer/models/ship.dart';
 import 'package:trios/utils/extensions.dart';
@@ -94,7 +95,10 @@ class WeaponCodexEntry extends CodexEntry {
     final size = weapon.size;
     final weaponType = weapon.weaponType;
     if (size == null || weaponType == null) return null;
-    return '${size.toTitleCase()} ${weaponType.toLowerCase()} weapon';
+    return AppLocalizationsSync.instance.codexWeaponSubtitle(
+      size.toTitleCase(),
+      weaponType.toLowerCase(),
+    );
   }
 
   @override

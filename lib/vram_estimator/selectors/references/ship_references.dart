@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:csv/csv.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
@@ -15,11 +16,12 @@ class ShipReferences extends ReferenceParser {
   String get id => 'ships';
 
   @override
-  String get displayName => 'Ship hulls (.ship + ship_data.csv)';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefShips;
 
   @override
   String get description =>
-      'Sprite paths referenced by .ship JSON files and ship_data.csv.';
+      AppLocalizationsSync.instance.vramRefShipsDesc;
 
   static const _csvReader = CsvToListConverter(
     allowInvalid: true,

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/search_index.dart';
 import 'package:stringr/stringr.dart';
 import 'package:trios/models/mod.dart';
@@ -129,7 +130,7 @@ class ModsGridSearchController extends Notifier<ModsGridSearchState> {
     return [
       SearchField<Mod>(
         key: 'name',
-        description: 'Mod name',
+        description: AppLocalizationsSync.instance.modsGridFilterModName,
         valueSuggestions: (mods) =>
             mods
                 .map(
@@ -148,10 +149,10 @@ class ModsGridSearchController extends Notifier<ModsGridSearchState> {
           return name?.contains(value.toLowerCase()) ?? false;
         },
       ),
-      SearchField.string('id', 'Mod ID', (m) => m.id),
+      SearchField.string('id', AppLocalizationsSync.instance.modsGridFilterModId, (m) => m.id),
       SearchField<Mod>(
         key: 'author',
-        description: 'Author name (includes aliases)',
+        description: AppLocalizationsSync.instance.modsGridFilterAuthorNameIncludesAliases,
         valueSuggestions: (mods) =>
             mods
                 .map(
@@ -176,17 +177,17 @@ class ModsGridSearchController extends Notifier<ModsGridSearchState> {
       ),
       SearchField.string(
         'version',
-        'Mod version',
+        AppLocalizationsSync.instance.modsGridFilterModVersion,
         (m) => m.findFirstEnabledOrHighestVersion?.modInfo.version?.toString(),
       ),
       SearchField.string(
         'gameversion',
-        'Game version compatibility',
+        AppLocalizationsSync.instance.modsGridFilterGameVersionCompatibility,
         (m) => m.findFirstEnabledOrHighestVersion?.modInfo.gameVersion,
       ),
       SearchField<Mod>(
         key: 'dependency',
-        description: 'Name or ID of a mod it requires',
+        description: AppLocalizationsSync.instance.modsGridFilterDependencyNameOrId,
         valueSuggestions: (mods) =>
             mods
                 .expand(_dependenciesOf)
@@ -209,7 +210,7 @@ class ModsGridSearchController extends Notifier<ModsGridSearchState> {
       ),
       SearchField<Mod>(
         key: 'enabled',
-        description: 'Whether the mod is enabled (true/false)',
+        description: AppLocalizationsSync.instance.modsGridFilterEnabledDescription,
         valueSuggestions: (_) => ['true', 'false'],
         matches: (mod, op, value) {
           if (op != DslOperator.equals) return false;

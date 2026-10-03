@@ -78,8 +78,8 @@ List<ContextMenuEntry> buildCategoryMenuItems({
       const MenuDivider(),
       MenuHeader(
         text: primaryCategory != null
-            ? "Manage: ${primaryCategory.name}"
-            : "(please select a primary category)",
+            ? loc.categoryContextMenuManageCategory(primaryCategory.name)
+            : loc.categoryContextMenuPleaseSelectAPrimary,
       ),
       ..._buildPrimaryManagementItems(
         mod: mod,
@@ -297,7 +297,9 @@ List<ContextMenuEntry> buildCategoryContextMenuEntries(
             content: TextField(
               controller: controller,
               autofocus: true,
-              decoration: const InputDecoration(labelText: 'Category name'),
+              decoration: InputDecoration(
+                labelText: loc.categoryNameLabel,
+              ),
               onSubmitted: (value) {
                 if (value.trim().isNotEmpty) {
                   notifier.updateCategory(category.id, name: value.trim());

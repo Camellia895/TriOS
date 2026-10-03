@@ -18,15 +18,15 @@ class ModDataFileNotes {
 
   /// For side files (`.wpn`, `.ship`, `.skin`, `.faction`), which the game
   /// merges together.
-  static const merged = ModDataFileNotes(
-    effective: 'used for most values',
-    other: 'also applied',
+  static ModDataFileNotes get merged => ModDataFileNotes(
+    effective: AppLocalizationsSync.instance.mod_data_fileUsedForMostValues,
+    other: AppLocalizationsSync.instance.mod_data_fileAlsoApplied,
   );
 
   /// For spreadsheets, where one row wins and the rest do nothing.
-  static const oneWins = ModDataFileNotes(
-    effective: 'in use',
-    other: 'overridden',
+  static ModDataFileNotes get oneWins => ModDataFileNotes(
+    effective: AppLocalizationsSync.instance.mod_data_fileInUse,
+    other: AppLocalizationsSync.instance.mod_data_fileOverridden,
   );
 }
 
@@ -43,9 +43,10 @@ void _open(ModDataFile file) => file.file.absolute.showInExplorer();
 ContextMenuEntry buildOpenModDataFileMenuItem(
   List<ModDataFile> files, {
   required String label,
-  ModDataFileNotes notes = ModDataFileNotes.merged,
+  ModDataFileNotes? notes,
   IconData icon = Icons.edit_note,
 }) {
+  notes ??= ModDataFileNotes.merged;
   if (files.length == 1) {
     return MenuItem(
       label: label,
@@ -81,9 +82,10 @@ Widget buildOpenModDataFileButton(
   BuildContext context,
   List<ModDataFile> files, {
   required String label,
-  ModDataFileNotes notes = ModDataFileNotes.merged,
+  ModDataFileNotes? notes,
   IconData icon = Icons.edit_note,
 }) {
+  notes ??= ModDataFileNotes.merged;
   if (files.isEmpty) return const SizedBox.shrink();
 
   if (files.length == 1) {
@@ -102,7 +104,7 @@ Widget buildOpenModDataFileButton(
       onSelected: _open,
       itemBuilder: (context) => [
         for (final file in files)
-          PopupMenuItem(value: file, child: Text(_label(file, notes))),
+          PopupMenuItem(value: file, child: Text(_label(file, notes!))),
       ],
     ),
   );

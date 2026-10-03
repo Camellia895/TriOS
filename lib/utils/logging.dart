@@ -20,6 +20,7 @@ import 'package:uuid/uuid.dart';
 
 import '../trios/constants.dart';
 import '../trios/settings/settings.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 part 'logging.mapper.dart';
 
@@ -497,7 +498,7 @@ SentryFlutterOptions configureSentry(
     ..privacy.maskAllText = false
     ..privacy.maskAssetImages = false
     ..enableLogs = true
-    ..feedback.nameLabel = "Username (not required)"
+    ..feedback.nameLabel = AppLocalizationsSync.instance.sentryFeedbackNameLabel
     ..feedback.namePlaceholder = [
       "@JohnStarsector",
       "@JaneStarsector",
@@ -514,17 +515,15 @@ SentryFlutterOptions configureSentry(
       "@FinlayTipLine",
       "@CaptainRoger",
     ].random()
-    ..feedback.emailLabel = "Email (definitely not required!)"
+    ..feedback.emailLabel = AppLocalizationsSync.instance.sentryFeedbackEmailLabel
     // "\n  by entering an email, you agree to receive marketing messages from the TriTachyon Corporation"
     ..feedback.emailPlaceholder = "you@email.com"
     ..feedback.isEmailRequired = false
-    ..feedback.messageLabel = "Description"
-    ..feedback.isRequiredLabel = "(required)"
+    ..feedback.messageLabel = AppLocalizationsSync.instance.sentryFeedbackMessageLabel
+    ..feedback.isRequiredLabel = AppLocalizationsSync.instance.sentryFeedbackRequiredLabel
     ..feedback.showCaptureScreenshot = false
     ..feedback.messagePlaceholder =
-        "Please describe the issue you are experiencing with ${Constants.appName}."
-        "\n"
-        "\n${Constants.appName} is not affiliated with Fractal Softworks and cannot help with issues with the game, payments, license keys, or mods.";
+        AppLocalizationsSync.instance.sentryFeedbackMessagePlaceholder(Constants.appName);
 
   options.beforeCaptureScreenshot = (event, hint, shouldDebounce) async {
     // Only allow screenshots for the report bug flow.

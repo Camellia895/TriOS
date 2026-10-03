@@ -60,20 +60,25 @@ class ModListIntent extends ChatIntent with ModAwareIntent {
       );
     }
 
+    final loc = AppLocalizationsSync.instance;
     const maxDisplay = 30;
-    final buf = StringBuffer('Installed Mods (${allMods.length})\n');
+    final buf = StringBuffer(
+      loc.chatbotInstalledModsTitle(allMods.length) + '\n',
+    );
 
     for (final mod in allMods.take(maxDisplay)) {
       final variant = mod.findFirstEnabledOrHighestVersion;
       final name = variant?.modInfo.nameOrId ?? mod.id;
       final version =
           variant?.modInfo.version != null ? ' v${variant!.modInfo.version}' : '';
-      final status = mod.isEnabledInGame ? '[ON] ' : '[OFF]';
+      final status = mod.isEnabledInGame
+          ? '[${loc.chatbotTagOn}] '
+          : '[${loc.chatbotTagOff}]';
       buf.writeln('  $status $name$version');
     }
 
     if (allMods.length > maxDisplay) {
-      buf.writeln('  ...and ${allMods.length - maxDisplay} more');
+      buf.writeln('  ' + loc.chatbotAndNMore(allMods.length - maxDisplay));
     }
 
     return ChatResponse(text: buf.toString().trimRight());

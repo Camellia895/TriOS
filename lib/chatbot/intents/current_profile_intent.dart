@@ -56,19 +56,28 @@ class CurrentProfileIntent extends ChatIntent with ProfileAwareIntent {
       );
     }
 
-    final buf = StringBuffer('Active Profile: ${profile.name}\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(
+      loc.chatbotActiveProfileHeader(profile.name) + '\n',
+    );
     if (profile.description.isNotEmpty) {
-      buf.writeln('  Description: ${profile.description}');
+      buf.writeln(loc.chatbotDetailDescription(profile.description));
     }
-    buf.writeln('  Mods: ${profile.enabledModVariants.length}');
+    buf.writeln(
+      loc.chatbotProfileModsCount(profile.enabledModVariants.length),
+    );
     if (profile.dateCreated != null) {
       buf.writeln(
-        '  Created: ${profile.dateCreated!.toLocal().toString().split('.').first}',
+        loc.chatbotProfileCreated(
+          profile.dateCreated!.toLocal().toString().split('.').first,
+        ),
       );
     }
     if (profile.dateModified != null) {
       buf.writeln(
-        '  Modified: ${profile.dateModified!.toLocal().toString().split('.').first}',
+        loc.chatbotProfileModified(
+          profile.dateModified!.toLocal().toString().split('.').first,
+        ),
       );
     }
 

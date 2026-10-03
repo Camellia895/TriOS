@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/mod_context_menu.dart';
@@ -84,7 +85,9 @@ abstract class WispGridGroup<T extends WispGridItem> {
   /// display names.
   String dragFeedbackLabel(List<String> draggedKeys, List<T> allItems) =>
       draggedKeys.length > 1
-      ? '${draggedKeys.length} items'
+      ? AppLocalizationsSync.instance.wispgridGroupItemsCount(
+          draggedKeys.length,
+        )
       : draggedKeys.first;
 
   /// Returns the formatted label for the drag badge when hovering over a
@@ -121,7 +124,11 @@ class UngroupedModGridGroup extends WispGridGroup<Mod> {
   UngroupedModGridGroup() : super('none', 'None');
 
   @override
-  String getGroupName(Mod mod, {Comparable? groupSortValue}) => 'All Mods';
+  String get displayName => AppLocalizationsSync.instance.codexNone;
+
+  @override
+  String getGroupName(Mod mod, {Comparable? groupSortValue}) =>
+      AppLocalizationsSync.instance.wispgridGroupAllMods;
 
   @override
   Comparable getGroupSortValue(Mod mod) => 1;
@@ -134,8 +141,13 @@ class EnabledStateModGridGroup extends WispGridGroup<Mod> {
   EnabledStateModGridGroup() : super('enabledState', 'Enabled');
 
   @override
+  String get displayName => AppLocalizationsSync.instance.vramEnabled;
+
+  @override
   String getGroupName(Mod mod, {Comparable? groupSortValue}) =>
-      mod.isEnabledOnUi ? 'Enabled' : 'Disabled';
+      mod.isEnabledOnUi
+      ? AppLocalizationsSync.instance.vramEnabled
+      : AppLocalizationsSync.instance.vramDisabled;
 
   @override
   Comparable getGroupSortValue(Mod mod) => mod.isEnabledOnUi ? 0 : 1;
@@ -191,14 +203,23 @@ class CategoryModGridGroup extends WispGridGroup<Mod> {
 
   CategoryModGridGroup(this.ref) : super('category', 'Category');
 
+  /// The display name shown for mods with no category assignment.
+  static String get uncategorizedDisplayName =>
+      AppLocalizationsSync.instance.wispgridGroupUncategorized;
+
+  @override
+  String get displayName => AppLocalizationsSync.instance.modsGridCategory;
+
   @override
   bool get supportsDragAndDrop => true;
 
   @override
-  String dragFeedbackLabel(List<String> draggedKeys, List<Mod> allItems) =>
-      draggedKeys.length > 1
-      ? 'Move ${draggedKeys.length} items to\u2026'
-      : 'Move to\u2026';
+  String dragFeedbackLabel(List<String> draggedKeys, List<Mod> allItems) {
+    final loc = AppLocalizationsSync.instance;
+    return draggedKeys.length > 1
+        ? loc.wispgridGroupMoveItemsTo(draggedKeys.length)
+        : loc.wispgridGroupMoveTo;
+  }
 
   @override
   String? dragHoverLabel(String targetGroupName, List<String> draggedKeys) {
@@ -210,17 +231,21 @@ class CategoryModGridGroup extends WispGridGroup<Mod> {
       final categoryId =
           primary?.categoryId ?? assignments.firstOrNull?.categoryId;
       final sourceName = categoryId == null
-          ? 'Uncategorized'
+          ? uncategorizedDisplayName
           : store.categories
                     .firstWhereOrNull((c) => c.id == categoryId)
                     ?.name ??
-                'Uncategorized';
+                uncategorizedDisplayName;
       if (sourceName == targetGroupName) return null;
     }
 
+    final loc = AppLocalizationsSync.instance;
     return draggedKeys.length > 1
-        ? 'Move ${draggedKeys.length} items to $targetGroupName'
-        : 'Move to $targetGroupName';
+        ? loc.wispgridGroupMoveItemsToGroup(
+            draggedKeys.length,
+            targetGroupName,
+          )
+        : loc.wispgridGroupMoveToGroup(targetGroupName);
   }
 
   @override
@@ -245,18 +270,21 @@ class CategoryModGridGroup extends WispGridGroup<Mod> {
   String getGroupName(Mod mod, {Comparable? groupSortValue}) {
     // Multi-group items pass groupSortValue to resolve the correct group.
     if (groupSortValue != null) {
-      return _categoryFromSortValue(groupSortValue)?.name ?? 'Uncategorized';
+      return _categoryFromSortValue(groupSortValue)?.name ??
+          uncategorizedDisplayName;
     }
 
     return ref
             .read(categoryManagerProvider.notifier)
             .getPrimaryCategory(mod.id)
             ?.name ??
-        'Uncategorized';
+        uncategorizedDisplayName;
   }
 
   static String _sortValueForName(String name) =>
-      name == 'Uncategorized' ? uncategorizedSortValue : name.toLowerCase();
+      name == uncategorizedDisplayName
+      ? uncategorizedSortValue
+      : name.toLowerCase();
 
   @override
   Comparable getGroupSortValue(Mod mod) =>
@@ -396,8 +424,12 @@ class AuthorModGridGroup extends WispGridGroup<Mod> {
   AuthorModGridGroup() : super('author', 'Author');
 
   @override
+  String get displayName => AppLocalizationsSync.instance.modSummaryAuthor;
+
+  @override
   String getGroupName(Mod mod, {Comparable? groupSortValue}) =>
-      mod.findFirstEnabledOrHighestVersion?.modInfo.author ?? 'No Author';
+      mod.findFirstEnabledOrHighestVersion?.modInfo.author ??
+      AppLocalizationsSync.instance.wispgridGroupNoAuthor;
 
   @override
   Comparable? getGroupSortValue(Mod mod) =>
@@ -450,24 +482,29 @@ class ModTypeModGridGroup extends WispGridGroup<Mod> {
   ModTypeModGridGroup() : super('modType', 'Mod Type');
 
   @override
+  String get displayName => AppLocalizationsSync.instance.wispgridGroupModType;
+
+  @override
   String getGroupName(Mod mod, {Comparable? groupSortValue}) {
+    final loc = AppLocalizationsSync.instance;
     final modInfo = mod.findFirstEnabledOrHighestVersion?.modInfo;
     if (modInfo?.isUtility == true) {
-      return 'Utility';
+      return loc.wispgridGroupUtility;
     } else if (modInfo?.isTotalConversion == true) {
-      return 'Total Conversion';
+      return loc.modInfoDialogTotalConversion;
     } else {
-      return 'Other';
+      return loc.wispgridGroupOther;
     }
   }
 
   @override
   Comparable getGroupSortValue(Mod mod) {
+    final loc = AppLocalizationsSync.instance;
     final modInfo = mod.findFirstEnabledOrHighestVersion?.modInfo;
     if (modInfo?.isUtility == true) {
-      return 'Utility';
+      return loc.wispgridGroupUtility;
     } else if (modInfo?.isTotalConversion == true) {
-      return 'Total Conversion';
+      return loc.modInfoDialogTotalConversion;
     } else {
       return CategoryModGridGroup.uncategorizedSortValue;
     }
@@ -520,8 +557,12 @@ class GameVersionModGridGroup extends WispGridGroup<Mod> {
   GameVersionModGridGroup() : super('gameVersion', 'Game Version');
 
   @override
+  String get displayName => AppLocalizationsSync.instance.catalogGameVersion;
+
+  @override
   String getGroupName(Mod mod, {Comparable? groupSortValue}) =>
-      mod.findFirstEnabledOrHighestVersion?.modInfo.gameVersion ?? 'Unknown';
+      mod.findFirstEnabledOrHighestVersion?.modInfo.gameVersion ??
+      AppLocalizationsSync.instance.wispgridGroupUnknown;
 
   @override
   Comparable getGroupSortValue(Mod mod) => getGroupName(mod).toLowerCase();
@@ -579,6 +620,7 @@ OverlayWidgetData? _vramSummaryOverlayWidget(
   double horizontalPaddingOffset = 0,
   bool isSecondaryHeader = false,
 }) {
+  final locWisp = AppLocalizations.of(context);
   final vramProvider = ref.watch(AppState.vramEstimatorProvider);
   final vramMap = vramProvider.value?.modVramInfo ?? {};
   final graphicsLibConfig = ref.watch(graphicsLibConfigProvider);
@@ -632,39 +674,57 @@ OverlayWidgetData? _vramSummaryOverlayWidget(
           children: [
             // bold
             Text(
-              "Estimated VRAM use by ${groupName.trim().split("\n").firstOrNull}\n",
+              locWisp.wispgridGroupEstimatedVramUseBy(
+                groupName.trim().split("\n").firstOrNull ?? "",
+              ),
               style: Theme.of(
                 context,
               ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
             ),
             if (graphicsLibConfig != null)
               Text(
-                "GraphicsLib settings",
+                locWisp.vramGraphicsLibSettings,
                 style: Theme.of(
                   context,
                 ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.bold),
               ),
             if (graphicsLibConfig != null)
               Text(
-                "Enabled: ${graphicsLibConfig.areAnyEffectsEnabled ? "yes" : "no"}"
-                "\nGenerate Normal maps: ${graphicsLibConfig.autoGenNormals ? "on" : "off"}"
-                "\nPreload all: ${graphicsLibConfig.preloadAllMaps ? "on" : "off"}",
+                locWisp.vramGfxStatusMain(
+                  graphicsLibConfig.areAnyEffectsEnabled
+                      ? locWisp.vramYes
+                      : locWisp.vramNo,
+                  graphicsLibConfig.autoGenNormals
+                      ? locWisp.vramOn
+                      : locWisp.vramOff,
+                  graphicsLibConfig.preloadAllMaps
+                      ? locWisp.vramOn
+                      : locWisp.vramOff,
+                ),
                 style: Theme.of(context).textTheme.labelLarge,
               ),
             if (graphicsLibConfig != null &&
                 graphicsLibConfig.areAnyEffectsEnabled)
               Text(
-                "\nNormal maps: ${graphicsLibConfig.areGfxLibNormalMapsEnabled ? "on" : "off"}"
-                "\nMaterial maps: ${graphicsLibConfig.areGfxLibMaterialMapsEnabled ? "on" : "off"}"
-                "\nSurface maps: ${graphicsLibConfig.areGfxLibSurfaceMapsEnabled ? "on" : "off"}",
+                "\n${locWisp.vramGfxStatusMaps(
+                  graphicsLibConfig.areGfxLibNormalMapsEnabled
+                      ? locWisp.vramOn
+                      : locWisp.vramOff,
+                  graphicsLibConfig.areGfxLibMaterialMapsEnabled
+                      ? locWisp.vramOn
+                      : locWisp.vramOff,
+                  graphicsLibConfig.areGfxLibSurfaceMapsEnabled
+                      ? locWisp.vramOn
+                      : locWisp.vramOff,
+                )}",
                 style: Theme.of(context).textTheme.labelLarge,
               ),
             Text(
-              "\n${vramModsNoGraphicsLib.bytesAsReadableMB()} added by mods (${allEstimates.map((e) => e.images.length).sum} images)"
-              "${vramFromGraphicsLib.sum() > 0 ? "\n${vramFromGraphicsLib.sum().bytesAsReadableMB()} added by your GraphicsLib settings (${isGraphicsLibPreloadingAll ? "${vramFromGraphicsLib.length} images" : "roughly"})" : ""}"
-              "${vramFromVanilla != null ? "\n${vramFromVanilla.bytesAsReadableMB()} added by vanilla" : ""}"
+              "\n${locWisp.vramAddedByMods(vramModsNoGraphicsLib.bytesAsReadableMB(), allEstimates.map((e) => e.images.length).sum)}"
+              "${vramFromGraphicsLib.sum() > 0 ? "\n${locWisp.vramAddedByGraphicsLib(vramFromGraphicsLib.sum().bytesAsReadableMB(), isGraphicsLibPreloadingAll ? locWisp.vramImagesCount(vramFromGraphicsLib.length) : locWisp.vramRoughly)}" : ""}"
+              "${vramFromVanilla != null ? "\n${locWisp.vramAddedByVanilla(vramFromVanilla.bytesAsReadableMB())}" : ""}"
               "\n---"
-              "\n${(vramModsNoGraphicsLib + vramFromGraphicsLib.sum() + (vramFromVanilla ?? 0.0)).bytesAsReadableMB()} total",
+              "\n${locWisp.vramTotalLine((vramModsNoGraphicsLib + vramFromGraphicsLib.sum() + (vramFromVanilla ?? 0.0)).bytesAsReadableMB())}",
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ],
@@ -702,8 +762,9 @@ OverlayWidgetData? _vramSummaryOverlayWidget(
                             .where((e) => vramMap[e.smolId] == null)
                             .toList();
                         return MovingTooltipWidget.text(
-                          message:
-                              "Estimate VRAM usage for ${variantsToCheck.length} unscanned mods",
+                          message: locWisp.wispgridGroupEstimateVramUsageFor(
+                            variantsToCheck.length,
+                          ),
                           child: IconButton(
                             icon: const Icon(Icons.memory),
                             iconSize: 20,

@@ -3,6 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/constants_theme.dart';
 import 'package:trios/trios/deep_link/deep_link_parser.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
@@ -44,7 +45,9 @@ class ResolvedModEntry {
   String get displayDetail {
     // Already-installed wins over a download error: if we already have it, the
     // missing/invalid download link doesn't matter.
-    if (alreadyInstalled) return 'Already installed';
+    if (alreadyInstalled) {
+      return AppLocalizationsSync.instance.deepLinkAlreadyInstalled;
+    }
     if (error != null) return error!;
     // Version is shown on its own labeled line; here just show the actual
     // download host (where bytes come from), which for a .version link differs
@@ -175,7 +178,9 @@ class _DeepLinkConfirmationDialogState
 
     return AlertDialog(
       title: Text(
-        installCount > 1 ? 'Install Mods from Link' : 'Install Mod from Link',
+        installCount > 1
+            ? loc.deepLinkInstallModsFromLink
+            : loc.deepLinkInstallModFromLink,
       ),
       content: ConstrainedBox(
         constraints: const BoxConstraints(minWidth: 400, maxWidth: 620),
@@ -196,7 +201,7 @@ class _DeepLinkConfirmationDialogState
                     // Then dependencies (already excludes any that are main mods).
                     if (deps.isNotEmpty) ...[
                       _sectionHeader(
-                        'Dependencies (${deps.length})',
+                        loc.deepLinkDependencies(deps.length),
                         theme.textTheme.titleSmall,
                       ),
                       ...deps.map(
@@ -243,8 +248,8 @@ class _DeepLinkConfirmationDialogState
           icon: const Icon(Icons.download),
           label: Text(
             selectedCount == 0
-                ? 'No mods selected'
-                : 'Download & Install ($selectedCount)',
+                ? loc.deepLinkNoModsSelected
+                : loc.deepLinkDownloadAndInstall(selectedCount),
           ),
         ),
       ],
@@ -379,7 +384,7 @@ class _DeepLinkConfirmationDialogState
           _urlLine(
             theme,
             Icons.numbers,
-            'Requires ≥ ${entry.entry.modVersion}',
+            loc.deepLinkRequiresVersion('${entry.entry.modVersion}'),
             onTap: onTap,
           )
         else if (entry.modVersion != null)
@@ -393,7 +398,9 @@ class _DeepLinkConfirmationDialogState
             ),
           ),
         MovingTooltipWidget.text(
-          message: isVersionFile ? 'Version file' : loc.deepLinkDownloadLink,
+          message: isVersionFile
+              ? loc.deepLinkVersionFile
+              : loc.deepLinkDownloadLink,
           child: _urlLine(
             theme,
             isVersionFile ? Icons.description_outlined : Icons.download,

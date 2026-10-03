@@ -82,23 +82,28 @@ class VramEstimateIntent extends ChatIntent with ModAwareIntent {
     String formatMb(int bytes) =>
         '${(bytes / (1024 * 1024)).toStringAsFixed(0)} MB';
 
-    final buf = StringBuffer('VRAM Usage Estimate\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotVramEstimateTitle + '\n');
     buf.writeln(
-      '  Enabled mods (${enabledMods.length}): ~${formatMb(enabledBytes)}',
+      loc.chatbotVramEnabledMods(
+        enabledMods.length,
+        formatMb(enabledBytes),
+      ),
     );
     buf.writeln(
-      '  All mods (${allMods.length}):     ~${formatMb(allBytes)}',
+      loc.chatbotVramAllMods(allMods.length, formatMb(allBytes)),
     );
 
     if (vramState.lastUpdated != null) {
       buf.writeln(
-        '  Last scanned: ${vramState.lastUpdated!.toLocal().toString().split('.').first}',
+        loc.chatbotVramLastScanned(
+          vramState.lastUpdated!.toLocal().toString().split('.').first,
+        ),
       );
     }
 
     buf.writeln(
-      '\nNote: This is an estimate based on texture sizes.\n'
-      'Ask "high vram mods" to see the biggest consumers.',
+      loc.chatbotVramNote,
     );
 
     return ChatResponse(text: buf.toString().trimRight());

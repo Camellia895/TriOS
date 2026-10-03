@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 part 'ai_summary_mode.mapper.dart';
 
@@ -23,9 +24,11 @@ enum AiSummaryMode {
 
 extension AiSummaryModeDisplay on AiSummaryMode {
   String get label => switch (this) {
-    AiSummaryMode.always => 'Always',
-    AiSummaryMode.whenNoAuthorText => 'Only if missing',
-    AiSummaryMode.never => 'Never',
+    AiSummaryMode.always =>
+      AppLocalizationsSync.instance.catalogAiSummaryAlways,
+    AiSummaryMode.whenNoAuthorText =>
+      AppLocalizationsSync.instance.catalogAiSummaryOnlyIfMissing,
+    AiSummaryMode.never => AppLocalizationsSync.instance.catalogAiSummaryNever,
   };
 
   IconData get icon => switch (this) {

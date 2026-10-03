@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 import 'package:trios/catalog/side_rail/side_rail_panel.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 
 /// Minimum width (logical pixels) before the panel snap-collapses.
 const double kSideRailPanelMinWidth = 400;
@@ -207,7 +208,9 @@ class _RailTab extends StatelessWidget {
         : theme.colorScheme.onSurface.withValues(alpha: 0.7);
 
     return MovingTooltipWidget.text(
-      message: isActive ? 'Hide ${panel.label}' : 'Show ${panel.label}',
+      message: isActive
+          ? AppLocalizations.of(context).catalogSideRailHide(panel.label)
+          : AppLocalizations.of(context).catalogSideRailShow(panel.label),
       child: Material(
         color: bg,
         child: InkWell(

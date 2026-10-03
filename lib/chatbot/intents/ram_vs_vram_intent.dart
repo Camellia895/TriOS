@@ -1,6 +1,7 @@
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Explains the difference between RAM and VRAM in a Starsector context.
 class RamVsVramIntent extends ChatIntent {
@@ -55,25 +56,8 @@ class RamVsVramIntent extends ChatIntent {
 
   @override
   ChatResponse respond(String input, ConversationContext context) {
-    return const ChatResponse(text: _response);
+    return ChatResponse(
+      text: AppLocalizationsSync.instance.chatbotRamVsVramGuide,
+    );
   }
-
-  static const _response = 'RAM vs VRAM — Quick Guide\n'
-      '\n'
-      'RAM (System Memory):\n'
-      "  Used by Starsector's Java process for game logic, mod code, and data.\n"
-      '  Controlled by the JVM heap size (-Xmx flag).\n'
-      '  More RAM = more mods, bigger battles, fewer OutOfMemoryErrors.\n'
-      '\n'
-      'VRAM (Video Memory):\n'
-      '  Lives on your GPU. Used for textures, sprites, and shaders.\n'
-      '  NOT controlled by the -Xmx flag or any JVM setting.\n'
-      '  More VRAM = more graphical mods, higher-res textures.\n'
-      '\n'
-      'Key Takeaway:\n'
-      '  "OutOfMemoryError" in your log → you need more RAM.\n'
-      '  Graphical glitches or missing textures → could be VRAM.\n'
-      '  Most Starsector modding issues are RAM, not VRAM.\n'
-      '\n'
-      'Use the Dashboard page in TriOS to adjust your RAM allocation.';
 }

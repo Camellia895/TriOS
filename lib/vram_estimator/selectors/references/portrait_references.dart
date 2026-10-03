@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:csv/csv.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
 import 'package:trios/vram_estimator/selectors/references/reference_parser.dart';
@@ -14,11 +15,12 @@ class PortraitReferences extends ReferenceParser {
   String get id => 'portraits';
 
   @override
-  String get displayName => 'Portraits (portraits.csv)';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefPortraits;
 
   @override
   String get description =>
-      'Portrait paths listed in data/characters/portraits/portraits.csv.';
+      AppLocalizationsSync.instance.vramRefPortraitsDesc;
 
   static const _csvReader = CsvToListConverter(
     allowInvalid: true,

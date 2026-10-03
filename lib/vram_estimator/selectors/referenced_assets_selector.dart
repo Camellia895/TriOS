@@ -1,3 +1,4 @@
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
 import 'package:trios/vram_estimator/selectors/referenced_assets_selector_config.dart';
@@ -56,12 +57,11 @@ class ReferencedAssetsSelector extends VramAssetSelector {
   VramSelectorId get id => VramSelectorId.referenced;
 
   @override
-  String get displayName => 'Selective Scan';
+  String get displayName => AppLocalizationsSync.instance.vramSelectiveScan;
 
   @override
   String get description =>
-      "Searches the mod's text files and code for image paths. "
-      "More accurate than folder scan, but takes longer.";
+      AppLocalizationsSync.instance.vramSelectorReferencedDesc;
 
   @override
   Future<List<SelectedAsset>> select(

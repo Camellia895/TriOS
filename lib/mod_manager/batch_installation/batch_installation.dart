@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_install_source.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/download_progress.dart';
@@ -155,7 +156,10 @@ class BatchEntry {
       counted.$2,
       isIndeterminate: !isCountingFiles,
       customStatus: isCountingFiles
-          ? '${counted.$1} / ${counted.$2} files'
+          ? AppLocalizationsSync.instance.batchInstallationFilesProgress(
+              counted.$1,
+              counted.$2,
+            )
           : '$phase...',
     );
   }

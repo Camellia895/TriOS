@@ -65,30 +65,30 @@ class RamInfoIntent extends ChatIntent with SettingsAwareIntent {
       );
     }
 
-    final buf = StringBuffer('RAM Allocation\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotRamAllocationTitle + '\n');
 
     if (state.currentRamAmountInMb != null) {
-      buf.writeln('  Current RAM: ${state.currentRamAmountInMb} MB');
+      buf.writeln(loc.chatbotRamCurrent('${state.currentRamAmountInMb}'));
     }
 
     final selected = state.selectedVmparamsFiles;
     if (selected.isNotEmpty) {
-      buf.writeln('  Managed vmparams files (${selected.length}):');
+      buf.writeln(loc.chatbotRamManagedFiles(selected.length));
       final gameDir = gameFolder;
       for (final file in selected) {
         final ram = state.fileRamAmounts[file];
         final displayPath = gameDir != null
             ? p.relative(file.path, from: gameDir.path)
             : file.path;
-        buf.writeln(
-          '    - $displayPath${ram != null ? " ($ram MB)" : ""}',
-        );
+        final ramSuffix = ram != null ? ' ($ram MB)' : '';
+        buf.writeln(loc.chatbotRamFileEntry(displayPath, ramSuffix));
       }
     }
 
     if (state.hasMultipleFilesWithDifferentRam) {
       buf.writeln(
-        '\n  Warning: Multiple vmparams files have different RAM amounts.',
+        loc.chatbotRamMultipleFilesWarning,
       );
     }
 

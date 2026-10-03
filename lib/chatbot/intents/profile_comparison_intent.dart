@@ -76,19 +76,19 @@ class ProfileComparisonIntent extends ChatIntent
     final inCurrentNotProfile =
         currentModIds.difference(profileModIds);
 
+    final loc = AppLocalizationsSync.instance;
     if (inProfileNotCurrent.isEmpty && inCurrentNotProfile.isEmpty) {
       return ChatResponse(
-        text:
-            'Profile "${profile.name}" matches your current mod state exactly.',
+        text: loc.chatbotProfileMatchesCurrent(profile.name),
       );
     }
 
     final buf = StringBuffer(
-      'Profile "${profile.name}" vs Current Mods\n',
+      loc.chatbotProfileVsCurrent(profile.name) + '\n',
     );
 
     if (inProfileNotCurrent.isNotEmpty) {
-      buf.writeln('  In profile but not currently enabled:');
+      buf.writeln(loc.chatbotInProfileNotEnabled);
       for (final id in inProfileNotCurrent.take(15)) {
         final name = profile.enabledModVariants
                 .where((v) => v.modId == id)
@@ -99,13 +99,13 @@ class ProfileComparisonIntent extends ChatIntent
       }
       if (inProfileNotCurrent.length > 15) {
         buf.writeln(
-          '    ...and ${inProfileNotCurrent.length - 15} more',
+          '    ' + loc.chatbotAndNMore(inProfileNotCurrent.length - 15),
         );
       }
     }
 
     if (inCurrentNotProfile.isNotEmpty) {
-      buf.writeln('  Currently enabled but not in profile:');
+      buf.writeln(loc.chatbotEnabledNotInProfile);
       for (final id in inCurrentNotProfile.take(15)) {
         final mod = mods.where((m) => m.id == id).firstOrNull;
         final name = mod?.findFirstEnabledOrHighestVersion?.modInfo
@@ -115,7 +115,7 @@ class ProfileComparisonIntent extends ChatIntent
       }
       if (inCurrentNotProfile.length > 15) {
         buf.writeln(
-          '    ...and ${inCurrentNotProfile.length - 15} more',
+          '    ' + loc.chatbotAndNMore(inCurrentNotProfile.length - 15),
         );
       }
     }

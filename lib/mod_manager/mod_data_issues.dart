@@ -1,3 +1,4 @@
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/models/mod_variant.dart';
 import 'package:trios/models/version.dart';
 
@@ -47,11 +48,12 @@ ModDataIssue? _checkVersionCheckerVersionMatchesModInfo(ModVariant variant) {
 
   return ModDataIssue(
     type: ModDataIssueType.versionCheckerMismatch,
-    summary:
-        "This mod's Version Checker says $versionCheckerVersion but its mod_info.json says $modInfoVersion",
-    detail:
-        "The mod's .version file and its mod_info.json list different versions."
-        " This is a mistake by the mod author."
-        " TriOS uses the Version Checker version ($versionCheckerVersion) when comparing versions.",
+    summary: AppLocalizationsSync.instance.modDataIssuesVersionCheckerMismatch(
+      versionCheckerVersion.toString(),
+      modInfoVersion.toString(),
+    ),
+    detail: AppLocalizationsSync.instance.modDataIssuesVersionMismatchDetail(
+      versionCheckerVersion.toString(),
+    ),
   );
 }

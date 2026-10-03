@@ -62,15 +62,18 @@ class TotalConversionModsIntent extends ChatIntent with ModAwareIntent {
       );
     }
 
+    final loc = AppLocalizationsSync.instance;
     final buf = StringBuffer(
-      'Total Conversion Mods (${tcMods.length})\n',
+      loc.chatbotTcModsTitle(tcMods.length) + '\n',
     );
     for (final mod in tcMods) {
       final variant = mod.findFirstEnabledOrHighestVersion;
       final name = variant?.modInfo.nameOrId ?? mod.id;
       final version =
           variant?.modInfo.version != null ? ' v${variant!.modInfo.version}' : '';
-      final status = mod.isEnabledInGame ? '[ON] ' : '[OFF]';
+      final status = mod.isEnabledInGame
+          ? '[${loc.chatbotTagOn}] '
+          : '[${loc.chatbotTagOff}]';
       buf.writeln('  $status $name$version');
     }
 

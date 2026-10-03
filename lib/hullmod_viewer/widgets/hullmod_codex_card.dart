@@ -7,6 +7,7 @@ import 'package:trios/codex/widgets/codex_reference_link.dart';
 import 'package:trios/descriptions/description_entry.dart';
 import 'package:trios/descriptions/descriptions_manager.dart';
 import 'package:trios/hullmod_viewer/models/hullmod.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/trios/constants_theme.dart';
 import 'package:trios/viewer_cache/graphics_index_manager.dart';
@@ -97,6 +98,7 @@ class HullmodCodexCard {
     bool showDescription = true,
   }) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final highlightColor = TriOSThemeConstants.vanillaCyanColor;
 
     final hasSmodBonus = (hullmod.sModDesc ?? '').isNotEmpty;
@@ -131,7 +133,7 @@ class HullmodCodexCard {
         ],
 
         // ── Hullmod data section ──
-        tooltipSectionHeader('Hullmod data', theme, highlightColor),
+        tooltipSectionHeader(loc.hullmodCodexCardData, theme, highlightColor),
         const SizedBox(height: 4),
         _spriteRow(
           sprite: showSprite && spritePath != null
@@ -139,25 +141,37 @@ class HullmodCodexCard {
               : null,
           child: tooltipStatsGrid(theme, [
             if (hullmod.costFrigate != null)
-              tooltipRow('OP cost (Frigate)', tooltipFmt(hullmod.costFrigate)),
+              tooltipRow(
+                loc.hullmodCodexCardOpCostFrigate,
+                tooltipFmt(hullmod.costFrigate),
+              ),
             if (hullmod.costDest != null)
-              tooltipRow('OP cost (Destroyer)', tooltipFmt(hullmod.costDest)),
+              tooltipRow(
+                loc.hullmodCodexCardOpCostDestroyer,
+                tooltipFmt(hullmod.costDest),
+              ),
             if (hullmod.costCruiser != null)
-              tooltipRow('OP cost (Cruiser)', tooltipFmt(hullmod.costCruiser)),
+              tooltipRow(
+                loc.hullmodCodexCardOpCostCruiser,
+                tooltipFmt(hullmod.costCruiser),
+              ),
             if (hullmod.costCapital != null)
-              tooltipRow('OP cost (Capital)', tooltipFmt(hullmod.costCapital)),
+              tooltipRow(
+                loc.hullmodCodexCardOpCostCapital,
+                tooltipFmt(hullmod.costCapital),
+              ),
             if (hullmod.costFrigate == null &&
                 hullmod.costDest == null &&
                 hullmod.costCruiser == null &&
                 hullmod.costCapital == null)
-              tooltipRow('OP cost', '-'),
+              tooltipRow(loc.hullmodCodexCardOpCost, '-'),
           ]),
         ),
         if ((hullmod.uiTags ?? '').isNotEmpty)
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: Text(
-              'Tags: ${hullmod.uiTags}',
+              loc.hullmodCodexCardTags(hullmod.uiTags!),
               style: theme.textTheme.bodySmall,
             ),
           ),
@@ -165,7 +179,9 @@ class HullmodCodexCard {
           Padding(
             padding: const EdgeInsets.only(top: 2),
             child: Text(
-              'Mod: ${hullmod.modVariant?.modInfo.nameOrId ?? "Vanilla"}',
+              loc.portraitsModLabel(
+                hullmod.modVariant?.modInfo.nameOrId ?? 'Vanilla',
+              ),
               style: theme.textTheme.bodySmall,
             ),
           ),
@@ -197,7 +213,11 @@ class HullmodCodexCard {
         // ── S-Mod bonus ──
         if (hasSmodBonus) ...[
           const SizedBox(height: 8),
-          tooltipSectionHeader('S-Mod bonus', theme, highlightColor),
+          tooltipSectionHeader(
+            loc.hullmodCodexCardSModBonus,
+            theme,
+            highlightColor,
+          ),
           const SizedBox(height: 4),
           DescriptionWithSubstitutions(
             description: hullmod.sModDesc!,

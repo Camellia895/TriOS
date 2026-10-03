@@ -1,4 +1,5 @@
 import 'package:trios/codex/models/codex_entry.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/ship_viewer/models/ship.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/widgets/filter_engine/filter_group.dart';
@@ -15,6 +16,7 @@ List<ChipFilterGroup<CodexEntry>> buildCodexFacetGroups(
   required List<CodexEntry> Function() itemsFor,
   required Ship? Function(String hullId) shipForHull,
 }) {
+  final loc = AppLocalizationsSync.instance;
   switch (category) {
     case CodexEntryType.ship:
       return [
@@ -30,7 +32,7 @@ List<ChipFilterGroup<CodexEntry>> buildCodexFacetGroups(
         ),
         ChipFilterGroup<CodexEntry>(
           id: 'type',
-          name: 'Type',
+          name: loc.codexFacetType,
           valueGetter: (e) => _shipType((e as ShipCodexEntry).ship),
         ),
       ];
@@ -44,7 +46,7 @@ List<ChipFilterGroup<CodexEntry>> buildCodexFacetGroups(
         ),
         ChipFilterGroup<CodexEntry>(
           id: 'type',
-          name: 'Type',
+          name: loc.codexFacetType,
           valueGetter: (e) => _shipType((e as ShipCodexEntry).ship),
         ),
       ];
@@ -72,13 +74,13 @@ List<ChipFilterGroup<CodexEntry>> buildCodexFacetGroups(
         ),
         ChipFilterGroup<CodexEntry>(
           id: 'type',
-          name: 'Type',
+          name: loc.codexFacetType,
           valueGetter: (e) => (e as WeaponCodexEntry).weapon.weaponType ?? '',
           displayNameGetter: (v) => v.toTitleCase(),
         ),
         ChipFilterGroup<CodexEntry>(
           id: 'mountType',
-          name: 'Mount type',
+          name: loc.codexFacetMountType,
           valueGetter: (e) {
             final w = (e as WeaponCodexEntry).weapon;
             return w.mountTypeOverride ?? w.weaponType ?? '';
@@ -87,7 +89,7 @@ List<ChipFilterGroup<CodexEntry>> buildCodexFacetGroups(
         ),
         ChipFilterGroup<CodexEntry>(
           id: 'damageType',
-          name: 'Damage type',
+          name: loc.codexFacetDamageType,
           valueGetter: (e) => (e as WeaponCodexEntry).weapon.damageType ?? '',
           displayNameGetter: (v) => v.toTitleCase(),
         ),
@@ -100,7 +102,7 @@ List<ChipFilterGroup<CodexEntry>> buildCodexFacetGroups(
         ),
         ChipFilterGroup<CodexEntry>(
           id: 'type',
-          name: 'Type',
+          name: loc.codexFacetType,
           valueGetter: (e) => '',
           valuesGetter: (e) =>
               (e as HullmodCodexEntry).hullmod.uiTags
@@ -130,9 +132,10 @@ List<ChipFilterGroup<CodexEntry>> buildCodexFacetGroups(
       return [
         ChipFilterGroup<CodexEntry>(
           id: 'type',
-          name: 'Type',
+          name: loc.codexFacetType,
           valueGetter: (e) =>
-              (e as ShipSystemCodexEntry).shortType ?? 'Special',
+              (e as ShipSystemCodexEntry).shortType ??
+              loc.codexFacetTypeSpecial,
         ),
       ];
     case CodexEntryType.faction:
@@ -142,11 +145,14 @@ List<ChipFilterGroup<CodexEntry>> buildCodexFacetGroups(
 
 /// The ship's one Type value, by the game's precedence.
 String _shipType(Ship ship) {
-  if ((ship.fighterBays ?? 0) > 0) return 'Carrier';
+  final loc = AppLocalizationsSync.instance;
+  if ((ship.fighterBays ?? 0) > 0) return loc.codexShipTypeCarrier;
   final hints = (ship.hints ?? const <String>[]).map((h) => h.toUpperCase());
-  if (hints.contains('CIVILIAN')) return 'Civilian';
-  if (ship.shieldType == 'PHASE' || hints.contains('PHASE')) return 'Phase';
-  return 'Warship';
+  if (hints.contains('CIVILIAN')) return loc.codexShipTypeCivilian;
+  if (ship.shieldType == 'PHASE' || hints.contains('PHASE')) {
+    return loc.codexShipTypePhase;
+  }
+  return loc.codexShipTypeWarship;
 }
 
 /// A tech/manufacturer group case-folded for grouping, labeled by the most
@@ -162,7 +168,7 @@ ChipFilterGroup<CodexEntry> _techManufacturerGroup(
   var labels = const <String, String>{};
   return ChipFilterGroup<CodexEntry>(
     id: 'techManufacturer',
-    name: 'Tech/manufacturer',
+    name: AppLocalizationsSync.instance.commonTechManufacturer,
     collapsedByDefault: true,
     valueGetter: (e) => (rawOf(e) ?? '').toUpperCase(),
     displayNameGetter: (upper) {

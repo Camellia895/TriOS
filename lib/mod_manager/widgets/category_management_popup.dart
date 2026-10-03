@@ -430,8 +430,9 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
           ).categoryManagementPopupDeleteCategory(category.name),
         ),
         content: Text(
-          'This category is assigned to $count mod(s). '
-          'They will become uncategorized.',
+          AppLocalizations.of(
+            context,
+          ).categoryManagementPopupCategoryAssignedTo(count),
         ),
         actions: [
           TextButton(
@@ -515,7 +516,9 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
                   style: theme.textTheme.bodyMedium,
                   decoration: InputDecoration(
                     isDense: true,
-                    hintText: 'Add category...',
+                    hintText: AppLocalizations.of(
+                      context,
+                    ).categoryManagementPopupAddCategory,
                     contentPadding: const .symmetric(
                       horizontal: 8,
                       vertical: 6,
@@ -539,7 +542,9 @@ class _CategoryManagementPopupState extends State<_CategoryManagementPopup> {
                       : colorScheme.onSurfaceVariant,
                 ),
                 iconSize: 24,
-                tooltip: 'Create category',
+                tooltip: AppLocalizations.of(
+                  context,
+                ).categoryManagementPopupCreateCategory,
                 onPressed: _createInlineCategory,
               ),
             ],

@@ -2953,5 +2953,2067 @@
   "appDeepLinkTitle": "\"Install with TriOS\" link support",
   "appDeepLinkBody": "Enable support for \"Install with TriOS\" buttons on the forum?\nYou can always change this on the Settings page.",
   "appNoThanks": "No thanks",
-  "appEnable": "Enable"
+  "appEnable": "Enable",
+  "chatbotNewChatTooltip": "Start a new chat",
+  "chatbotMessageHint": "Message {name}...",
+  "chatbotSend": "Send",
+  "chatbotAiCaution": "Caution: AI can make mistakes. {name} will never make mistakes, though, because it isn't a real AI.",
+  "chatbotEmptyTitle": "How can I help?",
+  "chatbotEmptySubtitle": "Ask me about mods, settings, or troubleshooting.",
+  "chatbotWaterUsed": "· {liters}L H₂O used",
+  "chatbotTagOn": "ON",
+  "chatbotTagOff": "OFF",
+  "chatbotAndNMore": "...and {count} more",
+  "chatbotAndNMoreMods": "...and {count} more mods",
+  "chatbotAndNMoreAuthors": "...and {count} more authors",
+  "chatbotAndNMoreSources": "...and {count} more sources",
+  "chatbotStatusEnabled": "Enabled",
+  "chatbotStatusDisabled": "Disabled",
+  "chatbotStatusOn": "On",
+  "chatbotStatusOff": "Off",
+  "chatbotValueNotSet": "Not set",
+  "chatbotValueDefault": "Default",
+  "chatbotValueUnknown": "unknown",
+  "chatbotNotLoaded": "Not loaded",
+  "chatbotTypeUtility": "Utility",
+  "chatbotTypeTotalConversion": "Total Conversion",
+  "chatbotPermissionYes": "Yes",
+  "chatbotPermissionNo": "NO",
+  "chatbotNoModDataYet": "No mod data available yet. Make sure your game folder is configured in Settings.",
+  "chatbotNoLogLoadedYet": "No log file has been loaded yet. Make sure your game folder is configured in Settings.",
+  "chatbotNoViewerDataYet": "Viewer data hasn't loaded yet. Make sure your game folder is configured in Settings and try opening the relevant viewer page first.",
+  "chatbotNoProfileDataYet": "No mod profile data available yet.",
+  "chatbotBreakdownVanilla": "Vanilla: {count}",
+  "chatbotBreakdownFromMods": "From mods: {count}",
+  "chatbotCommonIssuesGuide": "Common Starsector Issues & Fixes\n\nOutOfMemoryError / Crash during loading\n  Increase RAM allocation on the Dashboard page.\n  Try \"current ram\" to see your setting, or \"more ram\" for a guide.\n\nGame won't start / Black screen\n  Verify the game install is intact and not blocked by antivirus.\n  Try disabling recently-added mods.\n  On Windows, try running as Administrator.\n\nMissing mod dependencies\n  Ask \"mod compatibility\" to see which mods have issues.\n  Install missing dependencies from the Catalog page.\n\nMod version mismatch\n  Ask \"mod updates\" to check for newer versions.\n  Check the mod's required game version vs yours (\"game version\").\n\nPermission errors\n  Ask \"permission issues\" for platform-specific help.\n\nFor detailed error info, try \"log summary\" and \"log errors\"\nto analyze your Starsector log file.",
+  "chatbotCsvExportGuide": "CSV Export\n\nYou can export data to CSV from several pages:\n  Mod Manager — exports your mod list with versions, authors, etc.\n  Ships — exports all ship/hull data\n  Weapons — exports all weapon data\n  Hullmods — exports all hull modification data\n\nLook for the export button in the toolbar or menu on each page.",
+  "chatbotSettingsTitle": "TriOS Settings",
+  "chatbotSettingsGameFolder": "  Game folder:     {value}",
+  "chatbotSettingsModsFolder": "  Mods folder:     {value}",
+  "chatbotSettingsDirectLaunch": "  Direct launch:   {value}",
+  "chatbotSettingsDefaultPage": "  Default page:    {value}",
+  "chatbotSettingsTheme": "  Theme:           {value}",
+  "chatbotSettingsGameVersion": "  Game version:    {value}",
+  "chatbotSettingsColorfulGrid": "  Colorful grid:   {value}",
+  "chatbotFallback1": "I'm not sure what you mean. Try \"help\" to see what I can answer.",
+  "chatbotFallback2": "I didn't catch that. You can ask about mods, RAM, VRAM, logs, or troubleshooting.",
+  "chatbotFallback3": "Hmm, I don't have an answer for that. Try asking about mod updates, compatibility, or settings.",
+  "chatbotFallback4": "Not sure about that one. Type \"help\" for a list of topics I know about.",
+  "chatbotFallback5": "I couldn't match that to anything I know. Try rephrasing, or ask \"help\" for ideas.",
+  "chatbotHelpGuide": "Hey! I'm the TriOS assistant. I can help you with a bunch of things — just ask me naturally and I'll do my best to figure out what you need.\n\nHere are some of the things I know about:\n\n• Mods — finding mods, checking which are enabled, looking for updates, compatibility issues, browsing by author or category, context menu actions, color tags, and tips\n• Game info — your Starsector version, content counts (ships, weapons, hullmods), and portrait stats\n• Configuration — RAM and VRAM, game folder paths, your settings, and mod profiles\n• Log analysis — summarizing your log file or pulling out errors\n• Troubleshooting — common issues, fixes, and file permission problems\n• Other — TriOS version, whether the game is running, exporting data to CSV, and navigating to different pages\n\nYou don't need to use exact commands — just describe what you're looking for and I'll take it from there!",
+  "chatbotFindModsGuide": "Finding New Mods\n\nTriOS has a built-in Catalog page! Click \"Catalog\" in the sidebar\nto browse, search, and install mods directly.\n\nThe Catalog lets you:\n  Browse all available mods\n  Filter by category and game version\n  Download and install with one click\n\nYou can also find mods at:\n  Starsector Forums — fractalsoftworks.com/forum\n  Unofficial Starsector Discord — has mod channels",
+  "chatbotFolderPathsTitle": "Folder Paths",
+  "chatbotFolderPathsGame": "  Game:  {value}",
+  "chatbotFolderPathsMods": "  Mods:  {value}",
+  "chatbotFolderPathsSaves": "  Saves: {value}",
+  "chatbotSetGameFolderFirst": "\nSet your game folder in Settings to get started.",
+  "chatbotGameVersionHeader": "Game Version: {version}",
+  "chatbotGameVersionCompatibleCount": "  Compatible mods: {count}",
+  "chatbotGameVersionWarningsCount": "  Mods with warnings: {count}",
+  "chatbotGameVersionIncompatibleCount": "  Incompatible mods: {count}",
+  "chatbotShipsHeader": "Ships: {count} total",
+  "chatbotHullmodsHeader": "Hullmods: {count} total",
+  "chatbotWeaponsHeader": "Weapons: {count} total",
+  "chatbotLaunchTitle": "Launch Configuration",
+  "chatbotLaunchDirect": "  Direct launch:   {value}",
+  "chatbotLaunchDirectEnabled": "Enabled (TriOS acts as launcher)",
+  "chatbotLaunchDirectDisabled": "Disabled (opens game exe)",
+  "chatbotLaunchCustomExe": "  Custom exe path: {path}",
+  "chatbotLaunchTip": "\nTip: Enable Direct Launch in Settings for better mod compatibility.",
+  "chatbotLogSummaryTitle": "Log Summary",
+  "chatbotLogSummaryGameVersion": "Game version: {value}",
+  "chatbotLogSummaryOs": "OS: {value}",
+  "chatbotLogSummaryJava": "Java: {value}",
+  "chatbotLogSummaryModsLoaded": "Mods loaded: {count}",
+  "chatbotLogSummaryErrors": "Errors found: {count}",
+  "chatbotLogSummaryFile": "Log file: {path}",
+  "chatbotLogSummaryLastUpdated": "Last updated: {time}",
+  "chatbotModCountTitle": "Mod Count",
+  "chatbotModCountTotal": "  Total: {count}",
+  "chatbotModCountEnabled": "  Enabled: {count}",
+  "chatbotModCountDisabled": "  Disabled: {count}",
+  "chatbotModManagerFeaturesGuide": "Mod Manager Features\n\nRight-click a mod for options:\n  Change active version, open mod folder, open forum page,\n  assign categories, set a color tag, force game version,\n  view in ship/weapon/hullmod viewer, estimate VRAM,\n  mute updates, redownload & reinstall, and delete.\n\nRight-click with multiple mods selected:\n  Bulk enable/disable, check VRAM, check for updates,\n  set color tags, force game version, and delete selected.\n\nColor tags:\n  Assign one of 8 color presets to visually organize mods.\n\nGroup By:\n  Use the \"Group By\" dropdown above the mod list to group\n  mods by various criteria.\n\nCategories:\n  Assign mods to categories via the right-click menu.\n  Mods can appear in multiple categories at once.",
+  "chatbotPermissionTitle": "File Permission Check",
+  "chatbotPermissionModsWritable": "  Mods folder writable: {value}",
+  "chatbotPermissionGameWritable": "  Game folder writable: {value}",
+  "chatbotPermissionWindowsFixes": "Windows fixes:",
+  "chatbotPermissionWindowsStep1": "  1. Right-click TriOS → \"Run as administrator\"",
+  "chatbotPermissionWindowsStep2": "  2. Move Starsector out of Program Files to avoid UAC issues.",
+  "chatbotPermissionWindowsStep3": "  3. Check that your antivirus isn't blocking file access.",
+  "chatbotPermissionMacFixes": "macOS fixes:",
+  "chatbotPermissionMacStep1": "  1. In System Settings → Privacy & Security, grant TriOS Full Disk Access.",
+  "chatbotPermissionMacStep2": "  2. Run: chmod -R u+rw \"<game folder path>\"",
+  "chatbotPermissionLinuxFixes": "Linux fixes:",
+  "chatbotPermissionLinuxStep2": "  2. Check folder ownership: chown -R $USER \"<game folder path>\"",
+  "chatbotPortraitsHeader": "Portraits: {count} total",
+  "chatbotRamAllocationGuide": "Adjusting RAM Allocation\n\nTriOS makes this easy! Go to the Dashboard page and look for the\nRAM allocation setting. You can adjust the slider or enter a value\ndirectly.\n\nCommon recommendations:\n  Light modding (< 20 mods):  2–4 GB\n  Medium modding (20–50 mods): 4–6 GB\n  Heavy modding (50+ mods):   6–8 GB\n\nTips:\n  Leave at least 4 GB for your OS and other programs.\n  If you have 16 GB total, don't go above 10–12 GB.\n  The setting changes the -Xmx JVM flag in vmparams.\n\nSigns you need more RAM:\n  \"OutOfMemoryError\" in your log file.\n  Game freezing or crashing during loading.\n  Lag spikes during large battles.",
+  "chatbotRamVsVramGuide": "RAM vs VRAM — Quick Guide\n\nRAM (System Memory):\n  Used by Starsector's Java process for game logic, mod code, and data.\n  Controlled by the JVM heap size (-Xmx flag).\n  More RAM = more mods, bigger battles, fewer OutOfMemoryErrors.\n\nVRAM (Video Memory):\n  Lives on your GPU. Used for textures, sprites, and shaders.\n  NOT controlled by the -Xmx flag or any JVM setting.\n  More VRAM = more graphical mods, higher-res textures.\n\nKey Takeaway:\n  \"OutOfMemoryError\" in your log → you need more RAM.\n  Graphical glitches or missing textures → could be VRAM.\n  Most Starsector modding issues are RAM, not VRAM.\n\nUse the Dashboard page in TriOS to adjust your RAM allocation.",
+  "chatbotViewerStatsTitle": "Game Content Overview",
+  "chatbotViewerStatsShips": "  Ships:    {value}",
+  "chatbotViewerStatsWeapons": "  Weapons:  {value}",
+  "chatbotViewerStatsHullmods": "  Hullmods: {value}",
+  "chatbotViewerStatsPortraits": "  Portraits: {value}",
+  "chatbotOpenViewerToLoad": "\nOpen a viewer page to load its data if not yet loaded.",
+  "chatbotAvailablePages": "Available pages in the sidebar:\n",
+  "chatbotAskAboutSpecificPage": "\nAsk about a specific page for details.",
+  "chatbotPageDashboard": "Dashboard — the main overview page with RAM settings and mod summary.",
+  "chatbotPageModManager": "Mod Manager — enable, disable, and manage your installed mods.",
+  "chatbotPageModProfiles": "Mod Profiles — save and switch between different mod configurations.",
+  "chatbotPageVramEstimator": "VRAM Estimator — estimate GPU memory usage for your mods.",
+  "chatbotPageChipper": "Chipper (Log Viewer) — analyze your Starsector log file.",
+  "chatbotPagePortraits": "Portraits — browse and replace character portraits.",
+  "chatbotPageWeapons": "Weapons — browse all weapons from vanilla and mods.",
+  "chatbotPageShips": "Ships — browse all ships/hulls from vanilla and mods.",
+  "chatbotPageHullmods": "Hullmods — browse all hull modifications.",
+  "chatbotPageSettings": "Settings — configure TriOS preferences and paths.",
+  "chatbotPageCatalog": "Catalog — browse and download mods from the online catalog.",
+  "chatbotPageTips": "Tips — view gameplay tips from your installed mods.",
+  "chatbotAskWhichMod": "What mod are you looking for? Try \"find <name>\", \"do i have <name>\", or just type a mod name.",
+  "chatbotFoundModsMatching": "Found {count} mods matching \"{query}\":",
+  "chatbotAskSpecificMod": "\nAsk about a specific mod for full details.",
+  "chatbotFoundHeader": "Found: {name}",
+  "chatbotDetailVersion": "  Version: {value}",
+  "chatbotDetailAuthor": "  Author: {value}",
+  "chatbotDetailStatus": "  Status: {value}",
+  "chatbotDetailType": "  Type: {value}",
+  "chatbotDetailGameVersion": "  Game version: {value}",
+  "chatbotDetailDescription": "  Description: {value}",
+  "chatbotDetailDependencies": "  Dependencies:",
+  "chatbotDepNotInstalled": " [NOT INSTALLED]",
+  "chatbotDepDisabled": " [DISABLED]",
+  "chatbotDetailInstalledVariants": "  Installed variants: {count}",
+  "chatbotUpdateAvailable": "  Update available: {remote} (you have {local})",
+  "chatbotUpdateNewerVersion": "newer version",
+  "chatbotIssueGameVersionIncompatible": "Game version incompatible (requires {needed}, game is {current})",
+  "chatbotIssueGameVersionWarning": "Game version may be incompatible (mod targets {target}, game is {current})",
+  "chatbotIssueMissingDependency": "Missing dependency: {name}",
+  "chatbotIssueDisabledDependency": "Disabled dependency: {name}",
+  "chatbotIssueVersionMismatch": "Version mismatch: {name}",
+  "chatbotIssueIncompatibleVersion": "Incompatible version: {name}",
+  "chatbotIssuesHeader": "  Issues:",
+  "chatbotConflictGameVersionIncompatible": "game version incompatible (needs {needed}, game is {current})",
+  "chatbotConflictGameVersionWarning": "game version warning",
+  "chatbotConflictMissingDep": "missing dep: {name}",
+  "chatbotConflictDisabledDep": "disabled dep: {name}",
+  "chatbotConflictVersionMismatch": "version mismatch: {name}",
+  "chatbotConflictIncompatibleVersion": "incompatible version: {name}",
+  "chatbotModsWithIssuesTitle": "Mods With Issues ({count})",
+  "chatbotCompatGameVersionIncompatible": "Game version: incompatible (requires {required}, game is {current})",
+  "chatbotCompatGameVersionWarning": "Game version: may be incompatible (mod targets {target}, game is {current})",
+  "chatbotCompatTitle": "Compatibility Issues ({count} mod(s) affected)",
+  "chatbotModsHaveChangelogs": "{count} mods have changelogs:",
+  "chatbotAskChangelogFor": "\nAsk \"changelog for <mod name>\" to see a specific one.",
+  "chatbotNoChangelogFor": "No changelog available for \"{name}\".",
+  "chatbotTruncatedSuffix": "...\n(truncated)",
+  "chatbotModsByAuthor": "Mods by {author} ({count})",
+  "chatbotModAuthorsTitle": "Mod Authors",
+  "chatbotAuthorModCount": "  {author}: {count} mod(s)",
+  "chatbotEnabledModsTitle": "Enabled Mods ({count})",
+  "chatbotDisabledModsTitle": "Disabled Mods ({count})",
+  "chatbotInstalledModsTitle": "Installed Mods ({count})",
+  "chatbotTcModsTitle": "Total Conversion Mods ({count})",
+  "chatbotUtilityModsTitle": "Utility/Library Mods ({count})",
+  "chatbotActiveProfileHeader": "Active Profile: {name}",
+  "chatbotProfileModsCount": "  Mods: {count}",
+  "chatbotProfileCreated": "  Created: {date}",
+  "chatbotProfileModified": "  Modified: {date}",
+  "chatbotModProfilesTitle": "Mod Profiles ({count})",
+  "chatbotProfileEntry": "  {name} ({count} mods){marker}",
+  "chatbotProfileActiveMarker": " ← active",
+  "chatbotProfileMatchesCurrent": "Profile \"{name}\" matches your current mod state exactly.",
+  "chatbotProfileVsCurrent": "Profile \"{name}\" vs Current Mods",
+  "chatbotInProfileNotEnabled": "  In profile but not currently enabled:",
+  "chatbotEnabledNotInProfile": "  Currently enabled but not in profile:",
+  "chatbotModCategoriesTitle": "Mod Categories ({count})",
+  "chatbotCategoryModCount": "  {name} ({count} mods)",
+  "chatbotNoModsInCategories": "\nNo mods are assigned to categories yet.",
+  "chatbotModUpdateLine": "  {name}: v{local} -> v{remote}",
+  "chatbotModUpdateAvailableLine": "  {name}: update available",
+  "chatbotUpdatesAvailableTitle": "Mod Updates Available ({count})",
+  "chatbotMostRequiredTitle": "Most Required Mods",
+  "chatbotDependencyEntry": "  {name}: required by {count} mod(s){status}",
+  "chatbotRecentChangesTitle": "Recent Mod Changes (last {count})",
+  "chatbotAuditEntry": "  [{action}] {name}  ({time})",
+  "chatbotAuditReason": "    Reason: {reason}",
+  "chatbotTipsTitle": "Tips from Your Mods",
+  "chatbotTipNoText": "(no text)",
+  "chatbotTipSource": "    — {source}",
+  "chatbotMoreTips": "\n{count} more tips available. Ask again for different ones!",
+  "chatbotTopVramModsTitle": "Top {count} Mods by VRAM Usage",
+  "chatbotVramModEntry": "  [{status}] {name} — ~{size} MB",
+  "chatbotVramEstimateTitle": "VRAM Usage Estimate",
+  "chatbotVramEnabledMods": "  Enabled mods ({count}): ~{size}",
+  "chatbotVramAllMods": "  All mods ({count}):     ~{size}",
+  "chatbotVramLastScanned": "  Last scanned: {time}",
+  "chatbotVramNote": "\nNote: This is an estimate based on texture sizes.\nAsk \"high vram mods\" to see the biggest consumers.",
+  "chatbotRamAllocationTitle": "RAM Allocation",
+  "chatbotRamCurrent": "  Current RAM: {ram} MB",
+  "chatbotRamManagedFiles": "  Managed vmparams files ({count}):",
+  "chatbotRamFileEntry": "    - {path}{ram}",
+  "chatbotRamMultipleFilesWarning": "\n  Warning: Multiple vmparams files have different RAM amounts.",
+  "chatbotRecentlyAddedTitle": "Recently Added Mods",
+  "chatbotRecentlyAddedEntry": "  {name} {version} — added {age}",
+  "chatbotAgoYear": "{count} year ago",
+  "chatbotAgoYears": "{count} years ago",
+  "chatbotAgoMonth": "{count} month ago",
+  "chatbotAgoMonths": "{count} months ago",
+  "chatbotAgoDay": "{count} day ago",
+  "chatbotAgoDays": "{count} days ago",
+  "chatbotAgoHour": "{count} hour ago",
+  "chatbotAgoHours": "{count} hours ago",
+  "chatbotAgoJustNow": "just now",
+  "chatbotLogErrorsFound": "Found {count} error line(s) in the log.\n",
+  "chatbotLogErrorLine": "  Line {line}: {text}",
+  "chatbotLogMoreErrors": "\n...and {count} more. Open the Log Viewer (Chipper) for the full list.",
+  "chatbotLogModsFound": "{count} mod(s) found in the log:",
+  "chatbotLogModsApproximate": " (approximate — parsed from CSV loading lines)",
+  "chatbotModlistReviewHeader": "Modlist Review ({count} mods enabled)\n\n",
+  "chatbotAndNMoreOpinions": "...and {count} more mods I have opinions about",
+  "chatbotUnknownModLine": "{name} — never heard of it. You're on your own.",
+  "chatbotPlusUnrecognized": "...plus {count} mods I don't recognize.",
+  "chatbotComboGraphicsLib": "GraphicsLib and {count} faction mods?",
+  "chatbotComboNexFactions": "Nex + {count} factions. Hope you brought a book for those load times.",
+  "chatbotComboNexerelinExpected": "You know, most people would be using Nexerelin with that many factions.",
+  "chatbotComboNoNex": "No Nex?",
+  "chatbotComboConsoleNex": "Console Commands + Nexerelin. \"Totally legit conquest playthrough.\"",
+  "chatbotComboLibraryOnly": "Nice library collection. Where are the actual mods?",
+  "chatbotVerdict10": "You're not really playing Starsector at this point.",
+  "chatbotVerdict9": "Genuinely solid modlist. You know what you're doing.",
+  "chatbotVerdict8": "Good taste. Your PC might not agree but I do.",
+  "chatbotVerdict7": "Pretty solid. A few questionable choices but overall not bad.",
+  "chatbotVerdict6": "Decent. Could be better, could be way worse.",
+  "chatbotVerdict5": "Mid. Like, aggressively average. Add some faction mods or something.",
+  "chatbotVerdict4": "This modlist needs work. I've seen better from first-time modders.",
+  "chatbotVerdict3": "Are you even trying? This is barely modded.",
+  "chatbotVerdict2": "This is sad. Install Nexerelin at minimum.",
+  "chatbotVerdict1": "One mod? Really? That's not a modlist, that's a suggestion.",
+  "chatbotVerdictLine": "  Verdict: {score}/10 — {verdict}",
+  "chatbotOpinionLazyLib": "LazyLib — you literally can't run anything without this. Welcome to modding.",
+  "chatbotOpinionMagicLib": "MagicLib — the other tax you pay to mod this game.",
+  "chatbotOpinionGraphicsLib": "GraphicsLib — hope you like your GPU running at surface-of-the-sun temps.",
+  "chatbotOpinionLunaLib": "LunaLib — another library. At this point your mod folder is 50% libraries.",
+  "chatbotOpinionNexerelin": "Nexerelin — oh you wanted a 4X grand strategy game? Say goodbye to your free time.",
+  "chatbotOpinionIndEvo": "Industrial Evolution — for when vanilla colonies aren't enough of a spreadsheet simulator.",
+  "chatbotOpinionStarshipLegends": "Starship Legends — your ships have feelings now. Great, more emotional baggage.",
+  "chatbotOpinionSecondInCommand": "Second-in-Command — finally, someone else to blame when things go wrong.",
+  "chatbotOpinionOfficerExtension": "Officer Extension — because the vanilla officer cap was clearly a personal insult.",
+  "chatbotOpinionKnightsOfLudd": "Knights of Ludd — the Luddic Path got a glow-up and honestly they didn't deserve it.",
+  "chatbotOpinionRealisticCombat": "Realistic Combat — for people who thought Starsector was too forgiving.",
+  "chatbotOpinionRaot": "Random Assortment of Things — the mod equivalent of a mystery box. Somehow it works.",
+  "chatbotOpinionDiableAvionics": "Diable Avionics — anime mechs in space. We all know why you installed this.",
+  "chatbotOpinionBlackrock": "Blackrock Drive Yards — the faction for people who think the Hegemony isn't oppressive enough.",
+  "chatbotOpinionScy": "Scy Nation — gotta go fast. Until you get caught and die instantly.",
+  "chatbotOpinionShadowyards": "Shadowyards — stealth faction for people who think cloaking is a personality trait.",
+  "chatbotOpinionTahlan": "Tahlan Shipworks — Great Houses aesthetic goes hard ngl.",
+  "chatbotOpinionArkgneisis": "Legacy of Arkgneisis — flying garbage cans held together with spite and duct tape.",
+  "chatbotOpinionOra": "Outer Rim Alliance — broadsides only. For people who think flanking is for cowards.",
+  "chatbotOpinionAlRuk": "Al-Ruk Ascendancy — what if we made a faction and just cranked everything to 11?",
+  "chatbotOpinionMayorate": "Mayorate — corporate dystopia faction. So just regular Starsector but more honest about it.",
+  "chatbotOpinionKadur": "Kadur Remnant — space vikings. That's it. That's the pitch. And it works.",
+  "chatbotOpinionDassaultMikoyan": "Dassault-Mikoyan — fighter spam: the faction. Your framerate weeps.",
+  "chatbotOpinionPersean": "Persean Chronicles — someone actually wrote lore for this game. Like, a lot of it.",
+  "chatbotOpinionVayra": "Vayra's Sector — more factions, more bounties, more everything. Quantity is a quality of its own.",
+  "chatbotOpinionTorchships": "Torchships — hard sci-fi in my Starsector? It's more likely than you think.",
+  "chatbotOpinionRoider": "Roider Union — space rednecks with welding torches. Surprisingly endearing.",
+  "chatbotOpinionApexDesign": "Apex Design Collective — these ships look like someone's thesis project and I mean that as a compliment.",
+  "chatbotOpinionEis": "Enigma Industries — another faction mod. Sure. Why not. Throw it on the pile.",
+  "chatbotOpinionSwp": "Ship/Weapon Pack — basically vanilla+ but actually good.",
+  "chatbotOpinionDmods": "Missing Ships — filling gaps you didn't know existed. Solid pick.",
+  "chatbotOpinionArsenalExpansion": "Arsenal Expansion — more guns, more ships, can't go wrong. Or can you.",
+  "chatbotOpinionArmaa": "Arma Armatura — giant robots in Starsector. The Gundam fans found us.",
+  "chatbotOpinionUnknownSkies": "Unknown Skies — 30 new planets to colonize. As if you needed more territory to mismanage.",
+  "chatbotOpinionMorePortraits": "More Character Portraits — because staring at the same 20 faces gets old fast.",
+  "chatbotOpinionConsoleCommands": "Console Commands — \"I'm just using it for testing\" sure buddy.",
+  "chatbotOpinionAutosave": "Autosave — the fact this isn't in vanilla is a war crime.",
+  "chatbotOpinionCommonRadar": "Common Radar — how did you play without this?",
+  "chatbotOpinionVersionChecker": "Version Checker — responsible modding. Boring but necessary.",
+  "chatbotOpinionMoreShipNames": "More Ship Names — 7500 new names and somehow still no HMS Boaty McBoatface.",
+  "chatbotOpinionSpeedUp": "SpeedUp — because vanilla game speed is for people with infinite patience.",
+  "chatbotOpinionTransponderOff": "Transponder Off — running dark without consequences. Living the pirate dream.",
+  "chatbotOpinionDetailedCombatResults": "Detailed Combat Results — for when you need to know exactly which frigate let you down.",
+  "chatbotOpinionLeadingPip": "Leading Pip — aim assist for people who can't lead shots. No shame. Ok maybe a little.",
+  "chatbotOpinionWarDashboard": "War Dashboard — spreadsheet simulator for your war simulator. We've gone full circle.",
+  "chatbotOpinionStarWars": "Star Wars mod — because no space game is safe from Star Wars.",
+  "chatbotOpinionVramVore": "VRAM Vore — it's literally named VRAM Vore. You know what you signed up for.",
+  "catalogSortName": "Name",
+  "catalogSortNewest": "Newest",
+  "catalogSortGameVersion": "Game Version",
+  "catalogSortPopular": "Popular",
+  "catalogSortMostDiscussed": "Most Discussed",
+  "catalogSortRecentlyActive": "Recently Active",
+  "userThemeFileUnreadable": "Couldn't read {fileName}. It isn't valid JSON.",
+  "userThemeNoThemesSection": "{fileName} has no \"themes\" section.",
+  "userThemeMissingField": "Couldn't load \"{key}\": {fields} is missing.",
+  "userThemeMissingFields": "Couldn't load \"{key}\": {fields} are missing.",
+  "userThemeLoadError": "Couldn't load \"{key}\": {error}",
+  "themeFontSystem": "System",
+  "themeGlitterSidebar": "Sidebar",
+  "themeGlitterToolbar": "Toolbar",
+  "themeGlitterTooltips": "Tooltips",
+  "themeBackgroundMotes": "Motes",
+  "themeBackgroundStarfield": "Starfield",
+  "themeBackgroundNebula": "Nebula",
+  "themeBackgroundConstellation": "Constellation",
+  "themeBackgroundEmbers": "Embers",
+  "themeBackgroundAurora": "Aurora",
+  "themeBackgroundRain": "Rain",
+  "themeBackgroundRadar": "Radar",
+  "themeBackgroundCircuitry": "Circuitry",
+  "themePalette": "Palette",
+  "sentryFeedbackNameLabel": "Username (not required)",
+  "sentryFeedbackEmailLabel": "Email (definitely not required!)",
+  "sentryFeedbackMessageLabel": "Description",
+  "sentryFeedbackRequiredLabel": "(required)",
+  "sentryFeedbackMessagePlaceholder": "Please describe the issue you are experiencing with {appName}.\n\n{appName} is not affiliated with Fractal Softworks and cannot help with issues with the game, payments, license keys, or mods.",
+  "onboardingSetup": "Setup",
+  "onboardingWhereIsStarsectorLocated": "1. Where is Starsector located?",
+  "onboardingGameLocation": "Game Location",
+  "onboardingSelectYourGameDirectory": "Select your game directory",
+  "onboardingGameNotFound": "Game not found",
+  "onboardingHowDoYouWant": "2. How do you want to handle mod updates?",
+  "onboardingThisWillOnlyAffect": "This will only affect your mods when you update them.",
+  "onboardingNoModsWillBe": "No mods will be affected immediately.",
+  "onboardingReplacePreviousVersion": "Installing or updating a mod will replace the previous version of it.",
+  "onboardingTriosWillNeverAutomatically": "TriOS will never automatically remove mod versions.",
+  "onboardingRemoveAllButLastN": "Installing or updating a mod will remove all but the last {count} highest versions.",
+  "onboardingBugReporting": "3: Bug Reporting",
+  "onboardingBugReportingBody": "{appName} can send crash/error reports to help me find and fix issues (it does actually help!).\nExample of a report: https://i.imgur.com/k9E6zxO.png.\n\nNothing identifiable or personal is ever sent.\n\nSent: app version, mod list, basic PC info (screen resolution, OS, RAM...), randomly generated user ID, and crash details.\nNot sent: IP address, language, region, zip code, PC name, PC username, anything about other apps, etc.",
+  "onboardingOneClickModInstall": "4: One-Click Mod Install",
+  "onboardingOneClickBody": "{appName} can handle 'Install with TriOS' links, allowing you to install mods with a single click from websites.",
+  "onboardingYouWillBeAsked": "You will be asked to confirm before any mod is downloaded.",
+  "onboardingYouCanAlwaysChange": "You can always change these on the Settings page later",
+  "onboardingFinish": "Finish",
+  "onboardingNext": "Next",
+  "launch_with_settingsSkipLauncher": "Skip Launcher",
+  "launch_with_settingsExperimentalTooltip": "EXPERIMENTAL\nIf you encounter strange issues in-game, disable this.\nPossible issues include: invisible ships, zoomed-in combat, no Windows title bar, probably more.",
+  "launch_with_settingsNoGameExe": "No game exe",
+  "launch_with_settingsStarsectorVersionUnknown": "Starsector version unknown",
+  "launch_with_settingsNoModsFolder": "No mods folder!",
+  "launch_with_settingsWidth": "Width",
+  "launch_with_settingsHeight": "Height",
+  "launch_with_settingsUseVanillaLauncherSettings": "Use your non-TriOS launcher settings instead",
+  "launch_with_settingsNote": "Note: These settings are separate from the normal launcher's settings.",
+  "launch_with_settingsDisableSkipLauncherWarning": "If you encounter strange issues in-game, disable Skip Launcher.",
+  "launch_with_settingsPossibleIssues": "Possible issues include: invisible ships, zoomed-in combat, no Windows title bar, probably more.",
+  "game_performanceRam": "RAM",
+  "game_performanceVmparamsFilesTooltip": "vmparams files:\n{files}",
+  "game_performanceNoVmparamsFileFound": "No vmparams file found.",
+  "game_performanceNotAllSameRamWarning": "<b>Warning</b>: Not all vmparams files\nare set to use the same amount of RAM.\nPick one RAM option below to set all\nto the same value.",
+  "game_performanceAssignedRam": "Assigned: <b>{ramAmount} MB</b> in <b>{fileCount}</b> files",
+  "game_performanceMoreRamNote": "More RAM is not always better.\n6 or 8 GB is enough for almost any game.\n\nUse the Console Commands mod to view RAM use in the top-left of the console.",
+  "game_performanceGameSettings": "Game Settings",
+  "game_performanceOpenConfigJsonTooltip": "Open config.json in your default text editor",
+  "game_performanceFpsLimit": "FPS Limit",
+  "game_performanceRecommendedMaxFps": "Recommended: Set your max FPS to your monitor's refresh rate or lower.",
+  "game_performanceUnableToReadFps": "Unable to read FPS Limit from settings.json",
+  "game_performanceUnableToReadVsync": "Unable to read Vsync from settings.json",
+  "game_performanceVsyncTooltip": "Vsync reduces screen tearing but introduces a tiny input delay.",
+  "dashboardRamSubtitle": "{ram} MB",
+  "dashboardUnknownRam": "(unknown RAM)",
+  "dashboardErrorsTooltip": "Errors are normal. You can ignore them unless Starsector is misbehaving.\n\nIf there is a crash, look at the bottom of the log for a bunch of lines starting with 'at'. Hopefully, one of them will mention the problematic mod's id, name, or prefix.\nFor example, 'at data.scripts.campaign.II_IGFleetInflater.inflate(II_IGFleetInflater.java:59)' shows 'II_', which is Interstellar Imperium.\n\nMake sure your mods are up to date and report bugs to the mod makers!",
+  "dashboardStarsectorLog": "Starsector Log",
+  "dashboardLogLastUpdated": "{logName} •   last updated {time}",
+  "dashboardLastUpdatedUnknown": "unknown",
+  "dashboardErrorsAreNormalCrash": "Errors are normal. If the game crashes, check here for fatal errors.",
+  "mod_list_basicMods": "Mods",
+  "mod_list_basicEnabledCount": "{enabled} of {total} enabled",
+  "mod_list_basicCopyModListTooltip": "Copy mod list to clipboard\n\nRight-click to include disabled mods",
+  "mod_list_basicShowingEnabledModsOnly": "Showing enabled mods only",
+  "mod_list_basicShowingDisabledModsOnly": "Showing disabled mods only",
+  "mod_list_basicShowingAllMods": "Showing all mods",
+  "mod_list_basicEnabledOnly": "Enabled Only",
+  "mod_list_basicDisabledOnly": "Disabled Only",
+  "mod_list_basicShowAll": "Show All",
+  "mod_list_basicSortByLabel": "Sort by {label}",
+  "mod_list_basicSortLoadOrder": "Load Order",
+  "mod_list_basicSortName": "Name",
+  "mod_list_basicSortAuthor": "Author",
+  "mod_list_basicSortVersion": "Version",
+  "mod_list_basicSortVram": "VRAM Impact",
+  "mod_list_basicSortGameVersion": "Game Version",
+  "mod_list_basicSortEnabled": "Enabled",
+  "mod_list_basicDownloadUpdateTooltip": "Download {count} update",
+  "mod_list_basicDownloadAllUpdatesTooltip": "Download all {count} updates",
+  "mod_list_basicUpdateAll": "Update All",
+  "mod_list_basicAllMods": "ALL MODS",
+  "mod_list_basicFilterHint": "Filter...",
+  "mod_list_basicShowingAllUpdates": "Showing all updates",
+  "mod_list_basicShowingUnmutedUpdates": "Showing unmuted updates",
+  "mod_list_basicUpdatesHidden": "Updates hidden",
+  "mod_list_basicAllUpdates": "ALL UPDATES ({count})",
+  "mod_list_basicUpdatesHeader": "UPDATES ({count}",
+  "mod_list_basicPlusMuted": " + {count} ",
+  "mod_list_basicHiddenUpdates": "{count} hidden updates",
+  "mod_list_basicPlusMutedParens": " (+ {count} ",
+  "mod_list_basicDownloadUpdatesForMods": "Download updates for {count} mods?",
+  "mod_list_basicSwapOnUpdateTooltip": "When checked, updating an enabled mod switches to the new version.",
+  "mod_list_basicColorModListRowsTooltip": "Color mod list rows using each mod's icon palette.",
+  "modListLoadOrderExplanation": "Starsector loads mods in order by their name.\nIt sorts with whitespace at the top, then uppercase, then lowercase ('  x', 'Z', 'a'),\nas opposed to a more intuitive sort ('a', '  x', 'Z').\n\nMods loaded last will (usually) override values from mods loaded earlier.",
+  "mod_list_basic_entryRightClickForMore": "Right-click for more.",
+  "mod_list_basic_entryMissingDependencies": "'{modName}' is missing '{dependencies}'.",
+  "versionCheckDownloadInstallUpdate": "Download & Install Update",
+  "versionCheckClickToOpenDownloadPage": "Click to Open Download Page",
+  "versionCheckRequiresManualDownload": "This mod requires a manual download.",
+  "versionCheckRequiresManualDownloadClick": "This mod requires a manual download.\nClick to open the download page.",
+  "versionCheckSource": "Source: {url}",
+  "versionCheckRightClickToExpand": "Right-click to expand this tooltip.",
+  "versionCheckInfoFromAuthor": "Update information is provided by the mod author, not {appName}.",
+  "versionCheckUpToDate": "You are up to date.",
+  "versionCheckCurrentVersion": "Current version: {version}",
+  "versionCheckRemoteVersion": "Remote version: {version}",
+  "versionCheckerUrl": "Version Checker url:\n{url}",
+  "versionCheckErrorCheckingForUpdates": "Error checking for updates.",
+  "versionCheckErrorUsuallyCaused": "This is usually caused by the mod author or a network error. Please visit the mod page to manually find updates.",
+  "versionCheckReportBug": "If the in-game Version Checker is working for this specific mod, please report a TriOS bug.",
+  "versionCheckMessage": "Message",
+  "versionCheckMayNotSupportVersionChecker": "This mod may not support Version Checker.\nPlease visit the mod page to manually find updates.",
+  "modSummaryNoName": "(no name)",
+  "modSummaryIdVersion": "{id} • {version}",
+  "modSummaryNewVersion": "New version:      {version}",
+  "modSummaryDescription": "Description",
+  "modSummaryTipAddIcon": "Tip: Add a LunaSettings icon or add an icon.png file to the mod folder to get an icon.",
+  "mod_dependenciesRequiredGameVersion": "Required game version",
+  "mod_dependenciesOriginalGameVersion": "Original game version",
+  "mod_dependenciesGameVersion": "Game version",
+  "mod_dependenciesErrorThisModRequires": "Error: this mod requires a different version of the game.",
+  "mod_dependenciesWarningThisModRequires": "Warning: this mod requires a different version of a mod that you have installed, but might run with this one.",
+  "mod_dependenciesFound": "(found {version})",
+  "mod_dependenciesMissing": "(missing)",
+  "mod_dependenciesDisabled": "(disabled: {version})",
+  "mod_dependenciesWrongVersion": "(wrong version: {version})",
+  "mod_dependenciesFoundWarning": "(found: {version})",
+  "commonNone": "(none)",
+  "commonUnknown": "Unknown",
+  "version_check_iconUpdateIsMuted": "Update {version} is muted. You'll be notified for the next version.",
+  "version_check_iconUpdatesMuted": "Updates muted",
+  "merge_mod_sourcesMod": "Mod",
+  "merge_mod_sourcesStats": "Stats",
+  "merge_mod_sourcesIgnoredCount": "(+{count} ignored)",
+  "merge_mod_sourcesOtherModCount": "(+{count} other mod)",
+  "merge_mod_sourcesOtherModsCount": "(+{count} other mods)",
+  "merge_mod_sourcesStatsTooltip": "Only {winner}'s stats are used.\nOverridden (no effect): {ignored}",
+  "merge_mod_sourcesFileTooltipHeader": "{fileLabel}: what each mod changes",
+  "merge_mod_sourcesUsedForMost": "(used for most)",
+  "merge_mod_sourcesBase": "(base)",
+  "filterIncluded": "Included",
+  "filterExcluded": "Excluded",
+  "filterIncludedValuesTooltip": "Included:\n{values}",
+  "filterExcludedValuesTooltip": "Excluded:\n{values}",
+  "viewerToolbarTotalCount": "{count} {entityName}",
+  "file_cardCalculating": "Calculating...",
+  "mod_download_statusStarting": "Starting…",
+  "mod_download_statusDownloading": "Downloading…",
+  "mod_download_statusInstalling": "Installing…",
+  "mod_type_iconTotalConversionModsShould": "Total Conversion mods should not be run with other mods unless explicitly stated to be compatible.",
+  "mod_type_iconThisModDeclaresThat": "This mod declares that it may be added to or removed from a save at will.",
+  "mod_data_fileUsedForMostValues": "used for most values",
+  "mod_data_fileAlsoApplied": "also applied",
+  "mod_data_fileInUse": "in use",
+  "mod_data_fileOverridden": "overridden",
+  "smartSearchSyntaxExclude": "-field:value (exclude)",
+  "smartSearchSyntaxNumericOperators": "{description}; supports numeric operators",
+  "profileModProfilesDescription": "Mod profiles are a way to quickly switch between different mods, including specific versions.\nWhen one is enabled, any mods you change will update the profile as well.\n\n\nYou can also generate profiles from your saves.",
+  "profileSaveGames": "Save Games",
+  "profileNoValidProfileOnClipboard": "No valid mod profile was found on your clipboard.",
+  "profileExportStep1": "1. Export a profile by clicking the",
+  "profilePasteStep2": "2. Paste the text to another TriOS user.",
+  "profileImportToUse": "Import Profile to use your profile.",
+  "profileCreateNewProfileTooltip": "Creates a new profile using your current mods.\nDoes not set it to active.",
+  "profileSharedModListName": "Shared Mod List",
+  "profileDefaultImportedName": "Imported Profile",
+  "profileDiffHeaderMod": "Mod",
+  "mod_profilesExisting": "Existing",
+  "mod_profilesImported": "Imported",
+  "profileSuccessfullyOverwritten": "Successfully overwritten profile: {name}",
+  "profileCopySuffix": "{name} (Copy)",
+  "profileCopySuffixCount": "{name} (Copy {count})",
+  "profileCardLevel": "Level {level}",
+  "profileCardCreatedModified": "Created: {created}\nLast modified: {modified}",
+  "mod_profile_cardDateMissing": "(date missing)",
+  "profileDeleteProfileBody": "Are you sure you want to delete profile '{name}'?",
+  "profileCardEnabled": "Enabled",
+  "profileCardEnable": "Enable",
+  "mod_profile_cardCreatesAProfileBased": "Creates a profile based on this save's last-used mods.",
+  "mod_profile_cardModNotFound": "Mod not found",
+  "mod_profile_cardVersionNotFound": "Version {version} not found for {modName}. You have {installedVersion} installed.",
+  "mod_profile_cardUnimplemented": "Unimplemented",
+  "mod_profile_cardCopyModEntry": "{name} - Version: {version}",
+  "mod_profiles_managerTheNewProfileWill": "The new profile will be activated and is identical to your current profile.",
+  "mod_profiles_managerModsBeingEnabledDisabled": "Mods Being Enabled, Disabled, or Changing Version",
+  "mod_profiles_managerEnablingMod": "Enabling mod",
+  "mod_profiles_managerDisablingMod": "Disabling mod",
+  "mod_profiles_managerSwappingVersion": "Swapping version",
+  "mod_profiles_managerActivateIgnoreMissingMods": "Activate (ignore missing mods)",
+  "mod_profiles_managerActivate": "Activate",
+  "mod_profiles_managerUnknownMod": "Unknown Mod ({modId})",
+  "mod_profiles_managerVersionSwapDescription": "{modName} {fromVersion} → {toVersion}",
+  "mod_profiles_managerModIsMissing": "Mod \"{modId}\" is missing.",
+  "mod_profiles_managerMissingMod": "Missing Mod",
+  "mod_profiles_managerVersionSubstitutedBody": "Version {version} of \"{modName}\" is not available, so {bestVersion} will be used instead.",
+  "mod_profiles_managerVersionNotAvailable": "Version {version} of \"{modName}\" is not available.",
+  "mod_profiles_managerVersionMissing": "Version missing",
+  "mod_profiles_managerVersionSubstituted": "Version substituted",
+  "mod_profiles_managerMissingModsWillBe": "Missing mods will be discarded from your profile after activating.",
+  "recordNoSourceRecordYet": "No source record exists for this mod yet.\nRecords are created automatically when TriOS processes installed mods.",
+  "recordNotInstalled": "(not installed)",
+  "recordUnknownValue": "(unknown)",
+  "recordNoVersionCheckerData": "(no version checker data)",
+  "recordNotFoundInCatalog": "(not found in catalog)",
+  "recordNoDownloadsRecorded": "(no downloads recorded)",
+  "category_managerLibrary": "Library",
+  "category_managerUtility": "Utility",
+  "category_managerQualityOfLife": "Quality of Life",
+  "category_managerMegamod": "Megamod",
+  "category_managerFaction": "Faction",
+  "category_managerShipPack": "Ship Pack",
+  "category_managerWeaponFighterPack": "Weapon/Fighter Pack",
+  "category_managerGraphics": "Graphics",
+  "category_managerColonies": "Colonies",
+  "category_managerQuestsBars": "Quests & Bars",
+  "category_managerExploration": "Exploration",
+  "category_managerOfficers": "Officers",
+  "category_managerSkillsAbilities": "Skills & Abilities",
+  "category_managerAudio": "Audio",
+  "category_managerPortraitPack": "Portrait Pack",
+  "category_managerFlagPack": "Flag Pack",
+  "category_managerTotalConversion": "Total Conversion",
+  "category_managerMiscCampaignMod": "Misc. Campaign Mod",
+  "tipsHiddenTipsExplanation": "Hidden tips are tips that have a freq of 0, so they don't appear ingame.",
+  "tipsAboutBody": "Shows all loading screen tips, which mod adds them, and how often they appear (freq).\nYou may hide a tip to stop it from showing ingame. TriOS will automatically re-apply your changes if a mod is updated.",
+  "tipsHideSelected": "Hide Selected",
+  "tipsUnhideSelected": "Unhide Selected",
+  "tipsUnknownModName": "(unknown mod name)",
+  "tipsHide": "Hide",
+  "tipsUnhide": "Unhide",
+  "tipsNoTipText": "(No tip text)",
+  "tipsHowLikelyThisTip": "How likely this tip is to be shown. 1 is normal. Higher is more likely. 0 is never.",
+  "tipsFreqLabel": "Freq: {freq}",
+  "tipsHiddenLabel": "(hidden)",
+  "tipsTipAddedBy": "Tip added by {modName},\nversion(s): {versions}",
+  "chipperNothingUploaded": "Nothing is ever uploaded. All processing is done on your computer.",
+  "modsGridFilterModName": "Mod name",
+  "modsGridFilterModId": "Mod ID",
+  "modsGridFilterAuthorNameIncludesAliases": "Author name (includes aliases)",
+  "modsGridFilterModVersion": "Mod version",
+  "modsGridFilterGameVersionCompatibility": "Game version compatibility",
+  "modsGridFilterDependencyNameOrId": "Name or ID of a mod it requires",
+  "modsGridFilterEnabledDescription": "Whether the mod is enabled (true/false)",
+  "modsGridUpdatesAvailable": "Updates Available",
+  "modsGridFavorite": "Favorite",
+  "modsGridVersionSelect": "Version Select",
+  "modsGridModIcon": "Mod Icon",
+  "modsGridModTypeIcon": "Mod Type Icon",
+  "modsGridLastEnabled": "Last Enabled",
+  "modsGridLastUpdated": "Last Updated",
+  "modSummaryNoAuthor": "(no author)",
+  "modSummaryNoDescription": "(no description)",
+  "modsGridOriginalGameVersion": "Original game version: {version}",
+  "modsGridNoGameVersion": "(no game version)",
+  "modsGridThisWillScanAll": "This will scan all enabled mods and estimate the total VRAM usage.",
+  "modsGridThisMayTakeALag": "This may take a few minutes and cause your computer to lag!",
+  "modsGridCancelScan": "Cancel Scan",
+  "modsGridEstVram": "Est. VRAM",
+  "modsGridSwapBetweenModLoadouts": "Swap between mod loadouts. Manage them in the Profiles tab.",
+  "modsGridModProfile": "Mod Profile",
+  "modsGridIfAModHasIconUseColors": "If a mod has an icon, use its colors to style the mod row.",
+  "modsGridShowAWarningIcon": "Show a warning icon next to mods whose data has a problem, like a mod whose .version file and mod_info.json don't agree on the version.",
+  "modsGridIfAModIsInMultipleCategories": "If a mod is in multiple categories, show the mod in each category rather than only in its primary category.",
+  "modsGridWhetherToShowUpdatesSection": "Whether to show a section at the top of the page containing only mods with updates.",
+  "modsGridShowingUpdatesSection": "Showing Updates section",
+  "modsGridShowingUpdatesSectionInclMuted": "Showing Updates section (incl. muted)",
+  "modsGridNotShowingUpdateSection": "Not showing Update section",
+  "modsGridEnableAllConfirm": "Are you sure you want to enable all {count} mods?",
+  "modsGridThisWillEnableLatest": "This will enable the latest version of all disabled mods.\nMods that are already enabled won't be changed.",
+  "modsGridDisableAllConfirm": "Are you sure you want to disable all {count} mods?",
+  "modsGridVramEstimateTooltip": "An *estimate* of how much VRAM is used based on the images in the mod folder.\nThis may be inaccurate.",
+  "modsGridVramEstimate": "VRAM Estimate",
+  "modsGridFromModImages": "{bytes} from mod ({count} images)",
+  "modsGridIllustratedEntitiesNote": "\n\nNOTE\nIllustrated Entities dynamically loads and unloads images from VRAM.",
+  "modsGridClickHornToSeeFullChangelog": "Click horn to see full changelog",
+  "modsGridUpdateVersionIsMuted": "Update {version} is muted. You'll be notified for the next version.",
+  "modsGridUpdatesMuted": "Updates muted",
+  "modsGridModRequires": "{name} requires {dependency}",
+  "modsGridEnableDependencyName": "Enable {name}",
+  "modsGridCouldnTOpenBrowser": "Couldn't open browser. Google recommends Chrome for a faster experience!",
+  "modsGridYouHaveInstalledNeeds": "You have {installedVersion}. This mod needs {requiredVersion} or newer.",
+  "modsGridUpdateDependencyVersionRequired": "Update {name} ({requiredVersion} required)",
+  "modsGridClickToDownloadLatest": "Click to download the latest version.",
+  "modsGridClickToOpenDownloadPage": "Click to open the download page.",
+  "modsGridSearchForNewerDependency": "Search for newer {name}",
+  "modsGridInstallDependency": "Install {name}",
+  "modsGridDownloadAndInstallDependency": "Download and install {name} with {appName}",
+  "modsGridSearchDependency": "Search {name}",
+  "modDataIssuesVersionCheckerMismatch": "This mod's Version Checker says {versionCheckerVersion} but its mod_info.json says {modInfoVersion}",
+  "modDataIssuesVersionMismatchDetail": "The mod's .version file and its mod_info.json list different versions. This is a mistake by the mod author. TriOS uses the Version Checker version ({versionCheckerVersion}) when comparing versions.",
+  "modManagerDependencyFound": "(found {version})",
+  "modManagerDependencyMissing": "(missing)",
+  "modManagerDependencyDisabled": "(disabled: {version})",
+  "modManagerDependencyWrongVersion": "(wrong version: {version})",
+  "modManagerDependencyFoundVersion": "(found: {version})",
+  "modInfoDialogUnknown": "(unknown)",
+  "modInfoDialogTotalConversion": "Total Conversion",
+  "modInfoDialogUtilityMod": "Utility Mod",
+  "modInfoDialogDownloadedFrom": "Downloaded from",
+  "modInfoDialogInstalledVersions": "Installed Versions",
+  "modInfoDialogInstalledVersion": "Installed Version",
+  "modInfoDialogAvailable": "Available",
+  "modInfoDialogUpToDate": "Up to date",
+  "modInfoDialogEnabledList": "Enabled: {names}",
+  "modInfoDialogDisabledList": "Disabled: {names}",
+  "modInfoDialogMuted": "Muted",
+  "modInfoDialogVersionMuted": "{version} muted",
+  "modInfoDialogUnmuted": "Unmuted",
+  "modInfoDialogFirstSeenDate": "First seen: {date}",
+  "modInfoDialogLastEnabledDate": "Last enabled: {date}",
+  "modInfoDialogViews": "Views",
+  "modInfoDialogReplies": "Replies",
+  "modInfoDialogLastPost": "Last Post",
+  "modInfoDialogCreated": "Created",
+  "modInfoDialogBoard": "Board",
+  "modInfoDialogYes": "Yes",
+  "modInfoDialogNo": "No",
+  "modInfoDialogDisableThisMod": "Disable this mod",
+  "modInfoDialogEnableAVersion": "Enable a version",
+  "modInfoDialogDeleteThisMod": "Delete this mod",
+  "catalogUpdateAvailable": "Update available",
+  "modSummaryLastEnabled": "Last enabled: ",
+  "modSummaryNoModsDependOn": "No mods depend on {name}",
+  "modSummaryDisabledDependents": "Disabled Dependents",
+  "modSummaryWantsVersion": " (wants {version})",
+  "auditActionEnabled": "Enabled",
+  "auditActionDisabled": "Disabled",
+  "auditActionDeleted": "Deleted",
+  "auditActionWithTimestamp": "{action} {date}\nReason: {reason}",
+  "modContextMenuRed": "Red",
+  "modContextMenuCoral": "Coral",
+  "modContextMenuAmber": "Amber",
+  "modContextMenuChartreuse": "Chartreuse",
+  "modContextMenuEmerald": "Emerald",
+  "modContextMenuSky": "Sky",
+  "modContextMenuViolet": "Violet",
+  "modContextMenuRose": "Rose",
+  "categoryContextMenuManageCategory": "Manage: {category}",
+  "categoryContextMenuPleaseSelectAPrimary": "(please select a primary category)",
+  "categoryNameLabel": "Category name",
+  "categoryManagementPopupCategoryAssignedTo": "This category is assigned to {count} mod(s). They will become uncategorized.",
+  "categoryManagementPopupAddCategory": "Add category...",
+  "categoryManagementPopupCreateCategory": "Create category",
+  "categoryIconPickerDialogSearchIcons": "Search icons...",
+  "modInstallSelectionDialogCouldnTInstallThis": "Couldn't install this file",
+  "modInstallSelectionDialogCouldnTInstallThese": "Couldn't install these files",
+  "modInstallSelectionDialogInstallCountOfMods": "Install {selected} of {total} mods",
+  "modInstallSelectionDialogCouldnTBeInstalled": "Couldn't be installed:",
+  "modInstallSelectionDialogCouldnTBeInstalledCount": "Couldn't be installed ({count}):",
+  "modInstallSelectionDialogToggleWhetherAlreadyInstalled": "Toggle whether already-installed mods are replaced by the versions being installed.",
+  "modInstallSelectionDialogNoModsSelected": "No mods selected",
+  "modInstallSelectionDialogInstallCountMods": "Install {count} mods",
+  "modInstallSelectionDialogTheseModsAllHave": "These mods all have the same id and version, so only one may be selected.",
+  "modInstallSelectionDialogExistingModWillBe": "(existing mod will be replaced)",
+  "modInstallSelectionDialogAlreadyInstalled": "(already installed{version})",
+  "modInstallationErrorDialogThereWasAnError": "There was an error while installing.\nPlease install the mod manually.",
+  "modInstallationErrorDialogThereWereErrorsWhile": "There were errors while installing.\nPlease install the mods manually.\n",
+  "modInstallationErrorDialogCheckLogs": "Check the {appName} logs for more information.\n\n",
+  "modVersionSelectionDropdownThisModRequiresA": "This mod requires a different version of the game",
+  "modVersionSelectionDropdownMultipleEnabled": "Warning\nYou have two or more enabled mod folders for {name}. The game will pick one at 'random'.\nSelect one version from the dropdown.",
+  "modVersionSelectionDropdownRequires": "Requires {dependencies}",
+  "modVersionSelectionDropdownMultipleSameVersion": "Warning\nYou have two or more of the same version ({versions}) of this mod in your mods folder. {appName} may not handle this correctly.\nPlease remove one manually.",
+  "modVersionSelectionDropdownClickToDisable": "Click to disable",
+  "modVersionSelectionDropdownClickToUseNewerVersion": "Click to use newer version {version}",
+  "modDataWarningIconWarningsHidden": "Mod data warnings are hidden. Turn them back on in the Mods page menu.",
+  "modListExporterCopiedImportViaProfiles": "Copied mod list to clipboard. Import via Mod Profiles page.",
+  "batchInstallationNotifierFinalizing": "Finalizing...",
+  "batchPreScannerSourceDoesNotExist": "Source does not exist",
+  "batchPreScannerNotASupportedArchive": "Not a supported archive format",
+  "batchPreScannerNoModInfoJson": "No mod_info.json found in source",
+  "batchPreScannerCouldNotParseAny": "Could not parse any mod_info.json in source",
+  "batchInstallationFilesProgress": "{count} / {total} files",
+  "wispgridGroupItemsCount": "{count} items",
+  "wispgridGroupAllMods": "All Mods",
+  "wispgridGroupMoveItemsTo": "Move {count} items to…",
+  "wispgridGroupMoveTo": "Move to…",
+  "wispgridGroupMoveItemsToGroup": "Move {count} items to {group}",
+  "wispgridGroupMoveToGroup": "Move to {group}",
+  "wispgridGroupUncategorized": "Uncategorized",
+  "wispgridGroupNoAuthor": "No Author",
+  "wispgridGroupModType": "Mod Type",
+  "wispgridGroupUtility": "Utility",
+  "wispgridGroupOther": "Other",
+  "wispgridGroupUnknown": "Unknown",
+  "wispgridGroupPinned": "Pinned",
+  "wispgridGroupEstimatedVramUseBy": "Estimated VRAM use by {group}\n",
+  "wispgridGroupEstimateVramUsageFor": "Estimate VRAM usage for {count} unscanned mods",
+  "wispgridHeaderRowClickToSortTooltip": "Click to sort. Drag the edges to resize.\nRight-click for grouping and column options.",
+  "wispgridHeaderRowFreezeThisColumn": "Freeze this column",
+  "wispgridHeaderRowUnfreezeThisColumn": "Unfreeze this column",
+  "catalogHasDownloadLink": "Has Download Link",
+  "catalogHasSourceCode": "Has Source Code",
+  "catalogDiscord": "Discord",
+  "catalogForum": "Forum",
+  "catalogArchived": "Archived",
+  "catalogStatus": "Status",
+  "catalogBothInstalledAvailable": "Both Installed & Available",
+  "catalogOnlyInstalled": "Only Installed",
+  "catalogNotInstalled": "Not Installed",
+  "catalogAllVersions": "All Versions",
+  "catalogModCatalog": "Mod Catalog",
+  "catalogModsCount": "{count} Mods",
+  "catalogUrl": "URL",
+  "catalogForumDarkThemeInstructions": "Forum Dark Theme Instructions",
+  "catalogForumDarkThemeBody": "Read the whole thing first!\n\n1. Log in to the forum, then reopen this dialog.\n2. Click the button below to navigate to the theme settings.\n3. Next to 'Current Theme', click (change) and select 'Back n Black'.",
+  "catalogForumProfilePrefs": "Forum Profile Prefs",
+  "catalogCheckingForWebviewSupport": "Checking for webview support...",
+  "catalogBrowserDisabledByDefault": "The web browser is disabled by default\nto prevent crash looping on some systems.\n\nClick Load Once, and, if it works, click Always Load next time.",
+  "catalogAppQuitUnexpectedly": "{appName} quit unexpectedly.\nThe browser has been disabled as a precaution.",
+  "catalogBrowserLoadedUntilExit": "Browser will be loaded until {appName} exits.",
+  "catalogBrowserAlwaysLoad": "Browser will always load (unless {appName} crashes).",
+  "catalogCatalogMod": "Catalog mod",
+  "catalogUnableToDisplayWeb": "Unable to display web browser",
+  "catalogWebviewIsRequiredBut": "WebView2 is required but not installed.",
+  "catalogPleaseInstallItFrom": "Please install it from https://developer.microsoft.com/en-us/microsoft-edge/webview2/",
+  "catalogLinuxIsNotSupported": "Linux is not supported",
+  "catalogUseAStandaloneBrowser": "Use a standalone browser to find mods (maybe at https://starmodder.pages.dev ?) instead.",
+  "catalogNotSupported": "Not supported",
+  "catalogShowAiModSummaries": "Show AI mod summaries",
+  "catalogTurnOnAiFeatures": "Turn on AI features in Settings to use this.",
+  "catalogPartOfThreadTooltip": "Part of the \"{threadTitle}\" forum thread.",
+  "catalogPartOfThread": "part of {threadTitle}",
+  "catalogInstalledDisabled": "Installed, disabled",
+  "catalogNoDescriptionYet": "No description...yet!",
+  "catalogLlmModThisCard": "LLM mod (this card)",
+  "catalogResolvedDownloadCandidates": "Resolved download candidates",
+  "catalogUpdateAvailableSupportsInstall": "Update available.\n\nThis mod supports Install with TriOS",
+  "catalogUpdateAvailableOpenDownload": "Update available.\nOpen download page",
+  "catalogInstalledAndEnabledHint": "Installed and enabled.\nRight-click the card to disable.",
+  "catalogInstalledButDisabledHint": "Installed but disabled.\nRight-click the card to enable.",
+  "catalogInstall": "Install",
+  "catalogDownloadSupportsInstall": "Download {modName}.\n\nThis mod supports Install with TriOS.",
+  "catalogDownloadName": "Download {modName}",
+  "catalogGet": "Get",
+  "catalogOpenTheDownloadPage": "Open the download page",
+  "catalogNoDownloadAvailable": "No download available",
+  "catalogSeveralDownloadsAvailable": "Several downloads available.\nClick to choose",
+  "catalogModdingSubforum": "Modding Subforum",
+  "catalogForumViewsCount": "{count} forum views",
+  "catalogForumRepliesCount": "{count} forum replies",
+  "catalogLastForumPost": "Last forum post: {date}",
+  "catalogSourceCodeOn": "Source code on {host}",
+  "catalogClickToOpenInBrowser": "Click to open in your browser",
+  "catalogClickToReadFullLicense": "Click to read the full license.",
+  "catalogItemNounMods": "mods",
+  "catalogItemNounThreads": "threads",
+  "catalogForumIndexSubforumsPostsStats": "forum index, subforums, individual posts and stats",
+  "catalogSource": "Source",
+  "catalogDataSourcesDialogPath": "Path",
+  "catalogRefreshDisabledWhileLoading": "Refresh disabled while loading",
+  "catalogFetchFreshData": "Fetch fresh data, bypassing the cache",
+  "catalogDeleteCachedFiles": "Delete the cached files from disk",
+  "catalogNothingCachedToClear": "Nothing cached to clear",
+  "catalogDataSourcesDialogNotCached": "Not cached",
+  "catalogDataSourcesDialogLoading": "Loading…",
+  "catalogDataSourcesDialogLoaded": "Loaded",
+  "catalogCachedAgeAgo": "Cached {age} ago (TTL {ttl})",
+  "catalogNotCachedWithTtl": "Not cached (TTL {ttl})",
+  "forumPostHeaderHideTheModSummary": "Hide the mod summary",
+  "forumPostHeaderShowTheModSummary": "Show the mod summary",
+  "forumPostHeaderExitFullScreen": "Exit full screen",
+  "forumPostHeaderFullScreen": "Full screen",
+  "forumPostHeaderAlreadyInstalled": "Already installed",
+  "forumPostHeaderNotInstalled": "Not installed",
+  "forumPostHeaderOpenDownloadPage": "Open download page",
+  "catalogSpoiler": "Spoiler",
+  "catalogEmbeddedVideo": "Embedded video · {label}",
+  "catalogPostCount": "{count} posts",
+  "catalogOpenAuthorProfile": "Open {authors}'s forum profile in your browser",
+  "catalogSummaryFromSources": "Summary from {place}.",
+  "modSummarySummaryFromModInfo": "Summary from mod_info.json.",
+  "catalogSummaryGeneratedByAi": "Summary generated by AI. See the {appName} About page for AI Disclosure.",
+  "modSummaryWhatHappensToYour": "What happens to your existing saved games when you update this mod",
+  "catalogAiSummaryAlways": "Always",
+  "catalogAiSummaryOnlyIfMissing": "Only if missing",
+  "catalogAiSummaryNever": "Never",
+  "catalogClickActionForumDialog": "Forum dialog",
+  "catalogClickActionEmbeddedBrowser": "Embedded browser",
+  "catalogClickActionSystemBrowser": "System browser",
+  "catalogSideRailHide": "Hide {panel}",
+  "catalogSideRailShow": "Show {panel}",
+  "catalogVersionChecker": "Version checker",
+  "catalogVersionCheckerWithVersion": "Version checker ({version})",
+  "catalogInstallWithAppName": "Install with {appName}",
+  "catalogMirror": "Mirror",
+  "app_action_buttonsYouMustEnableAllowReporting": "You must enable 'Allow Crash Reporting' in Settings to report bugs.\nThis icon may be hidden on the Settings page.",
+  "app_action_buttonsContinuingWillSendA": "Continuing will send a bug report. You will be able to enter additional details about the issue on the next page.",
+  "app_action_buttonsIWantToReportA": "I want to report a {appName} bug",
+  "app_action_buttonsSwitchToSidebarLayout": "Switch to sidebar layout",
+  "app_action_buttonsSwitchToTopToolbarLayout": "Switch to top toolbar layout",
+  "app_action_buttonsWhenEnabledModifyingA": "When enabled, modifying a mod's rules.csv will\nreload in-game rules as long as dev mode is enabled.",
+  "app_action_buttonsRulesHotReloadIs": "\n\nrules.csv hot reload is {state}.",
+  "app_action_buttonsClickTo": "\nClick to {action}.",
+  "app_action_buttonsGameDetection": "Game Detection",
+  "app_action_buttonsRunning": "Running",
+  "app_action_buttonsNotRunning": "Not running",
+  "app_action_buttonsMatchedBy": "Matched by",
+  "app_action_buttonsDetectors": "Detectors",
+  "app_action_buttonsCheckDuration": "Check Duration",
+  "app_action_buttonsPeriod": "Period",
+  "app_action_buttonsErrors": "Errors",
+  "app_sidebarExpandSidebar": "Expand sidebar",
+  "app_sidebarCollapseSidebar": "Collapse sidebar",
+  "app_sidebarSwitchToTopToolbar": "Switch to top toolbar",
+  "app_right_toolbarUnableToFindOr": "Unable to find or modify file(s).",
+  "app_right_toolbarRightClickTriosExe": "Right-click TriOS.exe and select 'Run as Administrator'.",
+  "app_right_toolbarEnsureTheyExist": "\nEnsure that they exist and are not read-only.\n",
+  "app_right_toolbarTriosMayNotBeAble": "\nTriOS may not be able to modify game files, otherwise.\n",
+  "app_right_toolbarUnableToEditFile": "❌ Unable to edit {description}.\n    ({path}).",
+  "app_right_toolbarUnknownPath": "unknown path",
+  "warningTitle": "Warning",
+  "app_right_toolbarMustRunAsAdmin": "Must Run as Admin",
+  "app_right_toolbarRunningAsAdministratorNdrag": "Running as Administrator.\nDrag'n'drop will not work due to Windows security limits.",
+  "app_right_toolbarTriosLikeSmolBefore": "TriOS, like SMOL before it, is a hobby that I do because I enjoy it, and because I enjoy giving to Starsector.",
+  "app_right_toolbarNtheyReTheResult": "\nThey're the result of many hundreds of hours of coding, and I hope they have been useful (and even enjoyable) for you.",
+  "app_right_toolbarNifYouFeelLike": "\nIf you feel like donating, thank you. If you can't donate but wish you were rich enough to just give money away, thank you anyway :)",
+  "app_right_toolbarNtakeCareOfYourself": "\nTake care of yourself,",
+  "activityIconDownloading": "Downloading...",
+  "activityIconInstalling": "Installing...",
+  "activityIconModInstalled": "Mod installed",
+  "activityIconModsInstalled": "Mods installed",
+  "nav_reorder_menuThisRestoresTheDefault": "This restores the default order of the navigation icons.",
+  "settingsGroupStarsector": "Starsector",
+  "settingsGroupTriosUpdates": "{appName} Updates",
+  "@settingsGroupTriosUpdates": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsSelfUpdateUnavailableMac": "Self-update is not available on macOS. Please download new versions from the Releases page.",
+  "settingsPrereleasesTooltip": "Play with fire.\nEnabling this will include Previews when checking for updates.\nPreviews are *usually* stable, but no guarantees. They contain bugfixes and often add a feature or two that may not be totally finished.",
+  "settingsEnableTriosPreviewReleases": "Enable {appName} preview releases",
+  "@settingsEnableTriosPreviewReleases": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsInterface": "Interface",
+  "settingsWindowScaleTooltip": "Makes the UI larger or smaller.\nMin 25%, max 300%.",
+  "settingsTriosScale": "{appName} scale",
+  "@settingsTriosScale": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsScaleCautionTooltip": "Make small changes at a time.\nTri-Tachyon is not responsible if you set it to 300% and it's so big you can't get to the setting to fix it.",
+  "settingsModOrganization": "Mod Organization",
+  "settingsFolderNamingTooltip": "If enabled, TriOS will always add the version number to the folder name when installing a mod.\nFor example; LazyLib-1.8b, LazyLib-1.8, LazyLib-1.7.\n\nIf disabled, the latest mod won't change folder name, even when you update the mod.\nOlder versions of a mod will still include the version number in order to tell them apart.\nFor example; LazyLib, LazyLib-1.8, LazyLib-1.7.",
+  "settingsManualNamingTooltip": "Manual mode. TriOS will not rename folders.\nThis may result in TriOS overwriting mods when updating or installing new versions, if the folder already exists.\nFor example, if you have folder `LazyLib` and install a new version where the folder name is also `LazyLib`, the older one will be overwritten.\n\nTODO: clean up this UI and use a dropdown or something :)",
+  "settingsOldModVersions": "Old mod versions",
+  "settingsKeepOnlyOneModVersion": "Keep only one mod version",
+  "settingsKeepAllModVersions": "Keep all mod versions",
+  "settingsKeepVersionsNeverRemove": "TriOS will never automatically remove mod versions.",
+  "settingsKeepVersionsReplaceMod": "Installing or updating a mod will replace the mod.",
+  "settingsKeepVersionsKeepLastN": "Installing or updating a mod will remove all but the last {count} highest versions.",
+  "@settingsKeepVersionsKeepLastN": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "settingsRemoveAllButNewest": "Remove all but the newest version of each mod.",
+  "settingsRemoveAllButNewestCount": "Remove all but the newest {count} versions of each mod.",
+  "@settingsRemoveAllButNewestCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "settingsCleanUpPrompt": "Prompts for confirmation before deleting anything.",
+  "settingsConcurrentExtractionsTooltip": "Number of mod archives to extract at the same time during batch installation.\nHigher values install faster but use more CPU and disk I/O.",
+  "settingsCompanionMod": "Companion Mod",
+  "settingsCompanionModDescription": "The {appName} Companion Mod is required to replace portraits without touching the actual mods (see Portraits tab).\nIt does nothing else and has effectively no impact on loading or performance.",
+  "@settingsCompanionModDescription": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsCompanionModNotInstalled": "The Companion Mod is not installed.",
+  "settingsCompanionModSetUpCorrectly": "The Companion Mod is set up correctly.",
+  "settingsCompanionModNotEnabled": "The Companion Mod is installed but not enabled.",
+  "settingsReinstallCompanionTooltip": "If the Companion Mod already exists, it'll be replaced with a fresh version.\nPortrait replacements that show in {appName} will NOT be lost.",
+  "@settingsReinstallCompanionTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsReinstallCompanionMod": "Reinstall Companion Mod",
+  "settingsInstallCompanionMod": "Install Companion Mod",
+  "settingsOpenCompanionModFolder": "Open Companion Mod Folder",
+  "settingsMisc": "Misc",
+  "settingsRescanTooltip": "This sets how often we check if there are new or changed mods in your folder.\nA shorter time means more frequent checks.\nDoes not scan when {appName} is in the background.",
+  "@settingsRescanTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsRescanEvery": "Rescan mod folder every: {count} seconds",
+  "@settingsRescanEvery": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "settingsNotificationDuration": "Notification duration: {count} seconds",
+  "@settingsNotificationDuration": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "settingsMaxHttpRequests": "Max HTTP requests at once: {count}",
+  "@settingsMaxHttpRequests": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "settingsErrorReportingTooltip": "This allows {appName} to send crash/error reports to get fixed.\nNo personal/identifiable data is sent.\nWill soft-restart {appName} to apply.",
+  "@settingsErrorReportingTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsRestartToApply": "{appName} must be restarted to apply this change.",
+  "@settingsRestartToApply": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsErrorReportingDialogContent": "If allowed, {appName} uses Sentry.io to collect error reports.\nIf not allowed, the Sentry SDK will be completely disabled; it will not be initialized on startup, which is why the soft restart is required to toggle this setting and why 'Report A Bug' is not available if it is disabled.\n\nIf error reporting is enabled, care is taken to avoid sending any personal/identifiable data such as IP addresses, usernames (even in file paths), device names, location, etc.\nMod names, device info (OS, CPU count, RAM, etc) is sent.",
+  "@settingsErrorReportingDialogContent": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsLaunchPrecheckTooltip": "Whether to check for mod dependencies and prevent launching if they aren't met.\nDisable if {appName} is getting them wrong, or you'd just like to use vanilla dependency check behavior.",
+  "@settingsLaunchPrecheckTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsCheckGameRunningTooltip": "Whether to check if the game is running and lock parts of {appName}.\nDisable if {appName} is detecting incorrectly.",
+  "@settingsCheckGameRunningTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsGameRunningCheckError": "Error checking if game is running!",
+  "settingsAccessibilitySemanticsTooltip": "The Flutter framework (what {appName} uses) has a bug that causes freezes related to text fields on some Linux distros.\nDisabling accessibility semantics fixes those freezes.\nYou may need to fully restart {appName} to apply the changes.",
+  "@settingsAccessibilitySemanticsTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsAiFeatures": "AI Features",
+  "settingsDisableAiTooltip": "When checked, {appName} never shows anything AI-related:\n- Generated mod summaries on the Catalog page",
+  "@settingsDisableAiTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsJunkDrawerSubtitle": "Junk drawer of developer actions and info",
+  "settingsAlreadyLatestVersion": "You are already on the latest version (current: {current}, found: {found}{prerelease})",
+  "@settingsAlreadyLatestVersion": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "found": {
+        "type": "String"
+      },
+      "prerelease": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDeepLinkTooltip": "Registers or unregisters {appName} as the handler for 'Install with {appName}' links,\nwhich lets you install mods with one click from websites.",
+  "@settingsDeepLinkTooltip": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsDisableOpenWithTrios": "Disable 'Open with TriOS'",
+  "settingsEnableOpenWithTrios": "Enable 'Open with TriOS'",
+  "settingsYourThemes": "Your themes",
+  "settingsBuiltIn": "Built-in",
+  "settingsThemeTooltip": "Change up the colors.\nNote: only the default theme (StarsectorTriOSTheme) is regularly tested.",
+  "settingsCopyThemeTooltip": "Copy theme as JSON\nPuts the selected theme on the clipboard, ready to paste into your own themes file.",
+  "settingsThemeCopiedSnackbar": "\"{name}\" copied. Paste it into your themes file.",
+  "@settingsThemeCopiedSnackbar": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsOpenThemesFileTooltip": "Open my themes file\n{path}",
+  "@settingsOpenThemesFileTooltip": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsFontTooltip": "The font all of TriOS's text is drawn in.\nSystem uses whatever font your operating system provides.",
+  "debugSectionShowDiagnosticsTooltip": "Shows internal diagnostics in the toolbar, including\nprocess detection status and cache statistics.",
+  "debugSectionEngineTrailsTooltip": "Draws the trail of smoke or glow behind a ship's lit engines\nin the ship viewer. Still being worked on.",
+  "debugSectionRestoreWarningTooltip": "CAUTION: May mess up TriOS's settings (not mods).\nGoing back in time is not tested. Recommend backing up your settings first (click Log File button to open folder).",
+  "debugSectionSelectARelease": "← Select a release",
+  "debugSectionConsoleLogLevel": "← Select {appName} console logging level (resets at restart)",
+  "@debugSectionConsoleLogLevel": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionFileLogLevel": "← Select {appName} file logging level (resets at restart)",
+  "@debugSectionFileLogLevel": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionResetCategoriesDialog": "This will reset categories to defaults, removing any user-created categories.\nMod assignments to default categories will be kept.",
+  "debugSectionTestError": "This is a test error",
+  "debugSectionDetectedFiles": "Detected ({count}):",
+  "@debugSectionDetectedFiles": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionCacheAgeHours": "{hours}h ago",
+  "@debugSectionCacheAgeHours": {
+    "placeholders": {
+      "hours": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionCacheAgeMinutes": "{minutes}m ago",
+  "@debugSectionCacheAgeMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionCachedWithCount": "Cached {age}, {count} entries",
+  "@debugSectionCachedWithCount": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      },
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionCached": "Cached {age}",
+  "@debugSectionCached": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionNotCached": "Not cached",
+  "debugSectionForumDataRefreshed": "Forum data refreshed.",
+  "debugSectionForumUpdated": "Updated: {time}",
+  "@debugSectionForumUpdated": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionForumTotalEntries": "Total entries: {count}",
+  "@debugSectionForumTotalEntries": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionForumMatchedCount": "Matched to ModRecords: {count}",
+  "@debugSectionForumMatchedCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionForumEntryLine": "#{topicId}  {title}  ({views} views, {replies} replies)",
+  "@debugSectionForumEntryLine": {
+    "placeholders": {
+      "topicId": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      },
+      "views": {
+        "type": "num"
+      },
+      "replies": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionNotCollectedNote": "Note: the below information is not collected by TriOS.\nThis is here in case TriOS is misbehaving, to hopefully see if anything looks wrong.",
+  "debugSectionCurrentDirectoryEnv": "Current directory (env variable): {path}",
+  "@debugSectionCurrentDirectoryEnv": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionCurrentDirectoryExecutable": "Current directory based on executable: {path}",
+  "@debugSectionCurrentDirectoryExecutable": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionLocaleIntl": "Locale (using Intl package): {locale}",
+  "@debugSectionLocaleIntl": {
+    "placeholders": {
+      "locale": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionRamUsage": "RAM usage: {amount}",
+  "@debugSectionRamUsage": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionMaxRamUsage": "Max RAM usage: {amount}",
+  "@debugSectionMaxRamUsage": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionTriosVersion": "TriOS version: {version}",
+  "@debugSectionTriosVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionDartVersion": "Dart version: {version}",
+  "@debugSectionDartVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionOs": "OS: {os} {version}",
+  "@debugSectionOs": {
+    "placeholders": {
+      "os": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "debugSectionProcessors": "Processors: {count}",
+  "@debugSectionProcessors": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "debugSectionFilterByVariantId": "Filter by variant id",
+  "debugSectionNoSearch": "(no search)",
+  "debugSectionIdNotFound": "(id not found)",
+  "debugSectionAllMods": "ALL Mods",
+  "navLabelDash": "Dash",
+  "navLabelMods": "Mods",
+  "navLabelProfiles": "Profiles",
+  "navLabelCatalog": "Catalog",
+  "navLabelLogs": "Logs",
+  "navLabelVramEstimator": "VRAM Estimator",
+  "navLabelCodex": "Codex",
+  "navLabelShips": "Ships",
+  "navLabelWeapons": "Weapons",
+  "navLabelHullmods": "Hullmods",
+  "navLabelFactions": "Factions",
+  "navLabelPortraits": "Portraits",
+  "navLabelSector": "Sector",
+  "navLabelTips": "Tips",
+  "navLabelSettings": "Settings",
+  "navTooltipDashboard": "Dashboard",
+  "navTooltipModManager": "Mod Manager",
+  "navTooltipModProfiles": "Mod Profiles",
+  "navTooltipModCatalog": "Mod Catalog",
+  "navTooltipLogViewer": "Log Viewer",
+  "navTooltipVramEstimator": "VRAM Estimator",
+  "navTooltipCodex": "Codex",
+  "navTooltipShipViewer": "Ship Viewer",
+  "navTooltipWeaponViewer": "Weapon Viewer",
+  "navTooltipHullmodViewer": "Hullmod Viewer",
+  "navTooltipFactionViewer": "Faction Viewer",
+  "navTooltipPortraitViewer": "Portrait Viewer & Replacer",
+  "navTooltipSectorMap": "Sector Map",
+  "navTooltipTipsManager": "Tips Manager",
+  "navTooltipSettings": "Settings",
+  "downloadStatusQueued": "Queued",
+  "downloadStatusRetrievingFileInfo": "Retrieving File Info",
+  "downloadStatusDownloading": "Downloading",
+  "downloadStatusCompleted": "Completed",
+  "downloadStatusFailed": "Failed",
+  "downloadStatusPaused": "Paused",
+  "downloadStatusCanceled": "Canceled",
+  "toastGroupAllModsInstalled": "All mods installed",
+  "toastGroupInstallingMods": "Installing mods",
+  "toastGroupDownloadingMods": "Downloading mods",
+  "toastGroupInstalledOne": "Installed {count} mod",
+  "@toastGroupInstalledOne": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupInstalledMany": "Installed {count} mods",
+  "@toastGroupInstalledMany": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupInstallingOne": "Installing {count} mod",
+  "@toastGroupInstallingOne": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupInstallingMany": "Installing {count} mods",
+  "@toastGroupInstallingMany": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupDownloadingOne": "Downloading {count} mod",
+  "@toastGroupDownloadingOne": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupDownloadingMany": "Downloading {count} mods",
+  "@toastGroupDownloadingMany": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupSuccessFailed": "{successCount} successful, {failedCount} failed",
+  "@toastGroupSuccessFailed": {
+    "placeholders": {
+      "successCount": {
+        "type": "num"
+      },
+      "failedCount": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupComplete": "{completed} of {total} complete",
+  "@toastGroupComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "num"
+      },
+      "total": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupMoreCount": "+{count} more",
+  "@toastGroupMoreCount": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "toastGroupRemoveFromGroup": "Remove from group",
+  "commonInstalling": "Installing...",
+  "commonDownloading": "Downloading...",
+  "commonCollapse": "Collapse",
+  "commonExpand": "Expand",
+  "toastInstallationFailed": "Installation failed",
+  "toastDownloadedArchiveSize": "Downloaded archive size",
+  "toastInstalledSizeOnDisk": "Installed size on disk",
+  "toastPreviouslyEnabled": "Previously enabled: {version}",
+  "@toastPreviouslyEnabled": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "toastUpdatedToVersion": "{appName} was updated to {version}!",
+  "@toastUpdatedToVersion": {
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "toastVersionNowAvailable": "{version} is now available!",
+  "@toastVersionNowAvailable": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updateToVersion": "Update to {version}",
+  "@updateToVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "aprilFoolsActuallyJoke": "Ok, it's actually an April Fool's joke. It's completely offline and harmless, promise.",
+  "aprilFoolsChatbotAvailable": "New! {chatbotName} is now available in TriOS.",
+  "@aprilFoolsChatbotAvailable": {
+    "placeholders": {
+      "chatbotName": {
+        "type": "String"
+      }
+    }
+  },
+  "contextMenuOpenForumPage": "Open Forum Page",
+  "contextMenuOpenNexusPage": "Open Nexus Page",
+  "contextMenuOpenForumPageUnavailable": "Open Forum Page (unavailable)",
+  "contextMenuNoVersionCheckerForumId": "Mod has not set up Version Checker, or it does not contain a forum thread id.",
+  "contextMenuCopyInstallLink": "Copy install link",
+  "contextMenuCopyInstallLinkUnavailable": "Copy install link (unavailable)",
+  "contextMenuNoInstallLinkSource": "This mod has no Version Checker URL or direct download link to build an install link from.",
+  "contextMenuRedownloadReinstall": "Redownload & Reinstall",
+  "contextMenuRedownloadUnavailable": "Redownload unavailable",
+  "contextMenuNoDirectDownload": "This mod does not support direct download. Please manually redownload/reinstall.",
+  "contextMenuViewChangelogUnavailable": "View Changelog (unavailable)",
+  "contextMenuNoChangelog": "This mod has no changelog. It needs Version Checker with a changelog link.",
+  "contextMenuMuteThisUpdate": "Mute this update ({version})",
+  "@contextMenuMuteThisUpdate": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "contextMenuUnmuteThisUpdate": "Unmute this update ({version})",
+  "@contextMenuUnmuteThisUpdate": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "deepLinkAlreadyInstalled": "Already installed",
+  "deepLinkInstallModFromLink": "Install Mod from Link",
+  "deepLinkInstallModsFromLink": "Install Mods from Link",
+  "deepLinkDependencies": "Dependencies ({count})",
+  "@deepLinkDependencies": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "deepLinkNoModsSelected": "No mods selected",
+  "deepLinkDownloadAndInstall": "Download & Install ({count})",
+  "@deepLinkDownloadAndInstall": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "deepLinkRequiresVersion": "Requires ≥ {version}",
+  "@deepLinkRequiresVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "deepLinkVersionFile": "Version file",
+  "deepLinkCannotInstallWhileGameRunning": "Cannot install mods while Starsector is running.",
+  "deepLinkConfigureGameDirectory": "Please configure your Starsector game directory before installing mods via links.",
+  "deepLinkVersionFileNoDownloadLink": "The mod's version file has no download link and cannot be automatically installed.",
+  "deepLinkInvalidDownloadUrl": "The mod's download link isn't a valid http/https URL.",
+  "deepLinkVersionFileFetchFailed": "Couldn't fetch the mod's version file (HTTP {statusCode}).",
+  "@deepLinkVersionFileFetchFailed": {
+    "placeholders": {
+      "statusCode": {
+        "type": "String"
+      }
+    }
+  },
+  "deepLinkVersionFileReadFailed": "Couldn't read the mod's version file.",
+  "dragDropWebLinkDownload": "Web link download",
+  "dragDropGameRunningClose": "Game is running. Close to install mods.",
+  "activityToday": "Today",
+  "activityYesterday": "Yesterday",
+  "activityClearHistoryWarning": "This permanently clears the installation activity history. This action cannot be undone.",
+  "activityUnpinOverlay": "Unpin (overlay)",
+  "activityPinSidePanel": "Pin (side panel)",
+  "activityNoActivityYet": "No activity yet",
+  "activityInProgress": "In Progress",
+  "activityScanning": "Scanning...",
+  "activityDownloadedFrom": "Downloaded from\n{source}",
+  "@activityDownloadedFrom": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "activityInstalledFromArchive": "Installed from archive",
+  "downloadManagerFailedToInstall": "Failed to install {name}.",
+  "@downloadManagerFailedToInstall": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadManagerDownloadUrl": "Download URL: {url}",
+  "@downloadManagerDownloadUrl": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "shipsEntityName": "Ships",
+  "shipsGroupAllShips": "All Ships",
+  "shipsColumnId": "ID",
+  "shipsColumnHull": "Hull",
+  "shipsColumnWpns": "Wpns",
+  "shipsColumnBuiltInWpns": "Built-in Wpns",
+  "shipsColumnBuiltInMods": "Built-in Mods",
+  "shipsColumnBuiltInWings": "Built-in Wings",
+  "shipsColumnTech": "Tech",
+  "shipsColumnDesignation": "Designation",
+  "shipsColumnSystem": "System",
+  "shipsColumnDp": "DP",
+  "shipsColumnFleetPts": "Fleet Pts",
+  "shipsColumnHitpoints": "Hitpoints",
+  "shipsColumnArmor": "Armor",
+  "shipsColumnMaxFlux": "Max Flux",
+  "shipsColumnFluxDiss": "Flux Diss",
+  "shipsColumnOrdnance": "Ordnance",
+  "shipsColumnFighterBays": "Fighter Bays",
+  "shipsColumnMaxSpeed": "Max Speed",
+  "shipsColumnAccel": "Accel",
+  "shipsColumnDecel": "Decel",
+  "shipsColumnTurnRate": "Turn Rate",
+  "shipsColumnTurnAccel": "Turn Accel",
+  "shipsColumnMass": "Mass",
+  "shipsColumnShield": "Shield",
+  "shipsColumnDefenseId": "Defense ID",
+  "shipsColumnShieldArc": "Shield Arc",
+  "shipsColumnShieldUpkeep": "Shield Upkeep",
+  "shipsColumnShieldEff": "Shield Eff.",
+  "shipsColumnPhaseCost": "Phase Cost",
+  "shipsColumnPhaseUpkeep": "Phase Upkeep",
+  "shipsColumnMinCrew": "Min Crew",
+  "shipsColumnMaxCrew": "Max Crew",
+  "shipsColumnCargo": "Cargo",
+  "shipsColumnFuel": "Fuel",
+  "shipsColumnFuelLy": "Fuel/LY",
+  "shipsColumnRange": "Range",
+  "shipsColumnMaxBurn": "Max Burn",
+  "shipsColumnSensorProfile": "Sensor Profile",
+  "shipsColumnSensorStrength": "Sensor Strength",
+  "shipsColumnCreditsBase": "Credits (base)",
+  "shipsColumnCrPerDay": "CR%/Day",
+  "shipsColumnCrToDeploy": "CR to Deploy",
+  "shipsColumnPpt": "PPT",
+  "shipsColumnCrLossSec": "CR Loss/Sec",
+  "shipsColumnSuppliesMon": "Supplies/Mon",
+  "shipsColumnRarity": "Rarity",
+  "shipsColumnBreakProb": "Break Prob",
+  "shipsColumnMinPieces": "Min Pieces",
+  "shipsColumnMaxPieces": "Max Pieces",
+  "shipsColumnTravelDrive": "Travel Drive",
+  "shipsColumnStyle": "Style",
+  "shipsFilterGroupType": "Type",
+  "shipsFilterValueSkin": "Skin",
+  "shipsFilterValueBaseHull": "Base Hull",
+  "shipsFilterHullSize": "Hull Size",
+  "shipsFilterWeaponSlotType": "Weapon Slot Type",
+  "shipsFilterWeaponSize": "Weapon Size",
+  "shipsFilterMountType": "Mount Type",
+  "shipsFilterShieldType": "Shield Type",
+  "shipsFilterTechManufacturer": "Tech/Manufacturer",
+  "shipsFilterDesignation": "Designation",
+  "shipsFilterDeploymentPoints": "Deployment Points",
+  "shipsFilterOrdnancePoints": "Ordnance Points",
+  "shipsFilterFluxDissipation": "Flux Dissipation",
+  "shipsFilterFluxCapacity": "Flux Capacity",
+  "shipsFilterFuelCapacity": "Fuel Capacity",
+  "shipsFilterCargoCapacity": "Cargo Capacity",
+  "shipsFilterCrewCapacity": "Crew Capacity",
+  "shipsLabelOrdnancePoints": "Ordnance points",
+  "shipsLabelCargoCapacity": "Cargo capacity",
+  "shipsLabelMaximumCrew": "Maximum crew",
+  "shipsLabelFuelCapacity": "Fuel capacity",
+  "shipsLabelArmorRating": "Armor rating",
+  "shipsLabelSensorProfile": "Sensor profile",
+  "shipsLabelSensorStrength": "Sensor strength",
+  "shipsSearchHullSize": "Hull size (frigate, destroyer, cruiser, capital_ship)",
+  "shipsSearchShieldType": "Shield type (FRONT, OMNI, PHASE, NONE)",
+  "shipsSearchSystemId": "Ship system ID",
+  "shipsSearchDefenseId": "Defense system ID",
+  "shipsSearchTechManufacturer": "Tech/manufacturer",
+  "shipsSearchDesignation": "Ship designation",
+  "shipsSearchStyle": "Visual style",
+  "shipsSearchModSubstring": "Mod name substring match",
+  "shipsSearchBuiltInHullmod": "Built-in hullmod, by name or ID",
+  "shipsSearchHint": "Ship hint; matches any hint in a multi-value set",
+  "shipsSearchTag": "Ship CSV tag; matches any tag in a multi-value set",
+  "shipsSearchHitpoints": "Hull hitpoints",
+  "shipsSearchArmorRating": "Armor rating",
+  "shipsSearchMaxFlux": "Max flux capacity",
+  "shipsSearchFluxDissipation": "Flux dissipation",
+  "shipsSearchOrdnancePoints": "Ordnance points",
+  "shipsSearchMaxSpeed": "Max speed",
+  "shipsSearchAcceleration": "Acceleration",
+  "shipsSearchDeceleration": "Deceleration",
+  "shipsSearchMaxTurnRate": "Max turn rate",
+  "shipsSearchTurnAcceleration": "Turn acceleration",
+  "shipsSearchFighterBays": "Fighter bays",
+  "shipsSearchShieldArc": "Shield arc",
+  "shipsSearchShieldEfficiency": "Shield efficiency",
+  "shipsSearchShieldUpkeep": "Shield upkeep",
+  "shipsSearchPhaseCost": "Phase cost",
+  "shipsSearchPhaseUpkeep": "Phase upkeep",
+  "shipsSearchMinCrew": "Minimum crew",
+  "shipsSearchMaxCrew": "Maximum crew",
+  "shipsSearchCargoCapacity": "Cargo capacity",
+  "shipsSearchFuelCapacity": "Fuel capacity",
+  "shipsSearchFuelPerLy": "Fuel used per light year",
+  "shipsSearchRange": "Range",
+  "shipsSearchMaxBurn": "Max burn",
+  "shipsSearchMass": "Ship mass",
+  "shipsSearchDeploymentPoints": "Deployment points",
+  "shipsSearchFleetPoints": "Fleet points",
+  "shipsSearchBaseValue": "Base credit value",
+  "shipsSearchWeaponSlots": "Weapon slots",
+  "shipsSearchPeakCr": "Peak CR seconds",
+  "shipsSearchCrPerDay": "CR recovered per day",
+  "shipsSearchCrToDeploy": "CR cost to deploy",
+  "shipsSearchCrLoss": "CR lost per second past peak",
+  "shipsSearchSuppliesPerMonth": "Supplies per month",
+  "shipsSearchSensorProfile": "Sensor profile",
+  "shipsSearchSensorStrength": "Sensor strength",
+  "shipsSearchMinPieces": "Minimum debris pieces",
+  "shipsSearchMaxPieces": "Maximum debris pieces",
+  "shipsSearchBuiltInWeapons": "Number of built-in weapons",
+  "shipsSearchBuiltInHullmods": "Number of built-in hullmods",
+  "shipsSearchBuiltInWings": "Number of built-in fighter wings",
+  "shipsSearchSizeSlots": "{size} slots",
+  "shipsSearchTypeSlots": "{type} mountable slots",
+  "shipsSearchSizeTypeSlots": "{size} {type} slots",
+  "shipsSkinBadgeTooltip": "This ship comes from a .skin file.\nSkins are variations of standard hulls. For example, the Falcon (P) is a skin of the Falcon.",
+  "shipCodexPhaseCloak": "Phase cloak",
+  "shipCodexShieldType": "{shieldType} shield",
+  "shipCodexLabelSpecial": "Special",
+  "shipCodexLabelDefense": "Defense",
+  "shipCodexSectionLogistical": "Logistical data",
+  "shipCodexCrPerDeployment": "CR per deployment",
+  "shipCodexRecoveryPerDay": "Recovery (/day)",
+  "shipCodexRecoverySupplies": "Recovery (supplies)",
+  "shipCodexDeploymentPoints": "Deployment points",
+  "shipCodexPeakPerformance": "Peak performance (sec)",
+  "shipCodexHullSize": "Hull size",
+  "shipCodexMaintenanceShort": "Maintenance (sup/mo)",
+  "shipCodexMaintenanceFull": "Maintenance (supplies/month)",
+  "shipCodexSkeletonCrew": "Skeleton crew",
+  "shipCodexMaximumBurn": "Maximum burn",
+  "shipCodexFuelLyJumpCost": "Fuel/ly, jump cost",
+  "shipCodexSectionCombat": "Combat performance",
+  "shipCodexHullIntegrity": "Hull integrity",
+  "shipCodexShieldArc": "Shield arc",
+  "shipCodexShieldUpkeepSec": "Shield upkeep/sec",
+  "shipCodexShieldFluxDamage": "Shield flux/damage",
+  "shipCodexCloakActivationCost": "Cloak activation cost",
+  "shipCodexCloakUpkeepSec": "Cloak upkeep/sec",
+  "shipCodexFluxCapacity": "Flux capacity",
+  "shipCodexFluxDissipation": "Flux dissipation",
+  "shipCodexTopSpeed": "Top speed",
+  "shipCodexLabelSystem": "System:",
+  "shipCodexLabelMounts": "Mounts:",
+  "shipCodexLabelArmaments": "Armaments:",
+  "shipCodexLabelHullMods": "Hull Mods:",
+  "shipDetailsLabelDefense": "Defense",
+  "shipDetailsSectionCombat": "Combat",
+  "shipDetailsOrdnancePts": "Ordnance Pts",
+  "shipDetailsWeapons": "Weapons",
+  "shipDetailsSectionShieldPhase": "Shield / Phase",
+  "shipDetailsShieldEfficiency": "Shield Efficiency",
+  "shipDetailsSectionMobility": "Mobility",
+  "shipDetailsSectionCrewLogistics": "Crew & Logistics",
+  "shipDetailsSectionEconomicsCr": "Economics & CR",
+  "shipDetailsBaseValue": "Base Value",
+  "shipDetailsPptSec": "PPT (s)",
+  "shipDetailsSuppliesMo": "Supplies/Mo",
+  "shipDetailsSectionMisc": "Misc",
+  "shipDetailsCollisionRadius": "Collision Radius",
+  "shipDetailsHints": "Hints",
+  "shipDetailsTags": "Tags",
+  "shipDetailsBuiltInWeapons": "Built-in Weapons",
+  "shipBlueprintResetZoom": "Reset zoom",
+  "shipBlueprintShowBounds": "Show bounds",
+  "shipBlueprintShowModules": "Show modules",
+  "shipBlueprintShowMounts": "Show mounts",
+  "shipBlueprintShowArcs": "Show arcs",
+  "shipBlueprintShowBuiltInWeapons": "Show built-in weapons",
+  "shipBlueprintShowDecorativeWeapons": "Show decorative weapons",
+  "shipBlueprintShowEngineGlow": "Show engine glow",
+  "shipBlueprintShowShields": "Show shields",
+  "shipBlueprintBackgroundTransparent": "Transparent",
+  "shipBlueprintBackgroundBlack": "Black",
+  "shipBlueprintBackgroundDarkGrey": "Dark grey",
+  "shipBlueprintBackgroundLightGrey": "Light grey",
+  "shipBlueprintBackgroundWhite": "White",
+  "shipBlueprintBackgroundDarkBlue": "Dark blue",
+  "shipBlueprintBackgroundDarkRed": "Dark red",
+  "shipBlueprintBackgroundSpace1": "Space 1",
+  "shipBlueprintBackgroundSpace2": "Space 2",
+  "shipBlueprintBackgroundSpace3": "Space 3",
+  "shipBlueprintBackgroundSpace4": "Space 4",
+  "shipBlueprintBackgroundSpace5": "Space 5",
+  "shipBlueprintBackgroundSpace6": "Space 6",
+  "shipBlueprintBackgroundGalatia": "Galatia",
+  "shipBlueprintBackgroundHyperspace": "Hyperspace",
+  "shipBlueprintBackgroundHyperspaceCool": "Hyperspace (cool)",
+  "weaponsEntityName": "Weapons",
+  "weaponsGroupAllWeapons": "All Weapons",
+  "weaponsColumnId": "ID",
+  "weaponsColumnWeaponType": "Weapon Type",
+  "weaponsColumnSize": "Size",
+  "weaponsColumnDmgType": "Dmg Type",
+  "weaponsColumnTechManufacturer": "Tech/Manufacturer",
+  "weaponsColumnSpecClass": "Spec Class",
+  "weaponsColumnRole": "Role",
+  "weaponsColumnAccuracy": "Accuracy",
+  "weaponsColumnTracking": "Tracking",
+  "weaponsColumnSpeed": "Speed",
+  "weaponsColumnTurnRateText": "Turn Rate (text)",
+  "weaponsColumnDmgShot": "Dmg/Shot",
+  "weaponsColumnImpact": "Impact",
+  "weaponsColumnOp": "OP",
+  "weaponsColumnCost": "Cost",
+  "weaponsColumnFluxShot": "Flux/Shot",
+  "weaponsColumnFluxSec": "Flux/Sec",
+  "weaponsColumnRange": "Range",
+  "weaponsColumnDmgSec": "Dmg/Sec",
+  "weaponsColumnAmmo": "Ammo",
+  "weaponsColumnAmmoSec": "Ammo/Sec",
+  "weaponsColumnReloadSize": "Reload Size",
+  "weaponsColumnEmp": "EMP",
+  "weaponsColumnChargeup": "Chargeup",
+  "weaponsColumnChargedown": "Chargedown",
+  "weaponsColumnBurstSize": "Burst Size",
+  "weaponsColumnBurstDelay": "Burst Delay",
+  "weaponsColumnMinSpread": "Min Spread",
+  "weaponsColumnMaxSpread": "Max Spread",
+  "weaponsColumnSpreadShot": "Spread/Shot",
+  "weaponsColumnSpreadDecay": "Spread Decay",
+  "weaponsColumnAfAccBonus": "AF Acc Bonus",
+  "weaponsColumnProjSpeed": "Proj Speed",
+  "weaponsColumnBeamSpeed": "Beam Speed",
+  "weaponsColumnLaunchSpeed": "Launch Speed",
+  "weaponsColumnFlightTime": "Flight Time",
+  "weaponsColumnProjHp": "Proj HP",
+  "weaponsColumnTurnRate": "Turn Rate",
+  "weaponsColumnTier": "Tier",
+  "weaponsColumnRarity": "Rarity",
+  "weaponsColumnHints": "Hints",
+  "weaponsColumnTags": "Tags",
+  "weaponsColumnGroupTag": "Group Tag",
+  "weaponsFilterHint": "Hint",
+  "weaponsFilterDamagePerShot": "Damage per Shot",
+  "weaponsFilterDamagePerSecond": "Damage per Second",
+  "weaponsFilterFluxPerSecond": "Flux per Second",
+  "weaponsSearchTrackingQuality": "Tracking quality (excellent, good, poor, none)",
+  "weaponsSearchAmmoCount": "Ammo count (none = unlimited); supports numeric operators",
+  "weaponsSearchWeaponType": "Weapon type (missile, energy, ballistic, hybrid)",
+  "weaponsSearchMountSize": "Mount size (small, medium, large)",
+  "weaponsSearchDamageType": "Damage type (kinetic, he, energy, fragmentation)",
+  "weaponsSearchWeaponRange": "Weapon range",
+  "weaponsSearchOpCost": "Ordnance points cost",
+  "weaponsSearchDps": "Damage per second",
+  "weaponsSearchHintTag": "Weapon hint tag; matches any hint in a multi-value set",
+  "weaponsSearchTag": "Weapon CSV tag; matches any tag in a multi-value set",
+  "weaponsSearchDamagePerShot": "Damage per shot",
+  "weaponsSearchEmpDamage": "EMP damage",
+  "weaponsSearchFluxPerShot": "Flux per shot",
+  "weaponsSearchFluxPerSecond": "Flux per second",
+  "weaponsSearchChargeUp": "Charge-up time in seconds",
+  "weaponsSearchChargeDown": "Charge-down time in seconds",
+  "weaponsSearchBurstSize": "Burst size (number of shots)",
+  "weaponsSearchBurstDelay": "Delay between burst shots",
+  "weaponsSearchBarrelsTogether": "Barrels fired together per shot (LINKED and DUAL barrel modes)",
+  "weaponsSearchTurnRate": "Projectile/beam turn rate",
+  "weaponsSearchProjectileSpeed": "Projectile speed",
+  "weaponsSearchBeamSpeed": "Beam speed",
+  "weaponsSearchLaunchSpeed": "Missile launch speed",
+  "weaponsSearchFlightTime": "Projectile flight time",
+  "weaponsSearchProjectileHitpoints": "Projectile hitpoints",
+  "weaponsSearchAmmoRegen": "Ammo regeneration per second",
+  "weaponsSearchReloadSize": "Reload size",
+  "weaponsSearchImpact": "Impact/force value",
+  "weaponsSearchAutofireBonus": "Autofire accuracy bonus",
+  "weaponsSearchMaxSpread": "Maximum spread",
+  "weaponsSearchMinSpread": "Minimum spread",
+  "weaponsSearchSpreadPerShot": "Spread added per shot",
+  "weaponsSearchEffectiveDps": "Damage per second, allowing for charge-up and bursts",
+  "weaponsSearchSustainedDps": "Damage per second once ammo regeneration is the limit",
+  "weaponsSearchBurstDamage": "Damage dealt by one burst (burst beams only)",
+  "weaponsSearchRefireDelay": "Seconds between shots or bursts",
+  "weaponsSearchFluxPerDamage": "Flux spent per point of damage; lower is more efficient",
+  "weaponsSearchFluxPerSecFiring": "Flux spent per second while firing",
+  "weaponsSearchSustainedFlux": "Flux spent per second at the sustained rate of fire",
+  "weaponsSearchEmpPerActivation": "EMP damage per activation",
+  "weaponsSearchSpecClass": "Weapon spec class (beam, projectile, missile, etc.)",
+  "weaponsSearchMountType": "Effective mount type (TURRET, HARDPOINT, HIDDEN)",
+  "weaponsSearchPrimaryRole": "Primary role description",
+  "weaponsSearchGroupTag": "Weapon group tag",
+  "weaponsSearchTier": "Weapon tier",
+  "weaponsSearchRarityValue": "Rarity value",
+  "weaponCodexSectionPrimary": "Primary data",
+  "weaponCodexPrimaryRole": "Primary role",
+  "weaponCodexMountType": "Mount type",
+  "weaponCodexCountsAs": "Counts as {type} for stat modifiers",
+  "weaponCodexDamage": "Damage",
+  "weaponCodexDps": "Damage / second",
+  "weaponCodexDpsSustained": "Damage / second (sustained)",
+  "weaponCodexEmpDamage": "EMP damage",
+  "weaponCodexEmpDps": "EMP DPS",
+  "weaponCodexFluxSec": "Flux / second",
+  "weaponCodexFluxSecSustained": "Flux / second (sustained)",
+  "weaponCodexFluxShot": "Flux / shot",
+  "weaponCodexFluxPerDamage": "Flux / damage",
+  "weaponCodexFluxPerNonEmpDamage": "Flux / non-EMP damage",
+  "weaponCodexLimitedCharges": "Limited charges ({count})",
+  "weaponCodexLimitedAmmo": "Limited ammo ({count})",
+  "weaponCodexNoFluxLimitedCharges": "No flux cost to fire, limited charges ({count})",
+  "weaponCodexNoFluxLimitedAmmo": "No flux cost to fire, limited ammo ({count})",
+  "weaponCodexNoFluxCost": "No flux cost to fire",
+  "weaponCodexSectionAncillary": "Ancillary data",
+  "weaponCodexDamageType": "Damage type",
+  "weaponCodexHitpoints": "Hitpoints",
+  "weaponCodexTurnRate": "Turn rate",
+  "weaponCodexMaxCharges": "Max charges",
+  "weaponCodexMaxAmmo": "Max ammo",
+  "weaponCodexSecondsRecharge": "Seconds / recharge",
+  "weaponCodexSecondsReload": "Seconds / reload",
+  "weaponCodexChargesGained": "Charges gained",
+  "weaponCodexReloadSize": "Reload size",
+  "weaponCodexBurstSize": "Burst size",
+  "weaponCodexRefireDelay": "Refire delay (seconds)",
+  "weaponCodexDamageKinetic": "Kinetic",
+  "weaponCodexDamageHighExplosive": "High Explosive",
+  "weaponCodexDamageFragmentation": "Fragmentation",
+  "weaponCodexDamageEnergy": "Energy",
+  "weaponCodexDamageOther": "Other",
+  "weaponCodexDamageTypeBeam": "{name} (Beam)",
+  "weaponCodexDescKinetic": "200% vs shields, 50% vs armor",
+  "weaponCodexDescHighExplosive": "200% vs armor, 50% vs shields",
+  "weaponCodexDescFragmentation": "25% vs shields and armor, 100% vs hull",
+  "weaponCodexDescEnergy": "100% vs shields, armor, and hull",
+  "weaponCodexNoHardFlux": "{desc} (no hard flux)",
+  "weaponCodexRequiresBallisticEnergyHybrid": "Requires a Ballistic, Energy, or Hybrid slot",
+  "weaponCodexRequiresEnergyMissileSynergy": "Requires an Energy, Missile, or Synergy slot",
+  "weaponCodexRequiresBallisticMissileComposite": "Requires a Ballistic, Missile, or Composite slot",
+  "weaponCodexUniversalSlot": "Can be installed in any type of slot",
+  "weaponCodexQualityPerfect": "Perfect",
+  "weaponCodexQualityExcellent": "Excellent",
+  "weaponCodexQualityGood": "Good",
+  "weaponCodexQualityMedium": "Medium",
+  "weaponCodexQualityPoor": "Poor",
+  "weaponCodexQualityVeryPoor": "Very Poor",
+  "weaponCodexQualityTerrible": "Terrible",
+  "weaponCodexCantTurn": "Can't turn",
+  "weaponCodexQualityVerySlow": "Very Slow",
+  "weaponCodexQualitySlow": "Slow",
+  "weaponCodexQualityFast": "Fast",
+  "weaponCodexQualityVeryFast": "Very Fast",
+  "weaponDetailsLabelType": "Type",
+  "weaponDetailsRawType": "Raw Type",
+  "weaponDetailsSectionCombat": "Combat",
+  "weaponDetailsSectionFireMechanics": "Fire Mechanics",
+  "weaponDetailsSectionAccuracySpread": "Accuracy & Spread",
+  "weaponDetailsSectionProjectile": "Projectile",
+  "weaponDetailsSectionMisc": "Misc",
+  "weaponDetailsEnergyShot": "Energy/Shot",
+  "weaponDetailsEnergySec": "Energy/Sec",
+  "weaponDetailsSpreadDecaySec": "Spread Decay/Sec",
+  "weaponDetailsExtraArcAi": "Extra Arc (AI)",
+  "weaponDetailsNoDpsInTooltip": "No DPS In Tooltip",
+  "weaponDetailsYes": "Yes",
+  "weaponDetailsHints": "Hints",
+  "weaponDetailsTags": "Tags",
+  "weaponDetailsForWeaponTooltip": "For Weapon Tooltip",
+  "weaponDetailsPrimaryRole": "Primary Role",
+  "weaponDetailsTurnRateTxt": "Turn Rate (txt)",
+  "vramNoImages": "No images.",
+  "vramTopImagesTitle": "Images Estimated to Use the Most VRAM",
+  "vramTopImagesNote": "Note: Image dimensions in VRAM are usually bigger than actual.",
+  "vramScanFileProgress": "{scanned} / {total} ({percent})",
+  "vramDurationMinSec": "{minutes}m {seconds}s",
+  "vramDurationSec": "{seconds}s",
+  "vramSelectorScanAllDeprecated": "Scan All (deprecated)",
+  "vramSelectorFolderScanDesc": "Counts every image in mod folders, even unused ones. Overestimates VRAM use.",
+  "vramSelectorReferencedDesc": "Searches the mod's text files and code for image paths. More accurate than folder scan, but takes longer.",
+  "vramRefShips": "Ship hulls (.ship + ship_data.csv)",
+  "vramRefShipsDesc": "Sprite paths referenced by .ship JSON files and ship_data.csv.",
+  "vramRefWeapons": "Weapons (.wpn + .proj + weapon_data.csv)",
+  "vramRefWeaponsDesc": "Sprite paths referenced by weapon JSON files, projectile JSON files, and weapon_data.csv.",
+  "vramRefFactions": "Factions (.faction)",
+  "vramRefFactionsDesc": "Logo, crest, and portrait paths referenced by .faction JSON files.",
+  "vramRefPortraits": "Portraits (portraits.csv)",
+  "vramRefPortraitsDesc": "Portrait paths listed in data/characters/portraits/portraits.csv.",
+  "vramRefSettingsGraphics": "settings.json graphics block",
+  "vramRefSettingsGraphicsDesc": "Paths declared in data/config/settings.json under the graphics block.",
+  "vramRefDataConfigJson": "data/config JSON files",
+  "vramRefDataConfigJsonDesc": "Image paths found in JSON files under data/config/ (beyond settings.json).",
+  "vramRefDataCsv": "data/ CSV files",
+  "vramRefDataCsvDesc": "Image paths found in any CSV under data/ beyond the hull, weapon, and portrait tables (e.g. mod-defined campaign / world tables).",
+  "vramRefGraphicsLibMaps": "GraphicsLib maps (CSV + cache folder)",
+  "vramRefGraphicsLibMapsDesc": "Map paths declared in the mod's GraphicsLib CSV, plus GraphicsLib mod's own cache/ folder. Kept independently of base-sprite references.",
+  "vramRefJarStrings": "JAR string literals",
+  "vramRefJarStringsDesc": "Path-like string literals in compiled classes of every .jar in the mod.",
+  "vramRefJavaSources": "Loose .java sources",
+  "vramRefJavaSourcesDesc": "Path-like string literals in any .java source file in the mod.",
+  "vramRefFrameAnimations": "Frame animations",
+  "vramRefFrameAnimationsDesc": "Finds auto-loaded frame siblings of referenced sprites. When a weapon/effect references e.g. foo_00.png, Starsector's engine also loads foo_01.png, foo_02.png, ... from the same folder.",
+  "vramRefPhaseGlows": "Phase glows",
+  "vramRefPhaseGlowsDesc": "Finds ship phase-glow siblings (e.g. foo_glow.png, foo_glow1.png) of referenced sprites. Starsector auto-loads these from the same folder when the base ship sprite is referenced.",
+  "commonYes": "Yes",
+  "commonId": "ID",
+  "commonTags": "Tags",
+  "commonTier": "Tier",
+  "commonTechManufacturer": "Tech/manufacturer",
+  "commonLabelCount": "{label} ({count})",
+  "commonLabelValue": "{label}: {value}",
+  "shipSizeFrigate": "Frigate",
+  "shipSizeDestroyer": "Destroyer",
+  "shipSizeCruiser": "Cruiser",
+  "shipSizeCapital": "Capital",
+  "shipSizeFighter": "Fighter",
+  "factionViewerVanillaPercent": "Vanilla %",
+  "factionViewerAddedBy": "Added by",
+  "factionViewerAllFactions": "All Factions",
+  "factionViewerModifiedBy": "Modified by: {names}",
+  "factionViewerSource": "Source",
+  "factionViewerVisibility": "Visibility",
+  "factionViewerSearchFactionId": "Faction ID",
+  "factionViewerSearchFactionDisplayName": "Faction display name",
+  "factionViewerSearchSourceModOrVanilla": "Source mod or vanilla",
+  "factionViewerSearchKnownShips": "Number of known ships",
+  "factionViewerSearchKnownWeapons": "Number of known weapons",
+  "factionViewerSearchKnownFighters": "Number of known fighters",
+  "factionViewerSearchHiddenFromIntel": "Whether faction is hidden from intel tab (true/false)",
+  "factionViewerSearchDoctrineAggressionLevel": "Doctrine aggression level",
+  "factionViewerSearchDoctrineWarshipWeight": "Doctrine warship weight",
+  "factionViewerSearchDoctrineCarrierWeight": "Doctrine carrier weight",
+  "factionViewerSearchDoctrinePhaseShipWeight": "Doctrine phase ship weight",
+  "factionViewerSearchDoctrineFleetSize": "Doctrine fleet size (number of ships)",
+  "factionViewerSearchDoctrineShipSizePreference": "Doctrine ship size preference",
+  "factionViewerSearchDoctrineOfficerQuality": "Doctrine officer quality",
+  "factionViewerSearchDoctrineShipQuality": "Doctrine ship quality",
+  "factionProfileDialogFileSourceSuffix": " ({modName})",
+  "finderPresetColonyHunter": "Colony Hunter",
+  "finderPresetResourceBaron": "Resource Baron",
+  "finderPresetCryosleeperNearby": "Cryosleeper Nearby",
+  "finderPresetSelfSufficient": "Self-Sufficient",
+  "finderNearbyRangeLyLabel": "{ly} LY",
+  "finderBottleneckHabitable": "Habitable",
+  "finderBottleneckGasGiant": "Gas giant",
+  "finderBottleneckUnclaimedOnly": "Unclaimed only",
+  "finderBottleneckStableLocations": "Stable locations",
+  "finderBottleneckDistanceFromCore": "Distance from core",
+  "finderBottleneckResourceFloor": "{resource} floor",
+  "finderBottleneckNearLandmark": "Near {landmark}",
+  "sectorMapUninhabited": "Uninhabited",
+  "sectorMapSizeLabel": "size {size}",
+  "portraitsViewerReplacerTooltip": "Portrait Viewer: View and search portraits from your mods.\nPortrait Replacer: Drag and drop portraits from the right pane to replace portraits on the left pane.",
+  "portraitsViewer": "Viewer",
+  "portraitsReplacer": "Replacer",
+  "portraitsViewerInfoTooltip": "Displays images that are *likely* to be portraits from the highest version of each mod.\n\nBecause mods may use any image as a portrait and load images dynamically in code, this is not an exact science, but best guesses.\nPortraits must be:\n- Square\n- Between 128x128 and 256x256\n- An image file",
+  "portraitsTutorial": "Tutorial",
+  "portraitsHowToUse": "How To Use",
+  "portraitsHowToUseBody": "On the left side are the portraits that you will see in-game.\nOn the right side is the {pool} - your options for replacing images on the left.\n\nGrab portraits from the right side and move them to the left side to replace what you see in-game.",
+  "portraitsPortraitPool": "Portrait Pool",
+  "portraitsUnderTheHoodBody": "A list of portraits to replace is saved as a json file (in the {appName} data folder, which is synced one-way to the Companion Mod).\nThe {appName} Companion Mod reads that file when you load your game, then swaps the portraits for that game session only.\nIt does not change any mod files - replacement is all done in-memory, in-game.",
+  "portraitsImagesCount": "{total} images",
+  "portraitsImagesCountWithShown": "{total} images ({visible} shown)",
+  "portraitsCompanionModNotFound": "{appName} Companion mod not found!\nPortrait Replacement will not work.\n\nClick to install it.",
+  "portraitsCompanionModNotEnabled": "{appName} Companion mod is not enabled. Portrait replacements will not work.\n\nClick to enable it.",
+  "portraitsCompanionModInstallFirst": "{appName} Companion Mod not found. Please install it first from Settings.",
+  "portraitsImportCustomImages": "Import custom images to use as portrait replacements",
+  "portraitsErrorLoading": "Error loading portraits: {error}",
+  "portraitsReplacementAdded": "Replacement added: {original} -> {replacement}",
+  "portraitsOriginalFile": "Original: {file}",
+  "portraitsOriginalFileNotFound": "Original file not found",
+  "portraitsReplacementFile": "Replacement: {file}",
+  "portraitsReplacementFileNotFound": "Replacement file not found",
+  "portraitsReplacementModLabel": "Replacement Mod: {mod}",
+  "portraitsOpenOriginalImage": "Open original image",
+  "portraitsOpenReplacementImage": "Open replacement image",
+  "portraitsOpenFolder": "Open folder",
+  "portraitsRemoveReplacement": "Remove replacement",
+  "portraitsFactionsLabel": "Factions: {factions}",
+  "portraitsDimensionsLabel": "Dimensions: {width} x {height}",
+  "portraitsModLabel": "Mod: {mod}",
+  "portraitsFilterConfirmedTooltip": "Only show images that are confirmed portraits.\n\nPortraits defined in .faction files have genders.\nPortraits from settings.json files do not.",
+  "portraitsFilterReplacedTooltip": "Only show images that have replacements.",
+  "portraitsFilterEnabledModsTooltip": "Only show images from enabled mods.",
+  "portraitsFilterGender": "Gender",
+  "portraitsFilePathNotAvailable": "File path not available",
+  "portraitsFailedToCopy": "Failed to copy: {error}",
+  "portraitsFailedToReadImage": "Failed to read image: {error}",
+  "portraitsImageMustBeSquare": "Image must be square ({size} is not square)",
+  "portraitsImageSizeRange": "Image must be between {min}x{min} and {max}x{max} (got {size})",
+  "portraitsImportSummary": "{imported} imported successfully, {failed} failed",
+  "portraitsValidPortraitSingular": "{count} valid portrait",
+  "portraitsValidPortraitsCount": "{count} valid portraits",
+  "portraitsFailedValidationSuffix": ", {count} failed validation",
+  "portraitsSelectGenderHint": "Select male or female for each portrait.\nPortraits in .faction files only support male and female.",
+  "portraitsAllMale": "All Male",
+  "portraitsAllFemale": "All Female",
+  "hullmodsTechManufacturer": "Tech/Manufacturer",
+  "hullmodsUiTags": "UI Tags",
+  "hullmodsShortDesc": "Short Desc.",
+  "hullmodsOpFrigate": "OP (Frig)",
+  "hullmodsOpDestroyer": "OP (Dest)",
+  "hullmodsOpCruiser": "OP (Cru)",
+  "hullmodsOpCapital": "OP (Cap)",
+  "hullmodsAllHullmods": "All Hullmods",
+  "hullmodsSearchTier": "Hullmod tier (1, 2, 3)",
+  "hullmodsSearchModNameSubstring": "Mod name substring match",
+  "hullmodsSearchCsvTagMatchesAny": "CSV tag; matches any tag",
+  "hullmodsSearchUiTagMatchesAny": "UI tag; matches any UI tag",
+  "hullmodsSearchRarityValue": "Rarity value",
+  "hullmodsSearchBaseCreditValue": "Base credit value",
+  "hullmodsSearchOpCostFrigates": "Ordnance points cost for frigates",
+  "hullmodsSearchOpCostDestroyers": "Ordnance points cost for destroyers",
+  "hullmodsSearchOpCostCruisers": "Ordnance points cost for cruisers",
+  "hullmodsSearchOpCostCapitalShips": "Ordnance points cost for capital ships",
+  "hullmodCodexCardData": "Hullmod data",
+  "hullmodCodexCardOpCost": "OP cost",
+  "hullmodCodexCardOpCostFrigate": "OP cost (Frigate)",
+  "hullmodCodexCardOpCostDestroyer": "OP cost (Destroyer)",
+  "hullmodCodexCardOpCostCruiser": "OP cost (Cruiser)",
+  "hullmodCodexCardOpCostCapital": "OP cost (Capital)",
+  "hullmodCodexCardTags": "Tags: {tags}",
+  "hullmodCodexCardSModBonus": "S-Mod bonus",
+  "codexFacetType": "Type",
+  "codexFacetMountType": "Mount type",
+  "codexFacetDamageType": "Damage type",
+  "codexFacetTypeSpecial": "Special",
+  "codexShipTypeCarrier": "Carrier",
+  "codexShipTypeCivilian": "Civilian",
+  "codexShipTypePhase": "Phase",
+  "codexShipTypeWarship": "Warship",
+  "codexLabelStations": "Stations",
+  "codexLabelShipSystems": "Ship Systems",
+  "codexLabelFighters": "Fighters",
+  "codexGroupingOther": "Other",
+  "codexWeaponSubtitle": "{size} {type} weapon",
+  "shipSystemCodexCardSystemData": "System data",
+  "shipSystemCodexCardFluxPerUse": "Flux per use",
+  "shipSystemCodexCardFluxPerSecond": "Flux per second",
+  "shipSystemCodexCardMaxUses": "Max uses",
+  "shipSystemCodexCardRegen": "Regen",
+  "shipSystemCodexCardCooldown": "Cooldown",
+  "shipSystemCodexCardToggle": "Toggle",
+  "shipSystemCodexCardPhaseCloak": "Phase cloak",
+  "@portraitsImagesCountWithShown": {
+    "placeholders": {
+      "total": {
+        "type": "num"
+      },
+      "visible": {
+        "type": "num"
+      }
+    }
+  },
+  "app_action_buttonsReportABug": "Report a bug"
 }

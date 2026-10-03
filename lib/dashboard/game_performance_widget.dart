@@ -81,7 +81,7 @@ class ChangeRamWidget extends ConsumerWidget {
                   children: [
                     Center(
                       child: Text(
-                        "RAM",
+                        loc.game_performanceRam,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
@@ -123,17 +123,31 @@ class ChangeRamWidget extends ConsumerWidget {
                         ),
                       ),
                     MovingTooltipWidget.text(
-                      message:
-                          "vmparams files:\n${ref.watch(vmparamsManagerProvider).value?.detectedVmparamsFiles.joinToString(separator: "\n", transform: (file) => file.nameWithExtension)}",
+                      message: loc.game_performanceVmparamsFilesTooltip(
+                        ref
+                                .watch(vmparamsManagerProvider)
+                                .value
+                                ?.detectedVmparamsFiles
+                                .joinToString(
+                                  separator: "\n",
+                                  transform: (file) => file.nameWithExtension,
+                                ) ??
+                            "",
+                      ),
                       child: StyledText(
                         text: ramAmount == null
-                            ? "No vmparams file found."
+                            ? loc.game_performanceNoVmparamsFileFound
                             : hasMultipleWithDifferentRam
-                            ? "<b>Warning</b>: Not all vmparams files"
-                                  "\nare set to use the same amount of RAM."
-                                  "\nPick one RAM option below to set all"
-                                  "\nto the same value."
-                            : "Assigned: <b>$ramAmount MB</b> in <b>${ref.watch(vmparamsManagerProvider).value?.detectedVmparamsFiles.length}</b> files",
+                            ? loc.game_performanceNotAllSameRamWarning
+                            : loc.game_performanceAssignedRam(
+                                ramAmount,
+                                ref
+                                        .watch(vmparamsManagerProvider)
+                                        .value
+                                        ?.detectedVmparamsFiles
+                                        .length ??
+                                    0,
+                              ),
                         tags: {
                           "b": StyledTextTag(
                             style: Theme.of(context).textTheme.labelLarge
@@ -159,7 +173,7 @@ class ChangeRamWidget extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(
-                    "More RAM is not always better.\n6 or 8 GB is enough for almost any game.\n\nUse the Console Commands mod to view RAM use in the top-left of the console.",
+                    loc.game_performanceMoreRamNote,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       fontStyle: FontStyle.italic,
@@ -208,15 +222,14 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
                     children: [
                       Center(
                         child: Text(
-                          "Game Settings",
+                          loc.game_performanceGameSettings,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
                       Align(
                         alignment: Alignment.centerRight,
                         child: MovingTooltipWidget.text(
-                          message:
-                              "Open config.json in your default text editor",
+                          message: loc.game_performanceOpenConfigJsonTooltip,
                           child: SizedBox(
                             height: 32,
                             width: 32,
@@ -245,13 +258,12 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
                       Row(
                         children: [
                           Text(
-                            "FPS Limit",
+                            loc.game_performanceFpsLimit,
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                           SizedBox(width: 8),
                           MovingTooltipWidget.text(
-                            message:
-                                "Recommended: Set your max FPS to your monitor's refresh rate or lower.",
+                            message: loc.game_performanceRecommendedMaxFps,
                             child: Icon(
                               Icons.info_outlined,
                               size: 20,
@@ -264,7 +276,7 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
                       ),
                       gameSettings.fps == null
                           ? TextTriOS(
-                              "Unable to read FPS Limit from settings.json",
+                              loc.game_performanceUnableToReadFps,
                               style: Theme.of(context).textTheme.labelLarge
                                   ?.copyWith(
                                     fontStyle: FontStyle.italic,
@@ -329,7 +341,7 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
                             ),
                       gameSettings.vsync == null
                           ? TextTriOS(
-                              "Unable to read Vsync from settings.json",
+                              loc.game_performanceUnableToReadVsync,
                               style: Theme.of(context).textTheme.labelLarge
                                   ?.copyWith(
                                     fontStyle: FontStyle.italic,
@@ -337,8 +349,7 @@ class _ChangeSettingsWidgetState extends ConsumerState<ChangeSettingsWidget> {
                                   ),
                             )
                           : MovingTooltipWidget.text(
-                              message:
-                                  "Vsync reduces screen tearing but introduces a tiny input delay.",
+                              message: loc.game_performanceVsyncTooltip,
                               child: CheckboxWithLabel(
                                 label: loc.game_performanceUseVsync,
                                 value: gameSettings.vsync!,

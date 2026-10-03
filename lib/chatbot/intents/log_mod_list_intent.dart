@@ -58,7 +58,7 @@ class LogModListIntent extends ChatIntent with LogAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final chips = logChips;
     if (chips == null) {
-      return const ChatResponse(text: LogAwareIntent.noLogMessage);
+      return ChatResponse(text: LogAwareIntent.noLogMessage);
     }
 
     final mods = chips.modList.modList;
@@ -68,14 +68,16 @@ class LogModListIntent extends ChatIntent with LogAwareIntent {
       );
     }
 
-    final buf = StringBuffer('${mods.length} mod(s) found in the log');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer();
+    var header = loc.chatbotLogModsFound(mods.length);
     if (!chips.modList.isPerfectList) {
-      buf.write(' (approximate — parsed from CSV loading lines)');
+      header += loc.chatbotLogModsApproximate;
     }
-    buf.writeln(':');
+    buf.writeln(header);
 
     for (final mod in mods) {
-      final name = mod.modName ?? 'Unknown';
+      final name = mod.modName ?? loc.chatbotValueUnknown;
       final version = mod.modVersion != null ? ' v${mod.modVersion}' : '';
       final id = mod.modId != null ? ' (${mod.modId})' : '';
       buf.writeln('  $name$version$id');

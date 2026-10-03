@@ -1271,6 +1271,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
     final center = ship.center;
     final modules = ref.watch(resolvedModulesProvider(ship.id));
     final theme = context.theme;
+    final loc = AppLocalizations.of(context);
 
     // Weapon lookup for the module hover tooltip and built-in weapon
     // rendering (which thumbnails use too, for decorative weapons).
@@ -1751,7 +1752,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
                           _computeCenteringTransform();
                     },
                     icon: Icons.fit_screen_outlined,
-                    tooltip: 'Reset zoom',
+                    tooltip: loc.shipBlueprintResetZoom,
                   ),
                 ),
               if (widget.showToolbar)
@@ -1773,7 +1774,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
                             _toggleLayer(() => _showBounds = !_showBounds),
                         icon: Icons.polyline,
                         isActive: _showBounds,
-                        tooltip: 'Show bounds',
+                        tooltip: loc.shipBlueprintShowBounds,
                       ),
                       if (modules.isNotEmpty)
                         _compactIconButton(
@@ -1781,21 +1782,21 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
                               _toggleLayer(() => _showModules = !_showModules),
                           icon: Icons.extension,
                           isActive: _showModules,
-                          tooltip: 'Show modules',
+                          tooltip: loc.shipBlueprintShowModules,
                         ),
                       _compactIconButton(
                         onPressed: () =>
                             _toggleLayer(() => _showMounts = !_showMounts),
                         icon: Icons.radar,
                         isActive: _showMounts,
-                        tooltip: 'Show mounts',
+                        tooltip: loc.shipBlueprintShowMounts,
                       ),
                       _compactIconButton(
                         onPressed: () =>
                             _toggleLayer(() => _showArcs = !_showArcs),
                         icon: Icons.signal_wifi_4_bar,
                         isActive: _showArcs,
-                        tooltip: 'Show arcs',
+                        tooltip: loc.shipBlueprintShowArcs,
                       ),
                       if (armaments.any((a) => !a.isDecorative))
                         _compactIconButton(
@@ -1803,7 +1804,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
                               _toggleLayer(() => _showWeapons = !_showWeapons),
                           icon: Icons.gps_fixed,
                           isActive: _showWeapons,
-                          tooltip: 'Show built-in weapons',
+                          tooltip: loc.shipBlueprintShowBuiltInWeapons,
                         ),
                       if (armaments.any((a) => a.isDecorative))
                         _compactIconButton(
@@ -1812,7 +1813,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
                           ),
                           icon: Icons.brush,
                           isActive: _showDecoWeapons,
-                          tooltip: 'Show decorative weapons',
+                          tooltip: loc.shipBlueprintShowDecorativeWeapons,
                         ),
                       if (hasEngines)
                         _compactIconButton(
@@ -1823,7 +1824,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
                           },
                           icon: Icons.local_fire_department,
                           isActive: _showEngineGlow,
-                          tooltip: 'Show engine glow',
+                          tooltip: loc.shipBlueprintShowEngineGlow,
                         ),
                       if (hasShield)
                         _compactIconButton(
@@ -1834,7 +1835,7 @@ class _ShipBlueprintViewState extends ConsumerState<ShipBlueprintView>
                           },
                           icon: Icons.shield_outlined,
                           isActive: _showShield,
-                          tooltip: 'Show shields',
+                          tooltip: loc.shipBlueprintShowShields,
                         ),
                       Flexible(
                         child: TextTriOS(

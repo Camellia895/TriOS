@@ -171,9 +171,12 @@ class _ModInstallSelectionDialogState<T>
     final defaultTitle =
         widget.choices.isEmpty && widget.invalidItems.isNotEmpty
         ? (widget.invalidItems.length == 1
-              ? "Couldn't install this file"
-              : "Couldn't install these files")
-        : "Install $selectedCount of ${_choiceGroups.length} mods";
+              ? loc.modInstallSelectionDialogCouldnTInstallThis
+              : loc.modInstallSelectionDialogCouldnTInstallThese)
+        : loc.modInstallSelectionDialogInstallCountOfMods(
+            selectedCount,
+            _choiceGroups.length,
+          );
 
     return AlertDialog(
       title: Text(widget.title ?? defaultTitle),
@@ -206,8 +209,10 @@ class _ModInstallSelectionDialogState<T>
                         padding: .only(left: 4, bottom: 4),
                         child: Text(
                           widget.invalidItems.length == 1
-                              ? "Couldn't be installed:"
-                              : "Couldn't be installed (${widget.invalidItems.length}):",
+                              ? loc.modInstallSelectionDialogCouldnTBeInstalled
+                              : loc.modInstallSelectionDialogCouldnTBeInstalledCount(
+                                  widget.invalidItems.length,
+                                ),
                           style: theme.textTheme.labelMedium?.copyWith(
                             color: theme.colorScheme.error,
                           ),
@@ -223,8 +228,8 @@ class _ModInstallSelectionDialogState<T>
             if (hasConflicts) ...[
               const Divider(),
               MovingTooltipWidget.text(
-                message:
-                    "Toggle whether already-installed mods are replaced by the versions being installed.",
+                message: loc
+                    .modInstallSelectionDialogToggleWhetherAlreadyInstalled,
                 child: CheckboxWithLabel(
                   value: _replaceAllValue,
                   tristate: true,
@@ -252,8 +257,8 @@ class _ModInstallSelectionDialogState<T>
               : null,
           child: Text(
             selectedCount == 0
-                ? 'No mods selected'
-                : "Install $selectedCount mod${selectedCount == 1 ? '' : 's'}",
+                ? loc.modInstallSelectionDialogNoModsSelected
+                : loc.modInstallSelectionDialogInstallCountMods(selectedCount),
           ),
         ),
       ],
@@ -296,7 +301,7 @@ class _ModInstallSelectionDialogState<T>
           Padding(
             padding: const EdgeInsets.only(left: 4, bottom: 2),
             child: Text(
-              "These mods all have the same id and version, so only one may be selected.",
+              loc.modInstallSelectionDialogTheseModsAllHave,
               style: theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -438,8 +443,12 @@ class _ModInstallSelectionDialogState<T>
             if (choice.hasConflict)
               Text(
                 isSelected
-                    ? "(existing mod will be replaced)"
-                    : "(already installed${choice.existingVariant!.modInfo.version != null ? ': v${choice.existingVariant!.modInfo.version}' : ''})",
+                    ? loc.modInstallSelectionDialogExistingModWillBe
+                    : loc.modInstallSelectionDialogAlreadyInstalled(
+                        choice.existingVariant!.modInfo.version != null
+                            ? ": v${choice.existingVariant!.modInfo.version}"
+                            : "",
+                      ),
                 style: TextStyle(
                   color: TriOSThemeConstants.vanillaWarningColor,
                   fontSize: 12,

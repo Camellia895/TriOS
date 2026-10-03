@@ -1,3 +1,4 @@
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/search_index.dart';
 import 'package:trios/widgets/smart_search/search_dsl_parser.dart';
 export 'package:trios/widgets/smart_search/search_dsl_parser.dart'
@@ -53,7 +54,9 @@ class SearchField<T> {
     num? Function(T) accessor,
   ) => SearchField<T>(
     key: key,
-    description: '$description; supports numeric operators',
+    description: AppLocalizationsSync
+        .instance
+        .smartSearchSyntaxNumericOperators(description),
     supportsNumeric: true,
     valueSuggestions: (_) => [],
     matches: (item, op, value) {

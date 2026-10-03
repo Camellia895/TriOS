@@ -7,6 +7,7 @@ import 'package:trios/trios/app_state.dart';
 import 'package:trios/trios/mod_metadata.dart';
 
 import '../chatbot_models.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Mixin for intents that need access to mod data via Riverpod providers.
 mixin ModAwareIntent {
@@ -31,9 +32,8 @@ mixin ModAwareIntent {
 
   bool get isModDataLoaded => mods.isNotEmpty;
 
-  static const noModDataMessage =
-      "No mod data available yet. Make sure your game folder is "
-      "configured in Settings.";
+  static String get noModDataMessage =>
+      AppLocalizationsSync.instance.chatbotNoModDataYet;
 
   /// Standard keyword-based scoring used by all mod intents.
   static double scoreInput(
@@ -62,7 +62,7 @@ mixin ModAwareIntent {
   /// Guard that returns a "no data" response if mods aren't loaded.
   ChatResponse? guardModData() {
     if (!isModDataLoaded) {
-      return const ChatResponse(text: ModAwareIntent.noModDataMessage);
+      return ChatResponse(text: ModAwareIntent.noModDataMessage);
     }
     return null;
   }

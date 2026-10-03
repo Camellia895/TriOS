@@ -1,5 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/toolbar/nav_order_entry.dart';
 import 'package:trios/widgets/svg_image_icon.dart';
 
@@ -78,41 +79,47 @@ enum TriOSTools {
 enum NavGroup { core, viewers, bottom }
 
 extension TriOSToolsUI on TriOSTools {
-  String get label => switch (this) {
-    TriOSTools.dashboard => 'Dash',
-    TriOSTools.modManager => 'Mods',
-    TriOSTools.modProfiles => 'Profiles',
-    TriOSTools.catalog => 'Catalog',
-    TriOSTools.chipper => 'Logs',
-    TriOSTools.vramEstimator => 'VRAM Estimator',
-    TriOSTools.codex => 'Codex',
-    TriOSTools.ships => 'Ships',
-    TriOSTools.weapons => 'Weapons',
-    TriOSTools.hullmods => 'Hullmods',
-    TriOSTools.factions => 'Factions',
-    TriOSTools.portraits => 'Portraits',
-    TriOSTools.sectorMap => 'Sector',
-    TriOSTools.tips => 'Tips',
-    TriOSTools.settings => 'Settings',
-  };
+  String get label {
+    final loc = AppLocalizationsSync.instance;
+    return switch (this) {
+      TriOSTools.dashboard => loc.navLabelDash,
+      TriOSTools.modManager => loc.navLabelMods,
+      TriOSTools.modProfiles => loc.navLabelProfiles,
+      TriOSTools.catalog => loc.navLabelCatalog,
+      TriOSTools.chipper => loc.navLabelLogs,
+      TriOSTools.vramEstimator => loc.navLabelVramEstimator,
+      TriOSTools.codex => loc.navLabelCodex,
+      TriOSTools.ships => loc.navLabelShips,
+      TriOSTools.weapons => loc.navLabelWeapons,
+      TriOSTools.hullmods => loc.navLabelHullmods,
+      TriOSTools.factions => loc.navLabelFactions,
+      TriOSTools.portraits => loc.navLabelPortraits,
+      TriOSTools.sectorMap => loc.navLabelSector,
+      TriOSTools.tips => loc.navLabelTips,
+      TriOSTools.settings => loc.navLabelSettings,
+    };
+  }
 
-  String get tooltip => switch (this) {
-    TriOSTools.dashboard => 'Dashboard',
-    TriOSTools.modManager => 'Mod Manager',
-    TriOSTools.modProfiles => 'Mod Profiles',
-    TriOSTools.catalog => 'Mod Catalog',
-    TriOSTools.chipper => 'Log Viewer',
-    TriOSTools.vramEstimator => 'VRAM Estimator',
-    TriOSTools.codex => 'Codex',
-    TriOSTools.ships => 'Ship Viewer',
-    TriOSTools.weapons => 'Weapon Viewer',
-    TriOSTools.hullmods => 'Hullmod Viewer',
-    TriOSTools.factions => 'Faction Viewer',
-    TriOSTools.portraits => 'Portrait Viewer & Replacer',
-    TriOSTools.sectorMap => 'Sector Map',
-    TriOSTools.tips => 'Tips Manager',
-    TriOSTools.settings => 'Settings',
-  };
+  String get tooltip {
+    final loc = AppLocalizationsSync.instance;
+    return switch (this) {
+      TriOSTools.dashboard => loc.navTooltipDashboard,
+      TriOSTools.modManager => loc.navTooltipModManager,
+      TriOSTools.modProfiles => loc.navTooltipModProfiles,
+      TriOSTools.catalog => loc.navTooltipModCatalog,
+      TriOSTools.chipper => loc.navTooltipLogViewer,
+      TriOSTools.vramEstimator => loc.navTooltipVramEstimator,
+      TriOSTools.codex => loc.navTooltipCodex,
+      TriOSTools.ships => loc.navTooltipShipViewer,
+      TriOSTools.weapons => loc.navTooltipWeaponViewer,
+      TriOSTools.hullmods => loc.navTooltipHullmodViewer,
+      TriOSTools.factions => loc.navTooltipFactionViewer,
+      TriOSTools.portraits => loc.navTooltipPortraitViewer,
+      TriOSTools.sectorMap => loc.navTooltipSectorMap,
+      TriOSTools.tips => loc.navTooltipTipsManager,
+      TriOSTools.settings => loc.navTooltipSettings,
+    };
+  }
 
   Widget icon({double size = 24, Color? color}) => switch (this) {
     TriOSTools.dashboard => Icon(Icons.dashboard, size: size, color: color),

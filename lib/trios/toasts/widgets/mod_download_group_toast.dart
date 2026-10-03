@@ -3,6 +3,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:toastification/toastification.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/models/download_progress.dart';
 import 'package:trios/themes/theme_manager.dart';
@@ -233,6 +234,7 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
           child: Builder(
             builder: (context) {
               final theme = Theme.of(context);
+              final loc = AppLocalizations.of(context);
               return MouseRegion(
                 onEnter: (_) {
                   setState(() => _isHovering = true);
@@ -278,10 +280,10 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
                               padding: const .only(right: 12),
                               child: Tooltip(
                                 message: allInstalled
-                                    ? 'All mods installed'
+                                    ? loc.toastGroupAllModsInstalled
                                     : isInstalling
-                                        ? 'Installing mods'
-                                        : 'Downloading mods',
+                                        ? loc.toastGroupInstallingMods
+                                        : loc.toastGroupDownloadingMods,
                                 child: Icon(
                                   size: 32,
                                   allInstalled
@@ -301,20 +303,36 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
                                 children: [
                                   Text(
                                     allInstalled
-                                        ? 'Installed $totalCount ${totalCount == 1 ? 'mod' : 'mods'}'
+                                        ? totalCount == 1
+                                        ? loc.toastGroupInstalledOne(totalCount)
+                                        : loc.toastGroupInstalledMany(totalCount)
                                         : isInstalling
-                                            ? 'Installing $totalCount ${totalCount == 1 ? 'mod' : 'mods'}'
-                                            : 'Downloading $totalCount ${totalCount == 1 ? 'mod' : 'mods'}',
+                                        ? totalCount == 1
+                                        ? loc.toastGroupInstallingOne(totalCount)
+                                        : loc.toastGroupInstallingMany(
+                                            totalCount,
+                                          )
+                                        : totalCount == 1
+                                        ? loc.toastGroupDownloadingOne(totalCount)
+                                        : loc.toastGroupDownloadingMany(
+                                            totalCount,
+                                          ),
                                     style: theme.textTheme.bodyMedium,
                                   ),
                                   Opacity(
                                     opacity: 0.9,
                                     child: Text(
                                       failedCount > 0
-                                          ? '$successfulCount successful, $failedCount failed'
+                                          ? loc.toastGroupSuccessFailed(
+                                              successfulCount,
+                                              failedCount,
+                                            )
                                           : isInstalling
-                                              ? 'Installing...'
-                                              : '$completedCount of $totalCount complete',
+                                          ? loc.commonInstalling
+                                          : loc.toastGroupComplete(
+                                              completedCount,
+                                              totalCount,
+                                            ),
                                       style: theme.textTheme.labelMedium,
                                     ),
                                   ),
@@ -333,7 +351,9 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
                                     ? Icons.expand_less
                                     : Icons.expand_more,
                               ),
-                              tooltip: group.isExpanded ? 'Collapse' : 'Expand',
+                              tooltip: group.isExpanded
+                                  ? loc.commonCollapse
+                                  : loc.commonExpand,
                             ),
                             // Close button with timer
                             Padding(
@@ -378,7 +398,9 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
                               (aggregateProgress * 1000000).toInt(),
                               1000000,
                               isIndeterminate: aggregateProgress == 0,
-                              customStatus: isInstalling ? "Installing..." : null,
+                              customStatus: isInstalling
+                                  ? loc.commonInstalling
+                                  : null,
                             ),
                           ),
                         ),
@@ -406,6 +428,7 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
   }
 
   Widget _buildExpandedList(ThemeData theme) {
+    final loc = AppLocalizations.of(context);
     final downloads = widget.group.items;
     final maxToShow = widget.group.config.maxItemsToShow;
     final hasMore = downloads.length > maxToShow;
@@ -424,7 +447,7 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
           Padding(
             padding: const .only(top: 8),
             child: Text(
-              '+${downloads.length - maxToShow} more',
+              loc.toastGroupMoreCount(downloads.length - maxToShow),
               style: theme.textTheme.labelMedium?.copyWith(
                 fontStyle: FontStyle.italic,
               ),
@@ -435,6 +458,7 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
   }
 
   Widget _buildDownloadItem(Download download, ThemeData theme) {
+    final loc = AppLocalizations.of(context);
     final downloadTask = download.task;
     final status = downloadTask.status.value;
     final modString = download.displayName;
@@ -464,7 +488,7 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
                     message: status == DownloadStatus.completed &&
                             installedMod == null &&
                             !download.installComplete.value
-                        ? "Installing..."
+                        ? loc.commonInstalling
                         : status.displayString,
                     child: Icon(
                       size: 20,
@@ -524,7 +548,7 @@ class _ModDownloadGroupToastState extends ConsumerState<ModDownloadGroupToast>
                     minWidth: 24,
                     minHeight: 24,
                   ),
-                  tooltip: 'Remove from group',
+                  tooltip: loc.toastGroupRemoveFromGroup,
                   onPressed: () {
                     setState(() {
                       widget.group.items.remove(download);

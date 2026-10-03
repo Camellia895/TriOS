@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:csv/csv.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
 import 'package:trios/vram_estimator/selectors/references/reference_parser.dart';
@@ -22,12 +23,12 @@ class DataCsvReferences extends ReferenceParser {
   String get id => 'data-csv';
 
   @override
-  String get displayName => 'data/ CSV files';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefDataCsv;
 
   @override
   String get description =>
-      'Image paths found in any CSV under data/ beyond the hull, weapon, '
-      'and portrait tables (e.g. mod-defined campaign / world tables).';
+      AppLocalizationsSync.instance.vramRefDataCsvDesc;
 
   static const _csvReader = CsvToListConverter(
     allowInvalid: true,

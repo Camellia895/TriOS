@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_frozen_overlay.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
@@ -424,7 +425,10 @@ class _WispGridState<T extends WispGridItem>
     for (final group in renderedGroups) {
       if (group.isPinned) {
         final info =
-            widget.pinnedGroupInfo ?? const PinnedGroupInfo(name: 'Pinned');
+            widget.pinnedGroupInfo ??
+                PinnedGroupInfo(
+                  name: AppLocalizationsSync.instance.wispgridGroupPinned,
+                );
         final pinnedCollapseKey = const _CollapseKey(_pinnedSortValue);
         final isPinnedCollapsed = collapseStates[pinnedCollapseKey] == true;
         final pinnedItems = group.subgroups.first.items;
@@ -1065,7 +1069,9 @@ extension WispGridCsvExport<T extends WispGridItem> on _WispGridState<T> {
     for (final group in _lastRenderedGroups) {
       String? primaryName;
       if (group.isPinned) {
-        primaryName = widget.pinnedGroupInfo?.name ?? 'Pinned';
+        primaryName =
+            widget.pinnedGroupInfo?.name ??
+            AppLocalizationsSync.instance.wispgridGroupPinned;
       } else if (group.grouping != null && group.grouping!.isGroupVisible) {
         final firstItem = group.allItems.firstOrNull;
         if (firstItem != null) {

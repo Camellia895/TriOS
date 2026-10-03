@@ -64,15 +64,18 @@ class UtilityModsIntent extends ChatIntent with ModAwareIntent {
       );
     }
 
+    final loc = AppLocalizationsSync.instance;
     final buf = StringBuffer(
-      'Utility/Library Mods (${utilityMods.length})\n',
+      loc.chatbotUtilityModsTitle(utilityMods.length) + '\n',
     );
     for (final mod in utilityMods) {
       final variant = mod.findFirstEnabledOrHighestVersion;
       final name = variant?.modInfo.nameOrId ?? mod.id;
       final version =
           variant?.modInfo.version != null ? ' v${variant!.modInfo.version}' : '';
-      final status = mod.isEnabledInGame ? '[ON] ' : '[OFF]';
+      final status = mod.isEnabledInGame
+          ? '[${loc.chatbotTagOn}] '
+          : '[${loc.chatbotTagOff}]';
       buf.writeln('  $status $name$version');
     }
 

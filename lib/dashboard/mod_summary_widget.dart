@@ -107,11 +107,11 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      modInfo.name ?? "(no name)",
+                      modInfo.name ?? loc.modSummaryNoName,
                       style: theme.textTheme.titleMedium,
                     ),
                     Text(
-                      "${modInfo.id} • ${modInfo.version ?? ""}",
+                      loc.modSummaryIdVersion(modInfo.id, modInfo.version ?? ""),
                       style: theme.textTheme.labelSmall,
                     ),
                   ],
@@ -132,11 +132,11 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "New version:      ${remoteVersionCheck?.remoteVersion?.modVersion}",
+                      loc.modSummaryNewVersion("${remoteVersionCheck?.remoteVersion?.modVersion}"),
                       style: versionTextStyle,
                     ),
                     Text(
-                      "Current version: ${localVersionCheck?.modVersion}",
+                      loc.versionCheckCurrentVersion("${localVersionCheck?.modVersion}"),
                       style: versionTextStyle,
                     ),
                   ],
@@ -147,7 +147,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Author",
+                      loc.modSummaryAuthor,
                       style: theme.textTheme.labelMedium?.copyWith(
                         color: theme.disabledColor,
                       ),
@@ -155,7 +155,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                     Padding(
                       padding: const EdgeInsets.only(left: 0.0),
                       child: Text(
-                        modInfo.author ?? "(none)",
+                        modInfo.author ?? loc.commonNone,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.labelMedium,
@@ -168,7 +168,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Description",
+                    loc.modSummaryDescription,
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.disabledColor,
                     ),
@@ -183,7 +183,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
               ),
               const SizedBox(height: spacing),
               Text(
-                "Required game version",
+                loc.mod_dependenciesRequiredGameVersion,
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.disabledColor,
                 ),
@@ -202,7 +202,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Original game version",
+                      loc.mod_dependenciesOriginalGameVersion,
                       style: theme.textTheme.labelMedium?.copyWith(
                         color: TriOSThemeConstants.vanillaWarningColor.withOpacity(
                           0.8,
@@ -221,7 +221,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                   ],
                 ),
               Text(
-                "Game version",
+                loc.mod_dependenciesGameVersion,
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.disabledColor,
                 ),
@@ -235,7 +235,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
               ),
               if (widget.compatWithGame == GameCompatibility.incompatible)
                 Text(
-                  "Error: this mod requires a different version of the game.",
+                  loc.mod_dependenciesErrorThisModRequires,
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: widget.compatTextColor,
                   ),
@@ -277,7 +277,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                         is VersionWarning,
               ))
                 Text(
-                  "Warning: this mod requires a different version of a mod that you have installed, but might run with this one.",
+                  loc.mod_dependenciesWarningThisModRequires,
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: TriOSThemeConstants.vanillaErrorColor,
                   ),
@@ -288,7 +288,7 @@ class _ModSummaryWidgetState extends ConsumerState<ModSummaryWidget> {
                   child: Opacity(
                     opacity: 0.6,
                     child: Text(
-                      "Tip: Add a LunaSettings icon or add an icon.png file to the mod folder to get an icon.",
+                      loc.modSummaryTipAddIcon,
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         fontStyle: FontStyle.italic,
                       ),

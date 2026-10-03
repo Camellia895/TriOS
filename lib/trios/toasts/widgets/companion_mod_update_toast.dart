@@ -59,7 +59,9 @@ class _CompanionModUpdateToastState
                         Text(
                           widget.installedVersion != null
                               ? "${widget.installedVersion} → ${Constants.companionModVersion}"
-                              : "Update to ${Constants.companionModVersion}",
+                              : loc.updateToVersion(
+                                  Constants.companionModVersion,
+                                ),
                           style: Theme.of(context).textTheme.labelLarge,
                         ),
                         Padding(

@@ -75,12 +75,17 @@ class ModUpdatesIntent extends ChatIntent with ModAwareIntent {
           check.remoteVersionCheck?.remoteVersion?.modVersion;
       final name = check.variant.modInfo.nameOrId;
 
+      final loc = AppLocalizationsSync.instance;
       if (remoteVersion != null) {
         updatesAvailable.add(
-          '  $name: v$localVersion -> v$remoteVersion',
+          loc.chatbotModUpdateLine(
+            name,
+            localVersion?.toString() ?? '',
+            remoteVersion.toString(),
+          ),
         );
       } else {
-        updatesAvailable.add('  $name: update available');
+        updatesAvailable.add(loc.chatbotModUpdateAvailableLine(name));
       }
     }
 
@@ -91,7 +96,9 @@ class ModUpdatesIntent extends ChatIntent with ModAwareIntent {
     }
 
     final buf = StringBuffer(
-      'Mod Updates Available (${updatesAvailable.length})\n',
+      AppLocalizationsSync.instance.chatbotUpdatesAvailableTitle(
+        updatesAvailable.length,
+      ) + '\n',
     );
     buf.writeAll(updatesAvailable, '\n');
 

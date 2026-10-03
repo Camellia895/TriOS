@@ -4,6 +4,7 @@ import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
 import 'settings_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows a summary of the user's current TriOS settings.
 class CurrentSettingsIntent extends ChatIntent with SettingsAwareIntent {
@@ -50,25 +51,36 @@ class CurrentSettingsIntent extends ChatIntent with SettingsAwareIntent {
   @override
   ChatResponse respond(String input, ConversationContext context) {
     final s = settings;
-    final buf = StringBuffer('TriOS Settings\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotSettingsTitle + '\n');
     buf.writeln(
-      '  Game folder:     ${gameFolder?.path ?? "Not set"}',
+      loc.chatbotSettingsGameFolder(gameFolder?.path ?? loc.chatbotValueNotSet),
     );
     buf.writeln(
-      '  Mods folder:     ${modsFolder?.path ?? "Default"}',
+      loc.chatbotSettingsModsFolder(
+        modsFolder?.path ?? loc.chatbotValueDefault,
+      ),
     );
     buf.writeln(
-      '  Direct launch:   ${s.enableDirectLaunch ? "Enabled" : "Disabled"}',
+      loc.chatbotSettingsDirectLaunch(
+        s.enableDirectLaunch
+            ? loc.chatbotStatusEnabled
+            : loc.chatbotStatusDisabled,
+      ),
     );
-    buf.writeln('  Default page:    ${s.defaultTool.name}');
+    buf.writeln(loc.chatbotSettingsDefaultPage(s.defaultTool.name));
     buf.writeln(
-      '  Theme:           ${s.themeKey ?? "Default"}',
+      loc.chatbotSettingsTheme(s.themeKey ?? loc.chatbotValueDefault),
     );
     buf.writeln(
-      '  Game version:    ${s.lastStarsectorVersion ?? "Unknown"}',
+      loc.chatbotSettingsGameVersion(
+        s.lastStarsectorVersion ?? loc.chatbotValueUnknown,
+      ),
     );
     buf.writeln(
-      '  Colorful grid:   ${s.modsGridColorful ? "On" : "Off"}',
+      loc.chatbotSettingsColorfulGrid(
+        s.modsGridColorful ? loc.chatbotStatusOn : loc.chatbotStatusOff,
+      ),
     );
 
     return ChatResponse(text: buf.toString().trimRight());

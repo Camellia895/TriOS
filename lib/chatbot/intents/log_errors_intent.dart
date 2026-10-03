@@ -76,7 +76,7 @@ class LogErrorsIntent extends ChatIntent with LogAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final chips = logChips;
     if (chips == null) {
-      return const ChatResponse(text: LogAwareIntent.noLogMessage);
+      return ChatResponse(text: LogAwareIntent.noLogMessage);
     }
 
     final errors = chips.errorBlock;
@@ -86,18 +86,18 @@ class LogErrorsIntent extends ChatIntent with LogAwareIntent {
       );
     }
 
-    final buf = StringBuffer('Found ${errors.length} error line(s) in the log.\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotLogErrorsFound(errors.length));
 
     final display = errors.take(_maxErrors);
     for (final line in display) {
       final text = _errorText(line);
-      buf.writeln('  Line ${line.lineNumber}: $text');
+      buf.writeln(loc.chatbotLogErrorLine(line.lineNumber, text));
     }
 
     if (errors.length > _maxErrors) {
       buf.write(
-        '\n...and ${errors.length - _maxErrors} more. '
-        'Open the Log Viewer (Chipper) for the full list.',
+        loc.chatbotLogMoreErrors(errors.length - _maxErrors),
       );
     }
 

@@ -61,11 +61,12 @@ class ModsByCategoryIntent extends ChatIntent with ModAwareIntent {
       );
     }
 
+    final loc = AppLocalizationsSync.instance;
     final categories = store.categories.toList()
       ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
 
     final buf = StringBuffer(
-      'Mod Categories (${categories.length})\n',
+      loc.chatbotModCategoriesTitle(categories.length) + '\n',
     );
 
     for (final cat in categories) {
@@ -76,12 +77,12 @@ class ModsByCategoryIntent extends ChatIntent with ModAwareIntent {
                 assignments.any((a) => a.categoryId == cat.id),
           )
           .length;
-      buf.writeln('  ${cat.name} ($assignedCount mods)');
+      buf.writeln(loc.chatbotCategoryModCount(cat.name, assignedCount));
     }
 
     if (store.modAssignments.isEmpty) {
       buf.writeln(
-        '\nNo mods are assigned to categories yet.',
+        loc.chatbotNoModsInCategories,
       );
     }
 

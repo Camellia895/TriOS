@@ -97,9 +97,8 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
     }
 
     if (query.isEmpty) {
-      return const ChatResponse(
-        text:
-            'What mod are you looking for? Try "find <name>", "do i have <name>", or just type a mod name.',
+      return ChatResponse(
+        text: AppLocalizationsSync.instance.chatbotAskWhichMod,
       );
     }
 
@@ -122,8 +121,10 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
     }
 
     // Multiple matches
-    final buf =
-        StringBuffer('Found ${results.length} mods matching "$query":\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(
+      loc.chatbotFoundModsMatching(results.length, query) + '\n',
+    );
     for (final mod in results.take(15)) {
       final variant = mod.findFirstEnabledOrHighestVersion;
       final info = variant?.modInfo;
@@ -135,17 +136,17 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
               ? ' by ${info.author}'
               : '';
       final tags = <String>[
-        if (mod.isEnabledInGame) 'ON' else 'OFF',
-        if (info?.isUtility == true) 'Utility',
+        if (mod.isEnabledInGame) loc.chatbotTagOn else loc.chatbotTagOff,
+        if (info?.isUtility == true) loc.chatbotTypeUtility,
         if (info?.isTotalConversion == true) 'TC',
       ];
       buf.writeln('  [${tags.join('|')}] $name$version$author');
     }
     if (results.length > 15) {
-      buf.writeln('  ...and ${results.length - 15} more');
+      buf.writeln('  ' + loc.chatbotAndNMore(results.length - 15));
     }
     buf.writeln(
-      '\nAsk about a specific mod for full details.',
+      loc.chatbotAskSpecificMod,
     );
 
     return ChatResponse(
@@ -224,37 +225,46 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
   }
 
   String _formatModDetails(Mod mod) {
+    final loc = AppLocalizationsSync.instance;
     final variant = mod.findFirstEnabledOrHighestVersion;
     final info = variant?.modInfo;
-    final buf = StringBuffer('Found: ${info?.nameOrId ?? mod.id}\n');
+    final buf = StringBuffer(
+      loc.chatbotFoundHeader(info?.nameOrId ?? mod.id) + '\n',
+    );
 
-    if (info?.version != null) buf.writeln('  Version: ${info!.version}');
+    if (info?.version != null) {
+      buf.writeln(loc.chatbotDetailVersion('${info!.version}'));
+    }
     if (info?.author != null && info!.author!.isNotEmpty) {
-      buf.writeln('  Author: ${info.author}');
+      buf.writeln(loc.chatbotDetailAuthor(info.author ?? ''));
     }
     buf.writeln(
-      '  Status: ${mod.isEnabledInGame ? "Enabled" : "Disabled"}',
+      loc.chatbotDetailStatus(
+        mod.isEnabledInGame
+            ? loc.chatbotStatusEnabled
+            : loc.chatbotStatusDisabled,
+      ),
     );
 
     // Mod type.
     final types = <String>[
-      if (info?.isUtility == true) 'Utility',
-      if (info?.isTotalConversion == true) 'Total Conversion',
+      if (info?.isUtility == true) loc.chatbotTypeUtility,
+      if (info?.isTotalConversion == true) loc.chatbotTypeTotalConversion,
     ];
     if (types.isNotEmpty) {
-      buf.writeln('  Type: ${types.join(', ')}');
+      buf.writeln(loc.chatbotDetailType(types.join(', ')));
     }
 
     if (info?.gameVersion != null) {
-      buf.writeln('  Game version: ${info!.gameVersion}');
+      buf.writeln(loc.chatbotDetailGameVersion('${info!.gameVersion}'));
     }
     if (info?.description != null && info!.description!.isNotEmpty) {
-      buf.writeln('  Description: ${info.description}');
+      buf.writeln(loc.chatbotDetailDescription(info.description ?? ''));
     }
 
     // Dependencies.
     if (info != null && info.dependencies.isNotEmpty) {
-      buf.writeln('  Dependencies:');
+      buf.writeln(loc.chatbotDetailDependencies);
       for (final dep in info.dependencies) {
         final depName = dep.nameOrId;
         final depVersion =
@@ -262,10 +272,10 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
         // Check if the dependency is installed and enabled.
         final depMod = mods.where((m) => m.id == dep.id).firstOrNull;
         final depStatus = depMod == null
-            ? ' [NOT INSTALLED]'
+            ? loc.chatbotDepNotInstalled
             : depMod.isEnabledInGame
                 ? ''
-                : ' [DISABLED]';
+                : loc.chatbotDepDisabled;
         buf.writeln('    - $depName$depVersion$depStatus');
       }
     }
@@ -281,13 +291,16 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
     }
 
     if (mod.modVariants.length > 1) {
-      buf.writeln('  Installed variants: ${mod.modVariants.length}');
+      buf.writeln(
+        loc.chatbotDetailInstalledVariants(mod.modVariants.length),
+      );
     }
 
     return buf.toString().trimRight();
   }
 
   void _appendUpdateInfo(StringBuffer buf, ModVariant variant) {
+    final loc = AppLocalizationsSync.instance;
     final versionChecks = versionCheckResults;
     if (versionChecks == null) return;
 
@@ -299,13 +312,16 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
     if (comparison != null && comparison.hasUpdate) {
       final remoteVersion = result.remoteVersion?.modVersion;
       buf.writeln(
-        '  Update available: ${remoteVersion ?? "newer version"} '
-        '(you have ${variant.modInfo.version ?? "unknown"})',
+        loc.chatbotUpdateAvailable(
+          remoteVersion ?? loc.chatbotUpdateNewerVersion,
+          variant.modInfo.version ?? loc.chatbotValueUnknown,
+        ),
       );
     }
   }
 
   void _appendCompatibilityInfo(StringBuffer buf, ModVariant variant) {
+    final loc = AppLocalizationsSync.instance;
     final check = modCompatibility[variant.smolId];
     if (check == null) return;
 
@@ -313,15 +329,17 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
 
     if (!check.isGameCompatible) {
       issues.add(
-        'Game version incompatible '
-        '(requires ${variant.modInfo.gameVersion ?? "unknown"}, '
-        'game is ${starsectorVersion ?? "unknown"})',
+        loc.chatbotIssueGameVersionIncompatible(
+          variant.modInfo.gameVersion ?? loc.chatbotValueUnknown,
+          starsectorVersion ?? loc.chatbotValueUnknown,
+        ),
       );
     } else if (check.gameCompatibility == GameCompatibility.warning) {
       issues.add(
-        'Game version may be incompatible '
-        '(mod targets ${variant.modInfo.gameVersion ?? "unknown"}, '
-        'game is ${starsectorVersion ?? "unknown"})',
+        loc.chatbotIssueGameVersionWarning(
+          variant.modInfo.gameVersion ?? loc.chatbotValueUnknown,
+          starsectorVersion ?? loc.chatbotValueUnknown,
+        ),
       );
     }
 
@@ -330,18 +348,18 @@ class ModSearchIntent extends ChatIntent with ModAwareIntent {
       final depName = depCheck.dependency.nameOrId;
       final state = depCheck.satisfiedAmount;
       if (state is Missing) {
-        issues.add('Missing dependency: $depName');
+        issues.add(loc.chatbotIssueMissingDependency(depName));
       } else if (state is Disabled) {
-        issues.add('Disabled dependency: $depName');
+        issues.add(loc.chatbotIssueDisabledDependency(depName));
       } else if (state is VersionWarning) {
-        issues.add('Version mismatch: $depName');
+        issues.add(loc.chatbotIssueVersionMismatch(depName));
       } else if (state is VersionInvalid) {
-        issues.add('Incompatible version: $depName');
+        issues.add(loc.chatbotIssueIncompatibleVersion(depName));
       }
     }
 
     if (issues.isNotEmpty) {
-      buf.writeln('  Issues:');
+      buf.writeln(loc.chatbotIssuesHeader);
       for (final issue in issues) {
         buf.writeln('    - $issue');
       }

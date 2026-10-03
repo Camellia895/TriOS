@@ -148,7 +148,7 @@ class FactionViewerController extends Notifier<FactionViewerState>
       groups: [
         CompositeFilterGroup<Faction>(
           id: 'visibility',
-          name: 'Visibility',
+          name: loc.factionViewerVisibility,
           fields: [
             BoolField<Faction>(
               id: 'hideHidden',
@@ -166,8 +166,8 @@ class FactionViewerController extends Notifier<FactionViewerState>
         ),
         ChipFilterGroup<Faction>(
           id: 'source',
-          name: 'Source',
-          valueGetter: (f) => f.sources.firstOrNull?.name ?? 'Unknown',
+          name: loc.factionViewerSource,
+          valueGetter: (f) => f.sources.firstOrNull?.name ?? loc.commonUnknown,
           valuesGetter: (f) => f.sources.map((s) => s.name).toList(),
         ),
       ],
@@ -327,11 +327,12 @@ class FactionViewerController extends Notifier<FactionViewerState>
   }
 
   static List<SearchField<Faction>> _buildSearchFields() {
+    final loc = AppLocalizationsSync.instance;
     return [
-      SearchField.string('id', 'Faction ID', (f) => f.id),
+      SearchField.string('id', loc.factionViewerSearchFactionId, (f) => f.id),
       SearchField<Faction>(
         key: 'name',
-        description: 'Faction display name',
+        description: loc.factionViewerSearchFactionDisplayName,
         valueSuggestions: (factions) =>
             factions.map((f) => f.displayName).toSet().toList()..sort(),
         matches: (f, op, value) {
@@ -343,7 +344,7 @@ class FactionViewerController extends Notifier<FactionViewerState>
       ),
       SearchField<Faction>(
         key: 'source',
-        description: 'Source mod or vanilla',
+        description: loc.factionViewerSearchSourceModOrVanilla,
         valueSuggestions: (factions) =>
             factions
                 .expand((f) => f.sources.map((s) => s.name))
@@ -359,22 +360,22 @@ class FactionViewerController extends Notifier<FactionViewerState>
       ),
       SearchField.numeric(
         'ships',
-        'Number of known ships',
+        loc.factionViewerSearchKnownShips,
         (f) => f.knownShipIds.length,
       ),
       SearchField.numeric(
         'weapons',
-        'Number of known weapons',
+        loc.factionViewerSearchKnownWeapons,
         (f) => f.knownWeaponIds.length,
       ),
       SearchField.numeric(
         'fighters',
-        'Number of known fighters',
+        loc.factionViewerSearchKnownFighters,
         (f) => f.knownFighterIds.length,
       ),
       SearchField<Faction>(
         key: 'hidden',
-        description: 'Whether faction is hidden from intel tab (true/false)',
+        description: loc.factionViewerSearchHiddenFromIntel,
         valueSuggestions: (_) => ['true', 'false'],
         matches: (f, op, value) {
           if (op != DslOperator.equals) return false;
@@ -384,42 +385,42 @@ class FactionViewerController extends Notifier<FactionViewerState>
       ),
       SearchField.numeric(
         'aggression',
-        'Doctrine aggression level',
+        loc.factionViewerSearchDoctrineAggressionLevel,
         (f) => f.doctrine?.aggression,
       ),
       SearchField.numeric(
         'warships',
-        'Doctrine warship weight',
+        loc.factionViewerSearchDoctrineWarshipWeight,
         (f) => f.doctrine?.warships,
       ),
       SearchField.numeric(
         'carriers',
-        'Doctrine carrier weight',
+        loc.factionViewerSearchDoctrineCarrierWeight,
         (f) => f.doctrine?.carriers,
       ),
       SearchField.numeric(
         'phase',
-        'Doctrine phase ship weight',
+        loc.factionViewerSearchDoctrinePhaseShipWeight,
         (f) => f.doctrine?.phaseShips,
       ),
       SearchField.numeric(
         'fleetsize',
-        'Doctrine fleet size (number of ships)',
+        loc.factionViewerSearchDoctrineFleetSize,
         (f) => f.doctrine?.numShips,
       ),
       SearchField.numeric(
         'shipsize',
-        'Doctrine ship size preference',
+        loc.factionViewerSearchDoctrineShipSizePreference,
         (f) => f.doctrine?.shipSize,
       ),
       SearchField.numeric(
         'officerquality',
-        'Doctrine officer quality',
+        loc.factionViewerSearchDoctrineOfficerQuality,
         (f) => f.doctrine?.officerQuality,
       ),
       SearchField.numeric(
         'shipquality',
-        'Doctrine ship quality',
+        loc.factionViewerSearchDoctrineShipQuality,
         (f) => f.doctrine?.shipQuality,
       ),
     ];

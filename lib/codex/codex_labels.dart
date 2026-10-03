@@ -1,17 +1,21 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:trios/codex/models/codex_entry.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/navigation.dart';
 
 /// User-facing category names (approved copy).
-String codexCategoryLabel(CodexEntryType type) => switch (type) {
-  CodexEntryType.ship => 'Ships',
-  CodexEntryType.station => 'Stations',
-  CodexEntryType.weapon => 'Weapons',
-  CodexEntryType.hullmod => 'Hullmods',
-  CodexEntryType.shipSystem => 'Ship Systems',
-  CodexEntryType.wing => 'Fighters',
-  CodexEntryType.faction => 'Factions',
-};
+String codexCategoryLabel(CodexEntryType type) {
+  final loc = AppLocalizationsSync.instance;
+  return switch (type) {
+    CodexEntryType.ship => loc.contextMenuShips,
+    CodexEntryType.station => loc.codexLabelStations,
+    CodexEntryType.weapon => loc.contextMenuWeapons,
+    CodexEntryType.hullmod => loc.contextMenuHullmods,
+    CodexEntryType.shipSystem => loc.codexLabelShipSystems,
+    CodexEntryType.wing => loc.codexLabelFighters,
+    CodexEntryType.faction => loc.contextMenuFactions,
+  };
+}
 
 /// Category order shown at the root, mirroring the proposal.
 const List<CodexEntryType> codexCategoryOrder = [

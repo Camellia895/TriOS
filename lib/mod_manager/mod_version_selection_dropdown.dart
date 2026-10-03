@@ -50,6 +50,7 @@ class _ModVersionSelectionDropdownState
   Widget build(BuildContext context) {
     final isSingleVariant = widget.mod.modVariants.length == 1;
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     const buttonHeight = 32.00;
     final buttonWidth = widget.width;
     final mainVariant = widget.mod.findFirstEnabledOrHighestVersion;
@@ -154,20 +155,25 @@ class _ModVersionSelectionDropdownState
       ),
     );
 
-    const gameVersionMessage =
-        "This mod requires a different version of the game";
+    final gameVersionMessage = loc
+        .modVersionSelectionDropdownThisModRequiresA;
     final errorTooltip = switch (true) {
-      _ when hasMultipleEnabled =>
-        "Warning"
-            "\nYou have two or more enabled mod folders for ${mainVariant?.modInfo.nameOrId}. The game will pick one at 'random'."
-            "\nSelect one version from the dropdown.",
+      _ when hasMultipleEnabled => loc.modVersionSelectionDropdownMultipleEnabled(
+        mainVariant?.modInfo.nameOrId ?? "",
+      ),
       _ when areAllDependenciesSatisfied == false =>
-        "Requires ${modDependenciesSatisfied?.where((it) => !it.canBeSatisfiedWithInstalledMods).joinToString(transform: (it) => it.dependency.nameOrId)}",
+        loc.modVersionSelectionDropdownRequires(
+          modDependenciesSatisfied
+                  ?.where((it) => !it.canBeSatisfiedWithInstalledMods)
+                  .joinToString(transform: (it) => it.dependency.nameOrId) ??
+              "",
+        ),
 
-      _ when hasMultipleSameVersionInModsFolder =>
-        "Warning"
-            "\nYou have two or more of the same version (${groupsOfMultipleSameVersionInModsFolder.keys.join(", ")}) of this mod in your mods folder. ${Constants.appName} may not handle this correctly."
-            "\nPlease remove one manually.",
+      _ when hasMultipleSameVersionInModsFolder => loc
+          .modVersionSelectionDropdownMultipleSameVersion(
+            groupsOfMultipleSameVersionInModsFolder.keys.join(", "),
+            Constants.appName,
+          ),
       _ => null,
     };
     final warningIcon = Icon(Icons.warning, color: textColor, size: 20);
@@ -199,7 +205,7 @@ class _ModVersionSelectionDropdownState
               (useWarningUi
                   ? Align(alignment: Alignment.centerLeft, child: warningIcon)
                   : Container()),
-              Center(child: Text(isEnabled ? "Disable" : "Enable")),
+              Center(child: Text(isEnabled ? loc.triosDisable : loc.triosEnable)),
             ],
           ),
         ),
@@ -313,7 +319,7 @@ class _ModVersionSelectionDropdownState
                     Expanded(
                       child: MovingTooltipWidget.text(
                             message: isEnabled && errorTooltip == null
-                                ? "Click to disable"
+                                ? loc.modVersionSelectionDropdownClickToDisable
                                 : null,
                             child: InkWell(
                               onTap: () async {
@@ -349,7 +355,7 @@ class _ModVersionSelectionDropdownState
                                         isEnabled
                                             ? enabledVariant!.modInfo.version
                                                   .toString()
-                                            : "Enable",
+                                            : loc.triosEnable,
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -444,8 +450,11 @@ class _ModVersionSelectionDropdownState
     Color iconColor,
   ) {
     return MovingTooltipWidget.text(
-      message:
-          "Click to use newer version ${variantThatCanBeUpgradedTo.bestVersion}",
+      message: AppLocalizations.of(
+        context,
+      ).modVersionSelectionDropdownClickToUseNewerVersion(
+        variantThatCanBeUpgradedTo.bestVersion.toString(),
+      ),
       child: InkWell(
         onTap: () => switchToVariant(variantThatCanBeUpgradedTo),
         child: Container(

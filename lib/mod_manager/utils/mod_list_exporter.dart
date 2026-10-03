@@ -122,9 +122,11 @@ void copySharedModListToClipboard(
 ) {
   Clipboard.setData(ClipboardData(text: sharedModList.toShareString()));
   ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
+    SnackBar(
       content: Text(
-        "Copied mod list to clipboard. Import via Mod Profiles page.",
+        AppLocalizations.of(
+          context,
+        ).modListExporterCopiedImportViaProfiles,
       ),
     ),
   );

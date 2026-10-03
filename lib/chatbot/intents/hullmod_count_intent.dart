@@ -4,6 +4,7 @@ import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
 import 'viewer_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows the total hullmod count and breakdown.
 class HullmodCountIntent extends ChatIntent with ViewerAwareIntent {
@@ -49,7 +50,7 @@ class HullmodCountIntent extends ChatIntent with ViewerAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final hullmodList = hullmods;
     if (hullmodList == null || hullmodList.isEmpty) {
-      return const ChatResponse(
+      return ChatResponse(
         text: ViewerAwareIntent.noViewerDataMessage,
       );
     }
@@ -58,11 +59,12 @@ class HullmodCountIntent extends ChatIntent with ViewerAwareIntent {
         hullmodList.where((h) => h.modVariant == null).length;
     final modded = hullmodList.length - vanilla;
 
+    final loc = AppLocalizationsSync.instance;
     final buf = StringBuffer(
-      'Hullmods: ${hullmodList.length} total\n',
+      loc.chatbotHullmodsHeader(hullmodList.length) + '\n',
     );
-    buf.writeln('  Vanilla: $vanilla');
-    buf.writeln('  From mods: $modded');
+    buf.writeln('  ' + loc.chatbotBreakdownVanilla(vanilla));
+    buf.writeln('  ' + loc.chatbotBreakdownFromMods(modded));
 
     return ChatResponse(text: buf.toString().trimRight());
   }

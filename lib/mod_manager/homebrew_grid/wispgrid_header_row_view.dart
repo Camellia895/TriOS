@@ -149,9 +149,9 @@ class _WispGridHeaderRowViewState extends ConsumerState<WispGridHeaderRowView>
           builder: (context) {
             final isHovering = HoverData.of(context)?.isHovering ?? false;
             return MovingTooltipWidget.text(
-              message:
-                  'Click to sort. Drag the edges to resize.\n'
-                  'Right-click for grouping and column options.',
+              message: AppLocalizations.of(
+                context,
+              ).wispgridHeaderRowClickToSortTooltip,
               child: MultiSplitViewTheme(
                 data: MultiSplitViewThemeData(
                   dividerThickness: WispGrid.gridRowSpacing,
@@ -412,8 +412,8 @@ ContextMenu buildWispGridHeaderContextMenu({
       if (clickedColumn != null)
         MenuItem(
           label: isClickedColumnFrozen
-              ? 'Unfreeze this column'
-              : 'Freeze this column',
+              ? loc.wispgridHeaderRowUnfreezeThisColumn
+              : loc.wispgridHeaderRowFreezeThisColumn,
           icon: isClickedColumnFrozen ? Icons.lock_open : Icons.lock,
           onSelected: () {
             updateGridState((WispGridState state) {

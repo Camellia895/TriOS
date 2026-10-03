@@ -1,4 +1,5 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/mod_manager/batch_installation/batch_installation.dart';
 import 'package:trios/widgets/download_progress_indicator.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
@@ -16,6 +17,7 @@ class BatchEntryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loc = AppLocalizations.of(context);
     final isExtracting = entry.status == BatchEntryStatus.extracting;
     final progress = entry.progressDisplay;
 
@@ -26,12 +28,12 @@ class BatchEntryTile extends StatelessWidget {
     };
 
     final String statusText = switch (entry.status) {
-      BatchEntryStatus.scanning => 'Scanning...',
+      BatchEntryStatus.scanning => loc.activityScanning,
       BatchEntryStatus.extracting =>
         entry.extractionPhase != null
             ? '${entry.extractionPhase}...'
-            : 'Installing...',
-      _ => 'Queued',
+            : loc.commonInstalling,
+      _ => loc.downloadStatusQueued,
     };
 
     return Padding(

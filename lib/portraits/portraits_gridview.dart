@@ -83,7 +83,13 @@ class PortraitsGridView extends ConsumerWidget {
             spacing: 4,
             children: [
               Text(
-                '${metadata.portraitId == Constants.gargoyleCharId ? "Gargoyle" : metadata.gender}',
+                metadata.portraitId == Constants.gargoyleCharId
+                    ? "Gargoyle"
+                    : switch (metadata.gender!) {
+                        PortraitGender.male => loc.portraitMale,
+                        PortraitGender.female => loc.portraitFemale,
+                        PortraitGender.any => loc.commonUnknown,
+                      },
               ),
               Icon(_getGenderIcon(metadata.gender!), size: 16),
             ],
@@ -93,7 +99,9 @@ class PortraitsGridView extends ConsumerWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 300),
             child: Text(
-              'Factions: ${metadata.factions.map((f) => f.toString()).sorted().join(', ')}',
+              loc.portraitsFactionsLabel(
+                metadata.factions.map((f) => f.toString()).sorted().join(', '),
+              ),
             ),
           ),
         ],
@@ -171,7 +179,9 @@ class PortraitsGridView extends ConsumerWidget {
                         // Replacement info if exists
                         if (hasReplacement) ...[
                           Text(
-                            'Replacement: ${replacement.imageFile.nameWithExtension}',
+                            loc.portraitsReplacementFile(
+                              replacement.imageFile.nameWithExtension,
+                            ),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).colorScheme.primary,
@@ -179,7 +189,12 @@ class PortraitsGridView extends ConsumerWidget {
                           ),
                           if (replacementDetails?.replacementMod != null)
                             Text(
-                              'Replacement Mod: ${replacementDetails!.replacementMod!.modInfo.nameOrId}',
+                              loc.portraitsReplacementModLabel(
+                                replacementDetails!
+                                    .replacementMod!
+                                    .modInfo
+                                    .nameOrId,
+                              ),
                             )
                           else
                             Text(loc.vanillaShareBarVanilla),
@@ -188,7 +203,12 @@ class PortraitsGridView extends ConsumerWidget {
                             Text(loc.portraitSizeLabel(replacementBytesAsReadableKB)),
                           if (replacementDetails?.replacementPortrait != null)
                             Text(
-                              'Dimensions: ${replacementDetails!.replacementPortrait!.width} x ${replacementDetails.replacementPortrait!.height}',
+                              loc.portraitsDimensionsLabel(
+                                replacementDetails!
+                                    .replacementPortrait!
+                                    .width,
+                                replacementDetails.replacementPortrait!.height,
+                              ),
                             ),
                           const SizedBox(height: 8),
                           Divider(
@@ -199,7 +219,9 @@ class PortraitsGridView extends ConsumerWidget {
                         // Original portrait info
                         Text(
                           hasReplacement
-                              ? "Original: ${portrait.imageFile.nameWithExtension}"
+                              ? loc.portraitsOriginalFile(
+                                  portrait.imageFile.nameWithExtension,
+                                )
                               : portrait.imageFile.nameWithExtension,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -210,13 +232,16 @@ class PortraitsGridView extends ConsumerWidget {
                         ),
                         Text(
                           mod == null
-                              ? "Vanilla"
-                              : 'Mod: ${mod.modInfo.nameOrId}',
+                              ? loc.vanillaShareBarVanilla
+                              : loc.portraitsModLabel(mod.modInfo.nameOrId),
                         ),
                         Text(loc.portraitPathLabel(portrait.relativePath)),
                         Text(loc.portraitSizeLabel(bytesAsReadableKB)),
                         Text(
-                          'Dimensions: ${portrait.width} x ${portrait.height}',
+                          loc.portraitsDimensionsLabel(
+                            portrait.width,
+                            portrait.height,
+                          ),
                         ),
                         // Portrait metadata (gender, factions)
                         if (metadata.hasMetadata) ...[

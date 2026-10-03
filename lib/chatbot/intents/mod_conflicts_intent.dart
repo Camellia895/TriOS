@@ -55,6 +55,7 @@ class ModConflictsIntent extends ChatIntent with ModAwareIntent {
     final guard = guardModData();
     if (guard != null) return guard;
 
+    final loc = AppLocalizationsSync.instance;
     final enabledVariants = enabledModVariants;
     final issues = <String>[];
 
@@ -66,11 +67,13 @@ class ModConflictsIntent extends ChatIntent with ModAwareIntent {
 
       if (!check.isGameCompatible) {
         modIssues.add(
-          'game version incompatible (needs ${variant.modInfo.gameVersion ?? "?"}, '
-          'game is ${starsectorVersion ?? "?"})',
+          loc.chatbotConflictGameVersionIncompatible(
+            variant.modInfo.gameVersion ?? loc.chatbotValueUnknown,
+            starsectorVersion ?? loc.chatbotValueUnknown,
+          ),
         );
       } else if (check.gameCompatibility == GameCompatibility.warning) {
-        modIssues.add('game version warning');
+        modIssues.add(loc.chatbotConflictGameVersionWarning);
       }
 
       for (final depCheck in check.dependencyChecks) {
@@ -78,13 +81,13 @@ class ModConflictsIntent extends ChatIntent with ModAwareIntent {
         final depName = depCheck.dependency.nameOrId;
         final state = depCheck.satisfiedAmount;
         if (state is Missing) {
-          modIssues.add('missing dep: $depName');
+          modIssues.add(loc.chatbotConflictMissingDep(depName));
         } else if (state is Disabled) {
-          modIssues.add('disabled dep: $depName');
+          modIssues.add(loc.chatbotConflictDisabledDep(depName));
         } else if (state is VersionWarning) {
-          modIssues.add('version mismatch: $depName');
+          modIssues.add(loc.chatbotConflictVersionMismatch(depName));
         } else if (state is VersionInvalid) {
-          modIssues.add('incompatible version: $depName');
+          modIssues.add(loc.chatbotConflictIncompatibleVersion(depName));
         }
       }
 
@@ -101,7 +104,7 @@ class ModConflictsIntent extends ChatIntent with ModAwareIntent {
     }
 
     final buf = StringBuffer(
-      'Mods With Issues (${issues.length})\n',
+      loc.chatbotModsWithIssuesTitle(issues.length) + '\n',
     );
     buf.writeAll(issues, '\n');
 

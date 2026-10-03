@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 import 'package:super_clipboard/super_clipboard.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/mod_manager/homebrew_grid/wispgrid_group.dart';
@@ -152,8 +153,9 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
     ShipsPageController controller,
     ShipsPageState controllerState,
   ) {
+    final loc = AppLocalizations.of(context);
     return ViewerToolbar(
-      entityName: "Ships",
+      entityName: loc.shipsEntityName,
       total: total,
       visible: visible,
       isLoading: controllerState.isLoading,
@@ -408,6 +410,7 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
     ThemeData theme,
     ShipsPageState controllerState,
   ) {
+    final loc = AppLocalizations.of(context);
     int position = 0;
 
     String shipValueToString(
@@ -448,10 +451,10 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
       WispGridColumn(
         key: 'modVariant',
         isSortable: true,
-        name: 'Mod',
+        name: loc.codexMod,
         getSortValue: (ship) => ship.modVariant?.modInfo.nameOrId,
         itemCellBuilder: (item, _) => TextTriOS(
-          item.modVariant?.modInfo.nameOrId ?? "Vanilla",
+          item.modVariant?.modInfo.nameOrId ?? loc.vanillaShareBarVanilla,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.bodyMedium,
@@ -477,7 +480,7 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
       WispGridColumn<Ship>(
         key: 'hullName',
         isSortable: true,
-        name: 'Name',
+        name: loc.modsGridName,
         getSortValue: (ship) =>
             ship.hullNameForDisplay().replaceAll(_nonAlphanumeric, ''),
         // The tooltip wraps the whole cell so hovering anywhere in it works,
@@ -517,11 +520,11 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
         csvValue: (item) => item.hullNameForDisplay(),
         defaultState: WispGridColumnState(position: position++, width: 200),
       ),
-      col('id', 'ID', (s) => s.id),
-      col('hullSize', 'Hull', (s) => s.hullSizeForDisplay(), width: 80),
+      col('id', loc.shipsColumnId, (s) => s.id),
+      col('hullSize', loc.shipsColumnHull, (s) => s.hullSizeForDisplay(), width: 80),
       WispGridColumn(
         key: 'weaponSlotCount',
-        name: 'Wpns',
+        name: loc.shipsColumnWpns,
         isSortable: true,
         getSortValue: (ship) => ship.mountableWeaponSlotCount,
         itemCellBuilder: (item, _) => Text('${item.mountableWeaponSlotCount}'),
@@ -530,7 +533,7 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
       ),
       WispGridColumn(
         key: 'builtInWeaponCount',
-        name: 'Built-in Wpns',
+        name: loc.shipsColumnBuiltInWpns,
         isSortable: true,
         getSortValue: (ship) => ship.builtInWeapons?.length ?? 0,
         itemCellBuilder: (item, _) =>
@@ -540,7 +543,7 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
       ),
       WispGridColumn(
         key: 'builtInModCount',
-        name: 'Built-in Mods',
+        name: loc.shipsColumnBuiltInMods,
         isSortable: true,
         getSortValue: (ship) => ship.builtInMods?.length ?? 0,
         itemCellBuilder: (item, _) => Text('${item.builtInMods?.length ?? 0}'),
@@ -549,71 +552,71 @@ class _ShipsPageState extends ConsumerState<ShipsPage>
       ),
       WispGridColumn(
         key: 'builtInWingCount',
-        name: 'Built-in Wings',
+        name: loc.shipsColumnBuiltInWings,
         isSortable: true,
         getSortValue: (ship) => ship.builtInWings?.length ?? 0,
         itemCellBuilder: (item, _) => Text('${item.builtInWings?.length ?? 0}'),
         csvValue: (ship) => (ship.builtInWings?.length ?? 0).toString(),
         defaultState: WispGridColumnState(position: position++, width: 120),
       ),
-      col('techManufacturer', 'Tech', (s) => s.techManufacturer, width: 220),
+      col('techManufacturer', loc.shipsColumnTech, (s) => s.techManufacturer, width: 220),
       ...[
-        col('designation', 'Designation', (s) => s.designation),
+        col('designation', loc.shipsColumnDesignation, (s) => s.designation),
         col(
           'systemId',
-          'System',
+          loc.shipsColumnSystem,
           (s) =>
               controllerState.shipSystemsMap[s.systemId ?? ""]?.name ??
               s.systemId,
         ),
-        col('deploymentPoints', 'DP', (s) => s.deploymentPoints),
-        col('fleetPts', 'Fleet Pts', (s) => s.fleetPts),
-        col('hitpoints', 'Hitpoints', (s) => s.hitpoints),
-        col('armorRating', 'Armor', (s) => s.armorRating),
-        col('maxFlux', 'Max Flux', (s) => s.maxFlux),
-        col('fluxDissipation', 'Flux Diss', (s) => s.fluxDissipation),
-        col('ordnancePoints', 'Ordnance', (s) => s.ordnancePoints),
-        col('fighterBays', 'Fighter Bays', (s) => s.fighterBays),
-        col('maxSpeed', 'Max Speed', (s) => s.maxSpeed),
-        col('acceleration', 'Accel', (s) => s.acceleration),
-        col('deceleration', 'Decel', (s) => s.deceleration),
-        col('maxTurnRate', 'Turn Rate', (s) => s.maxTurnRate),
-        col('turnAcceleration', 'Turn Accel', (s) => s.turnAcceleration),
-        col('mass', 'Mass', (s) => s.mass),
-        col('shieldType', 'Shield', (s) => s.shieldType?.toTitleCase()),
+        col('deploymentPoints', loc.shipsColumnDp, (s) => s.deploymentPoints),
+        col('fleetPts', loc.shipsColumnFleetPts, (s) => s.fleetPts),
+        col('hitpoints', loc.shipsColumnHitpoints, (s) => s.hitpoints),
+        col('armorRating', loc.shipsColumnArmor, (s) => s.armorRating),
+        col('maxFlux', loc.shipsColumnMaxFlux, (s) => s.maxFlux),
+        col('fluxDissipation', loc.shipsColumnFluxDiss, (s) => s.fluxDissipation),
+        col('ordnancePoints', loc.shipsColumnOrdnance, (s) => s.ordnancePoints),
+        col('fighterBays', loc.shipsColumnFighterBays, (s) => s.fighterBays),
+        col('maxSpeed', loc.shipsColumnMaxSpeed, (s) => s.maxSpeed),
+        col('acceleration', loc.shipsColumnAccel, (s) => s.acceleration),
+        col('deceleration', loc.shipsColumnDecel, (s) => s.deceleration),
+        col('maxTurnRate', loc.shipsColumnTurnRate, (s) => s.maxTurnRate),
+        col('turnAcceleration', loc.shipsColumnTurnAccel, (s) => s.turnAcceleration),
+        col('mass', loc.shipsColumnMass, (s) => s.mass),
+        col('shieldType', loc.shipsColumnShield, (s) => s.shieldType?.toTitleCase()),
         col(
           'defenseId',
-          'Defense ID',
+          loc.shipsColumnDefenseId,
           (s) =>
               controllerState.shipSystemsMap[s.defenseId ?? ""]?.name ??
               s.defenseId,
         ),
-        col('shieldArc', 'Shield Arc', (s) => s.shieldArc),
-        col('shieldUpkeep', 'Shield Upkeep', (s) => s.shieldUpkeep),
-        col('shieldEfficiency', 'Shield Eff.', (s) => s.shieldEfficiency),
-        col('phaseCost', 'Phase Cost', (s) => s.phaseCost),
-        col('phaseUpkeep', 'Phase Upkeep', (s) => s.phaseUpkeep),
-        col('minCrew', 'Min Crew', (s) => s.minCrew),
-        col('maxCrew', 'Max Crew', (s) => s.maxCrew),
-        col('cargo', 'Cargo', (s) => s.cargo),
-        col('fuel', 'Fuel', (s) => s.fuel),
-        col('fuelPerLY', 'Fuel/LY', (s) => s.fuelPerLY),
-        col('range', 'Range', (s) => s.range),
-        col('maxBurn', 'Max Burn', (s) => s.maxBurn),
-        col('sensorProfile', 'Sensor Profile', (s) => s.sensorProfile),
-        col('sensorStrength', 'Sensor Strength', (s) => s.sensorStrength),
-        col('baseValue', 'Credits (base)', (s) => s.baseValue.asCredits()),
-        col('crPercentPerDay', 'CR%/Day', (s) => s.crPercentPerDay),
-        col('crToDeploy', 'CR to Deploy', (s) => s.crToDeploy),
-        col('peakCrSec', 'PPT', (s) => s.peakCrSec),
-        col('crLossPerSec', 'CR Loss/Sec', (s) => s.crLossPerSec),
-        col('supplyCostPerMonth', 'Supplies/Mon', (s) => s.suppliesMo),
-        col('rarity', 'Rarity', (s) => s.rarity),
-        col('breakProb', 'Break Prob', (s) => s.breakProb),
-        col('minPieces', 'Min Pieces', (s) => s.minPieces),
-        col('maxPieces', 'Max Pieces', (s) => s.maxPieces),
-        col('travelDrive', 'Travel Drive', (s) => s.travelDrive),
-        col('style', 'Style', (s) => s.style?.toTitleCase()),
+        col('shieldArc', loc.shipsColumnShieldArc, (s) => s.shieldArc),
+        col('shieldUpkeep', loc.shipsColumnShieldUpkeep, (s) => s.shieldUpkeep),
+        col('shieldEfficiency', loc.shipsColumnShieldEff, (s) => s.shieldEfficiency),
+        col('phaseCost', loc.shipsColumnPhaseCost, (s) => s.phaseCost),
+        col('phaseUpkeep', loc.shipsColumnPhaseUpkeep, (s) => s.phaseUpkeep),
+        col('minCrew', loc.shipsColumnMinCrew, (s) => s.minCrew),
+        col('maxCrew', loc.shipsColumnMaxCrew, (s) => s.maxCrew),
+        col('cargo', loc.shipsColumnCargo, (s) => s.cargo),
+        col('fuel', loc.shipsColumnFuel, (s) => s.fuel),
+        col('fuelPerLY', loc.shipsColumnFuelLy, (s) => s.fuelPerLY),
+        col('range', loc.shipsColumnRange, (s) => s.range),
+        col('maxBurn', loc.shipsColumnMaxBurn, (s) => s.maxBurn),
+        col('sensorProfile', loc.shipsColumnSensorProfile, (s) => s.sensorProfile),
+        col('sensorStrength', loc.shipsColumnSensorStrength, (s) => s.sensorStrength),
+        col('baseValue', loc.shipsColumnCreditsBase, (s) => s.baseValue.asCredits()),
+        col('crPercentPerDay', loc.shipsColumnCrPerDay, (s) => s.crPercentPerDay),
+        col('crToDeploy', loc.shipsColumnCrToDeploy, (s) => s.crToDeploy),
+        col('peakCrSec', loc.shipsColumnPpt, (s) => s.peakCrSec),
+        col('crLossPerSec', loc.shipsColumnCrLossSec, (s) => s.crLossPerSec),
+        col('supplyCostPerMonth', loc.shipsColumnSuppliesMon, (s) => s.suppliesMo),
+        col('rarity', loc.shipsColumnRarity, (s) => s.rarity),
+        col('breakProb', loc.shipsColumnBreakProb, (s) => s.breakProb),
+        col('minPieces', loc.shipsColumnMinPieces, (s) => s.minPieces),
+        col('maxPieces', loc.shipsColumnMaxPieces, (s) => s.maxPieces),
+        col('travelDrive', loc.shipsColumnTravelDrive, (s) => s.travelDrive),
+        col('style', loc.shipsColumnStyle, (s) => s.style?.toTitleCase()),
       ],
     ];
   }
@@ -850,10 +853,12 @@ class _ShipImageCellState extends State<ShipImageCell> {
 }
 
 class UngroupedShipGridGroup extends WispGridGroup<Ship> {
-  UngroupedShipGridGroup() : super('none', 'None');
+  UngroupedShipGridGroup()
+    : super('none', AppLocalizationsSync.instance.codexNone);
 
   @override
-  String getGroupName(Ship item, {Comparable? groupSortValue}) => 'All Ships';
+  String getGroupName(Ship item, {Comparable? groupSortValue}) =>
+      AppLocalizationsSync.instance.shipsGroupAllShips;
 
   @override
   Comparable getGroupSortValue(Ship item) => 1;
@@ -863,11 +868,13 @@ class UngroupedShipGridGroup extends WispGridGroup<Ship> {
 }
 
 class ModShipGridGroup extends WispGridGroup<Ship> {
-  ModShipGridGroup() : super('mod', 'Mod');
+  ModShipGridGroup()
+    : super('mod', AppLocalizationsSync.instance.codexMod);
 
   @override
   String getGroupName(Ship item, {Comparable? groupSortValue}) =>
-      item.modVariant?.modInfo.nameOrId ?? "Vanilla";
+      item.modVariant?.modInfo.nameOrId ??
+      AppLocalizationsSync.instance.vanillaShareBarVanilla;
 
   @override
   Comparable getGroupSortValue(Ship item) =>
@@ -875,7 +882,8 @@ class ModShipGridGroup extends WispGridGroup<Ship> {
 }
 
 class HullSizeShipGridGroup extends WispGridGroup<Ship> {
-  HullSizeShipGridGroup() : super('hullSize', 'Hull Size');
+  HullSizeShipGridGroup()
+    : super('hullSize', AppLocalizationsSync.instance.shipsFilterHullSize);
 
   /// Smallest to largest, so the groups don't come out in alphabetical order.
   static const _sizeOrder = [
@@ -903,11 +911,16 @@ class HullSizeShipGridGroup extends WispGridGroup<Ship> {
 }
 
 class TechShipGridGroup extends WispGridGroup<Ship> {
-  TechShipGridGroup() : super('techManufacturer', 'Tech/Manufacturer');
+  TechShipGridGroup()
+    : super(
+        'techManufacturer',
+        AppLocalizationsSync.instance.shipsFilterTechManufacturer,
+      );
 
   @override
   String getGroupName(Ship item, {Comparable? groupSortValue}) =>
-      item.techManufacturer?.nullIfEmpty() ?? 'None';
+      item.techManufacturer?.nullIfEmpty() ??
+      AppLocalizationsSync.instance.codexNone;
 
   // Case-folded so "Low Tech" and "LOW TECH" land in the same group.
   @override
@@ -916,11 +929,13 @@ class TechShipGridGroup extends WispGridGroup<Ship> {
 }
 
 class DesignationShipGridGroup extends WispGridGroup<Ship> {
-  DesignationShipGridGroup() : super('designation', 'Designation');
+  DesignationShipGridGroup()
+    : super('designation', AppLocalizationsSync.instance.shipsFilterDesignation);
 
   @override
   String getGroupName(Ship item, {Comparable? groupSortValue}) =>
-      item.designation?.nullIfEmpty() ?? 'None';
+      item.designation?.nullIfEmpty() ??
+      AppLocalizationsSync.instance.codexNone;
 
   @override
   Comparable getGroupSortValue(Ship item) =>

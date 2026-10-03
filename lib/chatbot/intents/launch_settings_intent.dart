@@ -4,6 +4,7 @@ import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
 import 'settings_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows game launch configuration.
 class LaunchSettingsIntent extends ChatIntent with SettingsAwareIntent {
@@ -52,20 +53,24 @@ class LaunchSettingsIntent extends ChatIntent with SettingsAwareIntent {
   @override
   ChatResponse respond(String input, ConversationContext context) {
     final s = settings;
-    final buf = StringBuffer('Launch Configuration\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(loc.chatbotLaunchTitle + '\n');
     buf.writeln(
-      '  Direct launch:   ${s.enableDirectLaunch ? "Enabled (TriOS acts as launcher)" : "Disabled (opens game exe)"}',
+      loc.chatbotLaunchDirect(
+        s.enableDirectLaunch
+            ? loc.chatbotLaunchDirectEnabled
+            : loc.chatbotLaunchDirectDisabled,
+      ),
     );
     if (s.useCustomGameExePath && s.customGameExePath != null) {
       buf.writeln(
-        '  Custom exe path: ${s.customGameExePath}',
+        loc.chatbotLaunchCustomExe(s.customGameExePath!),
       );
     }
 
     if (!s.enableDirectLaunch) {
       buf.writeln(
-        '\nTip: Enable Direct Launch in Settings for better mod '
-        'compatibility.',
+        loc.chatbotLaunchTip,
       );
     }
 

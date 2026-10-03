@@ -1,6 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
 import 'package:trios/catalog/catalog_mod_card.dart';
 import 'package:trios/catalog/models/forum_llm_data.dart';
 import 'package:trios/catalog/models/mod_repo_entry.dart';
@@ -58,6 +59,8 @@ void main() {
       ProviderScope(
         overrides: [downloadManager.overrideWith(() => manager)],
         child: MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
           theme: ThemeData(extensions: const [TriOSThemeExtension()]),
           home: Scaffold(
             body: Center(

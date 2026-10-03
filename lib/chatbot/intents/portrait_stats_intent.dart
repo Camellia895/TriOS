@@ -4,6 +4,7 @@ import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
 import 'viewer_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Shows portrait counts broken down by source mod.
 class PortraitStatsIntent extends ChatIntent with ViewerAwareIntent {
@@ -52,7 +53,7 @@ class PortraitStatsIntent extends ChatIntent with ViewerAwareIntent {
   ChatResponse respond(String input, ConversationContext context) {
     final portraitMap = portraits;
     if (portraitMap == null || portraitMap.isEmpty) {
-      return const ChatResponse(
+      return ChatResponse(
         text: ViewerAwareIntent.noViewerDataMessage,
       );
     }
@@ -60,7 +61,10 @@ class PortraitStatsIntent extends ChatIntent with ViewerAwareIntent {
     final totalPortraits = portraitMap.values
         .fold<int>(0, (sum, list) => sum + list.length);
 
-    final buf = StringBuffer('Portraits: $totalPortraits total\n');
+    final loc = AppLocalizationsSync.instance;
+    final buf = StringBuffer(
+      loc.chatbotPortraitsHeader(totalPortraits) + '\n',
+    );
 
     // Sort sources by count descending.
     final sources = portraitMap.entries.toList()
@@ -68,13 +72,13 @@ class PortraitStatsIntent extends ChatIntent with ViewerAwareIntent {
 
     for (final entry in sources.take(15)) {
       final source = entry.key == null
-          ? 'Vanilla'
+          ? loc.vanillaShareBarVanilla
           : (entry.key!.modInfo.nameOrId);
       buf.writeln('  $source: ${entry.value.length}');
     }
 
     if (sources.length > 15) {
-      buf.writeln('  ...and ${sources.length - 15} more sources');
+      buf.writeln('  ' + loc.chatbotAndNMoreSources(sources.length - 15));
     }
 
     return ChatResponse(text: buf.toString().trimRight());

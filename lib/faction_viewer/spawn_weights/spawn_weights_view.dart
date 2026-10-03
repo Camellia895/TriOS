@@ -447,7 +447,7 @@ class _SpawnWeightTable extends ConsumerWidget {
   ) {
     final first = group.first;
     final groupWeight = _sum(group);
-    final sources = group.map((e) => e.source ?? 'Unknown').toSet().toList()
+    final sources = group.map((e) => e.source ?? loc.commonUnknown).toSet().toList()
       ..sort();
 
     return TriOSExpansionTile(
@@ -457,7 +457,7 @@ class _SpawnWeightTable extends ConsumerWidget {
         theme: theme,
         loc: loc,
         name: first.shipName,
-        size: _prettySize(first.hullSize),
+        size: _prettySize(loc, first.hullSize),
         weight: groupWeight,
         total: total,
         setBy: sources.join(', '),
@@ -481,7 +481,7 @@ class _SpawnWeightTable extends ConsumerWidget {
                     size: '',
                     weight: entry.weight,
                     total: total,
-                    setBy: entry.source ?? 'Unknown',
+                    setBy: entry.source ?? loc.commonUnknown,
                     bold: false,
                   ),
                 ),
@@ -715,12 +715,12 @@ String _formatSharePercent(double share) {
   return '${(share * 100).toStringAsFixed(1)}%';
 }
 
-String _prettySize(String? hullSize) => switch (hullSize?.toUpperCase()) {
-  'FRIGATE' => 'Frigate',
-  'DESTROYER' => 'Destroyer',
-  'CRUISER' => 'Cruiser',
-  'CAPITAL_SHIP' => 'Capital',
-  'FIGHTER' => 'Fighter',
+String _prettySize(AppLocalizations loc, String? hullSize) => switch (hullSize?.toUpperCase()) {
+  'FRIGATE' => loc.shipSizeFrigate,
+  'DESTROYER' => loc.shipSizeDestroyer,
+  'CRUISER' => loc.shipSizeCruiser,
+  'CAPITAL_SHIP' => loc.shipSizeCapital,
+  'FIGHTER' => loc.shipSizeFighter,
   null => '',
   _ => hullSize!,
 };

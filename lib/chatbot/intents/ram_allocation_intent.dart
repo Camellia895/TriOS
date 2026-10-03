@@ -1,6 +1,7 @@
 import '../chatbot_engine.dart';
 import '../chatbot_models.dart';
 import 'mod_aware_intent.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 /// Tells users how to allocate more RAM via the Dashboard page.
 class RamAllocationIntent extends ChatIntent {
@@ -73,27 +74,8 @@ class RamAllocationIntent extends ChatIntent {
 
   @override
   ChatResponse respond(String input, ConversationContext context) {
-    return const ChatResponse(text: _response);
+    return ChatResponse(
+      text: AppLocalizationsSync.instance.chatbotRamAllocationGuide,
+    );
   }
-
-  static const _response = 'Adjusting RAM Allocation\n'
-      '\n'
-      'TriOS makes this easy! Go to the Dashboard page and look for the\n'
-      'RAM allocation setting. You can adjust the slider or enter a value\n'
-      'directly.\n'
-      '\n'
-      'Common recommendations:\n'
-      '  Light modding (< 20 mods):  2–4 GB\n'
-      '  Medium modding (20–50 mods): 4–6 GB\n'
-      '  Heavy modding (50+ mods):   6–8 GB\n'
-      '\n'
-      'Tips:\n'
-      '  Leave at least 4 GB for your OS and other programs.\n'
-      "  If you have 16 GB total, don't go above 10–12 GB.\n"
-      '  The setting changes the -Xmx JVM flag in vmparams.\n'
-      '\n'
-      'Signs you need more RAM:\n'
-      '  "OutOfMemoryError" in your log file.\n'
-      '  Game freezing or crashing during loading.\n'
-      '  Lag spikes during large battles.';
 }

@@ -89,7 +89,7 @@ class _CatalogDataSourcesDialogState
                   subtitle: loc.catalogForumIndexSubforumsAndDiscord,
                   status: modRepoStatus,
                   itemCount: modRepoCount,
-                  itemNoun: 'mods',
+                  itemNoun: loc.catalogItemNounMods,
                   cachedAt: _modRepoCachedAt,
                   ttl: modRepoFetcher.maxAge,
                   sizeBytes: _modRepoSize,
@@ -112,11 +112,10 @@ class _CatalogDataSourcesDialogState
               _DataSourceCard(
                 info: _DataSourceInfo(
                   title: loc.catalogQbsForumBundle,
-                  subtitle:
-                      'forum index, subforums, individual posts and stats',
+                  subtitle: loc.catalogForumIndexSubforumsPostsStats,
                   status: forumStatus,
                   itemCount: forumCount,
-                  itemNoun: 'threads',
+                  itemNoun: loc.catalogItemNounThreads,
                   cachedAt: _forumCachedAt,
                   ttl: forumDataFetcher.maxAge,
                   sizeBytes: _forumSize,
@@ -283,13 +282,13 @@ class _DataSourceCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 MovingTooltipWidget.text(
-                  message: _statusLabel(info.status),
+                  message: _statusLabel(info.status, loc),
                   child: _StatusDot(status: info.status),
                 ),
               ],
             ),
             Text(
-              _metadataSummary(),
+              _metadataSummary(loc),
               style: theme.textTheme.bodySmall?.copyWith(color: neutral),
             ),
             Row(
@@ -298,7 +297,7 @@ class _DataSourceCard extends StatelessWidget {
                 SizedBox(
                   width: 56,
                   child: Text(
-                    'Source',
+                    loc.catalogSource,
                     style: theme.textTheme.bodySmall?.copyWith(color: neutral),
                   ),
                 ),
@@ -329,7 +328,7 @@ class _DataSourceCard extends StatelessWidget {
                 SizedBox(
                   width: 56,
                   child: Text(
-                    'Path',
+                    loc.catalogDataSourcesDialogPath,
                     style: theme.textTheme.bodySmall?.copyWith(color: neutral),
                   ),
                 ),
@@ -366,8 +365,8 @@ class _DataSourceCard extends StatelessWidget {
                 Spacer(),
                 MovingTooltipWidget.text(
                   message: info.isLoading
-                      ? 'Refresh disabled while loading'
-                      : 'Fetch fresh data, bypassing the cache',
+                      ? loc.catalogRefreshDisabledWhileLoading
+                      : loc.catalogFetchFreshData,
                   child: TextButton.icon(
                     icon: const Icon(Icons.refresh, size: 18),
                     label: Text(loc.catalogRefreshNow),
@@ -377,8 +376,8 @@ class _DataSourceCard extends StatelessWidget {
                 ),
                 MovingTooltipWidget.text(
                   message: canClear
-                      ? 'Delete the cached files from disk'
-                      : 'Nothing cached to clear',
+                      ? loc.catalogDeleteCachedFiles
+                      : loc.catalogNothingCachedToClear,
                   child: TextButton.icon(
                     icon: const Icon(Icons.delete_outline, size: 18),
                     label: Text(loc.catalogClearCache),
@@ -394,20 +393,20 @@ class _DataSourceCard extends StatelessWidget {
     );
   }
 
-  String _statusLabel(_DataSourceStatus s) {
+  String _statusLabel(_DataSourceStatus s, AppLocalizations loc) {
     switch (s) {
       case _DataSourceStatus.notCached:
-        return 'Not cached';
+        return loc.catalogDataSourcesDialogNotCached;
       case _DataSourceStatus.loading:
-        return 'Loading…';
+        return loc.catalogDataSourcesDialogLoading;
       case _DataSourceStatus.loaded:
-        return 'Loaded';
+        return loc.catalogDataSourcesDialogLoaded;
       case _DataSourceStatus.error:
-        return 'Error';
+        return loc.commonError;
     }
   }
 
-  String _metadataSummary() {
+  String _metadataSummary(AppLocalizations loc) {
     final parts = <String>[];
 
     if (info.itemCount != null) {
@@ -418,11 +417,15 @@ class _DataSourceCard extends StatelessWidget {
 
     if (info.cachedAt != null) {
       parts.add(
-        'Cached ${info.cachedAt!.ageCompact()} ago '
-        '(TTL ${info.ttl.toCompactString()})',
+        loc.catalogCachedAgeAgo(
+          info.cachedAt!.ageCompact(),
+          info.ttl.toCompactString(),
+        ),
       );
     } else {
-      parts.add('Not cached (TTL ${info.ttl.toCompactString()})');
+      parts.add(
+        loc.catalogNotCachedWithTtl(info.ttl.toCompactString()),
+      );
     }
 
     if (info.sizeBytes != null) {

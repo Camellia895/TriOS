@@ -10,6 +10,7 @@ import 'package:trios/mod_manager/version_checker.dart';
 import 'package:trios/models/mod.dart';
 import 'package:trios/models/version.dart';
 import 'package:trios/models/version_checker_info.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/trios/app_state.dart';
 import 'package:trios/trios/deep_link/deep_link_confirmation_dialog.dart';
 import 'package:trios/trios/deep_link/deep_link_parser.dart';
@@ -221,13 +222,15 @@ class DeepLinkHandler extends Notifier<void> {
         // Guards (cheap; re-checked per batch).
         if (ref.read(AppState.isGameRunning).value == true) {
           Fimber.w('Deep link install blocked: game is running.');
-          _showError('Cannot install mods while Starsector is running.');
+          _showError(
+            AppLocalizationsSync.instance.deepLinkCannotInstallWhileGameRunning,
+          );
           continue;
         }
         if (ref.read(AppState.modsFolder).value == null) {
           Fimber.w('Deep link install blocked: mods folder not configured.');
           _showError(
-            'Please configure your Starsector game directory before installing mods via links.',
+            AppLocalizationsSync.instance.deepLinkConfigureGameDirectory,
           );
           continue;
         }
@@ -427,8 +430,8 @@ class DeepLinkHandler extends Notifier<void> {
           modVersion: versionInfo.modVersion?.toString() ?? entry.modVersion,
           downloadUrl: entry.url,
           alreadyInstalled: isInstalled,
-          error:
-              "The mod's version file has no download link and cannot be automatically installed.",
+          error: AppLocalizationsSync
+              .instance.deepLinkVersionFileNoDownloadLink,
         );
       }
 
@@ -442,7 +445,7 @@ class DeepLinkHandler extends Notifier<void> {
           modVersion: versionInfo.modVersion?.toString() ?? entry.modVersion,
           downloadUrl: entry.url,
           alreadyInstalled: isInstalled,
-          error: "The mod's download link isn't a valid http/https URL.",
+          error: AppLocalizationsSync.instance.deepLinkInvalidDownloadUrl,
         );
       }
 
@@ -459,7 +462,9 @@ class DeepLinkHandler extends Notifier<void> {
         modVersion: entry.modVersion,
         downloadUrl: entry.url,
         alreadyInstalled: dependencySatisfied,
-        error: "Couldn't fetch the mod's version file (HTTP ${e.statusCode}).",
+        error: AppLocalizationsSync.instance.deepLinkVersionFileFetchFailed(
+          '${e.statusCode}',
+        ),
       );
     } catch (e) {
       Fimber.w('Error fetching .version file: ${entry.url}', ex: e);
@@ -468,7 +473,7 @@ class DeepLinkHandler extends Notifier<void> {
         modVersion: entry.modVersion,
         downloadUrl: entry.url,
         alreadyInstalled: dependencySatisfied,
-        error: "Couldn't read the mod's version file.",
+        error: AppLocalizationsSync.instance.deepLinkVersionFileReadFailed,
       );
     }
   }

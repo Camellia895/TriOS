@@ -884,10 +884,11 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
   }
 
   Widget _buildFieldInfoRow(BuildContext ctx, SearchFieldMeta f) {
+    final loc = AppLocalizations.of(ctx);
     final ops = [
       'field:value',
       if (f.supportsNumeric) 'field:>value  field:<value',
-      if (f.supportsNegation) '-field:value (exclude)',
+      if (f.supportsNegation) loc.smartSearchSyntaxExclude,
     ].join('   ');
 
     return Padding(
@@ -1092,7 +1093,7 @@ class _SmartSearchBarState extends State<SmartSearchBar> {
       foregroundColor: token.negated
           ? theme.colorScheme.onErrorContainer
           : theme.colorScheme.onSurface,
-      deleteTooltip: 'Remove "$label" filter',
+      deleteTooltip: AppLocalizations.of(context).filterPillRemove(label),
       onDeleted: () => _removePill(index),
     );
     return GestureDetector(

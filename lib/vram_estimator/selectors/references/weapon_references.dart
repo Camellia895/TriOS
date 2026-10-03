@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:csv/csv.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/vram_estimator/models/vram_checker_models.dart';
 import 'package:trios/vram_estimator/selectors/path_normalizer.dart';
@@ -15,12 +16,12 @@ class WeaponReferences extends ReferenceParser {
   String get id => 'weapons';
 
   @override
-  String get displayName => 'Weapons (.wpn + .proj + weapon_data.csv)';
+  String get displayName =>
+      AppLocalizationsSync.instance.vramRefWeapons;
 
   @override
   String get description =>
-      'Sprite paths referenced by weapon JSON files, projectile JSON files, '
-      'and weapon_data.csv.';
+      AppLocalizationsSync.instance.vramRefWeaponsDesc;
 
   static const _csvReader = CsvToListConverter(
     allowInvalid: true,

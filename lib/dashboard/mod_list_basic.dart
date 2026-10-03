@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart' show StateProvider;
 import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/mod_manager/mod_manager_extensions.dart';
 import 'package:trios/mod_manager/mod_manager_logic.dart';
 import 'package:trios/mod_profiles/models/mod_profile.dart';
@@ -39,12 +40,8 @@ class ModListMini extends ConsumerStatefulWidget {
   @override
   ConsumerState createState() => _ModListMiniState();
 
-  static final modLoadOrderSettingExplanation =
-      "Starsector loads mods in order by their name."
-      "\nIt sorts with whitespace at the top, then uppercase, then lowercase ('  x', 'Z', 'a'),"
-      "\nas opposed to a more intuitive sort ('a', '  x', 'Z')."
-      "\n"
-      "\nMods loaded last will (usually) override values from mods loaded earlier.";
+  static String get modLoadOrderSettingExplanation =>
+      AppLocalizationsSync.instance.modListLoadOrderExplanation;
 }
 
 class _ModListMiniState extends ConsumerState<ModListMini>
@@ -133,7 +130,7 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Mods",
+                              loc.mod_list_basicMods,
                               style: Theme.of(
                                 context,
                               ).textTheme.titleLarge?.copyWith(fontSize: 20),
@@ -141,7 +138,10 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                             Padding(
                               padding: const EdgeInsets.only(left: 0),
                               child: Text(
-                                "${enabledModIds.length ?? 0} of ${fullModList.length} enabled",
+                                loc.mod_list_basicEnabledCount(
+                                  enabledModIds.length ?? 0,
+                                  fullModList.length,
+                                ),
                                 style: Theme.of(context).textTheme.labelMedium,
                               ),
                             ),
@@ -164,8 +164,8 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                     ),
                                   ),
                                   MovingTooltipWidget.text(
-                                    message:
-                                        "Copy mod list to clipboard\n\nRight-click to include disabled mods",
+                                    message: loc
+                                        .mod_list_basicCopyModListTooltip,
                                     child: GestureDetector(
                                       onSecondaryTap: () {
                                         // copyModListToClipboardFromMods(
@@ -294,9 +294,11 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                           children: [
                             MovingTooltipWidget.text(
                               message: switch (hideDisabled) {
-                                true => "Showing enabled mods only",
-                                false => "Showing disabled mods only",
-                                null => "Showing all mods",
+                                true => loc
+                                    .mod_list_basicShowingEnabledModsOnly,
+                                false => loc
+                                    .mod_list_basicShowingDisabledModsOnly,
+                                null => loc.mod_list_basicShowingAllMods,
                               },
                               child: TextButton.icon(
                                 style: TextButton.styleFrom(
@@ -333,9 +335,9 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                     vertical: 4,
                                   ),
                                   child: Text(switch (hideDisabled) {
-                                    true => "Enabled Only",
-                                    false => "Disabled Only",
-                                    null => "Show All",
+                                    true => loc.mod_list_basicEnabledOnly,
+                                    false => loc.mod_list_basicDisabledOnly,
+                                    null => loc.mod_list_basicShowAll,
                                   }, style: theme.textTheme.labelMedium),
                                 ),
                               ),
@@ -354,7 +356,7 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                     children: [
                                       Icon(Icons.sort, size: 20),
                                       Text(
-                                        getDisplayNameForSort(sorting),
+                                        getDisplayNameForSort(loc, sorting),
                                         style: theme.textTheme.labelMedium,
                                       ),
                                     ],
@@ -377,7 +379,12 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                           );
                                     },
                                     child: Text(
-                                      "Sort by ${getDisplayNameForSort(DashboardModListSort.loadOrder)}",
+                                      loc.mod_list_basicSortByLabel(
+                                        getDisplayNameForSort(
+                                          loc,
+                                          DashboardModListSort.loadOrder,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   PopupMenuItem(
@@ -393,7 +400,12 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                           );
                                     },
                                     child: Text(
-                                      "Sort by ${getDisplayNameForSort(DashboardModListSort.name)}",
+                                      loc.mod_list_basicSortByLabel(
+                                        getDisplayNameForSort(
+                                          loc,
+                                          DashboardModListSort.name,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   PopupMenuItem(
@@ -409,7 +421,12 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                           );
                                     },
                                     child: Text(
-                                      "Sort by ${getDisplayNameForSort(DashboardModListSort.author)}",
+                                      loc.mod_list_basicSortByLabel(
+                                        getDisplayNameForSort(
+                                          loc,
+                                          DashboardModListSort.author,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   PopupMenuItem(
@@ -425,7 +442,12 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                           );
                                     },
                                     child: Text(
-                                      "Sort by ${getDisplayNameForSort(DashboardModListSort.version)}",
+                                      loc.mod_list_basicSortByLabel(
+                                        getDisplayNameForSort(
+                                          loc,
+                                          DashboardModListSort.version,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   PopupMenuItem(
@@ -441,7 +463,12 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                           );
                                     },
                                     child: Text(
-                                      "Sort by ${getDisplayNameForSort(DashboardModListSort.vram)}",
+                                      loc.mod_list_basicSortByLabel(
+                                        getDisplayNameForSort(
+                                          loc,
+                                          DashboardModListSort.vram,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   PopupMenuItem(
@@ -458,7 +485,12 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                           );
                                     },
                                     child: Text(
-                                      "Sort by ${getDisplayNameForSort(DashboardModListSort.gameVersion)}",
+                                      loc.mod_list_basicSortByLabel(
+                                        getDisplayNameForSort(
+                                          loc,
+                                          DashboardModListSort.gameVersion,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                   PopupMenuItem(
@@ -474,7 +506,12 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                           );
                                     },
                                     child: Text(
-                                      "Sort by ${getDisplayNameForSort(DashboardModListSort.enabled)}",
+                                      loc.mod_list_basicSortByLabel(
+                                        getDisplayNameForSort(
+                                          loc,
+                                          DashboardModListSort.enabled,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -595,8 +632,15 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                           const Spacer(),
                                           MovingTooltipWidget.text(
                                             message: isGameRunning
-                                                ? "Game is running"
-                                                : "Download${modUpdatesCount > 1 ? " all" : ""} $modUpdatesCount update${modUpdatesCount == 1 ? "" : "s"}",
+                                                ? loc.launcherGameIsRunning
+                                                : modUpdatesCount > 1
+                                                ? loc.mod_list_basicDownloadAllUpdatesTooltip(
+                                                    modUpdatesCount,
+                                                  )
+                                                : loc
+                                                      .mod_list_basicDownloadUpdateTooltip(
+                                                        modUpdatesCount,
+                                                      ),
                                             child: Disable(
                                               isEnabled: !isGameRunning,
                                               child: SizedBox(
@@ -606,7 +650,7 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                                         theme.iconTheme.color,
                                                   ),
                                                   label: Text(
-                                                    "Update All",
+                                                    loc.mod_list_basicUpdateAll,
                                                     style: TextStyle(
                                                       color: theme
                                                           .textTheme
@@ -661,7 +705,7 @@ class _ModListMiniState extends ConsumerState<ModListMini>
                                       child: Row(
                                         children: [
                                           Text(
-                                            "ALL MODS",
+                                            loc.mod_list_basicAllMods,
                                             style: Theme.of(
                                               context,
                                             ).textTheme.labelMedium,
@@ -709,15 +753,18 @@ class _ModListMiniState extends ConsumerState<ModListMini>
     );
   }
 
-  String getDisplayNameForSort(DashboardModListSort sorting) {
+  String getDisplayNameForSort(
+    AppLocalizations loc,
+    DashboardModListSort sorting,
+  ) {
     return switch (sorting) {
-      DashboardModListSort.loadOrder => "Load Order",
-      DashboardModListSort.name => "Name",
-      DashboardModListSort.author => "Author",
-      DashboardModListSort.version => "Version",
-      DashboardModListSort.vram => "VRAM Impact",
-      DashboardModListSort.gameVersion => "Game Version",
-      DashboardModListSort.enabled => "Enabled",
+      DashboardModListSort.loadOrder => loc.mod_list_basicSortLoadOrder,
+      DashboardModListSort.name => loc.mod_list_basicSortName,
+      DashboardModListSort.author => loc.mod_list_basicSortAuthor,
+      DashboardModListSort.version => loc.mod_list_basicSortVersion,
+      DashboardModListSort.vram => loc.mod_list_basicSortVram,
+      DashboardModListSort.gameVersion => loc.mod_list_basicSortGameVersion,
+      DashboardModListSort.enabled => loc.mod_list_basicSortEnabled,
     };
   }
 
@@ -755,7 +802,9 @@ class _ModListMiniState extends ConsumerState<ModListMini>
           return AlertDialog(
             title: Text(loc.mod_list_basicAreYouSure),
             content: Text(
-              "Download updates for ${modsWithUpdates.whereType<Mod>().length} mods?",
+              loc.mod_list_basicDownloadUpdatesForMods(
+                modsWithUpdates.whereType<Mod>().length,
+              ),
             ),
             actions: [
               TextButton(
@@ -791,13 +840,14 @@ class ModListBasicSearch extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     return SearchAnchor(
       searchController: searchController,
       builder: (BuildContext context, SearchController controller) {
         return SearchBar(
           controller: controller,
           leading: const Icon(Icons.search),
-          hintText: "Filter...",
+          hintText: loc.mod_list_basicFilterHint,
           trailing: [
             query.isEmpty
                 ? Container()
@@ -838,6 +888,7 @@ class ChangeUpdateVisibilityEyeView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final loc = AppLocalizations.of(context);
     return IconButton(
       onPressed: () => ref
           .read(appSettings.notifier)
@@ -857,10 +908,12 @@ class ChangeUpdateVisibilityEyeView extends ConsumerWidget {
       constraints: const BoxConstraints(),
       icon: MovingTooltipWidget.text(
         message: switch (dashboardGridModUpdateVisibility) {
-          DashboardGridModUpdateVisibility.allVisible => "Showing all updates",
-          DashboardGridModUpdateVisibility.hideMuted =>
-            "Showing unmuted updates",
-          DashboardGridModUpdateVisibility.hideAll => "Updates hidden",
+          DashboardGridModUpdateVisibility.allVisible => loc
+              .mod_list_basicShowingAllUpdates,
+          DashboardGridModUpdateVisibility.hideMuted => loc
+              .mod_list_basicShowingUnmutedUpdates,
+          DashboardGridModUpdateVisibility.hideAll => loc
+              .mod_list_basicUpdatesHidden,
         },
         child: Icon(
           switch (dashboardGridModUpdateVisibility) {
@@ -896,19 +949,19 @@ class UpdatesHeader extends ConsumerWidget {
     final loc = AppLocalizations.of(context);
     return switch (dashboardGridModUpdateVisibility) {
       DashboardGridModUpdateVisibility.allVisible => Text(
-        "ALL UPDATES (${updatesToDisplay.nonNulls.length})",
+        loc.mod_list_basicAllUpdates(updatesToDisplay.nonNulls.length),
         style: Theme.of(context).textTheme.labelMedium,
       ),
       DashboardGridModUpdateVisibility.hideMuted => Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "UPDATES (${updatesToDisplay.nonNulls.length}",
+            loc.mod_list_basicUpdatesHeader(updatesToDisplay.nonNulls.length),
             style: Theme.of(context).textTheme.labelMedium,
           ),
           if (mutedModsWithUpdates.isNotEmpty) ...[
             Text(
-              " + ${mutedModsWithUpdates.nonNulls.length} ",
+              loc.mod_list_basicPlusMuted(mutedModsWithUpdates.nonNulls.length),
               style: Theme.of(context).textTheme.labelMedium,
             ),
             MovingTooltipWidget.text(
@@ -927,12 +980,16 @@ class UpdatesHeader extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "${(modsWithUpdates - mutedModsWithUpdates).nonNulls.length} hidden updates",
+            loc.mod_list_basicHiddenUpdates(
+              (modsWithUpdates - mutedModsWithUpdates).nonNulls.length,
+            ),
             style: Theme.of(context).textTheme.labelMedium,
           ),
           if (mutedModsWithUpdates.isNotEmpty) ...[
             Text(
-              " (+ ${mutedModsWithUpdates.nonNulls.length} ",
+              loc.mod_list_basicPlusMutedParens(
+                mutedModsWithUpdates.nonNulls.length,
+              ),
               style: Theme.of(context).textTheme.labelMedium,
             ),
             MovingTooltipWidget.text(
@@ -971,7 +1028,7 @@ class _SettingsPopupMenu extends ConsumerWidget {
                 s.modUpdateBehavior ==
                 ModUpdateBehavior.switchToNewVersionIfWasEnabled,
             tooltip:
-                "When checked, updating an enabled mod switches to the new version.",
+                loc.mod_list_basicSwapOnUpdateTooltip,
             label: loc.mod_list_basicSwapOnUpdate,
             onChanged: (consumerRef, newValue) {
               consumerRef
@@ -990,7 +1047,7 @@ class _SettingsPopupMenu extends ConsumerWidget {
             ref: ref,
             isCheckedSelector: (s) => s.dashboardModListColorful,
             tooltip:
-                "Color mod list rows using each mod's icon palette.",
+                loc.mod_list_basicColorModListRowsTooltip,
             label: loc.mod_list_basicColorful,
             onChanged: (consumerRef, newValue) {
               consumerRef

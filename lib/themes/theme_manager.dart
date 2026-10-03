@@ -16,6 +16,7 @@ import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/utils/extensions.dart';
 
 import '../utils/logging.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 
 part 'theme_manager.mapper.dart';
 
@@ -456,7 +457,7 @@ extension PaletteGeneratorExt on PaletteGenerator? {
 
     return TriOSTheme(
       id: 'palette',
-      displayName: 'Palette',
+      displayName: AppLocalizationsSync.instance.themePalette,
       isDark: true,
       primary: primary,
       secondary: secondary,
