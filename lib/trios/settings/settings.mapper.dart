@@ -936,6 +936,12 @@ class SettingsMapper extends ClassMapperBase<Settings> {
         opt: true,
         def: false,
       );
+  static String? _$locale(Settings v) => v.locale;
+  static const Field<Settings, String> _f$locale = Field(
+    'locale',
+    _$locale,
+    opt: true,
+  );
   static bool? _$hasHiddenForumDarkModeTip(Settings v) =>
       v.hasHiddenForumDarkModeTip;
   static const Field<Settings, bool> _f$hasHiddenForumDarkModeTip = Field(
@@ -1302,6 +1308,7 @@ class SettingsMapper extends ClassMapperBase<Settings> {
     #windowScaleFactor: _f$windowScaleFactor,
     #enableAccessibilitySemanticsOnLinux:
         _f$enableAccessibilitySemanticsOnLinux,
+    #locale: _f$locale,
     #hasHiddenForumDarkModeTip: _f$hasHiddenForumDarkModeTip,
     #enableAiFeatures: _f$enableAiFeatures,
     #onlyEnabledMods: _f$onlyEnabledMods,
@@ -1426,6 +1433,7 @@ class SettingsMapper extends ClassMapperBase<Settings> {
       enableAccessibilitySemanticsOnLinux: data.dec(
         _f$enableAccessibilitySemanticsOnLinux,
       ),
+      locale: data.dec(_f$locale),
       hasHiddenForumDarkModeTip: data.dec(_f$hasHiddenForumDarkModeTip),
       enableAiFeatures: data.dec(_f$enableAiFeatures),
       onlyEnabledMods: data.dec(_f$onlyEnabledMods),
@@ -1689,6 +1697,7 @@ abstract class SettingsCopyWith<$R, $In extends Settings, $Out>
     CompressionLib? compressionLib,
     double? windowScaleFactor,
     bool? enableAccessibilitySemanticsOnLinux,
+    String? locale,
     bool? hasHiddenForumDarkModeTip,
     bool? enableAiFeatures,
     bool? onlyEnabledMods,
@@ -1993,6 +2002,7 @@ class _SettingsCopyWithImpl<$R, $Out>
     CompressionLib? compressionLib,
     double? windowScaleFactor,
     bool? enableAccessibilitySemanticsOnLinux,
+    Object? locale = $none,
     Object? hasHiddenForumDarkModeTip = $none,
     bool? enableAiFeatures,
     bool? onlyEnabledMods,
@@ -2130,6 +2140,7 @@ class _SettingsCopyWithImpl<$R, $Out>
       if (enableAccessibilitySemanticsOnLinux != null)
         #enableAccessibilitySemanticsOnLinux:
             enableAccessibilitySemanticsOnLinux,
+      if (locale != $none) #locale: locale,
       if (hasHiddenForumDarkModeTip != $none)
         #hasHiddenForumDarkModeTip: hasHiddenForumDarkModeTip,
       if (enableAiFeatures != null) #enableAiFeatures: enableAiFeatures,
@@ -2386,6 +2397,7 @@ class _SettingsCopyWithImpl<$R, $Out>
       #enableAccessibilitySemanticsOnLinux,
       or: $value.enableAccessibilitySemanticsOnLinux,
     ),
+    locale: data.get(#locale, or: $value.locale),
     hasHiddenForumDarkModeTip: data.get(
       #hasHiddenForumDarkModeTip,
       or: $value.hasHiddenForumDarkModeTip,

@@ -19,6 +19,8 @@ import 'package:screen_retriever/screen_retriever.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:toastification/toastification.dart';
 import 'package:trios/chipper/utils.dart';
+import 'package:trios/l10n/generated/app_localizations.dart';
+import 'package:trios/l10n/trios_localizations.dart';
 import 'package:trios/onboarding/onboarding_page.dart';
 import 'package:trios/trios/constants.dart';
 import 'package:trios/trios/deep_link/deep_link_handler.dart';
@@ -630,8 +632,18 @@ class TriOSAppState extends ConsumerState<TriOSApp> with WindowListener {
       return const SizedBox();
     }
 
+    // Null = follow the system locale (already set as Intl.defaultLocale in main()).
+    final locale = ref.watch(appLocaleProvider);
+    if (locale != null) {
+      // Date formatting throughout the app reads Intl.getCurrentLocale().
+      Intl.defaultLocale = locale.toLanguageTag();
+    }
+
     return MaterialApp(
       navigatorKey: rootNavigatorKey,
+      locale: locale,
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [SyncAppLocalizationsDelegate()],
       title:
           "${context.appNameWithModifiers(ref.watch(appSettings.select((s) => s.themeModifiers)))}v${Constants.version}",
       theme: currentTheme.themeData,

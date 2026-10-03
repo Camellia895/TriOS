@@ -223,6 +223,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     const SizedBox(height: 8),
                     const _FontDropdownRow(),
                     const SizedBox(height: 8),
+                    const _LanguageDropdownRow(),
+                    const SizedBox(height: 8),
                     const _ThemeModifiersSection(),
                     const SizedBox(height: 16),
                     Builder(
@@ -1630,6 +1632,43 @@ class _FontDropdownRow extends ConsumerWidget {
                   ),
                 ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LanguageDropdownRow extends ConsumerWidget {
+  const _LanguageDropdownRow();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selected = ref.watch(appSettings.select((s) => s.locale));
+
+    return MovingTooltipWidget.text(
+      message:
+          "The language the interface is shown in."
+          "\nSystem follows your operating system's language.",
+      child: Row(
+        spacing: 8,
+        children: [
+          const Text("Language"),
+          IntrinsicWidth(
+            child: TriOSDropdownButton<String?>(
+              value: selected,
+              items: const [
+                DropdownMenuItem(value: null, child: Text("System")),
+                DropdownMenuItem(value: "en", child: Text("English")),
+                DropdownMenuItem(value: "zh", child: Text("简体中文")),
+              ],
+              onChanged: (value) {
+                ref
+                    .read(appSettings.notifier)
+                    .update((state) => state.copyWith(locale: value));
+              },
+              isDense: true,
+            ),
           ),
         ],
       ),

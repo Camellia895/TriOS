@@ -152,6 +152,10 @@ class Settings with SettingsMappable {
   final double windowScaleFactor;
   final bool enableAccessibilitySemanticsOnLinux;
 
+  /// UI language as a BCP-47 language code ("en", "zh", …).
+  /// Null = follow the system locale.
+  final String? locale;
+
   final bool? hasHiddenForumDarkModeTip;
 
   /// Master switch for all AI features. When false, TriOS shows no AI-written
@@ -337,6 +341,7 @@ class Settings with SettingsMappable {
     this.compressionLib = CompressionLib.sevenZip,
     this.windowScaleFactor = 1.0,
     this.enableAccessibilitySemanticsOnLinux = false,
+    this.locale,
     this.hasHiddenForumDarkModeTip,
     this.enableAiFeatures = true,
     this.onlyEnabledMods = false,
