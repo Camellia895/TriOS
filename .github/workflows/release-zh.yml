@@ -1,0 +1,85 @@
+name: Release zh (Windows)
+
+# 推送 zh-* 标签时自动构建 Windows 汉化包并发布 Release。
+# 例：git tag zh-v1.7.1-preview05.2 && git push origin zh-v1.7.1-preview05.2
+on:
+  push:
+    tags:
+      - 'zh-*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          architecture: x64
+          cache: true
+
+      - run: flutter --version
+      - run: flutter pub get
+
+      - name: Run tests
+        run: flutter test --exclude-tags local-only
+
+  build-windows-zh:
+    needs: test
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    env:
+      windows_build_output_path: "build/windows/x64/runner/Release/*"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Remove Non-Windows Files
+        run: |
+          echo "Deleting files in non-Windows asset directories..."
+          Get-Childitem assets/linux -File -Recurse -ErrorAction SilentlyContinue | Foreach-Object {Write-Output "Deleting: $_.FullName"; Remove-Item $_.FullName -Force}
+          Get-Childitem assets/macos -File -Recurse -ErrorAction SilentlyContinue | Foreach-Object {Write-Output "Deleting: $_.FullName"; Remove-Item $_.FullName -Force}
+          echo "Non-Windows asset files deleted."
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: pubspec.yaml
+          architecture: x64
+          cache: true
+
+      - run: flutter --version
+      - run: flutter clean
+      - run: flutter config --enable-windows-desktop
+
+      # 与上游一致：固定 VC 2019 工具集，避免 WebView 在 Windows 10 上崩溃
+      - name: Set up Visual Studio 2019
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+          toolset: 14.29
+          vcvars_ver: 14.29
+
+      - name: Build Windows
+        run: |
+          echo "Building Windows app..."
+          flutter build windows
+          echo "Build complete."
+
+      - name: Zip TriOS Directory
+        run: |
+          echo "Preparing directory for Windows artifact..."
+          mkdir TriOS
+          Get-ChildItem ${{ env.windows_build_output_path }} | Move-Item -Destination TriOS/
+          Compress-Archive -Path TriOS -DestinationPath TriOS-Windows-zh.zip
+          echo "Zip complete:"
+          dir
+
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: TriOS 简体中文版 ${{ github.ref_name }}
+          files: TriOS-Windows-zh.zip
+          generate_release_notes: true
+          fail_on_unmatched_files: true
