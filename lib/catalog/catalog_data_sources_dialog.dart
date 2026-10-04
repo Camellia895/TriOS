@@ -6,13 +6,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show ProviderOrFamily;
 import 'package:open_filex/open_filex.dart';
 import 'package:trios/l10n/generated/app_localizations.dart';
-import 'package:trios/catalog/forum_data_manager.dart';
 import 'package:trios/catalog/catalog_manager.dart';
+import 'package:trios/catalog/models/catalog_data_source.dart';
+import 'package:trios/catalog/forum_data_manager.dart';
 import 'package:trios/trios/constants.dart';
+import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/utils/cached_json_fetcher.dart';
 import 'package:trios/utils/extensions.dart';
 import 'package:trios/utils/logging.dart';
 import 'package:trios/utils/relative_timestamp.dart';
+import 'package:trios/widgets/mode_switcher.dart';
 import 'package:trios/widgets/moving_tooltip.dart';
 
 /// Opens the Catalog Data Sources dialog.
@@ -39,6 +42,8 @@ class _CatalogDataSourcesDialogState
   // after refresh/clear so we don't hit disk on every rebuild.
   DateTime? _modRepoCachedAt;
   int? _modRepoSize;
+  DateTime? _fossicCachedAt;
+  int? _fossicSize;
   DateTime? _forumCachedAt;
   int? _forumSize;
 
@@ -51,6 +56,8 @@ class _CatalogDataSourcesDialogState
   void _readSnapshots() {
     _modRepoCachedAt = modRepoFetcher.getCacheTimestamp();
     _modRepoSize = _fileSize(modRepoFetcher.cacheFilePath);
+    _fossicCachedAt = fossicModsFetcher.getCacheTimestamp();
+    _fossicSize = _fileSize(fossicModsFetcher.cacheFilePath);
     _forumCachedAt = forumDataFetcher.getCacheTimestamp();
     _forumSize = _fileSize(forumDataFetcher.cacheFilePath);
   }
@@ -62,16 +69,25 @@ class _CatalogDataSourcesDialogState
     final cacheDir = Constants.cacheDirPath;
 
     // --- Wisp's Mod Repo state ---
-    final modRepoAsync = ref.watch(browseModsNotifierProvider);
-    final isLoadingMod = ref.watch(isLoadingCatalog);
+    final modRepoAsync = ref.watch(wispCatalogDataProvider);
+    final isLoadingMod = modRepoAsync.isLoading;
     final modRepoStatus = _statusFor(modRepoAsync, _modRepoCachedAt);
     final modRepoCount = modRepoAsync.value?.items.length;
 
+    // --- Fossic mod index state ---
+    final fossicAsync = ref.watch(fossicCatalogDataProvider);
+    final isLoadingFossic = fossicAsync.isLoading;
+    final fossicStatus = _statusFor(fossicAsync, _fossicCachedAt);
+    final fossicCount = fossicAsync.value?.repoFile.items.length;
+
     // --- QB's Forum Bundle state ---
     final forumAsync = ref.watch(forumDataProvider);
-    final isLoadingForum = ref.watch(isLoadingForumData);
     final forumStatus = _statusFor(forumAsync, _forumCachedAt);
     final forumCount = forumAsync.value?.index.length;
+
+    final selectedSource = ref.watch(
+      appSettings.select((s) => s.catalogDataSource),
+    );
 
     return AlertDialog(
       title: Text(loc.catalogDataSourcesTitle),
@@ -83,6 +99,23 @@ class _CatalogDataSourcesDialogState
             crossAxisAlignment: CrossAxisAlignment.stretch,
             spacing: 8.0,
             children: [
+              Row(
+                spacing: 8.0,
+                children: [
+                  Text(loc.catalogDataSource, style: theme.textTheme.titleSmall),
+                  const Spacer(),
+                  ModeSwitcher<CatalogDataSourceSetting>(
+                    selected: selectedSource,
+                    modes: {
+                      CatalogDataSourceSetting.auto: loc.catalogDataSourceAuto,
+                      CatalogDataSourceSetting.wisp: loc.catalogDataSourceWisp,
+                      CatalogDataSourceSetting.fossic:
+                          loc.catalogDataSourceFossic,
+                    },
+                    onChanged: (source) => _setDataSource(source),
+                  ),
+                ],
+              ),
               _DataSourceCard(
                 info: _DataSourceInfo(
                   title: loc.catalogWispsModRepo,
@@ -102,11 +135,39 @@ class _CatalogDataSourcesDialogState
                 ),
                 onRefresh: () => _refresh(
                   fetcher: modRepoFetcher,
-                  provider: browseModsNotifierProvider,
+                  provider: wispCatalogDataProvider,
+                  alsoInvalidate: [browseModsNotifierProvider],
                 ),
                 onClear: () => _clear(
                   fetcher: modRepoFetcher,
-                  provider: browseModsNotifierProvider,
+                  provider: wispCatalogDataProvider,
+                  alsoInvalidate: [browseModsNotifierProvider],
+                ),
+              ),
+              _DataSourceCard(
+                info: _DataSourceInfo(
+                  title: loc.catalogFossicModRepo,
+                  subtitle: loc.catalogFossicModRepoSubtitle,
+                  status: fossicStatus,
+                  itemCount: fossicCount,
+                  itemNoun: loc.catalogItemNounMods,
+                  cachedAt: _fossicCachedAt,
+                  ttl: fossicModsFetcher.maxAge,
+                  sizeBytes: _fossicSize,
+                  sourceUrl: fossicModsFetcher.url,
+                  localPath: fossicModsFetcher.cacheFilePath,
+                  isLoading: isLoadingFossic,
+                  website: Uri.parse("https://www.fossic.org"),
+                ),
+                onRefresh: () => _refresh(
+                  fetcher: fossicModsFetcher,
+                  provider: fossicCatalogDataProvider,
+                  alsoInvalidate: [browseModsNotifierProvider],
+                ),
+                onClear: () => _clear(
+                  fetcher: fossicModsFetcher,
+                  provider: fossicCatalogDataProvider,
+                  alsoInvalidate: [browseModsNotifierProvider],
                 ),
               ),
               _DataSourceCard(
@@ -121,7 +182,7 @@ class _CatalogDataSourcesDialogState
                   sizeBytes: _forumSize,
                   sourceUrl: forumDataFetcher.url,
                   localPath: forumDataFetcher.cacheFilePath,
-                  isLoading: isLoadingForum,
+                  isLoading: forumAsync.isLoading,
                   website: Uri.parse(
                     "https://github.com/theRoastSuckling/QBForumModData",
                   ),
@@ -161,9 +222,20 @@ class _CatalogDataSourcesDialogState
     );
   }
 
+  void _setDataSource(CatalogDataSourceSetting source) {
+    try {
+      ref
+          .read(appSettings.notifier)
+          .update((curr) => curr.copyWith(catalogDataSource: source));
+    } catch (e, st) {
+      Fimber.w('Failed to save catalog data source', ex: e, stacktrace: st);
+    }
+  }
+
   Future<void> _refresh({
     required CachedJsonFetcher fetcher,
     required ProviderOrFamily provider,
+    List<ProviderOrFamily> alsoInvalidate = const [],
   }) async {
     try {
       await fetcher.fetch(bypassCache: true);
@@ -175,15 +247,22 @@ class _CatalogDataSourcesDialogState
       );
     }
     ref.invalidate(provider);
+    for (final extra in alsoInvalidate) {
+      ref.invalidate(extra);
+    }
     if (mounted) setState(_readSnapshots);
   }
 
   void _clear({
     required CachedJsonFetcher fetcher,
     required ProviderOrFamily provider,
+    List<ProviderOrFamily> alsoInvalidate = const [],
   }) {
     fetcher.clearCache();
     ref.invalidate(provider);
+    for (final extra in alsoInvalidate) {
+      ref.invalidate(extra);
+    }
     setState(_readSnapshots);
   }
 

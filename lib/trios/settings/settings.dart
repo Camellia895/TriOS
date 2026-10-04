@@ -5,6 +5,7 @@ import 'package:trios/catalog/catalog_page_controller.dart';
 import 'package:trios/faction_viewer/faction_viewer_controller.dart';
 import 'package:trios/catalog/models/ai_summary_mode.dart';
 import 'package:trios/catalog/models/catalog_card_click_action.dart';
+import 'package:trios/catalog/models/catalog_data_source.dart';
 import 'package:trios/mod_manager/homebrew_grid/wisp_grid_state.dart';
 import 'package:trios/models/launch_settings.dart';
 import 'package:trios/hullmod_viewer/hullmods_page_controller.dart';
@@ -175,6 +176,11 @@ class Settings with SettingsMappable {
   // Catalog page — collapsible browser panel and card-click action
   final bool catalogBrowserPanelOpen;
   final double? catalogBrowserPanelWidth;
+
+  /// Which mod index the Catalog browses. Auto follows the UI language:
+  /// Chinese users get the Fossic forum's index, everyone else the English
+  /// forum's.
+  final CatalogDataSourceSetting catalogDataSource;
   @Deprecated(
     'Catalog cards now always open the details dialog; this setting is no '
     'longer read. Kept to avoid a settings migration; remove in a later cleanup.',
@@ -346,6 +352,7 @@ class Settings with SettingsMappable {
     this.enableAiFeatures = true,
     this.onlyEnabledMods = false,
     this.catalogBrowserPanelOpen = false,
+    this.catalogDataSource = CatalogDataSourceSetting.auto,
     this.catalogBrowserPanelWidth,
     this.catalogCardClickAction = CatalogCardClickAction.forumDialog,
     this.catalogAiSummaryMode = AiSummaryMode.whenNoAuthorText,

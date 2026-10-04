@@ -278,6 +278,30 @@ abstract class AppLocalizations {
   /// **'Catalog Data Sources'**
   String get catalogDataSourcesTitle;
 
+  /// No description provided for @catalogDataSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Catalog data source'**
+  String get catalogDataSource;
+
+  /// No description provided for @catalogDataSourceAuto.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic (follow language)'**
+  String get catalogDataSourceAuto;
+
+  /// No description provided for @catalogDataSourceFossic.
+  ///
+  /// In en, this message translates to:
+  /// **'Fossic forum (Chinese)'**
+  String get catalogDataSourceFossic;
+
+  /// No description provided for @catalogDataSourceWisp.
+  ///
+  /// In en, this message translates to:
+  /// **'Starsector forum (English)'**
+  String get catalogDataSourceWisp;
+
   /// No description provided for @catalogDebugInfo.
   ///
   /// In en, this message translates to:
@@ -355,6 +379,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'forum index, subforums, and discord'**
   String get catalogForumIndexSubforumsAndDiscord;
+
+  /// No description provided for @catalogFossicModRepo.
+  ///
+  /// In en, this message translates to:
+  /// **'Fossic Mod Index'**
+  String get catalogFossicModRepo;
+
+  /// No description provided for @catalogFossicModRepoSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'fossic.org mod index — original, translated, and reposted mods, with forum attachment downloads'**
+  String get catalogFossicModRepoSubtitle;
 
   /// No description provided for @catalogFullChangelog.
   ///

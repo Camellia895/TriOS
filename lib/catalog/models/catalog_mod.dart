@@ -1,7 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trios/catalog/catalog_links.dart';
+import 'package:trios/catalog/catalog_manager.dart';
 import 'package:trios/catalog/forum_data_manager.dart';
+import 'package:trios/catalog/models/fossic_mod.dart';
 import 'package:trios/catalog/models/mod_image_source.dart';
 import 'package:trios/catalog/models/mod_repo_entry.dart';
 import 'package:trios/catalog/models/forum_llm_data.dart';
@@ -333,12 +335,18 @@ CatalogMod gatherCatalogMod({
 final catalogModsProvider = Provider<List<CatalogMod>>((ref) {
   final entries = ref.watch(modRepoEntriesProvider);
   final forumLookup = ref.watch(forumDataByTopicId);
+  final fossicLookup = ref.watch(fossicForumIndexByTid);
   final links = ref.watch(catalogLinksProvider);
 
   final sw = Stopwatch()..start();
   final result = entries.map((entry) {
-    final topicId = extractForumTopicId(entry.urls?[ModUrlType.Forum]);
-    final forumIndex = topicId != null ? forumLookup[topicId] : null;
+    // The two forums' thread ids are different id spaces — a fossic entry
+    // must only ever be looked up in the fossic map.
+    final fossicTid = fossicThreadIdFromUrl(entry.urls?[ModUrlType.Forum]);
+    final topicId = fossicTid ?? extractForumTopicId(entry.urls?[ModUrlType.Forum]);
+    final forumIndex = topicId != null
+        ? (fossicTid != null ? fossicLookup[topicId] : forumLookup[topicId])
+        : null;
     final installedMod = links.modForEntry(entry);
     return gatherCatalogMod(
       mod: entry,

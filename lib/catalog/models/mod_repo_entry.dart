@@ -43,11 +43,27 @@ class ModRepoEntry with ModRepoEntryMappable {
   final String? modVersion;
   @MappableField(hook: GameVersionHook())
   final String? gameVersionReq;
+
+  /// Every game version the mod ships for. The English catalog data folds
+  /// this into [gameVersionReq]; fossic lists them properly, and the Game
+  /// Version filter matches against all of them. Null when unknown.
+  final List<String>? gameVersions;
+
+  /// The mod's Starsector id (the `id` in mod_info.json), when the source
+  /// knows it. A far stronger match against installed mods than the display
+  /// name — fossic entries are named in Chinese, installed mods aren't.
+  final String? modId;
   final List<String>? authorsList;
   final Map<ModUrlType, String>? urls;
   final List<ModSource>? sources;
   final List<String>? categories;
   final Map<String, ModRepoImage>? images;
+
+  /// Per-game-version download links, newest game version first. The English
+  /// catalog has at most one direct link ([ModUrlType.DirectDownload]); fossic
+  /// serves one attachment per game version, and the download button offers
+  /// each. Null when the source has no such list.
+  final List<ModRepoDownload>? downloadReleases;
   final DateTime? dateTimeCreated;
   final DateTime? dateTimeEdited;
 
@@ -63,11 +79,14 @@ class ModRepoEntry with ModRepoEntryMappable {
     this.description,
     this.modVersion,
     this.gameVersionReq,
+    this.gameVersions,
+    this.modId,
     this.authorsList,
     this.urls,
     this.sources,
     this.categories,
     this.images,
+    this.downloadReleases,
     this.dateTimeCreated,
     this.dateTimeEdited,
     this.partOfThreadTitle,
@@ -113,6 +132,39 @@ enum ModSource { Index, ModdingSubforum, Discord, NexusMods }
 
 @MappableEnum()
 enum ModUrlType { Forum, Discord, NexusMods, DirectDownload, DownloadPage }
+
+/// One downloadable file for a catalog entry — a forum attachment with its
+/// own game version and file name. Built by the fossic source at runtime;
+/// the English catalog data has no equivalent.
+@MappableClass()
+class ModRepoDownload with ModRepoDownloadMappable {
+  final String url;
+
+  /// The forum's own label for the file, e.g. "AEF-0.98". Null when only the
+  /// file name is known.
+  final String? label;
+
+  /// Archive file name, e.g. "avali_explorer_v0.6.9s2 GameVer0.98a-RC8.rar".
+  final String? fileName;
+
+  /// Game version this file is built for, e.g. "0.98".
+  final String? gameVersion;
+  final String? modVersion;
+  final int? fileSizeBytes;
+  final int? downloadCount;
+  final DateTime? uploadedAt;
+
+  ModRepoDownload({
+    required this.url,
+    this.label,
+    this.fileName,
+    this.gameVersion,
+    this.modVersion,
+    this.fileSizeBytes,
+    this.downloadCount,
+    this.uploadedAt,
+  });
+}
 
 @MappableClass()
 class ModRepoImage with ModRepoImageMappable {

@@ -400,6 +400,7 @@ class SettingsMapper extends ClassMapperBase<Settings> {
       ModUpdateBehaviorMapper.ensureInitialized();
       DashboardModListSortMapper.ensureInitialized();
       CompressionLibMapper.ensureInitialized();
+      CatalogDataSourceSettingMapper.ensureInitialized();
       CatalogCardClickActionMapper.ensureInitialized();
       AiSummaryModeMapper.ensureInitialized();
       CatalogPageStatePersistedMapper.ensureInitialized();
@@ -971,6 +972,15 @@ class SettingsMapper extends ClassMapperBase<Settings> {
     opt: true,
     def: false,
   );
+  static CatalogDataSourceSetting _$catalogDataSource(Settings v) =>
+      v.catalogDataSource;
+  static const Field<Settings, CatalogDataSourceSetting> _f$catalogDataSource =
+      Field(
+        'catalogDataSource',
+        _$catalogDataSource,
+        opt: true,
+        def: CatalogDataSourceSetting.auto,
+      );
   static double? _$catalogBrowserPanelWidth(Settings v) =>
       v.catalogBrowserPanelWidth;
   static const Field<Settings, double> _f$catalogBrowserPanelWidth = Field(
@@ -1313,6 +1323,7 @@ class SettingsMapper extends ClassMapperBase<Settings> {
     #enableAiFeatures: _f$enableAiFeatures,
     #onlyEnabledMods: _f$onlyEnabledMods,
     #catalogBrowserPanelOpen: _f$catalogBrowserPanelOpen,
+    #catalogDataSource: _f$catalogDataSource,
     #catalogBrowserPanelWidth: _f$catalogBrowserPanelWidth,
     #catalogCardClickAction: _f$catalogCardClickAction,
     #catalogAiSummaryMode: _f$catalogAiSummaryMode,
@@ -1438,6 +1449,7 @@ class SettingsMapper extends ClassMapperBase<Settings> {
       enableAiFeatures: data.dec(_f$enableAiFeatures),
       onlyEnabledMods: data.dec(_f$onlyEnabledMods),
       catalogBrowserPanelOpen: data.dec(_f$catalogBrowserPanelOpen),
+      catalogDataSource: data.dec(_f$catalogDataSource),
       catalogBrowserPanelWidth: data.dec(_f$catalogBrowserPanelWidth),
       catalogCardClickAction: data.dec(_f$catalogCardClickAction),
       catalogAiSummaryMode: data.dec(_f$catalogAiSummaryMode),
@@ -1702,6 +1714,7 @@ abstract class SettingsCopyWith<$R, $In extends Settings, $Out>
     bool? enableAiFeatures,
     bool? onlyEnabledMods,
     bool? catalogBrowserPanelOpen,
+    CatalogDataSourceSetting? catalogDataSource,
     double? catalogBrowserPanelWidth,
     CatalogCardClickAction? catalogCardClickAction,
     AiSummaryMode? catalogAiSummaryMode,
@@ -2007,6 +2020,7 @@ class _SettingsCopyWithImpl<$R, $Out>
     bool? enableAiFeatures,
     bool? onlyEnabledMods,
     bool? catalogBrowserPanelOpen,
+    CatalogDataSourceSetting? catalogDataSource,
     Object? catalogBrowserPanelWidth = $none,
     CatalogCardClickAction? catalogCardClickAction,
     AiSummaryMode? catalogAiSummaryMode,
@@ -2147,6 +2161,7 @@ class _SettingsCopyWithImpl<$R, $Out>
       if (onlyEnabledMods != null) #onlyEnabledMods: onlyEnabledMods,
       if (catalogBrowserPanelOpen != null)
         #catalogBrowserPanelOpen: catalogBrowserPanelOpen,
+      if (catalogDataSource != null) #catalogDataSource: catalogDataSource,
       if (catalogBrowserPanelWidth != $none)
         #catalogBrowserPanelWidth: catalogBrowserPanelWidth,
       if (catalogCardClickAction != null)
@@ -2407,6 +2422,10 @@ class _SettingsCopyWithImpl<$R, $Out>
     catalogBrowserPanelOpen: data.get(
       #catalogBrowserPanelOpen,
       or: $value.catalogBrowserPanelOpen,
+    ),
+    catalogDataSource: data.get(
+      #catalogDataSource,
+      or: $value.catalogDataSource,
     ),
     catalogBrowserPanelWidth: data.get(
       #catalogBrowserPanelWidth,

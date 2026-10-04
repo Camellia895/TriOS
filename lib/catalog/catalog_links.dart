@@ -29,7 +29,14 @@ String catalogEntryKey(String name) => name.toLowerCase().trim();
 
 /// Which clue produced a match. Recording it costs nothing and helps with
 /// debugging and any future screen that wants to show how sure a match is.
-enum CatalogLinkSignal { persistedRecord, threadId, nexusId, exactName, fuzzyName }
+enum CatalogLinkSignal {
+  persistedRecord,
+  modId,
+  threadId,
+  nexusId,
+  exactName,
+  fuzzyName,
+}
 
 /// A resolved link between a catalog entry and an installed mod.
 class CatalogLink {
@@ -103,6 +110,17 @@ List<CatalogLink> matchCatalogToInstalled({
     if (persistedId != null) {
       mod = byModId[persistedId];
       signal = CatalogLinkSignal.persistedRecord;
+    }
+
+    // The entry's Starsector mod id — the strongest clue, and the only
+    // reliable one for sources that name mods in another language (fossic's
+    // Chinese names never match an installed mod's English name).
+    if (mod == null && !entry.isPartOfThread) {
+      final entryModId = entry.modId;
+      if (entryModId != null && byModId.containsKey(entryModId)) {
+        mod = byModId[entryModId];
+        signal = CatalogLinkSignal.modId;
+      }
     }
 
     // An add-on entry shares the parent thread's forum URL, so matching it by

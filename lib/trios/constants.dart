@@ -104,6 +104,21 @@ class Constants {
   static const String forumDataBundleUrl =
       "https://raw.githubusercontent.com/wispborne/StarsectorModRepo/refs/heads/main/forum-data-bundle.json";
 
+  /// Fossic (fossic.org) — the Chinese Starsector community's mod index API.
+  /// Documents: https://api.fossic.org/docs#/
+  static const fossicApiBaseUrl = "https://api.fossic.org";
+  static const String fossicModsUrl = "$fossicApiBaseUrl/mods?include_modding=true";
+  static const String fossicModCategoriesUrl = "$fossicApiBaseUrl/meta/mod_categories";
+  static const String fossicModLanguagesUrl = "$fossicApiBaseUrl/meta/mod_languages";
+
+  /// A fossic forum thread page, e.g. forum.php?mod=viewthread&tid=18653.
+  static String fossicThreadUrl(int tid) =>
+      "https://www.fossic.org/forum.php?mod=viewthread&tid=$tid";
+
+  /// User-Agent sent with TriOS's own requests. Server operators (notably the
+  /// Fossic forum) use it to tell mod-manager traffic apart from browsers.
+  static final String userAgent = "$appName/$version";
+
   // "https://raw.githubusercontent.com/theRoastSuckling/QBForumModData/refs/heads/main/forum-data-bundle.json";
   static const String patreonUrl = "https://www.patreon.com/wispborne";
   static const String kofiUrl = "https://ko-fi.com/wispborne";

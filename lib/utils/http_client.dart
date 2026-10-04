@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trios/trios/constants.dart';
 import 'package:trios/trios/settings/app_settings_logic.dart';
 import 'package:trios/utils/logging.dart';
 
@@ -151,6 +152,18 @@ class TriOSHttpClient {
   }) async {
     final request = await requestFactory();
     _logRequest(request);
+
+    // Identify the app (server operators, notably the Fossic forum, use this
+    // to tell mod-manager traffic apart from browsers) unless the caller set
+    // its own User-Agent.
+    final hasCustomUserAgent =
+        headers?.keys.any(
+          (h) => h.toLowerCase() == HttpHeaders.userAgentHeader,
+        ) ??
+        false;
+    if (!hasCustomUserAgent) {
+      request.headers.set(HttpHeaders.userAgentHeader, Constants.userAgent);
+    }
 
     // Set default headers and any additional custom headers
     config.defaultHeaders.forEach(request.headers.set);

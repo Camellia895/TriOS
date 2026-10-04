@@ -143,6 +143,45 @@ void main() {
       expect(links.single.signal, CatalogLinkSignal.fuzzyName);
     });
 
+    test('mod id links a fossic entry to an installed mod with another name', () {
+      // fossic names mods in Chinese; the installed mod keeps its English
+      // name. Only the Starsector mod id can pair them.
+      final entry = ModRepoEntry(
+        name: 'AEF-阿瓦隆远征队',
+        modId: 'AEF',
+        urls: {
+          ModUrlType.Forum:
+              'https://www.fossic.org/forum.php?mod=viewthread&tid=18653',
+        },
+      );
+      final links = matchCatalogToInstalled(
+        entries: [entry],
+        installedMods: [_mod('AEF', name: 'Avali Explorer Fleet')],
+        records: null,
+      );
+      expect(links.single.mod.id, 'AEF');
+      expect(links.single.signal, CatalogLinkSignal.modId);
+    });
+
+    test('a fossic thread id never matches an English forum thread id', () {
+      // The two forums' ids are different id spaces; tid 123 on fossic must
+      // not link to English topic 123.
+      final entry = ModRepoEntry(
+        name: '某个汉化Mod',
+        modId: 'some_other_mod',
+        urls: {
+          ModUrlType.Forum:
+              'https://www.fossic.org/forum.php?mod=viewthread&tid=123',
+        },
+      );
+      final links = matchCatalogToInstalled(
+        entries: [entry],
+        installedMods: [_mod('parent', name: 'Parent Mod', threadId: '123')],
+        records: null,
+      );
+      expect(links, isEmpty);
+    });
+
     test('forum thread id links the parent entry', () {
       final links = matchCatalogToInstalled(
         entries: [

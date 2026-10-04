@@ -277,6 +277,7 @@ class ModRepoEntryMapper extends ClassMapperBase<ModRepoEntry> {
       ModUrlTypeMapper.ensureInitialized();
       ModSourceMapper.ensureInitialized();
       ModRepoImageMapper.ensureInitialized();
+      ModRepoDownloadMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -311,6 +312,18 @@ class ModRepoEntryMapper extends ClassMapperBase<ModRepoEntry> {
     opt: true,
     hook: GameVersionHook(),
   );
+  static List<String>? _$gameVersions(ModRepoEntry v) => v.gameVersions;
+  static const Field<ModRepoEntry, List<String>> _f$gameVersions = Field(
+    'gameVersions',
+    _$gameVersions,
+    opt: true,
+  );
+  static String? _$modId(ModRepoEntry v) => v.modId;
+  static const Field<ModRepoEntry, String> _f$modId = Field(
+    'modId',
+    _$modId,
+    opt: true,
+  );
   static List<String>? _$authorsList(ModRepoEntry v) => v.authorsList;
   static const Field<ModRepoEntry, List<String>> _f$authorsList = Field(
     'authorsList',
@@ -341,6 +354,10 @@ class ModRepoEntryMapper extends ClassMapperBase<ModRepoEntry> {
     _$images,
     opt: true,
   );
+  static List<ModRepoDownload>? _$downloadReleases(ModRepoEntry v) =>
+      v.downloadReleases;
+  static const Field<ModRepoEntry, List<ModRepoDownload>> _f$downloadReleases =
+      Field('downloadReleases', _$downloadReleases, opt: true);
   static DateTime? _$dateTimeCreated(ModRepoEntry v) => v.dateTimeCreated;
   static const Field<ModRepoEntry, DateTime> _f$dateTimeCreated = Field(
     'dateTimeCreated',
@@ -367,11 +384,14 @@ class ModRepoEntryMapper extends ClassMapperBase<ModRepoEntry> {
     #description: _f$description,
     #modVersion: _f$modVersion,
     #gameVersionReq: _f$gameVersionReq,
+    #gameVersions: _f$gameVersions,
+    #modId: _f$modId,
     #authorsList: _f$authorsList,
     #urls: _f$urls,
     #sources: _f$sources,
     #categories: _f$categories,
     #images: _f$images,
+    #downloadReleases: _f$downloadReleases,
     #dateTimeCreated: _f$dateTimeCreated,
     #dateTimeEdited: _f$dateTimeEdited,
     #partOfThreadTitle: _f$partOfThreadTitle,
@@ -384,11 +404,14 @@ class ModRepoEntryMapper extends ClassMapperBase<ModRepoEntry> {
       description: data.dec(_f$description),
       modVersion: data.dec(_f$modVersion),
       gameVersionReq: data.dec(_f$gameVersionReq),
+      gameVersions: data.dec(_f$gameVersions),
+      modId: data.dec(_f$modId),
       authorsList: data.dec(_f$authorsList),
       urls: data.dec(_f$urls),
       sources: data.dec(_f$sources),
       categories: data.dec(_f$categories),
       images: data.dec(_f$images),
+      downloadReleases: data.dec(_f$downloadReleases),
       dateTimeCreated: data.dec(_f$dateTimeCreated),
       dateTimeEdited: data.dec(_f$dateTimeEdited),
       partOfThreadTitle: data.dec(_f$partOfThreadTitle),
@@ -457,6 +480,8 @@ extension ModRepoEntryValueCopy<$R, $Out>
 
 abstract class ModRepoEntryCopyWith<$R, $In extends ModRepoEntry, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  get gameVersions;
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>? get authorsList;
   MapCopyWith<$R, ModUrlType, String, ObjectCopyWith<$R, String, String>>?
   get urls;
@@ -470,17 +495,26 @@ abstract class ModRepoEntryCopyWith<$R, $In extends ModRepoEntry, $Out>
     ModRepoImageCopyWith<$R, ModRepoImage, ModRepoImage>
   >?
   get images;
+  ListCopyWith<
+    $R,
+    ModRepoDownload,
+    ModRepoDownloadCopyWith<$R, ModRepoDownload, ModRepoDownload>
+  >?
+  get downloadReleases;
   $R call({
     String? name,
     String? summary,
     String? description,
     String? modVersion,
     String? gameVersionReq,
+    List<String>? gameVersions,
+    String? modId,
     List<String>? authorsList,
     Map<ModUrlType, String>? urls,
     List<ModSource>? sources,
     List<String>? categories,
     Map<String, ModRepoImage>? images,
+    List<ModRepoDownload>? downloadReleases,
     DateTime? dateTimeCreated,
     DateTime? dateTimeEdited,
     String? partOfThreadTitle,
@@ -496,6 +530,15 @@ class _ModRepoEntryCopyWithImpl<$R, $Out>
   @override
   late final ClassMapperBase<ModRepoEntry> $mapper =
       ModRepoEntryMapper.ensureInitialized();
+  @override
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+  get gameVersions => $value.gameVersions != null
+      ? ListCopyWith(
+          $value.gameVersions!,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(gameVersions: v),
+        )
+      : null;
   @override
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
   get authorsList => $value.authorsList != null
@@ -547,17 +590,33 @@ class _ModRepoEntryCopyWithImpl<$R, $Out>
         )
       : null;
   @override
+  ListCopyWith<
+    $R,
+    ModRepoDownload,
+    ModRepoDownloadCopyWith<$R, ModRepoDownload, ModRepoDownload>
+  >?
+  get downloadReleases => $value.downloadReleases != null
+      ? ListCopyWith(
+          $value.downloadReleases!,
+          (v, t) => v.copyWith.$chain(t),
+          (v) => call(downloadReleases: v),
+        )
+      : null;
+  @override
   $R call({
     String? name,
     Object? summary = $none,
     Object? description = $none,
     Object? modVersion = $none,
     Object? gameVersionReq = $none,
+    Object? gameVersions = $none,
+    Object? modId = $none,
     Object? authorsList = $none,
     Object? urls = $none,
     Object? sources = $none,
     Object? categories = $none,
     Object? images = $none,
+    Object? downloadReleases = $none,
     Object? dateTimeCreated = $none,
     Object? dateTimeEdited = $none,
     Object? partOfThreadTitle = $none,
@@ -568,11 +627,14 @@ class _ModRepoEntryCopyWithImpl<$R, $Out>
       if (description != $none) #description: description,
       if (modVersion != $none) #modVersion: modVersion,
       if (gameVersionReq != $none) #gameVersionReq: gameVersionReq,
+      if (gameVersions != $none) #gameVersions: gameVersions,
+      if (modId != $none) #modId: modId,
       if (authorsList != $none) #authorsList: authorsList,
       if (urls != $none) #urls: urls,
       if (sources != $none) #sources: sources,
       if (categories != $none) #categories: categories,
       if (images != $none) #images: images,
+      if (downloadReleases != $none) #downloadReleases: downloadReleases,
       if (dateTimeCreated != $none) #dateTimeCreated: dateTimeCreated,
       if (dateTimeEdited != $none) #dateTimeEdited: dateTimeEdited,
       if (partOfThreadTitle != $none) #partOfThreadTitle: partOfThreadTitle,
@@ -585,11 +647,14 @@ class _ModRepoEntryCopyWithImpl<$R, $Out>
     description: data.get(#description, or: $value.description),
     modVersion: data.get(#modVersion, or: $value.modVersion),
     gameVersionReq: data.get(#gameVersionReq, or: $value.gameVersionReq),
+    gameVersions: data.get(#gameVersions, or: $value.gameVersions),
+    modId: data.get(#modId, or: $value.modId),
     authorsList: data.get(#authorsList, or: $value.authorsList),
     urls: data.get(#urls, or: $value.urls),
     sources: data.get(#sources, or: $value.sources),
     categories: data.get(#categories, or: $value.categories),
     images: data.get(#images, or: $value.images),
+    downloadReleases: data.get(#downloadReleases, or: $value.downloadReleases),
     dateTimeCreated: data.get(#dateTimeCreated, or: $value.dateTimeCreated),
     dateTimeEdited: data.get(#dateTimeEdited, or: $value.dateTimeEdited),
     partOfThreadTitle: data.get(
@@ -797,5 +862,214 @@ class _ModRepoImageCopyWithImpl<$R, $Out>
   ModRepoImageCopyWith<$R2, ModRepoImage, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
   ) => _ModRepoImageCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class ModRepoDownloadMapper extends ClassMapperBase<ModRepoDownload> {
+  ModRepoDownloadMapper._();
+
+  static ModRepoDownloadMapper? _instance;
+  static ModRepoDownloadMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ModRepoDownloadMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'ModRepoDownload';
+
+  static String _$url(ModRepoDownload v) => v.url;
+  static const Field<ModRepoDownload, String> _f$url = Field('url', _$url);
+  static String? _$label(ModRepoDownload v) => v.label;
+  static const Field<ModRepoDownload, String> _f$label = Field(
+    'label',
+    _$label,
+    opt: true,
+  );
+  static String? _$fileName(ModRepoDownload v) => v.fileName;
+  static const Field<ModRepoDownload, String> _f$fileName = Field(
+    'fileName',
+    _$fileName,
+    opt: true,
+  );
+  static String? _$gameVersion(ModRepoDownload v) => v.gameVersion;
+  static const Field<ModRepoDownload, String> _f$gameVersion = Field(
+    'gameVersion',
+    _$gameVersion,
+    opt: true,
+  );
+  static String? _$modVersion(ModRepoDownload v) => v.modVersion;
+  static const Field<ModRepoDownload, String> _f$modVersion = Field(
+    'modVersion',
+    _$modVersion,
+    opt: true,
+  );
+  static int? _$fileSizeBytes(ModRepoDownload v) => v.fileSizeBytes;
+  static const Field<ModRepoDownload, int> _f$fileSizeBytes = Field(
+    'fileSizeBytes',
+    _$fileSizeBytes,
+    opt: true,
+  );
+  static int? _$downloadCount(ModRepoDownload v) => v.downloadCount;
+  static const Field<ModRepoDownload, int> _f$downloadCount = Field(
+    'downloadCount',
+    _$downloadCount,
+    opt: true,
+  );
+  static DateTime? _$uploadedAt(ModRepoDownload v) => v.uploadedAt;
+  static const Field<ModRepoDownload, DateTime> _f$uploadedAt = Field(
+    'uploadedAt',
+    _$uploadedAt,
+    opt: true,
+  );
+
+  @override
+  final MappableFields<ModRepoDownload> fields = const {
+    #url: _f$url,
+    #label: _f$label,
+    #fileName: _f$fileName,
+    #gameVersion: _f$gameVersion,
+    #modVersion: _f$modVersion,
+    #fileSizeBytes: _f$fileSizeBytes,
+    #downloadCount: _f$downloadCount,
+    #uploadedAt: _f$uploadedAt,
+  };
+
+  static ModRepoDownload _instantiate(DecodingData data) {
+    return ModRepoDownload(
+      url: data.dec(_f$url),
+      label: data.dec(_f$label),
+      fileName: data.dec(_f$fileName),
+      gameVersion: data.dec(_f$gameVersion),
+      modVersion: data.dec(_f$modVersion),
+      fileSizeBytes: data.dec(_f$fileSizeBytes),
+      downloadCount: data.dec(_f$downloadCount),
+      uploadedAt: data.dec(_f$uploadedAt),
+    );
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static ModRepoDownload fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<ModRepoDownload>(map);
+  }
+
+  static ModRepoDownload fromJson(String json) {
+    return ensureInitialized().decodeJson<ModRepoDownload>(json);
+  }
+}
+
+mixin ModRepoDownloadMappable {
+  String toJson() {
+    return ModRepoDownloadMapper.ensureInitialized()
+        .encodeJson<ModRepoDownload>(this as ModRepoDownload);
+  }
+
+  Map<String, dynamic> toMap() {
+    return ModRepoDownloadMapper.ensureInitialized().encodeMap<ModRepoDownload>(
+      this as ModRepoDownload,
+    );
+  }
+
+  ModRepoDownloadCopyWith<ModRepoDownload, ModRepoDownload, ModRepoDownload>
+  get copyWith =>
+      _ModRepoDownloadCopyWithImpl<ModRepoDownload, ModRepoDownload>(
+        this as ModRepoDownload,
+        $identity,
+        $identity,
+      );
+  @override
+  String toString() {
+    return ModRepoDownloadMapper.ensureInitialized().stringifyValue(
+      this as ModRepoDownload,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return ModRepoDownloadMapper.ensureInitialized().equalsValue(
+      this as ModRepoDownload,
+      other,
+    );
+  }
+
+  @override
+  int get hashCode {
+    return ModRepoDownloadMapper.ensureInitialized().hashValue(
+      this as ModRepoDownload,
+    );
+  }
+}
+
+extension ModRepoDownloadValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, ModRepoDownload, $Out> {
+  ModRepoDownloadCopyWith<$R, ModRepoDownload, $Out> get $asModRepoDownload =>
+      $base.as((v, t, t2) => _ModRepoDownloadCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class ModRepoDownloadCopyWith<$R, $In extends ModRepoDownload, $Out>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({
+    String? url,
+    String? label,
+    String? fileName,
+    String? gameVersion,
+    String? modVersion,
+    int? fileSizeBytes,
+    int? downloadCount,
+    DateTime? uploadedAt,
+  });
+  ModRepoDownloadCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  );
+}
+
+class _ModRepoDownloadCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, ModRepoDownload, $Out>
+    implements ModRepoDownloadCopyWith<$R, ModRepoDownload, $Out> {
+  _ModRepoDownloadCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<ModRepoDownload> $mapper =
+      ModRepoDownloadMapper.ensureInitialized();
+  @override
+  $R call({
+    String? url,
+    Object? label = $none,
+    Object? fileName = $none,
+    Object? gameVersion = $none,
+    Object? modVersion = $none,
+    Object? fileSizeBytes = $none,
+    Object? downloadCount = $none,
+    Object? uploadedAt = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (url != null) #url: url,
+      if (label != $none) #label: label,
+      if (fileName != $none) #fileName: fileName,
+      if (gameVersion != $none) #gameVersion: gameVersion,
+      if (modVersion != $none) #modVersion: modVersion,
+      if (fileSizeBytes != $none) #fileSizeBytes: fileSizeBytes,
+      if (downloadCount != $none) #downloadCount: downloadCount,
+      if (uploadedAt != $none) #uploadedAt: uploadedAt,
+    }),
+  );
+  @override
+  ModRepoDownload $make(CopyWithData data) => ModRepoDownload(
+    url: data.get(#url, or: $value.url),
+    label: data.get(#label, or: $value.label),
+    fileName: data.get(#fileName, or: $value.fileName),
+    gameVersion: data.get(#gameVersion, or: $value.gameVersion),
+    modVersion: data.get(#modVersion, or: $value.modVersion),
+    fileSizeBytes: data.get(#fileSizeBytes, or: $value.fileSizeBytes),
+    downloadCount: data.get(#downloadCount, or: $value.downloadCount),
+    uploadedAt: data.get(#uploadedAt, or: $value.uploadedAt),
+  );
+
+  @override
+  ModRepoDownloadCopyWith<$R2, ModRepoDownload, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  ) => _ModRepoDownloadCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 

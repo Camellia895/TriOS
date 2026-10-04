@@ -52,7 +52,11 @@ class CachedJsonFetcher {
     }
 
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(
+        Uri.parse(url),
+        // Identify the app to the server (notably api.fossic.org).
+        headers: {HttpHeaders.userAgentHeader: Constants.userAgent},
+      );
       final body = response.body;
 
       try {

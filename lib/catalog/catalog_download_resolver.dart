@@ -114,17 +114,35 @@ List<DownloadCandidate> resolveDownloadCandidates(
     );
   }
 
-  // The catalog's existing direct download link.
+  // The catalog's direct download(s). The English catalog has one link; the
+  // fossic catalog offers one attachment per game version, newest first — the
+  // button runs the first, and the chooser menu lists the rest.
+  final releases = mod.downloadReleases;
+  if (releases != null && releases.isNotEmpty) {
+    for (final release in releases) {
+      candidates.add(
+        DownloadCandidate(
+          url: release.url,
+          label: _releaseLabel(release),
+          kind: DownloadCandidateKind.catalogDirect,
+          sourceHost: _hostOf(release.url),
+          fileName: release.fileName,
+        ),
+      );
+    }
+  }
   final catalogDirect = mod.urls?[ModUrlType.DirectDownload];
-  if (catalogDirect != null && catalogDirect.isNotEmpty) {
-    candidates.add(
-      DownloadCandidate(
-        url: catalogDirect,
-        label: AppLocalizationsSync.instance.catalogDirectDownload,
-        kind: DownloadCandidateKind.catalogDirect,
-        sourceHost: _hostOf(catalogDirect),
-      ),
-    );
+  if (releases == null || releases.isEmpty) {
+    if (catalogDirect != null && catalogDirect.isNotEmpty) {
+      candidates.add(
+        DownloadCandidate(
+          url: catalogDirect,
+          label: AppLocalizationsSync.instance.catalogDirectDownload,
+          kind: DownloadCandidateKind.catalogDirect,
+          sourceHost: _hostOf(catalogDirect),
+        ),
+      );
+    }
   }
 
   // Website fallback (forum/NexusMods page).
@@ -257,6 +275,20 @@ String _forumLabel(ForumLlmDownload download, DownloadCandidateKind kind) {
       AppLocalizationsSync.instance.catalogMirror,
     _ => AppLocalizationsSync.instance.catalogDownload,
   };
+}
+
+/// One fossic attachment: game version, the forum's label or the file name,
+/// and the size — e.g. "0.98 · AEF-0.98 · 35.1 MB".
+String _releaseLabel(ModRepoDownload release) {
+  final parts = <String>[
+    if (release.gameVersion?.isNotEmpty == true) release.gameVersion!,
+    if (release.label?.isNotEmpty == true)
+      release.label!
+    else if (release.fileName?.isNotEmpty == true) release.fileName!,
+    if (release.fileSizeBytes != null)
+      release.fileSizeBytes!.bytesAsReadable(),
+  ];
+  return parts.join(' · ');
 }
 
 int _confidenceRank(LlmDownloadConfidence? confidence) => switch (confidence) {

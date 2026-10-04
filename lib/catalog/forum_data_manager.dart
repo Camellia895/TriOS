@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart' show StateProvider;
+import 'package:trios/catalog/catalog_manager.dart';
 import 'package:trios/catalog/models/forum_data_bundle.dart';
 import 'package:trios/catalog/models/forum_llm_data.dart';
 import 'package:trios/catalog/models/forum_mod_details.dart';
@@ -24,6 +25,12 @@ final forumDataFetcher = CachedJsonFetcher(
 );
 
 final forumDataProvider = StreamProvider<ForumDataBundle>((ref) async* {
+  // The bundle describes the English forum's threads. Browsing the fossic
+  // catalog never looks a topic up in it, so don't spend the (large) download.
+  if (ref.watch(activeCatalogDataSourceProvider) == CatalogDataSource.fossic) {
+    yield ForumDataBundle(updatedAt: DateTime.now(), index: const []);
+    return;
+  }
   final currentTime = DateTime.now();
   ref.watch(isLoadingForumData.notifier).state = true;
   String rawJson;
@@ -106,6 +113,12 @@ Map<int, ForumModDetails> _parseForumDetails(String rawJson) {
 /// only parses once.
 final forumDetailsByTopicId =
     FutureProvider.autoDispose<Map<int, ForumModDetails>>((ref) async {
+      // Only the English catalog's cards read forum details; skip the heavy
+      // parse entirely when browsing fossic.
+      if (ref.watch(activeCatalogDataSourceProvider) ==
+          CatalogDataSource.fossic) {
+        return const {};
+      }
       _holdBriefly(ref);
       final started = DateTime.now();
       final String rawJson;

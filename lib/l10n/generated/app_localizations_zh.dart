@@ -113,6 +113,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get catalogDataSourcesTitle => '模组目录数据源';
 
   @override
+  String get catalogDataSource => '目录数据源';
+
+  @override
+  String get catalogDataSourceAuto => '自动（跟随界面语言）';
+
+  @override
+  String get catalogDataSourceFossic => '中文论坛（Fossic）';
+
+  @override
+  String get catalogDataSourceWisp => '英文论坛（Starsector 官方）';
+
+  @override
   String get catalogDebugInfo => '调试信息';
 
   @override
@@ -152,6 +164,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get catalogForumIndexSubforumsAndDiscord => '论坛索引、子版块和 Discord';
+
+  @override
+  String get catalogFossicModRepo => 'Fossic 模组索引';
+
+  @override
+  String get catalogFossicModRepoSubtitle =>
+      'fossic.org 模组索引：原创 / 汉化 / 转载，可直接下载论坛附件';
 
   @override
   String get catalogFullChangelog => '完整更新日志';

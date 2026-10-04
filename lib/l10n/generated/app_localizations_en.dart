@@ -117,6 +117,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get catalogDataSourcesTitle => 'Catalog Data Sources';
 
   @override
+  String get catalogDataSource => 'Catalog data source';
+
+  @override
+  String get catalogDataSourceAuto => 'Automatic (follow language)';
+
+  @override
+  String get catalogDataSourceFossic => 'Fossic forum (Chinese)';
+
+  @override
+  String get catalogDataSourceWisp => 'Starsector forum (English)';
+
+  @override
   String get catalogDebugInfo => 'Debug Info';
 
   @override
@@ -157,6 +169,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get catalogForumIndexSubforumsAndDiscord =>
       'forum index, subforums, and discord';
+
+  @override
+  String get catalogFossicModRepo => 'Fossic Mod Index';
+
+  @override
+  String get catalogFossicModRepoSubtitle =>
+      'fossic.org mod index — original, translated, and reposted mods, with forum attachment downloads';
 
   @override
   String get catalogFullChangelog => 'Full changelog';

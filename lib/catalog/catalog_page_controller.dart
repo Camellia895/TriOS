@@ -285,8 +285,13 @@ class CatalogPageController extends Notifier<CatalogPageState>
               if (selected == null) return true;
               final bucket = _versionGroupOptions[selected];
               if (bucket == null) return false;
-              final ver = mod.entry.gameVersionReq;
-              return ver != null && bucket.contains(ver);
+              // Fossic mods list every game version they ship for; the entry
+              // matches when any of them lands in the selected bucket.
+              final versions = mod.entry.gameVersions ??
+                  (mod.entry.gameVersionReq == null
+                      ? const <String>[]
+                      : [mod.entry.gameVersionReq!]);
+              return versions.any(bucket.contains);
             },
           ),
         ],
